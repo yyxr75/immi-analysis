@@ -1,0 +1,1336 @@
+occupation,visa_type,分数线,该线获邀率%,该线样本n,EOI总数,曾获邀
+121111 Aquaculture Farmer,491SNR State or Territory Nominated - Regional,,,,64.0,1.0
+121211 Cotton Grower,491SNR State or Territory Nominated - Regional,,,,3.0,0.0
+121212 Flower Grower,190SAS Skilled Australian Sponsored,,,,48.0,2.0
+121212 Flower Grower,491SNR State or Territory Nominated - Regional,,,,86.0,4.0
+121213 Fruit or Nut Grower,491SNR State or Territory Nominated - Regional,,,,93.0,3.0
+"121214 Grain, Oilseed or Pasture Grower",491SNR State or Territory Nominated - Regional,,,,75.0,1.0
+121215 Grape Grower,190SAS Skilled Australian Sponsored,,,,19.0,3.0
+121215 Grape Grower,491SNR State or Territory Nominated - Regional,,,,23.0,3.0
+121216 Mixed Crop Farmer,491SNR State or Territory Nominated - Regional,,,,1348.0,21.0
+121217 Sugar Cane Grower,491SNR State or Territory Nominated - Regional,,,,16.0,0.0
+121221 Vegetable Grower,190SAS Skilled Australian Sponsored,,,,201.0,15.0
+121221 Vegetable Grower,491SNR State or Territory Nominated - Regional,,,,227.0,21.0
+121299 Crop Farmers nec,491SNR State or Territory Nominated - Regional,,,,11.0,1.0
+121311 Apiarist,190SAS Skilled Australian Sponsored,,,,13.0,0.0
+121311 Apiarist,491SNR State or Territory Nominated - Regional,,,,35.0,0.0
+121312 Beef Cattle Farmer,491SNR State or Territory Nominated - Regional,,,,37.0,0.0
+121313 Dairy Cattle Farmer,491SNR State or Territory Nominated - Regional,,,,248.0,0.0
+121316 Horse Breeder,491SNR State or Territory Nominated - Regional,,,,4.0,0.0
+121317 Mixed Livestock Farmer,491SNR State or Territory Nominated - Regional,,,,45.0,0.0
+121318 Pig Farmer,491SNR State or Territory Nominated - Regional,,,,2.0,0.0
+121321 Poultry Farmer,190SAS Skilled Australian Sponsored,,,,180.0,5.0
+121321 Poultry Farmer,491SNR State or Territory Nominated - Regional,,,,331.0,13.0
+121322 Sheep Farmer,491SNR State or Territory Nominated - Regional,,,,6.0,0.0
+121399 Livestock Farmers nec,491SNR State or Territory Nominated - Regional,,,,3.0,0.0
+121411 Mixed Crop and Livestock Farmer,491SNR State or Territory Nominated - Regional,,,,73.0,6.0
+131112 Sales and Marketing Manager,190SAS Skilled Australian Sponsored,,,,3948.0,86.0
+131112 Sales and Marketing Manager,491SNR State or Territory Nominated - Regional,,,,5197.0,62.0
+131113 Advertising Manager,190SAS Skilled Australian Sponsored,,,,212.0,1.0
+131113 Advertising Manager,491SNR State or Territory Nominated - Regional,,,,226.0,0.0
+131114 Public Relations Manager,491SNR State or Territory Nominated - Regional,,,,90.0,0.0
+132111 Corporate Services Manager,190SAS Skilled Australian Sponsored,,,,637.0,19.0
+132111 Corporate Services Manager,491SNR State or Territory Nominated - Regional,,,,732.0,3.0
+132211 Finance Manager,189PTS Points-Tested Stream,,,,12.0,0.0
+132211 Finance Manager,190SAS Skilled Australian Sponsored,,,,7330.0,82.0
+132211 Finance Manager,491SNR State or Territory Nominated - Regional,,,,7073.0,65.0
+132311 Human Resource Manager,189PTS Points-Tested Stream,,,,1.0,0.0
+132311 Human Resource Manager,190SAS Skilled Australian Sponsored,,,,2355.0,29.0
+132311 Human Resource Manager,491SNR State or Territory Nominated - Regional,,,,2942.0,21.0
+132411 Policy and Planning Manager,491SNR State or Territory Nominated - Regional,75.0,10.3,68.0,408.0,36.0
+132511 Research and Development Manager,189PTS Points-Tested Stream,,,,1.0,0.0
+132511 Research and Development Manager,190SAS Skilled Australian Sponsored,90.0,14.1,99.0,1593.0,40.0
+132511 Research and Development Manager,491SNR State or Territory Nominated - Regional,,,,1655.0,24.0
+133111 Construction Project Manager,189PTS Points-Tested Stream,75.0,31.0,1529.0,7017.0,1543.0
+133111 Construction Project Manager,190SAS Skilled Australian Sponsored,85.0,13.8,2325.0,21862.0,1194.0
+133111 Construction Project Manager,491FSR Family Sponsored - Regional,,,,239.0,21.0
+133111 Construction Project Manager,491SNR State or Territory Nominated - Regional,100.0,11.9,523.0,20841.0,505.0
+133112 Project Builder,491SNR State or Territory Nominated - Regional,,,,43.0,0.0
+133211 Engineering Manager,189PTS Points-Tested Stream,80.0,31.0,84.0,1004.0,83.0
+133211 Engineering Manager,190SAS Skilled Australian Sponsored,85.0,11.2,285.0,3178.0,110.0
+133211 Engineering Manager,491FSR Family Sponsored - Regional,,,,33.0,0.0
+133211 Engineering Manager,491SNR State or Territory Nominated - Regional,,,,3627.0,55.0
+133411 Manufacturer,190SAS Skilled Australian Sponsored,75.0,11.3,53.0,370.0,32.0
+133411 Manufacturer,491SNR State or Territory Nominated - Regional,90.0,12.5,56.0,611.0,33.0
+133511 Production Manager (Forestry),190SAS Skilled Australian Sponsored,,,,10.0,0.0
+133511 Production Manager (Forestry),491SNR State or Territory Nominated - Regional,,,,14.0,0.0
+133512 Production Manager (Manufacturing),189PTS Points-Tested Stream,,,,1.0,0.0
+133512 Production Manager (Manufacturing),190SAS Skilled Australian Sponsored,85.0,12.1,248.0,3345.0,136.0
+133512 Production Manager (Manufacturing),491SNR State or Territory Nominated - Regional,,,,5168.0,67.0
+133513 Production Manager (Mining),190SAS Skilled Australian Sponsored,,,,45.0,2.0
+133513 Production Manager (Mining),491SNR State or Territory Nominated - Regional,,,,86.0,2.0
+133611 Supply and Distribution Manager,190SAS Skilled Australian Sponsored,,,,1457.0,20.0
+133611 Supply and Distribution Manager,491SNR State or Territory Nominated - Regional,,,,1838.0,15.0
+133612 Procurement Manager,491SNR State or Territory Nominated - Regional,,,,654.0,2.0
+134111 Child Care Centre Manager,189PTS Points-Tested Stream,,,,155.0,21.0
+134111 Child Care Centre Manager,190SAS Skilled Australian Sponsored,70.0,12.0,50.0,193.0,28.0
+134111 Child Care Centre Manager,491FSR Family Sponsored - Regional,,,,11.0,0.0
+134111 Child Care Centre Manager,491SNR State or Territory Nominated - Regional,,,,148.0,12.0
+134211 Medical Administrator,491SNR State or Territory Nominated - Regional,,,,302.0,14.0
+134212 Nursing Clinical Director,189PTS Points-Tested Stream,,,,10.0,1.0
+134212 Nursing Clinical Director,190SAS Skilled Australian Sponsored,,,,13.0,1.0
+134212 Nursing Clinical Director,491SNR State or Territory Nominated - Regional,,,,11.0,1.0
+134213 Primary Health Organisation Manager,189PTS Points-Tested Stream,,,,244.0,21.0
+134213 Primary Health Organisation Manager,190SAS Skilled Australian Sponsored,85.0,20.0,50.0,560.0,27.0
+134213 Primary Health Organisation Manager,491FSR Family Sponsored - Regional,,,,46.0,0.0
+134213 Primary Health Organisation Manager,491SNR State or Territory Nominated - Regional,,,,693.0,20.0
+134214 Welfare Centre Manager,189PTS Points-Tested Stream,,,,27.0,2.0
+134214 Welfare Centre Manager,190SAS Skilled Australian Sponsored,,,,52.0,4.0
+134214 Welfare Centre Manager,491FSR Family Sponsored - Regional,,,,1.0,0.0
+134214 Welfare Centre Manager,491SNR State or Territory Nominated - Regional,,,,39.0,1.0
+134299 Health and Welfare Services Managers nec,190SAS Skilled Australian Sponsored,85.0,17.4,121.0,1360.0,72.0
+134299 Health and Welfare Services Managers nec,491SNR State or Territory Nominated - Regional,,,,1679.0,83.0
+134311 School Principal,190SAS Skilled Australian Sponsored,,,,250.0,13.0
+134311 School Principal,491SNR State or Territory Nominated - Regional,,,,517.0,14.0
+134412 Regional Education Manager,491SNR State or Territory Nominated - Regional,,,,44.0,4.0
+134499 Education Managers nec,190SAS Skilled Australian Sponsored,,,,243.0,7.0
+134499 Education Managers nec,491SNR State or Territory Nominated - Regional,,,,231.0,7.0
+135112 ICT Project Manager,189PTS Points-Tested Stream,,,,8.0,0.0
+135112 ICT Project Manager,190SAS Skilled Australian Sponsored,,,,8715.0,123.0
+135112 ICT Project Manager,491SNR State or Territory Nominated - Regional,,,,9691.0,59.0
+135199 ICT Managers nec,189PTS Points-Tested Stream,,,,1.0,0.0
+135199 ICT Managers nec,190SAS Skilled Australian Sponsored,,,,2998.0,46.0
+135199 ICT Managers nec,491SNR State or Territory Nominated - Regional,,,,3395.0,39.0
+139911 Arts Administrator or Manager,189PTS Points-Tested Stream,,,,169.0,31.0
+139911 Arts Administrator or Manager,190SAS Skilled Australian Sponsored,,,,275.0,16.0
+139911 Arts Administrator or Manager,491FSR Family Sponsored - Regional,,,,10.0,1.0
+139911 Arts Administrator or Manager,491SNR State or Territory Nominated - Regional,,,,194.0,5.0
+139912 Environmental Manager,189PTS Points-Tested Stream,80.0,21.2,80.0,575.0,62.0
+139912 Environmental Manager,190SAS Skilled Australian Sponsored,90.0,20.4,93.0,1247.0,37.0
+139912 Environmental Manager,491FSR Family Sponsored - Regional,,,,49.0,6.0
+139912 Environmental Manager,491SNR State or Territory Nominated - Regional,100.0,20.0,60.0,1385.0,21.0
+139913 Laboratory Manager,190SAS Skilled Australian Sponsored,,,,278.0,4.0
+139913 Laboratory Manager,491SNR State or Territory Nominated - Regional,,,,314.0,3.0
+139914 Quality Assurance Manager,190SAS Skilled Australian Sponsored,,,,2411.0,16.0
+139914 Quality Assurance Manager,491SNR State or Territory Nominated - Regional,,,,3142.0,9.0
+139915 Sports Administrator,491SNR State or Territory Nominated - Regional,,,,53.0,3.0
+139999 Specialist Managers nec,190SAS Skilled Australian Sponsored,,,,384.0,12.0
+139999 Specialist Managers nec,491SNR State or Territory Nominated - Regional,,,,432.0,10.0
+141111 Cafe or Restaurant Manager,189PTS Points-Tested Stream,,,,4.0,0.0
+141111 Cafe or Restaurant Manager,190SAS Skilled Australian Sponsored,80.0,11.4,988.0,6875.0,498.0
+141111 Cafe or Restaurant Manager,491FSR Family Sponsored - Regional,,,,1.0,0.0
+141111 Cafe or Restaurant Manager,491SNR State or Territory Nominated - Regional,105.0,14.3,98.0,9312.0,528.0
+141211 Caravan Park and Camping Ground Manager,491SNR State or Territory Nominated - Regional,,,,15.0,4.0
+141311 Hotel or Motel Manager,189PTS Points-Tested Stream,,,,4.0,0.0
+141311 Hotel or Motel Manager,190SAS Skilled Australian Sponsored,75.0,11.2,412.0,2351.0,214.0
+141311 Hotel or Motel Manager,491SNR State or Territory Nominated - Regional,90.0,10.9,311.0,2859.0,213.0
+141999 Accommodation and Hospitality Managers nec,190SAS Skilled Australian Sponsored,70.0,10.2,59.0,264.0,20.0
+141999 Accommodation and Hospitality Managers nec,491SNR State or Territory Nominated - Regional,,,,372.0,20.0
+142115 Post Office Manager,491SNR State or Territory Nominated - Regional,,,,32.0,2.0
+149111 Amusement Centre Manager,491SNR State or Territory Nominated - Regional,,,,5.0,0.0
+149112 Fitness Centre Manager,491SNR State or Territory Nominated - Regional,,,,199.0,3.0
+149113 Sports Centre Manager,491SNR State or Territory Nominated - Regional,,,,44.0,0.0
+149212 Customer Service Manager,190SAS Skilled Australian Sponsored,,,,1848.0,29.0
+149212 Customer Service Manager,491SNR State or Territory Nominated - Regional,,,,2830.0,32.0
+149311 Conference and Event Organiser,190SAS Skilled Australian Sponsored,,,,2426.0,71.0
+149311 Conference and Event Organiser,491SNR State or Territory Nominated - Regional,,,,3220.0,102.0
+149413 Transport Company Manager,190SAS Skilled Australian Sponsored,,,,454.0,12.0
+149413 Transport Company Manager,491SNR State or Territory Nominated - Regional,,,,659.0,19.0
+149913 Facilities Manager,190SAS Skilled Australian Sponsored,,,,996.0,24.0
+149913 Facilities Manager,491SNR State or Territory Nominated - Regional,,,,1531.0,23.0
+149914 Financial Institution Branch Manager,189PTS Points-Tested Stream,,,,1.0,0.0
+149914 Financial Institution Branch Manager,190SAS Skilled Australian Sponsored,,,,1.0,0.0
+149914 Financial Institution Branch Manager,491SNR State or Territory Nominated - Regional,,,,3979.0,10.0
+211112 Dancer or Choreographer,189PTS Points-Tested Stream,,,,31.0,7.0
+211112 Dancer or Choreographer,190SAS Skilled Australian Sponsored,,,,62.0,2.0
+211112 Dancer or Choreographer,491FSR Family Sponsored - Regional,,,,4.0,0.0
+211112 Dancer or Choreographer,491SNR State or Territory Nominated - Regional,,,,58.0,2.0
+211212 Music Director,189PTS Points-Tested Stream,,,,18.0,2.0
+211212 Music Director,190SAS Skilled Australian Sponsored,,,,19.0,2.0
+211212 Music Director,491FSR Family Sponsored - Regional,,,,1.0,0.0
+211212 Music Director,491SNR State or Territory Nominated - Regional,,,,10.0,0.0
+211213 Musician (Instrumental),189PTS Points-Tested Stream,,,,61.0,11.0
+211213 Musician (Instrumental),190SAS Skilled Australian Sponsored,,,,63.0,8.0
+211213 Musician (Instrumental),491FSR Family Sponsored - Regional,,,,4.0,0.0
+211213 Musician (Instrumental),491SNR State or Territory Nominated - Regional,,,,40.0,4.0
+211299 Music Professionals nec,190SAS Skilled Australian Sponsored,,,,5.0,0.0
+211299 Music Professionals nec,491SNR State or Territory Nominated - Regional,,,,4.0,0.0
+211311 Photographer,190SAS Skilled Australian Sponsored,,,,175.0,5.0
+211311 Photographer,491SNR State or Territory Nominated - Regional,,,,218.0,3.0
+212111 Artistic Director,189PTS Points-Tested Stream,,,,5.0,1.0
+212111 Artistic Director,190SAS Skilled Australian Sponsored,,,,5.0,2.0
+212111 Artistic Director,491FSR Family Sponsored - Regional,,,,2.0,0.0
+212212 Book or Script Editor,190SAS Skilled Australian Sponsored,,,,69.0,2.0
+212212 Book or Script Editor,491SNR State or Territory Nominated - Regional,,,,67.0,1.0
+"212312 Director (Film, Television, Radio or Stage)",190SAS Skilled Australian Sponsored,,,,64.0,2.0
+"212312 Director (Film, Television, Radio or Stage)",491SNR State or Territory Nominated - Regional,,,,54.0,0.0
+212314 Film and Video Editor,190SAS Skilled Australian Sponsored,,,,290.0,6.0
+212314 Film and Video Editor,491SNR State or Territory Nominated - Regional,,,,292.0,7.0
+212315 Program Director (Television or Radio),190SAS Skilled Australian Sponsored,,,,56.0,0.0
+212315 Program Director (Television or Radio),491SNR State or Territory Nominated - Regional,,,,63.0,0.0
+212316 Stage Manager,190SAS Skilled Australian Sponsored,,,,17.0,0.0
+212316 Stage Manager,491SNR State or Territory Nominated - Regional,,,,15.0,0.0
+212317 Technical Director,189PTS Points-Tested Stream,,,,1.0,0.0
+212317 Technical Director,190SAS Skilled Australian Sponsored,,,,10.0,0.0
+212317 Technical Director,491SNR State or Territory Nominated - Regional,,,,9.0,0.0
+212318 Video Producer,190SAS Skilled Australian Sponsored,,,,324.0,3.0
+212318 Video Producer,491SNR State or Territory Nominated - Regional,,,,229.0,1.0
+212411 Copywriter,190SAS Skilled Australian Sponsored,,,,625.0,9.0
+212411 Copywriter,491SNR State or Territory Nominated - Regional,,,,590.0,6.0
+212412 Newspaper or Periodical Editor,190SAS Skilled Australian Sponsored,,,,164.0,4.0
+212412 Newspaper or Periodical Editor,491SNR State or Territory Nominated - Regional,,,,179.0,2.0
+212413 Print Journalist,190SAS Skilled Australian Sponsored,,,,232.0,4.0
+212413 Print Journalist,491SNR State or Territory Nominated - Regional,,,,226.0,0.0
+212415 Technical Writer,190SAS Skilled Australian Sponsored,,,,587.0,11.0
+212415 Technical Writer,491SNR State or Territory Nominated - Regional,,,,569.0,10.0
+212416 Television Journalist,190SAS Skilled Australian Sponsored,,,,160.0,3.0
+212416 Television Journalist,491SNR State or Territory Nominated - Regional,,,,145.0,2.0
+212499 Journalists and Other Writers nec,190SAS Skilled Australian Sponsored,,,,276.0,5.0
+212499 Journalists and Other Writers nec,491SNR State or Territory Nominated - Regional,,,,251.0,5.0
+221111 Accountant (General),189PTS Points-Tested Stream,95.0,34.8,1381.0,33622.0,1076.0
+221111 Accountant (General),190SAS Skilled Australian Sponsored,100.0,14.2,1425.0,43193.0,1403.0
+221111 Accountant (General),491FSR Family Sponsored - Regional,,,,1703.0,21.0
+221111 Accountant (General),491SNR State or Territory Nominated - Regional,110.0,11.4,691.0,39391.0,1208.0
+221112 Management Accountant,189PTS Points-Tested Stream,95.0,20.2,193.0,6436.0,67.0
+221112 Management Accountant,190SAS Skilled Australian Sponsored,,,,8151.0,49.0
+221112 Management Accountant,491FSR Family Sponsored - Regional,,,,389.0,1.0
+221112 Management Accountant,491SNR State or Territory Nominated - Regional,,,,7885.0,49.0
+221113 Taxation Accountant,189PTS Points-Tested Stream,90.0,26.3,658.0,6970.0,276.0
+221113 Taxation Accountant,190SAS Skilled Australian Sponsored,95.0,10.8,609.0,7260.0,147.0
+221113 Taxation Accountant,491FSR Family Sponsored - Regional,,,,320.0,2.0
+221113 Taxation Accountant,491SNR State or Territory Nominated - Regional,,,,6396.0,70.0
+221211 Company Secretary,190SAS Skilled Australian Sponsored,,,,480.0,2.0
+221211 Company Secretary,491SNR State or Territory Nominated - Regional,,,,636.0,2.0
+221213 External Auditor,189PTS Points-Tested Stream,90.0,34.0,1127.0,16470.0,591.0
+221213 External Auditor,190SAS Skilled Australian Sponsored,,,,17662.0,315.0
+221213 External Auditor,491FSR Family Sponsored - Regional,,,,548.0,2.0
+221213 External Auditor,491SNR State or Territory Nominated - Regional,,,,13033.0,172.0
+221214 Internal Auditor,189PTS Points-Tested Stream,90.0,21.8,101.0,1871.0,42.0
+221214 Internal Auditor,190SAS Skilled Australian Sponsored,,,,4685.0,49.0
+221214 Internal Auditor,491FSR Family Sponsored - Regional,,,,135.0,0.0
+221214 Internal Auditor,491SNR State or Territory Nominated - Regional,,,,5051.0,27.0
+222111 Commodities Trader,190SAS Skilled Australian Sponsored,,,,133.0,6.0
+222111 Commodities Trader,491SNR State or Territory Nominated - Regional,,,,136.0,2.0
+222112 Finance Broker,190SAS Skilled Australian Sponsored,,,,452.0,10.0
+222112 Finance Broker,491SNR State or Territory Nominated - Regional,,,,462.0,14.0
+222113 Insurance Broker,190SAS Skilled Australian Sponsored,,,,402.0,6.0
+222113 Insurance Broker,491SNR State or Territory Nominated - Regional,,,,453.0,6.0
+222199 Financial Brokers nec,190SAS Skilled Australian Sponsored,,,,39.0,0.0
+222199 Financial Brokers nec,491SNR State or Territory Nominated - Regional,,,,35.0,0.0
+222211 Financial Market Dealer,190SAS Skilled Australian Sponsored,,,,415.0,2.0
+222211 Financial Market Dealer,491SNR State or Territory Nominated - Regional,,,,465.0,0.0
+222213 Stockbroking Dealer,190SAS Skilled Australian Sponsored,,,,60.0,1.0
+222213 Stockbroking Dealer,491SNR State or Territory Nominated - Regional,,,,67.0,1.0
+222299 Financial Dealers nec,190SAS Skilled Australian Sponsored,,,,225.0,5.0
+222299 Financial Dealers nec,491SNR State or Territory Nominated - Regional,,,,203.0,2.0
+222311 Financial Investment Adviser,189PTS Points-Tested Stream,,,,1.0,0.0
+222311 Financial Investment Adviser,190SAS Skilled Australian Sponsored,,,,4735.0,87.0
+222311 Financial Investment Adviser,491SNR State or Territory Nominated - Regional,,,,5498.0,48.0
+222312 Financial Investment Manager,190SAS Skilled Australian Sponsored,,,,584.0,17.0
+222312 Financial Investment Manager,491SNR State or Territory Nominated - Regional,,,,396.0,1.0
+223111 Human Resource Adviser,491SNR State or Territory Nominated - Regional,,,,9870.0,45.0
+223112 Recruitment Consultant,189PTS Points-Tested Stream,,,,1.0,0.0
+223112 Recruitment Consultant,190SAS Skilled Australian Sponsored,,,,4870.0,64.0
+223112 Recruitment Consultant,491SNR State or Territory Nominated - Regional,,,,5575.0,61.0
+223113 Workplace Relations Adviser,491SNR State or Territory Nominated - Regional,,,,31.0,0.0
+223211 ICT Trainer,190SAS Skilled Australian Sponsored,,,,531.0,15.0
+223211 ICT Trainer,491SNR State or Territory Nominated - Regional,,,,650.0,10.0
+224111 Actuary,189PTS Points-Tested Stream,85.0,26.9,216.0,1085.0,228.0
+224111 Actuary,190SAS Skilled Australian Sponsored,95.0,26.0,192.0,1388.0,105.0
+224111 Actuary,491FSR Family Sponsored - Regional,,,,31.0,2.0
+224111 Actuary,491SNR State or Territory Nominated - Regional,,,,534.0,31.0
+224112 Mathematician,190SAS Skilled Australian Sponsored,,,,337.0,5.0
+224112 Mathematician,491SNR State or Territory Nominated - Regional,,,,216.0,4.0
+224113 Statistician,189PTS Points-Tested Stream,85.0,19.4,484.0,2423.0,449.0
+224113 Statistician,190SAS Skilled Australian Sponsored,95.0,18.2,417.0,3384.0,199.0
+224113 Statistician,491FSR Family Sponsored - Regional,,,,41.0,1.0
+224113 Statistician,491SNR State or Territory Nominated - Regional,105.0,16.2,74.0,1833.0,50.0
+224212 Gallery or Museum Curator,190SAS Skilled Australian Sponsored,,,,10.0,1.0
+224212 Gallery or Museum Curator,491SNR State or Territory Nominated - Regional,,,,26.0,1.0
+224213 Health Information Manager,190SAS Skilled Australian Sponsored,,,,593.0,11.0
+224213 Health Information Manager,491SNR State or Territory Nominated - Regional,,,,607.0,6.0
+224214 Records Manager,190SAS Skilled Australian Sponsored,,,,86.0,5.0
+224214 Records Manager,491SNR State or Territory Nominated - Regional,,,,126.0,2.0
+224311 Economist,189PTS Points-Tested Stream,80.0,28.5,158.0,868.0,192.0
+224311 Economist,190SAS Skilled Australian Sponsored,85.0,12.5,216.0,1324.0,104.0
+224311 Economist,491FSR Family Sponsored - Regional,,,,38.0,1.0
+224311 Economist,491SNR State or Territory Nominated - Regional,95.0,15.5,116.0,1015.0,48.0
+224412 Policy Analyst,491SNR State or Territory Nominated - Regional,,,,458.0,20.0
+224511 Land Economist,189PTS Points-Tested Stream,,,,130.0,30.0
+224511 Land Economist,190SAS Skilled Australian Sponsored,,,,174.0,10.0
+224511 Land Economist,491FSR Family Sponsored - Regional,,,,2.0,0.0
+224511 Land Economist,491SNR State or Territory Nominated - Regional,,,,72.0,2.0
+224512 Valuer,189PTS Points-Tested Stream,80.0,29.0,62.0,347.0,59.0
+224512 Valuer,190SAS Skilled Australian Sponsored,85.0,10.5,76.0,453.0,33.0
+224512 Valuer,491FSR Family Sponsored - Regional,,,,18.0,0.0
+224512 Valuer,491SNR State or Territory Nominated - Regional,,,,349.0,10.0
+224611 Librarian,190SAS Skilled Australian Sponsored,,,,246.0,4.0
+224611 Librarian,491SNR State or Territory Nominated - Regional,,,,358.0,1.0
+224711 Management Consultant,189PTS Points-Tested Stream,80.0,25.3,451.0,2365.0,580.0
+224711 Management Consultant,190SAS Skilled Australian Sponsored,90.0,12.4,740.0,4321.0,271.0
+224711 Management Consultant,491FSR Family Sponsored - Regional,,,,105.0,5.0
+224711 Management Consultant,491SNR State or Territory Nominated - Regional,105.0,19.8,167.0,3015.0,109.0
+224712 Organisation and Methods Analyst,189PTS Points-Tested Stream,,,,2.0,0.0
+224712 Organisation and Methods Analyst,190SAS Skilled Australian Sponsored,,,,4295.0,66.0
+224712 Organisation and Methods Analyst,491SNR State or Territory Nominated - Regional,,,,5188.0,37.0
+224912 Liaison Officer,491SNR State or Territory Nominated - Regional,,,,271.0,5.0
+224914 Patents Examiner,190SAS Skilled Australian Sponsored,,,,101.0,1.0
+224914 Patents Examiner,491SNR State or Territory Nominated - Regional,,,,118.0,0.0
+224999 Information and Organisation Professionals nec,189PTS Points-Tested Stream,,,,4.0,0.0
+224999 Information and Organisation Professionals nec,190SAS Skilled Australian Sponsored,,,,11230.0,192.0
+224999 Information and Organisation Professionals nec,491SNR State or Territory Nominated - Regional,,,,12500.0,108.0
+225111 Advertising Specialist,190SAS Skilled Australian Sponsored,,,,1919.0,30.0
+225111 Advertising Specialist,491SNR State or Territory Nominated - Regional,,,,1687.0,12.0
+225112 Market Research Analyst,491SNR State or Territory Nominated - Regional,,,,797.0,1.0
+225113 Marketing Specialist,189PTS Points-Tested Stream,,,,3.0,0.0
+225113 Marketing Specialist,190SAS Skilled Australian Sponsored,,,,20880.0,310.0
+225113 Marketing Specialist,491SNR State or Territory Nominated - Regional,,,,21795.0,146.0
+225211 ICT Account Manager,190SAS Skilled Australian Sponsored,,,,739.0,8.0
+225211 ICT Account Manager,491SNR State or Territory Nominated - Regional,,,,720.0,3.0
+225212 ICT Business Development Manager,190SAS Skilled Australian Sponsored,,,,867.0,10.0
+225212 ICT Business Development Manager,491SNR State or Territory Nominated - Regional,,,,977.0,6.0
+225213 ICT Sales Representative,190SAS Skilled Australian Sponsored,,,,761.0,16.0
+225213 ICT Sales Representative,491SNR State or Territory Nominated - Regional,,,,805.0,11.0
+225311 Public Relations Professional,190SAS Skilled Australian Sponsored,,,,1897.0,26.0
+225311 Public Relations Professional,491SNR State or Territory Nominated - Regional,,,,1917.0,21.0
+225499 Technical Sales Representatives nec,189PTS Points-Tested Stream,,,,1.0,0.0
+225499 Technical Sales Representatives nec,190SAS Skilled Australian Sponsored,,,,556.0,14.0
+225499 Technical Sales Representatives nec,491SNR State or Territory Nominated - Regional,,,,564.0,9.0
+231111 Aeroplane Pilot,491SNR State or Territory Nominated - Regional,,,,71.0,1.0
+231113 Flying Instructor,491SNR State or Territory Nominated - Regional,,,,24.0,1.0
+231114 Helicopter Pilot,491SNR State or Territory Nominated - Regional,,,,5.0,0.0
+231213 Ship's Master,491SNR State or Territory Nominated - Regional,,,,239.0,11.0
+232111 Architect,189PTS Points-Tested Stream,75.0,35.7,939.0,4584.0,1235.0
+232111 Architect,190SAS Skilled Australian Sponsored,80.0,17.1,1271.0,6325.0,804.0
+232111 Architect,491FSR Family Sponsored - Regional,,,,79.0,3.0
+232111 Architect,491SNR State or Territory Nominated - Regional,90.0,11.5,514.0,2878.0,194.0
+232112 Landscape Architect,189PTS Points-Tested Stream,75.0,34.4,186.0,857.0,199.0
+232112 Landscape Architect,190SAS Skilled Australian Sponsored,80.0,12.0,291.0,1430.0,110.0
+232112 Landscape Architect,491FSR Family Sponsored - Regional,,,,9.0,0.0
+232112 Landscape Architect,491SNR State or Territory Nominated - Regional,90.0,11.4,123.0,757.0,33.0
+232212 Surveyor,189PTS Points-Tested Stream,80.0,25.5,55.0,739.0,59.0
+232212 Surveyor,190SAS Skilled Australian Sponsored,85.0,13.3,128.0,1623.0,84.0
+232212 Surveyor,491FSR Family Sponsored - Regional,,,,25.0,0.0
+232212 Surveyor,491SNR State or Territory Nominated - Regional,,,,1829.0,34.0
+232213 Cartographer,189PTS Points-Tested Stream,,,,27.0,3.0
+232213 Cartographer,190SAS Skilled Australian Sponsored,,,,77.0,2.0
+232213 Cartographer,491SNR State or Territory Nominated - Regional,,,,97.0,2.0
+232214 Other Spatial Scientist,189PTS Points-Tested Stream,80.0,20.2,84.0,591.0,124.0
+232214 Other Spatial Scientist,190SAS Skilled Australian Sponsored,85.0,18.0,100.0,896.0,89.0
+232214 Other Spatial Scientist,491FSR Family Sponsored - Regional,,,,10.0,1.0
+232214 Other Spatial Scientist,491SNR State or Territory Nominated - Regional,95.0,11.1,54.0,716.0,28.0
+232311 Fashion Designer,190SAS Skilled Australian Sponsored,,,,641.0,2.0
+232311 Fashion Designer,491SNR State or Territory Nominated - Regional,,,,807.0,1.0
+232312 Industrial Designer,189PTS Points-Tested Stream,,,,1.0,0.0
+232312 Industrial Designer,190SAS Skilled Australian Sponsored,,,,544.0,8.0
+232312 Industrial Designer,491SNR State or Territory Nominated - Regional,,,,478.0,3.0
+232313 Jewellery Designer,190SAS Skilled Australian Sponsored,,,,49.0,0.0
+232313 Jewellery Designer,491SNR State or Territory Nominated - Regional,,,,61.0,0.0
+232411 Graphic Designer,190SAS Skilled Australian Sponsored,,,,3693.0,55.0
+232411 Graphic Designer,491SNR State or Territory Nominated - Regional,,,,4109.0,44.0
+232412 Illustrator,190SAS Skilled Australian Sponsored,,,,182.0,7.0
+232412 Illustrator,491SNR State or Territory Nominated - Regional,,,,161.0,4.0
+232413 Multimedia Designer,491SNR State or Territory Nominated - Regional,,,,379.0,6.0
+232414 Web Designer,189PTS Points-Tested Stream,,,,1.0,0.0
+232414 Web Designer,190SAS Skilled Australian Sponsored,,,,1945.0,23.0
+232414 Web Designer,491SNR State or Territory Nominated - Regional,,,,2254.0,19.0
+232511 Interior Designer,189PTS Points-Tested Stream,,,,1.0,0.0
+232511 Interior Designer,190SAS Skilled Australian Sponsored,,,,1484.0,10.0
+232511 Interior Designer,491SNR State or Territory Nominated - Regional,,,,1464.0,6.0
+232611 Urban and Regional Planner,190SAS Skilled Australian Sponsored,80.0,10.6,426.0,2181.0,170.0
+232611 Urban and Regional Planner,491SNR State or Territory Nominated - Regional,100.0,11.8,93.0,1937.0,64.0
+233111 Chemical Engineer,189PTS Points-Tested Stream,85.0,24.9,708.0,5402.0,545.0
+233111 Chemical Engineer,190SAS Skilled Australian Sponsored,95.0,23.6,592.0,10361.0,341.0
+233111 Chemical Engineer,491FSR Family Sponsored - Regional,,,,238.0,2.0
+233111 Chemical Engineer,491SNR State or Territory Nominated - Regional,105.0,15.7,255.0,9689.0,140.0
+233112 Materials Engineer,189PTS Points-Tested Stream,85.0,16.7,126.0,1064.0,106.0
+233112 Materials Engineer,190SAS Skilled Australian Sponsored,95.0,10.6,141.0,1857.0,43.0
+233112 Materials Engineer,491FSR Family Sponsored - Regional,,,,66.0,3.0
+233112 Materials Engineer,491SNR State or Territory Nominated - Regional,,,,1677.0,17.0
+233211 Civil Engineer,189PTS Points-Tested Stream,90.0,28.9,1869.0,30165.0,1234.0
+233211 Civil Engineer,190SAS Skilled Australian Sponsored,95.0,13.0,2606.0,56510.0,1520.0
+233211 Civil Engineer,491FSR Family Sponsored - Regional,,,,1241.0,16.0
+233211 Civil Engineer,491SNR State or Territory Nominated - Regional,105.0,11.3,1034.0,53324.0,1074.0
+233212 Geotechnical Engineer,189PTS Points-Tested Stream,75.0,18.6,156.0,773.0,88.0
+233212 Geotechnical Engineer,190SAS Skilled Australian Sponsored,90.0,12.2,90.0,1302.0,55.0
+233212 Geotechnical Engineer,491FSR Family Sponsored - Regional,,,,6.0,0.0
+233212 Geotechnical Engineer,491SNR State or Territory Nominated - Regional,,,,1029.0,16.0
+233213 Quantity Surveyor,189PTS Points-Tested Stream,75.0,31.2,725.0,3443.0,713.0
+233213 Quantity Surveyor,190SAS Skilled Australian Sponsored,80.0,12.0,979.0,5289.0,364.0
+233213 Quantity Surveyor,491FSR Family Sponsored - Regional,,,,66.0,8.0
+233213 Quantity Surveyor,491SNR State or Territory Nominated - Regional,,,,3634.0,117.0
+233214 Structural Engineer,189PTS Points-Tested Stream,75.0,26.9,450.0,1986.0,309.0
+233214 Structural Engineer,190SAS Skilled Australian Sponsored,90.0,11.7,369.0,4264.0,228.0
+233214 Structural Engineer,491FSR Family Sponsored - Regional,,,,36.0,0.0
+233214 Structural Engineer,491SNR State or Territory Nominated - Regional,,,,3239.0,57.0
+233215 Transport Engineer,189PTS Points-Tested Stream,75.0,27.6,123.0,518.0,76.0
+233215 Transport Engineer,190SAS Skilled Australian Sponsored,,,,1181.0,35.0
+233215 Transport Engineer,491FSR Family Sponsored - Regional,,,,8.0,0.0
+233215 Transport Engineer,491SNR State or Territory Nominated - Regional,,,,1023.0,17.0
+233311 Electrical Engineer,189PTS Points-Tested Stream,90.0,28.1,821.0,15084.0,441.0
+233311 Electrical Engineer,190SAS Skilled Australian Sponsored,95.0,11.9,1273.0,29662.0,518.0
+233311 Electrical Engineer,491FSR Family Sponsored - Regional,,,,754.0,8.0
+233311 Electrical Engineer,491SNR State or Territory Nominated - Regional,,,,31063.0,314.0
+233411 Electronics Engineer,189PTS Points-Tested Stream,90.0,31.4,506.0,9152.0,310.0
+233411 Electronics Engineer,190SAS Skilled Australian Sponsored,95.0,12.7,715.0,16720.0,289.0
+233411 Electronics Engineer,491FSR Family Sponsored - Regional,,,,538.0,3.0
+233411 Electronics Engineer,491SNR State or Territory Nominated - Regional,,,,17447.0,126.0
+233511 Industrial Engineer,189PTS Points-Tested Stream,90.0,21.4,126.0,2318.0,54.0
+233511 Industrial Engineer,190SAS Skilled Australian Sponsored,,,,5146.0,83.0
+233511 Industrial Engineer,491FSR Family Sponsored - Regional,,,,101.0,2.0
+233511 Industrial Engineer,491SNR State or Territory Nominated - Regional,,,,5065.0,49.0
+233512 Mechanical Engineer,189PTS Points-Tested Stream,90.0,28.0,1980.0,26598.0,929.0
+233512 Mechanical Engineer,190SAS Skilled Australian Sponsored,95.0,10.7,2843.0,50943.0,840.0
+233512 Mechanical Engineer,491FSR Family Sponsored - Regional,105.0,11.3,53.0,1323.0,15.0
+233512 Mechanical Engineer,491SNR State or Territory Nominated - Regional,,,,52957.0,584.0
+233513 Production or Plant Engineer,189PTS Points-Tested Stream,90.0,42.2,166.0,2671.0,92.0
+233513 Production or Plant Engineer,190SAS Skilled Australian Sponsored,95.0,12.6,325.0,6798.0,95.0
+233513 Production or Plant Engineer,491FSR Family Sponsored - Regional,,,,145.0,1.0
+233513 Production or Plant Engineer,491SNR State or Territory Nominated - Regional,,,,7217.0,43.0
+233611 Mining Engineer (excluding Petroleum),189PTS Points-Tested Stream,80.0,21.8,238.0,1638.0,227.0
+233611 Mining Engineer (excluding Petroleum),190SAS Skilled Australian Sponsored,85.0,13.5,319.0,2825.0,161.0
+233611 Mining Engineer (excluding Petroleum),491FSR Family Sponsored - Regional,,,,50.0,4.0
+233611 Mining Engineer (excluding Petroleum),491SNR State or Territory Nominated - Regional,95.0,13.5,215.0,3000.0,97.0
+233612 Petroleum Engineer,189PTS Points-Tested Stream,80.0,28.2,142.0,1074.0,166.0
+233612 Petroleum Engineer,190SAS Skilled Australian Sponsored,90.0,21.4,224.0,1989.0,100.0
+233612 Petroleum Engineer,491FSR Family Sponsored - Regional,,,,34.0,3.0
+233612 Petroleum Engineer,491SNR State or Territory Nominated - Regional,100.0,12.1,124.0,1836.0,41.0
+233911 Aeronautical Engineer,189PTS Points-Tested Stream,90.0,30.3,76.0,1236.0,49.0
+233911 Aeronautical Engineer,190SAS Skilled Australian Sponsored,95.0,11.4,132.0,2030.0,47.0
+233911 Aeronautical Engineer,491FSR Family Sponsored - Regional,,,,66.0,0.0
+233911 Aeronautical Engineer,491SNR State or Territory Nominated - Regional,,,,1710.0,19.0
+233912 Agricultural Engineer,189PTS Points-Tested Stream,,,,401.0,9.0
+233912 Agricultural Engineer,190SAS Skilled Australian Sponsored,,,,719.0,10.0
+233912 Agricultural Engineer,491FSR Family Sponsored - Regional,,,,29.0,0.0
+233912 Agricultural Engineer,491SNR State or Territory Nominated - Regional,,,,965.0,12.0
+233913 Biomedical Engineer,189PTS Points-Tested Stream,90.0,27.5,120.0,1522.0,55.0
+233913 Biomedical Engineer,190SAS Skilled Australian Sponsored,,,,3106.0,38.0
+233913 Biomedical Engineer,491FSR Family Sponsored - Regional,,,,107.0,0.0
+233913 Biomedical Engineer,491SNR State or Territory Nominated - Regional,,,,2935.0,12.0
+233914 Engineering Technologist,189PTS Points-Tested Stream,90.0,26.3,1132.0,17903.0,495.0
+233914 Engineering Technologist,190SAS Skilled Australian Sponsored,95.0,11.8,1312.0,30325.0,492.0
+233914 Engineering Technologist,491FSR Family Sponsored - Regional,,,,966.0,4.0
+233914 Engineering Technologist,491SNR State or Territory Nominated - Regional,,,,32632.0,381.0
+233915 Environmental Engineer,189PTS Points-Tested Stream,90.0,23.5,119.0,1436.0,58.0
+233915 Environmental Engineer,190SAS Skilled Australian Sponsored,100.0,16.4,61.0,2081.0,59.0
+233915 Environmental Engineer,491FSR Family Sponsored - Regional,,,,43.0,0.0
+233915 Environmental Engineer,491SNR State or Territory Nominated - Regional,,,,1766.0,50.0
+233916 Naval Architect,189PTS Points-Tested Stream,,,,144.0,6.0
+233916 Naval Architect,190SAS Skilled Australian Sponsored,,,,403.0,11.0
+233916 Naval Architect,491FSR Family Sponsored - Regional,,,,11.0,0.0
+233916 Naval Architect,491SNR State or Territory Nominated - Regional,,,,340.0,4.0
+233999 Engineering Professionals nec,189PTS Points-Tested Stream,90.0,21.6,347.0,4256.0,138.0
+233999 Engineering Professionals nec,190SAS Skilled Australian Sponsored,95.0,11.2,394.0,6142.0,152.0
+233999 Engineering Professionals nec,491FSR Family Sponsored - Regional,,,,144.0,1.0
+233999 Engineering Professionals nec,491SNR State or Territory Nominated - Regional,,,,5071.0,81.0
+234111 Agricultural Consultant,189PTS Points-Tested Stream,80.0,26.1,299.0,2475.0,269.0
+234111 Agricultural Consultant,190SAS Skilled Australian Sponsored,85.0,11.7,445.0,5037.0,178.0
+234111 Agricultural Consultant,491FSR Family Sponsored - Regional,,,,125.0,1.0
+234111 Agricultural Consultant,491SNR State or Territory Nominated - Regional,95.0,12.5,375.0,6717.0,120.0
+234112 Agricultural Scientist,189PTS Points-Tested Stream,80.0,24.6,167.0,1041.0,211.0
+234112 Agricultural Scientist,190SAS Skilled Australian Sponsored,85.0,11.8,245.0,1761.0,108.0
+234112 Agricultural Scientist,491FSR Family Sponsored - Regional,,,,32.0,1.0
+234112 Agricultural Scientist,491SNR State or Territory Nominated - Regional,95.0,11.6,138.0,1405.0,50.0
+234113 Forester,189PTS Points-Tested Stream,,,,190.0,24.0
+234113 Forester,190SAS Skilled Australian Sponsored,,,,216.0,19.0
+234113 Forester,491FSR Family Sponsored - Regional,,,,18.0,1.0
+234113 Forester,491SNR State or Territory Nominated - Regional,,,,209.0,9.0
+234211 Chemist,189PTS Points-Tested Stream,85.0,27.1,251.0,2005.0,212.0
+234211 Chemist,190SAS Skilled Australian Sponsored,90.0,11.5,383.0,4309.0,121.0
+234211 Chemist,491FSR Family Sponsored - Regional,,,,115.0,3.0
+234211 Chemist,491SNR State or Territory Nominated - Regional,100.0,11.5,226.0,5206.0,65.0
+234212 Food Technologist,189PTS Points-Tested Stream,85.0,25.1,350.0,2429.0,262.0
+234212 Food Technologist,190SAS Skilled Australian Sponsored,90.0,12.1,480.0,4451.0,142.0
+234212 Food Technologist,491FSR Family Sponsored - Regional,,,,99.0,2.0
+234212 Food Technologist,491SNR State or Territory Nominated - Regional,100.0,10.6,254.0,4132.0,77.0
+234213 Wine Maker,491SNR State or Territory Nominated - Regional,,,,49.0,8.0
+234311 Conservation Officer,491SNR State or Territory Nominated - Regional,,,,33.0,0.0
+234312 Environmental Consultant,189PTS Points-Tested Stream,80.0,25.5,251.0,1655.0,399.0
+234312 Environmental Consultant,190SAS Skilled Australian Sponsored,85.0,13.3,375.0,2535.0,275.0
+234312 Environmental Consultant,491FSR Family Sponsored - Regional,,,,45.0,2.0
+234312 Environmental Consultant,491SNR State or Territory Nominated - Regional,95.0,11.2,179.0,1918.0,101.0
+234313 Environmental Research Scientist,189PTS Points-Tested Stream,80.0,19.6,102.0,622.0,149.0
+234313 Environmental Research Scientist,190SAS Skilled Australian Sponsored,85.0,12.3,138.0,945.0,101.0
+234313 Environmental Research Scientist,491FSR Family Sponsored - Regional,,,,35.0,3.0
+234313 Environmental Research Scientist,491SNR State or Territory Nominated - Regional,95.0,23.1,52.0,617.0,43.0
+234399 Environmental Scientists nec,189PTS Points-Tested Stream,,,,103.0,25.0
+234399 Environmental Scientists nec,190SAS Skilled Australian Sponsored,,,,203.0,15.0
+234399 Environmental Scientists nec,491FSR Family Sponsored - Regional,,,,24.0,0.0
+234399 Environmental Scientists nec,491SNR State or Territory Nominated - Regional,,,,171.0,4.0
+234411 Geologist,190SAS Skilled Australian Sponsored,,,,2157.0,57.0
+234411 Geologist,491SNR State or Territory Nominated - Regional,,,,2267.0,42.0
+234412 Geophysicist,189PTS Points-Tested Stream,,,,228.0,29.0
+234412 Geophysicist,190SAS Skilled Australian Sponsored,,,,454.0,23.0
+234412 Geophysicist,491FSR Family Sponsored - Regional,,,,8.0,1.0
+234412 Geophysicist,491SNR State or Territory Nominated - Regional,,,,496.0,8.0
+234413 Hydrogeologist,189PTS Points-Tested Stream,,,,172.0,22.0
+234413 Hydrogeologist,190SAS Skilled Australian Sponsored,,,,358.0,20.0
+234413 Hydrogeologist,491FSR Family Sponsored - Regional,,,,2.0,0.0
+234413 Hydrogeologist,491SNR State or Territory Nominated - Regional,,,,327.0,6.0
+234511 Life Scientist (General),189PTS Points-Tested Stream,85.0,24.4,176.0,1047.0,221.0
+234511 Life Scientist (General),190SAS Skilled Australian Sponsored,90.0,15.4,201.0,1502.0,136.0
+234511 Life Scientist (General),491FSR Family Sponsored - Regional,,,,29.0,1.0
+234511 Life Scientist (General),491SNR State or Territory Nominated - Regional,,,,960.0,23.0
+234513 Biochemist,189PTS Points-Tested Stream,,,,326.0,39.0
+234513 Biochemist,190SAS Skilled Australian Sponsored,,,,576.0,24.0
+234513 Biochemist,491FSR Family Sponsored - Regional,,,,26.0,0.0
+234513 Biochemist,491SNR State or Territory Nominated - Regional,,,,519.0,3.0
+234514 Biotechnologist,189PTS Points-Tested Stream,85.0,20.9,253.0,1611.0,240.0
+234514 Biotechnologist,190SAS Skilled Australian Sponsored,90.0,10.8,315.0,2500.0,156.0
+234514 Biotechnologist,491FSR Family Sponsored - Regional,,,,60.0,1.0
+234514 Biotechnologist,491SNR State or Territory Nominated - Regional,105.0,17.6,68.0,2051.0,45.0
+234515 Botanist,189PTS Points-Tested Stream,,,,62.0,1.0
+234515 Botanist,190SAS Skilled Australian Sponsored,,,,130.0,2.0
+234515 Botanist,491FSR Family Sponsored - Regional,,,,22.0,0.0
+234515 Botanist,491SNR State or Territory Nominated - Regional,,,,111.0,1.0
+234516 Marine Biologist,189PTS Points-Tested Stream,,,,176.0,35.0
+234516 Marine Biologist,190SAS Skilled Australian Sponsored,,,,279.0,31.0
+234516 Marine Biologist,491SNR State or Territory Nominated - Regional,,,,191.0,6.0
+234517 Microbiologist,189PTS Points-Tested Stream,85.0,20.7,111.0,997.0,76.0
+234517 Microbiologist,190SAS Skilled Australian Sponsored,95.0,21.9,64.0,1920.0,46.0
+234517 Microbiologist,491FSR Family Sponsored - Regional,,,,55.0,2.0
+234517 Microbiologist,491SNR State or Territory Nominated - Regional,,,,2107.0,22.0
+234518 Zoologist,189PTS Points-Tested Stream,,,,98.0,16.0
+234518 Zoologist,190SAS Skilled Australian Sponsored,,,,161.0,9.0
+234518 Zoologist,491FSR Family Sponsored - Regional,,,,3.0,0.0
+234518 Zoologist,491SNR State or Territory Nominated - Regional,,,,164.0,3.0
+234599 Life Scientists nec,189PTS Points-Tested Stream,85.0,21.4,70.0,348.0,61.0
+234599 Life Scientists nec,190SAS Skilled Australian Sponsored,90.0,11.0,82.0,499.0,44.0
+234599 Life Scientists nec,491FSR Family Sponsored - Regional,,,,4.0,0.0
+234599 Life Scientists nec,491SNR State or Territory Nominated - Regional,,,,273.0,6.0
+234611 Medical Laboratory Scientist,189PTS Points-Tested Stream,75.0,21.9,494.0,1770.0,387.0
+234611 Medical Laboratory Scientist,190SAS Skilled Australian Sponsored,85.0,19.5,430.0,3040.0,256.0
+234611 Medical Laboratory Scientist,491FSR Family Sponsored - Regional,,,,61.0,2.0
+234611 Medical Laboratory Scientist,491SNR State or Territory Nominated - Regional,95.0,18.9,249.0,2274.0,128.0
+234711 Veterinarian,189PTS Points-Tested Stream,80.0,21.5,205.0,998.0,310.0
+234711 Veterinarian,190SAS Skilled Australian Sponsored,85.0,17.6,176.0,855.0,198.0
+234711 Veterinarian,491FSR Family Sponsored - Regional,,,,2.0,0.0
+234711 Veterinarian,491SNR State or Territory Nominated - Regional,,,,164.0,36.0
+234911 Conservator,189PTS Points-Tested Stream,,,,20.0,1.0
+234911 Conservator,190SAS Skilled Australian Sponsored,,,,27.0,2.0
+234911 Conservator,491SNR State or Territory Nominated - Regional,,,,23.0,1.0
+234912 Metallurgist,189PTS Points-Tested Stream,,,,475.0,42.0
+234912 Metallurgist,190SAS Skilled Australian Sponsored,90.0,16.0,50.0,1016.0,26.0
+234912 Metallurgist,491FSR Family Sponsored - Regional,,,,18.0,0.0
+234912 Metallurgist,491SNR State or Territory Nominated - Regional,,,,1118.0,17.0
+234913 Meteorologist,189PTS Points-Tested Stream,,,,62.0,7.0
+234913 Meteorologist,190SAS Skilled Australian Sponsored,,,,67.0,5.0
+234913 Meteorologist,491FSR Family Sponsored - Regional,,,,15.0,1.0
+234913 Meteorologist,491SNR State or Territory Nominated - Regional,,,,77.0,2.0
+234914 Physicist,189PTS Points-Tested Stream,85.0,39.6,53.0,384.0,98.0
+234914 Physicist,190SAS Skilled Australian Sponsored,85.0,12.7,71.0,535.0,57.0
+234914 Physicist,491FSR Family Sponsored - Regional,,,,15.0,0.0
+234914 Physicist,491SNR State or Territory Nominated - Regional,,,,361.0,11.0
+234915 Exercise Physiologist,491SNR State or Territory Nominated - Regional,,,,130.0,15.0
+234999 Natural and Physical Science Professionals nec,189PTS Points-Tested Stream,,,,100.0,31.0
+234999 Natural and Physical Science Professionals nec,190SAS Skilled Australian Sponsored,,,,132.0,27.0
+234999 Natural and Physical Science Professionals nec,491FSR Family Sponsored - Regional,,,,6.0,1.0
+234999 Natural and Physical Science Professionals nec,491SNR State or Territory Nominated - Regional,,,,60.0,13.0
+241111 Early Childhood (Pre-primary School) Teacher,189PTS Points-Tested Stream,75.0,12.7,5951.0,29793.0,2974.0
+241111 Early Childhood (Pre-primary School) Teacher,190SAS Skilled Australian Sponsored,85.0,10.2,5319.0,33889.0,2382.0
+241111 Early Childhood (Pre-primary School) Teacher,491FSR Family Sponsored - Regional,90.0,13.8,138.0,649.0,55.0
+241111 Early Childhood (Pre-primary School) Teacher,491SNR State or Territory Nominated - Regional,100.0,14.0,1640.0,21775.0,1004.0
+241213 Primary School Teacher,189PTS Points-Tested Stream,,,,2.0,0.0
+241213 Primary School Teacher,190SAS Skilled Australian Sponsored,75.0,10.2,743.0,3878.0,417.0
+241213 Primary School Teacher,491SNR State or Territory Nominated - Regional,65.0,10.3,78.0,2222.0,199.0
+241311 Middle School Teacher,190SAS Skilled Australian Sponsored,70.0,10.2,118.0,535.0,42.0
+241311 Middle School Teacher,491SNR State or Territory Nominated - Regional,,,,504.0,32.0
+241411 Secondary School Teacher,189PTS Points-Tested Stream,75.0,24.9,1752.0,8114.0,1982.0
+241411 Secondary School Teacher,190SAS Skilled Australian Sponsored,80.0,15.5,2597.0,12698.0,1631.0
+241411 Secondary School Teacher,491FSR Family Sponsored - Regional,,,,194.0,33.0
+241411 Secondary School Teacher,491SNR State or Territory Nominated - Regional,95.0,22.9,572.0,8366.0,555.0
+241511 Special Needs Teacher,189PTS Points-Tested Stream,,,,186.0,46.0
+241511 Special Needs Teacher,190SAS Skilled Australian Sponsored,70.0,10.5,76.0,264.0,50.0
+241511 Special Needs Teacher,491FSR Family Sponsored - Regional,,,,5.0,3.0
+241511 Special Needs Teacher,491SNR State or Territory Nominated - Regional,,,,153.0,17.0
+241512 Teacher of the Hearing Impaired,189PTS Points-Tested Stream,,,,3.0,1.0
+241512 Teacher of the Hearing Impaired,190SAS Skilled Australian Sponsored,,,,7.0,1.0
+241513 Teacher of the Sight Impaired,189PTS Points-Tested Stream,,,,2.0,0.0
+241513 Teacher of the Sight Impaired,190SAS Skilled Australian Sponsored,,,,1.0,1.0
+241513 Teacher of the Sight Impaired,491SNR State or Territory Nominated - Regional,,,,2.0,0.0
+241599 Special Education Teachers nec,189PTS Points-Tested Stream,,,,45.0,6.0
+241599 Special Education Teachers nec,190SAS Skilled Australian Sponsored,,,,78.0,3.0
+241599 Special Education Teachers nec,491SNR State or Territory Nominated - Regional,,,,44.0,2.0
+242111 University Lecturer,189PTS Points-Tested Stream,85.0,21.6,837.0,8019.0,641.0
+242111 University Lecturer,190SAS Skilled Australian Sponsored,95.0,15.9,819.0,16113.0,462.0
+242111 University Lecturer,491FSR Family Sponsored - Regional,80.0,22.8,57.0,437.0,49.0
+242111 University Lecturer,491SNR State or Territory Nominated - Regional,,,,15940.0,134.0
+242211 Vocational Education Teacher,189PTS Points-Tested Stream,,,,2.0,0.0
+242211 Vocational Education Teacher,491SNR State or Territory Nominated - Regional,,,,1784.0,37.0
+249111 Education Adviser,190SAS Skilled Australian Sponsored,,,,242.0,13.0
+249111 Education Adviser,491SNR State or Territory Nominated - Regional,,,,252.0,10.0
+249211 Art Teacher (Private Tuition),190SAS Skilled Australian Sponsored,,,,22.0,0.0
+249211 Art Teacher (Private Tuition),491SNR State or Territory Nominated - Regional,,,,65.0,0.0
+249212 Dance Teacher (Private Tuition),190SAS Skilled Australian Sponsored,,,,55.0,1.0
+249212 Dance Teacher (Private Tuition),491SNR State or Territory Nominated - Regional,,,,62.0,0.0
+249214 Music Teacher (Private Tuition),190SAS Skilled Australian Sponsored,,,,245.0,4.0
+249214 Music Teacher (Private Tuition),491SNR State or Territory Nominated - Regional,,,,267.0,5.0
+249299 Private Tutors and Teachers nec,189PTS Points-Tested Stream,,,,2.0,0.0
+249299 Private Tutors and Teachers nec,190SAS Skilled Australian Sponsored,,,,1724.0,19.0
+249299 Private Tutors and Teachers nec,491SNR State or Territory Nominated - Regional,,,,3603.0,19.0
+249311 Teacher of English to Speakers of Other Languages,190SAS Skilled Australian Sponsored,,,,1687.0,54.0
+249311 Teacher of English to Speakers of Other Languages,491SNR State or Territory Nominated - Regional,,,,2242.0,48.0
+251111 Dietitian,190SAS Skilled Australian Sponsored,,,,405.0,22.0
+251111 Dietitian,491SNR State or Territory Nominated - Regional,,,,153.0,15.0
+251112 Nutritionist,190SAS Skilled Australian Sponsored,,,,930.0,15.0
+251112 Nutritionist,491SNR State or Territory Nominated - Regional,,,,1261.0,28.0
+251211 Medical Diagnostic Radiographer,189PTS Points-Tested Stream,75.0,34.3,181.0,665.0,203.0
+251211 Medical Diagnostic Radiographer,190SAS Skilled Australian Sponsored,80.0,16.1,280.0,1000.0,140.0
+251211 Medical Diagnostic Radiographer,491FSR Family Sponsored - Regional,,,,13.0,6.0
+251211 Medical Diagnostic Radiographer,491SNR State or Territory Nominated - Regional,,,,434.0,27.0
+251212 Medical Radiation Therapist,189PTS Points-Tested Stream,,,,67.0,15.0
+251212 Medical Radiation Therapist,190SAS Skilled Australian Sponsored,,,,83.0,9.0
+251212 Medical Radiation Therapist,491SNR State or Territory Nominated - Regional,,,,7.0,0.0
+251213 Nuclear Medicine Technologist,189PTS Points-Tested Stream,,,,15.0,5.0
+251213 Nuclear Medicine Technologist,190SAS Skilled Australian Sponsored,,,,30.0,6.0
+251213 Nuclear Medicine Technologist,491SNR State or Territory Nominated - Regional,,,,11.0,2.0
+251214 Sonographer,189PTS Points-Tested Stream,,,,82.0,36.0
+251214 Sonographer,190SAS Skilled Australian Sponsored,,,,112.0,14.0
+251214 Sonographer,491SNR State or Territory Nominated - Regional,,,,45.0,3.0
+251311 Environmental Health Officer,491SNR State or Territory Nominated - Regional,,,,253.0,11.0
+251312 Occupational Health and Safety Adviser,190SAS Skilled Australian Sponsored,75.0,10.5,200.0,1269.0,94.0
+251312 Occupational Health and Safety Adviser,491SNR State or Territory Nominated - Regional,,,,1485.0,53.0
+251411 Optometrist,189PTS Points-Tested Stream,,,,133.0,39.0
+251411 Optometrist,190SAS Skilled Australian Sponsored,,,,126.0,21.0
+251411 Optometrist,491FSR Family Sponsored - Regional,,,,2.0,1.0
+251411 Optometrist,491SNR State or Territory Nominated - Regional,,,,29.0,4.0
+251412 Orthoptist,190SAS Skilled Australian Sponsored,,,,23.0,6.0
+251412 Orthoptist,491SNR State or Territory Nominated - Regional,,,,20.0,1.0
+251511 Hospital Pharmacist,189PTS Points-Tested Stream,,,,1.0,0.0
+251511 Hospital Pharmacist,190SAS Skilled Australian Sponsored,,,,14885.0,139.0
+251511 Hospital Pharmacist,491SNR State or Territory Nominated - Regional,,,,19875.0,207.0
+251512 Industrial Pharmacist,190SAS Skilled Australian Sponsored,,,,3270.0,15.0
+251512 Industrial Pharmacist,491SNR State or Territory Nominated - Regional,,,,4557.0,45.0
+251513 Retail Pharmacist,190SAS Skilled Australian Sponsored,,,,27906.0,308.0
+251513 Retail Pharmacist,491FSR Family Sponsored - Regional,,,,1.0,0.0
+251513 Retail Pharmacist,491SNR State or Territory Nominated - Regional,,,,34990.0,319.0
+251911 Health Promotion Officer,190SAS Skilled Australian Sponsored,90.0,20.0,65.0,878.0,72.0
+251911 Health Promotion Officer,491SNR State or Territory Nominated - Regional,,,,801.0,54.0
+251912 Orthotist or Prosthetist,189PTS Points-Tested Stream,,,,25.0,4.0
+251912 Orthotist or Prosthetist,190SAS Skilled Australian Sponsored,,,,21.0,3.0
+251912 Orthotist or Prosthetist,491SNR State or Territory Nominated - Regional,,,,15.0,0.0
+251999 Health Diagnostic and Promotion Professionals nec,190SAS Skilled Australian Sponsored,,,,234.0,14.0
+251999 Health Diagnostic and Promotion Professionals nec,491SNR State or Territory Nominated - Regional,,,,248.0,11.0
+252111 Chiropractor,189PTS Points-Tested Stream,80.0,11.5,139.0,475.0,39.0
+252111 Chiropractor,190SAS Skilled Australian Sponsored,,,,530.0,28.0
+252111 Chiropractor,491SNR State or Territory Nominated - Regional,,,,365.0,11.0
+252112 Osteopath,189PTS Points-Tested Stream,,,,32.0,8.0
+252112 Osteopath,190SAS Skilled Australian Sponsored,,,,43.0,6.0
+252112 Osteopath,491FSR Family Sponsored - Regional,,,,1.0,0.0
+252112 Osteopath,491SNR State or Territory Nominated - Regional,,,,12.0,1.0
+252211 Acupuncturist,190SAS Skilled Australian Sponsored,,,,29.0,2.0
+252211 Acupuncturist,491SNR State or Territory Nominated - Regional,,,,10.0,2.0
+252213 Naturopath,190SAS Skilled Australian Sponsored,,,,71.0,1.0
+252213 Naturopath,491SNR State or Territory Nominated - Regional,,,,68.0,1.0
+252214 Traditional Chinese Medicine Practitioner,190SAS Skilled Australian Sponsored,,,,33.0,1.0
+252214 Traditional Chinese Medicine Practitioner,491SNR State or Territory Nominated - Regional,,,,11.0,1.0
+252299 Complementary Health Therapists nec,190SAS Skilled Australian Sponsored,,,,252.0,4.0
+252299 Complementary Health Therapists nec,491SNR State or Territory Nominated - Regional,,,,407.0,13.0
+252311 Dental Specialist,190SAS Skilled Australian Sponsored,,,,7.0,2.0
+252311 Dental Specialist,491SNR State or Territory Nominated - Regional,,,,6.0,0.0
+252312 Dentist,491SNR State or Territory Nominated - Regional,70.0,10.3,68.0,762.0,109.0
+252411 Occupational Therapist,189PTS Points-Tested Stream,70.0,12.1,439.0,1994.0,690.0
+252411 Occupational Therapist,190SAS Skilled Australian Sponsored,75.0,15.0,641.0,2684.0,566.0
+252411 Occupational Therapist,491FSR Family Sponsored - Regional,,,,16.0,4.0
+252411 Occupational Therapist,491SNR State or Territory Nominated - Regional,90.0,13.0,108.0,890.0,87.0
+252511 Physiotherapist,189PTS Points-Tested Stream,75.0,38.6,686.0,2884.0,993.0
+252511 Physiotherapist,190SAS Skilled Australian Sponsored,80.0,25.6,753.0,3462.0,695.0
+252511 Physiotherapist,491FSR Family Sponsored - Regional,,,,48.0,18.0
+252511 Physiotherapist,491SNR State or Territory Nominated - Regional,80.0,12.3,349.0,1382.0,205.0
+252611 Podiatrist,189PTS Points-Tested Stream,,,,134.0,36.0
+252611 Podiatrist,190SAS Skilled Australian Sponsored,,,,106.0,24.0
+252611 Podiatrist,491SNR State or Territory Nominated - Regional,,,,31.0,3.0
+252711 Audiologist,189PTS Points-Tested Stream,75.0,43.3,104.0,482.0,138.0
+252711 Audiologist,190SAS Skilled Australian Sponsored,80.0,13.4,232.0,1526.0,124.0
+252711 Audiologist,491FSR Family Sponsored - Regional,,,,19.0,6.0
+252711 Audiologist,491SNR State or Territory Nominated - Regional,,,,1548.0,59.0
+252712 Speech Pathologist,189PTS Points-Tested Stream,75.0,35.3,153.0,678.0,278.0
+252712 Speech Pathologist,190SAS Skilled Australian Sponsored,70.0,13.2,76.0,613.0,184.0
+252712 Speech Pathologist,491FSR Family Sponsored - Regional,,,,7.0,2.0
+252712 Speech Pathologist,491SNR State or Territory Nominated - Regional,,,,98.0,24.0
+253111 General Practitioner,189PTS Points-Tested Stream,75.0,32.4,703.0,3636.0,1624.0
+253111 General Practitioner,190SAS Skilled Australian Sponsored,70.0,13.8,334.0,3069.0,1111.0
+253111 General Practitioner,491FSR Family Sponsored - Regional,,,,8.0,1.0
+253111 General Practitioner,491SNR State or Territory Nominated - Regional,,,,254.0,50.0
+253112 Resident Medical Officer,189PTS Points-Tested Stream,,,,27.0,0.0
+253112 Resident Medical Officer,190SAS Skilled Australian Sponsored,65.0,10.6,208.0,2473.0,380.0
+253112 Resident Medical Officer,491SNR State or Territory Nominated - Regional,,,,283.0,18.0
+253211 Anaesthetist,491SNR State or Territory Nominated - Regional,,,,29.0,1.0
+253311 Specialist Physician (General Medicine),189PTS Points-Tested Stream,,,,94.0,30.0
+253311 Specialist Physician (General Medicine),190SAS Skilled Australian Sponsored,,,,82.0,27.0
+253311 Specialist Physician (General Medicine),491FSR Family Sponsored - Regional,,,,3.0,0.0
+253311 Specialist Physician (General Medicine),491SNR State or Territory Nominated - Regional,,,,21.0,0.0
+253312 Cardiologist,189PTS Points-Tested Stream,,,,26.0,9.0
+253312 Cardiologist,190SAS Skilled Australian Sponsored,,,,31.0,3.0
+253312 Cardiologist,491FSR Family Sponsored - Regional,,,,4.0,3.0
+253312 Cardiologist,491SNR State or Territory Nominated - Regional,,,,17.0,0.0
+253313 Clinical Haematologist,189PTS Points-Tested Stream,,,,5.0,0.0
+253313 Clinical Haematologist,190SAS Skilled Australian Sponsored,,,,2.0,0.0
+253313 Clinical Haematologist,491SNR State or Territory Nominated - Regional,,,,2.0,0.0
+253314 Medical Oncologist,189PTS Points-Tested Stream,,,,7.0,1.0
+253314 Medical Oncologist,190SAS Skilled Australian Sponsored,,,,8.0,0.0
+253315 Endocrinologist,189PTS Points-Tested Stream,,,,10.0,1.0
+253315 Endocrinologist,190SAS Skilled Australian Sponsored,,,,6.0,1.0
+253316 Gastroenterologist,189PTS Points-Tested Stream,,,,19.0,6.0
+253316 Gastroenterologist,190SAS Skilled Australian Sponsored,,,,16.0,5.0
+253316 Gastroenterologist,491SNR State or Territory Nominated - Regional,,,,3.0,0.0
+253317 Intensive Care Specialist,189PTS Points-Tested Stream,,,,32.0,14.0
+253317 Intensive Care Specialist,190SAS Skilled Australian Sponsored,,,,32.0,12.0
+253317 Intensive Care Specialist,491SNR State or Territory Nominated - Regional,,,,6.0,1.0
+253318 Neurologist,189PTS Points-Tested Stream,,,,18.0,4.0
+253318 Neurologist,190SAS Skilled Australian Sponsored,,,,16.0,3.0
+253318 Neurologist,491SNR State or Territory Nominated - Regional,,,,4.0,1.0
+253321 Paediatrician,189PTS Points-Tested Stream,,,,59.0,20.0
+253321 Paediatrician,190SAS Skilled Australian Sponsored,,,,59.0,14.0
+253321 Paediatrician,491SNR State or Territory Nominated - Regional,,,,11.0,3.0
+253322 Renal Medicine Specialist,189PTS Points-Tested Stream,,,,10.0,1.0
+253322 Renal Medicine Specialist,190SAS Skilled Australian Sponsored,,,,10.0,1.0
+253322 Renal Medicine Specialist,491SNR State or Territory Nominated - Regional,,,,2.0,0.0
+253324 Thoracic Medicine Specialist,189PTS Points-Tested Stream,,,,11.0,6.0
+253324 Thoracic Medicine Specialist,190SAS Skilled Australian Sponsored,,,,5.0,1.0
+253399 Specialist Physicians nec,189PTS Points-Tested Stream,,,,37.0,9.0
+253399 Specialist Physicians nec,190SAS Skilled Australian Sponsored,,,,29.0,9.0
+253399 Specialist Physicians nec,491SNR State or Territory Nominated - Regional,,,,4.0,1.0
+253411 Psychiatrist,189PTS Points-Tested Stream,,,,106.0,43.0
+253411 Psychiatrist,190SAS Skilled Australian Sponsored,,,,93.0,31.0
+253411 Psychiatrist,491SNR State or Territory Nominated - Regional,,,,18.0,2.0
+253511 Surgeon (General),189PTS Points-Tested Stream,,,,23.0,7.0
+253511 Surgeon (General),190SAS Skilled Australian Sponsored,,,,20.0,6.0
+253511 Surgeon (General),491SNR State or Territory Nominated - Regional,,,,2.0,2.0
+253512 Cardiothoracic Surgeon,189PTS Points-Tested Stream,,,,8.0,2.0
+253512 Cardiothoracic Surgeon,190SAS Skilled Australian Sponsored,,,,13.0,2.0
+253512 Cardiothoracic Surgeon,491SNR State or Territory Nominated - Regional,,,,7.0,1.0
+253513 Neurosurgeon,189PTS Points-Tested Stream,,,,1.0,0.0
+253513 Neurosurgeon,190SAS Skilled Australian Sponsored,,,,1.0,0.0
+253514 Orthopaedic Surgeon,189PTS Points-Tested Stream,,,,24.0,6.0
+253514 Orthopaedic Surgeon,190SAS Skilled Australian Sponsored,,,,14.0,2.0
+253514 Orthopaedic Surgeon,491SNR State or Territory Nominated - Regional,,,,2.0,0.0
+253515 Otorhinolaryngologist,189PTS Points-Tested Stream,,,,2.0,0.0
+253515 Otorhinolaryngologist,190SAS Skilled Australian Sponsored,,,,1.0,1.0
+253516 Paediatric Surgeon,189PTS Points-Tested Stream,,,,1.0,1.0
+253516 Paediatric Surgeon,190SAS Skilled Australian Sponsored,,,,1.0,1.0
+253517 Plastic and Reconstructive Surgeon,189PTS Points-Tested Stream,,,,6.0,0.0
+253517 Plastic and Reconstructive Surgeon,190SAS Skilled Australian Sponsored,,,,5.0,1.0
+253517 Plastic and Reconstructive Surgeon,491SNR State or Territory Nominated - Regional,,,,1.0,0.0
+253518 Urologist,189PTS Points-Tested Stream,,,,8.0,4.0
+253518 Urologist,190SAS Skilled Australian Sponsored,,,,3.0,2.0
+253518 Urologist,491SNR State or Territory Nominated - Regional,,,,2.0,1.0
+253521 Vascular Surgeon,189PTS Points-Tested Stream,,,,3.0,1.0
+253521 Vascular Surgeon,190SAS Skilled Australian Sponsored,,,,1.0,0.0
+253911 Dermatologist,189PTS Points-Tested Stream,,,,6.0,3.0
+253911 Dermatologist,190SAS Skilled Australian Sponsored,,,,6.0,3.0
+253911 Dermatologist,491SNR State or Territory Nominated - Regional,,,,3.0,1.0
+253912 Emergency Medicine Specialist,189PTS Points-Tested Stream,80.0,79.7,59.0,249.0,98.0
+253912 Emergency Medicine Specialist,190SAS Skilled Australian Sponsored,,,,193.0,60.0
+253912 Emergency Medicine Specialist,491SNR State or Territory Nominated - Regional,,,,10.0,2.0
+253913 Obstetrician and Gynaecologist,189PTS Points-Tested Stream,,,,59.0,8.0
+253913 Obstetrician and Gynaecologist,190SAS Skilled Australian Sponsored,,,,57.0,7.0
+253913 Obstetrician and Gynaecologist,491SNR State or Territory Nominated - Regional,,,,25.0,2.0
+253914 Ophthalmologist,189PTS Points-Tested Stream,,,,10.0,4.0
+253914 Ophthalmologist,190SAS Skilled Australian Sponsored,,,,10.0,1.0
+253915 Pathologist,189PTS Points-Tested Stream,,,,8.0,3.0
+253915 Pathologist,190SAS Skilled Australian Sponsored,,,,6.0,3.0
+253917 Diagnostic and Interventional Radiologist,189PTS Points-Tested Stream,,,,53.0,18.0
+253917 Diagnostic and Interventional Radiologist,190SAS Skilled Australian Sponsored,,,,48.0,13.0
+253917 Diagnostic and Interventional Radiologist,491SNR State or Territory Nominated - Regional,,,,7.0,0.0
+253918 Radiation Oncologist,189PTS Points-Tested Stream,,,,4.0,0.0
+253918 Radiation Oncologist,190SAS Skilled Australian Sponsored,,,,4.0,0.0
+253918 Radiation Oncologist,491FSR Family Sponsored - Regional,,,,2.0,1.0
+253918 Radiation Oncologist,491SNR State or Territory Nominated - Regional,,,,1.0,0.0
+253999 Medical Practitioners nec,189PTS Points-Tested Stream,75.0,20.8,509.0,2725.0,1091.0
+253999 Medical Practitioners nec,190SAS Skilled Australian Sponsored,80.0,15.5,406.0,2148.0,656.0
+253999 Medical Practitioners nec,491FSR Family Sponsored - Regional,,,,4.0,1.0
+253999 Medical Practitioners nec,491SNR State or Territory Nominated - Regional,,,,259.0,31.0
+254111 Midwife,189PTS Points-Tested Stream,65.0,11.3,71.0,413.0,149.0
+254111 Midwife,190SAS Skilled Australian Sponsored,70.0,14.4,90.0,465.0,123.0
+254111 Midwife,491FSR Family Sponsored - Regional,,,,7.0,1.0
+254111 Midwife,491SNR State or Territory Nominated - Regional,,,,101.0,11.0
+254211 Nurse Educator,189PTS Points-Tested Stream,,,,1.0,0.0
+254211 Nurse Educator,190SAS Skilled Australian Sponsored,,,,91.0,4.0
+254211 Nurse Educator,491SNR State or Territory Nominated - Regional,,,,58.0,2.0
+254212 Nurse Researcher,190SAS Skilled Australian Sponsored,,,,2.0,0.0
+254311 Nurse Manager,190SAS Skilled Australian Sponsored,,,,45.0,9.0
+254311 Nurse Manager,491SNR State or Territory Nominated - Regional,,,,23.0,2.0
+254411 Nurse Practitioner,189PTS Points-Tested Stream,,,,58.0,10.0
+254411 Nurse Practitioner,190SAS Skilled Australian Sponsored,,,,63.0,7.0
+254411 Nurse Practitioner,491FSR Family Sponsored - Regional,,,,2.0,1.0
+254411 Nurse Practitioner,491SNR State or Territory Nominated - Regional,,,,42.0,2.0
+254412 Registered Nurse (Aged Care),189PTS Points-Tested Stream,75.0,19.7,1362.0,5679.0,1153.0
+254412 Registered Nurse (Aged Care),190SAS Skilled Australian Sponsored,80.0,12.3,1526.0,7177.0,852.0
+254412 Registered Nurse (Aged Care),491FSR Family Sponsored - Regional,,,,96.0,21.0
+254412 Registered Nurse (Aged Care),491SNR State or Territory Nominated - Regional,95.0,25.3,182.0,3357.0,209.0
+254413 Registered Nurse (Child and Family Health),189PTS Points-Tested Stream,,,,120.0,21.0
+254413 Registered Nurse (Child and Family Health),190SAS Skilled Australian Sponsored,,,,156.0,19.0
+254413 Registered Nurse (Child and Family Health),491FSR Family Sponsored - Regional,,,,3.0,0.0
+254413 Registered Nurse (Child and Family Health),491SNR State or Territory Nominated - Regional,,,,93.0,4.0
+254414 Registered Nurse (Community Health),189PTS Points-Tested Stream,75.0,29.9,67.0,345.0,64.0
+254414 Registered Nurse (Community Health),190SAS Skilled Australian Sponsored,80.0,14.8,88.0,553.0,47.0
+254414 Registered Nurse (Community Health),491FSR Family Sponsored - Regional,,,,5.0,1.0
+254414 Registered Nurse (Community Health),491SNR State or Territory Nominated - Regional,,,,381.0,18.0
+254415 Registered Nurse (Critical Care and Emergency),189PTS Points-Tested Stream,75.0,29.3,955.0,4944.0,893.0
+254415 Registered Nurse (Critical Care and Emergency),190SAS Skilled Australian Sponsored,80.0,13.6,1607.0,12366.0,779.0
+254415 Registered Nurse (Critical Care and Emergency),491FSR Family Sponsored - Regional,,,,125.0,21.0
+254415 Registered Nurse (Critical Care and Emergency),491SNR State or Territory Nominated - Regional,95.0,20.4,206.0,11046.0,296.0
+254416 Registered Nurse (Developmental Disability),189PTS Points-Tested Stream,,,,64.0,10.0
+254416 Registered Nurse (Developmental Disability),190SAS Skilled Australian Sponsored,,,,78.0,13.0
+254416 Registered Nurse (Developmental Disability),491FSR Family Sponsored - Regional,,,,2.0,1.0
+254416 Registered Nurse (Developmental Disability),491SNR State or Territory Nominated - Regional,,,,26.0,1.0
+254417 Registered Nurse (Disability and Rehabilitation),189PTS Points-Tested Stream,75.0,19.0,79.0,324.0,61.0
+254417 Registered Nurse (Disability and Rehabilitation),190SAS Skilled Australian Sponsored,80.0,11.7,94.0,485.0,49.0
+254417 Registered Nurse (Disability and Rehabilitation),491FSR Family Sponsored - Regional,,,,2.0,0.0
+254417 Registered Nurse (Disability and Rehabilitation),491SNR State or Territory Nominated - Regional,,,,293.0,18.0
+254418 Registered Nurse (Medical),189PTS Points-Tested Stream,75.0,26.0,908.0,4818.0,802.0
+254418 Registered Nurse (Medical),190SAS Skilled Australian Sponsored,80.0,12.8,1406.0,11102.0,686.0
+254418 Registered Nurse (Medical),491FSR Family Sponsored - Regional,,,,126.0,24.0
+254418 Registered Nurse (Medical),491SNR State or Territory Nominated - Regional,95.0,23.8,147.0,9498.0,298.0
+254421 Registered Nurse (Medical Practice),189PTS Points-Tested Stream,75.0,19.7,71.0,392.0,64.0
+254421 Registered Nurse (Medical Practice),190SAS Skilled Australian Sponsored,80.0,10.9,92.0,583.0,52.0
+254421 Registered Nurse (Medical Practice),491FSR Family Sponsored - Regional,,,,12.0,4.0
+254421 Registered Nurse (Medical Practice),491SNR State or Territory Nominated - Regional,,,,297.0,21.0
+254422 Registered Nurse (Mental Health),189PTS Points-Tested Stream,75.0,24.3,325.0,1253.0,334.0
+254422 Registered Nurse (Mental Health),190SAS Skilled Australian Sponsored,80.0,18.1,348.0,1547.0,248.0
+254422 Registered Nurse (Mental Health),491FSR Family Sponsored - Regional,,,,20.0,4.0
+254422 Registered Nurse (Mental Health),491SNR State or Territory Nominated - Regional,90.0,14.0,57.0,536.0,44.0
+254423 Registered Nurse (Perioperative),189PTS Points-Tested Stream,75.0,35.7,342.0,1579.0,323.0
+254423 Registered Nurse (Perioperative),190SAS Skilled Australian Sponsored,80.0,15.4,557.0,3531.0,262.0
+254423 Registered Nurse (Perioperative),491FSR Family Sponsored - Regional,,,,48.0,7.0
+254423 Registered Nurse (Perioperative),491SNR State or Territory Nominated - Regional,90.0,10.9,193.0,2614.0,95.0
+254424 Registered Nurse (Surgical),189PTS Points-Tested Stream,75.0,28.2,433.0,2229.0,421.0
+254424 Registered Nurse (Surgical),190SAS Skilled Australian Sponsored,80.0,13.5,713.0,4878.0,351.0
+254424 Registered Nurse (Surgical),491FSR Family Sponsored - Regional,,,,70.0,7.0
+254424 Registered Nurse (Surgical),491SNR State or Territory Nominated - Regional,95.0,21.5,65.0,3958.0,98.0
+254425 Registered Nurse (Paediatrics),189PTS Points-Tested Stream,75.0,32.4,136.0,716.0,203.0
+254425 Registered Nurse (Paediatrics),190SAS Skilled Australian Sponsored,80.0,21.0,162.0,1369.0,181.0
+254425 Registered Nurse (Paediatrics),491FSR Family Sponsored - Regional,,,,19.0,5.0
+254425 Registered Nurse (Paediatrics),491SNR State or Territory Nominated - Regional,,,,1080.0,61.0
+254499 Registered Nurses nec,189PTS Points-Tested Stream,75.0,26.4,6504.0,26151.0,5947.0
+254499 Registered Nurses nec,190SAS Skilled Australian Sponsored,80.0,16.1,6769.0,30530.0,4046.0
+254499 Registered Nurses nec,491FSR Family Sponsored - Regional,80.0,29.5,95.0,394.0,92.0
+254499 Registered Nurses nec,491SNR State or Territory Nominated - Regional,90.0,10.8,2067.0,13241.0,1173.0
+261111 ICT Business Analyst,189PTS Points-Tested Stream,95.0,21.7,1796.0,27357.0,782.0
+261111 ICT Business Analyst,190SAS Skilled Australian Sponsored,100.0,10.3,1973.0,42629.0,1032.0
+261111 ICT Business Analyst,491FSR Family Sponsored - Regional,,,,929.0,11.0
+261111 ICT Business Analyst,491SNR State or Territory Nominated - Regional,,,,36508.0,463.0
+261112 Systems Analyst,189PTS Points-Tested Stream,95.0,12.1,952.0,14304.0,216.0
+261112 Systems Analyst,190SAS Skilled Australian Sponsored,,,,20217.0,296.0
+261112 Systems Analyst,491FSR Family Sponsored - Regional,,,,535.0,4.0
+261112 Systems Analyst,491SNR State or Territory Nominated - Regional,,,,18165.0,166.0
+261211 Multimedia Specialist,189PTS Points-Tested Stream,90.0,26.7,270.0,1428.0,143.0
+261211 Multimedia Specialist,190SAS Skilled Australian Sponsored,95.0,10.8,259.0,1615.0,64.0
+261211 Multimedia Specialist,491FSR Family Sponsored - Regional,,,,62.0,0.0
+261211 Multimedia Specialist,491SNR State or Territory Nominated - Regional,,,,1081.0,17.0
+261212 Web Developer,189PTS Points-Tested Stream,,,,4.0,0.0
+261212 Web Developer,190SAS Skilled Australian Sponsored,,,,2844.0,31.0
+261212 Web Developer,491SNR State or Territory Nominated - Regional,,,,3329.0,28.0
+261311 Analyst Programmer,189PTS Points-Tested Stream,90.0,12.7,2300.0,13185.0,522.0
+261311 Analyst Programmer,190SAS Skilled Australian Sponsored,,,,21072.0,369.0
+261311 Analyst Programmer,491FSR Family Sponsored - Regional,,,,396.0,1.0
+261311 Analyst Programmer,491SNR State or Territory Nominated - Regional,,,,17470.0,126.0
+261312 Developer Programmer,189PTS Points-Tested Stream,95.0,18.8,1359.0,20026.0,465.0
+261312 Developer Programmer,190SAS Skilled Australian Sponsored,,,,39284.0,521.0
+261312 Developer Programmer,491FSR Family Sponsored - Regional,,,,717.0,4.0
+261312 Developer Programmer,491SNR State or Territory Nominated - Regional,,,,37386.0,240.0
+261313 Software Engineer,189PTS Points-Tested Stream,95.0,20.3,1797.0,33179.0,750.0
+261313 Software Engineer,190SAS Skilled Australian Sponsored,,,,71242.0,999.0
+261313 Software Engineer,491FSR Family Sponsored - Regional,,,,1487.0,17.0
+261313 Software Engineer,491SNR State or Territory Nominated - Regional,,,,67646.0,385.0
+261314 Software Tester,189PTS Points-Tested Stream,,,,10.0,0.0
+261314 Software Tester,190SAS Skilled Australian Sponsored,,,,8984.0,59.0
+261314 Software Tester,491SNR State or Territory Nominated - Regional,,,,10184.0,32.0
+261399 Software and Applications Programmers nec,189PTS Points-Tested Stream,90.0,10.1,1364.0,8543.0,238.0
+261399 Software and Applications Programmers nec,190SAS Skilled Australian Sponsored,,,,14528.0,202.0
+261399 Software and Applications Programmers nec,491FSR Family Sponsored - Regional,,,,300.0,2.0
+261399 Software and Applications Programmers nec,491SNR State or Territory Nominated - Regional,,,,13897.0,82.0
+262111 Database Administrator,189PTS Points-Tested Stream,,,,3.0,0.0
+262111 Database Administrator,190SAS Skilled Australian Sponsored,,,,2519.0,39.0
+262111 Database Administrator,491SNR State or Territory Nominated - Regional,,,,2919.0,26.0
+262112 ICT Security Specialist,189PTS Points-Tested Stream,95.0,31.0,654.0,11029.0,349.0
+262112 ICT Security Specialist,190SAS Skilled Australian Sponsored,,,,15327.0,368.0
+262112 ICT Security Specialist,491FSR Family Sponsored - Regional,,,,455.0,3.0
+262112 ICT Security Specialist,491SNR State or Territory Nominated - Regional,115.0,15.1,73.0,13815.0,186.0
+262113 Systems Administrator,189PTS Points-Tested Stream,,,,6.0,0.0
+262113 Systems Administrator,190SAS Skilled Australian Sponsored,,,,5941.0,71.0
+262113 Systems Administrator,491SNR State or Territory Nominated - Regional,115.0,12.5,56.0,6800.0,60.0
+263111 Computer Network and Systems Engineer,189PTS Points-Tested Stream,95.0,24.4,857.0,15105.0,339.0
+263111 Computer Network and Systems Engineer,190SAS Skilled Australian Sponsored,,,,22897.0,310.0
+263111 Computer Network and Systems Engineer,491FSR Family Sponsored - Regional,,,,609.0,0.0
+263111 Computer Network and Systems Engineer,491SNR State or Territory Nominated - Regional,110.0,15.0,553.0,22668.0,291.0
+263112 Network Administrator,189PTS Points-Tested Stream,,,,4.0,0.0
+263112 Network Administrator,190SAS Skilled Australian Sponsored,,,,3857.0,24.0
+263112 Network Administrator,491FSR Family Sponsored - Regional,,,,1.0,0.0
+263112 Network Administrator,491SNR State or Territory Nominated - Regional,,,,4602.0,25.0
+263113 Network Analyst,189PTS Points-Tested Stream,,,,4.0,0.0
+263113 Network Analyst,190SAS Skilled Australian Sponsored,,,,1838.0,4.0
+263113 Network Analyst,491SNR State or Territory Nominated - Regional,,,,2179.0,3.0
+263211 ICT Quality Assurance Engineer,189PTS Points-Tested Stream,,,,2.0,0.0
+263211 ICT Quality Assurance Engineer,190SAS Skilled Australian Sponsored,,,,3354.0,12.0
+263211 ICT Quality Assurance Engineer,491SNR State or Territory Nominated - Regional,,,,4123.0,8.0
+263212 ICT Support Engineer,189PTS Points-Tested Stream,,,,36.0,0.0
+263212 ICT Support Engineer,190SAS Skilled Australian Sponsored,,,,13386.0,194.0
+263212 ICT Support Engineer,491FSR Family Sponsored - Regional,,,,5.0,0.0
+263212 ICT Support Engineer,491SNR State or Territory Nominated - Regional,,,,14396.0,132.0
+263213 ICT Systems Test Engineer,189PTS Points-Tested Stream,,,,5.0,0.0
+263213 ICT Systems Test Engineer,190SAS Skilled Australian Sponsored,,,,2673.0,18.0
+263213 ICT Systems Test Engineer,491SNR State or Territory Nominated - Regional,,,,3153.0,9.0
+263299 ICT Support and Test Engineers nec,189PTS Points-Tested Stream,,,,10.0,0.0
+263299 ICT Support and Test Engineers nec,190SAS Skilled Australian Sponsored,,,,2794.0,30.0
+263299 ICT Support and Test Engineers nec,491FSR Family Sponsored - Regional,,,,1.0,0.0
+263299 ICT Support and Test Engineers nec,491SNR State or Territory Nominated - Regional,,,,2869.0,28.0
+263311 Telecommunications Engineer,189PTS Points-Tested Stream,90.0,35.2,284.0,4329.0,182.0
+263311 Telecommunications Engineer,190SAS Skilled Australian Sponsored,95.0,10.5,370.0,7100.0,115.0
+263311 Telecommunications Engineer,491FSR Family Sponsored - Regional,,,,257.0,0.0
+263311 Telecommunications Engineer,491SNR State or Territory Nominated - Regional,,,,7167.0,71.0
+263312 Telecommunications Network Engineer,189PTS Points-Tested Stream,90.0,30.7,88.0,1209.0,52.0
+263312 Telecommunications Network Engineer,190SAS Skilled Australian Sponsored,95.0,15.1,119.0,2786.0,38.0
+263312 Telecommunications Network Engineer,491FSR Family Sponsored - Regional,,,,84.0,1.0
+263312 Telecommunications Network Engineer,491SNR State or Territory Nominated - Regional,105.0,12.7,63.0,2793.0,20.0
+271111 Barrister,189PTS Points-Tested Stream,,,,31.0,5.0
+271111 Barrister,190SAS Skilled Australian Sponsored,,,,18.0,1.0
+271111 Barrister,491FSR Family Sponsored - Regional,,,,1.0,0.0
+271111 Barrister,491SNR State or Territory Nominated - Regional,,,,11.0,0.0
+271214 Intellectual Property Lawyer,491SNR State or Territory Nominated - Regional,,,,66.0,0.0
+271299 Judicial and Other Legal Professionals nec,189PTS Points-Tested Stream,,,,1.0,0.0
+271299 Judicial and Other Legal Professionals nec,190SAS Skilled Australian Sponsored,,,,674.0,12.0
+271299 Judicial and Other Legal Professionals nec,491SNR State or Territory Nominated - Regional,,,,826.0,9.0
+271311 Solicitor,189PTS Points-Tested Stream,80.0,25.5,683.0,3412.0,892.0
+271311 Solicitor,190SAS Skilled Australian Sponsored,85.0,14.4,647.0,3229.0,433.0
+271311 Solicitor,491FSR Family Sponsored - Regional,,,,64.0,7.0
+271311 Solicitor,491SNR State or Territory Nominated - Regional,95.0,18.5,200.0,1162.0,132.0
+272111 Careers Counsellor,190SAS Skilled Australian Sponsored,,,,17.0,0.0
+272111 Careers Counsellor,491SNR State or Territory Nominated - Regional,,,,15.0,0.0
+272112 Drug and Alcohol Counsellor,190SAS Skilled Australian Sponsored,,,,139.0,8.0
+272112 Drug and Alcohol Counsellor,491SNR State or Territory Nominated - Regional,,,,128.0,7.0
+272113 Family and Marriage Counsellor,190SAS Skilled Australian Sponsored,,,,68.0,5.0
+272113 Family and Marriage Counsellor,491SNR State or Territory Nominated - Regional,,,,56.0,3.0
+272114 Rehabilitation Counsellor,190SAS Skilled Australian Sponsored,,,,227.0,14.0
+272114 Rehabilitation Counsellor,491SNR State or Territory Nominated - Regional,,,,205.0,15.0
+272115 Student Counsellor,190SAS Skilled Australian Sponsored,70.0,13.0,77.0,457.0,38.0
+272115 Student Counsellor,491SNR State or Territory Nominated - Regional,80.0,14.5,83.0,488.0,46.0
+272199 Counsellors nec,190SAS Skilled Australian Sponsored,75.0,13.5,89.0,508.0,87.0
+272199 Counsellors nec,491SNR State or Territory Nominated - Regional,85.0,17.0,53.0,328.0,34.0
+272311 Clinical Psychologist,189PTS Points-Tested Stream,,,,71.0,25.0
+272311 Clinical Psychologist,190SAS Skilled Australian Sponsored,,,,70.0,15.0
+272311 Clinical Psychologist,491SNR State or Territory Nominated - Regional,,,,15.0,4.0
+272312 Educational Psychologist,189PTS Points-Tested Stream,,,,13.0,2.0
+272312 Educational Psychologist,190SAS Skilled Australian Sponsored,,,,14.0,2.0
+272312 Educational Psychologist,491SNR State or Territory Nominated - Regional,,,,7.0,0.0
+272313 Organisational Psychologist,189PTS Points-Tested Stream,,,,8.0,1.0
+272313 Organisational Psychologist,190SAS Skilled Australian Sponsored,,,,6.0,0.0
+272313 Organisational Psychologist,491SNR State or Territory Nominated - Regional,,,,3.0,0.0
+272314 Psychotherapist,190SAS Skilled Australian Sponsored,80.0,14.6,164.0,897.0,75.0
+272314 Psychotherapist,491SNR State or Territory Nominated - Regional,,,,880.0,59.0
+272399 Psychologists nec,189PTS Points-Tested Stream,75.0,24.9,177.0,835.0,273.0
+272399 Psychologists nec,190SAS Skilled Australian Sponsored,75.0,10.9,183.0,980.0,186.0
+272399 Psychologists nec,491FSR Family Sponsored - Regional,,,,1.0,0.0
+272399 Psychologists nec,491SNR State or Territory Nominated - Regional,85.0,10.1,79.0,426.0,49.0
+272412 Interpreter,190SAS Skilled Australian Sponsored,,,,459.0,14.0
+272412 Interpreter,491SNR State or Territory Nominated - Regional,,,,217.0,7.0
+272413 Translator,491SNR State or Territory Nominated - Regional,,,,216.0,16.0
+272499 Social Professionals nec,190SAS Skilled Australian Sponsored,,,,239.0,11.0
+272499 Social Professionals nec,491SNR State or Territory Nominated - Regional,,,,207.0,7.0
+272511 Social Worker,189PTS Points-Tested Stream,75.0,25.2,1234.0,5082.0,1489.0
+272511 Social Worker,190SAS Skilled Australian Sponsored,80.0,17.8,1234.0,5599.0,916.0
+272511 Social Worker,491FSR Family Sponsored - Regional,,,,123.0,17.0
+272511 Social Worker,491SNR State or Territory Nominated - Regional,90.0,15.3,536.0,3101.0,351.0
+272611 Community Arts Worker,491SNR State or Territory Nominated - Regional,,,,24.0,1.0
+272612 Recreation Officer,190SAS Skilled Australian Sponsored,,,,564.0,6.0
+272612 Recreation Officer,491SNR State or Territory Nominated - Regional,,,,936.0,13.0
+272613 Welfare Worker,190SAS Skilled Australian Sponsored,90.0,10.4,125.0,3038.0,181.0
+272613 Welfare Worker,491SNR State or Territory Nominated - Regional,65.0,12.2,98.0,2623.0,137.0
+311111 Agricultural Technician,491SNR State or Territory Nominated - Regional,80.0,10.0,231.0,1048.0,99.0
+311211 Anaesthetic Technician,190SAS Skilled Australian Sponsored,,,,747.0,10.0
+311211 Anaesthetic Technician,491SNR State or Territory Nominated - Regional,,,,916.0,3.0
+311212 Cardiac Technician,190SAS Skilled Australian Sponsored,,,,258.0,7.0
+311212 Cardiac Technician,491SNR State or Territory Nominated - Regional,,,,277.0,6.0
+311213 Medical Laboratory Technician,189PTS Points-Tested Stream,,,,9.0,0.0
+311213 Medical Laboratory Technician,190SAS Skilled Australian Sponsored,,,,5863.0,112.0
+311213 Medical Laboratory Technician,491SNR State or Territory Nominated - Regional,,,,5461.0,77.0
+311214 Operating Theatre Technician,491SNR State or Territory Nominated - Regional,,,,755.0,3.0
+311215 Pharmacy Technician,189PTS Points-Tested Stream,,,,2.0,0.0
+311215 Pharmacy Technician,190SAS Skilled Australian Sponsored,,,,5945.0,108.0
+311215 Pharmacy Technician,491SNR State or Territory Nominated - Regional,,,,9395.0,158.0
+311216 Pathology Collector,491SNR State or Territory Nominated - Regional,,,,92.0,14.0
+311299 Medical Technicians nec,190SAS Skilled Australian Sponsored,,,,787.0,16.0
+311299 Medical Technicians nec,491SNR State or Territory Nominated - Regional,,,,971.0,12.0
+311312 Meat Inspector,190SAS Skilled Australian Sponsored,,,,189.0,6.0
+311312 Meat Inspector,491SNR State or Territory Nominated - Regional,,,,204.0,5.0
+311399 Primary Products Inspectors nec,190SAS Skilled Australian Sponsored,,,,272.0,16.0
+311399 Primary Products Inspectors nec,491SNR State or Territory Nominated - Regional,,,,433.0,16.0
+311411 Chemistry Technician,190SAS Skilled Australian Sponsored,,,,1326.0,32.0
+311411 Chemistry Technician,491SNR State or Territory Nominated - Regional,,,,1756.0,29.0
+311412 Earth Science Technician,190SAS Skilled Australian Sponsored,,,,162.0,10.0
+311412 Earth Science Technician,491SNR State or Territory Nominated - Regional,,,,233.0,12.0
+311413 Life Science Technician,190SAS Skilled Australian Sponsored,65.0,12.8,78.0,745.0,43.0
+311413 Life Science Technician,491SNR State or Territory Nominated - Regional,,,,784.0,30.0
+311499 Science Technicians nec,190SAS Skilled Australian Sponsored,,,,401.0,14.0
+311499 Science Technicians nec,491SNR State or Territory Nominated - Regional,,,,416.0,7.0
+312111 Architectural Draftsperson,189PTS Points-Tested Stream,,,,15.0,0.0
+312111 Architectural Draftsperson,190SAS Skilled Australian Sponsored,85.0,10.9,900.0,8583.0,467.0
+312111 Architectural Draftsperson,491SNR State or Territory Nominated - Regional,,,,8751.0,199.0
+312113 Building Inspector,189PTS Points-Tested Stream,,,,1.0,0.0
+312113 Building Inspector,190SAS Skilled Australian Sponsored,,,,493.0,21.0
+312113 Building Inspector,491SNR State or Territory Nominated - Regional,,,,666.0,14.0
+312114 Construction Estimator,189PTS Points-Tested Stream,,,,4.0,0.0
+312114 Construction Estimator,190SAS Skilled Australian Sponsored,,,,4.0,0.0
+312114 Construction Estimator,491SNR State or Territory Nominated - Regional,,,,2883.0,70.0
+312116 Surveying or Spatial Science Technician,190SAS Skilled Australian Sponsored,,,,1.0,0.0
+312116 Surveying or Spatial Science Technician,491SNR State or Territory Nominated - Regional,,,,316.0,13.0
+"312199 Architectural, Building and Surveying Technicians nec",189PTS Points-Tested Stream,,,,1.0,0.0
+"312199 Architectural, Building and Surveying Technicians nec",190SAS Skilled Australian Sponsored,85.0,11.1,54.0,540.0,36.0
+"312199 Architectural, Building and Surveying Technicians nec",491SNR State or Territory Nominated - Regional,,,,509.0,22.0
+312211 Civil Engineering Draftsperson,189PTS Points-Tested Stream,75.0,27.1,2872.0,14977.0,1830.0
+312211 Civil Engineering Draftsperson,190SAS Skilled Australian Sponsored,85.0,10.3,3104.0,27887.0,1246.0
+312211 Civil Engineering Draftsperson,491FSR Family Sponsored - Regional,,,,773.0,26.0
+312211 Civil Engineering Draftsperson,491SNR State or Territory Nominated - Regional,105.0,20.0,175.0,29755.0,942.0
+312212 Civil Engineering Technician,189PTS Points-Tested Stream,75.0,22.1,974.0,4886.0,477.0
+312212 Civil Engineering Technician,190SAS Skilled Australian Sponsored,,,,13939.0,297.0
+312212 Civil Engineering Technician,491FSR Family Sponsored - Regional,,,,298.0,8.0
+312212 Civil Engineering Technician,491SNR State or Territory Nominated - Regional,,,,16974.0,167.0
+312311 Electrical Engineering Draftsperson,189PTS Points-Tested Stream,65.0,10.1,109.0,477.0,55.0
+312311 Electrical Engineering Draftsperson,190SAS Skilled Australian Sponsored,70.0,10.9,165.0,710.0,66.0
+312311 Electrical Engineering Draftsperson,491FSR Family Sponsored - Regional,,,,42.0,3.0
+312311 Electrical Engineering Draftsperson,491SNR State or Territory Nominated - Regional,,,,809.0,43.0
+312312 Electrical Engineering Technician,189PTS Points-Tested Stream,80.0,34.0,53.0,697.0,101.0
+312312 Electrical Engineering Technician,190SAS Skilled Australian Sponsored,90.0,12.3,130.0,2367.0,56.0
+312312 Electrical Engineering Technician,491FSR Family Sponsored - Regional,,,,65.0,0.0
+312312 Electrical Engineering Technician,491SNR State or Territory Nominated - Regional,,,,3128.0,28.0
+312511 Mechanical Engineering Draftsperson,189PTS Points-Tested Stream,,,,1.0,0.0
+312511 Mechanical Engineering Draftsperson,190SAS Skilled Australian Sponsored,,,,1.0,0.0
+312511 Mechanical Engineering Draftsperson,491SNR State or Territory Nominated - Regional,,,,607.0,19.0
+312512 Mechanical Engineering Technician,190SAS Skilled Australian Sponsored,80.0,10.4,144.0,1341.0,48.0
+312512 Mechanical Engineering Technician,491SNR State or Territory Nominated - Regional,,,,1967.0,22.0
+312611 Safety Inspector,491SNR State or Territory Nominated - Regional,,,,856.0,4.0
+312911 Maintenance Planner,189PTS Points-Tested Stream,,,,2.0,0.0
+312911 Maintenance Planner,190SAS Skilled Australian Sponsored,,,,4.0,0.0
+312911 Maintenance Planner,491SNR State or Territory Nominated - Regional,100.0,15.5,58.0,2485.0,75.0
+312912 Metallurgical or Materials Technician,189PTS Points-Tested Stream,,,,2.0,0.0
+312912 Metallurgical or Materials Technician,190SAS Skilled Australian Sponsored,,,,918.0,62.0
+312912 Metallurgical or Materials Technician,491SNR State or Territory Nominated - Regional,,,,1127.0,21.0
+312913 Mine Deputy,190SAS Skilled Australian Sponsored,,,,63.0,4.0
+312913 Mine Deputy,491SNR State or Territory Nominated - Regional,,,,129.0,3.0
+312999 Building and Engineering Technicians nec,190SAS Skilled Australian Sponsored,,,,1.0,0.0
+312999 Building and Engineering Technicians nec,491SNR State or Territory Nominated - Regional,,,,493.0,22.0
+313111 Hardware Technician,190SAS Skilled Australian Sponsored,,,,79.0,1.0
+313111 Hardware Technician,491SNR State or Territory Nominated - Regional,,,,119.0,1.0
+313112 ICT Customer Support Officer,190SAS Skilled Australian Sponsored,,,,1006.0,14.0
+313112 ICT Customer Support Officer,491SNR State or Territory Nominated - Regional,,,,1301.0,8.0
+313113 Web Administrator,189PTS Points-Tested Stream,,,,1.0,0.0
+313113 Web Administrator,190SAS Skilled Australian Sponsored,85.0,11.1,81.0,594.0,39.0
+313113 Web Administrator,491SNR State or Territory Nominated - Regional,75.0,10.1,89.0,691.0,50.0
+313199 ICT Support Technicians nec,190SAS Skilled Australian Sponsored,,,,235.0,1.0
+313199 ICT Support Technicians nec,491SNR State or Territory Nominated - Regional,,,,325.0,0.0
+313211 Radiocommunications Technician,189PTS Points-Tested Stream,,,,21.0,0.0
+313211 Radiocommunications Technician,190SAS Skilled Australian Sponsored,,,,45.0,0.0
+313211 Radiocommunications Technician,491FSR Family Sponsored - Regional,,,,3.0,0.0
+313211 Radiocommunications Technician,491SNR State or Territory Nominated - Regional,,,,37.0,0.0
+313212 Telecommunications Field Engineer,189PTS Points-Tested Stream,,,,470.0,12.0
+313212 Telecommunications Field Engineer,190SAS Skilled Australian Sponsored,,,,484.0,14.0
+313212 Telecommunications Field Engineer,491FSR Family Sponsored - Regional,,,,56.0,0.0
+313212 Telecommunications Field Engineer,491SNR State or Territory Nominated - Regional,,,,620.0,12.0
+313213 Telecommunications Network Planner,189PTS Points-Tested Stream,,,,1276.0,10.0
+313213 Telecommunications Network Planner,190SAS Skilled Australian Sponsored,,,,1495.0,20.0
+313213 Telecommunications Network Planner,491FSR Family Sponsored - Regional,,,,162.0,1.0
+313213 Telecommunications Network Planner,491SNR State or Territory Nominated - Regional,,,,1803.0,43.0
+313214 Telecommunications Technical Officer or Technologist,189PTS Points-Tested Stream,,,,520.0,9.0
+313214 Telecommunications Technical Officer or Technologist,190SAS Skilled Australian Sponsored,,,,588.0,14.0
+313214 Telecommunications Technical Officer or Technologist,491FSR Family Sponsored - Regional,,,,50.0,0.0
+313214 Telecommunications Technical Officer or Technologist,491SNR State or Territory Nominated - Regional,,,,755.0,22.0
+321111 Automotive Electrician,189PTS Points-Tested Stream,,,,264.0,23.0
+321111 Automotive Electrician,190SAS Skilled Australian Sponsored,75.0,11.1,63.0,425.0,42.0
+321111 Automotive Electrician,491FSR Family Sponsored - Regional,,,,9.0,0.0
+321111 Automotive Electrician,491SNR State or Territory Nominated - Regional,75.0,10.3,78.0,424.0,38.0
+321211 Motor Mechanic (General),189PTS Points-Tested Stream,,,,9702.0,186.0
+321211 Motor Mechanic (General),190SAS Skilled Australian Sponsored,,,,12601.0,484.0
+321211 Motor Mechanic (General),491FSR Family Sponsored - Regional,,,,625.0,5.0
+321211 Motor Mechanic (General),491SNR State or Territory Nominated - Regional,,,,13608.0,364.0
+321212 Diesel Motor Mechanic,189PTS Points-Tested Stream,,,,658.0,12.0
+321212 Diesel Motor Mechanic,190SAS Skilled Australian Sponsored,,,,888.0,20.0
+321212 Diesel Motor Mechanic,491FSR Family Sponsored - Regional,,,,53.0,0.0
+321212 Diesel Motor Mechanic,491SNR State or Territory Nominated - Regional,,,,890.0,23.0
+321213 Motorcycle Mechanic,189PTS Points-Tested Stream,,,,10.0,1.0
+321213 Motorcycle Mechanic,190SAS Skilled Australian Sponsored,,,,21.0,1.0
+321213 Motorcycle Mechanic,491SNR State or Territory Nominated - Regional,,,,4.0,1.0
+321214 Small Engine Mechanic,189PTS Points-Tested Stream,,,,4.0,0.0
+321214 Small Engine Mechanic,190SAS Skilled Australian Sponsored,,,,5.0,1.0
+322113 Farrier,190SAS Skilled Australian Sponsored,,,,5.0,0.0
+322211 Sheetmetal Trades Worker,189PTS Points-Tested Stream,,,,56.0,12.0
+322211 Sheetmetal Trades Worker,190SAS Skilled Australian Sponsored,,,,100.0,20.0
+322211 Sheetmetal Trades Worker,491FSR Family Sponsored - Regional,,,,1.0,0.0
+322211 Sheetmetal Trades Worker,491SNR State or Territory Nominated - Regional,,,,114.0,9.0
+322311 Metal Fabricator,189PTS Points-Tested Stream,75.0,20.5,78.0,642.0,77.0
+322311 Metal Fabricator,190SAS Skilled Australian Sponsored,65.0,12.5,184.0,894.0,108.0
+322311 Metal Fabricator,491FSR Family Sponsored - Regional,,,,27.0,1.0
+322311 Metal Fabricator,491SNR State or Territory Nominated - Regional,,,,790.0,45.0
+322312 Pressure Welder,491SNR State or Territory Nominated - Regional,,,,2.0,0.0
+322313 Welder (First Class),189PTS Points-Tested Stream,75.0,21.4,266.0,1542.0,248.0
+322313 Welder (First Class),190SAS Skilled Australian Sponsored,65.0,12.0,532.0,2327.0,296.0
+322313 Welder (First Class),491FSR Family Sponsored - Regional,,,,85.0,1.0
+322313 Welder (First Class),491SNR State or Territory Nominated - Regional,90.0,11.3,195.0,2571.0,154.0
+323111 Aircraft Maintenance Engineer (Avionics),190SAS Skilled Australian Sponsored,,,,302.0,13.0
+323111 Aircraft Maintenance Engineer (Avionics),491SNR State or Territory Nominated - Regional,,,,331.0,4.0
+323112 Aircraft Maintenance Engineer (Mechanical),190SAS Skilled Australian Sponsored,,,,620.0,21.0
+323112 Aircraft Maintenance Engineer (Mechanical),491SNR State or Territory Nominated - Regional,,,,754.0,11.0
+323113 Aircraft Maintenance Engineer (Structures),190SAS Skilled Australian Sponsored,,,,19.0,1.0
+323113 Aircraft Maintenance Engineer (Structures),491SNR State or Territory Nominated - Regional,,,,11.0,1.0
+323211 Fitter (General),189PTS Points-Tested Stream,,,,938.0,73.0
+323211 Fitter (General),190SAS Skilled Australian Sponsored,75.0,11.6,302.0,2203.0,192.0
+323211 Fitter (General),491FSR Family Sponsored - Regional,,,,32.0,2.0
+323211 Fitter (General),491SNR State or Territory Nominated - Regional,,,,2912.0,103.0
+323212 Fitter and Turner,189PTS Points-Tested Stream,,,,159.0,9.0
+323212 Fitter and Turner,190SAS Skilled Australian Sponsored,,,,276.0,16.0
+323212 Fitter and Turner,491FSR Family Sponsored - Regional,,,,8.0,0.0
+323212 Fitter and Turner,491SNR State or Territory Nominated - Regional,75.0,10.3,116.0,490.0,25.0
+323213 Fitter-Welder,189PTS Points-Tested Stream,,,,25.0,3.0
+323213 Fitter-Welder,190SAS Skilled Australian Sponsored,,,,47.0,5.0
+323213 Fitter-Welder,491FSR Family Sponsored - Regional,,,,4.0,0.0
+323213 Fitter-Welder,491SNR State or Territory Nominated - Regional,,,,107.0,3.0
+323214 Metal Machinist (First Class),189PTS Points-Tested Stream,,,,166.0,10.0
+323214 Metal Machinist (First Class),190SAS Skilled Australian Sponsored,75.0,14.5,83.0,757.0,59.0
+323214 Metal Machinist (First Class),491FSR Family Sponsored - Regional,,,,13.0,2.0
+323214 Metal Machinist (First Class),491SNR State or Territory Nominated - Regional,,,,1171.0,48.0
+323299 Metal Fitters and Machinists nec,491SNR State or Territory Nominated - Regional,,,,1.0,0.0
+323313 Locksmith,189PTS Points-Tested Stream,,,,31.0,0.0
+323313 Locksmith,190SAS Skilled Australian Sponsored,,,,30.0,0.0
+323313 Locksmith,491SNR State or Territory Nominated - Regional,,,,19.0,0.0
+323412 Toolmaker,190SAS Skilled Australian Sponsored,,,,212.0,10.0
+323412 Toolmaker,491SNR State or Territory Nominated - Regional,,,,318.0,0.0
+324111 Panelbeater,189PTS Points-Tested Stream,,,,63.0,7.0
+324111 Panelbeater,190SAS Skilled Australian Sponsored,,,,76.0,4.0
+324111 Panelbeater,491FSR Family Sponsored - Regional,,,,2.0,0.0
+324111 Panelbeater,491SNR State or Territory Nominated - Regional,,,,70.0,4.0
+324311 Vehicle Painter,491SNR State or Territory Nominated - Regional,,,,46.0,1.0
+331111 Bricklayer,189PTS Points-Tested Stream,55.0,12.5,72.0,797.0,380.0
+331111 Bricklayer,190SAS Skilled Australian Sponsored,65.0,18.3,470.0,1554.0,326.0
+331111 Bricklayer,491FSR Family Sponsored - Regional,,,,26.0,7.0
+331111 Bricklayer,491SNR State or Territory Nominated - Regional,65.0,10.4,241.0,1500.0,224.0
+331112 Stonemason,189PTS Points-Tested Stream,,,,30.0,13.0
+331112 Stonemason,190SAS Skilled Australian Sponsored,,,,38.0,9.0
+331112 Stonemason,491SNR State or Territory Nominated - Regional,,,,34.0,4.0
+331211 Carpenter and Joiner,189PTS Points-Tested Stream,65.0,46.0,87.0,256.0,121.0
+331211 Carpenter and Joiner,190SAS Skilled Australian Sponsored,65.0,13.5,111.0,505.0,85.0
+331211 Carpenter and Joiner,491FSR Family Sponsored - Regional,,,,4.0,2.0
+331211 Carpenter and Joiner,491SNR State or Territory Nominated - Regional,65.0,15.0,60.0,361.0,42.0
+331212 Carpenter,189PTS Points-Tested Stream,55.0,10.9,358.0,6012.0,3177.0
+331212 Carpenter,190SAS Skilled Australian Sponsored,65.0,16.4,2084.0,8632.0,2445.0
+331212 Carpenter,491FSR Family Sponsored - Regional,,,,161.0,57.0
+331212 Carpenter,491SNR State or Territory Nominated - Regional,65.0,18.1,425.0,6306.0,1378.0
+331213 Joiner,189PTS Points-Tested Stream,,,,53.0,27.0
+331213 Joiner,190SAS Skilled Australian Sponsored,,,,60.0,20.0
+331213 Joiner,491FSR Family Sponsored - Regional,,,,1.0,1.0
+331213 Joiner,491SNR State or Territory Nominated - Regional,,,,31.0,5.0
+332111 Floor Finisher,491SNR State or Territory Nominated - Regional,,,,51.0,3.0
+332211 Painting Trades Worker,189PTS Points-Tested Stream,65.0,23.8,1416.0,4450.0,1201.0
+332211 Painting Trades Worker,190SAS Skilled Australian Sponsored,65.0,13.8,1293.0,5948.0,1119.0
+332211 Painting Trades Worker,491FSR Family Sponsored - Regional,,,,143.0,41.0
+332211 Painting Trades Worker,491SNR State or Territory Nominated - Regional,65.0,11.2,402.0,5236.0,789.0
+333111 Glazier,189PTS Points-Tested Stream,,,,62.0,37.0
+333111 Glazier,190SAS Skilled Australian Sponsored,,,,86.0,27.0
+333111 Glazier,491FSR Family Sponsored - Regional,,,,2.0,1.0
+333111 Glazier,491SNR State or Territory Nominated - Regional,,,,72.0,15.0
+333211 Fibrous Plasterer,189PTS Points-Tested Stream,,,,48.0,22.0
+333211 Fibrous Plasterer,190SAS Skilled Australian Sponsored,,,,64.0,17.0
+333211 Fibrous Plasterer,491FSR Family Sponsored - Regional,,,,5.0,2.0
+333211 Fibrous Plasterer,491SNR State or Territory Nominated - Regional,,,,63.0,17.0
+333212 Solid Plasterer,189PTS Points-Tested Stream,65.0,68.1,72.0,159.0,83.0
+333212 Solid Plasterer,190SAS Skilled Australian Sponsored,65.0,28.1,64.0,240.0,86.0
+333212 Solid Plasterer,491FSR Family Sponsored - Regional,,,,7.0,4.0
+333212 Solid Plasterer,491SNR State or Territory Nominated - Regional,,,,164.0,39.0
+333311 Roof Tiler,190SAS Skilled Australian Sponsored,,,,43.0,9.0
+333311 Roof Tiler,491SNR State or Territory Nominated - Regional,,,,18.0,2.0
+333411 Wall and Floor Tiler,189PTS Points-Tested Stream,60.0,16.8,131.0,843.0,454.0
+333411 Wall and Floor Tiler,190SAS Skilled Australian Sponsored,60.0,14.5,55.0,1103.0,367.0
+333411 Wall and Floor Tiler,491FSR Family Sponsored - Regional,,,,15.0,9.0
+333411 Wall and Floor Tiler,491SNR State or Territory Nominated - Regional,65.0,15.9,69.0,858.0,216.0
+334111 Plumber (General),189PTS Points-Tested Stream,65.0,50.0,116.0,346.0,154.0
+334111 Plumber (General),190SAS Skilled Australian Sponsored,65.0,25.3,170.0,675.0,170.0
+334111 Plumber (General),491FSR Family Sponsored - Regional,,,,16.0,7.0
+334111 Plumber (General),491SNR State or Territory Nominated - Regional,65.0,20.7,87.0,349.0,76.0
+334112 Airconditioning and Mechanical Services Plumber,189PTS Points-Tested Stream,,,,92.0,57.0
+334112 Airconditioning and Mechanical Services Plumber,190SAS Skilled Australian Sponsored,65.0,16.5,103.0,450.0,47.0
+334112 Airconditioning and Mechanical Services Plumber,491FSR Family Sponsored - Regional,,,,6.0,3.0
+334112 Airconditioning and Mechanical Services Plumber,491SNR State or Territory Nominated - Regional,65.0,10.2,88.0,494.0,33.0
+334113 Drainer,189PTS Points-Tested Stream,,,,39.0,15.0
+334113 Drainer,190SAS Skilled Australian Sponsored,,,,58.0,19.0
+334113 Drainer,491SNR State or Territory Nominated - Regional,,,,26.0,4.0
+334114 Gasfitter,189PTS Points-Tested Stream,,,,16.0,7.0
+334114 Gasfitter,190SAS Skilled Australian Sponsored,,,,38.0,8.0
+334114 Gasfitter,491FSR Family Sponsored - Regional,,,,1.0,1.0
+334114 Gasfitter,491SNR State or Territory Nominated - Regional,,,,29.0,4.0
+334115 Roof Plumber,189PTS Points-Tested Stream,,,,42.0,21.0
+334115 Roof Plumber,190SAS Skilled Australian Sponsored,,,,61.0,18.0
+334115 Roof Plumber,491SNR State or Territory Nominated - Regional,,,,38.0,7.0
+341111 Electrician (General),189PTS Points-Tested Stream,50.0,11.7,128.0,1593.0,687.0
+341111 Electrician (General),190SAS Skilled Australian Sponsored,65.0,25.3,728.0,2785.0,737.0
+341111 Electrician (General),491FSR Family Sponsored - Regional,,,,50.0,19.0
+341111 Electrician (General),491SNR State or Territory Nominated - Regional,65.0,12.3,478.0,1858.0,297.0
+341112 Electrician (Special Class),189PTS Points-Tested Stream,,,,41.0,17.0
+341112 Electrician (Special Class),190SAS Skilled Australian Sponsored,,,,79.0,19.0
+341112 Electrician (Special Class),491SNR State or Territory Nominated - Regional,,,,51.0,7.0
+341113 Lift Mechanic,189PTS Points-Tested Stream,,,,25.0,8.0
+341113 Lift Mechanic,190SAS Skilled Australian Sponsored,,,,59.0,13.0
+341113 Lift Mechanic,491SNR State or Territory Nominated - Regional,,,,67.0,12.0
+342111 Airconditioning and Refrigeration Mechanic,189PTS Points-Tested Stream,65.0,12.9,62.0,198.0,24.0
+342111 Airconditioning and Refrigeration Mechanic,190SAS Skilled Australian Sponsored,65.0,14.4,132.0,430.0,58.0
+342111 Airconditioning and Refrigeration Mechanic,491FSR Family Sponsored - Regional,,,,10.0,1.0
+342111 Airconditioning and Refrigeration Mechanic,491SNR State or Territory Nominated - Regional,70.0,11.0,91.0,385.0,41.0
+342211 Electrical Linesworker,491SNR State or Territory Nominated - Regional,,,,29.0,5.0
+342212 Technical Cable Jointer,189PTS Points-Tested Stream,,,,9.0,1.0
+342212 Technical Cable Jointer,190SAS Skilled Australian Sponsored,,,,16.0,2.0
+342212 Technical Cable Jointer,491SNR State or Territory Nominated - Regional,,,,13.0,0.0
+342311 Business Machine Mechanic,190SAS Skilled Australian Sponsored,,,,17.0,0.0
+342311 Business Machine Mechanic,491SNR State or Territory Nominated - Regional,,,,30.0,0.0
+342313 Electronic Equipment Trades Worker,189PTS Points-Tested Stream,,,,630.0,38.0
+342313 Electronic Equipment Trades Worker,190SAS Skilled Australian Sponsored,90.0,16.7,60.0,1701.0,41.0
+342313 Electronic Equipment Trades Worker,491FSR Family Sponsored - Regional,,,,45.0,0.0
+342313 Electronic Equipment Trades Worker,491SNR State or Territory Nominated - Regional,,,,2222.0,21.0
+342314 Electronic Instrument Trades Worker (General),189PTS Points-Tested Stream,,,,296.0,10.0
+342314 Electronic Instrument Trades Worker (General),190SAS Skilled Australian Sponsored,,,,789.0,16.0
+342314 Electronic Instrument Trades Worker (General),491FSR Family Sponsored - Regional,,,,22.0,0.0
+342314 Electronic Instrument Trades Worker (General),491SNR State or Territory Nominated - Regional,,,,762.0,9.0
+342315 Electronic Instrument Trades Worker (Special Class),189PTS Points-Tested Stream,,,,237.0,13.0
+342315 Electronic Instrument Trades Worker (Special Class),190SAS Skilled Australian Sponsored,85.0,10.7,75.0,755.0,22.0
+342315 Electronic Instrument Trades Worker (Special Class),491FSR Family Sponsored - Regional,,,,17.0,0.0
+342315 Electronic Instrument Trades Worker (Special Class),491SNR State or Territory Nominated - Regional,95.0,12.7,63.0,776.0,10.0
+342411 Cabler (Data and Telecommunications),190SAS Skilled Australian Sponsored,,,,327.0,27.0
+342411 Cabler (Data and Telecommunications),491SNR State or Territory Nominated - Regional,,,,353.0,29.0
+342413 Telecommunications Linesworker,190SAS Skilled Australian Sponsored,,,,16.0,1.0
+342413 Telecommunications Linesworker,491SNR State or Territory Nominated - Regional,,,,34.0,1.0
+351111 Baker,190SAS Skilled Australian Sponsored,,,,916.0,50.0
+351111 Baker,491SNR State or Territory Nominated - Regional,65.0,10.5,105.0,1048.0,49.0
+351112 Pastrycook,189PTS Points-Tested Stream,,,,1.0,0.0
+351112 Pastrycook,190SAS Skilled Australian Sponsored,,,,630.0,37.0
+351112 Pastrycook,491SNR State or Territory Nominated - Regional,,,,775.0,26.0
+351211 Butcher or Smallgoods Maker,190SAS Skilled Australian Sponsored,,,,44.0,0.0
+351211 Butcher or Smallgoods Maker,491SNR State or Territory Nominated - Regional,,,,43.0,3.0
+351311 Chef,189PTS Points-Tested Stream,90.0,14.3,955.0,36529.0,880.0
+351311 Chef,190SAS Skilled Australian Sponsored,95.0,13.2,622.0,41764.0,1863.0
+351311 Chef,491FSR Family Sponsored - Regional,,,,2451.0,26.0
+351311 Chef,491SNR State or Territory Nominated - Regional,105.0,13.6,434.0,46620.0,1832.0
+351411 Cook,189PTS Points-Tested Stream,,,,50.0,0.0
+351411 Cook,190SAS Skilled Australian Sponsored,,,,9788.0,499.0
+351411 Cook,491FSR Family Sponsored - Regional,,,,2.0,0.0
+351411 Cook,491SNR State or Territory Nominated - Regional,,,,11303.0,407.0
+361111 Dog Handler or Trainer,190SAS Skilled Australian Sponsored,,,,10.0,0.0
+361111 Dog Handler or Trainer,491SNR State or Territory Nominated - Regional,,,,7.0,0.0
+361112 Horse Trainer,189PTS Points-Tested Stream,,,,9.0,0.0
+361112 Horse Trainer,190SAS Skilled Australian Sponsored,,,,12.0,1.0
+361112 Horse Trainer,491SNR State or Territory Nominated - Regional,,,,14.0,0.0
+361114 Zookeeper,491SNR State or Territory Nominated - Regional,,,,23.0,2.0
+361199 Animal Attendants and Trainers nec,190SAS Skilled Australian Sponsored,,,,49.0,0.0
+361199 Animal Attendants and Trainers nec,491SNR State or Territory Nominated - Regional,,,,53.0,2.0
+361311 Veterinary Nurse,190SAS Skilled Australian Sponsored,,,,1199.0,21.0
+361311 Veterinary Nurse,491SNR State or Territory Nominated - Regional,,,,1586.0,20.0
+362111 Florist,190SAS Skilled Australian Sponsored,,,,7.0,0.0
+362111 Florist,491SNR State or Territory Nominated - Regional,,,,2.0,0.0
+362211 Gardener (General),190SAS Skilled Australian Sponsored,,,,88.0,7.0
+362211 Gardener (General),491SNR State or Territory Nominated - Regional,,,,67.0,6.0
+362212 Arborist,190SAS Skilled Australian Sponsored,,,,31.0,1.0
+362212 Arborist,491SNR State or Territory Nominated - Regional,,,,21.0,0.0
+362213 Landscape Gardener,190SAS Skilled Australian Sponsored,,,,56.0,2.0
+362213 Landscape Gardener,491SNR State or Territory Nominated - Regional,,,,43.0,1.0
+362311 Greenkeeper,190SAS Skilled Australian Sponsored,,,,4.0,0.0
+362311 Greenkeeper,491SNR State or Territory Nominated - Regional,,,,4.0,0.0
+362411 Nurseryperson,491SNR State or Territory Nominated - Regional,,,,20.0,1.0
+391111 Hairdresser,190SAS Skilled Australian Sponsored,,,,739.0,17.0
+391111 Hairdresser,491SNR State or Territory Nominated - Regional,,,,1085.0,17.0
+392111 Print Finisher,190SAS Skilled Australian Sponsored,,,,3.0,0.0
+392111 Print Finisher,491SNR State or Territory Nominated - Regional,,,,3.0,0.0
+392311 Printing Machinist,190SAS Skilled Australian Sponsored,,,,7.0,1.0
+392311 Printing Machinist,491SNR State or Territory Nominated - Regional,,,,9.0,1.0
+393213 Dressmaker or Tailor,190SAS Skilled Australian Sponsored,,,,12.0,0.0
+393213 Dressmaker or Tailor,491SNR State or Territory Nominated - Regional,,,,20.0,0.0
+393311 Upholsterer,190SAS Skilled Australian Sponsored,,,,5.0,0.0
+393311 Upholsterer,491SNR State or Territory Nominated - Regional,,,,3.0,0.0
+394111 Cabinetmaker,189PTS Points-Tested Stream,65.0,21.9,128.0,420.0,100.0
+394111 Cabinetmaker,190SAS Skilled Australian Sponsored,65.0,15.2,198.0,823.0,126.0
+394111 Cabinetmaker,491FSR Family Sponsored - Regional,,,,17.0,2.0
+394111 Cabinetmaker,491SNR State or Territory Nominated - Regional,65.0,12.4,129.0,732.0,61.0
+394211 Furniture Finisher,190SAS Skilled Australian Sponsored,,,,1.0,0.0
+394211 Furniture Finisher,491SNR State or Territory Nominated - Regional,,,,1.0,0.0
+394213 Wood Machinist,190SAS Skilled Australian Sponsored,,,,4.0,0.0
+394213 Wood Machinist,491SNR State or Territory Nominated - Regional,,,,4.0,0.0
+399111 Boat Builder and Repairer,189PTS Points-Tested Stream,,,,100.0,21.0
+399111 Boat Builder and Repairer,190SAS Skilled Australian Sponsored,,,,78.0,10.0
+399111 Boat Builder and Repairer,491FSR Family Sponsored - Regional,,,,1.0,0.0
+399111 Boat Builder and Repairer,491SNR State or Territory Nominated - Regional,,,,85.0,15.0
+399112 Shipwright,189PTS Points-Tested Stream,,,,7.0,2.0
+399112 Shipwright,190SAS Skilled Australian Sponsored,,,,7.0,1.0
+399112 Shipwright,491SNR State or Territory Nominated - Regional,,,,6.0,1.0
+399212 Gas or Petroleum Operator,491SNR State or Territory Nominated - Regional,,,,121.0,3.0
+399213 Power Generation Plant Operator,190SAS Skilled Australian Sponsored,,,,41.0,2.0
+399213 Power Generation Plant Operator,491SNR State or Territory Nominated - Regional,,,,53.0,5.0
+399411 Jeweller,190SAS Skilled Australian Sponsored,,,,2.0,0.0
+399411 Jeweller,491SNR State or Territory Nominated - Regional,,,,2.0,0.0
+"399512 Camera Operator (Film, Television or Video)",190SAS Skilled Australian Sponsored,,,,9.0,0.0
+"399512 Camera Operator (Film, Television or Video)",491SNR State or Territory Nominated - Regional,,,,4.0,1.0
+399514 Make Up Artist,190SAS Skilled Australian Sponsored,,,,15.0,0.0
+399514 Make Up Artist,491SNR State or Territory Nominated - Regional,,,,16.0,0.0
+399516 Sound Technician,190SAS Skilled Australian Sponsored,,,,13.0,0.0
+399516 Sound Technician,491SNR State or Territory Nominated - Regional,,,,24.0,0.0
+399599 Performing Arts Technicians nec,190SAS Skilled Australian Sponsored,,,,30.0,1.0
+399599 Performing Arts Technicians nec,491SNR State or Territory Nominated - Regional,,,,13.0,1.0
+411111 Ambulance Officer,190SAS Skilled Australian Sponsored,75.0,10.3,58.0,344.0,17.0
+411111 Ambulance Officer,491SNR State or Territory Nominated - Regional,,,,685.0,21.0
+411112 Intensive Care Ambulance Paramedic,190SAS Skilled Australian Sponsored,,,,26.0,3.0
+411112 Intensive Care Ambulance Paramedic,491SNR State or Territory Nominated - Regional,,,,26.0,2.0
+411211 Dental Hygienist,491SNR State or Territory Nominated - Regional,,,,70.0,6.0
+411213 Dental Technician,189PTS Points-Tested Stream,,,,1.0,0.0
+411213 Dental Technician,190SAS Skilled Australian Sponsored,,,,201.0,5.0
+411213 Dental Technician,491SNR State or Territory Nominated - Regional,,,,212.0,8.0
+411214 Dental Therapist,491SNR State or Territory Nominated - Regional,,,,34.0,4.0
+411311 Diversional Therapist,190SAS Skilled Australian Sponsored,65.0,17.3,81.0,495.0,46.0
+411311 Diversional Therapist,491SNR State or Territory Nominated - Regional,,,,573.0,39.0
+411411 Enrolled Nurse,189PTS Points-Tested Stream,,,,18.0,0.0
+411411 Enrolled Nurse,190SAS Skilled Australian Sponsored,65.0,12.7,1757.0,9875.0,719.0
+411411 Enrolled Nurse,491SNR State or Territory Nominated - Regional,100.0,10.6,217.0,9202.0,549.0
+411611 Massage Therapist,190SAS Skilled Australian Sponsored,65.0,25.4,59.0,342.0,34.0
+411611 Massage Therapist,491SNR State or Territory Nominated - Regional,65.0,29.8,57.0,573.0,66.0
+411711 Community Worker,189PTS Points-Tested Stream,,,,9.0,0.0
+411711 Community Worker,190SAS Skilled Australian Sponsored,80.0,11.9,1408.0,8182.0,683.0
+411711 Community Worker,491FSR Family Sponsored - Regional,,,,1.0,0.0
+411711 Community Worker,491SNR State or Territory Nominated - Regional,95.0,10.0,601.0,7923.0,513.0
+411712 Disabilities Services Officer,190SAS Skilled Australian Sponsored,,,,134.0,13.0
+411712 Disabilities Services Officer,491SNR State or Territory Nominated - Regional,,,,89.0,9.0
+411713 Family Support Worker,190SAS Skilled Australian Sponsored,,,,112.0,4.0
+411713 Family Support Worker,491SNR State or Territory Nominated - Regional,,,,88.0,5.0
+411715 Residential Care Officer,190SAS Skilled Australian Sponsored,,,,54.0,4.0
+411715 Residential Care Officer,491SNR State or Territory Nominated - Regional,,,,39.0,1.0
+411716 Youth Worker,190SAS Skilled Australian Sponsored,,,,206.0,14.0
+411716 Youth Worker,491SNR State or Territory Nominated - Regional,,,,186.0,16.0
+441211 Emergency Service Worker,491SNR State or Territory Nominated - Regional,,,,85.0,3.0
+451211 Driving Instructor,491SNR State or Territory Nominated - Regional,,,,21.0,2.0
+451711 Flight Attendant,491SNR State or Territory Nominated - Regional,,,,665.0,4.0
+451815 First Aid Trainer,491SNR State or Territory Nominated - Regional,,,,57.0,13.0
+452311 Diving Instructor (Open Water),190SAS Skilled Australian Sponsored,,,,30.0,0.0
+452311 Diving Instructor (Open Water),491SNR State or Territory Nominated - Regional,,,,38.0,0.0
+452312 Gymnastics Coach or Instructor,190SAS Skilled Australian Sponsored,,,,30.0,0.0
+452312 Gymnastics Coach or Instructor,491SNR State or Territory Nominated - Regional,,,,28.0,0.0
+452313 Horse Riding Coach or Instructor,190SAS Skilled Australian Sponsored,,,,5.0,0.0
+452313 Horse Riding Coach or Instructor,491SNR State or Territory Nominated - Regional,,,,3.0,0.0
+452315 Swimming Coach or Instructor,190SAS Skilled Australian Sponsored,,,,228.0,3.0
+452315 Swimming Coach or Instructor,491SNR State or Territory Nominated - Regional,,,,264.0,3.0
+452316 Tennis Coach,189PTS Points-Tested Stream,,,,68.0,9.0
+452316 Tennis Coach,190SAS Skilled Australian Sponsored,,,,73.0,6.0
+452316 Tennis Coach,491FSR Family Sponsored - Regional,,,,6.0,0.0
+452316 Tennis Coach,491SNR State or Territory Nominated - Regional,,,,55.0,2.0
+452317 Other Sports Coach or Instructor,190SAS Skilled Australian Sponsored,,,,323.0,3.0
+452317 Other Sports Coach or Instructor,491SNR State or Territory Nominated - Regional,,,,416.0,4.0
+452321 Sports Development Officer,190SAS Skilled Australian Sponsored,,,,123.0,10.0
+452321 Sports Development Officer,491SNR State or Territory Nominated - Regional,,,,113.0,9.0
+452411 Footballer,189PTS Points-Tested Stream,,,,6.0,1.0
+452411 Footballer,190SAS Skilled Australian Sponsored,,,,6.0,2.0
+452411 Footballer,491SNR State or Territory Nominated - Regional,,,,3.0,1.0
+452413 Jockey,491SNR State or Territory Nominated - Regional,,,,3.0,1.0
+452499 Sportspersons nec,190SAS Skilled Australian Sponsored,,,,5.0,0.0
+452499 Sportspersons nec,491SNR State or Territory Nominated - Regional,,,,10.0,0.0
+511111 Contract Administrator,190SAS Skilled Australian Sponsored,,,,4198.0,74.0
+511111 Contract Administrator,491SNR State or Territory Nominated - Regional,,,,5292.0,68.0
+511112 Program or Project Administrator,189PTS Points-Tested Stream,,,,4.0,0.0
+511112 Program or Project Administrator,190SAS Skilled Australian Sponsored,,,,8499.0,99.0
+511112 Program or Project Administrator,491SNR State or Territory Nominated - Regional,,,,9762.0,75.0
+599612 Insurance Loss Adjuster,190SAS Skilled Australian Sponsored,,,,163.0,0.0
+599612 Insurance Loss Adjuster,491SNR State or Territory Nominated - Regional,,,,197.0,1.0
+599915 Clinical Coder,190SAS Skilled Australian Sponsored,,,,1.0,0.0
+599915 Clinical Coder,491SNR State or Territory Nominated - Regional,,,,574.0,2.0
+611211 Insurance Agent,190SAS Skilled Australian Sponsored,,,,640.0,8.0
+611211 Insurance Agent,491SNR State or Territory Nominated - Regional,,,,1275.0,16.0
+612112 Property Manager,491SNR State or Territory Nominated - Regional,,,,405.0,13.0
+612115 Real Estate Representative,491SNR State or Territory Nominated - Regional,,,,612.0,1.0
+639211 Retail Buyer,190SAS Skilled Australian Sponsored,,,,367.0,1.0
+639211 Retail Buyer,491SNR State or Territory Nominated - Regional,,,,484.0,3.0
+N/A,188BI Business Innovation,,,,208.0,14.0
+N/A,188INV Investor,,,,269.0,2.0
+None Provided,189PTS Points-Tested Stream,,,,8.0,0.0
+None Provided,190SAS Skilled Australian Sponsored,,,,10.0,0.0
+None Provided,491FSR Family Sponsored - Regional,,,,1.0,0.0
+None Provided,491SNR State or Territory Nominated - Regional,,,,16.0,0.0

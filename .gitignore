@@ -1,0 +1,20 @@
+__pycache__/
+*.pyc
+
+# Large regenerable intermediates -- refresh.yml rebuilds them.
+# The published site lives in site/ and IS committed.
+data/all_occ_points.csv
+data/occupation_visa_status.csv
+data/occupation_points_latest.csv
+data/points_visa_status.csv
+data/state_visa_status.csv
+data/submitted_month.csv
+data/thresholds.csv
+data/occ/
+data/*.html
+data/cookies.txt
+data/model_dump.json
+data/fields.json
+output/
+data/all_occ_states.csv
+data/hSKLS02_SkillSelect_EOI_Data.js

@@ -1,0 +1,759 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITLE__</title>
+<style>
+:root {
+  color-scheme: light;
+  --plane:#f9f9f7; --surface:#fcfcfb;
+  --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --hair:rgba(11,11,11,.10);
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --ord1:#86b6ef; --ord2:#2a78d6; --ord3:#104281;
+  --heat0:#eef4fd; --heat1:#0d366b;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19;
+    --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --hair:rgba(255,255,255,.10);
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --ord1:#86b6ef; --ord2:#2a78d6; --ord3:#184f95;
+    --heat0:#15202f; --heat1:#9ec5f4;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --plane:#0d0d0d; --surface:#1a1a19;
+  --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --hair:rgba(255,255,255,.10);
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --ord1:#86b6ef; --ord2:#2a78d6; --ord3:#184f95;
+  --heat0:#15202f; --heat1:#9ec5f4;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin:0; background:var(--plane); color:var(--ink);
+  font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;
+  overflow-x:hidden;
+}
+.wrap { max-width:1080px; margin:0 auto; padding:26px 16px 64px; }
+@media (min-width:700px) { .wrap { padding:32px 20px 72px; } }
+h1 { font-size:clamp(20px,5.2vw,26px); line-height:1.25; margin:0 0 6px; letter-spacing:-.01em; text-wrap:balance; }
+.sub { color:var(--ink2); font-size:13.5px; margin:0 0 4px; }
+.src { color:var(--muted); font-size:12px; margin:0; }
+
+.note { border:1px solid var(--hair); border-radius:10px; background:var(--surface);
+        padding:13px 15px; margin:20px 0 22px; }
+.note summary { cursor:pointer; font-weight:600; font-size:13.5px; }
+.note summary:focus-visible { outline:2px solid var(--s1); outline-offset:3px; border-radius:4px; }
+.note ol { margin:12px 0 0; padding-left:19px; color:var(--ink2); font-size:13px; }
+.note li { margin-bottom:7px; }
+.note b { color:var(--ink); font-weight:600; }
+
+.filters { display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+           margin:0 0 20px; padding:10px 0; border-bottom:1px solid var(--hair);
+           position:sticky; top:0; background:var(--plane); z-index:5; }
+.filters .lab { font-size:12.5px; color:var(--ink2); width:100%; }
+@media (min-width:560px) { .filters .lab { width:auto; margin-right:4px; } }
+.seg { display:flex; flex-wrap:wrap; gap:2px; background:var(--surface);
+       border:1px solid var(--hair); border-radius:9px; padding:3px; }
+.seg button { font:inherit; font-size:13px; border:0; background:transparent;
+              color:var(--ink2); padding:7px 12px; border-radius:6px; cursor:pointer;
+              min-height:36px; }
+.seg button:hover { background:var(--grid); }
+.seg button:focus-visible { outline:2px solid var(--s1); outline-offset:1px; }
+.seg button[aria-pressed="true"] { background:var(--ink); color:var(--surface); font-weight:600; }
+
+.kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr)); gap:10px; margin-bottom:22px; }
+.kpi { background:var(--surface); border:1px solid var(--hair); border-radius:12px; padding:14px 15px; }
+.kpi .l { font-size:12px; color:var(--ink2); margin-bottom:5px; }
+.kpi .v { font-size:clamp(23px,6vw,30px); font-weight:600; letter-spacing:-.02em; line-height:1.1; }
+.kpi .d { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.45; }
+
+.card { background:var(--surface); border:1px solid var(--hair); border-radius:12px;
+        padding:17px 15px 15px; margin-bottom:16px; }
+@media (min-width:700px) { .card { padding:20px 22px 18px; margin-bottom:20px; } }
+.card h2 { font-size:15.5px; margin:0 0 3px; font-weight:600; }
+.card .cap { font-size:12.5px; color:var(--ink2); margin:0 0 2px; }
+.card .hint { font-size:12px; color:var(--muted); margin:0 0 12px; }
+.card .warn { font-size:12px; color:var(--ink2); margin:0 0 12px; padding:7px 10px;
+              border-left:3px solid var(--s4); background:var(--grid); border-radius:0 6px 6px 0; }
+.card .sub2 { font-size:14px; margin:22px 0 3px; font-weight:600; }
+.flist { margin:12px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:11px; }
+.flist li { display:grid; grid-template-columns:auto 1fr; gap:10px; align-items:start;
+            font-size:13.5px; color:var(--ink2); line-height:1.62; }
+.flist .tag { font-size:11px; font-weight:600; color:var(--ink); background:var(--grid);
+              border-radius:5px; padding:3px 7px; white-space:nowrap; letter-spacing:.02em; }
+#cmp { max-height:none; }
+#cmp table td.best { font-weight:700; color:var(--ink); }
+#cmp table td.na { color:var(--muted); }
+.chart { width:100%; }
+.chart.scrollx { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+svg { display:block; overflow:visible; touch-action:pan-y; }
+.legend { display:flex; flex-wrap:wrap; gap:10px 15px; margin:11px 0 0; font-size:12.5px; color:var(--ink2); }
+.legend span { display:inline-flex; align-items:center; gap:7px; }
+.legend i { display:inline-block; border-radius:2px; flex:none; }
+.legend i.line { width:16px; height:2px; }
+.legend i.rect { width:11px; height:11px; }
+
+.tblbtn { font:inherit; font-size:12.5px; color:var(--ink2); background:transparent;
+          border:1px solid var(--hair); border-radius:7px; padding:7px 12px;
+          cursor:pointer; margin-top:13px; min-height:36px; }
+.tblbtn:hover { background:var(--grid); }
+.tblbtn:focus-visible { outline:2px solid var(--s1); outline-offset:1px; }
+.tblwrap { display:none; margin-top:11px; overflow-x:auto; max-height:320px; overflow-y:auto;
+           -webkit-overflow-scrolling:touch; }
+.tblwrap.on { display:block; }
+table { border-collapse:collapse; font-size:12.5px; font-variant-numeric:tabular-nums; width:100%; }
+th,td { text-align:right; padding:6px 10px; border-bottom:1px solid var(--grid); white-space:nowrap; }
+th { color:var(--ink2); font-weight:600; position:sticky; top:0; background:var(--surface); }
+th:first-child,td:first-child { text-align:left; }
+
+.tip { position:fixed; pointer-events:none; z-index:50; background:var(--surface);
+       border:1px solid var(--hair); border-radius:9px; padding:9px 11px;
+       font-size:12.5px; box-shadow:0 6px 22px rgba(0,0,0,.15); opacity:0;
+       transition:opacity .1s; max-width:min(280px,calc(100vw - 24px)); }
+@media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+.tip .th { font-weight:600; margin-bottom:6px; font-size:12.5px; color:var(--ink); }
+.tip .r { display:flex; align-items:center; gap:8px; margin-top:3px; white-space:nowrap; }
+.tip .r i { width:12px; height:2px; border-radius:1px; flex:none; }
+.tip .r b { font-weight:600; font-variant-numeric:tabular-nums; color:var(--ink); }
+.tip .r s { text-decoration:none; color:var(--ink2); }
+.scrollnote { font-size:11.5px; color:var(--muted); margin:8px 0 0; }
+.foot { color:var(--muted); font-size:11.5px; margin-top:26px; line-height:1.7; }
+</style>
+
+<div class="wrap">
+  <!--PICKER-->
+  <h1 id="h1">__TITLE__</h1>
+  <p class="sub" id="sub"></p>
+  <p class="src">数据源：澳大利亚就业与劳资关系部 SkillSelect EOI 公开看板（Qlik 引擎接口），应用最后刷新 2026-08-02。</p>
+
+  <details class="note">
+    <summary>读这份报告前必须知道的 6 件事（口径说明）</summary>
+    <ol>
+      <li><b>池子是累积的，不是当前排队量。</b>每个"截至月份"的快照会保留已关闭的 EOI，所以总数每月只增不减。真正的竞争池是 <b>SUBMITTED（在池）</b>状态，本报告的"申请人数"一律指它。</li>
+      <li><b>"获邀"是月末存量，不是当月发出的邀请数。</b>看板不公布邀请流量。EOI 被邀请后 60 天内失效或转为 LODGED，所以月末快照只抓得到当时手上还握着有效邀请的人——真实邀请量比这个数高。</li>
+      <li><b>获邀率的分子分母都做了 EOI 去重。</b>分子＝历史上曾进入 INVITED 或 LODGED 的去重人数（已核实 LODGED 是 INVITED 的子集），分母＝该分数段的去重 EOI 总数。注意申请人可以改分，同一个 EOI 会落进多个分数桶，所以这是近似值。</li>
+      <li><b>各签证类型不能相加。</b>一个人可以同时对 189/190/491 提交 EOI，跨类型求和会重复计人。</li>
+      <li><b>官方看板会屏蔽小于 20 的格子</b>以保护隐私，本报告用的是未屏蔽的原始计数。样本量小的分数段（图上已标注 n）不要当成稳定信号读。</li>
+      <li><b>按月的人数曲线不能用来判断增长。</b>该看板的月度面板存在回填：以"2023 年提交"这个<b>不可能增长的固定集合</b>为例，它在 as-at 08/2024 的快照里只有 28,756 份，到 as-at 07/2026 变成 351,592 份——涨了 12 倍。说明早期月份的覆盖度严重不全，这个面板大约 2024 年中才建起来、历史逐步补录。<b>所以图 1/2/3/5 只能看形状，绝不能读成"池子涨了几倍"。</b>证据表见 <code>data/coverage_check.csv</code>。相比之下，<b>图 4 的获邀率不带时间维</b>，是在完整底层记录上算的，不受此影响。</li>
+    </ol>
+  </details>
+
+  <div class="filters">
+    <span class="lab">签证类型</span>
+    <span class="seg" id="visaSeg"></span>
+  </div>
+
+  <div class="kpis" id="kpis"></div>
+
+  <div class="card findings">
+    <h2>关键结论</h2>
+    <p class="cap">以下每一条都由脚本从数据算出，换任何职业都会自动重算，不是手写的。</p>
+    <ol class="flist" id="flist"></ol>
+    <h3 class="sub2">同样的分数，走哪条通道胜算最大</h3>
+    <p class="hint">每格是"该分数段中曾获邀的人占比"，只显示样本 n≥50 的格子；每行最高的一格加粗。</p>
+    <div class="tblwrap on" id="cmp"></div>
+  </div>
+
+  <div class="card">
+    <h2>1 · 在池申请人数（SUBMITTED）</h2>
+    <p class="cap">每个月末处于 SUBMITTED 状态的 EOI 数量。所选签证类型高亮，其余作为对照置灰。</p>
+    <p class="warn">曲线的上升主要来自面板回填，不是真实排队增长——只看形状，不要读增幅（口径说明第 6 条）。</p>
+    <div class="chart"><svg id="c1"></svg></div>
+    <div class="legend" id="l1"></div>
+    <button class="tblbtn" data-t="t1">表格视图</button>
+    <div class="tblwrap" id="t1"></div>
+  </div>
+
+  <div class="card">
+    <h2>2 · 在池人群的分数分位数</h2>
+    <p class="cap">在池 EOI 的分数中位数 / 75 分位 / 90 分位随时间变化——衡量"对手变强了没有"。</p>
+    <p class="hint">分数按 5 分一档，所以分位线只会跳档，不会平滑上升。</p>
+    <p class="warn">早期月份覆盖不全，跨月对比不可靠；最右端（最新月份）才是可信的横截面。</p>
+    <div class="chart"><svg id="c2"></svg></div>
+    <div class="legend" id="l2"></div>
+    <button class="tblbtn" data-t="t2">表格视图</button>
+    <div class="tblwrap" id="t2"></div>
+  </div>
+
+  <div class="card">
+    <h2>3 · 分数分布随时间（热力图）</h2>
+    <p class="cap">每一列是一个月，颜色深浅＝该分数段在当月在池人群中的占比。</p>
+    <p class="hint">按列归一化，所以看的是分布形状的迁移，不是绝对人数。</p>
+    <p class="warn">同上：早期列的样本构成不完整，左右对比要谨慎。</p>
+    <div class="chart scrollx"><svg id="c3"></svg></div>
+    <p class="scrollnote" id="s3"></p>
+    <div class="legend" id="l3"></div>
+    <button class="tblbtn" data-t="t3">表格视图</button>
+    <div class="tblwrap" id="t3"></div>
+  </div>
+
+  <div class="card">
+    <h2>4 · 按分数看获邀率</h2>
+    <p class="cap">该分数段中，历史上曾拿到邀请的人占比。这是全篇最有决策价值的一张图。</p>
+    <p class="hint">样本量不足 50 的分数段已直接标注 n，比例波动大，别当真。</p>
+    <div class="chart"><svg id="c4"></svg></div>
+    <div class="legend" id="l4"></div>
+    <button class="tblbtn" data-t="t4">表格视图</button>
+    <div class="tblwrap" id="t4"></div>
+  </div>
+
+  <div class="card">
+    <h2>5 · 每月月末持有有效邀请的人数</h2>
+    <p class="cap">邀请活动的节奏。数值本身偏低（见口径说明第 2 条），但它的<b>时间形状</b>是可信的。</p>
+    <p class="hint">这是存量不是流量，跨月的邀请会在相邻两个月都被记到。</p>
+    <p class="warn">早期月份覆盖不全，绝对值偏低；峰值位置比峰值高度可信。</p>
+    <div class="chart"><svg id="c5"></svg></div>
+    <div class="legend" id="l5"></div>
+    <button class="tblbtn" data-t="t5">表格视图</button>
+    <div class="tblwrap" id="t5"></div>
+  </div>
+
+  <div class="card" id="card6">
+    <h2>6 · 提名州分布（在池，最新月份）</h2>
+    <p class="cap">该职业当前在池 EOI 选择的提名州/地区。</p>
+    <p class="hint">189 是独立技术移民，不需要州提名，因此该图不适用。</p>
+    <div class="chart"><svg id="c6"></svg></div>
+    <button class="tblbtn" data-t="t6">表格视图</button>
+    <div class="tblwrap" id="t6"></div>
+  </div>
+
+  <p class="foot" id="foot"></p>
+</div>
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+
+<script>
+let DATA = __DATA__;
+const SVGNS = "http://www.w3.org/2000/svg";
+const CSS = k => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
+const SERIES_VAR = ["--s1","--s2","--s3","--s4"];
+const fmt = n => n.toLocaleString("en-US");
+let visa = null;
+
+const mk = (t, a = {}) => { const e = document.createElementNS(SVGNS, t);
+  for (const k in a) e.setAttribute(k, a[k]); return e; };
+const colorOf = v => CSS(SERIES_VAR[DATA.visaOrder.indexOf(v)] || "--s1");
+const narrow = () => innerWidth < 640;
+
+/* ---------- tooltip ---------- */
+const tip = document.getElementById("tip");
+function showTip(evt, title, rows) {
+  tip.textContent = "";
+  const h = document.createElement("div"); h.className = "th";
+  h.textContent = title; tip.appendChild(h);
+  for (const r of rows) {
+    const d = document.createElement("div"); d.className = "r";
+    if (r.color) { const i = document.createElement("i");
+      i.style.background = r.color; d.appendChild(i); }
+    const b = document.createElement("b"); b.textContent = r.value; d.appendChild(b);
+    const s = document.createElement("s"); s.textContent = r.label; d.appendChild(s);
+    tip.appendChild(d);
+  }
+  tip.style.opacity = 1;
+  const pad = 14, w = tip.offsetWidth, hh = tip.offsetHeight;
+  let x = evt.clientX + pad, y = evt.clientY + pad;
+  if (x + w > innerWidth - 8) x = Math.max(8, evt.clientX - w - pad);
+  if (y + hh > innerHeight - 8) y = Math.max(8, evt.clientY - hh - pad);
+  tip.style.left = x + "px"; tip.style.top = y + "px";
+}
+const hideTip = () => { tip.style.opacity = 0; };
+addEventListener("scroll", hideTip, true);
+/* tap anywhere outside a chart dismisses the readout (touch has no pointerleave) */
+addEventListener("pointerdown", e => { if (!e.target.closest(".chart")) hideTip(); }, true);
+
+/* a mark responds to hover AND to tap; touch never fires pointerleave reliably */
+function onProbe(el, handler) {
+  el.addEventListener("pointermove", handler);
+  el.addEventListener("pointerdown", handler);
+  el.addEventListener("pointerleave", hideTip);
+}
+
+/* ---------- shared chart frame ---------- */
+/* Charts render at the container's real CSS pixel width (viewBox 1:1), so axis
+   text stays 11px on a phone instead of being scaled down with the drawing. */
+function frame(id, H, m, naturalW) {
+  const svg = document.getElementById(id);
+  svg.textContent = "";
+  const avail = Math.max(280, svg.parentElement.clientWidth || 600);
+  const W = naturalW ? Math.max(naturalW, avail) : avail;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  svg.setAttribute("width", W);
+  svg.setAttribute("height", H);
+  const g = mk("g"); svg.appendChild(g);
+  return { svg, g, W, iw: W - m.l - m.r, ih: H - m.t - m.b };
+}
+function niceScale(rawMax, ticks = 4) {
+  if (!(rawMax > 0)) return { max: 1, step: 1 / ticks };
+  const rough = rawMax / ticks;
+  const mag = Math.pow(10, Math.floor(Math.log10(rough)));
+  const step = [1, 2, 2.5, 5, 10].find(f => f * mag >= rough - 1e-9) * mag;
+  return { max: step * ticks, step };
+}
+function yAxis(g, m, ih, iw, max, ticks, fmtT = fmt) {
+  const step = max / ticks;
+  for (let i = 0; i <= ticks; i++) {
+    const v = step * i, y = m.t + ih - (v / max) * ih;
+    g.appendChild(mk("line", { x1: m.l, x2: m.l + iw, y1: y, y2: y,
+      stroke: CSS(i ? "--grid" : "--axis"), "stroke-width": 1 }));
+    const t = mk("text", { x: m.l - 8, y: y + 4, "text-anchor": "end",
+      fill: CSS("--muted"), "font-size": 11 });
+    t.style.fontVariantNumeric = "tabular-nums";
+    t.textContent = fmtT(v); g.appendChild(t);
+  }
+}
+/* label every Nth tick so they never collide, whatever the width */
+const strideFor = (iw, n, px) => Math.max(1, Math.ceil(n / Math.max(1, Math.floor(iw / px))));
+/* keep the final month labelled, and drop any earlier label that would sit
+   closer to it than one label-width (measured in px, not in ticks) */
+function labelIndices(n, pxPerStep, labelPx) {
+  const stride = strideFor(pxPerStep * (n - 1), n, labelPx);
+  const out = [];
+  for (let i = 0; i < n - 1; i += stride)
+    if ((n - 1 - i) * pxPerStep >= labelPx) out.push(i);
+  out.push(n - 1);
+  return out;
+}
+function xMonths(g, m, ih, xOf, iw) {
+  const n = DATA.monthLabels.length;
+  labelIndices(n, iw / (n - 1), 54).forEach(i => {
+    const t = mk("text", { x: xOf(i), y: m.t + ih + 17, "text-anchor": "middle",
+      fill: CSS("--muted"), "font-size": 11 });
+    t.textContent = DATA.monthLabels[i]; g.appendChild(t);
+  });
+}
+function endLabel(g, x, y, text, fill) {
+  const t = mk("text", { x: x + 8, y: y + 4, fill, "font-size": 11.5, "font-weight": 600 });
+  t.textContent = text; g.appendChild(t);
+}
+function crosshair(g, m, ih, iw, W, svg, n, xOf, onIndex) {
+  const cross = mk("line", { y1: m.t, y2: m.t + ih, stroke: CSS("--axis"),
+    "stroke-width": 1, opacity: 0 });
+  g.appendChild(cross);
+  const hit = mk("rect", { x: m.l, y: m.t, width: iw, height: ih, fill: "transparent" });
+  g.appendChild(hit);
+  onProbe(hit, e => {
+    const r = svg.getBoundingClientRect();
+    const i = Math.max(0, Math.min(n - 1, Math.round(
+      ((e.clientX - r.left) / r.width * W - m.l) / iw * (n - 1))));
+    cross.setAttribute("x1", xOf(i)); cross.setAttribute("x2", xOf(i));
+    cross.setAttribute("opacity", 1);
+    onIndex(e, i);
+  });
+  hit.addEventListener("pointerleave", () => cross.setAttribute("opacity", 0));
+}
+
+/* ---------- table + legend helpers ---------- */
+function table(id, head, rows) {
+  const w = document.getElementById(id); w.textContent = "";
+  const tb = document.createElement("table");
+  const thead = document.createElement("thead"), tr = document.createElement("tr");
+  head.forEach(h => { const th = document.createElement("th");
+    th.textContent = h; tr.appendChild(th); });
+  thead.appendChild(tr); tb.appendChild(thead);
+  const body = document.createElement("tbody");
+  rows.forEach(r => { const x = document.createElement("tr");
+    r.forEach(c => { const td = document.createElement("td");
+      td.textContent = c; x.appendChild(td); }); body.appendChild(x); });
+  tb.appendChild(body); w.appendChild(tb);
+}
+document.querySelectorAll(".tblbtn").forEach(b => b.addEventListener("click", () => {
+  const w = document.getElementById(b.dataset.t);
+  w.classList.toggle("on");
+  b.textContent = w.classList.contains("on") ? "收起表格" : "表格视图";
+}));
+function legend(id, items) {
+  const el = document.getElementById(id); el.textContent = "";
+  items.forEach(it => {
+    const s = document.createElement("span");
+    const i = document.createElement("i");
+    i.className = it.shape || "line"; i.style.background = it.color;
+    s.appendChild(i);
+    s.appendChild(document.createTextNode(it.label));
+    el.appendChild(s);
+  });
+}
+
+/* ---------- 1. pool over time (emphasis) ---------- */
+function chart1() {
+  const nar = narrow();
+  const m = { l: nar ? 46 : 58, r: nar ? 14 : 92, t: 14, b: 32 };
+  const H = nar ? 250 : 320;
+  const { svg, g, W, iw, ih } = frame("c1", H, m);
+  const n = DATA.months.length;
+  const { max } = niceScale(Math.max(...DATA.visaOrder.map(v =>
+    Math.max(...DATA.series[v].SUBMITTED))) * 1.04);
+  const xOf = i => m.l + (n === 1 ? iw / 2 : (i / (n - 1)) * iw);
+  const yOf = v => m.t + ih - (v / max) * ih;
+  yAxis(g, m, ih, iw, max, 4);
+  xMonths(g, m, ih, xOf, iw);
+
+  const order = DATA.visaOrder.filter(v => v !== visa).concat([visa]);
+  for (const v of order) {
+    const on = v === visa, col = on ? colorOf(v) : CSS("--muted");
+    const pts = DATA.series[v].SUBMITTED;
+    const d = pts.map((p, i) => `${i ? "L" : "M"}${xOf(i)},${yOf(p)}`).join(" ");
+    g.appendChild(mk("path", { d, fill: "none", stroke: col,
+      "stroke-width": on ? 2 : 1.25, "stroke-linejoin": "round",
+      "stroke-linecap": "round", opacity: on ? 1 : .5 }));
+    const last = pts.length - 1;
+    if (on) g.appendChild(mk("circle", { cx: xOf(last), cy: yOf(pts[last]), r: 4.5,
+      fill: col, stroke: CSS("--surface"), "stroke-width": 2 }));
+    // no room for end labels on a phone -> the legend carries the latest value
+    if (!nar) endLabel(g, xOf(last), yOf(pts[last]), `${v}  ${fmt(pts[last])}`,
+      on ? CSS("--ink") : CSS("--muted"));
+  }
+  crosshair(g, m, ih, iw, W, svg, n, xOf, (e, i) =>
+    showTip(e, DATA.monthLabels[i] + " 在池人数", DATA.visaOrder.map(v => ({
+      color: v === visa ? colorOf(v) : CSS("--muted"),
+      value: fmt(DATA.series[v].SUBMITTED[i]), label: v }))));
+
+  const last = n - 1;
+  legend("l1", DATA.visaOrder.map(v => ({
+    color: v === visa ? colorOf(v) : CSS("--muted"),
+    label: `${v} ${fmt(DATA.series[v].SUBMITTED[last])}${v === visa ? "（已选）" : ""}` })));
+  table("t1", ["月份", ...DATA.visaOrder],
+    DATA.monthLabels.map((lab, i) => [lab, ...DATA.visaOrder.map(v =>
+      fmt(DATA.series[v].SUBMITTED[i]))]));
+}
+
+/* ---------- 2. points percentiles ---------- */
+function chart2() {
+  const nar = narrow();
+  const m = { l: nar ? 34 : 48, r: nar ? 14 : 74, t: 14, b: 32 };
+  const H = nar ? 240 : 300;
+  const { svg, g, W, iw, ih } = frame("c2", H, m);
+  const P = DATA.percentiles[visa], n = DATA.months.length;
+  const keys = [["p50", "--ord1", "中位数"], ["p75", "--ord2", "75 分位"], ["p90", "--ord3", "90 分位"]];
+  const all = keys.flatMap(k => P[k[0]]).filter(v => v != null);
+  const lo = Math.min(...all) - 8, hi = Math.max(...all) + 8;
+  const xOf = i => m.l + (i / (n - 1)) * iw;
+  const yOf = v => m.t + ih - ((v - lo) / (hi - lo)) * ih;
+  const gridStep = (hi - lo) > 45 ? 10 : 5;
+  for (let v = Math.ceil(lo / gridStep) * gridStep; v <= hi; v += gridStep) {
+    const y = yOf(v);
+    g.appendChild(mk("line", { x1: m.l, x2: m.l + iw, y1: y, y2: y,
+      stroke: CSS("--grid"), "stroke-width": 1 }));
+    const t = mk("text", { x: m.l - 8, y: y + 4, "text-anchor": "end",
+      fill: CSS("--muted"), "font-size": 11 });
+    t.style.fontVariantNumeric = "tabular-nums"; t.textContent = v;
+    g.appendChild(t);
+  }
+  xMonths(g, m, ih, xOf, iw);
+  for (const [k, cv, lab] of keys) {
+    const col = CSS(cv), pts = P[k];
+    const d = pts.map((p, i) => `${i ? "L" : "M"}${xOf(i)},${yOf(p)}`).join(" ");
+    g.appendChild(mk("path", { d, fill: "none", stroke: col, "stroke-width": 2,
+      "stroke-linejoin": "round", "stroke-linecap": "round" }));
+    const last = pts.length - 1;
+    g.appendChild(mk("circle", { cx: xOf(last), cy: yOf(pts[last]), r: 4.5,
+      fill: col, stroke: CSS("--surface"), "stroke-width": 2 }));
+    if (!nar) endLabel(g, xOf(last), yOf(pts[last]), `${lab} ${pts[last]}`, CSS("--ink2"));
+  }
+  crosshair(g, m, ih, iw, W, svg, n, xOf, (e, i) =>
+    showTip(e, `${DATA.monthLabels[i]} · ${visa} 在池分数`,
+      keys.map(([k, cv, lab]) => ({ color: CSS(cv), value: P[k][i] + " 分", label: lab }))));
+  const last = n - 1;
+  legend("l2", keys.map(([k, cv, lab]) => ({ color: CSS(cv), label: `${lab} ${P[k][last]} 分` })));
+  table("t2", ["月份", "中位数", "75 分位", "90 分位"],
+    DATA.monthLabels.map((lab, i) => [lab, P.p50[i], P.p75[i], P.p90[i]]));
+}
+
+/* ---------- 3. heatmap month x points ---------- */
+function lerpHex(a, b, t) {
+  const p = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+  const [r1, g1, b1] = p(a), [r2, g2, b2] = p(b);
+  const q = x => Math.round(x).toString(16).padStart(2, "0");
+  return `#${q(r1 + (r2 - r1) * t)}${q(g1 + (g2 - g1) * t)}${q(b1 + (b2 - b1) * t)}`;
+}
+function chart3() {
+  const HD = DATA.heat[visa], pts = HD.points, n = DATA.months.length;
+  const m = { l: 34, r: 12, t: 10, b: 30 };
+  const cw = 26, ch = 20;
+  const naturalW = m.l + m.r + n * cw;
+  const H = m.t + m.b + pts.length * ch;
+  const { g, W } = frame("c3", H, m, naturalW);
+  const cwv = (W - m.l - m.r) / n;      // stretch to fill when there is room
+  const shares = HD.rows.map(row => {
+    const s = row.reduce((a, b) => a + b, 0) || 1;
+    return row.map(v => v / s);
+  });
+  const maxShare = Math.max(...shares.flat());
+  const c0 = CSS("--heat0"), c1 = CSS("--heat1");
+  pts.forEach((p, pi) => {
+    const t = mk("text", { x: m.l - 7, y: m.t + (pts.length - 1 - pi) * ch + ch / 2 + 4,
+      "text-anchor": "end", fill: CSS("--muted"), "font-size": 11 });
+    t.style.fontVariantNumeric = "tabular-nums"; t.textContent = p;
+    g.appendChild(t);
+  });
+  DATA.months.forEach((_, mi) => {
+    pts.forEach((p, pi) => {
+      const share = shares[mi][pi], v = share / maxShare;
+      const x = m.l + mi * cwv, y = m.t + (pts.length - 1 - pi) * ch;
+      const r = mk("rect", { x: x + 1, y: y + 1, width: Math.max(1, cwv - 2),
+        height: ch - 2, rx: 2, fill: lerpHex(c0, c1, Math.pow(v, .65)) });
+      r.style.cursor = "crosshair";
+      onProbe(r, e => showTip(e, `${DATA.monthLabels[mi]} · ${p} 分`,
+        [{ value: (share * 100).toFixed(1) + "%", label: "占当月在池比例" },
+         { value: fmt(HD.rows[mi][pi]), label: "人数" }]));
+      g.appendChild(r);
+    });
+  });
+  labelIndices(n, cwv, 54).forEach(i => {
+    const t = mk("text", { x: m.l + i * cwv + cwv / 2, y: m.t + pts.length * ch + 17,
+      "text-anchor": "middle", fill: CSS("--muted"), "font-size": 11 });
+    t.textContent = DATA.monthLabels[i]; g.appendChild(t);
+  });
+  document.getElementById("s3").textContent =
+    W > (document.getElementById("c3").parentElement.clientWidth + 2) ? "← 左右滑动查看完整 24 个月 →" : "";
+  const el = document.getElementById("l3"); el.textContent = "";
+  const s = document.createElement("span");
+  s.appendChild(document.createTextNode("占比低"));
+  for (let i = 0; i <= 5; i++) {
+    const i2 = document.createElement("i"); i2.className = "rect";
+    i2.style.background = lerpHex(c0, c1, Math.pow(i / 5, .65)); s.appendChild(i2);
+  }
+  s.appendChild(document.createTextNode(`高（最深 ≈ ${(maxShare * 100).toFixed(0)}%）`));
+  el.appendChild(s);
+  table("t3", ["月份", ...pts.map(p => p + " 分")],
+    DATA.monthLabels.map((lab, i) => [lab, ...shares[i].map(v => (v * 100).toFixed(1) + "%")]));
+}
+
+/* ---------- 4. invitation rate by points ---------- */
+function chart4() {
+  const R = DATA.rate[visa], nar = narrow();
+  const m = { l: nar ? 40 : 52, r: 12, t: 24, b: 44 };
+  const H = nar ? 260 : 330;
+  const { g, iw, ih } = frame("c4", H, m);
+  const n = R.points.length;
+  const { max } = niceScale(Math.max(5, Math.max(...R.rate)) * 1.1);
+  const band = iw / n, bw = Math.min(24, Math.max(4, band - 6));
+  const yOf = v => m.t + ih - (v / max) * ih;
+  yAxis(g, m, ih, iw, max, 4, v => (Number.isInteger(v) ? v : v.toFixed(1)) + "%");
+  const col = colorOf(visa), peak = Math.max(...R.rate);
+  const xLabels = new Set(labelIndices(n, iw / n, 26));
+  R.points.forEach((p, i) => {
+    const x = m.l + band * i + (band - bw) / 2, y = yOf(R.rate[i]);
+    const h = m.t + ih - y;
+    if (h > 0) g.appendChild(mk("path", {
+      d: `M${x},${m.t + ih} L${x},${y + 4} Q${x},${y} ${x + 4},${y}
+          L${x + bw - 4},${y} Q${x + bw},${y} ${x + bw},${y + 4} L${x + bw},${m.t + ih} Z`,
+      fill: col }));
+    if (xLabels.has(i)) {
+      const t = mk("text", { x: m.l + band * i + band / 2, y: m.t + ih + 17,
+        "text-anchor": "middle", fill: CSS("--muted"), "font-size": 11 });
+      t.style.fontVariantNumeric = "tabular-nums"; t.textContent = p;
+      g.appendChild(t);
+    }
+    // label the peaks; flag thin samples so a 100%-of-5 bar can't be misread
+    const thin = R.total[i] < 50;
+    if (R.rate[i] >= peak * .35 || (thin && R.rate[i] > 0)) {
+      const lab = mk("text", { x: m.l + band * i + band / 2, y: y - 7,
+        "text-anchor": "middle", "font-size": nar ? 10.5 : 11.5,
+        fill: thin ? CSS("--muted") : CSS("--ink"),
+        "font-weight": thin ? 400 : 600 });
+      lab.textContent = thin ? `${R.rate[i]}% n=${R.total[i]}` : R.rate[i] + "%";
+      g.appendChild(lab);
+    }
+    const hit = mk("rect", { x: m.l + band * i, y: m.t, width: band, height: ih,
+      fill: "transparent" });
+    hit.style.cursor = "crosshair";
+    onProbe(hit, e => showTip(e, `${p} 分 · ${visa}`, [
+      { color: col, value: R.rate[i] + "%", label: "获邀率" },
+      { value: fmt(R.invited[i]), label: "曾获邀人数" },
+      { value: fmt(R.total[i]), label: "该分数段 EOI 总数" }]));
+    g.appendChild(hit);
+  });
+  const xt = mk("text", { x: m.l + iw / 2, y: H - 5, "text-anchor": "middle",
+    fill: CSS("--muted"), "font-size": 11 });
+  xt.textContent = "EOI 分数"; g.appendChild(xt);
+  legend("l4", [{ color: col, shape: "rect",
+    label: nar ? `${visa} 获邀率` : `${visa} 获邀率（曾获邀人数 ÷ 该分数段 EOI 总数）` }]);
+  table("t4", ["分数", "获邀率", "曾获邀人数", "EOI 总数"],
+    R.points.map((p, i) => [p, R.rate[i] + "%", fmt(R.invited[i]), fmt(R.total[i])]));
+}
+
+/* ---------- 5. invited stock per month ---------- */
+function chart5() {
+  const S = DATA.series[visa].INVITED, n = S.length, nar = narrow();
+  const m = { l: nar ? 34 : 52, r: 12, t: 20, b: 32 };
+  const H = nar ? 210 : 260;
+  const { g, iw, ih } = frame("c5", H, m);
+  const { max } = niceScale(Math.max(4, Math.max(...S)) * 1.1);
+  const band = iw / n, bw = Math.min(24, Math.max(4, band - 5));
+  const yOf = v => m.t + ih - (v / max) * ih;
+  yAxis(g, m, ih, iw, max, 4);
+  const col = colorOf(visa), peak = Math.max(...S);
+  S.forEach((v, i) => {
+    const x = m.l + band * i + (band - bw) / 2, y = yOf(v);
+    if (v > 0) g.appendChild(mk("path", {
+      d: `M${x},${m.t + ih} L${x},${y + 4} Q${x},${y} ${x + 4},${y}
+          L${x + bw - 4},${y} Q${x + bw},${y} ${x + bw},${y + 4} L${x + bw},${m.t + ih} Z`,
+      fill: col }));
+    if (v === peak && v > 0) {
+      const lab = mk("text", { x: m.l + band * i + band / 2, y: y - 7,
+        "text-anchor": "middle", fill: CSS("--ink"), "font-size": 11.5,
+        "font-weight": 600 });
+      lab.textContent = fmt(v); g.appendChild(lab);
+    }
+    const hit = mk("rect", { x: m.l + band * i, y: m.t, width: band, height: ih,
+      fill: "transparent" });
+    hit.style.cursor = "crosshair";
+    onProbe(hit, e => showTip(e, `${DATA.monthLabels[i]} · ${visa}`,
+      [{ color: col, value: fmt(v), label: "月末持有有效邀请" }]));
+    g.appendChild(hit);
+  });
+  xMonths(g, m, ih, i => m.l + band * i + band / 2, iw);
+  legend("l5", [{ color: col, shape: "rect", label: `${visa} 月末 INVITED 存量` }]);
+  table("t5", ["月份", "月末持有有效邀请"],
+    DATA.monthLabels.map((lab, i) => [lab, fmt(S[i])]));
+}
+
+/* ---------- 6. nominated state ---------- */
+function chart6() {
+  const rows = DATA.states[visa] || [];
+  const card = document.getElementById("card6");
+  if (!rows.length) { card.style.display = "none"; return; }
+  card.style.display = "";
+  const nar = narrow();
+  const m = { l: nar ? 44 : 62, r: nar ? 52 : 60, t: 6, b: 6 }, bh = nar ? 28 : 30;
+  const H = m.t + m.b + rows.length * bh;
+  const { g, iw } = frame("c6", H, m);
+  const max = rows[0][1], col = colorOf(visa);
+  rows.forEach(([name, v], i) => {
+    const y = m.t + i * bh + 3, h = Math.min(24, bh - 8);
+    const w = Math.max(2, (v / max) * iw);
+    g.appendChild(mk("path", {
+      d: `M${m.l},${y} L${m.l + w - 4},${y} Q${m.l + w},${y} ${m.l + w},${y + 4}
+          L${m.l + w},${y + h - 4} Q${m.l + w},${y + h} ${m.l + w - 4},${y + h} L${m.l},${y + h} Z`,
+      fill: col }));
+    const nm = mk("text", { x: m.l - 8, y: y + h / 2 + 4, "text-anchor": "end",
+      fill: CSS("--ink2"), "font-size": 12 });
+    nm.textContent = name; g.appendChild(nm);
+    const val = mk("text", { x: m.l + w + 8, y: y + h / 2 + 4, fill: CSS("--ink"),
+      "font-size": 11.5, "font-weight": 600 });
+    val.style.fontVariantNumeric = "tabular-nums";
+    val.textContent = fmt(v); g.appendChild(val);
+    const hit = mk("rect", { x: m.l, y: m.t + i * bh, width: iw, height: bh,
+      fill: "transparent" });
+    onProbe(hit, e => showTip(e, name, [{ color: col, value: fmt(v), label: `${visa} 在池 EOI` }]));
+    g.appendChild(hit);
+  });
+  table("t6", ["提名州/地区", "在池 EOI"], rows.map(([n, v]) => [n, fmt(v)]));
+}
+
+/* ---------- findings + cross-visa comparison ---------- */
+function findings() {
+  const el = document.getElementById("flist"); el.textContent = "";
+  (DATA.findings[visa] || []).forEach(f => {
+    const li = document.createElement("li");
+    const tag = document.createElement("span");
+    tag.className = "tag"; tag.textContent = f.label;
+    const body = document.createElement("span"); body.textContent = f.text;
+    li.append(tag, body); el.appendChild(li);
+  });
+
+  const wrap = document.getElementById("cmp"); wrap.textContent = "";
+  const tb = document.createElement("table");
+  const thead = document.createElement("tr");
+  ["分数", ...DATA.visaOrder].forEach(h => {
+    const th = document.createElement("th"); th.textContent = h; thead.appendChild(th); });
+  tb.appendChild(thead);
+  DATA.compare.forEach(row => {
+    const tr = document.createElement("tr");
+    const td0 = document.createElement("td"); td0.textContent = row.points + " 分";
+    tr.appendChild(td0);
+    const vals = DATA.visaOrder.map(v => row.rates[v]);
+    const best = Math.max(...vals.filter(x => x != null));
+    DATA.visaOrder.forEach((v, i) => {
+      const td = document.createElement("td");
+      if (vals[i] == null) { td.textContent = "—"; td.className = "na"; }
+      else { td.textContent = vals[i] + "%"; if (vals[i] === best) td.className = "best"; }
+      tr.appendChild(td);
+    });
+    tb.appendChild(tr);
+  });
+  wrap.appendChild(tb);
+}
+
+/* ---------- KPIs ---------- */
+function kpis() {
+  const S = DATA.series[visa], P = DATA.percentiles[visa], R = DATA.rate[visa];
+  const last = S.SUBMITTED.length - 1;
+  const now = S.SUBMITTED[last];
+  // "effective bar" = lowest score whose invitation rate clears 10% on a real sample
+  let bar = null, barRate = null, barN = null;
+  for (let i = 0; i < R.points.length; i++)
+    if (R.rate[i] >= 10 && R.total[i] >= 50) {
+      bar = R.points[i]; barRate = R.rate[i]; barN = R.total[i]; break; }
+  const pool = DATA.poolPoints[visa];
+  const tot = pool.counts.reduce((a, b) => a + b, 0) || 1;
+  const above = bar == null ? null : pool.points.reduce(
+    (a, p, i) => a + (p >= bar ? pool.counts[i] : 0), 0);
+  // no growth KPI here on purpose: the monthly panel back-fills, so a "N x in
+  // 24 months" figure would be measuring the dashboard's coverage, not the queue
+  const items = [
+    { l: "当前在池人数", v: fmt(now), d: `${DATA.monthLabels[last]} 快照，SUBMITTED 状态` },
+    { l: "在池中位分", v: P.p50[last] + " 分", d: `90 分位 ${P.p90[last]} 分（同一快照）` },
+    { l: "实际获邀分数线", v: bar ? bar + " 分" : "样本不足",
+      d: bar ? `获邀率首次突破 10% 的分数（n=${fmt(barN)}）` : "该类型样本量不足以判断" },
+    { l: bar ? "该分数线获邀率" : "获邀率", v: bar ? barRate + "%" : "—",
+      d: bar ? `当前在池有 ${(above / tot * 100).toFixed(0)}% 的人达到这条线` : "无有效样本" },
+  ];
+  const el = document.getElementById("kpis"); el.textContent = "";
+  items.forEach(it => {
+    const d = document.createElement("div"); d.className = "kpi";
+    const a = document.createElement("div"); a.className = "l"; a.textContent = it.l;
+    const b = document.createElement("div"); b.className = "v"; b.textContent = it.v;
+    const c = document.createElement("div"); c.className = "d"; c.textContent = it.d;
+    d.append(a, b, c); el.appendChild(d);
+  });
+}
+
+/* ---------- boot ---------- */
+function renderAll() {
+  kpis(); findings(); chart1(); chart2(); chart3(); chart4(); chart5(); chart6();
+}
+/* boot(data) is the single entry point: the one-occupation build calls it
+   immediately with inlined data, the site shell calls it after each fetch. */
+function boot(data) {
+  DATA = data;
+  visa = DATA.visaOrder[0];
+  const seg = document.getElementById("visaSeg");
+  seg.textContent = "";
+  DATA.visaOrder.forEach(v => {
+    const b = document.createElement("button");
+    b.type = "button"; b.textContent = v; b.setAttribute("aria-pressed", v === visa);
+    b.addEventListener("click", () => {
+      visa = v;
+      seg.querySelectorAll("button").forEach(x =>
+        x.setAttribute("aria-pressed", x.textContent === v));
+      renderAll();
+    });
+    seg.appendChild(b);
+  });
+  document.getElementById("h1").textContent =
+    `${DATA.occupation} · 澳洲技术移民 EOI 数据分析`;
+  document.getElementById("sub").textContent =
+    `按月快照，${DATA.monthLabels[0]} – ${DATA.monthLabels[DATA.monthLabels.length - 1]}（24 个月）`;
+  document.getElementById("foot").textContent =
+    "口径：所有计数均为去重 EOI 数（COUNT DISTINCT %EOIID）。“在池”＝ EOI Status = SUBMITTED。" +
+    "本页由 immi-analysis/scripts/ 的抽取与渲染脚本生成，可对任意 ANZSCO 职业重跑。";
+  document.querySelectorAll(".tblwrap.on").forEach(w => {
+    if (w.id !== "cmp") w.classList.remove("on");
+  });
+  document.querySelectorAll(".tblbtn").forEach(b => { b.textContent = "表格视图"; });
+  renderAll();
+}
+if (DATA) boot(DATA);
+
+let rt = null, lastW = innerWidth;
+addEventListener("resize", () => {
+  hideTip();
+  if (innerWidth === lastW) return;      // ignore mobile URL-bar height changes
+  lastW = innerWidth;
+  clearTimeout(rt); rt = setTimeout(renderAll, 140);
+});
+</script>

@@ -1,0 +1,387 @@
+attribute,visa_type,eoi_status,value,eois
+English Test Score,190SAS Skilled Australian Sponsored,CLOSED,10,223030
+English Test Score,190SAS Skilled Australian Sponsored,CLOSED,20,127167
+English Test Score,190SAS Skilled Australian Sponsored,CLOSED,0,66771
+English Test Score,190SAS Skilled Australian Sponsored,CLOSED,-,6701
+English Test Score,190SAS Skilled Australian Sponsored,SUBMITTED,10,226865
+English Test Score,190SAS Skilled Australian Sponsored,SUBMITTED,20,117334
+English Test Score,190SAS Skilled Australian Sponsored,SUBMITTED,0,82724
+English Test Score,190SAS Skilled Australian Sponsored,LODGED,10,7140
+English Test Score,190SAS Skilled Australian Sponsored,LODGED,20,7451
+English Test Score,190SAS Skilled Australian Sponsored,LODGED,0,2908
+English Test Score,190SAS Skilled Australian Sponsored,INVITED,10,989
+English Test Score,190SAS Skilled Australian Sponsored,INVITED,20,1125
+English Test Score,190SAS Skilled Australian Sponsored,INVITED,0,292
+English Test Score,190SAS Skilled Australian Sponsored,HOLD,10,2239
+English Test Score,190SAS Skilled Australian Sponsored,HOLD,20,2416
+English Test Score,190SAS Skilled Australian Sponsored,HOLD,0,766
+English Test Score,491SNR State or Territory Nominated - Regional,CLOSED,10,196359
+English Test Score,491SNR State or Territory Nominated - Regional,CLOSED,20,74117
+English Test Score,491SNR State or Territory Nominated - Regional,CLOSED,0,104815
+English Test Score,491SNR State or Territory Nominated - Regional,CLOSED,-,5359
+English Test Score,491SNR State or Territory Nominated - Regional,SUBMITTED,10,237290
+English Test Score,491SNR State or Territory Nominated - Regional,SUBMITTED,20,92894
+English Test Score,491SNR State or Territory Nominated - Regional,SUBMITTED,0,141975
+English Test Score,491SNR State or Territory Nominated - Regional,LODGED,10,5359
+English Test Score,491SNR State or Territory Nominated - Regional,LODGED,20,3218
+English Test Score,491SNR State or Territory Nominated - Regional,LODGED,0,3554
+English Test Score,491SNR State or Territory Nominated - Regional,INVITED,10,422
+English Test Score,491SNR State or Territory Nominated - Regional,INVITED,20,423
+English Test Score,491SNR State or Territory Nominated - Regional,INVITED,0,179
+English Test Score,491SNR State or Territory Nominated - Regional,HOLD,10,2319
+English Test Score,491SNR State or Territory Nominated - Regional,HOLD,20,1894
+English Test Score,491SNR State or Territory Nominated - Regional,HOLD,0,1166
+English Test Score,189PTS Points-Tested Stream,CLOSED,10,103294
+English Test Score,189PTS Points-Tested Stream,CLOSED,20,69539
+English Test Score,189PTS Points-Tested Stream,CLOSED,0,27462
+English Test Score,189PTS Points-Tested Stream,CLOSED,-,4855
+English Test Score,189PTS Points-Tested Stream,SUBMITTED,10,92010
+English Test Score,189PTS Points-Tested Stream,SUBMITTED,20,55167
+English Test Score,189PTS Points-Tested Stream,SUBMITTED,0,31494
+English Test Score,189PTS Points-Tested Stream,LODGED,10,3887
+English Test Score,189PTS Points-Tested Stream,LODGED,20,6124
+English Test Score,189PTS Points-Tested Stream,LODGED,0,1047
+English Test Score,189PTS Points-Tested Stream,INVITED,10,1761
+English Test Score,189PTS Points-Tested Stream,INVITED,20,2552
+English Test Score,189PTS Points-Tested Stream,INVITED,0,300
+English Test Score,189PTS Points-Tested Stream,HOLD,10,1754
+English Test Score,189PTS Points-Tested Stream,HOLD,20,3394
+English Test Score,189PTS Points-Tested Stream,HOLD,0,319
+English Test Score,491FSR Family Sponsored - Regional,CLOSED,10,3780
+English Test Score,491FSR Family Sponsored - Regional,CLOSED,20,1425
+English Test Score,491FSR Family Sponsored - Regional,CLOSED,0,2064
+English Test Score,491FSR Family Sponsored - Regional,CLOSED,-,194
+English Test Score,491FSR Family Sponsored - Regional,SUBMITTED,10,4391
+English Test Score,491FSR Family Sponsored - Regional,SUBMITTED,20,2011
+English Test Score,491FSR Family Sponsored - Regional,SUBMITTED,0,2602
+English Test Score,491FSR Family Sponsored - Regional,LODGED,10,94
+English Test Score,491FSR Family Sponsored - Regional,LODGED,20,85
+English Test Score,491FSR Family Sponsored - Regional,LODGED,0,51
+English Test Score,491FSR Family Sponsored - Regional,INVITED,10,4
+English Test Score,491FSR Family Sponsored - Regional,INVITED,20,22
+English Test Score,491FSR Family Sponsored - Regional,HOLD,10,21
+English Test Score,491FSR Family Sponsored - Regional,HOLD,20,10
+English Test Score,491FSR Family Sponsored - Regional,HOLD,0,18
+English Test Score,188BI Business Innovation,CLOSED,10,11
+English Test Score,188BI Business Innovation,CLOSED,0,60
+English Test Score,188BI Business Innovation,CLOSED,5,14
+English Test Score,188BI Business Innovation,CLOSED,-,116
+English Test Score,188BI Business Innovation,LODGED,0,6
+English Test Score,188BI Business Innovation,LODGED,5,1
+English Test Score,188INV Investor,CLOSED,10,6
+English Test Score,188INV Investor,CLOSED,0,3
+English Test Score,188INV Investor,CLOSED,5,3
+English Test Score,188INV Investor,CLOSED,-,259
+English Test Score,188EV Entrepreneur,CLOSED,N/A,109
+English Test Score,188SIG Significant Investor,CLOSED,N/A,23
+English Test Score,132SBH Significant Business History,CLOSED,N/A,1
+Australian Study Flag,190SAS Skilled Australian Sponsored,CLOSED,N,228375
+Australian Study Flag,190SAS Skilled Australian Sponsored,CLOSED,Y,188593
+Australian Study Flag,190SAS Skilled Australian Sponsored,CLOSED,-,6701
+Australian Study Flag,190SAS Skilled Australian Sponsored,SUBMITTED,N,259739
+Australian Study Flag,190SAS Skilled Australian Sponsored,SUBMITTED,Y,167198
+Australian Study Flag,190SAS Skilled Australian Sponsored,LODGED,N,5745
+Australian Study Flag,190SAS Skilled Australian Sponsored,LODGED,Y,11762
+Australian Study Flag,190SAS Skilled Australian Sponsored,INVITED,N,730
+Australian Study Flag,190SAS Skilled Australian Sponsored,INVITED,Y,1675
+Australian Study Flag,190SAS Skilled Australian Sponsored,HOLD,N,2825
+Australian Study Flag,190SAS Skilled Australian Sponsored,HOLD,Y,2596
+Australian Study Flag,491SNR State or Territory Nominated - Regional,CLOSED,N,251922
+Australian Study Flag,491SNR State or Territory Nominated - Regional,CLOSED,Y,123392
+Australian Study Flag,491SNR State or Territory Nominated - Regional,CLOSED,-,5359
+Australian Study Flag,491SNR State or Territory Nominated - Regional,SUBMITTED,N,326916
+Australian Study Flag,491SNR State or Territory Nominated - Regional,SUBMITTED,Y,145223
+Australian Study Flag,491SNR State or Territory Nominated - Regional,LODGED,N,4205
+Australian Study Flag,491SNR State or Territory Nominated - Regional,LODGED,Y,7938
+Australian Study Flag,491SNR State or Territory Nominated - Regional,INVITED,N,372
+Australian Study Flag,491SNR State or Territory Nominated - Regional,INVITED,Y,651
+Australian Study Flag,491SNR State or Territory Nominated - Regional,HOLD,N,3129
+Australian Study Flag,491SNR State or Territory Nominated - Regional,HOLD,Y,2250
+Australian Study Flag,189PTS Points-Tested Stream,CLOSED,N,63942
+Australian Study Flag,189PTS Points-Tested Stream,CLOSED,Y,136282
+Australian Study Flag,189PTS Points-Tested Stream,CLOSED,-,4855
+Australian Study Flag,189PTS Points-Tested Stream,SUBMITTED,N,62145
+Australian Study Flag,189PTS Points-Tested Stream,SUBMITTED,Y,116440
+Australian Study Flag,189PTS Points-Tested Stream,LODGED,N,3266
+Australian Study Flag,189PTS Points-Tested Stream,LODGED,Y,7785
+Australian Study Flag,189PTS Points-Tested Stream,INVITED,N,1415
+Australian Study Flag,189PTS Points-Tested Stream,INVITED,Y,3187
+Australian Study Flag,189PTS Points-Tested Stream,HOLD,N,746
+Australian Study Flag,189PTS Points-Tested Stream,HOLD,Y,4711
+Australian Study Flag,491FSR Family Sponsored - Regional,CLOSED,N,3669
+Australian Study Flag,491FSR Family Sponsored - Regional,CLOSED,Y,3600
+Australian Study Flag,491FSR Family Sponsored - Regional,CLOSED,-,194
+Australian Study Flag,491FSR Family Sponsored - Regional,SUBMITTED,N,4016
+Australian Study Flag,491FSR Family Sponsored - Regional,SUBMITTED,Y,4990
+Australian Study Flag,491FSR Family Sponsored - Regional,LODGED,N,107
+Australian Study Flag,491FSR Family Sponsored - Regional,LODGED,Y,123
+Australian Study Flag,491FSR Family Sponsored - Regional,INVITED,N,8
+Australian Study Flag,491FSR Family Sponsored - Regional,INVITED,Y,18
+Australian Study Flag,491FSR Family Sponsored - Regional,HOLD,N,22
+Australian Study Flag,491FSR Family Sponsored - Regional,HOLD,Y,27
+Australian Study Flag,188BI Business Innovation,CLOSED,N/A,201
+Australian Study Flag,188BI Business Innovation,LODGED,N/A,7
+Australian Study Flag,188INV Investor,CLOSED,N/A,271
+Australian Study Flag,188EV Entrepreneur,CLOSED,N/A,109
+Australian Study Flag,188SIG Significant Investor,CLOSED,N/A,23
+Australian Study Flag,132SBH Significant Business History,CLOSED,N/A,1
+Regional Study,190SAS Skilled Australian Sponsored,CLOSED,N,379996
+Regional Study,190SAS Skilled Australian Sponsored,CLOSED,-1,43547
+Regional Study,190SAS Skilled Australian Sponsored,SUBMITTED,N,382024
+Regional Study,190SAS Skilled Australian Sponsored,SUBMITTED,-1,44810
+Regional Study,190SAS Skilled Australian Sponsored,LODGED,N,12392
+Regional Study,190SAS Skilled Australian Sponsored,LODGED,-1,5096
+Regional Study,190SAS Skilled Australian Sponsored,INVITED,N,1767
+Regional Study,190SAS Skilled Australian Sponsored,INVITED,-1,637
+Regional Study,190SAS Skilled Australian Sponsored,HOLD,N,4796
+Regional Study,190SAS Skilled Australian Sponsored,HOLD,-1,625
+Regional Study,491SNR State or Territory Nominated - Regional,CLOSED,N,353027
+Regional Study,491SNR State or Territory Nominated - Regional,CLOSED,-1,27514
+Regional Study,491SNR State or Territory Nominated - Regional,SUBMITTED,N,431510
+Regional Study,491SNR State or Territory Nominated - Regional,SUBMITTED,-1,40537
+Regional Study,491SNR State or Territory Nominated - Regional,LODGED,N,8811
+Regional Study,491SNR State or Territory Nominated - Regional,LODGED,-1,3315
+Regional Study,491SNR State or Territory Nominated - Regional,INVITED,N,785
+Regional Study,491SNR State or Territory Nominated - Regional,INVITED,-1,238
+Regional Study,491SNR State or Territory Nominated - Regional,HOLD,N,4770
+Regional Study,491SNR State or Territory Nominated - Regional,HOLD,-1,609
+Regional Study,189PTS Points-Tested Stream,CLOSED,N,172857
+Regional Study,189PTS Points-Tested Stream,CLOSED,-1,32159
+Regional Study,189PTS Points-Tested Stream,SUBMITTED,N,146715
+Regional Study,189PTS Points-Tested Stream,SUBMITTED,-1,31797
+Regional Study,189PTS Points-Tested Stream,LODGED,N,7944
+Regional Study,189PTS Points-Tested Stream,LODGED,-1,3104
+Regional Study,189PTS Points-Tested Stream,INVITED,N,3479
+Regional Study,189PTS Points-Tested Stream,INVITED,-1,1121
+Regional Study,189PTS Points-Tested Stream,HOLD,N,2451
+Regional Study,189PTS Points-Tested Stream,HOLD,-1,3006
+Regional Study,491FSR Family Sponsored - Regional,CLOSED,N,6179
+Regional Study,491FSR Family Sponsored - Regional,CLOSED,-1,1282
+Regional Study,491FSR Family Sponsored - Regional,SUBMITTED,N,6750
+Regional Study,491FSR Family Sponsored - Regional,SUBMITTED,-1,2252
+Regional Study,491FSR Family Sponsored - Regional,LODGED,N,165
+Regional Study,491FSR Family Sponsored - Regional,LODGED,-1,65
+Regional Study,491FSR Family Sponsored - Regional,INVITED,N,17
+Regional Study,491FSR Family Sponsored - Regional,INVITED,-1,9
+Regional Study,491FSR Family Sponsored - Regional,HOLD,N,30
+Regional Study,491FSR Family Sponsored - Regional,HOLD,-1,19
+Regional Study,188BI Business Innovation,CLOSED,N/A,201
+Regional Study,188BI Business Innovation,LODGED,N/A,7
+Regional Study,188INV Investor,CLOSED,N/A,271
+Regional Study,188EV Entrepreneur,CLOSED,N/A,109
+Regional Study,188SIG Significant Investor,CLOSED,N/A,23
+Regional Study,132SBH Significant Business History,CLOSED,N/A,1
+PartnerSkills Score,190SAS Skilled Australian Sponsored,CLOSED,0,67003
+PartnerSkills Score,190SAS Skilled Australian Sponsored,CLOSED,5,102835
+PartnerSkills Score,190SAS Skilled Australian Sponsored,CLOSED,10,247392
+PartnerSkills Score,190SAS Skilled Australian Sponsored,CLOSED,-,6701
+PartnerSkills Score,190SAS Skilled Australian Sponsored,SUBMITTED,0,72528
+PartnerSkills Score,190SAS Skilled Australian Sponsored,SUBMITTED,5,91829
+PartnerSkills Score,190SAS Skilled Australian Sponsored,SUBMITTED,10,262732
+PartnerSkills Score,190SAS Skilled Australian Sponsored,LODGED,0,2087
+PartnerSkills Score,190SAS Skilled Australian Sponsored,LODGED,5,3615
+PartnerSkills Score,190SAS Skilled Australian Sponsored,LODGED,10,11816
+PartnerSkills Score,190SAS Skilled Australian Sponsored,INVITED,0,153
+PartnerSkills Score,190SAS Skilled Australian Sponsored,INVITED,5,539
+PartnerSkills Score,190SAS Skilled Australian Sponsored,INVITED,10,1714
+PartnerSkills Score,190SAS Skilled Australian Sponsored,HOLD,0,658
+PartnerSkills Score,190SAS Skilled Australian Sponsored,HOLD,5,1104
+PartnerSkills Score,190SAS Skilled Australian Sponsored,HOLD,10,3662
+PartnerSkills Score,491SNR State or Territory Nominated - Regional,CLOSED,0,92466
+PartnerSkills Score,491SNR State or Territory Nominated - Regional,CLOSED,5,94317
+PartnerSkills Score,491SNR State or Territory Nominated - Regional,CLOSED,10,188740
+PartnerSkills Score,491SNR State or Territory Nominated - Regional,CLOSED,-,5359
+PartnerSkills Score,491SNR State or Territory Nominated - Regional,SUBMITTED,0,114850
+PartnerSkills Score,491SNR State or Territory Nominated - Regional,SUBMITTED,5,99671
+PartnerSkills Score,491SNR State or Territory Nominated - Regional,SUBMITTED,10,257830
+PartnerSkills Score,491SNR State or Territory Nominated - Regional,LODGED,0,2525
+PartnerSkills Score,491SNR State or Territory Nominated - Regional,LODGED,5,2705
+PartnerSkills Score,491SNR State or Territory Nominated - Regional,LODGED,10,6920
+PartnerSkills Score,491SNR State or Territory Nominated - Regional,INVITED,0,95
+PartnerSkills Score,491SNR State or Territory Nominated - Regional,INVITED,5,244
+PartnerSkills Score,491SNR State or Territory Nominated - Regional,INVITED,10,684
+PartnerSkills Score,491SNR State or Territory Nominated - Regional,HOLD,0,926
+PartnerSkills Score,491SNR State or Territory Nominated - Regional,HOLD,5,965
+PartnerSkills Score,491SNR State or Territory Nominated - Regional,HOLD,10,3489
+PartnerSkills Score,189PTS Points-Tested Stream,CLOSED,0,25947
+PartnerSkills Score,189PTS Points-Tested Stream,CLOSED,5,45627
+PartnerSkills Score,189PTS Points-Tested Stream,CLOSED,10,128863
+PartnerSkills Score,189PTS Points-Tested Stream,CLOSED,-,4855
+PartnerSkills Score,189PTS Points-Tested Stream,SUBMITTED,0,24340
+PartnerSkills Score,189PTS Points-Tested Stream,SUBMITTED,5,38815
+PartnerSkills Score,189PTS Points-Tested Stream,SUBMITTED,10,115578
+PartnerSkills Score,189PTS Points-Tested Stream,LODGED,0,680
+PartnerSkills Score,189PTS Points-Tested Stream,LODGED,5,2046
+PartnerSkills Score,189PTS Points-Tested Stream,LODGED,10,8331
+PartnerSkills Score,189PTS Points-Tested Stream,INVITED,0,217
+PartnerSkills Score,189PTS Points-Tested Stream,INVITED,5,1009
+PartnerSkills Score,189PTS Points-Tested Stream,INVITED,10,3381
+PartnerSkills Score,189PTS Points-Tested Stream,HOLD,0,642
+PartnerSkills Score,189PTS Points-Tested Stream,HOLD,5,575
+PartnerSkills Score,189PTS Points-Tested Stream,HOLD,10,4249
+PartnerSkills Score,491FSR Family Sponsored - Regional,CLOSED,0,1674
+PartnerSkills Score,491FSR Family Sponsored - Regional,CLOSED,5,2089
+PartnerSkills Score,491FSR Family Sponsored - Regional,CLOSED,10,3512
+PartnerSkills Score,491FSR Family Sponsored - Regional,CLOSED,-,194
+PartnerSkills Score,491FSR Family Sponsored - Regional,SUBMITTED,0,1858
+PartnerSkills Score,491FSR Family Sponsored - Regional,SUBMITTED,5,2274
+PartnerSkills Score,491FSR Family Sponsored - Regional,SUBMITTED,10,4875
+PartnerSkills Score,491FSR Family Sponsored - Regional,LODGED,0,38
+PartnerSkills Score,491FSR Family Sponsored - Regional,LODGED,5,55
+PartnerSkills Score,491FSR Family Sponsored - Regional,LODGED,10,137
+PartnerSkills Score,491FSR Family Sponsored - Regional,INVITED,0,3
+PartnerSkills Score,491FSR Family Sponsored - Regional,INVITED,5,6
+PartnerSkills Score,491FSR Family Sponsored - Regional,INVITED,10,17
+PartnerSkills Score,491FSR Family Sponsored - Regional,HOLD,0,9
+PartnerSkills Score,491FSR Family Sponsored - Regional,HOLD,5,9
+PartnerSkills Score,491FSR Family Sponsored - Regional,HOLD,10,31
+PartnerSkills Score,188BI Business Innovation,CLOSED,N/A,201
+PartnerSkills Score,188BI Business Innovation,LODGED,N/A,7
+PartnerSkills Score,188INV Investor,CLOSED,N/A,271
+PartnerSkills Score,188EV Entrepreneur,CLOSED,N/A,109
+PartnerSkills Score,188SIG Significant Investor,CLOSED,N/A,23
+PartnerSkills Score,132SBH Significant Business History,CLOSED,N/A,1
+Professional Year,190SAS Skilled Australian Sponsored,CLOSED,N,381716
+Professional Year,190SAS Skilled Australian Sponsored,CLOSED,-1,41811
+Professional Year,190SAS Skilled Australian Sponsored,CLOSED,-,3
+Professional Year,190SAS Skilled Australian Sponsored,SUBMITTED,N,397289
+Professional Year,190SAS Skilled Australian Sponsored,SUBMITTED,-1,29532
+Professional Year,190SAS Skilled Australian Sponsored,SUBMITTED,-,1
+Professional Year,190SAS Skilled Australian Sponsored,LODGED,N,16634
+Professional Year,190SAS Skilled Australian Sponsored,LODGED,-1,853
+Professional Year,190SAS Skilled Australian Sponsored,INVITED,N,2376
+Professional Year,190SAS Skilled Australian Sponsored,INVITED,-1,28
+Professional Year,190SAS Skilled Australian Sponsored,HOLD,N,4911
+Professional Year,190SAS Skilled Australian Sponsored,HOLD,-1,510
+Professional Year,491SNR State or Territory Nominated - Regional,CLOSED,N,353278
+Professional Year,491SNR State or Territory Nominated - Regional,CLOSED,-1,27244
+Professional Year,491SNR State or Territory Nominated - Regional,CLOSED,-,1
+Professional Year,491SNR State or Territory Nominated - Regional,SUBMITTED,N,445399
+Professional Year,491SNR State or Territory Nominated - Regional,SUBMITTED,-1,26632
+Professional Year,491SNR State or Territory Nominated - Regional,SUBMITTED,-,3
+Professional Year,491SNR State or Territory Nominated - Regional,LODGED,N,11464
+Professional Year,491SNR State or Territory Nominated - Regional,LODGED,-1,660
+Professional Year,491SNR State or Territory Nominated - Regional,INVITED,N,1003
+Professional Year,491SNR State or Territory Nominated - Regional,INVITED,-1,20
+Professional Year,491SNR State or Territory Nominated - Regional,HOLD,N,4888
+Professional Year,491SNR State or Territory Nominated - Regional,HOLD,-1,491
+Professional Year,189PTS Points-Tested Stream,CLOSED,N,171389
+Professional Year,189PTS Points-Tested Stream,CLOSED,-1,33623
+Professional Year,189PTS Points-Tested Stream,SUBMITTED,N,155202
+Professional Year,189PTS Points-Tested Stream,SUBMITTED,-1,23303
+Professional Year,189PTS Points-Tested Stream,SUBMITTED,-,1
+Professional Year,189PTS Points-Tested Stream,LODGED,N,10736
+Professional Year,189PTS Points-Tested Stream,LODGED,-1,312
+Professional Year,189PTS Points-Tested Stream,INVITED,N,4565
+Professional Year,189PTS Points-Tested Stream,INVITED,-1,35
+Professional Year,189PTS Points-Tested Stream,HOLD,N,3099
+Professional Year,189PTS Points-Tested Stream,HOLD,-1,2358
+Professional Year,491FSR Family Sponsored - Regional,CLOSED,N,6739
+Professional Year,491FSR Family Sponsored - Regional,CLOSED,-1,721
+Professional Year,491FSR Family Sponsored - Regional,SUBMITTED,N,8118
+Professional Year,491FSR Family Sponsored - Regional,SUBMITTED,-1,883
+Professional Year,491FSR Family Sponsored - Regional,LODGED,N,223
+Professional Year,491FSR Family Sponsored - Regional,LODGED,-1,7
+Professional Year,491FSR Family Sponsored - Regional,INVITED,N,25
+Professional Year,491FSR Family Sponsored - Regional,INVITED,-1,1
+Professional Year,491FSR Family Sponsored - Regional,HOLD,N,47
+Professional Year,491FSR Family Sponsored - Regional,HOLD,-1,2
+Professional Year,188BI Business Innovation,CLOSED,N/A,201
+Professional Year,188BI Business Innovation,LODGED,N/A,7
+Professional Year,188INV Investor,CLOSED,N/A,271
+Professional Year,188EV Entrepreneur,CLOSED,N/A,109
+Professional Year,188SIG Significant Investor,CLOSED,N/A,23
+Professional Year,132SBH Significant Business History,CLOSED,N/A,1
+Comm Language Qual,190SAS Skilled Australian Sponsored,CLOSED,N,335878
+Comm Language Qual,190SAS Skilled Australian Sponsored,CLOSED,-1,87651
+Comm Language Qual,190SAS Skilled Australian Sponsored,CLOSED,-,1
+Comm Language Qual,190SAS Skilled Australian Sponsored,SUBMITTED,N,336424
+Comm Language Qual,190SAS Skilled Australian Sponsored,SUBMITTED,-1,90398
+Comm Language Qual,190SAS Skilled Australian Sponsored,LODGED,N,13822
+Comm Language Qual,190SAS Skilled Australian Sponsored,LODGED,-1,3665
+Comm Language Qual,190SAS Skilled Australian Sponsored,INVITED,N,1739
+Comm Language Qual,190SAS Skilled Australian Sponsored,INVITED,-1,665
+Comm Language Qual,190SAS Skilled Australian Sponsored,HOLD,N,3490
+Comm Language Qual,190SAS Skilled Australian Sponsored,HOLD,-1,1931
+Comm Language Qual,491SNR State or Territory Nominated - Regional,CLOSED,N,324445
+Comm Language Qual,491SNR State or Territory Nominated - Regional,CLOSED,-1,56078
+Comm Language Qual,491SNR State or Territory Nominated - Regional,SUBMITTED,N,396631
+Comm Language Qual,491SNR State or Territory Nominated - Regional,SUBMITTED,-1,75403
+Comm Language Qual,491SNR State or Territory Nominated - Regional,LODGED,N,10103
+Comm Language Qual,491SNR State or Territory Nominated - Regional,LODGED,-1,2021
+Comm Language Qual,491SNR State or Territory Nominated - Regional,INVITED,N,743
+Comm Language Qual,491SNR State or Territory Nominated - Regional,INVITED,-1,280
+Comm Language Qual,491SNR State or Territory Nominated - Regional,HOLD,N,3718
+Comm Language Qual,491SNR State or Territory Nominated - Regional,HOLD,-1,1661
+Comm Language Qual,189PTS Points-Tested Stream,CLOSED,N,147874
+Comm Language Qual,189PTS Points-Tested Stream,CLOSED,-1,57138
+Comm Language Qual,189PTS Points-Tested Stream,SUBMITTED,N,124396
+Comm Language Qual,189PTS Points-Tested Stream,SUBMITTED,-1,54110
+Comm Language Qual,189PTS Points-Tested Stream,LODGED,N,7891
+Comm Language Qual,189PTS Points-Tested Stream,LODGED,-1,3157
+Comm Language Qual,189PTS Points-Tested Stream,INVITED,N,2978
+Comm Language Qual,189PTS Points-Tested Stream,INVITED,-1,1622
+Comm Language Qual,189PTS Points-Tested Stream,HOLD,N,1992
+Comm Language Qual,189PTS Points-Tested Stream,HOLD,-1,3465
+Comm Language Qual,491FSR Family Sponsored - Regional,CLOSED,N,6134
+Comm Language Qual,491FSR Family Sponsored - Regional,CLOSED,-1,1326
+Comm Language Qual,491FSR Family Sponsored - Regional,SUBMITTED,N,6961
+Comm Language Qual,491FSR Family Sponsored - Regional,SUBMITTED,-1,2040
+Comm Language Qual,491FSR Family Sponsored - Regional,LODGED,N,181
+Comm Language Qual,491FSR Family Sponsored - Regional,LODGED,-1,49
+Comm Language Qual,491FSR Family Sponsored - Regional,INVITED,N,15
+Comm Language Qual,491FSR Family Sponsored - Regional,INVITED,-1,11
+Comm Language Qual,491FSR Family Sponsored - Regional,HOLD,N,40
+Comm Language Qual,491FSR Family Sponsored - Regional,HOLD,-1,9
+Comm Language Qual,188BI Business Innovation,CLOSED,N/A,201
+Comm Language Qual,188BI Business Innovation,LODGED,N/A,7
+Comm Language Qual,188INV Investor,CLOSED,N/A,271
+Comm Language Qual,188EV Entrepreneur,CLOSED,N/A,109
+Comm Language Qual,188SIG Significant Investor,CLOSED,N/A,23
+Comm Language Qual,132SBH Significant Business History,CLOSED,N/A,1
+Specialist Education,190SAS Skilled Australian Sponsored,CLOSED,N,418324
+Specialist Education,190SAS Skilled Australian Sponsored,CLOSED,-1,5206
+Specialist Education,190SAS Skilled Australian Sponsored,SUBMITTED,N,422078
+Specialist Education,190SAS Skilled Australian Sponsored,SUBMITTED,-1,4745
+Specialist Education,190SAS Skilled Australian Sponsored,LODGED,N,17048
+Specialist Education,190SAS Skilled Australian Sponsored,LODGED,-1,439
+Specialist Education,190SAS Skilled Australian Sponsored,INVITED,N,2311
+Specialist Education,190SAS Skilled Australian Sponsored,INVITED,-1,93
+Specialist Education,190SAS Skilled Australian Sponsored,HOLD,N,5303
+Specialist Education,190SAS Skilled Australian Sponsored,HOLD,-1,118
+Specialist Education,491SNR State or Territory Nominated - Regional,CLOSED,N,378674
+Specialist Education,491SNR State or Territory Nominated - Regional,CLOSED,-1,1849
+Specialist Education,491SNR State or Territory Nominated - Regional,SUBMITTED,N,469542
+Specialist Education,491SNR State or Territory Nominated - Regional,SUBMITTED,-1,2493
+Specialist Education,491SNR State or Territory Nominated - Regional,LODGED,N,12044
+Specialist Education,491SNR State or Territory Nominated - Regional,LODGED,-1,80
+Specialist Education,491SNR State or Territory Nominated - Regional,INVITED,N,987
+Specialist Education,491SNR State or Territory Nominated - Regional,INVITED,-1,36
+Specialist Education,491SNR State or Territory Nominated - Regional,HOLD,N,5325
+Specialist Education,491SNR State or Territory Nominated - Regional,HOLD,-1,54
+Specialist Education,189PTS Points-Tested Stream,CLOSED,N,200425
+Specialist Education,189PTS Points-Tested Stream,CLOSED,-1,4587
+Specialist Education,189PTS Points-Tested Stream,SUBMITTED,N,174716
+Specialist Education,189PTS Points-Tested Stream,SUBMITTED,-1,3790
+Specialist Education,189PTS Points-Tested Stream,LODGED,N,10635
+Specialist Education,189PTS Points-Tested Stream,LODGED,-1,413
+Specialist Education,189PTS Points-Tested Stream,INVITED,N,4435
+Specialist Education,189PTS Points-Tested Stream,INVITED,-1,165
+Specialist Education,189PTS Points-Tested Stream,HOLD,N,3309
+Specialist Education,189PTS Points-Tested Stream,HOLD,-1,2148
+Specialist Education,491FSR Family Sponsored - Regional,CLOSED,N,7381
+Specialist Education,491FSR Family Sponsored - Regional,CLOSED,-1,79
+Specialist Education,491FSR Family Sponsored - Regional,SUBMITTED,N,8817
+Specialist Education,491FSR Family Sponsored - Regional,SUBMITTED,-1,184
+Specialist Education,491FSR Family Sponsored - Regional,LODGED,N,227
+Specialist Education,491FSR Family Sponsored - Regional,LODGED,-1,3
+Specialist Education,491FSR Family Sponsored - Regional,INVITED,N,24
+Specialist Education,491FSR Family Sponsored - Regional,INVITED,-1,2
+Specialist Education,491FSR Family Sponsored - Regional,HOLD,N,47
+Specialist Education,491FSR Family Sponsored - Regional,HOLD,-1,2
+Specialist Education,188BI Business Innovation,CLOSED,N/A,201
+Specialist Education,188BI Business Innovation,LODGED,N/A,7
+Specialist Education,188INV Investor,CLOSED,N/A,271
+Specialist Education,188EV Entrepreneur,CLOSED,N/A,109
+Specialist Education,188SIG Significant Investor,CLOSED,N/A,23
+Specialist Education,132SBH Significant Business History,CLOSED,N/A,1

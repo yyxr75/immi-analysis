@@ -1,0 +1,672 @@
+as_at_month,visa_type,eoi_status,eois
+07/2026,190SAS Skilled Australian Sponsored,CLOSED,423530
+07/2026,190SAS Skilled Australian Sponsored,SUBMITTED,426822
+07/2026,190SAS Skilled Australian Sponsored,LODGED,17487
+07/2026,190SAS Skilled Australian Sponsored,INVITED,2404
+07/2026,190SAS Skilled Australian Sponsored,HOLD,5421
+07/2026,491SNR State or Territory Nominated - Regional,CLOSED,380523
+07/2026,491SNR State or Territory Nominated - Regional,SUBMITTED,472034
+07/2026,491SNR State or Territory Nominated - Regional,LODGED,12124
+07/2026,491SNR State or Territory Nominated - Regional,INVITED,1023
+07/2026,491SNR State or Territory Nominated - Regional,HOLD,5379
+07/2026,189PTS Points-Tested Stream,CLOSED,205012
+07/2026,189PTS Points-Tested Stream,SUBMITTED,178506
+07/2026,189PTS Points-Tested Stream,LODGED,11048
+07/2026,189PTS Points-Tested Stream,INVITED,4600
+07/2026,189PTS Points-Tested Stream,HOLD,5457
+07/2026,491FSR Family Sponsored - Regional,CLOSED,7460
+07/2026,491FSR Family Sponsored - Regional,SUBMITTED,9001
+07/2026,491FSR Family Sponsored - Regional,LODGED,230
+07/2026,491FSR Family Sponsored - Regional,INVITED,26
+07/2026,491FSR Family Sponsored - Regional,HOLD,49
+07/2026,188BI Business Innovation,CLOSED,201
+07/2026,188BI Business Innovation,LODGED,7
+07/2026,188INV Investor,CLOSED,271
+07/2026,188EV Entrepreneur,CLOSED,109
+07/2026,188SIG Significant Investor,CLOSED,23
+07/2026,132SBH Significant Business History,CLOSED,1
+06/2026,190SAS Skilled Australian Sponsored,CLOSED,397158
+06/2026,190SAS Skilled Australian Sponsored,SUBMITTED,423074
+06/2026,190SAS Skilled Australian Sponsored,LODGED,19280
+06/2026,190SAS Skilled Australian Sponsored,INVITED,3823
+06/2026,190SAS Skilled Australian Sponsored,HOLD,5532
+06/2026,491SNR State or Territory Nominated - Regional,CLOSED,350349
+06/2026,491SNR State or Territory Nominated - Regional,SUBMITTED,469589
+06/2026,491SNR State or Territory Nominated - Regional,LODGED,12395
+06/2026,491SNR State or Territory Nominated - Regional,INVITED,1869
+06/2026,491SNR State or Territory Nominated - Regional,HOLD,5608
+06/2026,189PTS Points-Tested Stream,CLOSED,194743
+06/2026,189PTS Points-Tested Stream,SUBMITTED,175866
+06/2026,189PTS Points-Tested Stream,LODGED,11919
+06/2026,189PTS Points-Tested Stream,INVITED,6393
+06/2026,189PTS Points-Tested Stream,HOLD,5372
+06/2026,491FSR Family Sponsored - Regional,CLOSED,7028
+06/2026,491FSR Family Sponsored - Regional,SUBMITTED,8878
+06/2026,491FSR Family Sponsored - Regional,LODGED,229
+06/2026,491FSR Family Sponsored - Regional,INVITED,40
+06/2026,491FSR Family Sponsored - Regional,HOLD,55
+06/2026,188BI Business Innovation,CLOSED,197
+06/2026,188BI Business Innovation,LODGED,5
+06/2026,188INV Investor,CLOSED,256
+06/2026,188EV Entrepreneur,CLOSED,107
+06/2026,188SIG Significant Investor,CLOSED,23
+06/2026,132SBH Significant Business History,CLOSED,1
+05/2026,190SAS Skilled Australian Sponsored,CLOSED,382299
+05/2026,190SAS Skilled Australian Sponsored,SUBMITTED,420955
+05/2026,190SAS Skilled Australian Sponsored,LODGED,16395
+05/2026,190SAS Skilled Australian Sponsored,INVITED,1902
+05/2026,190SAS Skilled Australian Sponsored,HOLD,5470
+05/2026,491SNR State or Territory Nominated - Regional,CLOSED,335147
+05/2026,491SNR State or Territory Nominated - Regional,SUBMITTED,463736
+05/2026,491SNR State or Territory Nominated - Regional,LODGED,10972
+05/2026,491SNR State or Territory Nominated - Regional,INVITED,1415
+05/2026,491SNR State or Territory Nominated - Regional,HOLD,5591
+05/2026,189PTS Points-Tested Stream,CLOSED,188913
+05/2026,189PTS Points-Tested Stream,SUBMITTED,180442
+05/2026,189PTS Points-Tested Stream,LODGED,7710
+05/2026,189PTS Points-Tested Stream,INVITED,737
+05/2026,189PTS Points-Tested Stream,HOLD,5262
+05/2026,491FSR Family Sponsored - Regional,CLOSED,6729
+05/2026,491FSR Family Sponsored - Regional,SUBMITTED,8574
+05/2026,491FSR Family Sponsored - Regional,LODGED,210
+05/2026,491FSR Family Sponsored - Regional,INVITED,13
+05/2026,491FSR Family Sponsored - Regional,HOLD,62
+05/2026,188BI Business Innovation,CLOSED,198
+05/2026,188BI Business Innovation,LODGED,4
+05/2026,188INV Investor,CLOSED,255
+05/2026,188EV Entrepreneur,CLOSED,102
+05/2026,188SIG Significant Investor,CLOSED,22
+05/2026,188SIG Significant Investor,LODGED,1
+05/2026,132SBH Significant Business History,CLOSED,1
+04/2026,190SAS Skilled Australian Sponsored,CLOSED,364706
+04/2026,190SAS Skilled Australian Sponsored,SUBMITTED,414894
+04/2026,190SAS Skilled Australian Sponsored,LODGED,16975
+04/2026,190SAS Skilled Australian Sponsored,INVITED,2204
+04/2026,190SAS Skilled Australian Sponsored,HOLD,5274
+04/2026,491SNR State or Territory Nominated - Regional,CLOSED,318234
+04/2026,491SNR State or Territory Nominated - Regional,SUBMITTED,455254
+04/2026,491SNR State or Territory Nominated - Regional,LODGED,11613
+04/2026,491SNR State or Territory Nominated - Regional,INVITED,1012
+04/2026,491SNR State or Territory Nominated - Regional,HOLD,5430
+04/2026,189PTS Points-Tested Stream,CLOSED,180936
+04/2026,189PTS Points-Tested Stream,SUBMITTED,176342
+04/2026,189PTS Points-Tested Stream,LODGED,9129
+04/2026,189PTS Points-Tested Stream,INVITED,790
+04/2026,189PTS Points-Tested Stream,HOLD,5057
+04/2026,491FSR Family Sponsored - Regional,CLOSED,6386
+04/2026,491FSR Family Sponsored - Regional,SUBMITTED,8295
+04/2026,491FSR Family Sponsored - Regional,LODGED,231
+04/2026,491FSR Family Sponsored - Regional,INVITED,10
+04/2026,491FSR Family Sponsored - Regional,HOLD,58
+04/2026,188BI Business Innovation,CLOSED,196
+04/2026,188BI Business Innovation,LODGED,4
+04/2026,188INV Investor,CLOSED,250
+04/2026,188EV Entrepreneur,CLOSED,101
+04/2026,188SIG Significant Investor,CLOSED,22
+04/2026,188SIG Significant Investor,LODGED,1
+04/2026,132SBH Significant Business History,CLOSED,1
+03/2026,190SAS Skilled Australian Sponsored,CLOSED,346792
+03/2026,190SAS Skilled Australian Sponsored,SUBMITTED,405919
+03/2026,190SAS Skilled Australian Sponsored,LODGED,17283
+03/2026,190SAS Skilled Australian Sponsored,INVITED,1935
+03/2026,190SAS Skilled Australian Sponsored,HOLD,5145
+03/2026,491SNR State or Territory Nominated - Regional,CLOSED,301408
+03/2026,491SNR State or Territory Nominated - Regional,SUBMITTED,442713
+03/2026,491SNR State or Territory Nominated - Regional,LODGED,11679
+03/2026,491SNR State or Territory Nominated - Regional,INVITED,1457
+03/2026,491SNR State or Territory Nominated - Regional,HOLD,5253
+03/2026,189PTS Points-Tested Stream,CLOSED,173329
+03/2026,189PTS Points-Tested Stream,SUBMITTED,171969
+03/2026,189PTS Points-Tested Stream,LODGED,10214
+03/2026,189PTS Points-Tested Stream,INVITED,749
+03/2026,189PTS Points-Tested Stream,HOLD,4911
+03/2026,491FSR Family Sponsored - Regional,CLOSED,6070
+03/2026,491FSR Family Sponsored - Regional,SUBMITTED,7981
+03/2026,491FSR Family Sponsored - Regional,LODGED,260
+03/2026,491FSR Family Sponsored - Regional,INVITED,16
+03/2026,491FSR Family Sponsored - Regional,HOLD,56
+03/2026,188BI Business Innovation,CLOSED,191
+03/2026,188BI Business Innovation,LODGED,5
+03/2026,188INV Investor,CLOSED,245
+03/2026,188EV Entrepreneur,CLOSED,96
+03/2026,188SIG Significant Investor,CLOSED,22
+03/2026,188SIG Significant Investor,LODGED,1
+03/2026,132SBH Significant Business History,CLOSED,1
+02/2026,190SAS Skilled Australian Sponsored,CLOSED,325960
+02/2026,190SAS Skilled Australian Sponsored,SUBMITTED,397871
+02/2026,190SAS Skilled Australian Sponsored,LODGED,18130
+02/2026,190SAS Skilled Australian Sponsored,INVITED,1950
+02/2026,190SAS Skilled Australian Sponsored,HOLD,5025
+02/2026,491SNR State or Territory Nominated - Regional,CLOSED,281205
+02/2026,491SNR State or Territory Nominated - Regional,SUBMITTED,432587
+02/2026,491SNR State or Territory Nominated - Regional,LODGED,11929
+02/2026,491SNR State or Territory Nominated - Regional,INVITED,1687
+02/2026,491SNR State or Territory Nominated - Regional,HOLD,5220
+02/2026,189PTS Points-Tested Stream,CLOSED,164663
+02/2026,189PTS Points-Tested Stream,SUBMITTED,167973
+02/2026,189PTS Points-Tested Stream,LODGED,11626
+02/2026,189PTS Points-Tested Stream,INVITED,702
+02/2026,189PTS Points-Tested Stream,HOLD,4739
+02/2026,491FSR Family Sponsored - Regional,CLOSED,5698
+02/2026,491FSR Family Sponsored - Regional,SUBMITTED,7668
+02/2026,491FSR Family Sponsored - Regional,LODGED,309
+02/2026,491FSR Family Sponsored - Regional,INVITED,12
+02/2026,491FSR Family Sponsored - Regional,HOLD,56
+02/2026,188BI Business Innovation,CLOSED,187
+02/2026,188BI Business Innovation,LODGED,5
+02/2026,188INV Investor,CLOSED,239
+02/2026,188EV Entrepreneur,CLOSED,95
+02/2026,188SIG Significant Investor,CLOSED,22
+02/2026,188SIG Significant Investor,LODGED,1
+02/2026,132SBH Significant Business History,CLOSED,1
+01/2026,190SAS Skilled Australian Sponsored,CLOSED,308340
+01/2026,190SAS Skilled Australian Sponsored,SUBMITTED,387790
+01/2026,190SAS Skilled Australian Sponsored,LODGED,18283
+01/2026,190SAS Skilled Australian Sponsored,INVITED,1436
+01/2026,190SAS Skilled Australian Sponsored,HOLD,4828
+01/2026,491SNR State or Territory Nominated - Regional,CLOSED,263625
+01/2026,491SNR State or Territory Nominated - Regional,SUBMITTED,421941
+01/2026,491SNR State or Territory Nominated - Regional,LODGED,11907
+01/2026,491SNR State or Territory Nominated - Regional,INVITED,874
+01/2026,491SNR State or Territory Nominated - Regional,HOLD,5023
+01/2026,189PTS Points-Tested Stream,CLOSED,157441
+01/2026,189PTS Points-Tested Stream,SUBMITTED,162984
+01/2026,189PTS Points-Tested Stream,LODGED,12338
+01/2026,189PTS Points-Tested Stream,INVITED,520
+01/2026,189PTS Points-Tested Stream,HOLD,4597
+01/2026,491FSR Family Sponsored - Regional,CLOSED,5378
+01/2026,491FSR Family Sponsored - Regional,SUBMITTED,7395
+01/2026,491FSR Family Sponsored - Regional,LODGED,322
+01/2026,491FSR Family Sponsored - Regional,INVITED,3
+01/2026,491FSR Family Sponsored - Regional,HOLD,56
+01/2026,188BI Business Innovation,CLOSED,180
+01/2026,188BI Business Innovation,LODGED,5
+01/2026,188INV Investor,CLOSED,236
+01/2026,188EV Entrepreneur,CLOSED,93
+01/2026,188SIG Significant Investor,CLOSED,21
+01/2026,188SIG Significant Investor,LODGED,1
+01/2026,132SBH Significant Business History,CLOSED,1
+12/2025,190SAS Skilled Australian Sponsored,CLOSED,288293
+12/2025,190SAS Skilled Australian Sponsored,SUBMITTED,377900
+12/2025,190SAS Skilled Australian Sponsored,LODGED,18186
+12/2025,190SAS Skilled Australian Sponsored,INVITED,3559
+12/2025,190SAS Skilled Australian Sponsored,HOLD,4715
+12/2025,491SNR State or Territory Nominated - Regional,CLOSED,243577
+12/2025,491SNR State or Territory Nominated - Regional,SUBMITTED,410403
+12/2025,491SNR State or Territory Nominated - Regional,LODGED,11739
+12/2025,491SNR State or Territory Nominated - Regional,INVITED,1467
+12/2025,491SNR State or Territory Nominated - Regional,HOLD,4975
+12/2025,189PTS Points-Tested Stream,CLOSED,147967
+12/2025,189PTS Points-Tested Stream,SUBMITTED,155817
+12/2025,189PTS Points-Tested Stream,LODGED,12331
+12/2025,189PTS Points-Tested Stream,INVITED,5673
+12/2025,189PTS Points-Tested Stream,HOLD,4468
+12/2025,491FSR Family Sponsored - Regional,CLOSED,4982
+12/2025,491FSR Family Sponsored - Regional,SUBMITTED,7018
+12/2025,491FSR Family Sponsored - Regional,LODGED,294
+12/2025,491FSR Family Sponsored - Regional,INVITED,242
+12/2025,491FSR Family Sponsored - Regional,HOLD,51
+12/2025,188BI Business Innovation,CLOSED,176
+12/2025,188BI Business Innovation,LODGED,5
+12/2025,188INV Investor,CLOSED,225
+12/2025,188EV Entrepreneur,CLOSED,88
+12/2025,188SIG Significant Investor,CLOSED,19
+12/2025,188SIG Significant Investor,LODGED,1
+12/2025,132SBH Significant Business History,CLOSED,1
+11/2025,190SAS Skilled Australian Sponsored,CLOSED,271468
+11/2025,190SAS Skilled Australian Sponsored,SUBMITTED,367870
+11/2025,190SAS Skilled Australian Sponsored,LODGED,17217
+11/2025,190SAS Skilled Australian Sponsored,INVITED,4445
+11/2025,190SAS Skilled Australian Sponsored,HOLD,4607
+11/2025,491SNR State or Territory Nominated - Regional,CLOSED,226719
+11/2025,491SNR State or Territory Nominated - Regional,SUBMITTED,397721
+11/2025,491SNR State or Territory Nominated - Regional,LODGED,11364
+11/2025,491SNR State or Territory Nominated - Regional,INVITED,1728
+11/2025,491SNR State or Territory Nominated - Regional,HOLD,4826
+11/2025,189PTS Points-Tested Stream,CLOSED,139274
+11/2025,189PTS Points-Tested Stream,SUBMITTED,152200
+11/2025,189PTS Points-Tested Stream,LODGED,10906
+11/2025,189PTS Points-Tested Stream,INVITED,8025
+11/2025,189PTS Points-Tested Stream,HOLD,4344
+11/2025,491FSR Family Sponsored - Regional,CLOSED,4654
+11/2025,491FSR Family Sponsored - Regional,SUBMITTED,6752
+11/2025,491FSR Family Sponsored - Regional,LODGED,231
+11/2025,491FSR Family Sponsored - Regional,INVITED,307
+11/2025,491FSR Family Sponsored - Regional,HOLD,55
+11/2025,188BI Business Innovation,CLOSED,169
+11/2025,188BI Business Innovation,LODGED,6
+11/2025,188INV Investor,CLOSED,219
+11/2025,188EV Entrepreneur,CLOSED,87
+11/2025,188SIG Significant Investor,CLOSED,18
+11/2025,188SIG Significant Investor,LODGED,1
+11/2025,132SBH Significant Business History,LODGED,1
+10/2025,190SAS Skilled Australian Sponsored,CLOSED,252429
+10/2025,190SAS Skilled Australian Sponsored,SUBMITTED,357102
+10/2025,190SAS Skilled Australian Sponsored,LODGED,16650
+10/2025,190SAS Skilled Australian Sponsored,INVITED,404
+10/2025,190SAS Skilled Australian Sponsored,HOLD,4384
+10/2025,491SNR State or Territory Nominated - Regional,CLOSED,207362
+10/2025,491SNR State or Territory Nominated - Regional,SUBMITTED,379253
+10/2025,491SNR State or Territory Nominated - Regional,LODGED,11239
+10/2025,491SNR State or Territory Nominated - Regional,INVITED,322
+10/2025,491SNR State or Territory Nominated - Regional,HOLD,4552
+10/2025,189PTS Points-Tested Stream,CLOSED,131931
+10/2025,189PTS Points-Tested Stream,SUBMITTED,152128
+10/2025,189PTS Points-Tested Stream,LODGED,9603
+10/2025,189PTS Points-Tested Stream,INVITED,168
+10/2025,189PTS Points-Tested Stream,HOLD,4210
+10/2025,491FSR Family Sponsored - Regional,CLOSED,4335
+10/2025,491FSR Family Sponsored - Regional,SUBMITTED,6510
+10/2025,491FSR Family Sponsored - Regional,LODGED,204
+10/2025,491FSR Family Sponsored - Regional,INVITED,4
+10/2025,491FSR Family Sponsored - Regional,HOLD,45
+10/2025,188BI Business Innovation,CLOSED,159
+10/2025,188BI Business Innovation,LODGED,6
+10/2025,188INV Investor,CLOSED,214
+10/2025,188EV Entrepreneur,CLOSED,86
+10/2025,188SIG Significant Investor,CLOSED,17
+10/2025,188SIG Significant Investor,LODGED,1
+10/2025,132SBH Significant Business History,LODGED,1
+09/2025,190SAS Skilled Australian Sponsored,CLOSED,231184
+09/2025,190SAS Skilled Australian Sponsored,SUBMITTED,334574
+09/2025,190SAS Skilled Australian Sponsored,LODGED,16770
+09/2025,190SAS Skilled Australian Sponsored,INVITED,1942
+09/2025,190SAS Skilled Australian Sponsored,HOLD,4320
+09/2025,491SNR State or Territory Nominated - Regional,CLOSED,186794
+09/2025,491SNR State or Territory Nominated - Regional,SUBMITTED,355014
+09/2025,491SNR State or Territory Nominated - Regional,LODGED,11233
+09/2025,491SNR State or Territory Nominated - Regional,INVITED,798
+09/2025,491SNR State or Territory Nominated - Regional,HOLD,4458
+09/2025,189PTS Points-Tested Stream,CLOSED,123947
+09/2025,189PTS Points-Tested Stream,SUBMITTED,141870
+09/2025,189PTS Points-Tested Stream,LODGED,9199
+09/2025,189PTS Points-Tested Stream,INVITED,3551
+09/2025,189PTS Points-Tested Stream,HOLD,4072
+09/2025,491FSR Family Sponsored - Regional,CLOSED,4012
+09/2025,491FSR Family Sponsored - Regional,SUBMITTED,5976
+09/2025,491FSR Family Sponsored - Regional,LODGED,163
+09/2025,491FSR Family Sponsored - Regional,INVITED,134
+09/2025,491FSR Family Sponsored - Regional,HOLD,49
+09/2025,188BI Business Innovation,CLOSED,156
+09/2025,188BI Business Innovation,LODGED,5
+09/2025,188INV Investor,CLOSED,206
+09/2025,188EV Entrepreneur,CLOSED,79
+09/2025,188SIG Significant Investor,CLOSED,16
+09/2025,188SIG Significant Investor,LODGED,1
+09/2025,132SBH Significant Business History,LODGED,1
+08/2025,190SAS Skilled Australian Sponsored,CLOSED,203810
+08/2025,190SAS Skilled Australian Sponsored,SUBMITTED,318244
+08/2025,190SAS Skilled Australian Sponsored,LODGED,16349
+08/2025,190SAS Skilled Australian Sponsored,INVITED,2623
+08/2025,190SAS Skilled Australian Sponsored,HOLD,4314
+08/2025,491SNR State or Territory Nominated - Regional,CLOSED,161190
+08/2025,491SNR State or Territory Nominated - Regional,SUBMITTED,336776
+08/2025,491SNR State or Territory Nominated - Regional,LODGED,11086
+08/2025,491SNR State or Territory Nominated - Regional,INVITED,811
+08/2025,491SNR State or Territory Nominated - Regional,HOLD,4510
+08/2025,189PTS Points-Tested Stream,CLOSED,115126
+08/2025,189PTS Points-Tested Stream,SUBMITTED,134411
+08/2025,189PTS Points-Tested Stream,LODGED,7591
+08/2025,189PTS Points-Tested Stream,INVITED,5750
+08/2025,189PTS Points-Tested Stream,HOLD,4027
+08/2025,491FSR Family Sponsored - Regional,CLOSED,3629
+08/2025,491FSR Family Sponsored - Regional,SUBMITTED,5441
+08/2025,491FSR Family Sponsored - Regional,LODGED,134
+08/2025,491FSR Family Sponsored - Regional,INVITED,163
+08/2025,491FSR Family Sponsored - Regional,HOLD,48
+08/2025,188BI Business Innovation,CLOSED,148
+08/2025,188BI Business Innovation,LODGED,5
+08/2025,188INV Investor,CLOSED,189
+08/2025,188EV Entrepreneur,CLOSED,74
+08/2025,188SIG Significant Investor,CLOSED,15
+08/2025,188SIG Significant Investor,LODGED,1
+08/2025,132SBH Significant Business History,LODGED,1
+07/2025,190SAS Skilled Australian Sponsored,CLOSED,185271
+07/2025,190SAS Skilled Australian Sponsored,SUBMITTED,301326
+07/2025,190SAS Skilled Australian Sponsored,LODGED,16428
+07/2025,190SAS Skilled Australian Sponsored,INVITED,229
+07/2025,190SAS Skilled Australian Sponsored,HOLD,4309
+07/2025,491SNR State or Territory Nominated - Regional,CLOSED,143448
+07/2025,491SNR State or Territory Nominated - Regional,SUBMITTED,316827
+07/2025,491SNR State or Territory Nominated - Regional,LODGED,10871
+07/2025,491SNR State or Territory Nominated - Regional,INVITED,416
+07/2025,491SNR State or Territory Nominated - Regional,HOLD,4452
+07/2025,189PTS Points-Tested Stream,CLOSED,106698
+07/2025,189PTS Points-Tested Stream,SUBMITTED,131519
+07/2025,189PTS Points-Tested Stream,LODGED,7452
+07/2025,189PTS Points-Tested Stream,INVITED,116
+07/2025,189PTS Points-Tested Stream,HOLD,3893
+07/2025,491FSR Family Sponsored - Regional,CLOSED,3329
+07/2025,491FSR Family Sponsored - Regional,SUBMITTED,5114
+07/2025,491FSR Family Sponsored - Regional,LODGED,128
+07/2025,491FSR Family Sponsored - Regional,INVITED,2
+07/2025,491FSR Family Sponsored - Regional,HOLD,41
+07/2025,188BI Business Innovation,CLOSED,138
+07/2025,188BI Business Innovation,LODGED,6
+07/2025,188INV Investor,CLOSED,172
+07/2025,188EV Entrepreneur,CLOSED,68
+07/2025,188SIG Significant Investor,CLOSED,15
+07/2025,188SIG Significant Investor,LODGED,1
+07/2025,132SBH Significant Business History,LODGED,1
+06/2025,190SAS Skilled Australian Sponsored,CLOSED,170704
+06/2025,190SAS Skilled Australian Sponsored,SUBMITTED,284120
+06/2025,190SAS Skilled Australian Sponsored,LODGED,16273
+06/2025,190SAS Skilled Australian Sponsored,INVITED,1189
+06/2025,190SAS Skilled Australian Sponsored,HOLD,4110
+06/2025,491SNR State or Territory Nominated - Regional,CLOSED,131237
+06/2025,491SNR State or Territory Nominated - Regional,SUBMITTED,298433
+06/2025,491SNR State or Territory Nominated - Regional,LODGED,10279
+06/2025,491SNR State or Territory Nominated - Regional,INVITED,1337
+06/2025,491SNR State or Territory Nominated - Regional,HOLD,4237
+06/2025,189PTS Points-Tested Stream,CLOSED,99546
+06/2025,189PTS Points-Tested Stream,SUBMITTED,123420
+06/2025,189PTS Points-Tested Stream,LODGED,8281
+06/2025,189PTS Points-Tested Stream,INVITED,433
+06/2025,189PTS Points-Tested Stream,HOLD,3512
+06/2025,491FSR Family Sponsored - Regional,CLOSED,3008
+06/2025,491FSR Family Sponsored - Regional,SUBMITTED,4818
+06/2025,491FSR Family Sponsored - Regional,LODGED,122
+06/2025,491FSR Family Sponsored - Regional,INVITED,10
+06/2025,491FSR Family Sponsored - Regional,HOLD,39
+06/2025,188BI Business Innovation,CLOSED,134
+06/2025,188BI Business Innovation,LODGED,5
+06/2025,188INV Investor,CLOSED,160
+06/2025,188EV Entrepreneur,CLOSED,65
+06/2025,188SIG Significant Investor,CLOSED,14
+06/2025,188SIG Significant Investor,LODGED,1
+06/2025,132SBH Significant Business History,LODGED,1
+05/2025,190SAS Skilled Australian Sponsored,CLOSED,158973
+05/2025,190SAS Skilled Australian Sponsored,SUBMITTED,270876
+05/2025,190SAS Skilled Australian Sponsored,LODGED,13785
+05/2025,190SAS Skilled Australian Sponsored,INVITED,2334
+05/2025,190SAS Skilled Australian Sponsored,HOLD,3901
+05/2025,491SNR State or Territory Nominated - Regional,CLOSED,120733
+05/2025,491SNR State or Territory Nominated - Regional,SUBMITTED,283987
+05/2025,491SNR State or Territory Nominated - Regional,LODGED,8759
+05/2025,491SNR State or Territory Nominated - Regional,INVITED,1314
+05/2025,491SNR State or Territory Nominated - Regional,HOLD,3922
+05/2025,189PTS Points-Tested Stream,CLOSED,94039
+05/2025,189PTS Points-Tested Stream,SUBMITTED,116791
+05/2025,189PTS Points-Tested Stream,LODGED,7742
+05/2025,189PTS Points-Tested Stream,INVITED,637
+05/2025,189PTS Points-Tested Stream,HOLD,3195
+05/2025,491FSR Family Sponsored - Regional,CLOSED,2806
+05/2025,491FSR Family Sponsored - Regional,SUBMITTED,4592
+05/2025,491FSR Family Sponsored - Regional,LODGED,102
+05/2025,491FSR Family Sponsored - Regional,INVITED,14
+05/2025,491FSR Family Sponsored - Regional,HOLD,34
+05/2025,188BI Business Innovation,CLOSED,130
+05/2025,188BI Business Innovation,LODGED,5
+05/2025,188INV Investor,CLOSED,146
+05/2025,188EV Entrepreneur,CLOSED,63
+05/2025,188SIG Significant Investor,CLOSED,12
+05/2025,188SIG Significant Investor,LODGED,1
+05/2025,132SBH Significant Business History,CLOSED,1
+04/2025,190SAS Skilled Australian Sponsored,CLOSED,142281
+04/2025,190SAS Skilled Australian Sponsored,SUBMITTED,255694
+04/2025,190SAS Skilled Australian Sponsored,LODGED,11798
+04/2025,190SAS Skilled Australian Sponsored,INVITED,1676
+04/2025,190SAS Skilled Australian Sponsored,HOLD,3678
+04/2025,491SNR State or Territory Nominated - Regional,CLOSED,107024
+04/2025,491SNR State or Territory Nominated - Regional,SUBMITTED,266612
+04/2025,491SNR State or Territory Nominated - Regional,LODGED,7595
+04/2025,491SNR State or Territory Nominated - Regional,INVITED,1259
+04/2025,491SNR State or Territory Nominated - Regional,HOLD,3577
+04/2025,189PTS Points-Tested Stream,CLOSED,86285
+04/2025,189PTS Points-Tested Stream,SUBMITTED,108720
+04/2025,189PTS Points-Tested Stream,LODGED,7453
+04/2025,189PTS Points-Tested Stream,INVITED,445
+04/2025,189PTS Points-Tested Stream,HOLD,2890
+04/2025,491FSR Family Sponsored - Regional,CLOSED,2574
+04/2025,491FSR Family Sponsored - Regional,SUBMITTED,4342
+04/2025,491FSR Family Sponsored - Regional,LODGED,100
+04/2025,491FSR Family Sponsored - Regional,INVITED,6
+04/2025,491FSR Family Sponsored - Regional,HOLD,33
+04/2025,188BI Business Innovation,CLOSED,110
+04/2025,188BI Business Innovation,LODGED,4
+04/2025,188INV Investor,CLOSED,97
+04/2025,188EV Entrepreneur,CLOSED,49
+04/2025,188SIG Significant Investor,CLOSED,11
+04/2025,188SIG Significant Investor,LODGED,1
+04/2025,132SBH Significant Business History,CLOSED,1
+03/2025,190SAS Skilled Australian Sponsored,CLOSED,125579
+03/2025,190SAS Skilled Australian Sponsored,SUBMITTED,237393
+03/2025,190SAS Skilled Australian Sponsored,LODGED,10857
+03/2025,190SAS Skilled Australian Sponsored,INVITED,1507
+03/2025,190SAS Skilled Australian Sponsored,HOLD,3382
+03/2025,491SNR State or Territory Nominated - Regional,CLOSED,94930
+03/2025,491SNR State or Territory Nominated - Regional,SUBMITTED,247292
+03/2025,491SNR State or Territory Nominated - Regional,LODGED,6560
+03/2025,491SNR State or Territory Nominated - Regional,INVITED,1282
+03/2025,491SNR State or Territory Nominated - Regional,HOLD,3216
+03/2025,189PTS Points-Tested Stream,CLOSED,77929
+03/2025,189PTS Points-Tested Stream,SUBMITTED,100186
+03/2025,189PTS Points-Tested Stream,LODGED,7888
+03/2025,189PTS Points-Tested Stream,INVITED,386
+03/2025,189PTS Points-Tested Stream,HOLD,2539
+03/2025,491FSR Family Sponsored - Regional,CLOSED,2367
+03/2025,491FSR Family Sponsored - Regional,SUBMITTED,4061
+03/2025,491FSR Family Sponsored - Regional,LODGED,94
+03/2025,491FSR Family Sponsored - Regional,INVITED,12
+03/2025,491FSR Family Sponsored - Regional,HOLD,29
+03/2025,188BI Business Innovation,CLOSED,99
+03/2025,188BI Business Innovation,LODGED,4
+03/2025,188INV Investor,CLOSED,78
+03/2025,188EV Entrepreneur,CLOSED,44
+03/2025,188SIG Significant Investor,CLOSED,11
+03/2025,188SIG Significant Investor,LODGED,1
+03/2025,132SBH Significant Business History,CLOSED,1
+02/2025,190SAS Skilled Australian Sponsored,CLOSED,107202
+02/2025,190SAS Skilled Australian Sponsored,SUBMITTED,217609
+02/2025,190SAS Skilled Australian Sponsored,LODGED,10031
+02/2025,190SAS Skilled Australian Sponsored,INVITED,1663
+02/2025,190SAS Skilled Australian Sponsored,HOLD,3227
+02/2025,491SNR State or Territory Nominated - Regional,CLOSED,82760
+02/2025,491SNR State or Territory Nominated - Regional,SUBMITTED,226672
+02/2025,491SNR State or Territory Nominated - Regional,LODGED,5393
+02/2025,491SNR State or Territory Nominated - Regional,INVITED,1406
+02/2025,491SNR State or Territory Nominated - Regional,HOLD,2984
+02/2025,189PTS Points-Tested Stream,CLOSED,67513
+02/2025,189PTS Points-Tested Stream,SUBMITTED,91053
+02/2025,189PTS Points-Tested Stream,LODGED,8942
+02/2025,189PTS Points-Tested Stream,INVITED,421
+02/2025,189PTS Points-Tested Stream,HOLD,2263
+02/2025,491FSR Family Sponsored - Regional,CLOSED,2099
+02/2025,491FSR Family Sponsored - Regional,SUBMITTED,3753
+02/2025,491FSR Family Sponsored - Regional,LODGED,86
+02/2025,491FSR Family Sponsored - Regional,INVITED,14
+02/2025,491FSR Family Sponsored - Regional,HOLD,25
+02/2025,188BI Business Innovation,CLOSED,92
+02/2025,188BI Business Innovation,LODGED,4
+02/2025,188INV Investor,CLOSED,66
+02/2025,188EV Entrepreneur,CLOSED,43
+02/2025,188SIG Significant Investor,CLOSED,10
+02/2025,132SBH Significant Business History,CLOSED,1
+01/2025,190SAS Skilled Australian Sponsored,CLOSED,92178
+01/2025,190SAS Skilled Australian Sponsored,SUBMITTED,198885
+01/2025,190SAS Skilled Australian Sponsored,LODGED,9301
+01/2025,190SAS Skilled Australian Sponsored,INVITED,1553
+01/2025,190SAS Skilled Australian Sponsored,HOLD,2992
+01/2025,491SNR State or Territory Nominated - Regional,CLOSED,72712
+01/2025,491SNR State or Territory Nominated - Regional,SUBMITTED,206751
+01/2025,491SNR State or Territory Nominated - Regional,LODGED,4625
+01/2025,491SNR State or Territory Nominated - Regional,INVITED,1100
+01/2025,491SNR State or Territory Nominated - Regional,HOLD,2674
+01/2025,189PTS Points-Tested Stream,CLOSED,57321
+01/2025,189PTS Points-Tested Stream,SUBMITTED,82355
+01/2025,189PTS Points-Tested Stream,LODGED,9753
+01/2025,189PTS Points-Tested Stream,INVITED,470
+01/2025,189PTS Points-Tested Stream,HOLD,2003
+01/2025,491FSR Family Sponsored - Regional,CLOSED,1882
+01/2025,491FSR Family Sponsored - Regional,SUBMITTED,3512
+01/2025,491FSR Family Sponsored - Regional,LODGED,78
+01/2025,491FSR Family Sponsored - Regional,INVITED,19
+01/2025,491FSR Family Sponsored - Regional,HOLD,26
+01/2025,188BI Business Innovation,CLOSED,88
+01/2025,188BI Business Innovation,LODGED,3
+01/2025,188INV Investor,CLOSED,54
+01/2025,188EV Entrepreneur,CLOSED,37
+01/2025,188SIG Significant Investor,CLOSED,9
+01/2025,132SBH Significant Business History,CLOSED,1
+12/2024,190SAS Skilled Australian Sponsored,CLOSED,77843
+12/2024,190SAS Skilled Australian Sponsored,SUBMITTED,177860
+12/2024,190SAS Skilled Australian Sponsored,LODGED,8007
+12/2024,190SAS Skilled Australian Sponsored,INVITED,4920
+12/2024,190SAS Skilled Australian Sponsored,HOLD,2707
+12/2024,491SNR State or Territory Nominated - Regional,CLOSED,63179
+12/2024,491SNR State or Territory Nominated - Regional,SUBMITTED,186142
+12/2024,491SNR State or Territory Nominated - Regional,LODGED,3831
+12/2024,491SNR State or Territory Nominated - Regional,INVITED,2205
+12/2024,491SNR State or Territory Nominated - Regional,HOLD,2364
+12/2024,189PTS Points-Tested Stream,CLOSED,45561
+12/2024,189PTS Points-Tested Stream,SUBMITTED,68594
+12/2024,189PTS Points-Tested Stream,LODGED,9497
+12/2024,189PTS Points-Tested Stream,INVITED,8234
+12/2024,189PTS Points-Tested Stream,HOLD,1647
+12/2024,491FSR Family Sponsored - Regional,CLOSED,1616
+12/2024,491FSR Family Sponsored - Regional,SUBMITTED,3157
+12/2024,491FSR Family Sponsored - Regional,LODGED,70
+12/2024,491FSR Family Sponsored - Regional,INVITED,62
+12/2024,491FSR Family Sponsored - Regional,HOLD,26
+12/2024,188BI Business Innovation,CLOSED,84
+12/2024,188BI Business Innovation,LODGED,2
+12/2024,188INV Investor,CLOSED,47
+12/2024,188EV Entrepreneur,CLOSED,34
+12/2024,188EV Entrepreneur,INVITED,1
+12/2024,188SIG Significant Investor,CLOSED,8
+12/2024,132SBH Significant Business History,CLOSED,1
+11/2024,190SAS Skilled Australian Sponsored,CLOSED,60493
+11/2024,190SAS Skilled Australian Sponsored,SUBMITTED,157507
+11/2024,190SAS Skilled Australian Sponsored,LODGED,6008
+11/2024,190SAS Skilled Australian Sponsored,INVITED,5801
+11/2024,190SAS Skilled Australian Sponsored,HOLD,2374
+11/2024,491SNR State or Territory Nominated - Regional,CLOSED,52136
+11/2024,491SNR State or Territory Nominated - Regional,SUBMITTED,164799
+11/2024,491SNR State or Territory Nominated - Regional,LODGED,2708
+11/2024,491SNR State or Territory Nominated - Regional,INVITED,2607
+11/2024,491SNR State or Territory Nominated - Regional,HOLD,2095
+11/2024,189PTS Points-Tested Stream,CLOSED,33373
+11/2024,189PTS Points-Tested Stream,SUBMITTED,58936
+11/2024,189PTS Points-Tested Stream,LODGED,7498
+11/2024,189PTS Points-Tested Stream,INVITED,10403
+11/2024,189PTS Points-Tested Stream,HOLD,1375
+11/2024,491FSR Family Sponsored - Regional,CLOSED,1347
+11/2024,491FSR Family Sponsored - Regional,SUBMITTED,2819
+11/2024,491FSR Family Sponsored - Regional,LODGED,55
+11/2024,491FSR Family Sponsored - Regional,INVITED,68
+11/2024,491FSR Family Sponsored - Regional,HOLD,24
+11/2024,188BI Business Innovation,CLOSED,64
+11/2024,188BI Business Innovation,LODGED,2
+11/2024,188INV Investor,CLOSED,37
+11/2024,188EV Entrepreneur,CLOSED,27
+11/2024,188EV Entrepreneur,INVITED,1
+11/2024,188SIG Significant Investor,CLOSED,8
+11/2024,132SBH Significant Business History,CLOSED,1
+10/2024,190SAS Skilled Australian Sponsored,CLOSED,47452
+10/2024,190SAS Skilled Australian Sponsored,SUBMITTED,136295
+10/2024,190SAS Skilled Australian Sponsored,LODGED,3154
+10/2024,190SAS Skilled Australian Sponsored,INVITED,3334
+10/2024,190SAS Skilled Australian Sponsored,HOLD,1623
+10/2024,491SNR State or Territory Nominated - Regional,CLOSED,41903
+10/2024,491SNR State or Territory Nominated - Regional,SUBMITTED,141009
+10/2024,491SNR State or Territory Nominated - Regional,LODGED,1471
+10/2024,491SNR State or Territory Nominated - Regional,INVITED,1487
+10/2024,491SNR State or Territory Nominated - Regional,HOLD,1537
+10/2024,189PTS Points-Tested Stream,CLOSED,24600
+10/2024,189PTS Points-Tested Stream,SUBMITTED,52317
+10/2024,189PTS Points-Tested Stream,LODGED,3198
+10/2024,189PTS Points-Tested Stream,INVITED,4963
+10/2024,189PTS Points-Tested Stream,HOLD,968
+10/2024,491FSR Family Sponsored - Regional,CLOSED,1102
+10/2024,491FSR Family Sponsored - Regional,SUBMITTED,2358
+10/2024,491FSR Family Sponsored - Regional,LODGED,24
+10/2024,491FSR Family Sponsored - Regional,INVITED,40
+10/2024,491FSR Family Sponsored - Regional,HOLD,20
+10/2024,188BI Business Innovation,CLOSED,50
+10/2024,188BI Business Innovation,LODGED,2
+10/2024,188BI Business Innovation,INVITED,1
+10/2024,188INV Investor,CLOSED,28
+10/2024,188INV Investor,INVITED,1
+10/2024,188EV Entrepreneur,CLOSED,16
+10/2024,188EV Entrepreneur,INVITED,5
+10/2024,188SIG Significant Investor,CLOSED,4
+09/2024,190SAS Skilled Australian Sponsored,CLOSED,36250
+09/2024,190SAS Skilled Australian Sponsored,SUBMITTED,105867
+09/2024,190SAS Skilled Australian Sponsored,LODGED,1943
+09/2024,190SAS Skilled Australian Sponsored,INVITED,3426
+09/2024,190SAS Skilled Australian Sponsored,HOLD,1321
+09/2024,491SNR State or Territory Nominated - Regional,CLOSED,33444
+09/2024,491SNR State or Territory Nominated - Regional,SUBMITTED,109655
+09/2024,491SNR State or Territory Nominated - Regional,LODGED,832
+09/2024,491SNR State or Territory Nominated - Regional,INVITED,1324
+09/2024,491SNR State or Territory Nominated - Regional,HOLD,1204
+09/2024,189PTS Points-Tested Stream,CLOSED,16896
+09/2024,189PTS Points-Tested Stream,SUBMITTED,39891
+09/2024,189PTS Points-Tested Stream,LODGED,2413
+09/2024,189PTS Points-Tested Stream,INVITED,5963
+09/2024,189PTS Points-Tested Stream,HOLD,674
+09/2024,491FSR Family Sponsored - Regional,CLOSED,784
+09/2024,491FSR Family Sponsored - Regional,SUBMITTED,1873
+09/2024,491FSR Family Sponsored - Regional,LODGED,10
+09/2024,491FSR Family Sponsored - Regional,INVITED,43
+09/2024,491FSR Family Sponsored - Regional,HOLD,14
+09/2024,188BI Business Innovation,CLOSED,16
+09/2024,188BI Business Innovation,LODGED,2
+09/2024,188BI Business Innovation,INVITED,1
+09/2024,188INV Investor,CLOSED,14
+09/2024,188INV Investor,INVITED,1
+09/2024,188EV Entrepreneur,CLOSED,13
+09/2024,188EV Entrepreneur,INVITED,5
+09/2024,188SIG Significant Investor,CLOSED,3
+08/2024,190SAS Skilled Australian Sponsored,CLOSED,20828
+08/2024,190SAS Skilled Australian Sponsored,SUBMITTED,67265
+08/2024,190SAS Skilled Australian Sponsored,LODGED,443
+08/2024,190SAS Skilled Australian Sponsored,INVITED,296
+08/2024,190SAS Skilled Australian Sponsored,HOLD,717
+08/2024,491SNR State or Territory Nominated - Regional,CLOSED,18623
+08/2024,491SNR State or Territory Nominated - Regional,SUBMITTED,67334
+08/2024,491SNR State or Territory Nominated - Regional,LODGED,236
+08/2024,491SNR State or Territory Nominated - Regional,INVITED,201
+08/2024,491SNR State or Territory Nominated - Regional,HOLD,656
+08/2024,189PTS Points-Tested Stream,CLOSED,9784
+08/2024,189PTS Points-Tested Stream,SUBMITTED,25846
+08/2024,189PTS Points-Tested Stream,LODGED,401
+08/2024,189PTS Points-Tested Stream,INVITED,80
+08/2024,189PTS Points-Tested Stream,HOLD,409
+08/2024,491FSR Family Sponsored - Regional,CLOSED,409
+08/2024,491FSR Family Sponsored - Regional,SUBMITTED,1104
+08/2024,491FSR Family Sponsored - Regional,LODGED,2
+08/2024,491FSR Family Sponsored - Regional,INVITED,2
+08/2024,491FSR Family Sponsored - Regional,HOLD,8
+08/2024,188BI Business Innovation,CLOSED,11
+08/2024,188BI Business Innovation,SUBMITTED,1
+08/2024,188BI Business Innovation,LODGED,1
+08/2024,188INV Investor,CLOSED,5
+08/2024,188INV Investor,SUBMITTED,1
+08/2024,188INV Investor,LODGED,1
+08/2024,188EV Entrepreneur,CLOSED,7
+08/2024,188EV Entrepreneur,SUBMITTED,4
+08/2024,188SIG Significant Investor,CLOSED,1
+-,190SAS Skilled Australian Sponsored,CLOSED,321
+-,190SAS Skilled Australian Sponsored,SUBMITTED,385282
+-,190SAS Skilled Australian Sponsored,LODGED,692
+-,190SAS Skilled Australian Sponsored,INVITED,17856
+-,190SAS Skilled Australian Sponsored,HOLD,2657
+-,491SNR State or Territory Nominated - Regional,CLOSED,162
+-,491SNR State or Territory Nominated - Regional,SUBMITTED,376778
+-,491SNR State or Territory Nominated - Regional,LODGED,223
+-,491SNR State or Territory Nominated - Regional,INVITED,8379
+-,491SNR State or Territory Nominated - Regional,HOLD,2243
+-,189PTS Points-Tested Stream,CLOSED,170
+-,189PTS Points-Tested Stream,SUBMITTED,196797
+-,189PTS Points-Tested Stream,LODGED,517
+-,189PTS Points-Tested Stream,INVITED,17535
+-,189PTS Points-Tested Stream,HOLD,1613
+-,491FSR Family Sponsored - Regional,CLOSED,1
+-,491FSR Family Sponsored - Regional,SUBMITTED,8142
+-,491FSR Family Sponsored - Regional,LODGED,7
+-,491FSR Family Sponsored - Regional,INVITED,158
+-,491FSR Family Sponsored - Regional,HOLD,39
+-,188BI Business Innovation,CLOSED,1
+-,188BI Business Innovation,LODGED,2
+-,188EV Entrepreneur,SUBMITTED,1
