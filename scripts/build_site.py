@@ -19,6 +19,12 @@ SITE = os.path.join(HERE, "..", "site")
 SITE_DATA = os.path.join(SITE, "data")
 
 SITE_TITLE = "澳洲技术移民工具箱"
+
+# Deploy worker/ to Cloudflare and paste its URL here to offer the AI feature
+# without每 visitor needing their own key. This is a URL, not a credential --
+# the API key stays a Wrangler secret inside the Worker and never reaches the
+# page. Leave empty to hide the shared option entirely.
+PUBLIC_PROXY_URL = ""
 MIN_POOL = 0          # keep every occupation; the picker sorts by size
 
 
@@ -352,6 +358,7 @@ def main():
                .replace("__TITLE__", SITE_TITLE)
                .replace("<!--PICKER-->", PICKER_HTML)
                .replace("<!--OCCPICKER-->", OCCPICKER_HTML)
+               .replace("__PUBLIC_PROXY_URL__", json.dumps(PUBLIC_PROXY_URL))
                .replace('  <p class="foot" id="foot"></p>\n</div>',
                         '  <p class="foot" id="foot"></p>\n  </div>\n</div>')
                .replace("</style>", PICKER_CSS + "</style>")

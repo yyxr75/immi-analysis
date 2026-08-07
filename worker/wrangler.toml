@@ -1,0 +1,15 @@
+name = "immi-occupation-match"
+main = "worker.js"
+compatibility_date = "2026-01-01"
+
+# Only these origins may call the Worker. Leave the list empty to allow any
+# origin (not recommended -- the quota is yours to pay for).
+[vars]
+ALLOWED_ORIGINS = "https://yyxr75.github.io,http://localhost:8000"
+
+# Counter store for the rate limits. Create it once with:
+#   npx wrangler kv namespace create RATE
+# then paste the printed id below.
+[[kv_namespaces]]
+binding = "RATE"
+id = "PUT_YOUR_KV_NAMESPACE_ID_HERE"

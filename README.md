@@ -72,7 +72,14 @@ python scripts/build_report.py      "233411 Electronics Engineer"   # -> output/
 抽得少 = 离开浏览器的内容少 + 调用快。
 
 页面本身不含模型，调用**用户自己填的服务**（端点/密钥只存 localStorage，
-按服务商分开保存）。内置预设：本机 OpenAI 兼容、DeepSeek、Anthropic、OpenRouter、自定义。
+按服务商分开保存）。内置预设：本机 OpenAI 兼容、DeepSeek、Anthropic、OpenRouter、自定义，
+以及可选的「公共服务」——见 `worker/`。
+
+**密钥永远不能写进这个仓库或页面。** 静态站点没有服务端，页面读得到的东西访客也读得到。
+想让访客免填 Key，唯一可行的做法是 `worker/` 里的 Cloudflare Worker：Key 作为
+Wrangler secret 存在 Cloudflare，浏览器只发脱敏后的简历文本，Worker 自己拼 prompt
+和 schema——所以它不是通用代理，泄漏了也只是这一个功能。
+`scripts/build_site.py` 的 `PUBLIC_PROXY_URL` 填 Worker 地址即可启用（那是 URL 不是凭证）。
 
 **Anthropic 和其余几家不是一个协议**，`aiWireBody()` / `aiWireRead()` 负责适配：
 `/v1/messages` 而非 `/v1/chat/completions`；`x-api-key` 而非 `Authorization: Bearer`；

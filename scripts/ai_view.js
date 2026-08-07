@@ -16,6 +16,10 @@ let AI_RESULT = null, AI_BODY = null, AI_RAW = "";
    allowed to call them at all. Anthropic requires an explicit opt-in header;
    without it the preflight 400s. Everything else here speaks OpenAI. */
 const PROVIDERS = {
+  // Filled in by build_site.py from PUBLIC_PROXY_URL. The endpoint is a plain
+  // URL, safe to publish; the key it uses lives as a secret inside the Worker.
+  public: { label: "公共服务（无需填 Key）", api: "proxy", base: "", models: ["（由服务端固定）"],
+            note: "由站点方代付，有每日额度。想不受限就在下面换成自己的 Key。" },
   local: { label: "本机 / 局域网（OpenAI 兼容）", api: "openai",
            base: "http://localhost:8080", models: [],
            note: "llama.cpp / vLLM / Ollama 等。密钥通常留空。" },
@@ -43,6 +47,12 @@ const aiProf = () => (AICFG.profiles[AICFG.provider] =
 const $ai = id => document.getElementById(id);
 
 function aiLoadCfg() {
+  if (typeof PUBLIC_PROXY_URL === "string" && PUBLIC_PROXY_URL) {
+    PROVIDERS.public.base = PUBLIC_PROXY_URL;
+  } else {
+    delete PROVIDERS.public;          // nothing deployed -> do not offer it
+    if (AICFG.provider === "public") AICFG.provider = "local";
+  }
   try {
     const raw = JSON.parse(localStorage.getItem(AI_KEY));
     if (raw && raw.profiles) AICFG = raw;
@@ -60,12 +70,18 @@ function aiLoadCfg() {
         o.value = k; o.textContent = v.label; sel.appendChild(o);
       });
     }
+    if (!PROVIDERS[AICFG.provider]) AICFG.provider = Object.keys(PROVIDERS)[0];
     sel.value = AICFG.provider;
   }
   aiFillProfile();
 }
 function aiFillProfile() {
   const prof = aiProf(), prov = aiProv();
+  const proxy = prov.api === "proxy";
+  if (proxy) prof.endpoint = prov.base;
+  ["aiEndpointField", "aiModelField", "aiKeyField"].forEach(id => {
+    const el = $ai(id); if (el) el.hidden = proxy;
+  });
   $ai("aiEndpoint").value = prof.endpoint || prov.base || "";
   $ai("aiModel").value = prof.model || prov.models[0] || "";
   $ai("aiKey").value = prof.key || "";
@@ -92,6 +108,7 @@ function aiSaveCfg() {
 /* ---- the two wire formats ---- */
 function aiHeaders() {
   const prof = aiProf();
+  if (aiProv().api === "proxy") return { "Content-Type": "application/json" };
   if (aiProv().api === "anthropic") {
     return { "content-type": "application/json",
              "x-api-key": prof.key || "",
@@ -102,12 +119,15 @@ function aiHeaders() {
   return Object.assign({ "Content-Type": "application/json" },
     prof.key ? { Authorization: "Bearer " + prof.key } : {});
 }
-const aiChatUrl = () => aiProf().endpoint +
-  (aiProv().api === "anthropic" ? "/v1/messages" : "/v1/chat/completions");
+const aiChatUrl = () => aiProv().api === "proxy" ? aiProf().endpoint
+  : aiProf().endpoint + (aiProv().api === "anthropic" ? "/v1/messages" : "/v1/chat/completions");
 const aiModelsUrl = () => aiProf().endpoint + "/v1/models";
 
 /* Build the provider's own request shape from one neutral description. */
 function aiWireBody({ model, system, user, schema, maxTokens }) {
+  // The shared endpoint takes only the redacted text -- it builds the prompt,
+  // schema and model itself, so it cannot be repurposed as a free model proxy.
+  if (aiProv().api === "proxy") return { text: user };
   if (aiProv().api === "anthropic") {
     return { model, max_tokens: maxTokens, system,
              messages: [{ role: "user", content: user }],
@@ -122,6 +142,12 @@ function aiWireBody({ model, system, user, schema, maxTokens }) {
 
 /* Pull text, reasoning and usage out of either response shape. */
 function aiWireRead(d) {
+  if (aiProv().api === "proxy") {
+    if (d.error) throw new Error(d.error + (d.detail ? "：" + d.detail : ""));
+    return { text: d.content || "", think: "",
+             tokens: d.usage && d.usage.completion_tokens,
+             finish: d.quota ? `今日已用 ${d.quota.used}/${d.quota.perDay}` : "" };
+  }
   if (aiProv().api === "anthropic") {
     if (d.stop_reason === "refusal") {
       throw new Error("模型基于安全策略拒绝了这次请求（stop_reason=refusal）");
@@ -377,7 +403,8 @@ async function aiSend() {
   aiSaveCfg(); aiEnvCheck();
   const stat = $ai("aiSendStat"), prof = aiProf();
   if (!prof.endpoint) { stat.textContent = "先在第 1 步填端点。"; return; }
-  if (!prof.model) { stat.textContent = "先在第 1 步填模型名。"; return; }
+  if (aiProv().api !== "proxy" && !prof.model) {
+    stat.textContent = "先在第 1 步填模型名。"; return; }
   if (!($ai("aiRaw").value || "").trim()) { stat.textContent = "第 2 步还没有简历正文。"; return; }
   const body = AI_BODY || aiBuildBody();
   stat.textContent = `已发送到 ${aiProv().label}，等待返回（思考模型可能需要几十秒）…`;
@@ -390,7 +417,7 @@ async function aiSend() {
     attempts.push(Object.assign({}, body, { response_format: { type: "json_object" } }));
     const bare = Object.assign({}, body); delete bare.response_format;
     attempts.push(bare);
-  } else {
+  } else if (aiProv().api === "anthropic") {
     const bare = Object.assign({}, body); delete bare.output_config;
     attempts.push(bare);
   }
