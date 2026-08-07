@@ -82,8 +82,22 @@ python scripts/build_report.py      "233411 Electronics Engineer"   # -> output/
 中国的工作和学历都标成 australia。system prompt 里现在有专门规则，
 schema 也要求 `countryEvidence` 附上判断依据的原文，结果表里直接显示出来供核对。
 
-已知限制：不解析 PDF（需额外库，请粘贴文字）；ANZSCO 匹配是本地关键词匹配，
-仅作候选建议。
+**PDF 解析**用 pdf.js（`site/vendor/`，v5.4.149，1.4 MB），按需 `import()`——
+不选 PDF 就不下载。内置而非走 CDN：离线可用、不受第三方可用性影响。
+自己写 PDF 解析器是不行的，中文简历几乎都用 CID 字体 + ToUnicode 映射，
+朴素解析会得到**乱码，而乱码会静默喂给模型**。
+
+解析后必须 `normalize("NFKC")`：部分嵌入字体映射到 Kangxi 部首（U+2F00–2FDF）
+而非统一汉字，`出生日期` 会变成 `出⽣⽇期`——看着对，比较起来不等，
+脱敏正则匹配不到，模型也可能读错。
+
+已知限制：扫描件没有文字层，解析不出来；ANZSCO 匹配是本地关键词匹配，仅作候选建议。
+
+### 测试提示
+
+Chrome 的 `--virtual-time-budget` 会让时钟跳变，跨 Web Worker 的工作因此停住，
+pdf.js 看起来就像卡死。用 `scratchpad/cdp.py` 走 DevTools 协议在真实时钟下跑，
+才能测到真实行为。
 
 **职业选择器和签证筛选属于「职业数据查询」视图，不是全站控件。**
 「计算分数」是纯打分——分数由 Schedule 6D 决定，与职业无关，所以那一页不提职业，

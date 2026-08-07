@@ -376,9 +376,9 @@ h2.occ { font-size:19px; margin:0 0 6px; font-weight:600; letter-spacing:-.01em;
     <div class="card">
       <h2>2 · 提供简历</h2>
       <p class="cap">解析<b>全部在你的浏览器里完成</b>，原文件不会上传。</p>
-      <p class="hint">支持 .txt / .md / .docx，以及直接粘贴。PDF 需要额外的解析库，未内置——请复制文字粘贴。</p>
+      <p class="hint">支持 .pdf / .docx / .txt / .md，以及直接粘贴。PDF 用内置的 pdf.js 在本地解析（约 1.4 MB，选中 PDF 时才加载）；扫描件没有文字层，解析不出来。</p>
       <div class="cbtnrow">
-        <input type="file" id="aiFile" accept=".txt,.md,.docx,.text" hidden>
+        <input type="file" id="aiFile" accept=".txt,.md,.docx,.pdf,.text" hidden>
         <button class="tblbtn nt" type="button" id="aiPick">选择文件…</button>
         <span class="hint" id="aiFileName" style="align-self:center"></span>
       </div>
@@ -967,10 +967,77 @@ async function docxToText(buf) {
   throw new Error("这个 .docx 里找不到 word/document.xml");
 }
 
-async function aiReadFile(file) {
+/* PDF text needs a real parser: Chinese resumes almost always use CID fonts
+   with a ToUnicode CMap, and a naive stream reader returns plausible-looking
+   garbage -- which would then be fed to the model silently. pdf.js is vendored
+   into site/vendor and imported only when a PDF is actually chosen, so the
+   1.4 MB is never on the critical path. */
+let PDFJS = null;
+async function loadPdfJs() {
+  if (PDFJS) return PDFJS;
+  const base = new URL("vendor/", document.baseURI).href;
+  PDFJS = await import(base + "pdf.min.mjs");
+  PDFJS.GlobalWorkerOptions.workerSrc = base + "pdf.worker.min.mjs";
+  return PDFJS;
+}
+
+async function pdfToText(buf, onProgress) {
+  const pdfjs = await loadPdfJs();
+  const doc = await pdfjs.getDocument({ data: buf, isEvalSupported: false }).promise;
+  const pages = [];
+  for (let p = 1; p <= doc.numPages; p++) {
+    if (onProgress) onProgress(p, doc.numPages);
+    const page = await doc.getPage(p);
+    const tc = await page.getTextContent();
+    // Items carry their own transform; group them into lines by baseline y,
+    // then order left to right, so a two-column resume does not interleave.
+    const lines = [];
+    tc.items.forEach(it => {
+      if (!it.str) return;
+      const x = it.transform[4], y = Math.round(it.transform[5]);
+      let line = lines.find(l => Math.abs(l.y - y) <= 2);
+      if (!line) { line = { y, parts: [] }; lines.push(line); }
+      line.parts.push({ x, s: it.str, w: it.width || 0 });
+    });
+    lines.sort((a, b) => b.y - a.y);
+    const text = lines.map(l => {
+      l.parts.sort((a, b) => a.x - b.x);
+      let out = "";
+      l.parts.forEach((pt, i) => {
+        const prev = l.parts[i - 1];
+        // insert a space only where the glyphs are actually far apart
+        if (prev && pt.x - (prev.x + prev.w) > 1.2 && !/\s$/.test(out)) out += " ";
+        out += pt.s;
+      });
+      return out.trim();
+    }).filter(Boolean).join("\n");
+    pages.push(text);
+    page.cleanup();
+  }
+  await doc.destroy();
+  // Some embedded fonts map to Kangxi radicals (U+2F00-2FDF) and CJK
+  // compatibility forms rather than unified ideographs, so "出生日期" arrives as
+  // "出⽣⽇期". NFKC folds them back; without it the redaction patterns and the
+  // model both see characters that look right and compare wrong.
+  const all = pages.join("\n\n").normalize("NFKC")
+    .replace(/\n{3,}/g, "\n\n").trim();
+  if (!all) throw new Error("这个 PDF 里没有可提取的文字层——多半是扫描件，请手动录入或粘贴");
+  return all;
+}
+
+async function aiReadFile(file, onProgress) {
   const name = (file.name || "").toLowerCase();
   if (name.endsWith(".docx")) return docxToText(await file.arrayBuffer());
-  if (name.endsWith(".pdf")) throw new Error("未内置 PDF 解析，请打开 PDF 复制文字后粘贴到下方文本框");
+  if (name.endsWith(".pdf")) {
+    try {
+      return await pdfToText(await file.arrayBuffer(), onProgress);
+    } catch (e) {
+      if (/import|module|Failed to fetch|dynamically imported/i.test(e.message || "")) {
+        throw new Error("PDF 解析库未能加载（单文件版报告不含它）——请复制 PDF 里的文字粘贴到下方");
+      }
+      throw e;
+    }
+  }
   return file.text();
 }
 
@@ -1352,7 +1419,9 @@ function aiInit() {
     if (!f) return;
     $ai("aiFileName").textContent = f.name + " 解析中…";
     try {
-      $ai("aiRaw").value = await aiReadFile(f);
+      $ai("aiRaw").value = await aiReadFile(f, (p, n) => {
+        $ai("aiFileName").textContent = `${f.name} 解析中… 第 ${p}/${n} 页`;
+      });
       $ai("aiFileName").textContent = `${f.name} 已在本地解析，${$ai("aiRaw").value.length} 字`;
       aiBuildBody();
     } catch (err) {
