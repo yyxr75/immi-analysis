@@ -126,6 +126,31 @@ th:first-child,td:first-child { text-align:left; }
 .scrollnote { font-size:11.5px; color:var(--muted); margin:8px 0 0; }
 .foot { color:var(--muted); font-size:11.5px; margin-top:26px; line-height:1.7; }
 
+.calc, .card { scroll-margin-top:74px; }
+.calc { background:var(--surface); border:1px solid var(--hair); border-radius:12px;
+        padding:17px 15px 15px; margin-bottom:16px; }
+@media (min-width:700px) { .calc { padding:20px 22px 18px; } }
+.calc h2 { font-size:15.5px; margin:0 0 3px; font-weight:600; }
+.cgrid { display:grid; grid-template-columns:1fr; gap:11px; margin:14px 0 0; }
+@media (min-width:560px) { .cgrid { grid-template-columns:1fr 1fr; } }
+@media (min-width:900px) { .cgrid { grid-template-columns:1fr 1fr 1fr; } }
+.cfield label { display:block; font-size:12px; color:var(--ink2); margin-bottom:5px; font-weight:600; }
+.cfield select { font:inherit; font-size:13.5px; color:var(--ink); background:var(--plane);
+                 border:1px solid var(--hair); border-radius:8px; padding:8px 10px;
+                 min-height:40px; width:100%; }
+.cfield select:focus-visible { outline:2px solid var(--s1); outline-offset:1px; }
+.cfield .cite { font-size:10.5px; color:var(--muted); margin-top:3px; font-variant-numeric:tabular-nums; }
+.cscores { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-top:18px; }
+.cscore { border:1px solid var(--hair); border-radius:10px; padding:13px 14px; background:var(--plane); }
+.cscore.sel { border-color:var(--s1); border-width:2px; padding:12px 13px; }
+.cscore .n { font-size:12px; color:var(--ink2); margin-bottom:4px; }
+.cscore .v { font-size:27px; font-weight:600; letter-spacing:-.02em; line-height:1.1; }
+.cscore .r { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.45; }
+.cbtnrow { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+.calc .note2 { font-size:11.5px; color:var(--muted); margin:14px 0 0; line-height:1.65; }
+#brk td:last-child, #mrg td:last-child { font-variant-numeric:tabular-nums; }
+#mrg table td.up { font-weight:700; color:var(--ink); }
+
 .picker { background:var(--surface); border:1px solid var(--hair); border-radius:12px;
           padding:15px 16px; margin:0 0 22px; }
 .plab { display:block; font-size:12.5px; color:var(--ink2); margin-bottom:8px; font-weight:600; }
@@ -179,6 +204,23 @@ th:first-child,td:first-child { text-align:left; }
   </div>
 
   <div class="kpis" id="kpis"></div>
+
+  <div class="calc" id="calc">
+    <h2>算一下你的分数</h2>
+    <p class="cap">按 <b>Migration Regulations 1994 Schedule 6D</b> 逐条计算，纯本地运算，不上传任何信息。</p>
+    <p class="hint" id="rulesver"></p>
+    <div class="cgrid" id="cform"></div>
+    <div class="cbtnrow">
+      <button class="tblbtn nt" type="button" id="creset">清空重填</button>
+      <button class="tblbtn" type="button" data-t="brk" data-label="分项明细">分项明细</button>
+    </div>
+    <div class="tblwrap" id="brk"></div>
+    <div class="cscores" id="cscores"></div>
+    <h3 class="sub2" id="mrghead" hidden>再加分的话，获邀率会怎么变</h3>
+    <p class="hint" id="mrgnote" hidden></p>
+    <div class="tblwrap on" id="mrg"></div>
+    <p class="note2" id="calcnote"></p>
+  </div>
 
   <div class="card findings">
     <h2>关键结论</h2>
@@ -391,10 +433,10 @@ function table(id, head, rows) {
       td.textContent = c; x.appendChild(td); }); body.appendChild(x); });
   tb.appendChild(body); w.appendChild(tb);
 }
-document.querySelectorAll(".tblbtn").forEach(b => b.addEventListener("click", () => {
+document.querySelectorAll(".tblbtn[data-t]").forEach(b => b.addEventListener("click", () => {
   const w = document.getElementById(b.dataset.t);
-  w.classList.toggle("on");
-  b.textContent = w.classList.contains("on") ? "收起表格" : "表格视图";
+  const open = w.classList.toggle("on");
+  b.textContent = open ? "收起" + (b.dataset.label || "表格") : (b.dataset.label || "表格视图");
 }));
 function legend(id, items) {
   const el = document.getElementById(id); el.textContent = "";
@@ -676,6 +718,220 @@ function chart6() {
   table("t6", ["提名州/地区", "在池 EOI"], rows.map(([n, v]) => [n, fmt(v)]));
 }
 
+
+/* ---------- points calculator ----------
+   Rules transcribed item-by-item from Migration Regulations 1994 Schedule 6D,
+   compilation registered on legislation.gov.au dated 2026-07-01 (F1996B03551).
+   Every option carries its Schedule item number so a reader can check it.
+   Nothing here is inferred by a model: the score is a pure function of the
+   selections, computed in the browser. */
+const RULES = {
+  version: "Schedule 6D, 编译版 2026-07-01",
+  source: "Migration Regulations 1994 (F1996B03551), legislation.gov.au",
+  fields: [
+    { key: "age", label: "年龄（收到邀请时）", part: "6D.1", options: [
+      { v: 0,  t: "18 岁以下 / 45 岁及以上", item: "—" },
+      { v: 25, t: "18–24 岁", item: "6D11" },
+      { v: 30, t: "25–32 岁", item: "6D12" },
+      { v: 25, t: "33–39 岁", item: "6D13" },
+      { v: 15, t: "40–44 岁", item: "6D14" }]},
+    { key: "english", label: "英语能力", part: "6D.2", options: [
+      { v: 0,  t: "Competent（雅思 6 / PTE 50）", item: "—" },
+      { v: 10, t: "Proficient（雅思 7 / PTE 65）", item: "6D22" },
+      { v: 20, t: "Superior（雅思 8 / PTE 79）", item: "6D21" }]},
+    { key: "expOs", label: "海外技术工作经验（近 10 年）", part: "6D.3", options: [
+      { v: 0,  t: "不足 3 年", item: "—" },
+      { v: 5,  t: "3–4 年（≥36 个月）", item: "6D31" },
+      { v: 10, t: "5–7 年（≥60 个月）", item: "6D32" },
+      { v: 15, t: "8 年以上（≥96 个月）", item: "6D33" }]},
+    { key: "expAu", label: "澳洲技术工作经验（近 10 年）", part: "6D.4", options: [
+      { v: 0,  t: "不足 1 年", item: "—" },
+      { v: 5,  t: "1–2 年（≥12 个月）", item: "6D41" },
+      { v: 10, t: "3–4 年（≥36 个月）", item: "6D42" },
+      { v: 15, t: "5–7 年（≥60 个月）", item: "6D43" },
+      { v: 20, t: "8 年以上（≥96 个月）", item: "6D44" }]},
+    { key: "edu", label: "学历", part: "6D.7", options: [
+      { v: 0,  t: "无以下任何一项", item: "—" },
+      { v: 20, t: "博士", item: "6D71" },
+      { v: 15, t: "学士及以上", item: "6D72" },
+      { v: 10, t: "澳洲文凭 / 技工资格", item: "6D73/74" },
+      { v: 10, t: "评估机构认可的资格", item: "6D75" }]},
+    { key: "spec", label: "专业教育资格（STEM 研究类硕博）", part: "6D.7A", options: [
+      { v: 0,  t: "无", item: "—" },
+      { v: 10, t: "符合 specialist educational qualification", item: "6D7A1" }]},
+    { key: "auStudy", label: "澳洲学习要求", part: "6D.8", options: [
+      { v: 0, t: "不满足", item: "—" },
+      { v: 5, t: "满足 Australian study requirement", item: "6D81" }]},
+    { key: "py", label: "职业年 Professional Year", part: "6D.6", options: [
+      { v: 0, t: "未完成", item: "—" },
+      { v: 5, t: "已完成（近 48 个月内满 12 个月）", item: "6D61" }]},
+    { key: "lang", label: "社区语言（NAATI 等认证）", part: "6D.9", options: [
+      { v: 0, t: "无", item: "—" },
+      { v: 5, t: "有认证", item: "6D91" }]},
+    { key: "regional", label: "偏远地区学习", part: "6D.10", options: [
+      { v: 0, t: "无", item: "—" },
+      { v: 5, t: "校区与居住均在指定偏远地区、非远程课程", item: "6D101" }]},
+    { key: "partner", label: "配偶情况", part: "6D.11", options: [
+      { v: 0,  t: "配偶不满足以下任何一项", item: "—" },
+      { v: 10, t: "单身，或配偶是澳洲 PR / 公民", item: "6D112" },
+      { v: 10, t: "配偶有职业评估 + competent English + 45 岁以下", item: "6D111" },
+      { v: 5,  t: "配偶仅有 competent English", item: "6D113" }]},
+  ],
+  // Part 6D.5: overseas + Australian employment points are capped at 20 combined
+  employmentCap: 20,
+  visaBonus: { "189": { pts: 0, item: "—" },
+               "190": { pts: 5, item: "6D121" },
+               "491 (州担保)": { pts: 15, item: "6D131" },
+               "491 (亲属担保)": { pts: 15, item: "6D131" } },
+};
+const CALC_KEY = "immi.points.v1";
+let CALC = {};
+
+function calcBreakdown() {
+  const rows = [];
+  let total = 0;
+  for (const f of RULES.fields) {
+    const idx = CALC[f.key] | 0;
+    const opt = f.options[idx] || f.options[0];
+    if (f.key === "expOs" || f.key === "expAu") continue;   // handled together below
+    rows.push({ label: f.label, text: opt.t, pts: opt.v, item: opt.item, part: f.part });
+    total += opt.v;
+  }
+  const os = RULES.fields.find(f => f.key === "expOs").options[CALC.expOs | 0];
+  const au = RULES.fields.find(f => f.key === "expAu").options[CALC.expAu | 0];
+  const raw = os.v + au.v;
+  const emp = Math.min(RULES.employmentCap, raw);
+  rows.push({ label: "海外技术工作经验", text: os.t, pts: os.v, item: os.item, part: "6D.3" });
+  rows.push({ label: "澳洲技术工作经验", text: au.t, pts: au.v, item: au.item, part: "6D.4" });
+  if (raw > emp) rows.push({ label: "工作经验合计封顶", part: "6D.5", item: "6D51",
+    text: `海外 ${os.v} + 澳洲 ${au.v} = ${raw}，超过上限按 ${emp} 计`, pts: emp - raw });
+  total += emp;
+  return { rows, total };
+}
+
+/* historical invitation rate at a given score for one visa type */
+function rateAt(visa, score) {
+  const R = DATA.rate[visa];
+  if (!R || !R.points.length) return null;
+  let i = R.points.indexOf(score);
+  let exact = i >= 0;
+  if (i < 0) {                     // fall back to the highest bucket at or below
+    for (let j = 0; j < R.points.length; j++) if (R.points[j] <= score) i = j;
+    if (i < 0) return null;
+  }
+  return { rate: R.rate[i], total: R.total[i], invited: R.invited[i],
+           at: R.points[i], exact };
+}
+
+function renderCalc() {
+  const base = calcBreakdown();
+  document.getElementById("rulesver").textContent =
+    `规则依据：${RULES.source} · ${RULES.version}。每项后标注了 Schedule 条目号，可逐条核对。`;
+
+  // ---- the three (or four) visa totals
+  const el = document.getElementById("cscores"); el.textContent = "";
+  DATA.visaOrder.forEach(v => {
+    const bonus = (RULES.visaBonus[v] || { pts: 0 }).pts;
+    const score = base.total + bonus;
+    const r = rateAt(v, score);
+    const d = document.createElement("div");
+    d.className = "cscore" + (v === visa ? " sel" : "");
+    const n = document.createElement("div"); n.className = "n";
+    n.textContent = v + (bonus ? `（含提名 +${bonus}）` : "");
+    const val = document.createElement("div"); val.className = "v";
+    val.textContent = score + " 分";
+    const rr = document.createElement("div"); rr.className = "r";
+    if (!r) rr.textContent = "该分数段无历史样本";
+    else if (r.total < 50) rr.textContent = `历史获邀率 ${r.rate}%（样本仅 ${r.total}，不可靠）`;
+    else rr.textContent = `${r.exact ? "" : r.at + " 分档："}历史获邀率 ${r.rate}%（n=${fmt(r.total)}）`;
+    d.append(n, val, rr); el.appendChild(d);
+  });
+
+  // ---- itemised breakdown
+  table("brk", ["项目", "选择", "Schedule 条目", "分数"],
+    base.rows.map(r => [r.label, r.text, r.item === "—" ? "—" : `${r.item}（Part ${r.part}）`,
+                        (r.pts > 0 ? "+" : "") + r.pts])
+      .concat([["合计（未含州/地区提名）", "", "", base.total]]));
+
+  // ---- marginal analysis against the currently selected visa
+  const bonus = (RULES.visaBonus[visa] || { pts: 0 }).pts;
+  const cur = base.total + bonus;
+  const curR = rateAt(visa, cur);
+  const ups = [];
+  for (const f of RULES.fields) {
+    if (f.key === "age") continue;                       // age only ever goes down
+    const now = f.options[CALC[f.key] | 0].v;
+    const best = Math.max(...f.options.map(o => o.v));
+    if (best <= now) continue;
+    // recompute properly so the 6D.5 employment cap is respected
+    const saved = CALC[f.key];
+    CALC[f.key] = f.options.findIndex(o => o.v === best);
+    const nt = calcBreakdown().total + bonus;
+    CALC[f.key] = saved;
+    if (nt <= cur) continue;                             // capped out -> no gain
+    const nr = rateAt(visa, nt);
+    ups.push({ label: f.label, to: f.options.find(o => o.v === best).t,
+               gain: nt - cur, score: nt,
+               rate: nr && nr.total >= 50 ? nr.rate : null,
+               thin: nr ? nr.total : 0 });
+  }
+  // best odds first; on a tie the cheaper upgrade wins
+  ups.sort((a, b) => (b.rate ?? -1) - (a.rate ?? -1) || a.gain - b.gain);
+
+  const head = document.getElementById("mrghead"), note = document.getElementById("mrgnote");
+  head.hidden = note.hidden = !ups.length;
+  if (ups.length) {
+    note.textContent = `以 ${visa} 为准。当前 ${cur} 分` +
+      (curR && curR.total >= 50 ? `，历史获邀率 ${curR.rate}%。` : "。") +
+      "获邀率来自不带时间维的完整记录；样本不足 50 的分数段标注为“样本不足”。";
+    table("mrg", ["加分项", "达成后", "加分", "总分", "该分数历史获邀率"],
+      ups.map(u => [u.label, u.to, "+" + u.gain, u.score + " 分",
+                    u.rate == null ? `样本不足（n=${u.thin}）` : u.rate + "%"]));
+    // bold the best row
+    const rows = document.querySelectorAll("#mrg tbody tr");
+    if (rows.length && ups[0].rate != null) rows[0].querySelectorAll("td").forEach(td => td.className = "up");
+  } else {
+    table("mrg", ["加分项"], [["各项均已达最高档，没有可再加的分。"]]);
+  }
+
+  document.getElementById("calcnote").textContent =
+    "本工具只做算术：按 Schedule 6D 把你的选择换算成分数，再查该职业该分数段的历史获邀率。" +
+    "它不预测你的申请结果，也不构成移民建议——职业评估结论以评估机构为准，190/491 还需先获得州/地区提名，" +
+    "而提名标准不在本数据集内。";
+  try { localStorage.setItem(CALC_KEY, JSON.stringify(CALC)); } catch (e) {}
+}
+
+function buildCalcForm() {
+  const el = document.getElementById("cform");
+  if (el.childElementCount) return;              // build once; survives visa switches
+  try { CALC = JSON.parse(localStorage.getItem(CALC_KEY)) || {}; } catch (e) { CALC = {}; }
+  RULES.fields.forEach(f => {
+    if (CALC[f.key] == null) CALC[f.key] = 0;
+    const wrap = document.createElement("div"); wrap.className = "cfield";
+    const lab = document.createElement("label");
+    lab.setAttribute("for", "c_" + f.key); lab.textContent = f.label;
+    const sel = document.createElement("select"); sel.id = "c_" + f.key;
+    f.options.forEach((o, i) => {
+      const opt = document.createElement("option");
+      opt.value = i; opt.textContent = `${o.t}　${o.v > 0 ? "+" + o.v : "0"} 分`;
+      if (i === (CALC[f.key] | 0)) opt.selected = true;
+      sel.appendChild(opt);
+    });
+    sel.addEventListener("change", () => { CALC[f.key] = +sel.value; renderCalc(); });
+    const cite = document.createElement("div"); cite.className = "cite";
+    cite.textContent = "Schedule 6D Part " + f.part;
+    wrap.append(lab, sel, cite); el.appendChild(wrap);
+  });
+  document.getElementById("creset").addEventListener("click", () => {
+    RULES.fields.forEach(f => {
+      CALC[f.key] = 0;
+      const sel = document.getElementById("c_" + f.key);
+      if (sel) sel.value = 0;
+    });
+    renderCalc();
+  });
+}
+
 /* ---------- findings + cross-visa comparison ---------- */
 function findings() {
   const el = document.getElementById("flist"); el.textContent = "";
@@ -746,7 +1002,7 @@ function kpis() {
 
 /* ---------- boot ---------- */
 function renderAll() {
-  kpis(); findings(); chart1(); chart2(); chart3(); chart4(); chart5(); chart6();
+  buildCalcForm(); renderCalc(); kpis(); findings(); chart1(); chart2(); chart3(); chart4(); chart5(); chart6();
 }
 /* boot(data) is the single entry point: the one-occupation build calls it
    immediately with inlined data, the site shell calls it after each fetch. */
@@ -773,10 +1029,16 @@ function boot(data) {
   document.getElementById("foot").textContent =
     "口径：所有计数均为去重 EOI 数（COUNT DISTINCT %EOIID）。“在池”＝ EOI Status = SUBMITTED。" +
     "本页由 immi-analysis/scripts/ 的抽取与渲染脚本生成，可对任意 ANZSCO 职业重跑。";
+  // collapse only the tables a button controls -- #cmp and #mrg have no toggle
+  // and are meant to stay open
+  const toggleable = new Set([...document.querySelectorAll(".tblbtn[data-t]")]
+    .map(b => b.dataset.t));
   document.querySelectorAll(".tblwrap.on").forEach(w => {
-    if (w.id !== "cmp") w.classList.remove("on");
+    if (toggleable.has(w.id)) w.classList.remove("on");
   });
-  document.querySelectorAll(".tblbtn").forEach(b => { b.textContent = "表格视图"; });
+  document.querySelectorAll(".tblbtn[data-t]").forEach(b => {
+    b.textContent = b.dataset.label || "表格视图";
+  });
   renderAll();
 }
 if (DATA) boot(DATA);
