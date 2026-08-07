@@ -1,14 +1,28 @@
 name: Refresh data from SkillSelect
 
-# The dashboard reloads monthly; this re-scrapes and commits a new site/.
-# Manual by default -- flip the schedule on once you trust it.
+# The dashboard is released monthly -- the snapshot is taken as at the last
+# day of the month and appears a few days later (07/2026 landed 2026-08-02).
+# The exact release day is not published, so instead of guessing a date we
+# check the app's qLastReloadTime daily and only rebuild when it moves.
+# The probe is one WebSocket round trip, so ~29 runs a month cost seconds.
 on:
   workflow_dispatch:
+    inputs:
+      force:
+        description: 'Rebuild even if the source has not changed'
+        type: boolean
+        default: false
   schedule:
-    - cron: '0 3 5 * *'   # 05th of each month, 03:00 UTC
+    # 04:17 UTC daily. Not on the hour: GitHub queues scheduled jobs and the
+    # top of the hour is the most congested slot.
+    - cron: '17 4 * * *'
 
 permissions:
   contents: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
 
 jobs:
   refresh:
@@ -18,9 +32,16 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+          cache: pip
       - run: pip install -r requirements.txt
 
+      - name: Has the source been reloaded?
+        id: probe
+        working-directory: scripts
+        run: python check_update.py
+
       - name: Pull cubes and rebuild the site
+        if: steps.probe.outputs.changed == 'true' || inputs.force
         working-directory: scripts
         run: |
           python extract.py
@@ -28,11 +49,27 @@ jobs:
           python extract_thresholds.py
           python build_site.py
 
-      - name: Commit if anything changed
+      - name: Verify the rebuild before committing
+        if: steps.probe.outputs.changed == 'true' || inputs.force
+        run: |
+          test -f site/data/occupations.json
+          n=$(ls site/data/*.json | wc -l)
+          echo "occupation payloads: $n"
+          test "$n" -gt 100
+          cat site/data/meta.json
+
+      - name: Commit
+        if: steps.probe.outputs.changed == 'true' || inputs.force
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add site
-          git diff --staged --quiet && echo "no changes" && exit 0
-          git commit -m "chore: refresh SkillSelect data"
+          git diff --staged --quiet && echo "no file changes" && exit 0
+          git commit -m "data: refresh to ${{ steps.probe.outputs.latest_month }} (source reloaded ${{ steps.probe.outputs.reload_time }})"
           git push
+
+      - name: Summary
+        run: |
+          echo "changed      = ${{ steps.probe.outputs.changed }}" >> $GITHUB_STEP_SUMMARY
+          echo "latest month = ${{ steps.probe.outputs.latest_month }}" >> $GITHUB_STEP_SUMMARY
+          echo "reload time  = ${{ steps.probe.outputs.reload_time }}" >> $GITHUB_STEP_SUMMARY

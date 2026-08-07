@@ -159,7 +159,7 @@ th:first-child,td:first-child { text-align:left; }
   <div id="report" hidden>
   <h1 id="h1">澳洲技术移民 EOI 数据分析</h1>
   <p class="sub" id="sub"></p>
-  <p class="src">数据源：澳大利亚就业与劳资关系部 SkillSelect EOI 公开看板（Qlik 引擎接口），应用最后刷新 2026-08-02。</p>
+  <p class="src" id="src">数据源：澳大利亚就业与劳资关系部 SkillSelect EOI 公开看板（Qlik 引擎接口）。</p>
 
   <details class="note">
     <summary>读这份报告前必须知道的 6 件事（口径说明）</summary>
@@ -879,6 +879,19 @@ addEventListener("resize", () => {
     const c = location.hash.slice(1);
     if (c && c !== current) { current = c; fill(filtered()); load(c); }
   });
+
+  // the refresh date is data, not a constant -- it moves every release
+  fetch("data/meta.json", { cache: "no-cache" })
+    .then(r => r.json())
+    .then(m => {
+      const el = document.getElementById("src");
+      if (!el) return;
+      const d = (m.reloadTime || "").slice(0, 10);
+      el.textContent = "数据源：澳大利亚就业与劳资关系部 SkillSelect EOI 公开看板（Qlik 引擎接口）。" +
+        (d ? `源看板最后刷新 ${d}，` : "") +
+        `覆盖至 ${m.latestMonth}，共 ${m.monthsCovered} 个月、${m.occupations} 个职业。`;
+    })
+    .catch(() => {});
 
   fetch("data/occupations.json", { cache: "force-cache" })
     .then(r => r.json())

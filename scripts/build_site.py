@@ -4,9 +4,9 @@ the selected one on demand.
 Everything comes from the bulk cubes in data/, so this makes no engine calls.
 Run extract.py / extract_all.py / extract_thresholds.py first.
 """
+import datetime
 import json
 import os
-import shutil
 import sys
 
 import pandas as pd
@@ -148,6 +148,19 @@ PICKER_JS = """
     const c = location.hash.slice(1);
     if (c && c !== current) { current = c; fill(filtered()); load(c); }
   });
+
+  // the refresh date is data, not a constant -- it moves every release
+  fetch("data/meta.json", { cache: "no-cache" })
+    .then(r => r.json())
+    .then(m => {
+      const el = document.getElementById("src");
+      if (!el) return;
+      const d = (m.reloadTime || "").slice(0, 10);
+      el.textContent = "数据源：澳大利亚就业与劳资关系部 SkillSelect EOI 公开看板（Qlik 引擎接口）。" +
+        (d ? `源看板最后刷新 ${d}，` : "") +
+        `覆盖至 ${m.latestMonth}，共 ${m.monthsCovered} 个月、${m.occupations} 个职业。`;
+    })
+    .catch(() => {});
 
   fetch("data/occupations.json", { cache: "force-cache" })
     .then(r => r.json())
@@ -301,9 +314,30 @@ def main():
         if i % 100 == 0:
             print(f"  {i}/{len(occs)} ...")
 
+    # meta drives the "last refreshed" line on the page and lets
+    # check_update.py tell whether the source has moved since this build
+    from qlik import Engine
+    try:
+        eng = Engine(); doc = eng.open_doc()
+        reload_time = eng.call("GetAppLayout", doc, [])["qLayout"].get("qLastReloadTime")
+        eng.close()
+    except Exception as e:
+        print(f"  ! could not read qLastReloadTime ({e}); meta will omit it")
+        reload_time = None
+    meta = {"reloadTime": reload_time,
+            "latestMonth": mlabel[latest],
+            "monthsCovered": len(months),
+            "occupations": None,
+            "builtAt": datetime.datetime.now(datetime.timezone.utc)
+                       .strftime("%Y-%m-%dT%H:%M:%SZ")}
+
     index.sort(key=lambda o: -o["pool"])
     with open(os.path.join(SITE_DATA, "occupations.json"), "w") as f:
         json.dump(index, f, ensure_ascii=False, separators=(",", ":"))
+    meta["occupations"] = len(index)
+    with open(os.path.join(SITE_DATA, "meta.json"), "w") as f:
+        json.dump(meta, f, ensure_ascii=False, indent=2)
+    print(f"  meta: reload={meta['reloadTime']} latest={meta['latestMonth']}")
 
     tpl = open(os.path.join(HERE, "report_template.html")).read()
     html = (tpl.replace("__DATA__", "null")
