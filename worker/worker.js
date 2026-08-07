@@ -15,7 +15,13 @@ import { SYSTEM, SCHEMA } from "./spec.generated.js";
 
 const UPSTREAM = "https://api.deepseek.com/v1/chat/completions";
 const MODEL = "deepseek-chat";
-const MAX_CHARS = 12000;      // a resume; anything larger is not one
+// A ceiling, not a typical size. Real resumes run 2-6k chars; PDF extraction
+// adds headers, footers and page furniture, and an English CV needs roughly
+// twice the characters of a Chinese one for the same content. This is set to
+// swallow all of that and still leave deepseek-chat's 64K context comfortable
+// room for the reply. It is also the cost guard: worst case is
+// GLOBAL_PER_DAY x this, so raising one means re-checking the other.
+const MAX_CHARS = 40000;
 const MAX_TOKENS = 3000;
 const PER_IP_PER_DAY = 20;
 const GLOBAL_PER_DAY = 500;   // the real budget guard
@@ -63,7 +69,7 @@ export default {
     if (body.ping === true) {
       const used = parseInt((await env.RATE.get(`i:${day}:${ip}`)) || "0", 10);
       const gUsed = parseInt((await env.RATE.get(`g:${day}`)) || "0", 10);
-      return json({ ok: true, model: MODEL,
+      return json({ ok: true, model: MODEL, maxChars: MAX_CHARS,
                     quota: { used, perDay: PER_IP_PER_DAY,
                              globalUsed: gUsed, globalPerDay: GLOBAL_PER_DAY } }, 200, H);
     }
@@ -71,7 +77,9 @@ export default {
     const text = typeof body.text === "string" ? body.text.trim() : "";
     if (!text) return json({ error: "text required" }, 400, H);
     if (text.length > MAX_CHARS)
-      return json({ error: `text too long (${text.length} > ${MAX_CHARS})` }, 413, H);
+      return json({ error: `简历太长：${text.length} 字，上限 ${MAX_CHARS} 字。` +
+                           "请只保留学历和工作经历，去掉获奖、项目清单等与职业匹配无关的部分。",
+                    maxChars: MAX_CHARS }, 413, H);
 
     const g = await bump(env, `g:${day}`, 172800);
     if (g > GLOBAL_PER_DAY)

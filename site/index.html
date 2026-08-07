@@ -876,6 +876,10 @@ function chart6() {
    conversions, and both are now done here instead. */
 const AI_KEY = "immi.ai.cfg.v2";
 let AI_RESULT = null, AI_BODY = null, AI_RAW = "";
+// Mirror of the shared endpoint's MAX_CHARS, used only to fail fast in the
+// page. The Worker is the authority; this is refreshed from its ping and 413
+// replies, so raising it there does not require another site build.
+let PROXY_MAX_CHARS = 40000;
 
 /* Providers differ in two ways that matter: the wire format (OpenAI-style
    /v1/chat/completions vs Anthropic's /v1/messages) and whether the browser is
@@ -1073,9 +1077,11 @@ async function aiTest() {
       });
       const d = await r.json().catch(() => ({}));
       if (!r.ok) throw new Error("HTTP " + r.status + " " + (d.error || ""));
+      if (d.maxChars) PROXY_MAX_CHARS = d.maxChars;
       const q = d.quota || {};
       out.textContent = `连接成功，公共服务可用（模型 ${d.model || "由服务端固定"}）。` +
-        (q.perDay ? `你今天已用 ${q.used || 0}/${q.perDay} 次。` : "");
+        (q.perDay ? `你今天已用 ${q.used || 0}/${q.perDay} 次，` : "") +
+        `简历上限 ${PROXY_MAX_CHARS} 字。`;
       return;
     }
     const r = await fetch(aiModelsUrl(), { headers: aiHeaders() });
@@ -1275,7 +1281,8 @@ function aiBuildBody() {
   const raw = $ai("aiRaw").value || "";
   const { text, summary } = aiRedact(raw);
   $ai("aiRedactStat").textContent =
-    `原文 ${raw.length} 字，脱敏后 ${text.length} 字。本地移除：${summary}。`;
+    `原文 ${raw.length} 字，脱敏后 ${text.length} 字。本地移除：${summary}。` +
+    (aiProv().api === "proxy" ? `公共服务上限 ${PROXY_MAX_CHARS} 字。` : "");
   AI_BODY = aiWireBody({ model: aiProf().model, system: AI_SYSTEM, user: text,
                          schema: AI_SCHEMA, maxTokens: 8000 });
   const pre = document.createElement("pre");
@@ -1296,6 +1303,14 @@ async function aiSend() {
     stat.textContent = "先在第 1 步填模型名。"; return; }
   if (!($ai("aiRaw").value || "").trim()) { stat.textContent = "第 2 步还没有简历正文。"; return; }
   const body = AI_BODY || aiBuildBody();
+  // Catch an over-long resume here rather than after uploading it and waiting
+  // for the endpoint to reject it.
+  if (aiProv().api === "proxy" && (body.text || "").length > PROXY_MAX_CHARS) {
+    stat.textContent = `简历太长：脱敏后 ${body.text.length} 字，公共服务上限 ` +
+      `${PROXY_MAX_CHARS} 字。请只保留学历和工作经历，去掉获奖与项目清单，` +
+      "或在第 1 步换成自己的 API Key（不受这个上限约束）。";
+    return;
+  }
   stat.textContent = `已发送到 ${aiProv().label}，等待返回（思考模型可能需要几十秒）…`;
   const t0 = Date.now();
 
@@ -1317,7 +1332,14 @@ async function aiSend() {
       const r = await fetch(aiChatUrl(),
         { method: "POST", headers: aiHeaders(), body: JSON.stringify(attempts[i]) });
       if (r.ok) { d = await r.json(); if (i) stat.textContent = "（该服务不支持结构化输出，已降级重试）"; break; }
-      lastErr = "HTTP " + r.status + " " + (await r.text()).slice(0, 200);
+      const raw = await r.text();
+      let msg = raw.slice(0, 200);
+      try {                       // the shared endpoint already answers in Chinese
+        const j = JSON.parse(raw);
+        if (j.maxChars) PROXY_MAX_CHARS = j.maxChars;
+        if (j.error) msg = j.error + (j.detail ? "：" + String(j.detail).slice(0, 160) : "");
+      } catch (_) { /* not JSON; the raw body is the best we have */ }
+      lastErr = aiProv().api === "proxy" ? msg : "HTTP " + r.status + " " + msg;
       // only a schema-shaped complaint is worth retrying
       if (r.status !== 400 || !/format|schema|response_format|output_config/i.test(lastErr)) break;
     }
@@ -1564,6 +1586,10 @@ function aiInit() {
       $ai("aiFileName").textContent = f.name + " 解析失败：" + err.message;
     }
   });
+  // aiBuildBody caches its result in AI_BODY, and the file picker rebuilds it.
+  // Typing or pasting into the box must invalidate it too, or a second send
+  // after an edit would ship the previous text.
+  $ai("aiRaw").addEventListener("input", () => { AI_BODY = null; });
   $ai("aiSend").addEventListener("click", aiSend);
 }
 
