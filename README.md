@@ -71,7 +71,20 @@ python scripts/build_report.py      "233411 Electronics Engineer"   # -> output/
 这里一分都不碰——所以 schema 只抽职位、职责、专业，不抽年龄/英语/配偶。
 抽得少 = 离开浏览器的内容少 + 调用快。
 
-页面本身不含模型，调用**用户自己填的端点**（端点/密钥只存 localStorage）。
+页面本身不含模型，调用**用户自己填的服务**（端点/密钥只存 localStorage，
+按服务商分开保存）。内置预设：本机 OpenAI 兼容、DeepSeek、Anthropic、OpenRouter、自定义。
+
+**Anthropic 和其余几家不是一个协议**，`aiWireBody()` / `aiWireRead()` 负责适配：
+`/v1/messages` 而非 `/v1/chat/completions`；`x-api-key` 而非 `Authorization: Bearer`；
+`system` 是顶层字段而非一条 message；响应在 `content[]` 里而非 `choices[0].message`；
+结构化输出用 `output_config.format`。还必须带 `anthropic-dangerous-direct-browser-access: true`
+——实测不带这个头，浏览器预检直接 400。
+
+结构化输出会**逐级降级**：json_schema → json_object → 无约束，因为不是所有
+OpenAI 兼容服务都支持 schema，而解析器本来就容忍 JSON 外的杂文。
+
+已实测各家的浏览器跨域：DeepSeek、OpenAI、OpenRouter、Kimi 都回 CORS 头；
+Anthropic 需上述 opt-in 头。
 候选职业**只会从 SkillSelect 在册的 492 个里选**——模型编出来的名字直接丢弃。
 名称匹配要求**全词命中**，否则 "Software Engineer" 会把所有 ...Engineer 都拉进来。
 

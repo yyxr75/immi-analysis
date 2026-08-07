@@ -8,26 +8,134 @@
    This is not hypothetical: on the first trial run the model turned "born 1996"
    into age 27 and graded PTE 79 as Proficient when it is Superior. Both are
    conversions, and both are now done here instead. */
-const AI_KEY = "immi.ai.cfg.v1";
-let AICFG = { endpoint: "", model: "", key: "" };
-let AI_RESULT = null, AI_BODY = null, AI_RAW = "";
+const AI_KEY = "immi.ai.cfg.v2";
+
+/* Providers differ in two ways that matter: the wire format (OpenAI-style
+   /v1/chat/completions vs Anthropic's /v1/messages) and whether the browser is
+   allowed to call them at all. Anthropic requires an explicit opt-in header;
+   without it the preflight 400s. Everything else here speaks OpenAI. */
+const PROVIDERS = {
+  local: { label: "本机 / 局域网（OpenAI 兼容）", api: "openai",
+           base: "http://localhost:8080", models: [],
+           note: "llama.cpp / vLLM / Ollama 等。密钥通常留空。" },
+  deepseek: { label: "DeepSeek", api: "openai",
+              base: "https://api.deepseek.com",
+              models: ["deepseek-chat", "deepseek-reasoner"],
+              note: "官方接口，按量计费。" },
+  anthropic: { label: "Anthropic（Claude）", api: "anthropic",
+               base: "https://api.anthropic.com",
+               models: ["claude-opus-5", "claude-sonnet-5", "claude-haiku-4-5"],
+               note: "浏览器直连需要 anthropic-dangerous-direct-browser-access 头，本页会自动带上。" },
+  openrouter: { label: "OpenRouter", api: "openai",
+                base: "https://openrouter.ai/api",
+                models: ["anthropic/claude-sonnet-5", "deepseek/deepseek-chat"],
+                note: "一个 key 转发到多家模型。" },
+  custom: { label: "自定义（OpenAI 兼容）", api: "openai", base: "", models: [],
+            note: "OpenAI、Kimi、通义等任何 OpenAI 兼容服务填这里。" },
+};
+
+let AICFG = { provider: "local", profiles: {} };
+const aiProv = () => PROVIDERS[AICFG.provider] || PROVIDERS.custom;
+const aiProf = () => (AICFG.profiles[AICFG.provider] =
+  AICFG.profiles[AICFG.provider] || { endpoint: "", model: "", key: "" });
 
 const $ai = id => document.getElementById(id);
 
 function aiLoadCfg() {
-  try { AICFG = Object.assign(AICFG, JSON.parse(localStorage.getItem(AI_KEY)) || {}); } catch (e) {}
-  ["endpoint", "model", "key"].forEach(k => { const el = $ai("ai" + k[0].toUpperCase() + k.slice(1)); if (el) el.value = AICFG[k] || ""; });
+  try {
+    const raw = JSON.parse(localStorage.getItem(AI_KEY));
+    if (raw && raw.profiles) AICFG = raw;
+    else {
+      // migrate the single-endpoint shape this page shipped with
+      const old = JSON.parse(localStorage.getItem("immi.ai.cfg.v1"));
+      if (old && old.endpoint) AICFG = { provider: "local", profiles: { local: old } };
+    }
+  } catch (e) {}
+  const sel = $ai("aiProvider");
+  if (sel) {
+    if (!sel.childElementCount) {
+      Object.entries(PROVIDERS).forEach(([k, v]) => {
+        const o = document.createElement("option");
+        o.value = k; o.textContent = v.label; sel.appendChild(o);
+      });
+    }
+    sel.value = AICFG.provider;
+  }
+  aiFillProfile();
+}
+function aiFillProfile() {
+  const prof = aiProf(), prov = aiProv();
+  $ai("aiEndpoint").value = prof.endpoint || prov.base || "";
+  $ai("aiModel").value = prof.model || prov.models[0] || "";
+  $ai("aiKey").value = prof.key || "";
+  $ai("aiProvNote").textContent = prov.note || "";
+  const dl = $ai("aiModelList");
+  dl.textContent = "";
+  prov.models.forEach(m => {
+    const o = document.createElement("option"); o.value = m; dl.appendChild(o);
+  });
+  $ai("aiKeyLabel").textContent =
+    AICFG.provider === "local" ? "API Key（本地服务通常留空）" : "API Key";
 }
 function aiSaveCfg() {
-  ["endpoint", "model", "key"].forEach(k => {
-    const el = $ai("ai" + k[0].toUpperCase() + k.slice(1));
-    if (el) AICFG[k] = el.value.trim();
-  });
-  AICFG.endpoint = AICFG.endpoint.replace(/\/+$/, "").replace(/\/v1$/, "");
+  const sel = $ai("aiProvider");
+  if (sel && sel.value) AICFG.provider = sel.value;
+  const prof = aiProf();
+  prof.endpoint = ($ai("aiEndpoint").value || "").trim()
+    .replace(/\/+$/, "").replace(/\/v1$/, "");
+  prof.model = ($ai("aiModel").value || "").trim();
+  prof.key = ($ai("aiKey").value || "").trim();
   try { localStorage.setItem(AI_KEY, JSON.stringify(AICFG)); } catch (e) {}
 }
-const aiHeaders = () => Object.assign({ "Content-Type": "application/json" },
-  AICFG.key ? { Authorization: "Bearer " + AICFG.key } : {});
+
+/* ---- the two wire formats ---- */
+function aiHeaders() {
+  const prof = aiProf();
+  if (aiProv().api === "anthropic") {
+    return { "content-type": "application/json",
+             "x-api-key": prof.key || "",
+             "anthropic-version": "2023-06-01",
+             // without this the browser preflight is rejected outright
+             "anthropic-dangerous-direct-browser-access": "true" };
+  }
+  return Object.assign({ "Content-Type": "application/json" },
+    prof.key ? { Authorization: "Bearer " + prof.key } : {});
+}
+const aiChatUrl = () => aiProf().endpoint +
+  (aiProv().api === "anthropic" ? "/v1/messages" : "/v1/chat/completions");
+const aiModelsUrl = () => aiProf().endpoint + "/v1/models";
+
+/* Build the provider's own request shape from one neutral description. */
+function aiWireBody({ model, system, user, schema, maxTokens }) {
+  if (aiProv().api === "anthropic") {
+    return { model, max_tokens: maxTokens, system,
+             messages: [{ role: "user", content: user }],
+             output_config: { format: { type: "json_schema", schema } } };
+  }
+  return { model, max_tokens: maxTokens, temperature: 0.2,
+           response_format: { type: "json_schema",
+             json_schema: { name: "occupation_match", strict: true, schema } },
+           messages: [{ role: "system", content: system },
+                      { role: "user", content: user }] };
+}
+
+/* Pull text, reasoning and usage out of either response shape. */
+function aiWireRead(d) {
+  if (aiProv().api === "anthropic") {
+    if (d.stop_reason === "refusal") {
+      throw new Error("模型基于安全策略拒绝了这次请求（stop_reason=refusal）");
+    }
+    const blocks = d.content || [];
+    return { text: blocks.filter(b => b.type === "text").map(b => b.text).join(""),
+             think: blocks.filter(b => b.type === "thinking").map(b => b.thinking || "").join(""),
+             tokens: d.usage && d.usage.output_tokens,
+             finish: d.stop_reason };
+  }
+  const msg = (d.choices && d.choices[0] && d.choices[0].message) || {};
+  return { text: msg.content || "", think: msg.reasoning_content || "",
+           tokens: d.usage && d.usage.completion_tokens,
+           finish: d.choices && d.choices[0] && d.choices[0].finish_reason };
+}
 
 /* A page served over https cannot fetch an http endpoint -- browsers block
    active mixed content outright, with no user override. Say so up front
@@ -35,38 +143,36 @@ const aiHeaders = () => Object.assign({ "Content-Type": "application/json" },
 function aiEnvCheck() {
   const w = $ai("aiEnvWarn");
   if (!w) return;
+  const ep = aiProf().endpoint || aiProv().base || "";
   const httpsPage = location.protocol === "https:";
-  const httpEp = /^http:\/\//i.test(AICFG.endpoint || "");
+  const httpEp = /^http:\/\//i.test(ep);
   if (httpsPage && httpEp) {
-    w.hidden = false;
-    w.textContent = "";
+    w.hidden = false; w.textContent = "";
     const b = document.createElement("b");
     b.textContent = "这个页面走 https，而端点是 http —— 浏览器会直接拦截，无法绕过。";
     w.append(b, document.createTextNode(
-      "要么在本机用 http 打开本站（例如 python -m http.server），要么给端点套一层 HTTPS（如 Cloudflare Tunnel）。" +
-      "另外公网访客也连不到局域网地址。"));
-  } else if (httpsPage && !AICFG.endpoint) {
-    w.hidden = false;
-    w.textContent = "提示：本页通过 https 打开，只能连 https 端点。局域网里的 http 服务需要在本机用 http 打开本站才能调用。";
+      "本机模型请在本机用 http 打开本站（例如 python -m http.server），" +
+      "或改用上面的云端服务商——它们都是 https。"));
   } else { w.hidden = true; }
 }
 
 async function aiTest() {
-  aiSaveCfg(); aiEnvCheck();
-  const out = $ai("aiTestOut");
-  if (!AICFG.endpoint) { out.textContent = "先填端点地址。"; return; }
+  aiSaveCfg(); aiEnvCheck(); aiFillProfile();
+  const out = $ai("aiTestOut"), prof = aiProf();
+  if (!prof.endpoint) { out.textContent = "先填端点地址。"; return; }
   out.textContent = "连接中…";
   try {
-    const r = await fetch(AICFG.endpoint + "/v1/models", { headers: aiHeaders() });
-    if (!r.ok) throw new Error("HTTP " + r.status);
+    const r = await fetch(aiModelsUrl(), { headers: aiHeaders() });
+    if (!r.ok) throw new Error("HTTP " + r.status + " " + (await r.text()).slice(0, 160));
     const d = await r.json();
     const ids = (d.data || d.models || []).map(m => m.id || m.name).filter(Boolean);
-    if (!AICFG.model && ids.length) { AICFG.model = ids[0]; $ai("aiModel").value = ids[0]; aiSaveCfg(); }
-    out.textContent = `连接成功。可用模型：${ids.join("、") || "（服务未列出）"}。当前使用：${AICFG.model || "未指定"}`;
+    out.textContent = `连接成功。当前模型：${prof.model || "（未填）"}。` +
+      (ids.length ? `服务列出 ${ids.length} 个模型，例如：${ids.slice(0, 6).join("、")}` : "");
   } catch (e) {
-    out.textContent = `连接失败：${e.message}。` + (location.protocol === "https:"
+    out.textContent = `连接失败：${e.message}。` + (location.protocol === "https:" &&
+      /^http:\/\//i.test(prof.endpoint)
       ? "本页是 https，无法调用 http 端点——这是最常见的原因。"
-      : "检查端点是否可达、是否允许跨域（服务端需回 Access-Control-Allow-Origin）。");
+      : "检查端点、密钥，以及该服务是否允许浏览器跨域调用。");
   }
 }
 
@@ -254,62 +360,79 @@ function aiBuildBody() {
   const { text, summary } = aiRedact(raw);
   $ai("aiRedactStat").textContent =
     `原文 ${raw.length} 字，脱敏后 ${text.length} 字。本地移除：${summary}。`;
-  AI_BODY = {
-    model: AICFG.model || "",
-    max_tokens: 3000,
-    temperature: 0.2,
-    response_format: { type: "json_schema",
-      json_schema: { name: "occupation_match", strict: true, schema: AI_SCHEMA } },
-    messages: [{ role: "system", content: AI_SYSTEM },
-               { role: "user", content: text }],
-  };
+  AI_BODY = aiWireBody({ model: aiProf().model, system: AI_SYSTEM, user: text,
+                         schema: AI_SCHEMA, maxTokens: 8000 });
   const pre = document.createElement("pre");
   pre.style.cssText = "white-space:pre-wrap;word-break:break-word;font-size:11.5px;margin:0;padding:10px";
-  pre.textContent = JSON.stringify(AI_BODY, null, 2);
+  pre.textContent = `POST ${aiChatUrl()}\n` +
+    Object.keys(aiHeaders()).map(k => k + ": " +
+      (/key|authorization/i.test(k) ? "（密钥已隐去）" : aiHeaders()[k])).join("\n") +
+    "\n\n" + JSON.stringify(AI_BODY, null, 2);
   const w = $ai("aiBody"); w.textContent = ""; w.appendChild(pre);
   return AI_BODY;
 }
 
 async function aiSend() {
   aiSaveCfg(); aiEnvCheck();
-  const stat = $ai("aiSendStat");
-  if (!AICFG.endpoint) { stat.textContent = "先在第 1 步填端点。"; return; }
+  const stat = $ai("aiSendStat"), prof = aiProf();
+  if (!prof.endpoint) { stat.textContent = "先在第 1 步填端点。"; return; }
+  if (!prof.model) { stat.textContent = "先在第 1 步填模型名。"; return; }
   if (!($ai("aiRaw").value || "").trim()) { stat.textContent = "第 2 步还没有简历正文。"; return; }
   const body = AI_BODY || aiBuildBody();
-  stat.textContent = "已发送，等待模型返回（思考模型可能需要几十秒）…";
+  stat.textContent = `已发送到 ${aiProv().label}，等待返回（思考模型可能需要几十秒）…`;
   const t0 = Date.now();
+
+  // Not every OpenAI-compatible service accepts a json_schema; step down rather
+  // than fail, since the parser already tolerates prose around the JSON.
+  const attempts = [body];
+  if (aiProv().api === "openai") {
+    attempts.push(Object.assign({}, body, { response_format: { type: "json_object" } }));
+    const bare = Object.assign({}, body); delete bare.response_format;
+    attempts.push(bare);
+  } else {
+    const bare = Object.assign({}, body); delete bare.output_config;
+    attempts.push(bare);
+  }
+
   try {
-    const r = await fetch(AICFG.endpoint + "/v1/chat/completions",
-      { method: "POST", headers: aiHeaders(), body: JSON.stringify(body) });
-    if (!r.ok) throw new Error("HTTP " + r.status + " " + (await r.text()).slice(0, 200));
-    const d = await r.json();
-    const msg = (d.choices && d.choices[0] && d.choices[0].message) || {};
-    AI_RAW = msg.content || "";
+    let d = null, lastErr = "";
+    for (let i = 0; i < attempts.length; i++) {
+      const r = await fetch(aiChatUrl(),
+        { method: "POST", headers: aiHeaders(), body: JSON.stringify(attempts[i]) });
+      if (r.ok) { d = await r.json(); if (i) stat.textContent = "（该服务不支持结构化输出，已降级重试）"; break; }
+      lastErr = "HTTP " + r.status + " " + (await r.text()).slice(0, 200);
+      // only a schema-shaped complaint is worth retrying
+      if (r.status !== 400 || !/format|schema|response_format|output_config/i.test(lastErr)) break;
+    }
+    if (!d) throw new Error(lastErr || "请求失败");
+
+    const got = aiWireRead(d);
+    AI_RAW = got.text;
     let parsed;
     try { parsed = JSON.parse(AI_RAW); }
     catch (e) {
       const m = AI_RAW.match(/\{[\s\S]*\}/);          // tolerate fences or stray prose
       if (!m) throw new Error(AI_RAW
-        ? "模型返回的不是 JSON（finish_reason=" + (d.choices[0].finish_reason || "?") + "）"
-        : "模型返回了空内容（finish_reason=" + (d.choices[0].finish_reason || "?") +
-          "，思考模型可能把 token 用在了推理上，可提高 max_tokens）");
+        ? "模型返回的不是 JSON（finish=" + (got.finish || "?") + "）"
+        : "模型返回了空内容（finish=" + (got.finish || "?") +
+          "，思考模型可能把 token 用在了推理上，可换个模型或提高上限）");
       parsed = JSON.parse(m[0]);
     }
     AI_RESULT = parsed;
     stat.textContent = `完成，用时 ${((Date.now() - t0) / 1000).toFixed(1)} 秒` +
-      (d.usage ? `，${d.usage.completion_tokens} tokens` : "") + "。";
-    aiShowRaw(AI_RAW, msg.reasoning_content || "");
+      (got.tokens ? `，${got.tokens} tokens` : "") + `（${aiProv().label} · ${prof.model}）。`;
+    aiShowRaw(AI_RAW, got.think);
     aiRenderResult(parsed);
   } catch (e) {
     // A network-level failure surfaces as a bare "Failed to fetch" with no
     // detail available to script, so spell out what actually causes it.
     stat.textContent = e instanceof TypeError
       ? `连不上端点（${e.message}）。常见原因：` +
-        (location.protocol === "https:"
-          ? "① 本页是 https，调不了 http 端点——请在本机用 http 打开本站；"
+        (location.protocol === "https:" && /^http:\/\//i.test(prof.endpoint)
+          ? "① 本页是 https，调不了 http 端点——请在本机用 http 打开本站，或改用云端服务商；"
           : "① 端点地址写错，或服务没在跑；") +
-        "② 服务未允许跨域（需回 Access-Control-Allow-Origin）；" +
-        "③ 服务正忙于上一次生成，槽位占满时新连接会被直接拒绝——等它跑完再试。"
+        "② 该服务不允许浏览器跨域调用；" +
+        "③ 本地模型正忙于上一次生成，槽位占满时新连接会被直接拒绝——等它跑完再试。"
       : "失败：" + e.message;
   }
 }
@@ -399,14 +522,21 @@ function aiInit() {
   ["aiEndpoint", "aiModel", "aiKey"].forEach(id => {
     const el = $ai(id); if (!el) return;
     el.dataset.wired = "1";
-    el.addEventListener("change", () => { aiSaveCfg(); aiEnvCheck(); });
+    el.addEventListener("change", () => { aiSaveCfg(); aiEnvCheck(); AI_BODY = null; });
+  });
+  $ai("aiProvider").addEventListener("change", () => {
+    AICFG.provider = $ai("aiProvider").value;
+    AI_BODY = null;
+    aiFillProfile(); aiSaveCfg(); aiEnvCheck();
+    $ai("aiTestOut").textContent = "";
   });
   $ai("aiTest").addEventListener("click", aiTest);
   $ai("aiForget").addEventListener("click", () => {
-    try { localStorage.removeItem(AI_KEY); } catch (e) {}
-    AICFG = { endpoint: "", model: "", key: "" };
-    ["aiEndpoint", "aiModel", "aiKey"].forEach(id => { const e = $ai(id); if (e) e.value = ""; });
-    $ai("aiTestOut").textContent = "已清除。";
+    AICFG.profiles = {};
+    try { localStorage.setItem(AI_KEY, JSON.stringify(AICFG));
+          localStorage.removeItem("immi.ai.cfg.v1"); } catch (e) {}
+    aiFillProfile();
+    $ai("aiTestOut").textContent = "已清除本机保存的所有服务商端点与密钥。";
     aiEnvCheck();
   });
   $ai("aiPick").addEventListener("click", () => $ai("aiFile").click());
