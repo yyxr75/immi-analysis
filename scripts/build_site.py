@@ -171,6 +171,9 @@ PICKER_JS = """
     .then(r => r.json())
     .then(idx => {
       INDEX = idx;
+      // the AI view matches occupation guesses against this list, and it lives
+      // outside this IIFE
+      window.OCC_INDEX = idx;
       const want = parseHash().code;
       current = INDEX.some(o => o.code === want) ? want : INDEX[0].code;
       fill(INDEX);
