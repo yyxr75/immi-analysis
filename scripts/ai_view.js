@@ -216,66 +216,38 @@ function aiRedact(t) {
   return { text: t.trim(), summary };
 }
 
-/* ---------- the request ---------- */
+/* ---------- the request ----------
+   Scoring lives on the points page, so this asks for one thing only: which
+   ANZSCO occupation the CV describes. That is the fuzzy-matching job a model is
+   actually good at, and narrowing the schema means less of the CV's meaning
+   leaves the browser and the call returns in a fraction of the time. */
 const AI_SCHEMA = {
   type: "object", additionalProperties: false,
-  required: ["birthYear", "englishTests", "employment", "education", "partner",
-             "professionalYear", "naatiCredential", "regionalStudy",
-             "specialistEducation", "anzscoGuess", "evidence"],
+  required: ["jobTitles", "keyDuties", "fieldOfStudy", "candidates"],
   properties: {
-    birthYear: { type: ["integer", "null"] },
-    englishTests: { type: "array", items: { type: "object", additionalProperties: false,
-      required: ["test", "overall"],
-      properties: { test: { type: "string", enum: ["IELTS", "PTE", "TOEFL", "CAE", "OET", "other"] },
-                    overall: { type: ["number", "null"] } } } },
-    employment: { type: "array", items: { type: "object", additionalProperties: false,
-      required: ["title", "start", "end", "country", "countryEvidence", "relatedToMainOccupation"],
+    jobTitles: { type: "array", items: { type: "string" } },
+    keyDuties: { type: "array", items: { type: "string" } },
+    fieldOfStudy: { type: ["string", "null"] },
+    candidates: { type: "array", items: { type: "object", additionalProperties: false,
+      required: ["name", "code", "why"],
       properties: {
-        title: { type: "string" },
-        start: { type: ["string", "null"] },            // "YYYY-MM"
-        end:   { type: ["string", "null"] },            // "YYYY-MM" or "present"
-        country: { type: "string", enum: ["australia", "overseas", "unknown"] },
-        countryEvidence: { type: "string" },
-        relatedToMainOccupation: { type: ["boolean", "null"] } } } },
-    education: { type: "array", items: { type: "object", additionalProperties: false,
-      required: ["level", "country", "countryEvidence", "start", "end"],
-      properties: {
-        level: { type: "string", enum: ["doctorate", "masters", "bachelor", "diploma", "trade", "other"] },
-        country: { type: "string", enum: ["australia", "overseas", "unknown"] },
-        countryEvidence: { type: "string" },
-        start: { type: ["string", "null"] }, end: { type: ["string", "null"] } } } },
-    partner: { type: "object", additionalProperties: false,
-      required: ["hasPartner", "partnerIsAuPrOrCitizen", "partnerHasSkillsAssessment", "partnerCompetentEnglish"],
-      properties: { hasPartner: { type: ["boolean", "null"] },
-                    partnerIsAuPrOrCitizen: { type: ["boolean", "null"] },
-                    partnerHasSkillsAssessment: { type: ["boolean", "null"] },
-                    partnerCompetentEnglish: { type: ["boolean", "null"] } } },
-    professionalYear: { type: ["boolean", "null"] },
-    naatiCredential: { type: ["boolean", "null"] },
-    regionalStudy: { type: ["boolean", "null"] },
-    specialistEducation: { type: ["boolean", "null"] },
-    anzscoGuess: { type: "object", additionalProperties: false, required: ["name"],
-      properties: { name: { type: "string" }, code: { type: ["string", "null"] } } },
-    evidence: { type: "object", additionalProperties: true },
+        name: { type: "string" },              // ANZSCO English title
+        code: { type: ["string", "null"] },     // six digits, or null
+        why:  { type: "string" } } } },
   },
 };
 
 const AI_SYSTEM =
-  "你是一个简历信息抽取器。只输出 JSON，不要解释。\n" +
-  "核心规则：只记录简历中**写出来的**信息，原样填写。所有计算由调用方完成，你不要算。\n" +
-  "- birthYear：出生年份四位数。**不要算年龄。**没写填 null。\n" +
-  "- englishTests：考试名与总分原值。**不要判断属于哪个英语等级。**\n" +
-  "- employment / education 的 country 指这段经历**发生在哪个国家**，不是申请目标国。\n" +
-  "  澳洲以外的任何国家（中国、印度、英国……）一律填 overseas。\n" +
-  "  只有简历明确说明在澳洲境内工作或就读时才填 australia。看不出来填 unknown。\n" +
-  "  countryEvidence 必须引用你据以判断国别的原文；引不出原文就填空字符串。\n" +
-  "  注意：配偶是澳洲 PR、或本人正在申请澳洲签证，都**不能**说明本人在澳洲工作或学习过。\n" +
-  "- start / end 用 \"YYYY-MM\"，在职写 \"present\"。**不要算工作了多少个月或多少年。**\n" +
-  "- education：每段学历一条，level 取最接近的层次。\n" +
-  "- partner：分别回答有无配偶、配偶是否澳洲 PR/公民、配偶是否有职业评估、配偶是否有 competent English。\n" +
-  "- 其余布尔字段没有明确证据时填 null，不要猜 false。\n" +
-  "- anzscoGuess.name 填最贴近的澳洲 ANZSCO 职业**英文名**；code 不确定填 null，不要填 \"unknown\"。\n" +
-  "- evidence：为每个非空字段附简历原文片段（20 字以内）。";
+  "你的任务只有一个：判断这份简历对应澳洲 ANZSCO 职业清单里的哪个职业。只输出 JSON，不要解释。\n" +
+  "- jobTitles：简历里**原文写出的**职位名称，原样照抄，不要翻译改写。\n" +
+  "- keyDuties：最能体现职业性质的职责关键词，3–8 条，尽量短。\n" +
+  "- fieldOfStudy：所学专业；没写填 null。\n" +
+  "- candidates：1–4 个最可能的 ANZSCO 职业，按可能性从高到低。\n" +
+  "  name 必须是澳洲 ANZSCO 清单上的**英文职业名**（例如 Software Engineer、" +
+  "Developer Programmer、ICT Business Analyst）。\n" +
+  "  code 是六位数字代码；不确定就填 null，**不要瞎编，也不要填 \"unknown\"**。\n" +
+  "  why 用一句中文说明依据，引用简历里的职责或专业。\n" +
+  "- 不要输出年龄、英语成绩、工作年限、配偶等信息——这些本工具在别处处理，这里不需要。";
 
 function aiBuildBody() {
   const raw = $ai("aiRaw").value || "";
@@ -284,19 +256,17 @@ function aiBuildBody() {
     `原文 ${raw.length} 字，脱敏后 ${text.length} 字。本地移除：${summary}。`;
   AI_BODY = {
     model: AICFG.model || "",
-    max_tokens: 6000,
+    max_tokens: 3000,
     temperature: 0.2,
     response_format: { type: "json_schema",
-      json_schema: { name: "cv_extract", strict: true, schema: AI_SCHEMA } },
+      json_schema: { name: "occupation_match", strict: true, schema: AI_SCHEMA } },
     messages: [{ role: "system", content: AI_SYSTEM },
                { role: "user", content: text }],
   };
   const pre = document.createElement("pre");
   pre.style.cssText = "white-space:pre-wrap;word-break:break-word;font-size:11.5px;margin:0;padding:10px";
   pre.textContent = JSON.stringify(AI_BODY, null, 2);
-  const w = $ai("aiBody"); w.textContent = ""; w.appendChild(pre); w.classList.add("on");
-  const btn = document.querySelector('[data-t="aiBody"]');
-  if (btn) btn.textContent = "收起完整请求体";
+  const w = $ai("aiBody"); w.textContent = ""; w.appendChild(pre);
   return AI_BODY;
 }
 
@@ -327,11 +297,20 @@ async function aiSend() {
     }
     AI_RESULT = parsed;
     stat.textContent = `完成，用时 ${((Date.now() - t0) / 1000).toFixed(1)} 秒` +
-      (d.usage ? `，${d.usage.completion_tokens} tokens` : "") + "。请核对第 4 步的每一行。";
+      (d.usage ? `，${d.usage.completion_tokens} tokens` : "") + "。";
     aiShowRaw(AI_RAW, msg.reasoning_content || "");
     aiRenderResult(parsed);
   } catch (e) {
-    stat.textContent = "失败：" + e.message;
+    // A network-level failure surfaces as a bare "Failed to fetch" with no
+    // detail available to script, so spell out what actually causes it.
+    stat.textContent = e instanceof TypeError
+      ? `连不上端点（${e.message}）。常见原因：` +
+        (location.protocol === "https:"
+          ? "① 本页是 https，调不了 http 端点——请在本机用 http 打开本站；"
+          : "① 端点地址写错，或服务没在跑；") +
+        "② 服务未允许跨域（需回 Access-Control-Allow-Origin）；" +
+        "③ 服务正忙于上一次生成，槽位占满时新连接会被直接拒绝——等它跑完再试。"
+      : "失败：" + e.message;
   }
 }
 
@@ -346,198 +325,72 @@ function aiShowRaw(raw, think) {
   put("aiRawOut", raw); put("aiThink", think);
 }
 
-/* ---------- every conversion below is local and checkable ---------- */
-// English thresholds live in a ministerial instrument, not Schedule 6D, so the
-// mapped level is presented as a suggestion the user confirms.
-const ENGLISH_TABLE = {
-  IELTS: [[8, 2], [7, 1], [6, 0]],      // [minimum overall, calculator option index]
-  PTE:   [[79, 2], [65, 1], [50, 0]],
-  TOEFL: [[94, 2], [79, 1], [60, 0]],
-  CAE:   [[200, 2], [185, 1], [169, 0]],
-};
-function aiEnglishIdx(tests) {
-  let best = 0, note = "简历未见英语成绩，按 Competent 处理";
-  (tests || []).forEach(t => {
-    const tbl = ENGLISH_TABLE[t.test];
-    if (!tbl || t.overall == null) return;
-    for (const [min, idx] of tbl) {
-      if (t.overall >= min) {
-        if (idx >= best) { best = idx; note = `${t.test} ${t.overall} → 本地按分数换算`; }
-        break;
-      }
-    }
-  });
-  return { idx: best, note };
-}
-
-/* the model only ever reports start/end; the arithmetic is here */
-const ymToMonths = v => {
-  if (!v) return null;
-  if (/^present$/i.test(v) || /至今|现在/.test(v)) {
-    const n = new Date(); return n.getFullYear() * 12 + n.getMonth();
-  }
-  const m = String(v).match(/(\d{4})\D*(\d{1,2})?/);
-  if (!m) return null;
-  return (+m[1]) * 12 + (m[2] ? +m[2] - 1 : 0);
-};
-function aiWorkMonths(employment) {
-  // Schedule 6D.3/6D.4 count only the 10 years before the invitation
-  const now = new Date(), cutoff = now.getFullYear() * 12 + now.getMonth() - 120;
-  const acc = { australia: 0, overseas: 0, unknown: 0 }, spans = [];
-  (employment || []).forEach(e => {
-    if (e.relatedToMainOccupation === false) return;   // null counts, false does not
-    let a = ymToMonths(e.start), b = ymToMonths(e.end);
-    if (a == null) return;
-    if (b == null) b = now.getFullYear() * 12 + now.getMonth();
-    a = Math.max(a, cutoff);
-    const n = Math.max(0, b - a);
-    acc[e.country in acc ? e.country : "unknown"] += n;
-    spans.push(`${e.title || "?"} ${e.start || "?"}~${e.end || "至今"} ${n} 个月`);
-  });
-  return { au: acc.australia, os: acc.overseas + acc.unknown, spans,
-           hasUnknown: acc.unknown > 0 };
-}
-const bracket = (months, cuts) => {
-  let i = 0;
-  cuts.forEach((c, k) => { if (months >= c) i = k + 1; });
-  return i;
-};
-
-function aiMap(x) {
-  const rows = [], set = {};
-  const ev = k => (x.evidence && x.evidence[k]) ? String(x.evidence[k]).slice(0, 40) : "—";
-  const push = (key, label, idx, note, evidence) => {
-    set[key] = idx;
-    const f = RULES.fields.find(f => f.key === key);
-    rows.push([label, f ? f.options[idx].t : "-", note, evidence || "—"]);
-  };
-
-  // age -- computed here from a birth year, never taken from the model
-  let ageIdx = 0, ageNote = "简历未见出生年份，按 0 分处理";
-  if (x.birthYear) {
-    const age = new Date().getFullYear() - x.birthYear;
-    ageIdx = age >= 18 && age < 25 ? 1 : age >= 25 && age < 33 ? 2
-           : age >= 33 && age < 40 ? 3 : age >= 40 && age < 45 ? 4 : 0;
-    ageNote = `${x.birthYear} 年生 → 约 ${age} 岁（本地计算；法规按收到邀请时的年龄）`;
-  }
-  push("age", "年龄", ageIdx, ageNote, ev("birthYear"));
-
-  const en = aiEnglishIdx(x.englishTests);
-  push("english", "英语能力", en.idx,
-       en.note + "　※等级门槛出自部长令而非 Schedule 6D，请自行核对", ev("englishTests"));
-
-  const w = aiWorkMonths(x.employment);
-  const cn = { australia: "澳洲", overseas: "海外", unknown: "国别未知" };
-  const empEv = (x.employment || []).map(e =>
-    `${e.title || "?"}（${cn[e.country] || "?"}${e.countryEvidence ? "：" + e.countryEvidence : "：无原文依据"}）`)
-    .join("；").slice(0, 80) || ev("employment");
-  push("expOs", "海外技术工作经验", bracket(w.os, [36, 60, 96]),
-       `本地按起止日期累计 ${w.os} 个月（只计近 10 年）` + (w.hasUnknown ? "；国别未知的按海外计" : ""),
-       empEv);
-  push("expAu", "澳洲技术工作经验", bracket(w.au, [12, 36, 60, 96]),
-       `本地累计 ${w.au} 个月（只计近 10 年）`, empEv);
-
-  // highest qualification wins; 6D71-75 do not stack
-  const rank = { doctorate: 4, masters: 3, bachelor: 3, diploma: 2, trade: 2, other: 1 };
-  let bestEdu = null;
-  (x.education || []).forEach(e => {
-    if (!bestEdu || (rank[e.level] || 0) > (rank[bestEdu.level] || 0)) bestEdu = e;
-  });
-  let eduIdx = 0, eduNote = "简历未见学历";
-  if (bestEdu) {
-    const inAu = bestEdu.country === "australia";
-    eduIdx = bestEdu.level === "doctorate" ? 1
-           : (bestEdu.level === "masters" || bestEdu.level === "bachelor") ? 2
-           : (bestEdu.level === "diploma" || bestEdu.level === "trade") ? (inAu ? 3 : 4) : 4;
-    eduNote = `最高学历 ${bestEdu.level}${inAu ? "（澳洲）" : bestEdu.country === "overseas" ? "（海外）" : "（国别未知）"}` +
-              " → Schedule 6D.7 取最高一项，不叠加";
-  }
-  push("edu", "学历", eduIdx, eduNote,
-       bestEdu ? `${bestEdu.level}（${cn[bestEdu.country] || "?"}${bestEdu.countryEvidence ? "：" + bestEdu.countryEvidence : "：无原文依据"}）`
-               : ev("education"));
-
-  // Australian study requirement: roughly two academic years of study in Australia
-  let auStudyMonths = 0;
-  (x.education || []).forEach(e => {
-    if (e.country !== "australia") return;
-    const a = ymToMonths(e.start), b = ymToMonths(e.end);
-    if (a != null && b != null) auStudyMonths += Math.max(0, b - a);
-  });
-  push("auStudy", "澳洲学习要求", auStudyMonths >= 16 ? 1 : 0,
-       auStudyMonths ? `澳洲学习约 ${auStudyMonths} 个月（要求约 2 学年 / 16 个月）`
-                     : "简历未见澳洲学历，按不满足处理", ev("education"));
-
-  push("spec", "专业教育资格", x.specialistEducation === true ? 1 : 0,
-       x.specialistEducation == null ? "简历未提及，按无处理" : "", ev("specialistEducation"));
-  push("py", "职业年", x.professionalYear === true ? 1 : 0,
-       x.professionalYear == null ? "简历未提及" : "", ev("professionalYear"));
-  push("lang", "社区语言", x.naatiCredential === true ? 1 : 0,
-       x.naatiCredential == null ? "简历未提及" : "", ev("naatiCredential"));
-  push("regional", "偏远地区学习", x.regionalStudy === true ? 1 : 0,
-       x.regionalStudy == null ? "简历未提及" : "", ev("regionalStudy"));
-
-  // 6D111 / 6D112 / 6D113 are mutually exclusive
-  const p = x.partner || {};
-  let pIdx = 0, pNote = "简历未提及配偶情况，按不加分处理";
-  if (p.hasPartner === false) { pIdx = 1; pNote = "单身 → 6D112"; }
-  else if (p.partnerIsAuPrOrCitizen === true) { pIdx = 1; pNote = "配偶是澳洲 PR / 公民 → 6D112"; }
-  else if (p.partnerHasSkillsAssessment === true && p.partnerCompetentEnglish === true) {
-    pIdx = 2; pNote = "配偶有职业评估且 competent English → 6D111"; }
-  else if (p.partnerCompetentEnglish === true) { pIdx = 3; pNote = "配偶有 competent English → 6D113"; }
-  else if (p.hasPartner === true) { pNote = "有配偶但未见符合条件的证据，按 0 分处理"; }
-  push("partner", "配偶情况", pIdx, pNote, ev("partner"));
-
-  return { rows, set };
-}
-
 function aiRenderResult(x) {
-  const { rows } = aiMap(x);
   $ai("aiResultCard").hidden = false;
-  table("aiFields", ["项目", "本地换算结果", "换算依据", "简历原文（模型引用）"], rows);
 
-  // occupation candidates: matched locally against the site's own index
-  const list = $ai("aiOccList"); list.textContent = "";
-  const guess = ((x.anzscoGuess && x.anzscoGuess.name) || "") + " " +
-    (x.employment || []).map(e => e.title || "").join(" ");
+  const titles = (x.jobTitles || []).join("、") || "（未识别到职位名）";
+  const duties = (x.keyDuties || []).join(" · ");
+  $ai("aiRead").textContent =
+    `简历里的职位：${titles}` +
+    (x.fieldOfStudy ? `　专业：${x.fieldOfStudy}` : "") +
+    (duties ? `\n关键职责：${duties}` : "");
+
+  // Rank by the model's own ordering, but only ever offer occupations that
+  // exist in the SkillSelect index -- a hallucinated title is worse than none.
   const idx = (typeof window !== "undefined" && window.OCC_INDEX) || [];
-  // ANZSCO titles are English, so latin tokens carry the signal; keep short
-  // ones like "ict" too
-  const words = guess.toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length >= 3);
-  const scored = idx.map(o => {
-    const n = o.name.toLowerCase();
-    let sc = words.reduce((a, w) => a + (n.includes(w) ? w.length : 0), 0);
-    const gc = x.anzscoGuess && /^\d{6}$/.test(x.anzscoGuess.code || "") ? x.anzscoGuess.code : null;
-    if (gc && o.code === gc) sc += 100;
-    return { o, sc };
-  }).filter(r => r.sc > 0).sort((a, b) => b.sc - a.sc).slice(0, 6);
+  const seen = new Set(), out = [];
+  const addByCode = (code, why) => {
+    const o = idx.find(o => o.code === code);
+    if (o && !seen.has(o.code)) { seen.add(o.code); out.push({ o, why, how: "代码精确匹配" }); }
+    return !!o;
+  };
+  const addByName = (name, why) => {
+    const words = String(name || "").toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length >= 3);
+    if (!words.length) return;
+    const scored = idx.map(o => {
+      const n = o.name.toLowerCase();
+      const hit = words.filter(w => n.includes(w));
+      return { o, all: hit.length === words.length,
+               sc: hit.reduce((a, w) => a + w.length, 0) };
+    }).filter(r => r.sc > 0);
+    // "Software Engineer" partially matches every ...Engineer in the list, so
+    // prefer entries containing every word; only fall back to a single best
+    // partial match when nothing matches in full.
+    const full = scored.filter(r => r.all).sort((a, b) => b.sc - a.sc);
+    const pick = full.length ? full.slice(0, 2) : scored.sort((a, b) => b.sc - a.sc).slice(0, 1);
+    pick.forEach(({ o, all }) => {
+      if (!seen.has(o.code)) {
+        seen.add(o.code);
+        out.push({ o, why, how: all ? "名称完全匹配" : "名称部分匹配" });
+      }
+    });
+  };
+  (x.candidates || []).forEach(c => {
+    const code = /^\d{6}$/.test(c.code || "") ? c.code : null;
+    if (!(code && addByCode(code, c.why))) addByName(c.name, c.why);
+  });
 
-  const head = $ai("aiOccHead"), note = $ai("aiOccNote");
-  head.hidden = note.hidden = false;
-  note.textContent = `模型的猜测是「${(x.anzscoGuess && x.anzscoGuess.name) || "未给出"}」` +
-    (x.anzscoGuess && x.anzscoGuess.code ? `（${x.anzscoGuess.code}）` : "") +
-    "。以下候选由本地在 ANZSCO 清单里匹配得出，仅供参考——以职业评估机构的判定为准。";
-  if (!scored.length) {
-    note.textContent += " 本地没有匹配到候选。";
+  const note = $ai("aiOccNote"), list = $ai("aiOccList");
+  list.textContent = "";
+  if (!out.length) {
+    note.textContent = "没有匹配到 SkillSelect 清单里的职业。模型给出的名称是：" +
+      ((x.candidates || []).map(c => c.name).join("、") || "（无）") +
+      "。可以到「职业数据查询」页用搜索框自己找。";
+    return;
   }
-  scored.forEach(({ o }) => {
+  note.textContent = `以下 ${out.length} 个候选都来自 SkillSelect 的 492 个在册职业` +
+    "（模型给的名字如果不在清单里会被丢弃）。点一个即可跳到该职业的数据页——" +
+    "最终以职业评估机构的判定为准。";
+  out.slice(0, 6).forEach(({ o, why, how }) => {
+    const row = document.createElement("div"); row.className = "occrow";
     const b = document.createElement("button");
     b.type = "button"; b.className = "tblbtn nt";
-    b.textContent = `${o.name}（在池 ${fmt(o.pool)}）`;
+    b.textContent = `${o.name}　在池 ${fmt(o.pool)}`;
     b.addEventListener("click", () => { location.hash = "#/data/" + o.code; });
-    list.appendChild(b);
+    const r = document.createElement("span"); r.className = "occwhy";
+    r.textContent = (why || "") + `（${how}）`;
+    row.append(b, r); list.appendChild(row);
   });
-}
-
-function aiApplyToCalc() {
-  if (!AI_RESULT) return;
-  const { set } = aiMap(AI_RESULT);
-  Object.assign(CALC, set);
-  RULES.fields.forEach(f => {
-    const sel = $ai("c_" + f.key);
-    if (sel) sel.value = CALC[f.key] | 0;
-  });
-  renderCalc();
-  setView("points");
 }
 
 function aiInit() {
@@ -571,7 +424,5 @@ function aiInit() {
       $ai("aiFileName").textContent = f.name + " 解析失败：" + err.message;
     }
   });
-  $ai("aiPrep").addEventListener("click", aiBuildBody);
   $ai("aiSend").addEventListener("click", aiSend);
-  $ai("aiApply").addEventListener("click", aiApplyToCalc);
 }
