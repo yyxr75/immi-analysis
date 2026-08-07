@@ -52,8 +52,7 @@ h1 { font-size:clamp(20px,5.2vw,26px); line-height:1.25; margin:0 0 6px; letter-
 .note b { color:var(--ink); font-weight:600; }
 
 .filters { display:flex; flex-wrap:wrap; gap:8px; align-items:center;
-           margin:0 0 20px; padding:10px 0; border-bottom:1px solid var(--hair);
-           position:sticky; top:0; background:var(--plane); z-index:5; }
+           margin:0 0 20px; padding:0 0 14px; border-bottom:1px solid var(--hair); }
 .filters .lab { font-size:12.5px; color:var(--ink2); width:100%; }
 @media (min-width:560px) { .filters .lab { width:auto; margin-right:4px; } }
 .seg { display:flex; flex-wrap:wrap; gap:2px; background:var(--surface);
@@ -123,7 +122,7 @@ th:first-child,td:first-child { text-align:left; }
 .scrollnote { font-size:11.5px; color:var(--muted); margin:8px 0 0; }
 .foot { color:var(--muted); font-size:11.5px; margin-top:26px; line-height:1.7; }
 
-.calc, .card { scroll-margin-top:74px; }
+.calc, .card { scroll-margin-top:70px; }
 .calc { background:var(--surface); border:1px solid var(--hair); border-radius:12px;
         padding:17px 15px 15px; margin-bottom:16px; }
 @media (min-width:700px) { .calc { padding:20px 22px 18px; } }
@@ -147,11 +146,35 @@ th:first-child,td:first-child { text-align:left; }
 .calc .note2 { font-size:11.5px; color:var(--muted); margin:14px 0 0; line-height:1.65; }
 #brk td:last-child, #mrg td:last-child { font-variant-numeric:tabular-nums; }
 #mrg table td.up { font-weight:700; color:var(--ink); }
+
+.tabs { position:sticky; top:0; z-index:6; background:var(--plane);
+        border-bottom:1px solid var(--hair); margin:14px 0 18px;
+        display:flex; gap:2px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.tabs button { font:inherit; font-size:14px; font-weight:600; color:var(--muted);
+               background:transparent; border:0; border-bottom:2px solid transparent;
+               padding:13px 14px 11px; cursor:pointer; white-space:nowrap; min-height:44px; }
+.tabs button:hover { color:var(--ink2); }
+.tabs button:focus-visible { outline:2px solid var(--s1); outline-offset:-2px; }
+.tabs button[aria-pressed="true"] { color:var(--ink); border-bottom-color:var(--s1); }
+.tabs .num { font-variant-numeric:tabular-nums; color:var(--muted); margin-right:6px; font-weight:400; }
+.tabs button[aria-pressed="true"] .num { color:var(--s1); }
+.ctx { font-size:12.5px; color:var(--ink2); background:var(--surface); border:1px solid var(--hair);
+       border-left:3px solid var(--s1); border-radius:0 8px 8px 0; padding:10px 13px; margin:0 0 16px; }
+.soon ul { margin:12px 0 0; padding-left:19px; color:var(--ink2); font-size:13.5px; line-height:1.7; }
+.soon li { margin-bottom:9px; }
+.soon li b { color:var(--ink); }
 </style>
 
 <div class="wrap">
   <!--PICKER-->
   <h1 id="h1">__TITLE__</h1>
+  <nav class="tabs" id="tabs" aria-label="主导航"></nav>
+  <div class="filters">
+    <span class="lab">签证类型</span>
+    <span class="seg" id="visaSeg"></span>
+  </div>
+
+  <div id="view-data">
   <p class="sub" id="sub"></p>
   <p class="src" id="src">数据源：澳大利亚就业与劳资关系部 SkillSelect EOI 公开看板（Qlik 引擎接口）。</p>
 
@@ -167,29 +190,7 @@ th:first-child,td:first-child { text-align:left; }
     </ol>
   </details>
 
-  <div class="filters">
-    <span class="lab">签证类型</span>
-    <span class="seg" id="visaSeg"></span>
-  </div>
-
   <div class="kpis" id="kpis"></div>
-
-  <div class="calc" id="calc">
-    <h2>算一下你的分数</h2>
-    <p class="cap">按 <b>Migration Regulations 1994 Schedule 6D</b> 逐条计算，纯本地运算，不上传任何信息。</p>
-    <p class="hint" id="rulesver"></p>
-    <div class="cgrid" id="cform"></div>
-    <div class="cbtnrow">
-      <button class="tblbtn nt" type="button" id="creset">清空重填</button>
-      <button class="tblbtn" type="button" data-t="brk" data-label="分项明细">分项明细</button>
-    </div>
-    <div class="tblwrap" id="brk"></div>
-    <div class="cscores" id="cscores"></div>
-    <h3 class="sub2" id="mrghead" hidden>再加分的话，获邀率会怎么变</h3>
-    <p class="hint" id="mrgnote" hidden></p>
-    <div class="tblwrap on" id="mrg"></div>
-    <p class="note2" id="calcnote"></p>
-  </div>
 
   <div class="card findings">
     <h2>关键结论</h2>
@@ -261,6 +262,43 @@ th:first-child,td:first-child { text-align:left; }
     <div class="chart"><svg id="c6"></svg></div>
     <button class="tblbtn" data-t="t6">表格视图</button>
     <div class="tblwrap" id="t6"></div>
+  </div>
+
+  </div>
+
+  <div id="view-points" hidden>
+  <p class="ctx" id="pctx"></p>
+  <div class="calc" id="calc">
+    <h2>算一下你的分数</h2>
+    <p class="cap">按 <b>Migration Regulations 1994 Schedule 6D</b> 逐条计算，纯本地运算，不上传任何信息。</p>
+    <p class="hint" id="rulesver"></p>
+    <div class="cgrid" id="cform"></div>
+    <div class="cbtnrow">
+      <button class="tblbtn nt" type="button" id="creset">清空重填</button>
+      <button class="tblbtn" type="button" data-t="brk" data-label="分项明细">分项明细</button>
+    </div>
+    <div class="tblwrap" id="brk"></div>
+    <div class="cscores" id="cscores"></div>
+    <h3 class="sub2" id="mrghead" hidden>再加分的话，获邀率会怎么变</h3>
+    <p class="hint" id="mrgnote" hidden></p>
+    <div class="tblwrap on" id="mrg"></div>
+    <p class="note2" id="calcnote"></p>
+  </div>
+
+  </div>
+
+  <div id="view-ai" hidden>
+    <div class="card soon">
+      <h2>AI 分析 · 尚未实现</h2>
+      <p class="cap">这一页还没做。写在这里是为了说清楚它会是什么，以及不会是什么。</p>
+      <ul>
+        <li><b>简历解析</b>——上传 PDF / Word，在<b>你的浏览器里</b>提取文字，把职位、职责、学历、起止年份整理成表单字段。发送前会把实际要发出去的内容原样列给你看；姓名、联系方式、住址在本地就剥掉，生日只转成年龄。</li>
+        <li><b>职业匹配</b>——把你的实际工作内容对到 ANZSCO 职业代码。这是模型真正擅长的模糊匹配，但只作参考：真正算数的是职业评估机构的判定。</li>
+        <li><b>路径解读</b>——把打分结果、获邀率、边际分析写成一段可读的说明，并列出办理顺序（职业评估 → 英语 → 递交 EOI → 州提名 → 邀请 → 签证申请）。</li>
+      </ul>
+      <p class="warn" style="margin-top:16px"><b>分数永远不会交给模型算。</b>打分表是成文法规（Schedule 6D），让模型算分一定会在边界情况上编数字，而且错了你看不出来。模型只负责「从简历里读出你有 5 年工作经验」这类提取，5 这个数字仍然交给「计算分数」页的确定性引擎换算。</p>
+      <p class="hint" style="margin-top:12px">没做的原因是这个站点是纯静态托管，放不了 API key——需要先加一个无服务器代理并配上防滥用。在那之前，<b>「计算分数」页手动填表能得到完全一样的分数和获邀率结论</b>，只是少了自动填写这一步。</p>
+    </div>
   </div>
 
   <p class="foot" id="foot"></p>
@@ -687,6 +725,65 @@ function chart6() {
 }
 
 
+
+/* ---------- three top-level sections + hash router ----------
+   Hash is #/<view>[/<occupation code>], e.g. #/points/261313.
+   A bare #261313 (the shape shipped before the sections existed) still
+   resolves to the data view for that occupation. */
+const VIEWS = [["data", "职业数据查询"], ["points", "计算分数"], ["ai", "AI 分析"]];
+let curView = "data";
+let curCode = null;                 // set by the site shell; null in a one-occupation build
+
+function parseHash() {
+  const h = location.hash.slice(1).replace(/^\//, "");
+  if (!h) return { view: "data", code: null };
+  const p = h.split("/").filter(Boolean);
+  const isCode = x => /^\d{6}$/.test(x);
+  if (isCode(p[0])) return { view: "data", code: p[0] };          // legacy #261313
+  const view = VIEWS.some(v => v[0] === p[0]) ? p[0] : "data";
+  return { view, code: p[1] && isCode(p[1]) ? p[1] : null };
+}
+const hashFor = (view, code) => "#/" + view + (code ? "/" + code : "");
+
+function setView(name) {
+  if (!VIEWS.some(v => v[0] === name)) name = "data";
+  curView = name;
+  VIEWS.forEach(([k]) => {
+    const el = document.getElementById("view-" + k);
+    if (el) el.hidden = k !== name;
+  });
+  document.querySelectorAll("#tabs button").forEach(b =>
+    b.setAttribute("aria-pressed", b.dataset.v === name));
+  // the visa filter scopes the data and points views; it means nothing on the AI page
+  const f = document.querySelector(".filters");
+  if (f) f.style.display = name === "ai" ? "none" : "";
+  hideTip();
+  const want = hashFor(name, curCode);
+  if (location.hash !== want) history.replaceState(null, "", want);
+  // charts size themselves from their container, so a chart drawn while its
+  // view was hidden would come out zero-width -- draw them on reveal instead
+  if (name === "data" && DATA) renderCharts();
+  if (name === "points" && DATA) renderCalc();
+}
+
+function buildTabs() {
+  const nav = document.getElementById("tabs");
+  if (!nav || nav.childElementCount) return;
+  VIEWS.forEach(([k, label], i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.dataset.v = k;
+    const n = document.createElement("span");
+    n.className = "num"; n.textContent = (i + 1) + ".";
+    b.append(n, document.createTextNode(label));
+    b.addEventListener("click", () => setView(k));
+    nav.appendChild(b);
+  });
+  addEventListener("hashchange", () => {
+    const { view } = parseHash();
+    if (view !== curView) setView(view);
+  });
+}
+
 /* ---------- points calculator ----------
    Rules transcribed item-by-item from Migration Regulations 1994 Schedule 6D,
    compilation registered on legislation.gov.au dated 2026-07-01 (F1996B03551).
@@ -862,6 +959,10 @@ function renderCalc() {
     table("mrg", ["加分项"], [["各项均已达最高档，没有可再加的分。"]]);
   }
 
+  const pc = document.getElementById("pctx");
+  if (pc) pc.textContent =
+    `分数与职业无关，但下面每个分数旁边的「历史获邀率」来自 ${DATA.occupation}。` +
+    `换个职业分数不变、获邀率会变——用上方的职业选择器切换，或到「职业数据查询」页。`;
   document.getElementById("calcnote").textContent =
     "本工具只做算术：按 Schedule 6D 把你的选择换算成分数，再查该职业该分数段的历史获邀率。" +
     "它不预测你的申请结果，也不构成移民建议——职业评估结论以评估机构为准，190/491 还需先获得州/地区提名，" +
@@ -969,8 +1070,12 @@ function kpis() {
 }
 
 /* ---------- boot ---------- */
+function renderCharts() {
+  chart1(); chart2(); chart3(); chart4(); chart5(); chart6();
+}
 function renderAll() {
-  buildCalcForm(); renderCalc(); kpis(); findings(); chart1(); chart2(); chart3(); chart4(); chart5(); chart6();
+  buildCalcForm(); renderCalc(); kpis(); findings();
+  if (curView === "data") renderCharts();
 }
 /* boot(data) is the single entry point: the one-occupation build calls it
    immediately with inlined data, the site shell calls it after each fetch. */
@@ -1007,7 +1112,9 @@ function boot(data) {
   document.querySelectorAll(".tblbtn[data-t]").forEach(b => {
     b.textContent = b.dataset.label || "表格视图";
   });
+  buildTabs();
   renderAll();
+  setView(parseHash().view);
 }
 if (DATA) boot(DATA);
 
@@ -1016,6 +1123,6 @@ addEventListener("resize", () => {
   hideTip();
   if (innerWidth === lastW) return;      // ignore mobile URL-bar height changes
   lastW = innerWidth;
-  clearTimeout(rt); rt = setTimeout(renderAll, 140);
+  clearTimeout(rt); rt = setTimeout(() => { if (curView === "data" && DATA) renderCharts(); }, 140);
 });
 </script>

@@ -26,7 +26,8 @@ def code_of(occ):
     return occ.split(" ", 1)[0]
 
 
-PICKER_HTML = """  <div class="picker">
+PICKER_HTML = """  <div id="report" hidden>
+  <div class="picker">
     <label class="plab" for="occSearch">选择职业（ANZSCO）</label>
     <div class="prow">
       <input type="search" id="occSearch" autocomplete="off"
@@ -34,8 +35,7 @@ PICKER_HTML = """  <div class="picker">
       <select id="occSelect" aria-label="职业列表"></select>
     </div>
     <p class="pstat" id="pstat">正在载入职业列表…</p>
-  </div>
-  <div id="report" hidden>"""
+  </div>"""
 
 PICKER_CSS = """
 .picker { background:var(--surface); border:1px solid var(--hair); border-radius:12px;
@@ -111,14 +111,18 @@ PICKER_JS = """
       const res = await fetch(`data/${code}.json`, { cache: "force-cache" });
       if (!res.ok) throw new Error("HTTP " + res.status);
       const d = await res.json();
-      boot(d);
+      // reveal before boot: charts measure their container, and one drawn while
+      // the panel is still hidden comes out at the fallback width
       report.hidden = false;
+      boot(d);
       report.classList.remove("busy");
       document.title = `${d.occupation} · ${SITE_NAME}`;
       fill(filtered());        // current changed -> drops the placeholder, marks the pick
       stat.className = "pstat";
       stat.textContent = `共 ${fmtN(INDEX.length)} 个职业可选。当前：${hit.name}`;
-      if (location.hash.slice(1) !== code) history.replaceState(null, "", "#" + code);
+      curCode = code;
+      const want = hashFor(curView, code);
+      if (location.hash !== want) history.replaceState(null, "", want);
     } catch (e) {
       report.classList.remove("busy");
       stat.className = "pstat err";
@@ -145,7 +149,7 @@ PICKER_JS = """
     if (list.length && list[0].code !== current) load(list[0].code);
   });
   addEventListener("hashchange", () => {
-    const c = location.hash.slice(1);
+    const c = parseHash().code;
     if (c && c !== current) { current = c; fill(filtered()); load(c); }
   });
 
@@ -166,7 +170,7 @@ PICKER_JS = """
     .then(r => r.json())
     .then(idx => {
       INDEX = idx;
-      const want = location.hash.slice(1);
+      const want = parseHash().code;
       current = INDEX.some(o => o.code === want) ? want : INDEX[0].code;
       fill(INDEX);
       load(current);
