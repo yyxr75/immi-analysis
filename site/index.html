@@ -167,6 +167,13 @@ th:first-child,td:first-child { text-align:left; }
 .soon li { margin-bottom:9px; }
 .soon li b { color:var(--ink); }
 
+h2.occ { font-size:19px; margin:0 0 6px; font-weight:600; letter-spacing:-.01em; }
+.linkbtn { font:inherit; font-size:inherit; color:var(--s1); background:none; border:0;
+           padding:0; cursor:pointer; text-decoration:underline; text-underline-offset:2px; }
+.linkbtn:focus-visible { outline:2px solid var(--s1); outline-offset:2px; border-radius:3px; }
+.ctx.cta { margin:16px 0 0; }
+.ctx b { color:var(--ink); }
+
 .picker { background:var(--surface); border:1px solid var(--hair); border-radius:12px;
           padding:15px 16px; margin:0 0 22px; }
 .plab { display:block; font-size:12.5px; color:var(--ink2); margin-bottom:8px; font-weight:600; }
@@ -189,7 +196,10 @@ th:first-child,td:first-child { text-align:left; }
 
 <div class="wrap">
     <div id="report" hidden>
-  <div class="picker">
+  <h1 id="h1">澳洲技术移民 EOI 数据分析</h1>
+  <nav class="tabs" id="tabs" aria-label="主导航"></nav>
+  <div id="view-data">
+    <div class="picker">
     <label class="plab" for="occSearch">选择职业（ANZSCO）</label>
     <div class="prow">
       <input type="search" id="occSearch" autocomplete="off"
@@ -198,16 +208,16 @@ th:first-child,td:first-child { text-align:left; }
     </div>
     <p class="pstat" id="pstat">正在载入职业列表…</p>
   </div>
-  <h1 id="h1">澳洲技术移民 EOI 数据分析</h1>
-  <nav class="tabs" id="tabs" aria-label="主导航"></nav>
+  <h2 class="occ" id="occTitle"></h2>
+  <p class="sub" id="sub"></p>
+  <p class="src" id="src">数据源：澳大利亚就业与劳资关系部 SkillSelect EOI 公开看板（Qlik 引擎接口）。</p>
+
   <div class="filters">
     <span class="lab">签证类型</span>
     <span class="seg" id="visaSeg"></span>
   </div>
 
-  <div id="view-data">
-  <p class="sub" id="sub"></p>
-  <p class="src" id="src">数据源：澳大利亚就业与劳资关系部 SkillSelect EOI 公开看板（Qlik 引擎接口）。</p>
+  <p class="ctx" id="scoreBanner" hidden></p>
 
   <details class="note">
     <summary>读这份报告前必须知道的 6 件事（口径说明）</summary>
@@ -298,7 +308,6 @@ th:first-child,td:first-child { text-align:left; }
   </div>
 
   <div id="view-points" hidden>
-  <p class="ctx" id="pctx"></p>
   <div class="calc" id="calc">
     <h2>算一下你的分数</h2>
     <p class="cap">按 <b>Migration Regulations 1994 Schedule 6D</b> 逐条计算，纯本地运算，不上传任何信息。</p>
@@ -315,7 +324,8 @@ th:first-child,td:first-child { text-align:left; }
     <div class="tblwrap on" id="mrg"></div>
     <p class="note2" id="calcnote"></p>
   </div>
-
+  <p class="ctx cta">分数本身与职业无关。想知道这个分数在某个职业里的<b>历史获邀率</b>、以及还差多少，
+    到 <button type="button" class="linkbtn" id="toData">「职业数据查询」</button>选一个职业——分数会自动带过去。</p>
   </div>
 
   <div id="view-ai" hidden>
@@ -775,7 +785,8 @@ function parseHash() {
   const view = VIEWS.some(v => v[0] === p[0]) ? p[0] : "data";
   return { view, code: p[1] && isCode(p[1]) ? p[1] : null };
 }
-const hashFor = (view, code) => "#/" + view + (code ? "/" + code : "");
+const hashFor = (view, code) =>
+  "#/" + view + (view === "data" && code ? "/" + code : "");
 
 function setView(name) {
   if (!VIEWS.some(v => v[0] === name)) name = "data";
@@ -796,6 +807,7 @@ function setView(name) {
   // view was hidden would come out zero-width -- draw them on reveal instead
   if (name === "data" && DATA) renderCharts();
   if (name === "points" && DATA) renderCalc();
+  if (name === "data" && DATA) renderScoreBanner();
 }
 
 function buildTabs() {
@@ -876,10 +888,11 @@ const RULES = {
   ],
   // Part 6D.5: overseas + Australian employment points are capped at 20 combined
   employmentCap: 20,
-  visaBonus: { "189": { pts: 0, item: "—" },
-               "190": { pts: 5, item: "6D121" },
-               "491 (州担保)": { pts: 15, item: "6D131" },
-               "491 (亲属担保)": { pts: 15, item: "6D131" } },
+  // the calculator is occupation-free, so it lists the subclasses itself
+  // rather than borrowing whatever visa types one occupation happens to have
+  visas: [ { key: "189", label: "189 独立技术", bonus: 0,  item: "—" },
+           { key: "190", label: "190 州担保",   bonus: 5,  item: "6D121" },
+           { key: "491", label: "491 偏远地区", bonus: 15, item: "6D131" } ],
 };
 const CALC_KEY = "immi.points.v1";
 let CALC = {};
@@ -925,22 +938,16 @@ function renderCalc() {
   document.getElementById("rulesver").textContent =
     `规则依据：${RULES.source} · ${RULES.version}。每项后标注了 Schedule 条目号，可逐条核对。`;
 
-  // ---- the three (or four) visa totals
+  // ---- one card per subclass: base score plus that subclass's nomination points
   const el = document.getElementById("cscores"); el.textContent = "";
-  DATA.visaOrder.forEach(v => {
-    const bonus = (RULES.visaBonus[v] || { pts: 0 }).pts;
-    const score = base.total + bonus;
-    const r = rateAt(v, score);
-    const d = document.createElement("div");
-    d.className = "cscore" + (v === visa ? " sel" : "");
+  RULES.visas.forEach(v => {
+    const d = document.createElement("div"); d.className = "cscore";
     const n = document.createElement("div"); n.className = "n";
-    n.textContent = v + (bonus ? `（含提名 +${bonus}）` : "");
+    n.textContent = v.label + (v.bonus ? `（含提名 +${v.bonus}）` : "");
     const val = document.createElement("div"); val.className = "v";
-    val.textContent = score + " 分";
+    val.textContent = (base.total + v.bonus) + " 分";
     const rr = document.createElement("div"); rr.className = "r";
-    if (!r) rr.textContent = "该分数段无历史样本";
-    else if (r.total < 50) rr.textContent = `历史获邀率 ${r.rate}%（样本仅 ${r.total}，不可靠）`;
-    else rr.textContent = `${r.exact ? "" : r.at + " 分档："}历史获邀率 ${r.rate}%（n=${fmt(r.total)}）`;
+    rr.textContent = v.bonus ? `基础 ${base.total} 分 + Schedule ${v.item}` : `基础分，无提名加分`;
     d.append(n, val, rr); el.appendChild(d);
   });
 
@@ -950,56 +957,69 @@ function renderCalc() {
                         (r.pts > 0 ? "+" : "") + r.pts])
       .concat([["合计（未含州/地区提名）", "", "", base.total]]));
 
-  // ---- marginal analysis against the currently selected visa
-  const bonus = (RULES.visaBonus[visa] || { pts: 0 }).pts;
-  const cur = base.total + bonus;
-  const curR = rateAt(visa, cur);
+  // ---- what each remaining upgrade is worth, in points
   const ups = [];
   for (const f of RULES.fields) {
-    if (f.key === "age") continue;                       // age only ever goes down
+    if (f.key === "age") continue;                     // age only ever goes down
     const now = f.options[CALC[f.key] | 0].v;
     const best = Math.max(...f.options.map(o => o.v));
     if (best <= now) continue;
-    // recompute properly so the 6D.5 employment cap is respected
     const saved = CALC[f.key];
     CALC[f.key] = f.options.findIndex(o => o.v === best);
-    const nt = calcBreakdown().total + bonus;
+    const nt = calcBreakdown().total;
     CALC[f.key] = saved;
-    if (nt <= cur) continue;                             // capped out -> no gain
-    const nr = rateAt(visa, nt);
+    if (nt <= base.total) continue;                    // capped out -> no gain
     ups.push({ label: f.label, to: f.options.find(o => o.v === best).t,
-               gain: nt - cur, score: nt,
-               rate: nr && nr.total >= 50 ? nr.rate : null,
-               thin: nr ? nr.total : 0 });
+               gain: nt - base.total, score: nt, part: f.part });
   }
-  // best odds first; on a tie the cheaper upgrade wins
-  ups.sort((a, b) => (b.rate ?? -1) - (a.rate ?? -1) || a.gain - b.gain);
+  ups.sort((a, b) => b.gain - a.gain);
 
   const head = document.getElementById("mrghead"), note = document.getElementById("mrgnote");
   head.hidden = note.hidden = !ups.length;
   if (ups.length) {
-    note.textContent = `以 ${visa} 为准。当前 ${cur} 分` +
-      (curR && curR.total >= 50 ? `，历史获邀率 ${curR.rate}%。` : "。") +
-      "获邀率来自不带时间维的完整记录；样本不足 50 的分数段标注为“样本不足”。";
-    table("mrg", ["加分项", "达成后", "加分", "总分", "该分数历史获邀率"],
-      ups.map(u => [u.label, u.to, "+" + u.gain, u.score + " 分",
-                    u.rate == null ? `样本不足（n=${u.thin}）` : u.rate + "%"]));
-    // bold the best row
-    const rows = document.querySelectorAll("#mrg tbody tr");
-    if (rows.length && ups[0].rate != null) rows[0].querySelectorAll("td").forEach(td => td.className = "up");
+    note.textContent = `当前基础分 ${base.total} 分（未含州/地区提名）。` +
+      "同一档里已达上限的项目不会出现；工作经验受 Part 6D.5 的 20 分合计上限约束，" +
+      "所以某些升级可能一分都不加。";
+    table("mrg", ["加分项", "达成后", "加分", "基础分变为", "Schedule"],
+      ups.map(u => [u.label, u.to, "+" + u.gain, u.score + " 分", "Part " + u.part]));
   } else {
     table("mrg", ["加分项"], [["各项均已达最高档，没有可再加的分。"]]);
   }
 
-  const pc = document.getElementById("pctx");
-  if (pc) pc.textContent =
-    `分数与职业无关，但下面每个分数旁边的「历史获邀率」来自 ${DATA.occupation}。` +
-    `换个职业分数不变、获邀率会变——用上方的职业选择器切换，或到「职业数据查询」页。`;
   document.getElementById("calcnote").textContent =
-    "本工具只做算术：按 Schedule 6D 把你的选择换算成分数，再查该职业该分数段的历史获邀率。" +
-    "它不预测你的申请结果，也不构成移民建议——职业评估结论以评估机构为准，190/491 还需先获得州/地区提名，" +
-    "而提名标准不在本数据集内。";
+    "本页只做算术：按 Schedule 6D 把你的选择换算成分数。它不预测申请结果，也不构成移民建议——" +
+    "职业评估结论以评估机构为准；190/491 还需先获得州/地区提名，提名标准由各州各自制定。";
   try { localStorage.setItem(CALC_KEY, JSON.stringify(CALC)); } catch (e) {}
+  if (typeof renderScoreBanner === "function") renderScoreBanner();
+}
+
+/* the data view is where a score meets an occupation: if one was calculated on
+   the points page, show what it is worth against this occupation's own record */
+function renderScoreBanner() {
+  const b = document.getElementById("scoreBanner");
+  if (!b || !DATA) return;
+  let saved = CALC;
+  if (!saved || !Object.keys(saved).length) {
+    try { saved = JSON.parse(localStorage.getItem(CALC_KEY)) || {}; } catch (e) { saved = {}; }
+  }
+  const prev = CALC; CALC = saved;
+  const base = calcBreakdown().total;
+  CALC = prev;
+  if (!base) { b.hidden = true; return; }
+
+  const bonus = /^190/.test(visa) ? 5 : (/^491/.test(visa) ? 15 : 0);
+  const score = base + bonus;
+  const r = rateAt(visa, score);
+  b.hidden = false;
+  b.textContent = "";
+  const strong = document.createElement("b");
+  strong.textContent = `你算出的分数：${visa} = ${score} 分`;
+  b.appendChild(strong);
+  let tail;
+  if (!r) tail = `。本职业没有 ${score} 分这一档的历史样本。`;
+  else if (r.total < 50) tail = `。本职业该分数段历史获邀率 ${r.rate}%，但样本仅 ${r.total}，不可靠。`;
+  else tail = `。本职业${r.exact ? "" : ` ${r.at} 分档`}历史获邀率 ${r.rate}%（n=${fmt(r.total)}）。`;
+  b.appendChild(document.createTextNode(tail + "分数在「计算分数」页修改。"));
 }
 
 function buildCalcForm() {
@@ -1108,6 +1128,7 @@ function renderCharts() {
 function renderAll() {
   buildCalcForm(); renderCalc(); kpis(); findings();
   if (curView === "data") renderCharts();
+  renderScoreBanner();
 }
 /* boot(data) is the single entry point: the one-occupation build calls it
    immediately with inlined data, the site shell calls it after each fetch. */
@@ -1127,8 +1148,14 @@ function boot(data) {
     });
     seg.appendChild(b);
   });
-  document.getElementById("h1").textContent =
-    `${DATA.occupation} · 澳洲技术移民 EOI 数据分析`;
+  // with a picker present the occupation is the data view's subject, not the
+  // page's; without one the page really is about that single occupation
+  const hasPicker = !!document.getElementById("occSelect");
+  document.getElementById("h1").textContent = hasPicker
+    ? "澳洲技术移民 EOI 数据分析"
+    : `${DATA.occupation} · 澳洲技术移民 EOI 数据分析`;
+  const ot = document.getElementById("occTitle");
+  if (ot) ot.textContent = DATA.occupation;
   document.getElementById("sub").textContent =
     `按月快照，${DATA.monthLabels[0]} – ${DATA.monthLabels[DATA.monthLabels.length - 1]}（24 个月）`;
   document.getElementById("foot").textContent =
@@ -1145,6 +1172,11 @@ function boot(data) {
     b.textContent = b.dataset.label || "表格视图";
   });
   buildTabs();
+  const toData = document.getElementById("toData");
+  if (toData && !toData.dataset.wired) {
+    toData.dataset.wired = "1";
+    toData.addEventListener("click", () => setView("data"));
+  }
   renderAll();
   setView(parseHash().view);
 }

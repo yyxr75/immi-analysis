@@ -26,8 +26,9 @@ def code_of(occ):
     return occ.split(" ", 1)[0]
 
 
-PICKER_HTML = """  <div id="report" hidden>
-  <div class="picker">
+PICKER_HTML = """  <div id="report" hidden>"""
+
+OCCPICKER_HTML = """  <div class="picker">
     <label class="plab" for="occSearch">选择职业（ANZSCO）</label>
     <div class="prow">
       <input type="search" id="occSearch" autocomplete="off"
@@ -347,6 +348,7 @@ def main():
     html = (tpl.replace("__DATA__", "null")
                .replace("__TITLE__", SITE_TITLE)
                .replace("<!--PICKER-->", PICKER_HTML)
+               .replace("<!--OCCPICKER-->", OCCPICKER_HTML)
                .replace('  <p class="foot" id="foot"></p>\n</div>',
                         '  <p class="foot" id="foot"></p>\n  </div>\n</div>')
                .replace("</style>", PICKER_CSS + "</style>")

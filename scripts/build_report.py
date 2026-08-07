@@ -19,7 +19,8 @@ def main(occupation):
     title = f"{occupation} · 澳洲技术移民 EOI 数据分析"
     # </script> inside a JSON string would close the host <script> tag early
     payload = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
-    html = tpl.replace("__DATA__", payload).replace("__TITLE__", title)
+    html = (tpl.replace("__DATA__", payload).replace("__TITLE__", title)
+           .replace("<!--OCCPICKER-->", ""))
 
     # Artifact build: the host wraps the file in its own <head>, so ship the
     # fragment as-is. Local build: opened over file://, so it needs the charset
