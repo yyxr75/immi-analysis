@@ -9,6 +9,7 @@
    into age 27 and graded PTE 79 as Proficient when it is Superior. Both are
    conversions, and both are now done here instead. */
 const AI_KEY = "immi.ai.cfg.v2";
+let AI_RESULT = null, AI_BODY = null, AI_RAW = "";
 
 /* Providers differ in two ways that matter: the wire format (OpenAI-style
    /v1/chat/completions vs Anthropic's /v1/messages) and whether the browser is
@@ -422,7 +423,7 @@ async function aiSend() {
     stat.textContent = `完成，用时 ${((Date.now() - t0) / 1000).toFixed(1)} 秒` +
       (got.tokens ? `，${got.tokens} tokens` : "") + `（${aiProv().label} · ${prof.model}）。`;
     aiShowRaw(AI_RAW, got.think);
-    aiRenderResult(parsed);
+    await aiRenderResult(parsed);
   } catch (e) {
     // A network-level failure surfaces as a bare "Failed to fetch" with no
     // detail available to script, so spell out what actually causes it.
@@ -448,72 +449,165 @@ function aiShowRaw(raw, think) {
   put("aiRawOut", raw); put("aiThink", think);
 }
 
-function aiRenderResult(x) {
-  $ai("aiResultCard").hidden = false;
+/* ANZSCO codes are hierarchical: 261313 sits in unit group 2613, minor group
+   261, sub-major 26. Occupations sharing a prefix are the ones a skills
+   assessor might plausibly place the same background in, so the model's picks
+   are seeds and the neighbourhood is derived deterministically from the code. */
+function aiRelated(seedCodes, idx, cap) {
+  const out = [], seen = new Set();
+  const add = (o, rel) => { if (!seen.has(o.code)) { seen.add(o.code); out.push({ o, rel }); } };
+  seedCodes.forEach(c => { const o = idx.find(o => o.code === c); if (o) add(o, "模型判定最贴近"); });
+  [[4, "同一四位小类"], [3, "同一三位中类"], [2, "同一两位大类"]].forEach(([n, rel]) => {
+    if (out.length >= cap) return;
+    const prefixes = new Set(seedCodes.map(c => c.slice(0, n)));
+    idx.forEach(o => {
+      if (out.length >= cap) return;
+      if (prefixes.has(o.code.slice(0, n))) add(o, rel);
+    });
+  });
+  return out;
+}
 
+/* The score the user actually filled in on the points page. */
+function aiBaseScore() {
+  let saved = CALC;
+  if (!saved || !Object.keys(saved).length) {
+    try { saved = JSON.parse(localStorage.getItem(CALC_KEY)) || {}; } catch (e) { saved = {}; }
+  }
+  const prev = CALC; CALC = saved;
+  const total = calcBreakdown().total;
+  CALC = prev;
+  return total;
+}
+
+async function aiRateFor(code, score) {
+  try {
+    const d = await (await fetch(`data/${code}.json`, { cache: "force-cache" })).json();
+    const per = {};
+    (d.visaOrder || []).forEach(v => {
+      const bonus = /^190/.test(v) ? 5 : (/^491/.test(v) ? 15 : 0);
+      const want = score + bonus;
+      const R = d.rate[v];
+      if (!R || !R.points.length) return;
+      let i = R.points.indexOf(want);
+      if (i < 0) { for (let j = 0; j < R.points.length; j++) if (R.points[j] <= want) i = j; }
+      if (i < 0) return;
+      per[v] = { rate: R.rate[i], n: R.total[i], at: R.points[i], score: want,
+                 exact: R.points[i] === want };
+    });
+    return per;
+  } catch (e) { return null; }
+}
+
+async function aiRenderResult(x) {
+  $ai("aiResultCard").hidden = false;
   const titles = (x.jobTitles || []).join("、") || "（未识别到职位名）";
   const duties = (x.keyDuties || []).join(" · ");
   $ai("aiRead").textContent =
-    `简历里的职位：${titles}` +
-    (x.fieldOfStudy ? `　专业：${x.fieldOfStudy}` : "") +
+    `简历里的职位：${titles}` + (x.fieldOfStudy ? `　专业：${x.fieldOfStudy}` : "") +
     (duties ? `\n关键职责：${duties}` : "");
 
-  // Rank by the model's own ordering, but only ever offer occupations that
-  // exist in the SkillSelect index -- a hallucinated title is worse than none.
   const idx = (typeof window !== "undefined" && window.OCC_INDEX) || [];
-  const seen = new Set(), out = [];
-  const addByCode = (code, why) => {
+  const seen = new Set(), seeds = [];
+  const addByCode = code => {
     const o = idx.find(o => o.code === code);
-    if (o && !seen.has(o.code)) { seen.add(o.code); out.push({ o, why, how: "代码精确匹配" }); }
+    if (o && !seen.has(o.code)) { seen.add(o.code); seeds.push(o.code); }
     return !!o;
   };
-  const addByName = (name, why) => {
+  const addByName = name => {
     const words = String(name || "").toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length >= 3);
     if (!words.length) return;
     const scored = idx.map(o => {
       const n = o.name.toLowerCase();
       const hit = words.filter(w => n.includes(w));
-      return { o, all: hit.length === words.length,
-               sc: hit.reduce((a, w) => a + w.length, 0) };
+      return { o, all: hit.length === words.length, sc: hit.reduce((a, w) => a + w.length, 0) };
     }).filter(r => r.sc > 0);
-    // "Software Engineer" partially matches every ...Engineer in the list, so
-    // prefer entries containing every word; only fall back to a single best
-    // partial match when nothing matches in full.
     const full = scored.filter(r => r.all).sort((a, b) => b.sc - a.sc);
     const pick = full.length ? full.slice(0, 2) : scored.sort((a, b) => b.sc - a.sc).slice(0, 1);
-    pick.forEach(({ o, all }) => {
-      if (!seen.has(o.code)) {
-        seen.add(o.code);
-        out.push({ o, why, how: all ? "名称完全匹配" : "名称部分匹配" });
-      }
-    });
+    pick.forEach(({ o }) => { if (!seen.has(o.code)) { seen.add(o.code); seeds.push(o.code); } });
   };
   (x.candidates || []).forEach(c => {
     const code = /^\d{6}$/.test(c.code || "") ? c.code : null;
-    if (!(code && addByCode(code, c.why))) addByName(c.name, c.why);
+    if (!(code && addByCode(code))) addByName(c.name);
   });
 
   const note = $ai("aiOccNote"), list = $ai("aiOccList");
   list.textContent = "";
-  if (!out.length) {
+  if (!seeds.length) {
     note.textContent = "没有匹配到 SkillSelect 清单里的职业。模型给出的名称是：" +
       ((x.candidates || []).map(c => c.name).join("、") || "（无）") +
       "。可以到「职业数据查询」页用搜索框自己找。";
     return;
   }
-  note.textContent = `以下 ${out.length} 个候选都来自 SkillSelect 的 492 个在册职业` +
-    "（模型给的名字如果不在清单里会被丢弃）。点一个即可跳到该职业的数据页——" +
-    "最终以职业评估机构的判定为准。";
-  out.slice(0, 6).forEach(({ o, why, how }) => {
-    const row = document.createElement("div"); row.className = "occrow";
-    const b = document.createElement("button");
-    b.type = "button"; b.className = "tblbtn nt";
-    b.textContent = `${o.name}　在池 ${fmt(o.pool)}`;
-    b.addEventListener("click", () => { location.hash = "#/data/" + o.code; });
-    const r = document.createElement("span"); r.className = "occwhy";
-    r.textContent = (why || "") + `（${how}）`;
-    row.append(b, r); list.appendChild(row);
+
+  const base = aiBaseScore();
+  const rows = aiRelated(seeds, idx, 14);
+
+  if (!base) {
+    note.textContent = "找到了相关职业，但还不知道你的分数——先到「计算分数」页把表填了，" +
+      "回来这里就会按你的分数把这些职业按历史获邀率排序。";
+    rows.slice(0, 6).forEach(({ o, rel }) => {
+      const row = document.createElement("div"); row.className = "occrow";
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "tblbtn nt";
+      b.textContent = `${o.name}　在池 ${fmt(o.pool)}`;
+      b.addEventListener("click", () => { location.hash = "#/data/" + o.code; });
+      const r = document.createElement("span"); r.className = "occwhy"; r.textContent = rel;
+      row.append(b, r); list.appendChild(row);
+    });
+    return;
+  }
+
+  note.textContent = `以下按你在「计算分数」页算出的 ${base} 分（未含州/地区提名），` +
+    "查每个职业在对应分数上的历史获邀率，从高到低排。189 用 " + base + " 分、" +
+    "190 用 " + (base + 5) + " 分、491 用 " + (base + 15) + " 分。加载中…";
+
+  const withRates = await Promise.all(rows.map(async ({ o, rel }) => {
+    const per = await aiRateFor(o.code, base);
+    let best = -1, bestVisa = null;
+    Object.entries(per || {}).forEach(([v, r]) => {
+      if (r.n >= 50 && r.rate > best) { best = r.rate; bestVisa = v; }
+    });
+    return { o, rel, per: per || {}, best, bestVisa };
+  }));
+  withRates.sort((a, b) => b.best - a.best || b.o.pool - a.o.pool);
+
+  const cols = ["189", "190", "491 (州担保)"];
+  const head = ["职业", `189 (${base}分)`, `190 (${base + 5}分)`, `491 (${base + 15}分)`, "在池", "关系"];
+  const cell = r => !r ? "—" : (r.n < 50 ? `${r.rate}%▲` : `${r.rate}%`);
+  const body = withRates.map(w => [w.o.name].concat(
+    cols.map(c => cell(w.per[c])), [fmt(w.o.pool), w.rel]));
+
+  list.textContent = "";
+  const wrap = document.createElement("div");
+  wrap.className = "tblwrap on"; wrap.style.maxHeight = "none";
+  const tb = document.createElement("table");
+  const tr = document.createElement("tr");
+  head.forEach(h => { const th = document.createElement("th"); th.textContent = h; tr.appendChild(th); });
+  tb.appendChild(tr);
+  const tbody = document.createElement("tbody");
+  body.forEach((cells, i) => {
+    const row = document.createElement("tr");
+    cells.forEach((c, j) => {
+      const td = document.createElement("td");
+      if (j === 0) {
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "linkbtn"; b.textContent = c;
+        b.addEventListener("click", () => { location.hash = "#/data/" + withRates[i].o.code; });
+        td.appendChild(b);
+      } else td.textContent = c;
+      if (j >= 1 && j <= 3 && withRates[i].bestVisa === cols[j - 1] && withRates[i].best > 0) {
+        td.className = "best";
+      }
+      row.appendChild(td);
+    });
+    tbody.appendChild(row);
   });
+  tb.appendChild(tbody); wrap.appendChild(tb); list.appendChild(wrap);
+
+  note.textContent = `按你在「计算分数」页算出的 ${base} 分排序（189 用 ${base} 分、` +
+    `190 用 ${base + 5} 分、491 用 ${base + 15} 分，含提名加分）。每行最高的一格加粗；` +
+    "带 ▲ 的样本不足 50，不可靠。点职业名可查看它的完整数据页。";
 }
 
 function aiInit() {
