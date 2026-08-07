@@ -148,7 +148,7 @@ th:first-child,td:first-child { text-align:left; }
 #mrg table td.up { font-weight:700; color:var(--ink); }
 
 .tabs { position:sticky; top:0; z-index:6; background:var(--plane);
-        border-bottom:1px solid var(--hair); margin:14px 0 18px;
+        border-bottom:1px solid var(--hair); margin:16px 0 18px;
         display:flex; gap:2px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
 .tabs button { font:inherit; font-size:14px; font-weight:600; color:var(--muted);
                background:transparent; border:0; border-bottom:2px solid transparent;
@@ -164,6 +164,7 @@ th:first-child,td:first-child { text-align:left; }
 .soon li { margin-bottom:9px; }
 .soon li b { color:var(--ink); }
 
+.tagline { color:var(--ink2); font-size:13.5px; margin:0 0 2px; }
 h2.occ { font-size:19px; margin:0 0 6px; font-weight:600; letter-spacing:-.01em; }
 .linkbtn { font:inherit; font-size:inherit; color:var(--s1); background:none; border:0;
            padding:0; cursor:pointer; text-decoration:underline; text-underline-offset:2px; }
@@ -175,6 +176,7 @@ h2.occ { font-size:19px; margin:0 0 6px; font-weight:600; letter-spacing:-.01em;
 <div class="wrap">
   <!--PICKER-->
   <h1 id="h1">__TITLE__</h1>
+  <p class="tagline" id="tagline"></p>
   <nav class="tabs" id="tabs" aria-label="主导航"></nav>
   <div id="view-data">
   <!--OCCPICKER-->
@@ -318,6 +320,8 @@ h2.occ { font-size:19px; margin:0 0 6px; font-weight:600; letter-spacing:-.01em;
 
 <script>
 let DATA = __DATA__;
+const SITE_TITLE = "澳洲技术移民工具箱";
+const SITE_TAGLINE = "职业数据查询 · Schedule 6D 打分 · 基于 SkillSelect 官方公开数据";
 const SVGNS = "http://www.w3.org/2000/svg";
 const CSS = k => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
 const SERIES_VAR = ["--s1","--s2","--s3","--s4"];
@@ -1121,15 +1125,18 @@ function boot(data) {
   // page's; without one the page really is about that single occupation
   const hasPicker = !!document.getElementById("occSelect");
   document.getElementById("h1").textContent = hasPicker
-    ? "澳洲技术移民 EOI 数据分析"
-    : `${DATA.occupation} · 澳洲技术移民 EOI 数据分析`;
+    ? SITE_TITLE
+    : `${DATA.occupation} · ${SITE_TITLE}`;
+  const tl = document.getElementById("tagline");
+  if (tl) tl.textContent = SITE_TAGLINE;
   const ot = document.getElementById("occTitle");
   if (ot) ot.textContent = DATA.occupation;
   document.getElementById("sub").textContent =
     `按月快照，${DATA.monthLabels[0]} – ${DATA.monthLabels[DATA.monthLabels.length - 1]}（24 个月）`;
   document.getElementById("foot").textContent =
     "口径：所有计数均为去重 EOI 数（COUNT DISTINCT %EOIID）。“在池”＝ EOI Status = SUBMITTED。" +
-    "本页由 immi-analysis/scripts/ 的抽取与渲染脚本生成，可对任意 ANZSCO 职业重跑。";
+    "打分规则来自 Migration Regulations 1994 Schedule 6D；获邀率来自 SkillSelect 公开看板。" +
+    "本站由 immi-analysis/scripts/ 的抽取与渲染脚本生成，可对任意 ANZSCO 职业重跑。";
   // collapse only the tables a button controls -- #cmp and #mrg have no toggle
   // and are meant to stay open
   const toggleable = new Set([...document.querySelectorAll(".tblbtn[data-t]")]

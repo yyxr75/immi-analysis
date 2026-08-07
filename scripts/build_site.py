@@ -18,7 +18,7 @@ DATA = os.path.join(HERE, "..", "data")
 SITE = os.path.join(HERE, "..", "site")
 SITE_DATA = os.path.join(SITE, "data")
 
-SITE_TITLE = "澳洲技术移民 EOI 数据分析"
+SITE_TITLE = "澳洲技术移民工具箱"
 MIN_POOL = 0          # keep every occupation; the picker sorts by size
 
 
@@ -63,7 +63,7 @@ PICKER_JS = """
 <script>
 /* ---- occupation picker: fetches one occupation's JSON on demand ---- */
 (function () {
-  const SITE_NAME = "澳洲技术移民 EOI 数据分析";
+  const SITE_NAME = "澳洲技术移民工具箱";
   const sel = document.getElementById("occSelect");
   const search = document.getElementById("occSearch");
   const stat = document.getElementById("pstat");

@@ -1,4 +1,10 @@
-# SkillSelect EOI 移民签证数据分析
+# 澳洲技术移民工具箱
+
+站点名 `澳洲技术移民工具箱`，副标题 `职业数据查询 · Schedule 6D 打分 · 基于 SkillSelect 官方公开数据`。
+两者都定义在 `scripts/report_template.html` 顶部的 `SITE_TITLE` / `SITE_TAGLINE` 常量里，
+`build_site.py` 和 `build_report.py` 各自复用同一个字符串——改名时这三处要一起改。
+
+## 数据来源
 
 数据源：澳大利亚就业与劳资关系部 SkillSelect EOI 公开看板。页面本身不含数据，
 是个 Qlik Sense mashup —— 数据通过 WebSocket 走 Qlik Engine JSON API 取。

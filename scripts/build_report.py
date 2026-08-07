@@ -16,7 +16,7 @@ def main(occupation):
     data = json.load(open(os.path.join(OUT, f"{slug}__report.json")))
     tpl = open(os.path.join(HERE, "report_template.html")).read()
 
-    title = f"{occupation} · 澳洲技术移民 EOI 数据分析"
+    title = f"{occupation} · 澳洲技术移民工具箱"
     # </script> inside a JSON string would close the host <script> tag early
     payload = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
     html = (tpl.replace("__DATA__", payload).replace("__TITLE__", title)
