@@ -53,13 +53,26 @@ export default {
 
     let body;
     try { body = await req.json(); } catch { return json({ error: "bad json" }, 400, H); }
+
+    const day = new Date().toISOString().slice(0, 10);
+    const ip = req.headers.get("CF-Connecting-IP") || "unknown";
+
+    // The page's "test connection" button. Reads the counters without bumping
+    // them and never touches the upstream, so checking your setup does not eat
+    // one of your 20 daily calls -- and so a probe costs no money.
+    if (body.ping === true) {
+      const used = parseInt((await env.RATE.get(`i:${day}:${ip}`)) || "0", 10);
+      const gUsed = parseInt((await env.RATE.get(`g:${day}`)) || "0", 10);
+      return json({ ok: true, model: MODEL,
+                    quota: { used, perDay: PER_IP_PER_DAY,
+                             globalUsed: gUsed, globalPerDay: GLOBAL_PER_DAY } }, 200, H);
+    }
+
     const text = typeof body.text === "string" ? body.text.trim() : "";
     if (!text) return json({ error: "text required" }, 400, H);
     if (text.length > MAX_CHARS)
       return json({ error: `text too long (${text.length} > ${MAX_CHARS})` }, 413, H);
 
-    const day = new Date().toISOString().slice(0, 10);
-    const ip = req.headers.get("CF-Connecting-IP") || "unknown";
     const g = await bump(env, `g:${day}`, 172800);
     if (g > GLOBAL_PER_DAY)
       return json({ error: "今日公共额度已用完，请在设置里填自己的 API Key" }, 429, H);

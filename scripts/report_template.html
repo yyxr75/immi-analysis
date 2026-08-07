@@ -1031,6 +1031,22 @@ async function aiTest() {
   if (!prof.endpoint) { out.textContent = "先填端点地址。"; return; }
   out.textContent = "连接中…";
   try {
+    // The shared endpoint is not an OpenAI-compatible server: it has no
+    // /v1/models and answers GET with 405. It takes a ping that reads the
+    // counters without bumping them, so checking your setup is free and does
+    // not spend one of your daily calls.
+    if (aiProv().api === "proxy") {
+      const r = await fetch(prof.endpoint, {
+        method: "POST", headers: aiHeaders(),
+        body: JSON.stringify({ ping: true }),
+      });
+      const d = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error("HTTP " + r.status + " " + (d.error || ""));
+      const q = d.quota || {};
+      out.textContent = `连接成功，公共服务可用（模型 ${d.model || "由服务端固定"}）。` +
+        (q.perDay ? `你今天已用 ${q.used || 0}/${q.perDay} 次。` : "");
+      return;
+    }
     const r = await fetch(aiModelsUrl(), { headers: aiHeaders() });
     if (!r.ok) throw new Error("HTTP " + r.status + " " + (await r.text()).slice(0, 160));
     const d = await r.json();
