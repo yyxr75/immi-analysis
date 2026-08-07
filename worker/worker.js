@@ -67,30 +67,47 @@ export default {
     if (n > PER_IP_PER_DAY)
       return json({ error: `每天最多 ${PER_IP_PER_DAY} 次，请明天再来或填自己的 API Key` }, 429, H);
 
-    const upstream = await fetch(UPSTREAM, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${env.PROVIDER_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: MODEL,
-        max_tokens: MAX_TOKENS,
-        temperature: 0.2,
-        response_format: {
-          type: "json_schema",
-          json_schema: { name: "occupation_match", strict: true, schema: SCHEMA },
-        },
-        messages: [
-          { role: "system", content: SYSTEM },
-          { role: "user", content: text },
-        ],
-      }),
-    });
+    // Providers disagree about structured output: DeepSeek rejects json_schema
+    // outright ("response_format type is unavailable"), others accept it. Step
+    // down rather than fail -- the caller already tolerates prose around the
+    // JSON, and the schema is a nicety here, not a correctness requirement.
+    const base = {
+      model: MODEL,
+      max_tokens: MAX_TOKENS,
+      temperature: 0.2,
+      messages: [
+        { role: "system", content: SYSTEM },
+        { role: "user", content: text },
+      ],
+    };
+    const shapes = [
+      { ...base, response_format: { type: "json_schema",
+          json_schema: { name: "occupation_match", strict: true, schema: SCHEMA } } },
+      { ...base, response_format: { type: "json_object" } },
+      base,
+    ];
 
-    if (!upstream.ok)
-      return json({ error: `upstream ${upstream.status}`,
-                    detail: (await upstream.text()).slice(0, 300) }, 502, H);
+    let upstream = null, lastBody = "";
+    for (const shape of shapes) {
+      upstream = await fetch(UPSTREAM, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${env.PROVIDER_API_KEY}`,
+        },
+        body: JSON.stringify(shape),
+      });
+      if (upstream.ok) break;
+      lastBody = await upstream.text();
+      if (upstream.status !== 400 || !/response_format|schema|format/i.test(lastBody)) {
+        return json({ error: `upstream ${upstream.status}`,
+                      detail: lastBody.slice(0, 300) }, 502, H);
+      }
+    }
+
+    if (!upstream || !upstream.ok)
+      return json({ error: `upstream ${upstream ? upstream.status : "?"}`,
+                    detail: lastBody.slice(0, 300) }, 502, H);
 
     const d = await upstream.json();
     const content = d?.choices?.[0]?.message?.content || "";

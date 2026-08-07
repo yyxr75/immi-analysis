@@ -18,3 +18,6 @@ data/fields.json
 output/
 data/all_occ_states.csv
 data/hSKLS02_SkillSelect_EOI_Data.js
+
+# wrangler build cache
+.wrangler/

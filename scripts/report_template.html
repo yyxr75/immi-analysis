@@ -874,7 +874,14 @@ const PROVIDERS = {
             note: "OpenAI、Kimi、通义等任何 OpenAI 兼容服务填这里。" },
 };
 
-let AICFG = { provider: "local", profiles: {} };
+// Default to the shared endpoint when one is deployed, so a first-time visitor
+// can use the page without owning a key; aiLoadCfg() falls back to "local" if
+// PUBLIC_PROXY_URL is empty, and any saved choice overrides this.
+let AICFG = {
+  provider: (typeof PUBLIC_PROXY_URL === "string" && PUBLIC_PROXY_URL)
+    ? "public" : "local",
+  profiles: {},
+};
 const aiProv = () => PROVIDERS[AICFG.provider] || PROVIDERS.custom;
 const aiProf = () => (AICFG.profiles[AICFG.provider] =
   AICFG.profiles[AICFG.provider] || { endpoint: "", model: "", key: "" });

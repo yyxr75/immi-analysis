@@ -21,10 +21,10 @@ SITE_DATA = os.path.join(SITE, "data")
 SITE_TITLE = "澳洲技术移民工具箱"
 
 # Deploy worker/ to Cloudflare and paste its URL here to offer the AI feature
-# without每 visitor needing their own key. This is a URL, not a credential --
-# the API key stays a Wrangler secret inside the Worker and never reaches the
-# page. Leave empty to hide the shared option entirely.
-PUBLIC_PROXY_URL = ""
+# without every visitor needing their own key. This is a URL, not a credential
+# -- the API key stays a Wrangler secret inside the Worker and never reaches
+# the page. Leave empty to hide the shared option entirely.
+PUBLIC_PROXY_URL = "https://immi-occupation-match.yyxr75.workers.dev"
 MIN_POOL = 0          # keep every occupation; the picker sorts by size
 
 

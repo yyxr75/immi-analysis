@@ -12,4 +12,4 @@ ALLOWED_ORIGINS = "https://yyxr75.github.io,http://localhost:8000"
 # then paste the printed id below.
 [[kv_namespaces]]
 binding = "RATE"
-id = "PUT_YOUR_KV_NAMESPACE_ID_HERE"
+id = "e5cf798a71b94e7789d12fd7e1308c2b"

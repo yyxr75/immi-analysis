@@ -442,7 +442,7 @@ h2.occ { font-size:19px; margin:0 0 6px; font-weight:600; letter-spacing:-.01em;
 let DATA = null;
 // Set by build_site.py from PUBLIC_PROXY_URL. A URL, not a credential: the key
 // stays a secret inside the Worker. Empty means the shared option is hidden.
-const PUBLIC_PROXY_URL = "";
+const PUBLIC_PROXY_URL = "https://immi-occupation-match.yyxr75.workers.dev";
 const SITE_TITLE = "澳洲技术移民工具箱";
 const SITE_TAGLINE = "职业数据查询 · Schedule 6D 打分 · 基于 SkillSelect 官方公开数据";
 const SVGNS = "http://www.w3.org/2000/svg";
@@ -905,7 +905,14 @@ const PROVIDERS = {
             note: "OpenAI、Kimi、通义等任何 OpenAI 兼容服务填这里。" },
 };
 
-let AICFG = { provider: "local", profiles: {} };
+// Default to the shared endpoint when one is deployed, so a first-time visitor
+// can use the page without owning a key; aiLoadCfg() falls back to "local" if
+// PUBLIC_PROXY_URL is empty, and any saved choice overrides this.
+let AICFG = {
+  provider: (typeof PUBLIC_PROXY_URL === "string" && PUBLIC_PROXY_URL)
+    ? "public" : "local",
+  profiles: {},
+};
 const aiProv = () => PROVIDERS[AICFG.provider] || PROVIDERS.custom;
 const aiProf = () => (AICFG.profiles[AICFG.provider] =
   AICFG.profiles[AICFG.provider] || { endpoint: "", model: "", key: "" });
