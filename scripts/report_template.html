@@ -164,6 +164,13 @@ th:first-child,td:first-child { text-align:left; }
 .tabs button[aria-pressed="true"] { color:var(--ink); border-bottom-color:var(--s1); }
 .tabs .num { font-variant-numeric:tabular-nums; color:var(--muted); margin-right:6px; font-weight:400; }
 .tabs button[aria-pressed="true"] .num { color:var(--s1); }
+/* Four Chinese labels do not fit a phone at the desktop size. The bar scrolls,
+   but a tab you have to discover by swiping may as well not be there -- so drop
+   the ordinal (decoration) and tighten, which fits all four. */
+@media (max-width:480px) {
+  .tabs button { font-size:13px; padding:12px 9px 10px; }
+  .tabs .num { display:none; }
+}
 .ctx { font-size:12.5px; color:var(--ink2); background:var(--surface); border:1px solid var(--hair);
        border-left:3px solid var(--s1); border-radius:0 8px 8px 0; padding:10px 13px; margin:0 0 16px; }
 .soon ul { margin:12px 0 0; padding-left:19px; color:var(--ink2); font-size:13.5px; line-height:1.7; }
@@ -235,6 +242,20 @@ details.adv[open] > summary::before { content:"▾ "; }
 details.adv > summary b { color:var(--ink); font-weight:600; }
 details.adv > *:last-child { margin-bottom:14px; }
 ul.dont { margin:0; padding-left:19px; }
+/* ---------- 怎么用 ---------- */
+.howto { counter-reset:ht; list-style:none; margin:0 0 24px; padding:0;
+         display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.howto li { counter-increment:ht; position:relative; background:var(--surface);
+            border:1px solid var(--hair); border-radius:10px; padding:14px 15px 15px; }
+.howto li::before { content:counter(ht); display:inline-flex; align-items:center;
+  justify-content:center; width:20px; height:20px; border-radius:50%;
+  background:var(--ink); color:var(--surface); font-size:11.5px; font-weight:700;
+  margin-bottom:8px; }
+.howto .t { font-weight:600; font-size:14px; margin-bottom:4px; }
+.howto p { margin:0; font-size:12.5px; color:var(--ink2); line-height:1.65; }
+.howto .linkbtn { font-size:12.5px; white-space:nowrap; }
+@media (max-width:720px) { .howto { grid-template-columns:1fr; gap:10px; }
+                           .howto li { padding:12px 14px; } }
 </style>
 
 <div class="wrap">
@@ -339,6 +360,23 @@ ul.dont { margin:0; padding-left:19px; }
   </div>
 
   <div id="view-points" hidden>
+  <ol class="howto" id="howto">
+    <li>
+      <div class="t">先算分</div>
+      <p>按 Schedule 6D 逐项选，本地算，不上传。<b>就在下面</b>，两分钟填完。</p>
+    </li>
+    <li>
+      <div class="t">再看能对上哪些职业</div>
+      <p>上传简历，模型从在册的 492 个职业里找出你可能对得上的，按你的分数排历史获邀率。
+        <button type="button" class="linkbtn" data-go="ai">去 AI 分析 →</button></p>
+    </li>
+    <li>
+      <div class="t">盯住一个职业细看</div>
+      <p>某个职业的分数线、在池人数、获邀率随时间怎么走。
+        <button type="button" class="linkbtn" data-go="data">去职业数据查询 →</button></p>
+    </li>
+  </ol>
+
   <div class="calc" id="calc">
     <h2>算一下你的分数</h2>
     <p class="cap">按 <b>Migration Regulations 1994 Schedule 6D</b> 逐条计算，纯本地运算，不上传任何信息。</p>
@@ -355,7 +393,7 @@ ul.dont { margin:0; padding-left:19px; }
     <div class="tblwrap on" id="mrg"></div>
     <p class="note2" id="calcnote"></p>
   </div>
-  <p class="ctx cta">分数本身与职业无关。想知道这个分数在某个职业里的<b>历史获邀率</b>、以及还差多少，
+  <p class="ctx cta">分数本身与职业无关。想知道它在某个职业里的<b>历史获邀率</b>，
     到 <button type="button" class="linkbtn" id="toData">「职业数据查询」</button>选一个职业——分数会自动带过去。</p>
   </div>
 
@@ -485,7 +523,7 @@ let DATA = __DATA__;
 // stays a secret inside the Worker. Empty means the shared option is hidden.
 const PUBLIC_PROXY_URL = __PUBLIC_PROXY_URL__;
 const SITE_TITLE = "澳洲技术移民工具箱";
-const SITE_TAGLINE = "职业数据查询 · Schedule 6D 打分 · 基于 SkillSelect 官方公开数据";
+const SITE_TAGLINE = "Schedule 6D 打分 · AI 匹配职业 · 查历史获邀率 · 数据来自 SkillSelect 官方看板";
 const SVGNS = "http://www.w3.org/2000/svg";
 const CSS = k => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
 const SERIES_VAR = ["--s1","--s2","--s3","--s4"];
@@ -911,8 +949,12 @@ function chart6() {
    Hash is #/<view>[/<occupation code>], e.g. #/points/261313.
    A bare #261313 (the shape shipped before the sections existed) still
    resolves to the data view for that occupation. */
-const VIEWS = [["data", "职业数据查询"], ["points", "计算分数"], ["ai", "AI 分析"],
+/* Order is the order of use: work out your score, see which occupations that
+   score reaches, then dig into one. The occupation browser is where you go to
+   check a specific answer, not where you start. */
+const VIEWS = [["points", "计算分数"], ["ai", "AI 分析"], ["data", "职业数据查询"],
                ["group", "交流群"]];
+const HOME = VIEWS[0][0];
 // A WeChat group QR expires; build_site.py stamps the date printed on the image
 // so the page can say so itself instead of silently handing out a dead code.
 const GROUP_QR_EXPIRES = __GROUP_QR_EXPIRES__;
@@ -921,18 +963,18 @@ let curCode = null;                 // set by the site shell; null in a one-occu
 
 function parseHash() {
   const h = location.hash.slice(1).replace(/^\//, "");
-  if (!h) return { view: "data", code: null };
+  if (!h) return { view: HOME, code: null };
   const p = h.split("/").filter(Boolean);
   const isCode = x => /^\d{6}$/.test(x);
   if (isCode(p[0])) return { view: "data", code: p[0] };          // legacy #261313
-  const view = VIEWS.some(v => v[0] === p[0]) ? p[0] : "data";
+  const view = VIEWS.some(v => v[0] === p[0]) ? p[0] : HOME;
   return { view, code: p[1] && isCode(p[1]) ? p[1] : null };
 }
 const hashFor = (view, code) =>
   "#/" + view + (view === "data" && code ? "/" + code : "");
 
 function setView(name) {
-  if (!VIEWS.some(v => v[0] === name)) name = "data";
+  if (!VIEWS.some(v => v[0] === name)) name = HOME;
   curView = name;
   VIEWS.forEach(([k]) => {
     const el = document.getElementById("view-" + k);
@@ -953,6 +995,7 @@ function setView(name) {
   if (name === "data" && DATA) renderScoreBanner();
   if (name === "ai") aiInit();
   if (name === "group") renderGroup();
+  if (name === "points") wireHowto();
 }
 
 function renderGroup() {
@@ -971,6 +1014,15 @@ function renderGroup() {
     el.className = "grpexp";
     el.textContent = `二维码有效期至 ${d}（微信群码 7 天一换）。`;
   }
+}
+
+/* The step cards jump to the tab they describe. */
+function wireHowto() {
+  document.querySelectorAll("#howto [data-go]").forEach(b => {
+    if (b.dataset.wired) return;
+    b.dataset.wired = "1";
+    b.addEventListener("click", () => setView(b.dataset.go));
+  });
 }
 
 function buildTabs() {
@@ -1138,8 +1190,14 @@ function renderCalc() {
   ups.sort((a, b) => b.gain - a.gain);
 
   const head = document.getElementById("mrghead"), note = document.getElementById("mrgnote");
-  head.hidden = note.hidden = !ups.length;
-  if (ups.length) {
+  // With a blank form this table lists every upgrade there is, from zero -- a
+  // wall of rows that says nothing about you, on what is now the first screen
+  // of the site. It only means something once you have answered something.
+  const started = base.total > 0;
+  const wrap = document.getElementById("mrg");
+  head.hidden = note.hidden = wrap.hidden = !started || !ups.length;
+  if (!started) { wrap.textContent = ""; }
+  else if (ups.length) {
     note.textContent = `当前基础分 ${base.total} 分（未含州/地区提名）。` +
       "同一档里已达上限的项目不会出现；工作经验受 Part 6D.5 的 20 分合计上限约束，" +
       "所以某些升级可能一分都不加。";
