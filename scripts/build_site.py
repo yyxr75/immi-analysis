@@ -40,7 +40,10 @@ GROUP_QR_EXPIRES = "2026-08-15"
 # Views 1 and 2 are public. View 3 (AI) spends real money per call, so it is
 # the only one behind an account -- the check is in the Worker, which is the
 # only place a static site can put one that holds.
-AUTH_URL = PUBLIC_PROXY_URL
+# Empty: login.html degrades to a plain front door. Point it at the Worker only
+# together with REQUIRE_AUTH in worker.js -- a page asking for a code that the
+# endpoint does not want is worse than no page at all.
+AUTH_URL = ""
 
 # Nobody is stopped at the door any more: the gate moved to the AI view.
 LOGIN_AS_ENTRY = False

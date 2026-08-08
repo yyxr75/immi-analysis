@@ -33,7 +33,14 @@ const MODEL = "deepseek-chat";
 // GLOBAL_PER_DAY x this, so raising one means re-checking the other.
 const MAX_CHARS = 40000;
 const MAX_TOKENS = 3000;
-const GLOBAL_PER_DAY = 400;   // the budget backstop, across every account
+const GLOBAL_PER_DAY = 400;   // the budget backstop, across everyone
+
+// Whether the AI endpoint demands a signed-in account. Off: anyone may call it,
+// metered per source address. The whole sign-in path stays wired underneath, so
+// turning this on is one line -- and a signed-in caller is already metered by
+// plan rather than by IP either way.
+const REQUIRE_AUTH = false;
+const ANON_PER_IP_PER_DAY = 10;
 
 // Sign-in abuse guards. Without these the endpoint is a free way to mail
 // arbitrary people: one address can only be asked for a few codes an hour, and
@@ -162,18 +169,24 @@ export default {
     /* ---------------- who am I ---------------- */
     if (path === "/auth/me" || body.ping === true) {
       const p = await readToken(env, bearer(req));
-      if (!p) return json({ ok: false, signedIn: false }, 200, H);
+      if (!p) {
+        const used = await read(env, `q:${day}:ip:${ip}`);
+        return json({ ok: false, signedIn: false, requireAuth: REQUIRE_AUTH,
+                      model: MODEL, maxChars: MAX_CHARS,
+                      quota: REQUIRE_AUTH ? null
+                             : { used, perDay: ANON_PER_IP_PER_DAY } }, 200, H);
+      }
       const acct = await account(env, p.sub);
       const used = await read(env, `q:${day}:${p.sub}`);
-      return json({ ok: true, signedIn: true, email: p.eml, model: MODEL,
-                    maxChars: MAX_CHARS,
+      return json({ ok: true, signedIn: true, requireAuth: REQUIRE_AUTH,
+                    email: p.eml, model: MODEL, maxChars: MAX_CHARS,
                     plan: acct.plan, until: acct.until || null,
                     quota: { used, perDay: planLimit(acct) } }, 200, H);
     }
 
     /* ---------------- the occupation match ---------------- */
     const p = await readToken(env, bearer(req));
-    if (!p)
+    if (!p && REQUIRE_AUTH)
       return json({ error: "请先用邮箱登录再使用 AI 功能。", needAuth: true }, 401, H);
 
     const text = typeof body.text === "string" ? body.text.trim() : "";
@@ -183,18 +196,21 @@ export default {
                            "请只保留学历和工作经历，去掉获奖、项目清单等与职业匹配无关的部分。",
                     maxChars: MAX_CHARS }, 413, H);
 
-    const acct = await account(env, p.sub);
-    const limit = planLimit(acct);
+    // Signed in: metered by plan, keyed to the account. Anonymous: metered by
+    // source address, which is weaker but is the only handle there is.
+    const acct = p ? await account(env, p.sub) : { plan: "anon" };
+    const limit = p ? planLimit(acct) : ANON_PER_IP_PER_DAY;
+    const quotaKey = p ? `q:${day}:${p.sub}` : `q:${day}:ip:${ip}`;
 
     const g = await bump(env, `g:${day}`, 172800);
     if (g > GLOBAL_PER_DAY)
       return json({ error: "今日全站额度已用完，请明天再来，或在设置里换成自己的 API Key" },
                   429, H);
-    const n = await bump(env, `q:${day}:${p.sub}`, 172800);
+    const n = await bump(env, quotaKey, 172800);
     if (n > limit)
       return json({ error: acct.plan === "paid"
                       ? `今天已用满 ${limit} 次，请明天再来。`
-                      : `免费额度每天 ${limit} 次，已经用完了。`,
+                      : `每天 ${limit} 次的额度已经用完了，明天再来，或在第 1 步换成自己的 API Key。`,
                     plan: acct.plan, perDay: limit }, 429, H);
 
     // Providers disagree about structured output: DeepSeek rejects json_schema

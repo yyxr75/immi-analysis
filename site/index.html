@@ -930,6 +930,12 @@ const AUTH_KEY = "immi.auth.v1";
 /* The shared endpoint costs money per call, so it is the one provider that
    requires a signed-in account. A BYO-key provider spends the visitor's own
    credit and stays open. */
+// Learned from the endpoint (see aiRefreshAuth). Defaults to "open": if the
+// lookup has not landed yet, a visitor gets the tool rather than a login prompt
+// that may not even apply. Guessing wrong this way costs one clear 401; the
+// other way it turns an open feature into a locked one.
+let AI_REQUIRE_AUTH = false;
+
 function aiAuth() {
   try {
     const raw = localStorage.getItem(AUTH_KEY) || sessionStorage.getItem(AUTH_KEY);
@@ -953,10 +959,10 @@ let PROXY_MAX_CHARS = 40000;
 const PROVIDERS = {
   // Filled in by build_site.py from PUBLIC_PROXY_URL. The endpoint is a plain
   // URL, safe to publish; the key it uses lives as a secret inside the Worker.
-  public: { label: "公共服务（本站代付 · 需邮箱登录）", api: "proxy", base: "",
+  public: { label: "公共服务（本站代付）", api: "proxy", base: "",
             models: ["（由服务端固定）"],
-            note: "调用费用由站点方承担，所以要邮箱验证登录、每天有额度。" +
-                  "不想登录、或想不受额度限制，就在下面换成自己的 Key。" },
+            note: "调用费用由站点方承担，所以每天有次数额度。" +
+                  "想不受额度限制，就在下面换成自己的 Key。" },
   local: { label: "本机 / 局域网（OpenAI 兼容）", api: "openai",
            base: "http://localhost:8080", models: [],
            note: "llama.cpp / vLLM / Ollama 等。密钥通常留空。" },
@@ -1393,7 +1399,7 @@ async function aiSend() {
     stat.textContent = "先在第 1 步填模型名。"; return; }
   if (!($ai("aiRaw").value || "").trim()) { stat.textContent = "第 2 步还没有简历正文。"; return; }
   const body = AI_BODY || aiBuildBody();
-  if (aiProv().api === "proxy" && !aiAuth()) {
+  if (aiProv().api === "proxy" && AI_REQUIRE_AUTH && !aiAuth()) {
     stat.textContent = "公共服务需要先用邮箱登录。点上方的「去登录」，" +
       "或在第 1 步换成自己的 API Key。";
     aiRenderGate();
@@ -1715,6 +1721,7 @@ function aiRenderGate() {
   bar.hidden = false;
 
   const a = aiAuth();
+  if (!a && !AI_REQUIRE_AUTH) { bar.hidden = true; return; }   // open to everyone
   const span = (t, cls) => {
     const e = document.createElement("span");
     if (cls) e.className = cls;
@@ -1749,21 +1756,27 @@ function aiRenderGate() {
 /* Ask the endpoint who we are: the plan and the remaining quota are looked up
    there, never trusted from the copy sitting in localStorage. */
 async function aiRefreshAuth() {
+  if (!PUBLIC_PROXY_URL) return;
   const a = aiAuth();
-  if (!a || !PUBLIC_PROXY_URL) return;
   try {
     const r = await fetch(PUBLIC_PROXY_URL.replace(/\/+$/, "") + "/auth/me", {
       method: "POST",
-      headers: { "Content-Type": "application/json", Authorization: "Bearer " + a.token },
+      headers: Object.assign({ "Content-Type": "application/json" },
+                             a ? { Authorization: "Bearer " + a.token } : {}),
       body: "{}",
     });
     const d = await r.json().catch(() => ({}));
-    if (!d.signedIn) { aiSignOut(); aiRenderGate(); return; }
+    AI_REQUIRE_AUTH = !!d.requireAuth;
+    if (d.maxChars) PROXY_MAX_CHARS = d.maxChars;
+    if (!d.signedIn) {
+      if (a) aiSignOut();          // the token we held is no longer good
+      aiRenderGate();
+      return;
+    }
     const next = Object.assign({}, a, { email: d.email, plan: d.plan,
                                         perDay: d.quota && d.quota.perDay,
                                         used: d.quota && d.quota.used });
     try { localStorage.setItem(AUTH_KEY, JSON.stringify(next)); } catch (e) {}
-    if (d.maxChars) PROXY_MAX_CHARS = d.maxChars;
     aiRenderGate();
   } catch (e) { /* offline: keep showing what we last knew */ }
 }
