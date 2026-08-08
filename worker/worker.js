@@ -236,6 +236,22 @@ export default {
        rather than in the dispatch payload because the repo is public and so is
        everything attached to a workflow run. Guarded by a shared secret, and
        the record is one-shot: /pending/done deletes it. */
+    /* Does the caller hold the same DISPATCH_SECRET we do? Answers yes/no about
+       a hash prefix and nothing else -- no value, no length, and the secret is
+       264 random bits, so an oracle on 12 hex characters buys an attacker
+       nothing. Unauthenticated on purpose: the whole point is to be reachable
+       when the secret is the thing that is wrong. */
+    if (path === "/pending/fp") {
+      if (!env.DISPATCH_SECRET) return json({ error: "not configured" }, 503, H);
+      const buf = await crypto.subtle.digest("SHA-256",
+        new TextEncoder().encode(env.DISPATCH_SECRET));
+      const mine = [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, "0"))
+        .join("").slice(0, 12);
+      return String(body.fp || "") === mine
+        ? json({ ok: true }, 200, H)
+        : json({ ok: false, error: "shared secret mismatch" }, 409, H);
+    }
+
     if (path === "/pending" || path === "/pending/done" || path === "/pending/fail") {
       if (!env.DISPATCH_SECRET || bearer(req) !== env.DISPATCH_SECRET)
         return json({ error: "nope" }, 403, H);

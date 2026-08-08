@@ -17,6 +17,7 @@ env:
   MAIL_PASS         a Gmail App Password (not the account password)
   REPORT_ID         32 hex chars, from the dispatch payload
 """
+import hashlib
 import json
 import os
 import smtplib
@@ -87,7 +88,32 @@ def done(env):
     print("marked done")
 
 
-STAGES = {"fetch": fetch, "send": send, "done": done}
+def fingerprint(env):
+    """Stage 0: do the Worker and this runner hold the same shared secret?
+
+    Compares a hash prefix, never the secret. Its own step so that a mismatch
+    is distinguishable from every other reason /pending can fail."""
+    fp = hashlib.sha256(env["DISPATCH_SECRET"].encode()).hexdigest()[:12]
+    try:
+        call(env["WORKER_URL"], "-", "/pending/fp", {"fp": fp})
+    except urllib.error.HTTPError as e:
+        if e.code == 409:
+            sys.exit("DISPATCH_SECRET here does not match the Worker's")
+        raise
+    print("shared secret matches the Worker")
+
+
+STAGES = {"fp": fingerprint, "fetch": fetch, "send": send, "done": done}
+
+# Each stage checks only what it uses. Checking everything everywhere made a
+# missing MAIL_PASS fail in the fetch step, which points the finger at the
+# shared secret instead -- exactly the wrong place to look.
+NEEDS = {
+    "fp":    ["WORKER_URL", "DISPATCH_SECRET"],
+    "fetch": ["WORKER_URL", "DISPATCH_SECRET", "REPORT_ID"],
+    "send":  ["MAIL_USER", "MAIL_PASS"],
+    "done":  ["WORKER_URL", "DISPATCH_SECRET", "REPORT_ID"],
+}
 
 
 def main():
@@ -95,8 +121,9 @@ def main():
     if stage not in STAGES:
         sys.exit("usage: send_report_mail.py {%s}" % "|".join(STAGES))
 
-    need = ["WORKER_URL", "DISPATCH_SECRET", "MAIL_USER", "MAIL_PASS", "REPORT_ID"]
-    env = {k: (os.environ.get(k) or "").strip() for k in need}
+    allv = ["WORKER_URL", "DISPATCH_SECRET", "MAIL_USER", "MAIL_PASS", "REPORT_ID"]
+    env = {k: (os.environ.get(k) or "").strip() for k in allv}
+    need = NEEDS[stage]
     # Google displays an App Password as four spaced groups. Pasted verbatim it
     # usually still works, but not always -- and the failure is an opaque
     # authentication error. Strip whitespace rather than let a space decide it.
@@ -105,9 +132,10 @@ def main():
     if missing:
         sys.exit("missing env: " + ", ".join(missing))
 
-    rid = env["REPORT_ID"]
-    if len(rid) != 32 or any(c not in "0123456789abcdef" for c in rid):
-        sys.exit("bad REPORT_ID")
+    if "REPORT_ID" in need:
+        rid = env["REPORT_ID"]
+        if len(rid) != 32 or any(c not in "0123456789abcdef" for c in rid):
+            sys.exit("bad REPORT_ID")
 
     try:
         STAGES[stage](env)
