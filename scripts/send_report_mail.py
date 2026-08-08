@@ -51,7 +51,50 @@ def call(url, secret, path, payload):
         return json.load(r)
 
 
+JOB_FILE = "/tmp/report_job.json"
+
+
+def fetch(env):
+    """Stage 1: prove the shared secret works and collect the address."""
+    job = call(env["WORKER_URL"], env["DISPATCH_SECRET"], "/pending",
+               {"id": env["REPORT_ID"]})
+    with open(JOB_FILE, "w") as f:
+        json.dump(job, f)
+    print("got job for", mask(job["to"]))
+
+
+def send(env):
+    """Stage 2: hand the mail to Gmail as the account owner."""
+    with open(JOB_FILE) as f:
+        job = json.load(f)
+    msg = EmailMessage()
+    msg["From"] = formataddr(("澳洲移民工具箱", env["MAIL_USER"]))
+    msg["To"] = job["to"]
+    msg["Subject"] = job["subject"]
+    msg["Auto-Submitted"] = "auto-generated"      # keep vacation responders quiet
+    msg.set_content(job["text"])
+    with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=45) as s:
+        s.starttls(context=ssl.create_default_context())
+        s.login(env["MAIL_USER"], env["MAIL_PASS"])
+        s.send_message(msg)
+    print("sent to", mask(job["to"]))
+
+
+def done(env):
+    """Stage 3: one-shot record goes away only after the mail is out."""
+    call(env["WORKER_URL"], env["DISPATCH_SECRET"], "/pending/done",
+         {"id": env["REPORT_ID"]})
+    print("marked done")
+
+
+STAGES = {"fetch": fetch, "send": send, "done": done}
+
+
 def main():
+    stage = sys.argv[1] if len(sys.argv) > 1 else ""
+    if stage not in STAGES:
+        sys.exit("usage: send_report_mail.py {%s}" % "|".join(STAGES))
+
     need = ["WORKER_URL", "DISPATCH_SECRET", "MAIL_USER", "MAIL_PASS", "REPORT_ID"]
     env = {k: (os.environ.get(k) or "").strip() for k in need}
     # Google displays an App Password as four spaced groups. Pasted verbatim it
@@ -67,33 +110,34 @@ def main():
         sys.exit("bad REPORT_ID")
 
     try:
-        job = call(env["WORKER_URL"], env["DISPATCH_SECRET"], "/pending", {"id": rid})
+        STAGES[stage](env)
     except urllib.error.HTTPError as e:
-        # 404 is the ordinary case for a replayed or expired dispatch: the
-        # record is one-shot and lives an hour. Not a failure worth alarming on.
-        if e.code == 404:
+        # 404 on fetch is ordinary: the record is one-shot and lives an hour, so
+        # a replayed dispatch finds nothing. Not a failure worth alarming on.
+        if stage == "fetch" and e.code == 404:
             print("nothing pending for this id (already sent, or expired)")
-            return
-        sys.exit("worker said %s: %s" % (e.code, e.read()[:200]))
-
-    to = job["to"]
-    msg = EmailMessage()
-    msg["From"] = formataddr(("澳洲移民工具箱", env["MAIL_USER"]))
-    msg["To"] = to
-    msg["Subject"] = job["subject"]
-    msg["Auto-Submitted"] = "auto-generated"      # keep vacation responders quiet
-    msg.set_content(job["text"])
-
-    with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=45) as s:
-        s.starttls(context=ssl.create_default_context())
-        s.login(env["MAIL_USER"], env["MAIL_PASS"])
-        s.send_message(msg)
-    print("sent to", mask(to))
-
-    # Only now drop the record; a crash before this leaves it for a retry rather
-    # than losing the report someone is waiting for.
-    call(env["WORKER_URL"], env["DISPATCH_SECRET"], "/pending/done", {"id": rid})
+            sys.exit(0)
+        raise RuntimeError("worker said %s: %s"
+                           % (e.code, e.read()[:200].decode("utf-8", "replace")))
 
 
 if __name__ == "__main__":
-    main()
+    # Report why, then still fail the job. A workflow log is not readable
+    # without a token even on a public repo, so a failure that only lands there
+    # is a report nobody knows went missing. This best-effort call needs the
+    # shared secret to be right, so it cannot explain a secret mismatch -- for
+    # that, read which named step failed, which the API does expose.
+    try:
+        main()
+    except SystemExit:
+        raise
+    except Exception as exc:
+        try:
+            call(os.environ.get("WORKER_URL", ""), os.environ.get("DISPATCH_SECRET", ""),
+                 "/pending/fail",
+                 {"id": os.environ.get("REPORT_ID", ""),
+                  "error": "%s in %s: %s" % (type(exc).__name__,
+                                             sys.argv[1] if len(sys.argv) > 1 else "?", exc)})
+        except Exception:
+            pass
+        raise

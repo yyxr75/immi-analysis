@@ -27,11 +27,23 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: 发信
-        env:
+      # Three named steps rather than one. Run logs are not readable without a
+      # token even on a public repo, but per-step conclusions are -- so which
+      # step failed is itself the diagnosis: "取待发记录" means the shared secret
+      # or the Worker, "发送邮件" means Gmail.
+      - name: 取待发记录
+        env: &mailenv
           WORKER_URL: https://immi-occupation-match.yyxr75.workers.dev
           DISPATCH_SECRET: ${{ secrets.DISPATCH_SECRET }}
           MAIL_USER: ${{ secrets.MAIL_USER }}
           MAIL_PASS: ${{ secrets.MAIL_PASS }}
           REPORT_ID: ${{ github.event.client_payload.id }}
-        run: python scripts/send_report_mail.py
+        run: python scripts/send_report_mail.py fetch
+
+      - name: 发送邮件
+        env: *mailenv
+        run: python scripts/send_report_mail.py send
+
+      - name: 标记已发送
+        env: *mailenv
+        run: python scripts/send_report_mail.py done

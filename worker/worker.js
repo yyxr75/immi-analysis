@@ -236,13 +236,25 @@ export default {
        rather than in the dispatch payload because the repo is public and so is
        everything attached to a workflow run. Guarded by a shared secret, and
        the record is one-shot: /pending/done deletes it. */
-    if (path === "/pending" || path === "/pending/done") {
+    if (path === "/pending" || path === "/pending/done" || path === "/pending/fail") {
       if (!env.DISPATCH_SECRET || bearer(req) !== env.DISPATCH_SECRET)
         return json({ error: "nope" }, 403, H);
       const id = String(body.id || "");
       if (!/^[0-9a-f]{32}$/.test(id)) return json({ error: "bad id" }, 400, H);
       if (path === "/pending/done") {
         await env.RATE.delete("pend:" + id);
+        await env.RATE.delete("mailerr");
+        return json({ ok: true }, 200, H);
+      }
+      // The runner reports why it could not send. Without this the only record
+      // of a failure is a workflow log, which is not readable anonymously even
+      // on a public repo -- so a silently undelivered report would have nowhere
+      // to surface. Message only; the runner never sends anything sensitive.
+      if (path === "/pending/fail") {
+        await env.RATE.put("mailerr", JSON.stringify({
+          id, at: new Date().toISOString(),
+          error: String(body.error || "").slice(0, 400),
+        }), { expirationTtl: 7 * 86400 });
         return json({ ok: true }, 200, H);
       }
       const raw = await env.RATE.get("pend:" + id);
@@ -265,7 +277,9 @@ export default {
                      "DISPATCH_SECRET", "GH_REPO", "GH_DISPATCH_TOKEN",
                      "RESEND_API_KEY", "MAIL_FROM", "MAIL_REPLY_TO"];
       const present = {}; names.forEach(n => { present[n] = !!env[n]; });
+      const lastMailError = await env.RATE.get("mailerr");
       return json({ ok: true, present,
+                    lastMailError: lastMailError ? JSON.parse(lastMailError) : null,
                     features: {
                       ai: !!env.PROVIDER_API_KEY,
                       requireAuth: REQUIRE_AUTH,
