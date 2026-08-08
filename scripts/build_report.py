@@ -7,6 +7,8 @@ import os
 import re
 import sys
 
+import aiview
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..", "output")
 
@@ -14,7 +16,7 @@ OUT = os.path.join(HERE, "..", "output")
 def main(occupation):
     slug = re.sub(r"\W+", "_", occupation).strip("_").lower()
     data = json.load(open(os.path.join(OUT, f"{slug}__report.json")))
-    tpl = open(os.path.join(HERE, "report_template.html")).read()
+    tpl = aiview.inject(open(os.path.join(HERE, "report_template.html")).read())
 
     title = f"{occupation} · 澳洲技术移民工具箱"
     # </script> inside a JSON string would close the host <script> tag early

@@ -1255,27 +1255,46 @@ const AI_SCHEMA = {
   properties: {
     jobTitles: { type: "array", items: { type: "string" } },
     keyDuties: { type: "array", items: { type: "string" } },
-    fieldOfStudy: { type: ["string", "null"] },
+    // Asking for every degree invites a list, and DeepSeek runs unconstrained
+    // (it rejects json_schema), so accept both shapes rather than depend on
+    // the model guessing which one we meant.
+    fieldOfStudy: { type: ["string", "array", "null"], items: { type: "string" } },
     candidates: { type: "array", items: { type: "object", additionalProperties: false,
-      required: ["name", "code", "why"],
+      required: ["name", "code", "basis", "why"],
       properties: {
-        name: { type: "string" },              // ANZSCO English title
+        name: { type: "string" },              // ANZSCO English title, from the list
         code: { type: ["string", "null"] },     // six digits, or null
+        // Which half of the resume the candidate came from. A skills
+        // assessment keys on the degree, so a candidate reached only through
+        // the qualification is a real option, not a worse guess.
+        basis: { type: "string", enum: ["work", "study"] },
         why:  { type: "string" } } } },
   },
 };
 
+/* Filled at build time by scripts/aiview.py from the site's own occupation
+   index. Without it the model names occupations from memory and produces
+   things that are not on the list at all, which the matcher then drops
+   silently -- the visible symptom being a resume that returns two candidates
+   instead of four, with no hint that anything was discarded. */
+const AI_OCC_LIST = "261313\tSoftware Engineer\n233211\tCivil Engineer\n233512\tMechanical Engineer\n351311\tChef\n261312\tDeveloper Programmer\n241111\tEarly Childhood (Pre-primary School) Teacher\n261111\tICT Business Analyst\n233914\tEngineering Technologist\n221111\tAccountant (General)\n312211\tCivil Engineering Draftsperson\n233311\tElectrical Engineer\n251513\tRetail Pharmacist\n261311\tAnalyst Programmer\n254499\tRegistered Nurses nec\n261112\tSystems Analyst\n261399\tSoftware and Applications Programmers nec\n263111\tComputer Network and Systems Engineer\n251511\tHospital Pharmacist\n133111\tConstruction Project Manager\n312212\tCivil Engineering Technician\n225113\tMarketing Specialist\n233411\tElectronics Engineer\n242111\tUniversity Lecturer\n262112\tICT Security Specialist\n254415\tRegistered Nurse (Critical Care and Emergency)\n321211\tMotor Mechanic (General)\n221213\tExternal Auditor\n241411\tSecondary School Teacher\n254418\tRegistered Nurse (Medical)\n263212\tICT Support Engineer\n224999\tInformation and Organisation Professionals nec\n351411\tCook\n233111\tChemical Engineer\n261314\tSoftware Tester\n221112\tManagement Accountant\n311215\tPharmacy Technician\n511112\tProgram or Project Administrator\n312111\tArchitectural Draftsperson\n221113\tTaxation Accountant\n411711\tCommunity Worker\n135112\tICT Project Manager\n411411\tEnrolled Nurse\n263311\tTelecommunications Engineer\n233999\tEngineering Professionals nec\n262113\tSystems Administrator\n233513\tProduction or Plant Engineer\n234111\tAgricultural Consultant\n254412\tRegistered Nurse (Aged Care)\n332211\tPainting Trades Worker\n331212\tCarpenter\n311213\tMedical Laboratory Technician\n141111\tCafe or Restaurant Manager\n254424\tRegistered Nurse (Surgical)\n233511\tIndustrial Engineer\n221214\tInternal Auditor\n132211\tFinance Manager\n272511\tSocial Worker\n234211\tChemist\n223112\tRecruitment Consultant\n233213\tQuantity Surveyor\n234212\tFood Technologist\n263112\tNetwork Administrator\n222311\tFinancial Investment Adviser\n223111\tHuman Resource Adviser\n232111\tArchitect\n224712\tOrganisation and Methods Analyst\n233214\tStructural Engineer\n133512\tProduction Manager (Manufacturing)\n263211\tICT Quality Assurance Engineer\n511111\tContract Administrator\n254423\tRegistered Nurse (Perioperative)\n263213\tICT Systems Test Engineer\n131112\tSales and Marketing Manager\n251512\tIndustrial Pharmacist\n224711\tManagement Consultant\n233913\tBiomedical Engineer\n234611\tMedical Laboratory Scientist\n263299\tICT Support and Test Engineers nec\n133211\tEngineering Manager\n232411\tGraphic Designer\n135199\tICT Managers nec\n233611\tMining Engineer (excluding Petroleum)\n241213\tPrimary School Teacher\n322313\tWelder (First Class)\n312312\tElectrical Engineering Technician\n224113\tStatistician\n323211\tFitter (General)\n139914\tQuality Assurance Manager\n234514\tBiotechnologist\n149311\tConference and Event Organiser\n262111\tDatabase Administrator\n263113\tNetwork Analyst\n263312\tTelecommunications Network Engineer\n261212\tWeb Developer\n234517\tMicrobiologist\n252511\tPhysiotherapist\n249299\tPrivate Tutors and Teachers nec\n313213\tTelecommunications Network Planner\n234312\tEnvironmental Consultant\n272613\tWelfare Worker\n233911\tAeronautical Engineer\n149212\tCustomer Service Manager\n132311\tHuman Resource Manager\n342313\tElectronic Equipment Trades Worker\n141311\tHotel or Motel Manager\n233915\tEnvironmental Engineer\n252411\tOccupational Therapist\n234411\tGeologist\n271311\tSolicitor\n232414\tWeb Designer\n232611\tUrban and Regional Planner\n225311\tPublic Relations Professional\n233112\tMaterials Engineer\n341111\tElectrician (General)\n233612\tPetroleum Engineer\n254425\tRegistered Nurse (Paediatrics)\n149914\tFinancial Institution Branch Manager\n225111\tAdvertising Specialist\n261211\tMultimedia Specialist\n132511\tResearch and Development Manager\n312512\tMechanical Engineering Technician\n252711\tAudiologist\n253111\tGeneral Practitioner\n331111\tBricklayer\n249311\tTeacher of English to Speakers of Other Languages\n312114\tConstruction Estimator\n134299\tHealth and Welfare Services Managers nec\n311411\tChemistry Technician\n133611\tSupply and Distribution Manager\n234112\tAgricultural Scientist\n233215\tTransport Engineer\n234511\tLife Scientist (General)\n232212\tSurveyor\n254422\tRegistered Nurse (Mental Health)\n139912\tEnvironmental Manager\n321212\tDiesel Motor Mechanic\n233212\tGeotechnical Engineer\n361311\tVeterinary Nurse\n312911\tMaintenance Planner\n251312\tOccupational Health and Safety Adviser\n253999\tMedical Practitioners nec\n232511\tInterior Designer\n232112\tLandscape Architect\n251112\tNutritionist\n149913\tFacilities Manager\n322311\tMetal Fabricator\n234912\tMetallurgist\n224311\tEconomist\n611211\tInsurance Agent\n233912\tAgricultural Engineer\n311211\tAnaesthetic Technician\n225212\tICT Business Development Manager\n311299\tMedical Technicians nec\n312912\tMetallurgical or Materials Technician\n342314\tElectronic Instrument Trades Worker (General)\n313112\tICT Customer Support Officer\n323214\tMetal Machinist (First Class)\n224111\tActuary\n253112\tResident Medical Officer\n251211\tMedical Diagnostic Radiographer\n242211\tVocational Education Teacher\n391111\tHairdresser\n394111\tCabinetmaker\n313214\tTelecommunications Technical Officer or Technologist\n333411\tWall and Floor Tiler\n272314\tPsychotherapist\n232214\tOther Spatial Scientist\n225213\tICT Sales Representative\n232311\tFashion Designer\n272399\tPsychologists nec\n351111\tBaker\n234313\tEnvironmental Research Scientist\n312311\tElectrical Engineering Draftsperson\n271299\tJudicial and Other Legal Professionals nec\n251911\tHealth Promotion Officer\n272612\tRecreation Officer\n234513\tBiochemist\n312113\tBuilding Inspector\n134213\tPrimary Health Organisation Manager\n411111\tAmbulance Officer\n351112\tPastrycook\n313212\tTelecommunications Field Engineer\n225211\tICT Account Manager\n254414\tRegistered Nurse (Community Health)\n121216\tMixed Crop Farmer\n212415\tTechnical Writer\n313113\tWeb Administrator\n342315\tElectronic Instrument Trades Worker (Special Class)\n311413\tLife Science Technician\n224213\tHealth Information Manager\n254421\tRegistered Nurse (Medical Practice)\n212411\tCopywriter\n225499\tTechnical Sales Representatives nec\n252111\tChiropractor\n334112\tAirconditioning and Mechanical Services Plumber\n132111\tCorporate Services Manager\n232312\tIndustrial Designer\n323112\tAircraft Maintenance Engineer (Mechanical)\n331211\tCarpenter and Joiner\n221211\tCompany Secretary\n411311\tDiversional Therapist\n234711\tVeterinarian\n321111\tAutomotive Electrician\n254417\tRegistered Nurse (Disability and Rehabilitation)\n234599\tLife Scientists nec\n311214\tOperating Theatre Technician\n311111\tAgricultural Technician\n133411\tManufacturer\n312611\tSafety Inspector\n222211\tFinancial Market Dealer\n312199\tArchitectural, Building and Surveying Technicians nec\n223211\tICT Trainer\n311499\tScience Technicians nec\n272115\tStudent Counsellor\n234914\tPhysicist\n222112\tFinance Broker\n222113\tInsurance Broker\n149413\tTransport Company Manager\n234412\tGeophysicist\n252712\tSpeech Pathologist\n233916\tNaval Architect\n452317\tOther Sports Coach or Instructor\n342111\tAirconditioning and Refrigeration Mechanic\n224512\tValuer\n225112\tMarket Research Analyst\n241311\tMiddle School Teacher\n272199\tCounsellors nec\n342411\tCabler (Data and Telecommunications)\n639211\tRetail Buyer\n411611\tMassage Therapist\n222312\tFinancial Investment Manager\n599915\tClinical Coder\n139999\tSpecialist Managers nec\n252299\tComplementary Health Therapists nec\n134311\tSchool Principal\n323212\tFitter and Turner\n254111\tMidwife\n323412\tToolmaker\n234413\tHydrogeologist\n451711\tFlight Attendant\n311212\tCardiac Technician\n312999\tBuilding and Engineering Technicians nec\n212314\tFilm and Video Editor\n139913\tLaboratory Manager\n334111\tPlumber (General)\n234516\tMarine Biologist\n313199\tICT Support Technicians nec\n252312\tDentist\n234113\tForester\n241511\tSpecial Needs Teacher\n251999\tHealth Diagnostic and Promotion Professionals nec\n224611\tLibrarian\n139911\tArts Administrator or Manager\n411213\tDental Technician\n133612\tProcurement Manager\n121321\tPoultry Farmer\n212318\tVideo Producer\n249111\tEducation Adviser\n249214\tMusic Teacher (Private Tuition)\n251111\tDietitian\n141999\tAccommodation and Hospitality Managers nec\n212499\tJournalists and Other Writers nec\n272412\tInterpreter\n311399\tPrimary Products Inspectors nec\n452315\tSwimming Coach or Instructor\n312511\tMechanical Engineering Draftsperson\n272499\tSocial Professionals nec\n323111\tAircraft Maintenance Engineer (Avionics)\n134499\tEducation Managers nec\n272114\tRehabilitation Counsellor\n232413\tMultimedia Designer\n224412\tPolicy Analyst\n599612\tInsurance Loss Adjuster\n612115\tReal Estate Representative\n311312\tMeat Inspector\n311412\tEarth Science Technician\n222299\tFinancial Dealers nec\n224112\tMathematician\n211311\tPhotographer\n312116\tSurveying or Spatial Science Technician\n234518\tZoologist\n411716\tYouth Worker\n134111\tChild Care Centre Manager\n234399\tEnvironmental Scientists nec\n251311\tEnvironmental Health Officer\n121221\tVegetable Grower\n333212\tSolid Plasterer\n612112\tProperty Manager\n132411\tPolicy and Planning Manager\n232412\tIllustrator\n131113\tAdvertising Manager\n254413\tRegistered Nurse (Child and Family Health)\n234515\tBotanist\n212413\tPrint Journalist\n272112\tDrug and Alcohol Counsellor\n224511\tLand Economist\n212416\tTelevision Journalist\n222111\tCommodities Trader\n224214\tRecords Manager\n134211\tMedical Administrator\n224912\tLiaison Officer\n121313\tDairy Cattle Farmer\n241599\tSpecial Education Teachers nec\n212412\tNewspaper or Periodical Editor\n212315\tProgram Director (Television or Radio)\n234913\tMeteorologist\n252611\tPodiatrist\n254211\tNurse Educator\n313111\tHardware Technician\n149112\tFitness Centre Manager\n231213\tShip's Master\n251411\tOptometrist\n211112\tDancer or Choreographer\n322211\tSheetmetal Trades Worker\n399212\tGas or Petroleum Operator\n253912\tEmergency Medicine Specialist\n323213\tFitter-Welder\n224914\tPatents Examiner\n234999\tNatural and Physical Science Professionals nec\n232213\tCartographer\n312913\tMine Deputy\n411713\tFamily Support Worker\n452321\tSports Development Officer\n324111\tPanelbeater\n399111\tBoat Builder and Repairer\n452316\tTennis Coach\n411712\tDisabilities Services Officer\n341113\tLift Mechanic\n333111\tGlazier\n252213\tNaturopath\n212212\tBook or Script Editor\n251212\tMedical Radiation Therapist\n249212\tDance Teacher (Private Tuition)\n133513\tProduction Manager (Mining)\n254416\tRegistered Nurse (Developmental Disability)\n333211\tFibrous Plasterer\n222213\tStockbroking Dealer\n251214\tSonographer\n253411\tPsychiatrist\n341112\tElectrician (Special Class)\n272113\tFamily and Marriage Counsellor\n253311\tSpecialist Physician (General Medicine)\n362211\tGardener (General)\n252112\tOsteopath\n254411\tNurse Practitioner\n272413\tTranslator\n232313\tJewellery Designer\n222199\tFinancial Brokers nec\n234915\tExercise Physiologist\n134214\tWelfare Centre Manager\n399213\tPower Generation Plant Operator\n334115\tRoof Plumber\n131114\tPublic Relations Manager\n253913\tObstetrician and Gynaecologist\n332111\tFloor Finisher\n362213\tLandscape Gardener\n211213\tMusician (Instrumental)\n231111\tAeroplane Pilot\n251912\tOrthotist or Prosthetist\n253312\tCardiologist\n323313\tLocksmith\n441211\tEmergency Service Worker\n121214\tGrain, Oilseed or Pasture Grower\n272311\tClinical Psychologist\n361199\tAnimal Attendants and Trainers nec\n121212\tFlower Grower\n313211\tRadiocommunications Technician\n334114\tGasfitter\n331213\tJoiner\n121411\tMixed Crop and Livestock Farmer\n254311\tNurse Manager\n451815\tFirst Aid Trainer\n121111\tAquaculture Farmer\n253917\tDiagnostic and Interventional Radiologist\n351211\tButcher or Smallgoods Maker\n212312\tDirector (Film, Television, Radio or Stage)\n311216\tPathology Collector\n271214\tIntellectual Property Lawyer\n333311\tRoof Tiler\n334113\tDrainer\n362212\tArborist\n121213\tFruit or Nut Grower\n452311\tDiving Instructor (Open Water)\n331112\tStonemason\n411715\tResidential Care Officer\n234911\tConservator\n252211\tAcupuncturist\n342413\tTelecommunications Linesworker\n399599\tPerforming Arts Technicians nec\n411112\tIntensive Care Ambulance Paramedic\n253321\tPaediatrician\n324311\tVehicle Painter\n139915\tSports Administrator\n411211\tDental Hygienist\n149113\tSports Centre Manager\n234213\tWine Maker\n121312\tBeef Cattle Farmer\n251213\tNuclear Medicine Technologist\n272312\tEducational Psychologist\n452312\tGymnastics Coach or Instructor\n121317\tMixed Livestock Farmer\n224212\tGallery or Museum Curator\n249211\tArt Teacher (Private Tuition)\n252214\tTraditional Chinese Medicine Practitioner\n253399\tSpecialist Physicians nec\n399516\tSound Technician\n271111\tBarrister\n272611\tCommunity Arts Worker\n361112\tHorse Trainer\n133511\tProduction Manager (Forestry)\n211212\tMusic Director\n234311\tConservation Officer\n253317\tIntensive Care Specialist\n321213\tMotorcycle Mechanic\n323113\tAircraft Maintenance Engineer (Structures)\n362411\tNurseryperson\n393213\tDressmaker or Tailor\n253511\tSurgeon (General)\n272111\tCareers Counsellor\n223113\tWorkplace Relations Adviser\n253211\tAnaesthetist\n253318\tNeurologist\n253514\tOrthopaedic Surgeon\n231113\tFlying Instructor\n253316\tGastroenterologist\n212316\tStage Manager\n212317\tTechnical Director\n253322\tRenal Medicine Specialist\n342211\tElectrical Linesworker\n399514\tMake Up Artist\n411214\tDental Therapist\n452499\tSportspersons nec\n121217\tSugar Cane Grower\n133112\tProject Builder\n393311\tUpholsterer\n451211\tDriving Instructor\n142115\tPost Office Manager\n342311\tBusiness Machine Mechanic\n361114\tZookeeper\n399512\tCamera Operator (Film, Television or Video)\n452411\tFootballer\n134412\tRegional Education Manager\n251412\tOrthoptist\n253517\tPlastic and Reconstructive Surgeon\n121215\tGrape Grower\n121311\tApiarist\n134212\tNursing Clinical Director\n211299\tMusic Professionals nec\n231114\tHelicopter Pilot\n253314\tMedical Oncologist\n253512\tCardiothoracic Surgeon\n253518\tUrologist\n272313\tOrganisational Psychologist\n342212\tTechnical Cable Jointer\n361111\tDog Handler or Trainer\n399411\tJeweller\n121299\tCrop Farmers nec\n241512\tTeacher of the Hearing Impaired\n253313\tClinical Haematologist\n253914\tOphthalmologist\n253918\tRadiation Oncologist\n121211\tCotton Grower\n121322\tSheep Farmer\n141211\tCaravan Park and Camping Ground Manager\n241513\tTeacher of the Sight Impaired\n252311\tDental Specialist\n253324\tThoracic Medicine Specialist\n253911\tDermatologist\n253915\tPathologist\n322113\tFarrier\n392111\tPrint Finisher\n392311\tPrinting Machinist\n394211\tFurniture Finisher\n394213\tWood Machinist\n399112\tShipwright\n121318\tPig Farmer\n121399\tLivestock Farmers nec\n253513\tNeurosurgeon\n322312\tPressure Welder\n362111\tFlorist\n362311\tGreenkeeper\n452313\tHorse Riding Coach or Instructor\n121316\tHorse Breeder\n149111\tAmusement Centre Manager\n212111\tArtistic Director\n253315\tEndocrinologist\n253515\tOtorhinolaryngologist\n253516\tPaediatric Surgeon\n253521\tVascular Surgeon\n321214\tSmall Engine Mechanic\n452413\tJockey\nNone\tProvided";
+
 const AI_SYSTEM =
-  "你的任务只有一个：判断这份简历对应澳洲 ANZSCO 职业清单里的哪个职业。只输出 JSON，不要解释。\n" +
+  "你的任务只有一个：判断这份简历对应澳洲 ANZSCO 职业清单里的哪些职业。只输出 JSON，不要解释。\n" +
   "- jobTitles：简历里**原文写出的**职位名称，原样照抄，不要翻译改写。\n" +
   "- keyDuties：最能体现职业性质的职责关键词，3–8 条，尽量短。\n" +
-  "- fieldOfStudy：所学专业；没写填 null。\n" +
-  "- candidates：1–4 个最可能的 ANZSCO 职业，按可能性从高到低。\n" +
-  "  name 必须是澳洲 ANZSCO 清单上的**英文职业名**（例如 Software Engineer、" +
-  "Developer Programmer、ICT Business Analyst）。\n" +
-  "  code 是六位数字代码；不确定就填 null，**不要瞎编，也不要填 \"unknown\"**。\n" +
+  "- fieldOfStudy：所学专业；有多个学位就都写上；没写填 null。\n" +
+  "- candidates：2–6 个候选职业，按可能性从高到低。\n" +
+  "  **code 和 name 必须逐字取自下面的清单**，不在清单上的一律不要输出。\n" +
+  "  清单上没有 Machine Learning Engineer、Data Scientist、ICT Research Scientist " +
+  "这类市场化职位名，遇到这种情况请挑清单里最接近的那一条，不要自己造名字。\n" +
+  "  basis 填 work（依据职位与职责）或 study（依据所学专业）；\n" +
   "  why 用一句中文说明依据，引用简历里的职责或专业。\n" +
-  "- 不要输出年龄、英语成绩、工作年限、配偶等信息——这些本工具在别处处理，这里不需要。";
+  "- **学历和工作要分别判断，两边的候选都要给。** 澳洲职业评估看的是学位专业与职业的\n" +
+  "  对应关系，所以一个人当前在做什么、和他的学位能评估成什么，经常不是同一个职业。\n" +
+  "  例如学的是光电/电子工程、现在做算法研发，那么两边的候选都应该出现在结果里。\n" +
+  "- 不要输出年龄、英语成绩、工作年限、配偶等信息——这些本工具在别处处理，这里不需要。\n" +
+  "\n可选职业清单（六位代码 + 英文名，制表符分隔）：\n" + AI_OCC_LIST;
 
 function aiBuildBody() {
   const raw = $ai("aiRaw").value || "";
@@ -1391,6 +1410,13 @@ function aiShowRaw(raw, think) {
    261, sub-major 26. Occupations sharing a prefix are the ones a skills
    assessor might plausibly place the same background in, so the model's picks
    are seeds and the neighbourhood is derived deterministically from the code. */
+/* "模型判定最贴近" alone does not say why, and for a resume whose degree and
+   current job point at different occupations that is the whole question. */
+const aiBasisLabel = b =>
+  b === "study" ? "模型判定最贴近（依据所学专业）"
+  : b === "work" ? "模型判定最贴近（依据职位与职责）"
+  : "模型判定最贴近";
+
 function aiRelated(seedCodes, idx, cap) {
   const out = [], seen = new Set();
   const add = (o, rel) => { if (!seen.has(o.code)) { seen.add(o.code); out.push({ o, rel }); } };
@@ -1441,20 +1467,29 @@ async function aiRenderResult(x) {
   $ai("aiResultCard").hidden = false;
   const titles = (x.jobTitles || []).join("、") || "（未识别到职位名）";
   const duties = (x.keyDuties || []).join(" · ");
+  const study = Array.isArray(x.fieldOfStudy)
+    ? x.fieldOfStudy.filter(Boolean).join("、") : x.fieldOfStudy;
   $ai("aiRead").textContent =
-    `简历里的职位：${titles}` + (x.fieldOfStudy ? `　专业：${x.fieldOfStudy}` : "") +
+    `简历里的职位：${titles}` + (study ? `　专业：${study}` : "") +
     (duties ? `\n关键职责：${duties}` : "");
 
   const idx = (typeof window !== "undefined" && window.OCC_INDEX) || [];
   const seen = new Set(), seeds = [];
+  // code -> "work" | "study": which half of the resume put this occupation on
+  // the list. Worth showing, because a candidate reached through the degree is
+  // often the one a skills assessment will actually accept.
+  const BASIS = {};
   const addByCode = code => {
     const o = idx.find(o => o.code === code);
     if (o && !seen.has(o.code)) { seen.add(o.code); seeds.push(o.code); }
     return !!o;
   };
+  // Returns the codes it resolved to (possibly already-seen ones), so the
+  // caller can tell "this candidate is a duplicate" from "this candidate
+  // matches nothing on the list".
   const addByName = name => {
     const words = String(name || "").toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length >= 3);
-    if (!words.length) return;
+    if (!words.length) return [];
     const scored = idx.map(o => {
       const n = o.name.toLowerCase();
       const hit = words.filter(w => n.includes(w));
@@ -1463,10 +1498,17 @@ async function aiRenderResult(x) {
     const full = scored.filter(r => r.all).sort((a, b) => b.sc - a.sc);
     const pick = full.length ? full.slice(0, 2) : scored.sort((a, b) => b.sc - a.sc).slice(0, 1);
     pick.forEach(({ o }) => { if (!seen.has(o.code)) { seen.add(o.code); seeds.push(o.code); } });
+    return pick.map(({ o }) => o.code);
   };
+  // The prompt now ships the occupation list, so a candidate that still fails
+  // to match is a real signal -- say so rather than quietly returning a
+  // shorter list, which reads as "the tool found nothing for that".
+  const dropped = [];
   (x.candidates || []).forEach(c => {
     const code = /^\d{6}$/.test(c.code || "") ? c.code : null;
-    if (!(code && addByCode(code))) addByName(c.name);
+    const hit = code && addByCode(code) ? [code] : addByName(c.name);
+    if (!hit.length) dropped.push(c.name);
+    else hit.forEach(k => { if (!BASIS[k]) BASIS[k] = c.basis || ""; });
   });
 
   const note = $ai("aiOccNote"), list = $ai("aiOccList");
@@ -1483,14 +1525,16 @@ async function aiRenderResult(x) {
 
   if (!base) {
     note.textContent = "找到了相关职业，但还不知道你的分数——先到「计算分数」页把表填了，" +
-      "回来这里就会按你的分数把这些职业按历史获邀率排序。";
-    rows.slice(0, 6).forEach(({ o, rel }) => {
+      "回来这里就会按你的分数把这些职业按历史获邀率排序。" +
+      (dropped.length ? `（模型还提到了 ${dropped.join("、")}，不在 SkillSelect 清单上，已略过。）` : "");
+    rows.slice(0, 8).forEach(({ o, rel }) => {
       const row = document.createElement("div"); row.className = "occrow";
       const b = document.createElement("button");
       b.type = "button"; b.className = "tblbtn nt";
       b.textContent = `${o.name}　在池 ${fmt(o.pool)}`;
       b.addEventListener("click", () => { location.hash = "#/data/" + o.code; });
-      const r = document.createElement("span"); r.className = "occwhy"; r.textContent = rel;
+      const r = document.createElement("span"); r.className = "occwhy";
+      r.textContent = rel === "模型判定最贴近" ? aiBasisLabel(BASIS[o.code]) : rel;
       row.append(b, r); list.appendChild(row);
     });
     return;
@@ -1513,8 +1557,12 @@ async function aiRenderResult(x) {
   const cols = ["189", "190", "491 (州担保)"];
   const head = ["职业", `189 (${base}分)`, `190 (${base + 5}分)`, `491 (${base + 15}分)`, "在池", "关系"];
   const cell = r => !r ? "—" : (r.n < 50 ? `${r.rate}%▲` : `${r.rate}%`);
+  const relOf = w => w.rel === "模型判定最贴近"
+    ? (BASIS[w.o.code] === "study" ? "最贴近（按专业）"
+       : BASIS[w.o.code] === "work" ? "最贴近（按职责）" : "模型判定最贴近")
+    : w.rel;
   const body = withRates.map(w => [w.o.name].concat(
-    cols.map(c => cell(w.per[c])), [fmt(w.o.pool), w.rel]));
+    cols.map(c => cell(w.per[c])), [fmt(w.o.pool), relOf(w)]));
 
   list.textContent = "";
   const wrap = document.createElement("div");
@@ -1545,7 +1593,8 @@ async function aiRenderResult(x) {
 
   note.textContent = `按你在「计算分数」页算出的 ${base} 分排序（189 用 ${base} 分、` +
     `190 用 ${base + 5} 分、491 用 ${base + 15} 分，含提名加分）。每行最高的一格加粗；` +
-    "带 ▲ 的样本不足 50，不可靠。点职业名可查看它的完整数据页。";
+    "带 ▲ 的样本不足 50，不可靠。点职业名可查看它的完整数据页。" +
+    (dropped.length ? `模型还提到了 ${dropped.join("、")}，不在 SkillSelect 清单上，已略过。` : "");
 }
 
 function aiInit() {
@@ -1592,6 +1641,7 @@ function aiInit() {
   $ai("aiRaw").addEventListener("input", () => { AI_BODY = null; });
   $ai("aiSend").addEventListener("click", aiSend);
 }
+
 
 /* ---------- three top-level sections + hash router ----------
    Hash is #/<view>[/<occupation code>], e.g. #/points/261313.

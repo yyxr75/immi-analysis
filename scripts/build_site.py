@@ -11,6 +11,7 @@ import sys
 
 import pandas as pd
 
+import aiview
 from prep_report import VISA_SHORT, VISA_ORDER, mkey, pct, findings_for
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -354,6 +355,10 @@ def main():
     print(f"  meta: reload={meta['reloadTime']} latest={meta['latestMonth']}")
 
     tpl = open(os.path.join(HERE, "report_template.html")).read()
+    # The AI panel lives only in scripts/ai_view.js; inject it here, with the
+    # ANZSCO list built from the index written just above so the prompt can
+    # never name an occupation the site has no data for.
+    tpl = aiview.inject(tpl, index)
     html = (tpl.replace("__DATA__", "null")
                .replace("__TITLE__", SITE_TITLE)
                .replace("<!--PICKER-->", PICKER_HTML)

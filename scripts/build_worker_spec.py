@@ -10,6 +10,8 @@ import os
 import re
 import subprocess
 
+import aiview
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "ai_view.js")
 OUT = os.path.join(HERE, "..", "worker", "spec.generated.js")
@@ -31,8 +33,14 @@ def slice_decl(src, name):
 
 
 def main():
-    src = open(SRC).read()
-    decls = slice_decl(src, "AI_SCHEMA") + "\n" + slice_decl(src, "AI_SYSTEM")
+    # aiview fills the ANZSCO list, so the shared endpoint prompts with
+    # exactly the occupations the site has data for.
+    src = aiview.ai_view_js()
+    # AI_OCC_LIST is one long JSON string literal. slice_decl counts brackets
+    # and does not know about strings, and occupation names contain "(General)"
+    # and the like, so take that declaration line-wise instead.
+    line = next(l for l in src.splitlines() if l.startswith("const AI_OCC_LIST ="))
+    decls = "\n".join([slice_decl(src, "AI_SCHEMA"), line, slice_decl(src, "AI_SYSTEM")])
     prog = decls + "\nprocess.stdout.write(JSON.stringify({SCHEMA: AI_SCHEMA, SYSTEM: AI_SYSTEM}));"
     out = subprocess.run(["node", "-e", prog], capture_output=True, text=True, check=True)
     spec = json.loads(out.stdout)

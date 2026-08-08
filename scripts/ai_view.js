@@ -389,27 +389,46 @@ const AI_SCHEMA = {
   properties: {
     jobTitles: { type: "array", items: { type: "string" } },
     keyDuties: { type: "array", items: { type: "string" } },
-    fieldOfStudy: { type: ["string", "null"] },
+    // Asking for every degree invites a list, and DeepSeek runs unconstrained
+    // (it rejects json_schema), so accept both shapes rather than depend on
+    // the model guessing which one we meant.
+    fieldOfStudy: { type: ["string", "array", "null"], items: { type: "string" } },
     candidates: { type: "array", items: { type: "object", additionalProperties: false,
-      required: ["name", "code", "why"],
+      required: ["name", "code", "basis", "why"],
       properties: {
-        name: { type: "string" },              // ANZSCO English title
+        name: { type: "string" },              // ANZSCO English title, from the list
         code: { type: ["string", "null"] },     // six digits, or null
+        // Which half of the resume the candidate came from. A skills
+        // assessment keys on the degree, so a candidate reached only through
+        // the qualification is a real option, not a worse guess.
+        basis: { type: "string", enum: ["work", "study"] },
         why:  { type: "string" } } } },
   },
 };
 
+/* Filled at build time by scripts/aiview.py from the site's own occupation
+   index. Without it the model names occupations from memory and produces
+   things that are not on the list at all, which the matcher then drops
+   silently -- the visible symptom being a resume that returns two candidates
+   instead of four, with no hint that anything was discarded. */
+const AI_OCC_LIST = "__ANZSCO_LIST__";
+
 const AI_SYSTEM =
-  "你的任务只有一个：判断这份简历对应澳洲 ANZSCO 职业清单里的哪个职业。只输出 JSON，不要解释。\n" +
+  "你的任务只有一个：判断这份简历对应澳洲 ANZSCO 职业清单里的哪些职业。只输出 JSON，不要解释。\n" +
   "- jobTitles：简历里**原文写出的**职位名称，原样照抄，不要翻译改写。\n" +
   "- keyDuties：最能体现职业性质的职责关键词，3–8 条，尽量短。\n" +
-  "- fieldOfStudy：所学专业；没写填 null。\n" +
-  "- candidates：1–4 个最可能的 ANZSCO 职业，按可能性从高到低。\n" +
-  "  name 必须是澳洲 ANZSCO 清单上的**英文职业名**（例如 Software Engineer、" +
-  "Developer Programmer、ICT Business Analyst）。\n" +
-  "  code 是六位数字代码；不确定就填 null，**不要瞎编，也不要填 \"unknown\"**。\n" +
+  "- fieldOfStudy：所学专业；有多个学位就都写上；没写填 null。\n" +
+  "- candidates：2–6 个候选职业，按可能性从高到低。\n" +
+  "  **code 和 name 必须逐字取自下面的清单**，不在清单上的一律不要输出。\n" +
+  "  清单上没有 Machine Learning Engineer、Data Scientist、ICT Research Scientist " +
+  "这类市场化职位名，遇到这种情况请挑清单里最接近的那一条，不要自己造名字。\n" +
+  "  basis 填 work（依据职位与职责）或 study（依据所学专业）；\n" +
   "  why 用一句中文说明依据，引用简历里的职责或专业。\n" +
-  "- 不要输出年龄、英语成绩、工作年限、配偶等信息——这些本工具在别处处理，这里不需要。";
+  "- **学历和工作要分别判断，两边的候选都要给。** 澳洲职业评估看的是学位专业与职业的\n" +
+  "  对应关系，所以一个人当前在做什么、和他的学位能评估成什么，经常不是同一个职业。\n" +
+  "  例如学的是光电/电子工程、现在做算法研发，那么两边的候选都应该出现在结果里。\n" +
+  "- 不要输出年龄、英语成绩、工作年限、配偶等信息——这些本工具在别处处理，这里不需要。\n" +
+  "\n可选职业清单（六位代码 + 英文名，制表符分隔）：\n" + AI_OCC_LIST;
 
 function aiBuildBody() {
   const raw = $ai("aiRaw").value || "";
@@ -525,6 +544,13 @@ function aiShowRaw(raw, think) {
    261, sub-major 26. Occupations sharing a prefix are the ones a skills
    assessor might plausibly place the same background in, so the model's picks
    are seeds and the neighbourhood is derived deterministically from the code. */
+/* "模型判定最贴近" alone does not say why, and for a resume whose degree and
+   current job point at different occupations that is the whole question. */
+const aiBasisLabel = b =>
+  b === "study" ? "模型判定最贴近（依据所学专业）"
+  : b === "work" ? "模型判定最贴近（依据职位与职责）"
+  : "模型判定最贴近";
+
 function aiRelated(seedCodes, idx, cap) {
   const out = [], seen = new Set();
   const add = (o, rel) => { if (!seen.has(o.code)) { seen.add(o.code); out.push({ o, rel }); } };
@@ -575,20 +601,29 @@ async function aiRenderResult(x) {
   $ai("aiResultCard").hidden = false;
   const titles = (x.jobTitles || []).join("、") || "（未识别到职位名）";
   const duties = (x.keyDuties || []).join(" · ");
+  const study = Array.isArray(x.fieldOfStudy)
+    ? x.fieldOfStudy.filter(Boolean).join("、") : x.fieldOfStudy;
   $ai("aiRead").textContent =
-    `简历里的职位：${titles}` + (x.fieldOfStudy ? `　专业：${x.fieldOfStudy}` : "") +
+    `简历里的职位：${titles}` + (study ? `　专业：${study}` : "") +
     (duties ? `\n关键职责：${duties}` : "");
 
   const idx = (typeof window !== "undefined" && window.OCC_INDEX) || [];
   const seen = new Set(), seeds = [];
+  // code -> "work" | "study": which half of the resume put this occupation on
+  // the list. Worth showing, because a candidate reached through the degree is
+  // often the one a skills assessment will actually accept.
+  const BASIS = {};
   const addByCode = code => {
     const o = idx.find(o => o.code === code);
     if (o && !seen.has(o.code)) { seen.add(o.code); seeds.push(o.code); }
     return !!o;
   };
+  // Returns the codes it resolved to (possibly already-seen ones), so the
+  // caller can tell "this candidate is a duplicate" from "this candidate
+  // matches nothing on the list".
   const addByName = name => {
     const words = String(name || "").toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length >= 3);
-    if (!words.length) return;
+    if (!words.length) return [];
     const scored = idx.map(o => {
       const n = o.name.toLowerCase();
       const hit = words.filter(w => n.includes(w));
@@ -597,10 +632,17 @@ async function aiRenderResult(x) {
     const full = scored.filter(r => r.all).sort((a, b) => b.sc - a.sc);
     const pick = full.length ? full.slice(0, 2) : scored.sort((a, b) => b.sc - a.sc).slice(0, 1);
     pick.forEach(({ o }) => { if (!seen.has(o.code)) { seen.add(o.code); seeds.push(o.code); } });
+    return pick.map(({ o }) => o.code);
   };
+  // The prompt now ships the occupation list, so a candidate that still fails
+  // to match is a real signal -- say so rather than quietly returning a
+  // shorter list, which reads as "the tool found nothing for that".
+  const dropped = [];
   (x.candidates || []).forEach(c => {
     const code = /^\d{6}$/.test(c.code || "") ? c.code : null;
-    if (!(code && addByCode(code))) addByName(c.name);
+    const hit = code && addByCode(code) ? [code] : addByName(c.name);
+    if (!hit.length) dropped.push(c.name);
+    else hit.forEach(k => { if (!BASIS[k]) BASIS[k] = c.basis || ""; });
   });
 
   const note = $ai("aiOccNote"), list = $ai("aiOccList");
@@ -617,14 +659,16 @@ async function aiRenderResult(x) {
 
   if (!base) {
     note.textContent = "找到了相关职业，但还不知道你的分数——先到「计算分数」页把表填了，" +
-      "回来这里就会按你的分数把这些职业按历史获邀率排序。";
-    rows.slice(0, 6).forEach(({ o, rel }) => {
+      "回来这里就会按你的分数把这些职业按历史获邀率排序。" +
+      (dropped.length ? `（模型还提到了 ${dropped.join("、")}，不在 SkillSelect 清单上，已略过。）` : "");
+    rows.slice(0, 8).forEach(({ o, rel }) => {
       const row = document.createElement("div"); row.className = "occrow";
       const b = document.createElement("button");
       b.type = "button"; b.className = "tblbtn nt";
       b.textContent = `${o.name}　在池 ${fmt(o.pool)}`;
       b.addEventListener("click", () => { location.hash = "#/data/" + o.code; });
-      const r = document.createElement("span"); r.className = "occwhy"; r.textContent = rel;
+      const r = document.createElement("span"); r.className = "occwhy";
+      r.textContent = rel === "模型判定最贴近" ? aiBasisLabel(BASIS[o.code]) : rel;
       row.append(b, r); list.appendChild(row);
     });
     return;
@@ -647,8 +691,12 @@ async function aiRenderResult(x) {
   const cols = ["189", "190", "491 (州担保)"];
   const head = ["职业", `189 (${base}分)`, `190 (${base + 5}分)`, `491 (${base + 15}分)`, "在池", "关系"];
   const cell = r => !r ? "—" : (r.n < 50 ? `${r.rate}%▲` : `${r.rate}%`);
+  const relOf = w => w.rel === "模型判定最贴近"
+    ? (BASIS[w.o.code] === "study" ? "最贴近（按专业）"
+       : BASIS[w.o.code] === "work" ? "最贴近（按职责）" : "模型判定最贴近")
+    : w.rel;
   const body = withRates.map(w => [w.o.name].concat(
-    cols.map(c => cell(w.per[c])), [fmt(w.o.pool), w.rel]));
+    cols.map(c => cell(w.per[c])), [fmt(w.o.pool), relOf(w)]));
 
   list.textContent = "";
   const wrap = document.createElement("div");
@@ -679,7 +727,8 @@ async function aiRenderResult(x) {
 
   note.textContent = `按你在「计算分数」页算出的 ${base} 分排序（189 用 ${base} 分、` +
     `190 用 ${base + 5} 分、491 用 ${base + 15} 分，含提名加分）。每行最高的一格加粗；` +
-    "带 ▲ 的样本不足 50，不可靠。点职业名可查看它的完整数据页。";
+    "带 ▲ 的样本不足 50，不可靠。点职业名可查看它的完整数据页。" +
+    (dropped.length ? `模型还提到了 ${dropped.join("、")}，不在 SkillSelect 清单上，已略过。` : "");
 }
 
 function aiInit() {
