@@ -1,55 +1,91 @@
-# 公共 AI 服务（Cloudflare Worker）
+# 共享 AI 端点 + 邮箱登录
 
-让访客不用自己填 API Key 就能用「AI 分析」页，费用由你承担。
+站点是静态的，任何密钥放进页面就等于公开。所以调用模型的密钥、账号体系和
+额度统计全部在这个 Worker 里，浏览器只拿到一个「这个邮箱能收到信」的凭证。
 
-**为什么必须有这一层：** 站点是 GitHub Pages 上的纯静态站，页面能读到的东西访客
-就能读到。把 Key 写进配置文件 = 公开 Key，而且会永久留在 git 历史里。爬公开仓库和
-页面找 Key 的机器人一直在跑，通常几小时内就会被捡走，之后别人拿它干什么都算你的账单。
-Key 只能待在服务端，这个 Worker 就是那个服务端。
+## 部署后还差什么
 
-## 它不是一个通用代理
+登录要发验证码，Worker 自己发不了邮件，需要一个邮件服务。**没配之前，
+`/auth/request` 会明确返回 503，不会把验证码写进日志**——那等于谁能看日志谁
+就能登录。
 
-浏览器只发 `{ "text": "<脱敏后的简历正文>" }`。模型、prompt、schema 全部由 Worker
-自己拼。所以就算 Worker 地址泄漏，别人拿到的也只是「职业识别」这一个功能，还带着限额，
-而不是一个免费的模型接口。
+默认用 [Resend](https://resend.com)（免费额度每天 100 封 / 每月 3000 封）：
 
-`spec.generated.js` 由 `scripts/build_worker_spec.py` 从 `scripts/ai_view.js` 生成，
-保证两侧的 prompt/schema 是同一份——**不要手改**，改 `ai_view.js` 后重新生成。
+1. 注册 Resend，**Domains** 里加上你的域名并按提示加 DNS 记录验证。
+   没有域名也可以先用它给的 `onboarding@resend.dev`，但那个只能发给你自己
+   注册时用的邮箱，只够自测。
+2. **API Keys** 里建一个 key，权限选 *Sending access* 就够。
+3. 写进 Worker（**不要粘贴到聊天里或提交进仓库**）：
 
-## 部署
+   ```bash
+   cd worker
+   source ~/.cf-token
+   wrangler secret put RESEND_API_KEY      # 粘贴 key，回车
+   wrangler secret put MAIL_FROM           # 例如：澳洲移民工具箱 <no-reply@你的域名>
+   ```
+
+4. 验证一下：
+
+   ```bash
+   curl -s -X POST https://immi-occupation-match.yyxr75.workers.dev/auth/request \
+     -H 'Origin: https://yyxr75.github.io' -H 'Content-Type: application/json' \
+     -d '{"email":"你自己的邮箱"}'
+   # 期望 {"ok":true,"ttl":600}，然后邮箱收到 6 位验证码
+   ```
+
+换别家（Brevo / SendGrid / Mailgun 都行）只需要改 `auth.js` 里的 `sendCode`
+一个函数，其余不用动。
+
+## 密钥清单
+
+| 名字 | 用途 | 谁生成 |
+|---|---|---|
+| `PROVIDER_API_KEY` | DeepSeek，实际调模型 | 你 |
+| `AUTH_SECRET` | 签 token、算邮箱哈希 | 已生成，存在 `~/.immi-auth-secret` |
+| `ADMIN_TOKEN` | 调 `/auth/grant` | 已生成，存在 `~/.immi-admin-token` |
+| `RESEND_API_KEY` | 发验证码 | **待配** |
+| `MAIL_FROM` | 发件人 | **待配** |
+
+**换掉 `AUTH_SECRET` 会让所有人当场退出登录**（旧 token 全部验不过），账户本身
+不会丢，重新登录即可。
+
+## 给某人开通付费
 
 ```bash
-cd worker
-npm i -g wrangler && wrangler login
-
-# 1. 建限流用的 KV，把打印出的 id 填进 wrangler.toml
-npx wrangler kv namespace create RATE
-
-# 2. 放入 API Key（只存在 Cloudflare，不进仓库）
-npx wrangler secret put PROVIDER_API_KEY
-
-# 3. 发布
-npx wrangler deploy
+ADM=$(cat ~/.immi-admin-token)
+curl -s -X POST https://immi-occupation-match.yyxr75.workers.dev/auth/grant \
+  -H 'Origin: https://yyxr75.github.io' -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer $ADM" \
+  -d '{"email":"someone@example.com","plan":"paid","until":"2027-01-01"}'
 ```
 
-拿到形如 `https://immi-occupation-match.<你的子域>.workers.dev` 的地址后，填进
-`scripts/build_site.py` 的 `PUBLIC_PROXY_URL`，重新 `python build_site.py` 并推送。
-**这个地址是 URL 不是凭证，可以公开。** 填好后「AI 分析」页会多出「公共服务（无需填 Key）」
-选项并作为默认；留空则该选项不出现。
+`until` 到期后自动降回免费，账户不删。改回免费用 `"plan":"free"`。
+返回里带一个该邮箱的 token，可以直接给收不到信的人用。
 
-## 限额
+## 额度与成本
 
-`worker.js` 顶部三个常量：
+`worker.js` 顶部三个数字决定花多少钱：
 
-| 常量 | 默认 | 作用 |
+- `PLANS.free = 10`、`PLANS.paid = 200`（每账户每天）
+- `GLOBAL_PER_DAY = 400`（全站每天，最后一道闸）
+- `MAX_CHARS = 40000`（单次简历长度上限）
+
+理论最坏是 `GLOBAL_PER_DAY × MAX_CHARS`。提示词里那 492 条职业清单每次请求
+都一样，DeepSeek 的前缀缓存会接住（实测 4096/4166 token 命中缓存），所以清单
+基本不额外计费。
+
+**KV 免费额度是每天 1000 次写**，登录流程本身也要写（验证码、限流计数、额度
+计数）。`GLOBAL_PER_DAY` 定在 400 就是为了给登录留出余量；要往上调，先看
+Cloudflare 面板里的 KV 写入量。
+
+## 端点
+
+| 路径 | 需要 | 说明 |
 |---|---|---|
-| `PER_IP_PER_DAY` | 20 | 单 IP 每日次数 |
-| `GLOBAL_PER_DAY` | 500 | **全站每日总量——你的预算闸门** |
-| `MAX_CHARS` | 12000 | 单次输入上限 |
+| `POST /auth/request` | — | `{email}`，发验证码 |
+| `POST /auth/verify` | — | `{email, code}`，换 30 天 token |
+| `POST /auth/me` | Bearer | 当前账号、套餐、今日余量 |
+| `POST /auth/grant` | Bearer = `ADMIN_TOKEN` | 开通/取消付费 |
+| `POST /` | Bearer | `{text}`，职业识别 |
 
-`ALLOWED_ORIGINS`（`wrangler.toml`）限制哪些站点能调。留空等于放开，不建议。
-
-超额时页面会提示访客改用自己的 Key，功能不会整个不可用。
-
-先按你能接受的日预算估：DeepSeek 一次识别约 700–900 tokens，`GLOBAL_PER_DAY=500`
-的量级很小，但**这是硬闸门，请按自己的账单容忍度调**。
+所有路径都受 `wrangler.toml` 里 `ALLOWED_ORIGINS` 的来源白名单限制。
