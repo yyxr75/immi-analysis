@@ -114,6 +114,22 @@ GitHub Actions 的 runner 可以直连 `smtp.gmail.com` 并**以账号本人身�
 **换掉 `AUTH_SECRET` 会让所有人当场退出登录**（旧 token 全部验不过），账户本身
 不会丢，重新登录即可。
 
+## 查配置对不对
+
+Secret 的名字是手打的，打错了是**静默失败**：值存进去了，代码读的是另一个名字，
+表现和从没配过一模一样。这个坑已经踩过两次（`RESENT_API_KEY`、
+`GH_DISPATCH_TOEKN`），所以有个自查接口——只报「有没有」，绝不回显值：
+
+```bash
+ADM=$(cat ~/.immi-admin-token)
+curl -s -X POST https://immi-occupation-match.yyxr75.workers.dev/admin/config \
+  -H 'Origin: https://yyxr75.github.io' -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer $ADM" -d '{}' | python3 -m json.tool
+```
+
+`features` 那一段直接告诉你哪些功能真的能用：`ai`、`requireAuth`、
+`signInByEmail`、`reportByEmail`。
+
 ## 给某人开通付费
 
 ```bash

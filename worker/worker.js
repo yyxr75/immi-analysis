@@ -254,6 +254,26 @@ export default {
                     text: mailText(pend.url, pend.days) }, 200, H);
     }
 
+    /* ---------------- operator: what is actually configured ----------------
+       Secret names are typed by hand and a typo is silent: the value is stored,
+       the code reads a different name, and everything behaves as if nothing was
+       ever set. This reports presence only -- never a value, not even a prefix. */
+    if (path === "/admin/config") {
+      if (!env.ADMIN_TOKEN || bearer(req) !== env.ADMIN_TOKEN)
+        return json({ error: "nope" }, 403, H);
+      const names = ["PROVIDER_API_KEY", "AUTH_SECRET", "ADMIN_TOKEN",
+                     "DISPATCH_SECRET", "GH_REPO", "GH_DISPATCH_TOKEN",
+                     "RESEND_API_KEY", "MAIL_FROM", "MAIL_REPLY_TO"];
+      const present = {}; names.forEach(n => { present[n] = !!env[n]; });
+      return json({ ok: true, present,
+                    features: {
+                      ai: !!env.PROVIDER_API_KEY,
+                      requireAuth: REQUIRE_AUTH,
+                      signInByEmail: !!(env.RESEND_API_KEY && env.MAIL_FROM),
+                      reportByEmail: !!(env.GH_DISPATCH_TOKEN && env.GH_REPO && env.DISPATCH_SECRET),
+                    } }, 200, H);
+    }
+
     /* ---------------- who am I ---------------- */
     if (path === "/auth/me" || body.ping === true) {
       const p = await readToken(env, bearer(req));
