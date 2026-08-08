@@ -193,6 +193,22 @@ h2.occ { font-size:19px; margin:0 0 6px; font-weight:600; letter-spacing:-.01em;
 .occrow { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:8px; }
 .occrow .tblbtn { margin-top:0; }
 .occwhy { font-size:12px; color:var(--muted); flex:1 1 240px; }
+/* ---------- 交流群 ---------- */
+.grpwrap { display:grid; grid-template-columns:minmax(240px,320px) 1fr; gap:22px; align-items:start; }
+.card.grp { padding:16px; text-align:center; }
+/* The code is pure black on white and must stay that way to scan: a dark-mode
+   inversion or a tint would break it, so it keeps its own white plate in both
+   themes rather than inheriting the surface colour. */
+.grpqr { display:block; width:100%; height:auto; max-width:288px; margin:0 auto;
+         background:#fff; border-radius:8px; padding:10px; image-rendering:crisp-edges; }
+.grpname { margin:12px 0 2px; font-weight:600; font-size:14px; }
+.grpexp { margin:0; font-size:12px; color:var(--ink2); }
+.grpexp.stale { color:var(--s2); font-weight:600; }
+.grptext h3 { font-size:14px; margin:18px 0 8px; }
+.grplist { margin:0; padding-left:19px; color:var(--ink2); font-size:13.5px; line-height:1.7; }
+.grpnote { margin:16px 0 0; font-size:12.5px; color:var(--ink2);
+           padding:9px 11px; background:var(--grid); border-radius:7px; }
+@media (max-width:640px) { .grpwrap { grid-template-columns:1fr; } }
 
 .picker { background:var(--surface); border:1px solid var(--hair); border-radius:12px;
           padding:15px 16px; margin:0 0 22px; }
@@ -430,6 +446,30 @@ h2.occ { font-size:19px; margin:0 0 6px; font-weight:600; letter-spacing:-.01em;
         <li><b>不保证你符合排在前面的职业。</b>获邀率高只说明历史上这个职业的竞争没那么激烈，不代表你的背景能通过它的职业评估。</li>
         <li><b>不预测结果。</b>获邀率是历史统计，不是你的成功率。</li>
       </ul>
+    </div>
+  </div>
+
+  <div id="view-group" hidden>
+    <div class="grpwrap">
+      <div class="card grp">
+        <img class="grpqr" id="grpQr" src="asset/wechat-group.png" width="720" height="720"
+             alt="微信群二维码：澳洲移民工具箱交流群 1">
+        <p class="grpname">澳洲移民工具箱交流群 1</p>
+        <p class="grpexp" id="grpExp"></p>
+      </div>
+      <div class="grptext">
+        <h2 class="occ">进群交流</h2>
+        <p class="sub">用微信「扫一扫」扫二维码即可入群。手机上打开本页的话，长按二维码保存到相册，
+          再到微信里用「从相册选取二维码」。</p>
+        <h3>群里聊什么</h3>
+        <ul class="grplist">
+          <li>每月官方数据更新后的变化：哪些职业的获邀分数线动了。</li>
+          <li>职业评估、州担保申请过程中的具体问题。</li>
+          <li>这个站点本身的问题和建议——发现数字不对，直接说。</li>
+        </ul>
+        <p class="grpnote">这是个交流群，不是中介。群里没有人能替你办签证，也没有人保证结果。
+          涉及你个人情况的正式建议，请找持牌移民代理（MARA）。</p>
+      </div>
     </div>
   </div>
 
@@ -1659,7 +1699,11 @@ function aiInit() {
    Hash is #/<view>[/<occupation code>], e.g. #/points/261313.
    A bare #261313 (the shape shipped before the sections existed) still
    resolves to the data view for that occupation. */
-const VIEWS = [["data", "职业数据查询"], ["points", "计算分数"], ["ai", "AI 分析"]];
+const VIEWS = [["data", "职业数据查询"], ["points", "计算分数"], ["ai", "AI 分析"],
+               ["group", "交流群"]];
+// A WeChat group QR expires; build_site.py stamps the date printed on the image
+// so the page can say so itself instead of silently handing out a dead code.
+const GROUP_QR_EXPIRES = "2026-08-15";
 let curView = "data";
 let curCode = null;                 // set by the site shell; null in a one-occupation build
 
@@ -1686,7 +1730,7 @@ function setView(name) {
     b.setAttribute("aria-pressed", b.dataset.v === name));
   // the visa filter scopes the data and points views; it means nothing on the AI page
   const f = document.querySelector(".filters");
-  if (f) f.style.display = name === "ai" ? "none" : "";
+  if (f) f.style.display = (name === "ai" || name === "group") ? "none" : "";
   hideTip();
   const want = hashFor(name, curCode);
   if (location.hash !== want) history.replaceState(null, "", want);
@@ -1696,6 +1740,25 @@ function setView(name) {
   if (name === "points" && DATA) renderCalc();
   if (name === "data" && DATA) renderScoreBanner();
   if (name === "ai") aiInit();
+  if (name === "group") renderGroup();
+}
+
+function renderGroup() {
+  const el = document.getElementById("grpExp");
+  if (!el || !GROUP_QR_EXPIRES) return;
+  const exp = new Date(GROUP_QR_EXPIRES + "T23:59:59");
+  const days = Math.ceil((exp - new Date()) / 86400000);
+  const d = GROUP_QR_EXPIRES.slice(5).replace("-", " / ");
+  if (days < 0) {
+    el.className = "grpexp stale";
+    el.textContent = `这个二维码已于 ${d} 过期，扫了进不去。请到 GitHub 仓库提 issue 要新的。`;
+  } else if (days <= 2) {
+    el.className = "grpexp stale";
+    el.textContent = `二维码 ${d} 到期，只剩 ${days} 天，尽快扫。`;
+  } else {
+    el.className = "grpexp";
+    el.textContent = `二维码有效期至 ${d}（微信群码 7 天一换）。`;
+  }
 }
 
 function buildTabs() {

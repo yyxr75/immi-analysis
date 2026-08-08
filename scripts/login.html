@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITLE__</title>
+<link rel="preload" as="image" href="asset/logo.webp">
+<style>
+/* Palette taken from the logo itself, not invented: the toolbox red #d81818,
+   the map navy #001860 lifted to #12306e for text contrast, and a cool paper
+   that keeps the navy from reading as black. The red appears exactly once. */
+:root {
+  color-scheme: light;
+  --paper:#eef1f6; --paper2:#e2e7f0; --card:#fff;
+  --ink:#0d1730; --ink2:#4a5670; --muted:#7b8499;
+  --navy:#12306e; --navy-d:#0b1f4a; --blue:#2f6bb8; --red:#d81818;
+  --line:rgba(13,23,48,.12); --field:#f7f8fb;
+  --btn:#0b1f4a; --btn-hov:#12306e; --btn-ink:#fff;
+  --plate:transparent; --platepad:0;       /* the logo needs none on paper */
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --paper:#080c17; --paper2:#0e1526; --card:#141b2d;
+    --ink:#f2f4f8; --ink2:#a6b0c6; --muted:#7b8499;
+    --navy:#7ea6e0; --navy-d:#dce6f7; --blue:#5f96dc; --red:#ff4d3d;
+    --line:rgba(255,255,255,.13); --field:#0e1526;
+    /* Inverted here: a light button reads as the primary action on a dark
+       card, where the navy fill would sink into the background. */
+    --btn:#dce6f7; --btn-hov:#fff; --btn-ink:#0b1f4a;
+    /* The wordmark inside the logo is dark navy and would vanish on this
+       ground, so it gets its own light lockup plate rather than a filter
+       that would shift the brand colours. */
+    --plate:#eef1f6; --platepad:16px 18px;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper:#080c17; --paper2:#0e1526; --card:#141b2d;
+  --ink:#f2f4f8; --ink2:#a6b0c6; --muted:#7b8499;
+  --navy:#7ea6e0; --navy-d:#dce6f7; --blue:#5f96dc; --red:#ff4d3d;
+  --line:rgba(255,255,255,.13); --field:#0e1526;
+  --btn:#dce6f7; --btn-hov:#fff; --btn-ink:#0b1f4a;
+  --plate:#eef1f6; --platepad:16px 18px;
+}
+* { box-sizing:border-box; }
+html { -webkit-text-size-adjust:100%; }
+body {
+  margin:0; min-height:100vh; color:var(--ink);
+  font:15px/1.62 system-ui,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:
+    radial-gradient(1100px 620px at 12% -10%, var(--paper2), transparent 62%),
+    radial-gradient(760px 520px at 108% 108%, var(--paper2), transparent 58%),
+    var(--paper);
+  display:grid; place-items:center; padding:28px 18px;
+}
+.shell {
+  width:100%; max-width:940px;
+  display:grid; grid-template-columns:1.05fr .95fr; gap:0;
+  background:var(--card); border:1px solid var(--line); border-radius:16px;
+  overflow:hidden; box-shadow:0 1px 2px rgba(9,17,38,.05), 0 18px 44px -22px rgba(9,17,38,.28);
+}
+
+/* ---------- brand side ---------- */
+.brand { padding:38px 34px; display:flex; flex-direction:column; gap:20px;
+         border-right:1px solid var(--line); }
+.plate { background:var(--plate); border-radius:12px; padding:var(--platepad); }
+.logo { display:block; width:100%; max-width:330px; height:auto; }
+.pitch { margin:0; font-size:15.5px; line-height:1.66; color:var(--ink2); }
+.pitch b { color:var(--ink); font-weight:600; }
+/* Sits directly under the pitch. Pinning it to the bottom with margin:auto
+   left a hole whenever the form column was the taller of the two. */
+.facts { margin:4px 0 0; padding:0; list-style:none; display:grid; gap:11px; }
+.facts li { display:flex; gap:11px; align-items:baseline; font-size:13.5px; color:var(--ink2); }
+.facts .n { font-variant-numeric:tabular-nums; font-weight:700; font-size:19px;
+            color:var(--navy); min-width:76px; letter-spacing:-.02em; }
+
+/* ---------- form side ---------- */
+.panel { padding:38px 34px; display:flex; flex-direction:column; }
+h1 { margin:0 0 5px; font-size:21px; letter-spacing:-.01em; text-wrap:balance; }
+.lede { margin:0 0 24px; font-size:13.5px; color:var(--ink2); }
+.field { margin:0 0 14px; }
+.field label { display:block; font-size:12px; font-weight:600; color:var(--ink2);
+               margin-bottom:6px; letter-spacing:.02em; }
+.field input {
+  width:100%; font:inherit; font-size:14.5px; color:var(--ink);
+  background:var(--field); border:1px solid var(--line); border-radius:9px;
+  padding:11px 12px; transition:border-color .12s, box-shadow .12s;
+}
+.field input::placeholder { color:var(--muted); }
+.field input:focus-visible {
+  outline:none; border-color:var(--blue);
+  box-shadow:0 0 0 3px color-mix(in oklab, var(--blue) 26%, transparent);
+}
+.btn {
+  width:100%; font:inherit; font-size:15px; font-weight:600; cursor:pointer;
+  color:var(--btn-ink); background:var(--btn); border:1px solid transparent;
+  border-radius:9px; padding:12px 14px; transition:background .12s, transform .06s;
+}
+.btn:hover { background:var(--btn-hov); }
+.btn:active { transform:translateY(1px); }
+.btn:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
+.btn.ghost { color:var(--ink); background:transparent; border-color:var(--line); margin-top:10px; }
+.btn.ghost:hover { background:var(--field); }
+.msg { margin:12px 0 0; font-size:13px; min-height:1.2em; }
+.msg.bad { color:var(--red); }
+.msg.ok { color:var(--ink2); }
+.alt { margin:22px 0 0; padding-top:18px; border-top:1px solid var(--line);
+       font-size:13px; color:var(--ink2); }
+.alt a { color:var(--navy); text-decoration:none; border-bottom:1px solid var(--line); }
+.alt a:hover { border-bottom-color:var(--navy); }
+.legal { margin:16px 0 0; font-size:11.5px; color:var(--muted); line-height:1.6; }
+
+@media (max-width:760px) {
+  .shell { grid-template-columns:1fr; max-width:440px; }
+  .brand { border-right:0; border-bottom:1px solid var(--line); padding:28px 24px 24px; }
+  .panel { padding:26px 24px 30px; }
+  .logo { max-width:280px; margin:0 auto; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition:none !important; } }
+</style>
+
+<div class="shell">
+  <section class="brand">
+    <div class="plate">
+      <img class="logo" src="asset/logo.webp" srcset="asset/logo@1x.webp 440w, asset/logo.webp 880w"
+           sizes="(max-width:760px) 280px, 330px" width="880" height="490"
+           alt="澳洲移民工具箱">
+    </div>
+    <p class="pitch">用 SkillSelect <b>官方公开数据</b>查职业获邀情况，按 <b>Schedule 6D</b>
+      逐项算分，再让模型从在册职业里找出你可能对得上的方向。</p>
+    <ul class="facts">
+      <li><span class="n">492</span><span>个在册职业的申请人数、分数分布与获邀率</span></li>
+      <li><span class="n">6D</span><span>打分逐项标注法规条目号，可自行核对</span></li>
+      <li><span class="n">本地</span><span>简历在浏览器里解析与脱敏，原文不上传</span></li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h1>登录</h1>
+    <p class="lede" id="lede">输入访问码进入。没有访问码可以直接使用公开功能。</p>
+
+    <form id="form" novalidate>
+      <div class="field">
+        <label for="who">称呼<span style="font-weight:400">（可选，只存在本机）</span></label>
+        <input id="who" name="who" type="text" autocomplete="nickname" placeholder="怎么称呼你">
+      </div>
+      <div class="field">
+        <label for="code">访问码</label>
+        <input id="code" name="code" type="password" autocomplete="current-password"
+               placeholder="没有就留空">
+      </div>
+      <button class="btn" type="submit" id="go">进入工具箱</button>
+      <button class="btn ghost" type="button" id="skip">先随便看看</button>
+      <p class="msg" id="msg" role="status" aria-live="polite"></p>
+    </form>
+
+    <p class="alt">想找人问？到 <a href="index.html#/group">交流群</a> 扫码进微信群。</p>
+    <p class="legal">本站是数据工具，不是移民中介，不提供个案建议。所有数字来自
+      SkillSelect 公开报表，涉及你个人情况的正式意见请咨询持牌移民代理（MARA）。</p>
+  </section>
+</div>
+
+<script>
+// __GATE__ is set by build_site.py. false (the default) means this page is a
+// front door with no lock: the site is static, so index.html is reachable
+// directly by anyone who types the URL, and pretending otherwise would be
+// theatre. Turn it on only alongside a server that actually checks the code.
+const GATE = __GATE__;
+const KEY = "immi.entry.v1";
+
+const $ = id => document.getElementById(id);
+const msg = (t, cls) => { const m = $("msg"); m.textContent = t; m.className = "msg " + (cls || ""); };
+
+if (!GATE) {
+  $("lede").textContent = "填个称呼就能进（只存在这台设备上）。本站所有功能都是公开的，不需要账号。";
+  $("code").closest(".field").hidden = true;
+}
+
+function enter() {
+  const who = ($("who").value || "").trim().slice(0, 24);
+  try { localStorage.setItem(KEY, JSON.stringify({ who, at: Date.now() })); } catch (e) {}
+  location.href = "index.html";
+}
+
+$("skip").addEventListener("click", enter);
+
+$("form").addEventListener("submit", async e => {
+  e.preventDefault();
+  if (!GATE) return enter();
+  const code = ($("code").value || "").trim();
+  if (!code) { msg("请输入访问码，或点「先随便看看」。", "bad"); return; }
+  msg("验证中…", "ok");
+  try {
+    const r = await fetch(GATE, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ gate: code }),
+    });
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok || !d.ok) { msg(d.error || "访问码不对。", "bad"); return; }
+    enter();
+  } catch (err) {
+    msg("连不上验证服务，请稍后再试。", "bad");
+  }
+});
+</script>
+</html>

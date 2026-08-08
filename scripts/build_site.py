@@ -26,6 +26,18 @@ SITE_TITLE = "澳洲技术移民工具箱"
 # -- the API key stays a Wrangler secret inside the Worker and never reaches
 # the page. Leave empty to hide the shared option entirely.
 PUBLIC_PROXY_URL = "https://immi-occupation-match.yyxr75.workers.dev"
+
+# The WeChat group QR in asset/ carries its own expiry, printed on the image.
+# Replacing the code means updating this date too, or the page will keep
+# claiming a dead code is good. Set to "" to drop the notice entirely.
+GROUP_NAME = "澳洲移民工具箱交流群 1"
+GROUP_QR_EXPIRES = "2026-08-15"
+
+# login.html is a front door. Left false it has no lock -- the site is static,
+# so index.html answers to anyone who types the URL, and a check that runs in
+# the page is one the visitor can skip. Set it to a URL that validates a code
+# server-side (the Worker can host one) to make the gate real.
+LOGIN_GATE = False
 MIN_POOL = 0          # keep every occupation; the picker sorts by size
 
 
@@ -364,6 +376,8 @@ def main():
                .replace("<!--PICKER-->", PICKER_HTML)
                .replace("<!--OCCPICKER-->", OCCPICKER_HTML)
                .replace("__PUBLIC_PROXY_URL__", json.dumps(PUBLIC_PROXY_URL))
+               .replace("__GROUP_QR_EXPIRES__", json.dumps(GROUP_QR_EXPIRES))
+               .replace("__GROUP_NAME__", GROUP_NAME)
                .replace('  <p class="foot" id="foot"></p>\n</div>',
                         '  <p class="foot" id="foot"></p>\n  </div>\n</div>')
                .replace("</style>", PICKER_CSS + "</style>")
@@ -372,9 +386,17 @@ def main():
     with open(os.path.join(SITE, "index.html"), "w") as f:
         f.write(html)
 
+    login = (open(os.path.join(HERE, "login.html")).read()
+             .replace("__TITLE__", "登录 · " + SITE_TITLE)
+             .replace("__GATE__", json.dumps(LOGIN_GATE)))
+    with open(os.path.join(SITE, "login.html"), "w") as f:
+        f.write(login)
+
     total = sum(os.path.getsize(os.path.join(SITE_DATA, f))
                 for f in os.listdir(SITE_DATA))
     print(f"\nsite/index.html  ({len(html)/1024:.0f} KB)")
+    print(f"site/login.html  ({len(login)/1024:.0f} KB, "
+          f"gate={'on' if LOGIN_GATE else 'off'})")
     print(f"site/data/       {len(index)} occupations, {total/1024/1024:.1f} MB total")
     print(f"  index file: {os.path.getsize(os.path.join(SITE_DATA,'occupations.json'))/1024:.0f} KB")
     print(f"  skipped (no rate/points data): {skipped}")
