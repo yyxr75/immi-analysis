@@ -45,6 +45,7 @@
 | `ADMIN_TOKEN` | 调 `/auth/grant` | 已生成，存在 `~/.immi-admin-token` |
 | `RESEND_API_KEY` | 发验证码 | **待配** |
 | `MAIL_FROM` | 发件人 | **待配** |
+| `MAIL_REPLY_TO` | 回信地址（可选，不设就没有这个头） | 可选 |
 
 **换掉 `AUTH_SECRET` 会让所有人当场退出登录**（旧 token 全部验不过），账户本身
 不会丢，重新登录即可。

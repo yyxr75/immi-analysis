@@ -14,8 +14,9 @@ export const CODE_TTL = 600;          // 10 minutes to type a 6-digit code
 export const CODE_TRIES = 5;          // then the code is burned
 export const TOKEN_DAYS = 30;
 
-// Daily AI calls. "paid" is set by hand today (see markPaid below); wiring a
-// payment provider later only has to write that same record.
+// Daily AI calls. "paid" is set by hand today via the /auth/grant route in
+// worker.js; wiring a payment provider later only has to write that same
+// account record.
 export const PLANS = { free: 10, paid: 200 };
 
 const enc = new TextEncoder();
@@ -112,9 +113,15 @@ export async function sendCode(env, email, code) {
     body: JSON.stringify({
       from: env.MAIL_FROM,
       to: [normEmail(email)],
+      // Optional. A verification mail is the one people reply to ("没收到码"),
+      // and a no-reply that silently eats that reads as nobody being home.
+      // Set MAIL_REPLY_TO to a mailbox you actually read; leave it unset and
+      // the header is simply absent.
+      ...(env.MAIL_REPLY_TO ? { reply_to: env.MAIL_REPLY_TO } : {}),
       subject: `澳洲移民工具箱 验证码 ${code}`,
       text: `你的验证码是 ${code}，${Math.round(CODE_TTL / 60)} 分钟内有效。\n\n`
-          + `如果不是你本人操作，忽略这封邮件即可——没有验证码谁也进不去。\n`,
+          + `如果不是你本人操作，忽略这封邮件即可——没有验证码谁也进不去。\n`
+          + (env.MAIL_REPLY_TO ? `\n收不到码或有其他问题，直接回复这封邮件。\n` : ""),
     }),
   });
   if (!r.ok) {
