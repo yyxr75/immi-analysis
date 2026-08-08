@@ -30,7 +30,7 @@ function aiAuth() {
 function aiSignOut() {
   try { localStorage.removeItem(AUTH_KEY); sessionStorage.removeItem(AUTH_KEY); } catch (e) {}
 }
-let AI_RESULT = null, AI_BODY = null, AI_RAW = "";
+let AI_RESULT = null, AI_BODY = null, AI_RAW = "", AI_ROWS = null, BASIS_LAST = {};
 // Mirror of the shared endpoint's MAX_CHARS, used only to fail fast in the
 // page. The Worker is the authority; this is refreshed from its ping and 413
 // replies, so raising it there does not require another site build.
@@ -660,7 +660,7 @@ async function aiRenderResult(x) {
   // code -> "work" | "study": which half of the resume put this occupation on
   // the list. Worth showing, because a candidate reached through the degree is
   // often the one a skills assessment will actually accept.
-  const BASIS = {};
+  const BASIS = BASIS_LAST = {};
   const addByCode = code => {
     const o = idx.find(o => o.code === code);
     if (o && !seen.has(o.code)) { seen.add(o.code); seeds.push(o.code); }
@@ -726,6 +726,7 @@ async function aiRenderResult(x) {
     "查每个职业在对应分数上的历史获邀率，从高到低排。189 用 " + base + " 分、" +
     "190 用 " + (base + 5) + " 分、491 用 " + (base + 15) + " 分。加载中…";
 
+  AI_ROWS = null;
   const withRates = await Promise.all(rows.map(async ({ o, rel }) => {
     const per = await aiRateFor(o.code, base);
     let best = -1, bestVisa = null;
@@ -735,6 +736,7 @@ async function aiRenderResult(x) {
     return { o, rel, per: per || {}, best, bestVisa };
   }));
   withRates.sort((a, b) => b.best - a.best || b.o.pool - a.o.pool);
+  AI_ROWS = withRates;
 
   const cols = ["189", "190", "491 (州担保)"];
   const head = ["职业", `189 (${base}分)`, `190 (${base + 5}分)`, `491 (${base + 15}分)`, "在池", "关系"];
@@ -865,6 +867,87 @@ async function aiRefreshAuth() {
   } catch (e) { /* offline: keep showing what we last knew */ }
 }
 
+/* Assemble the report from what is already on screen. Nothing is recomputed:
+   a report that disagrees with the page it came from is worse than no report. */
+function aiReportPayload() {
+  const base = aiBaseScore();
+  const brk = base ? calcBreakdown() : { rows: [], total: null };
+  const visas = base
+    ? [{ key: "189", label: `189 独立技术（${base} 分）`, score: base },
+       { key: "190", label: `190 州担保（${base + 5} 分）`, score: base + 5 },
+       { key: "491 (州担保)", label: `491 偏远地区（${base + 15} 分）`, score: base + 15 }]
+    : [];
+
+  // the same upgrade scan the points page shows, without touching the DOM
+  const ups = [];
+  if (base) {
+    for (const f of RULES.fields) {
+      if (f.key === "age") continue;
+      const now = f.options[CALC[f.key] | 0].v;
+      const best = Math.max(...f.options.map(o => o.v));
+      if (best <= now) continue;
+      const saved = CALC[f.key];
+      CALC[f.key] = f.options.findIndex(o => o.v === best);
+      const nt = calcBreakdown().total;
+      CALC[f.key] = saved;
+      if (nt <= brk.total) continue;
+      ups.push({ label: f.label, to: f.options.find(o => o.v === best).t,
+                 gain: nt - brk.total, score: nt, part: f.part });
+    }
+    ups.sort((a, b) => b.gain - a.gain);
+  }
+
+  const x = AI_RESULT || {};
+  const study = Array.isArray(x.fieldOfStudy)
+    ? x.fieldOfStudy.filter(Boolean).join("、") : (x.fieldOfStudy || "");
+  return {
+    score: { total: brk.total, rows: brk.rows },
+    visas,
+    upgrades: ups,
+    occupations: (AI_ROWS || []).map(w => ({
+      code: w.o.code, name: w.o.name, pool: w.o.pool,
+      rel: w.rel === "模型判定最贴近"
+        ? (BASIS_LAST[w.o.code] === "study" ? "最贴近（按专业）"
+           : BASIS_LAST[w.o.code] === "work" ? "最贴近（按职责）" : "模型判定最贴近")
+        : w.rel,
+      cells: visas.map(v => Object.assign({ visa: v.key }, w.per[v.key] || {})),
+    })),
+    ai: { titles: x.jobTitles || [], study, duties: x.keyDuties || [] },
+    source: location.origin + location.pathname,
+  };
+}
+
+async function aiMakeReport() {
+  const out = $ai("aiReportOut"), btn = $ai("aiReport");
+  if (!PUBLIC_PROXY_URL) { out.textContent = "本站没有配置报告服务。"; return; }
+  if (!AI_ROWS || !AI_ROWS.length) {
+    out.textContent = "先在上面跑一次识别，并且在「计算分数」页填好分数，报告才有内容。";
+    return;
+  }
+  btn.disabled = true; out.textContent = "生成中…";
+  try {
+    const r = await fetch(PUBLIC_PROXY_URL.replace(/\/+$/, "") + "/report", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(aiReportPayload()),
+    });
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok || !d.url) { out.textContent = d.error || "生成失败，请稍后再试。"; return; }
+    out.textContent = "";
+    const a = document.createElement("a");
+    a.href = d.url; a.target = "_blank"; a.rel = "noopener"; a.textContent = d.url;
+    const copy = document.createElement("button");
+    copy.type = "button"; copy.className = "tblbtn nt"; copy.textContent = "复制链接";
+    copy.addEventListener("click", () => {
+      navigator.clipboard && navigator.clipboard.writeText(d.url);
+      copy.textContent = "已复制";
+    });
+    out.append(document.createTextNode("报告已生成（"), document.createTextNode(d.days + " 天后失效）："),
+               document.createElement("br"), a, document.createTextNode(" "), copy);
+  } catch (e) {
+    out.textContent = "生成失败：" + e.message;
+  } finally { btn.disabled = false; }
+}
+
 function aiInit() {
   if ($ai("aiEndpoint") && $ai("aiEndpoint").dataset.wired) { aiRenderGate(); aiRefreshAuth(); return; }
   aiLoadCfg(); aiEnvCheck();
@@ -911,4 +994,5 @@ function aiInit() {
   aiRenderGate();
   aiRefreshAuth();
   $ai("aiSend").addEventListener("click", aiSend);
+  $ai("aiReport").addEventListener("click", aiMakeReport);
 }

@@ -22,6 +22,7 @@ import {
   CODE_TTL, CODE_TRIES, PLANS, account, bearer, emailKey, issueToken,
   looksLikeEmail, newCode, normEmail, planLimit, readToken, sendCode,
 } from "./auth.js";
+import { REPORTS_PER_IP_DAY, REPORT_TTL, clean, newId, render, tooBig } from "./report.js";
 
 const UPSTREAM = "https://api.deepseek.com/v1/chat/completions";
 const MODEL = "deepseek-chat";
@@ -56,6 +57,14 @@ const cors = (origin, allowed) => ({
   Vary: "Origin",
 });
 
+const page = (title, body) => `<!doctype html><html lang="zh-CN"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title>
+<body style="margin:0;display:grid;place-items:center;min-height:100vh;background:#f9f9f7;
+color:#0b0b0b;font:15px/1.6 system-ui,-apple-system,'PingFang SC',sans-serif">
+<div style="max-width:420px;padding:24px;text-align:center">
+<h1 style="font-size:19px;margin:0 0 8px">${title}</h1>
+<p style="color:#52514e;font-size:13.5px;margin:0">${body}</p></div></html>`;
+
 const json = (obj, status, headers) =>
   new Response(JSON.stringify(obj), {
     status,
@@ -78,6 +87,26 @@ export default {
     const H = cors(origin, allowed);
 
     if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: H });
+
+    // A report link is opened directly, typed or clicked out of an email, so it
+    // is a plain GET with no Origin to check. It is only ever a read of one
+    // opaque id, and the id is the whole credential.
+    const url = new URL(req.url);
+    if (req.method === "GET" || req.method === "HEAD") {
+      const m = url.pathname.match(/^\/r\/([0-9a-f]{32})$/);
+      if (!m) return new Response("not found", { status: 404 });
+      const raw = await env.RATE.get("rep:" + m[1]);
+      if (!raw)
+        return new Response(page("报告不存在或已过期",
+          `报告链接有效期 ${Math.round(REPORT_TTL / 86400)} 天，过期后会自动删除。回工具箱重新生成一份即可。`),
+          { status: 404, headers: { "content-type": "text/html; charset=utf-8" } });
+      return new Response(render(JSON.parse(raw), env.SITE_URL || ""), {
+        headers: { "content-type": "text/html; charset=utf-8",
+                   "cache-control": "private, max-age=300",
+                   "x-robots-tag": "noindex, nofollow" },
+      });
+    }
+
     if (!allowed) return json({ error: "origin not allowed" }, 403, H);
     if (req.method !== "POST") return json({ error: "POST only" }, 405, H);
     if (!env.AUTH_SECRET)
@@ -86,7 +115,7 @@ export default {
     let body;
     try { body = await req.json(); } catch { return json({ error: "bad json" }, 400, H); }
 
-    const path = new URL(req.url).pathname.replace(/\/+$/, "");
+    const path = url.pathname.replace(/\/+$/, "");
     const day = new Date().toISOString().slice(0, 10);
     const hour = new Date().toISOString().slice(0, 13);
     const ip = req.headers.get("CF-Connecting-IP") || "unknown";
@@ -164,6 +193,19 @@ export default {
       // someone who cannot receive mail, and how the flow gets tested without
       // sending any.
       return json({ ok: true, email, ...rec, token: await issueToken(env, email) }, 200, H);
+    }
+
+    /* ---------------- store a report, hand back its link ---------------- */
+    if (path === "/report") {
+      if (tooBig(body)) return json({ error: "报告数据过大。" }, 413, H);
+      const n = await bump(env, `rp:${day}:${ip}`, 172800);
+      if (n > REPORTS_PER_IP_DAY)
+        return json({ error: `每天最多生成 ${REPORTS_PER_IP_DAY} 份报告。` }, 429, H);
+      const id = newId();
+      await env.RATE.put("rep:" + id, JSON.stringify(clean(body)),
+                         { expirationTtl: REPORT_TTL });
+      return json({ ok: true, id, url: url.origin + "/r/" + id,
+                    days: Math.round(REPORT_TTL / 86400) }, 200, H);
     }
 
     /* ---------------- who am I ---------------- */
