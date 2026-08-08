@@ -110,7 +110,17 @@ export default {
       });
     }
 
-    if (!allowed) return json({ error: "origin not allowed" }, 403, H);
+    // The origin allowlist is a browser control: it stops another site's page
+    // from spending this Worker's budget. A server has no Origin header at all
+    // -- the GitHub runner that sends the mail sends none -- so applying it to
+    // the machine-to-machine routes rejects them before they reach any handler,
+    // with a message ("origin not allowed") that points nowhere near the truth.
+    // Those routes carry their own shared secret instead.
+    const SERVER_PATHS = new Set(["/pending", "/pending/done", "/pending/fail",
+                                  "/pending/fp"]);
+    const pathNow = url.pathname.replace(/\/+$/, "");
+    if (!allowed && !SERVER_PATHS.has(pathNow))
+      return json({ error: "origin not allowed" }, 403, H);
     if (req.method !== "POST") return json({ error: "POST only" }, 405, H);
     if (!env.AUTH_SECRET)
       return json({ error: "服务端未配置 AUTH_SECRET" }, 503, H);
@@ -118,7 +128,7 @@ export default {
     let body;
     try { body = await req.json(); } catch { return json({ error: "bad json" }, 400, H); }
 
-    const path = url.pathname.replace(/\/+$/, "");
+    const path = pathNow;
     const day = new Date().toISOString().slice(0, 10);
     const hour = new Date().toISOString().slice(0, 13);
     const ip = req.headers.get("CF-Connecting-IP") || "unknown";
