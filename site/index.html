@@ -3,6 +3,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>澳洲技术移民工具箱</title>
+<script>
+try {
+  var seen = /[?&]entry=1/.test(location.search);
+  if (!seen) {
+    try { seen = !!(localStorage.getItem("immi.entry.v1")
+                 || sessionStorage.getItem("immi.entry.v1")); }
+    catch (e) { seen = true; }   // storage blocked: never lock anyone out
+  }
+  if (!seen) location.replace("login.html" + location.hash);
+} catch (e) {}
+</script>
 <style>
 :root {
   color-scheme: light;
@@ -2106,7 +2117,17 @@ function boot(data) {
     ? SITE_TITLE
     : `${DATA.occupation} · ${SITE_TITLE}`;
   const tl = document.getElementById("tagline");
-  if (tl) tl.textContent = SITE_TAGLINE;
+  // The name typed on the front door is the only thing it collects; showing it
+  // back is what makes that field worth asking for. It never leaves the device.
+  if (tl) {
+    let who = "";
+    try {
+      const e = JSON.parse(localStorage.getItem("immi.entry.v1")
+                        || sessionStorage.getItem("immi.entry.v1") || "null");
+      who = (e && e.who) || "";
+    } catch (err) {}
+    tl.textContent = (who ? who + "，你好。" : "") + SITE_TAGLINE;
+  }
   const ot = document.getElementById("occTitle");
   if (ot) ot.textContent = DATA.occupation;
   document.getElementById("sub").textContent =

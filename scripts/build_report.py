@@ -25,7 +25,8 @@ def main(occupation):
            .replace("<!--OCCPICKER-->", "")
            .replace("__PUBLIC_PROXY_URL__", '""')
            .replace("__GROUP_QR_EXPIRES__", '""')
-           .replace("__GROUP_NAME__", "澳洲移民工具箱交流群"))
+           .replace("__GROUP_NAME__", "澳洲移民工具箱交流群")
+           .replace("__ENTRY_REDIRECT__", ""))
 
     # Artifact build: the host wraps the file in its own <head>, so ship the
     # fragment as-is. Local build: opened over file://, so it needs the charset

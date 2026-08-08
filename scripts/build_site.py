@@ -38,6 +38,26 @@ GROUP_QR_EXPIRES = "2026-08-15"
 # the page is one the visitor can skip. Set it to a URL that validates a code
 # server-side (the Worker can host one) to make the gate real.
 LOGIN_GATE = False
+
+# Send a first-time visitor to login.html before the tool. Set False to drop
+# the front door and land everyone straight on the data.
+LOGIN_AS_ENTRY = True
+
+# Runs before anything renders, so there is no flash of the tool first. The
+# hash rides along, so a shared deep link still opens its occupation after the
+# detour. If localStorage throws (private mode, blocked storage) the catch
+# leaves the visitor on the tool -- a front door must never lock anyone out.
+ENTRY_REDIRECT = """
+try {
+  var seen = /[?&]entry=1/.test(location.search);
+  if (!seen) {
+    try { seen = !!(localStorage.getItem("immi.entry.v1")
+                 || sessionStorage.getItem("immi.entry.v1")); }
+    catch (e) { seen = true; }   // storage blocked: never lock anyone out
+  }
+  if (!seen) location.replace("login.html" + location.hash);
+} catch (e) {}
+"""
 MIN_POOL = 0          # keep every occupation; the picker sorts by size
 
 
@@ -378,6 +398,7 @@ def main():
                .replace("__PUBLIC_PROXY_URL__", json.dumps(PUBLIC_PROXY_URL))
                .replace("__GROUP_QR_EXPIRES__", json.dumps(GROUP_QR_EXPIRES))
                .replace("__GROUP_NAME__", GROUP_NAME)
+               .replace("__ENTRY_REDIRECT__", ENTRY_REDIRECT if LOGIN_AS_ENTRY else "")
                .replace('  <p class="foot" id="foot"></p>\n</div>',
                         '  <p class="foot" id="foot"></p>\n  </div>\n</div>')
                .replace("</style>", PICKER_CSS + "</style>")

@@ -169,6 +169,14 @@ const GATE = __GATE__;
 const KEY = "immi.entry.v1";
 
 const $ = id => document.getElementById(id);
+
+const readFlag = () => {
+  try { return localStorage.getItem(KEY) || sessionStorage.getItem(KEY); }
+  catch (e) { return null; }
+};
+// Someone who has already been through should not be asked twice.
+if (readFlag()) location.replace("index.html" + (location.hash || ""));
+
 const msg = (t, cls) => { const m = $("msg"); m.textContent = t; m.className = "msg " + (cls || ""); };
 
 if (!GATE) {
@@ -178,8 +186,16 @@ if (!GATE) {
 
 function enter() {
   const who = ($("who").value || "").trim().slice(0, 24);
-  try { localStorage.setItem(KEY, JSON.stringify({ who, at: Date.now() })); } catch (e) {}
-  location.href = "index.html";
+  const rec = JSON.stringify({ who, at: Date.now() });
+  let stored = false;
+  try { localStorage.setItem(KEY, rec); stored = true; } catch (e) {}
+  if (!stored) { try { sessionStorage.setItem(KEY, rec); stored = true; } catch (e) {} }
+  // Nothing would persist (blocked storage): carry a one-shot marker in the
+  // query instead, or index.html would send us straight back here. The query
+  // goes before the hash -- after it, it is just part of the fragment.
+  const q = stored ? "" : "?entry=1";
+  // replace(), not href: the front door should not sit in the back button.
+  location.replace("index.html" + q + (location.hash || ""));
 }
 
 $("skip").addEventListener("click", enter);
