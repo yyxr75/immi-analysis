@@ -141,16 +141,17 @@ h1 { margin:0 0 5px; font-size:21px; letter-spacing:-.01em; text-wrap:balance; }
 
     <form id="form" novalidate>
       <div class="field">
-        <label for="who">称呼<span style="font-weight:400">（可选，只存在本机）</span></label>
-        <input id="who" name="who" type="text" autocomplete="nickname" placeholder="怎么称呼你">
+        <label for="email">邮箱</label>
+        <input id="email" name="email" type="email" autocomplete="email"
+               inputmode="email" placeholder="you@example.com">
       </div>
-      <div class="field">
-        <label for="code">访问码</label>
-        <input id="code" name="code" type="password" autocomplete="current-password"
-               placeholder="没有就留空">
+      <div class="field" id="codeField" hidden>
+        <label for="code">验证码<span style="font-weight:400" id="codeHint"></span></label>
+        <input id="code" name="code" type="text" inputmode="numeric" autocomplete="one-time-code"
+               maxlength="6" pattern="[0-9]{6}" placeholder="6 位数字">
       </div>
-      <button class="btn" type="submit" id="go">进入工具箱</button>
-      <button class="btn ghost" type="button" id="skip">先随便看看</button>
+      <button class="btn" type="submit" id="go">发送验证码</button>
+      <button class="btn ghost" type="button" id="skip">先随便看看（不用 AI）</button>
       <p class="msg" id="msg" role="status" aria-live="polite"></p>
     </form>
 
@@ -161,62 +162,91 @@ h1 { margin:0 0 5px; font-size:21px; letter-spacing:-.01em; text-wrap:balance; }
 </div>
 
 <script>
-// false is set by build_site.py. false (the default) means this page is a
-// front door with no lock: the site is static, so index.html is reachable
-// directly by anyone who types the URL, and pretending otherwise would be
-// theatre. Turn it on only alongside a server that actually checks the code.
-const GATE = false;
+// Where the sign-in endpoints live. Empty means no auth service is deployed,
+// in which case this page degrades to the old front door rather than showing a
+// form that cannot work.
+const AUTH = "https://immi-occupation-match.yyxr75.workers.dev";
 const KEY = "immi.entry.v1";
+const TOK = "immi.auth.v1";
 
 const $ = id => document.getElementById(id);
-
-const readFlag = () => {
-  try { return localStorage.getItem(KEY) || sessionStorage.getItem(KEY); }
-  catch (e) { return null; }
-};
-// Someone who has already been through should not be asked twice.
-if (readFlag()) location.replace("index.html" + (location.hash || ""));
-
 const msg = (t, cls) => { const m = $("msg"); m.textContent = t; m.className = "msg " + (cls || ""); };
 
-if (!GATE) {
-  $("lede").textContent = "填个称呼就能进（只存在这台设备上）。本站所有功能都是公开的，不需要账号。";
-  $("code").closest(".field").hidden = true;
+const store = {
+  get(k) { try { return localStorage.getItem(k) || sessionStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) {
+    try { localStorage.setItem(k, v); return true; } catch (e) {}
+    try { sessionStorage.setItem(k, v); return true; } catch (e) {}
+    return false;
+  },
+};
+
+// Already signed in and just landed here again: pass them through.
+if (store.get(TOK)) location.replace("index.html" + (location.hash || ""));
+
+if (!AUTH) {
+  $("lede").textContent = "本站所有功能都是公开的，直接进就行。";
+  $("email").closest(".field").hidden = true;
+  $("go").textContent = "进入工具箱";
+} else {
+  $("lede").textContent =
+    "1「职业数据查询」和 2「计算分数」不用登录，点下面的「先随便看看」就能用。" +
+    "3「AI 分析」要花钱调模型，所以需要邮箱验证一下。";
 }
 
-function enter() {
-  const who = ($("who").value || "").trim().slice(0, 24);
-  const rec = JSON.stringify({ who, at: Date.now() });
-  let stored = false;
-  try { localStorage.setItem(KEY, rec); stored = true; } catch (e) {}
-  if (!stored) { try { sessionStorage.setItem(KEY, rec); stored = true; } catch (e) {} }
+/* Entering without signing in: the free views work, the AI view will ask. */
+function enterAnon() {
+  const ok = store.set(KEY, JSON.stringify({ at: Date.now() }));
   // Nothing would persist (blocked storage): carry a one-shot marker in the
   // query instead, or index.html would send us straight back here. The query
   // goes before the hash -- after it, it is just part of the fragment.
-  const q = stored ? "" : "?entry=1";
-  // replace(), not href: the front door should not sit in the back button.
-  location.replace("index.html" + q + (location.hash || ""));
+  location.replace("index.html" + (ok ? "" : "?entry=1") + (location.hash || ""));
 }
+$("skip").addEventListener("click", enterAnon);
 
-$("skip").addEventListener("click", enter);
+let stage = "email";
+
+async function post(pathname, payload) {
+  const r = await fetch(AUTH.replace(/\/+$/, "") + pathname, {
+    method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  const d = await r.json().catch(() => ({}));
+  return { ok: r.ok, status: r.status, d };
+}
 
 $("form").addEventListener("submit", async e => {
   e.preventDefault();
-  if (!GATE) return enter();
-  const code = ($("code").value || "").trim();
-  if (!code) { msg("请输入访问码，或点「先随便看看」。", "bad"); return; }
-  msg("验证中…", "ok");
-  try {
-    const r = await fetch(GATE, {
-      method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ gate: code }),
-    });
-    const d = await r.json().catch(() => ({}));
-    if (!r.ok || !d.ok) { msg(d.error || "访问码不对。", "bad"); return; }
-    enter();
-  } catch (err) {
-    msg("连不上验证服务，请稍后再试。", "bad");
+  if (!AUTH) return enterAnon();
+  const email = ($("email").value || "").trim();
+  if (!email) { msg("请填邮箱。", "bad"); return; }
+
+  if (stage === "email") {
+    $("go").disabled = true; msg("正在发送验证码…", "ok");
+    const { ok, d } = await post("/auth/request", { email });
+    $("go").disabled = false;
+    if (!ok) { msg(d.error || "发送失败，请稍后再试。", "bad"); return; }
+    stage = "code";
+    $("codeField").hidden = false;
+    $("codeHint").textContent = `（已发到 ${email}，${Math.round((d.ttl || 600) / 60)} 分钟内有效）`;
+    $("go").textContent = "验证并进入";
+    $("code").focus();
+    msg("验证码已发出。没收到的话看一下垃圾邮件。", "ok");
+    return;
   }
+
+  const code = ($("code").value || "").trim();
+  if (!/^\d{6}$/.test(code)) { msg("验证码是 6 位数字。", "bad"); return; }
+  $("go").disabled = true; msg("验证中…", "ok");
+  const { ok, d } = await post("/auth/verify", { email, code });
+  $("go").disabled = false;
+  if (!ok) { msg(d.error || "验证失败。", "bad"); return; }
+
+  const saved = store.set(TOK, JSON.stringify({
+    token: d.token, email: d.email, plan: d.plan, perDay: d.perDay }));
+  store.set(KEY, JSON.stringify({ who: (d.email || "").split("@")[0], at: Date.now() }));
+  if (!saved) { msg("浏览器禁止了本地存储，登录状态存不下来。请关掉无痕模式再试。", "bad"); return; }
+  location.replace("index.html" + (location.hash || ""));
 });
 </script>
 </html>

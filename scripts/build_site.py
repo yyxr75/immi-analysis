@@ -37,11 +37,13 @@ GROUP_QR_EXPIRES = "2026-08-15"
 # so index.html answers to anyone who types the URL, and a check that runs in
 # the page is one the visitor can skip. Set it to a URL that validates a code
 # server-side (the Worker can host one) to make the gate real.
-LOGIN_GATE = False
+# Views 1 and 2 are public. View 3 (AI) spends real money per call, so it is
+# the only one behind an account -- the check is in the Worker, which is the
+# only place a static site can put one that holds.
+AUTH_URL = PUBLIC_PROXY_URL
 
-# Send a first-time visitor to login.html before the tool. Set False to drop
-# the front door and land everyone straight on the data.
-LOGIN_AS_ENTRY = True
+# Nobody is stopped at the door any more: the gate moved to the AI view.
+LOGIN_AS_ENTRY = False
 
 # Runs before anything renders, so there is no flash of the tool first. The
 # hash rides along, so a shared deep link still opens its occupation after the
@@ -409,7 +411,7 @@ def main():
 
     login = (open(os.path.join(HERE, "login.html")).read()
              .replace("__TITLE__", "登录 · " + SITE_TITLE)
-             .replace("__GATE__", json.dumps(LOGIN_GATE)))
+             .replace("__AUTH_URL__", json.dumps(AUTH_URL)))
     with open(os.path.join(SITE, "login.html"), "w") as f:
         f.write(login)
 
@@ -417,7 +419,7 @@ def main():
                 for f in os.listdir(SITE_DATA))
     print(f"\nsite/index.html  ({len(html)/1024:.0f} KB)")
     print(f"site/login.html  ({len(login)/1024:.0f} KB, "
-          f"gate={'on' if LOGIN_GATE else 'off'})")
+          f"auth={'on' if AUTH_URL else 'off'})")
     print(f"site/data/       {len(index)} occupations, {total/1024/1024:.1f} MB total")
     print(f"  index file: {os.path.getsize(os.path.join(SITE_DATA,'occupations.json'))/1024:.0f} KB")
     print(f"  skipped (no rate/points data): {skipped}")

@@ -3,17 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>澳洲技术移民工具箱</title>
-<script>
-try {
-  var seen = /[?&]entry=1/.test(location.search);
-  if (!seen) {
-    try { seen = !!(localStorage.getItem("immi.entry.v1")
-                 || sessionStorage.getItem("immi.entry.v1")); }
-    catch (e) { seen = true; }   // storage blocked: never lock anyone out
-  }
-  if (!seen) location.replace("login.html" + location.hash);
-} catch (e) {}
-</script>
+<script></script>
 <style>
 :root {
   color-scheme: light;
@@ -220,6 +210,14 @@ h2.occ { font-size:19px; margin:0 0 6px; font-weight:600; letter-spacing:-.01em;
 .grpnote { margin:16px 0 0; font-size:12.5px; color:var(--ink2);
            padding:9px 11px; background:var(--grid); border-radius:7px; }
 @media (max-width:640px) { .grpwrap { grid-template-columns:1fr; } }
+.authbar { display:flex; flex-wrap:wrap; gap:10px 14px; align-items:center;
+           margin:0 0 16px; padding:11px 13px; border-radius:9px;
+           background:var(--grid); font-size:13px; color:var(--ink2); }
+.authbar b { color:var(--ink); font-weight:600; }
+.authbar .grow { flex:1 1 auto; }
+.authbar .pill { font-size:11.5px; font-weight:600; color:var(--ink);
+                 background:var(--surface); border:1px solid var(--hair);
+                 border-radius:999px; padding:2px 9px; }
 
 .picker { background:var(--surface); border:1px solid var(--hair); border-radius:12px;
           padding:15px 16px; margin:0 0 22px; }
@@ -377,11 +375,12 @@ h2.occ { font-size:19px; margin:0 0 6px; font-weight:600; letter-spacing:-.01em;
   </div>
 
   <div id="view-ai" hidden>
+    <div class="authbar" id="aiAuthBar" hidden></div>
     <p class="ctx" id="aiEnvWarn" hidden></p>
 
     <div class="card">
       <h2>1 · 选择模型服务</h2>
-      <p class="cap">这一页不含任何内置模型，也不代你付费。它调用<b>你自己填的服务</b>——本机跑的模型，或你自己的 DeepSeek / Claude 等 API Key。</p>
+      <p class="cap">两种用法：用<b>公共服务</b>（本站代付，需邮箱登录，每天有额度），或换成<b>你自己的服务</b>——本机跑的模型，或你自己的 DeepSeek / Claude 等 API Key（不需要登录，也不占本站额度）。</p>
       <p class="hint">端点和密钥只存在你浏览器的 localStorage 里，不随页面发布，请求也是从你的浏览器直接发给服务商，不经过本站任何服务器。每个服务商的配置分开保存，切换不会丢。</p>
       <div class="cgrid">
         <div class="cfield">
@@ -926,6 +925,21 @@ function chart6() {
    into age 27 and graded PTE 79 as Proficient when it is Superior. Both are
    conversions, and both are now done here instead. */
 const AI_KEY = "immi.ai.cfg.v2";
+const AUTH_KEY = "immi.auth.v1";
+
+/* The shared endpoint costs money per call, so it is the one provider that
+   requires a signed-in account. A BYO-key provider spends the visitor's own
+   credit and stays open. */
+function aiAuth() {
+  try {
+    const raw = localStorage.getItem(AUTH_KEY) || sessionStorage.getItem(AUTH_KEY);
+    const a = raw ? JSON.parse(raw) : null;
+    return a && a.token ? a : null;
+  } catch (e) { return null; }
+}
+function aiSignOut() {
+  try { localStorage.removeItem(AUTH_KEY); sessionStorage.removeItem(AUTH_KEY); } catch (e) {}
+}
 let AI_RESULT = null, AI_BODY = null, AI_RAW = "";
 // Mirror of the shared endpoint's MAX_CHARS, used only to fail fast in the
 // page. The Worker is the authority; this is refreshed from its ping and 413
@@ -939,8 +953,10 @@ let PROXY_MAX_CHARS = 40000;
 const PROVIDERS = {
   // Filled in by build_site.py from PUBLIC_PROXY_URL. The endpoint is a plain
   // URL, safe to publish; the key it uses lives as a secret inside the Worker.
-  public: { label: "公共服务（无需填 Key）", api: "proxy", base: "", models: ["（由服务端固定）"],
-            note: "由站点方代付，有每日额度。想不受限就在下面换成自己的 Key。" },
+  public: { label: "公共服务（本站代付 · 需邮箱登录）", api: "proxy", base: "",
+            models: ["（由服务端固定）"],
+            note: "调用费用由站点方承担，所以要邮箱验证登录、每天有额度。" +
+                  "不想登录、或想不受额度限制，就在下面换成自己的 Key。" },
   local: { label: "本机 / 局域网（OpenAI 兼容）", api: "openai",
            base: "http://localhost:8080", models: [],
            note: "llama.cpp / vLLM / Ollama 等。密钥通常留空。" },
@@ -1036,7 +1052,11 @@ function aiSaveCfg() {
 /* ---- the two wire formats ---- */
 function aiHeaders() {
   const prof = aiProf();
-  if (aiProv().api === "proxy") return { "Content-Type": "application/json" };
+  if (aiProv().api === "proxy") {
+    const a = aiAuth();
+    return Object.assign({ "Content-Type": "application/json" },
+      a ? { Authorization: "Bearer " + a.token } : {});
+  }
   if (aiProv().api === "anthropic") {
     return { "content-type": "application/json",
              "x-api-key": prof.key || "",
@@ -1373,6 +1393,12 @@ async function aiSend() {
     stat.textContent = "先在第 1 步填模型名。"; return; }
   if (!($ai("aiRaw").value || "").trim()) { stat.textContent = "第 2 步还没有简历正文。"; return; }
   const body = AI_BODY || aiBuildBody();
+  if (aiProv().api === "proxy" && !aiAuth()) {
+    stat.textContent = "公共服务需要先用邮箱登录。点上方的「去登录」，" +
+      "或在第 1 步换成自己的 API Key。";
+    aiRenderGate();
+    return;
+  }
   // Catch an over-long resume here rather than after uploading it and waiting
   // for the endpoint to reject it.
   if (aiProv().api === "proxy" && (body.text || "").length > PROXY_MAX_CHARS) {
@@ -1404,11 +1430,17 @@ async function aiSend() {
       if (r.ok) { d = await r.json(); if (i) stat.textContent = "（该服务不支持结构化输出，已降级重试）"; break; }
       const raw = await r.text();
       let msg = raw.slice(0, 200);
+      let j_needAuth = false;
       try {                       // the shared endpoint already answers in Chinese
         const j = JSON.parse(raw);
         if (j.maxChars) PROXY_MAX_CHARS = j.maxChars;
+        if (j.needAuth) j_needAuth = true;
         if (j.error) msg = j.error + (j.detail ? "：" + String(j.detail).slice(0, 160) : "");
       } catch (_) { /* not JSON; the raw body is the best we have */ }
+      if (r.status === 401 && j_needAuth) {
+        aiSignOut(); aiRenderGate();
+        throw new Error("登录已过期，请重新用邮箱登录。");
+      }
       lastErr = aiProv().api === "proxy" ? msg : "HTTP " + r.status + " " + msg;
       // only a schema-shaped complaint is worth retrying
       if (r.status !== 400 || !/format|schema|response_format|output_config/i.test(lastErr)) break;
@@ -1430,6 +1462,15 @@ async function aiSend() {
     AI_RESULT = parsed;
     stat.textContent = `完成，用时 ${((Date.now() - t0) / 1000).toFixed(1)} 秒` +
       (got.tokens ? `，${got.tokens} tokens` : "") + `（${aiProv().label} · ${prof.model}）。`;
+    if (d && d.quota) {
+      const a = aiAuth();
+      if (a) {
+        try { localStorage.setItem(AUTH_KEY, JSON.stringify(
+          Object.assign({}, a, { plan: d.plan || a.plan,
+                                 used: d.quota.used, perDay: d.quota.perDay }))); } catch (e) {}
+        aiRenderGate();
+      }
+    }
     aiShowRaw(AI_RAW, got.think);
     await aiRenderResult(parsed);
   } catch (e) {
@@ -1660,8 +1701,75 @@ async function aiRenderResult(x) {
     (dropped.length ? `模型还提到了 ${dropped.join("、")}，不在 SkillSelect 清单上，已略过。` : "");
 }
 
+/* The bar at the top of the AI view: signed out it explains why the shared
+   service needs an account and offers the way in; signed in it shows who you
+   are and what is left today, so quota is visible before you spend it, not
+   after. It says nothing at all when you are on your own API key -- that path
+   never touches this site's budget. */
+function aiRenderGate() {
+  const bar = $ai("aiAuthBar");
+  if (!bar) return;
+  bar.textContent = "";
+  const proxy = aiProv().api === "proxy";
+  if (!proxy || !PUBLIC_PROXY_URL) { bar.hidden = true; return; }
+  bar.hidden = false;
+
+  const a = aiAuth();
+  const span = (t, cls) => {
+    const e = document.createElement("span");
+    if (cls) e.className = cls;
+    e.textContent = t;
+    return e;
+  };
+  const btn = (t, fn) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "tblbtn nt"; b.textContent = t;
+    b.addEventListener("click", fn);
+    return b;
+  };
+
+  if (!a) {
+    bar.append(span("公共服务要花钱调模型，所以需要邮箱验证登录。1、2 两页不用登录。"),
+               span("", "grow"),
+               btn("去登录", () => { location.href = "login.html" + location.hash; }));
+    return;
+  }
+  const left = a.perDay != null && a.used != null ? Math.max(0, a.perDay - a.used) : null;
+  bar.append(span(a.plan === "paid" ? "付费" : "免费", "pill"),
+             span(a.email || "已登录"),
+             span(left == null ? "" : `今天还剩 ${left} / ${a.perDay} 次`),
+             span("", "grow"),
+             btn("退出登录", () => {
+               aiSignOut();
+               aiRenderGate();
+               $ai("aiSendStat").textContent = "已退出登录。";
+             }));
+}
+
+/* Ask the endpoint who we are: the plan and the remaining quota are looked up
+   there, never trusted from the copy sitting in localStorage. */
+async function aiRefreshAuth() {
+  const a = aiAuth();
+  if (!a || !PUBLIC_PROXY_URL) return;
+  try {
+    const r = await fetch(PUBLIC_PROXY_URL.replace(/\/+$/, "") + "/auth/me", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: "Bearer " + a.token },
+      body: "{}",
+    });
+    const d = await r.json().catch(() => ({}));
+    if (!d.signedIn) { aiSignOut(); aiRenderGate(); return; }
+    const next = Object.assign({}, a, { email: d.email, plan: d.plan,
+                                        perDay: d.quota && d.quota.perDay,
+                                        used: d.quota && d.quota.used });
+    try { localStorage.setItem(AUTH_KEY, JSON.stringify(next)); } catch (e) {}
+    if (d.maxChars) PROXY_MAX_CHARS = d.maxChars;
+    aiRenderGate();
+  } catch (e) { /* offline: keep showing what we last knew */ }
+}
+
 function aiInit() {
-  if ($ai("aiEndpoint") && $ai("aiEndpoint").dataset.wired) return;
+  if ($ai("aiEndpoint") && $ai("aiEndpoint").dataset.wired) { aiRenderGate(); aiRefreshAuth(); return; }
   aiLoadCfg(); aiEnvCheck();
   ["aiEndpoint", "aiModel", "aiKey"].forEach(id => {
     const el = $ai(id); if (!el) return;
@@ -1673,6 +1781,7 @@ function aiInit() {
     AI_BODY = null;
     aiFillProfile(); aiSaveCfg(); aiEnvCheck();
     $ai("aiTestOut").textContent = "";
+    aiRenderGate();
   });
   $ai("aiTest").addEventListener("click", aiTest);
   $ai("aiForget").addEventListener("click", () => {
@@ -1702,6 +1811,8 @@ function aiInit() {
   // Typing or pasting into the box must invalidate it too, or a second send
   // after an edit would ship the previous text.
   $ai("aiRaw").addEventListener("input", () => { AI_BODY = null; });
+  aiRenderGate();
+  aiRefreshAuth();
   $ai("aiSend").addEventListener("click", aiSend);
 }
 
