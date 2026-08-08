@@ -46,7 +46,12 @@ def call(url, secret, path, payload):
         url.rstrip("/") + path,
         data=json.dumps(payload).encode(),
         headers={"Content-Type": "application/json",
-                 "Authorization": "Bearer " + secret},
+                 "Authorization": "Bearer " + secret,
+                 # Cloudflare's edge blocks the default "Python-urllib/x.y"
+                 # outright (error 1010) before the request reaches the Worker.
+                 # The failure looks like a 403 from our own origin check, which
+                 # is nowhere near the truth -- so name ourselves properly.
+                 "User-Agent": "immi-toolbox-mailer/1.0 (+github-actions)"},
         method="POST")
     with urllib.request.urlopen(req, timeout=30) as r:
         return json.load(r)
