@@ -54,6 +54,10 @@ def call(url, secret, path, payload):
 def main():
     need = ["WORKER_URL", "DISPATCH_SECRET", "MAIL_USER", "MAIL_PASS", "REPORT_ID"]
     env = {k: (os.environ.get(k) or "").strip() for k in need}
+    # Google displays an App Password as four spaced groups. Pasted verbatim it
+    # usually still works, but not always -- and the failure is an opaque
+    # authentication error. Strip whitespace rather than let a space decide it.
+    env["MAIL_PASS"] = "".join(env["MAIL_PASS"].split())
     missing = [k for k in need if not env[k]]
     if missing:
         sys.exit("missing env: " + ", ".join(missing))
