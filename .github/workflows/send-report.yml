@@ -31,21 +31,23 @@ jobs:
       # token even on a public repo, but per-step conclusions are -- so which
       # step failed is itself the diagnosis: "取待发记录" means the shared secret
       # or the Worker, "发送邮件" means Gmail.
-      - name: 自检：密钥与 Worker 是否一致
+      - name: 自检：三个 Secret 是否都存在
         env: &mailenv
           WORKER_URL: https://immi-occupation-match.yyxr75.workers.dev
           DISPATCH_SECRET: ${{ secrets.DISPATCH_SECRET }}
           MAIL_USER: ${{ secrets.MAIL_USER }}
           MAIL_PASS: ${{ secrets.MAIL_PASS }}
           REPORT_ID: ${{ github.event.client_payload.id }}
-        run: python scripts/send_report_mail.py fp
-
-      - name: 自检：邮箱密码是否已配置
-        env: *mailenv
         run: |
-          test -n "$MAIL_USER" || { echo "MAIL_USER is empty"; exit 1; }
-          test -n "$MAIL_PASS" || { echo "MAIL_PASS is empty"; exit 1; }
-          echo "both present"
+          for v in DISPATCH_SECRET MAIL_USER MAIL_PASS; do
+            eval "val=\$$v"
+            test -n "$val" || { echo "$v is empty or the secret is named differently"; exit 1; }
+          done
+          echo "all three present"
+
+      - name: 自检：密钥与 Worker 是否一致
+        env: *mailenv
+        run: python scripts/send_report_mail.py fp
 
       - name: 取待发记录
         env: *mailenv

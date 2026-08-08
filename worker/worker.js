@@ -247,7 +247,17 @@ export default {
         new TextEncoder().encode(env.DISPATCH_SECRET));
       const mine = [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, "0"))
         .join("").slice(0, 12);
-      return String(body.fp || "") === mine
+      const got = String(body.fp || "");
+      const match = got === mine;
+      // Record the attempt so the operator can tell "not set at all" from "set
+      // to something else" without reading a workflow log they cannot read.
+      // A hash prefix and a length, never the value.
+      await env.RATE.put("fpcheck", JSON.stringify({
+        at: new Date().toISOString(), match,
+        callerFp: got.slice(0, 12), callerLen: parseInt(body.len, 10) || 0,
+        workerFp: mine, workerLen: env.DISPATCH_SECRET.length,
+      }), { expirationTtl: 7 * 86400 });
+      return match
         ? json({ ok: true }, 200, H)
         : json({ ok: false, error: "shared secret mismatch" }, 409, H);
     }
@@ -294,8 +304,10 @@ export default {
                      "RESEND_API_KEY", "MAIL_FROM", "MAIL_REPLY_TO"];
       const present = {}; names.forEach(n => { present[n] = !!env[n]; });
       const lastMailError = await env.RATE.get("mailerr");
+      const fpcheck = await env.RATE.get("fpcheck");
       return json({ ok: true, present,
                     lastMailError: lastMailError ? JSON.parse(lastMailError) : null,
+                    lastSecretCheck: fpcheck ? JSON.parse(fpcheck) : null,
                     features: {
                       ai: !!env.PROVIDER_API_KEY,
                       requireAuth: REQUIRE_AUTH,

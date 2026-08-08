@@ -93,9 +93,12 @@ def fingerprint(env):
 
     Compares a hash prefix, never the secret. Its own step so that a mismatch
     is distinguishable from every other reason /pending can fail."""
-    fp = hashlib.sha256(env["DISPATCH_SECRET"].encode()).hexdigest()[:12]
+    secret = env["DISPATCH_SECRET"]
+    fp = hashlib.sha256(secret.encode()).hexdigest()[:12]
     try:
-        call(env["WORKER_URL"], "-", "/pending/fp", {"fp": fp})
+        # The length goes along so the operator can tell a truncated paste from
+        # a wholly different value. Neither reveals the secret.
+        call(env["WORKER_URL"], "-", "/pending/fp", {"fp": fp, "len": len(secret)})
     except urllib.error.HTTPError as e:
         if e.code == 409:
             sys.exit("DISPATCH_SECRET here does not match the Worker's")
