@@ -32,6 +32,10 @@
   --heat0:#15202f; --heat1:#9ec5f4;
 }
 * { box-sizing: border-box; }
+/* A class that sets display beats the user-agent's [hidden]{display:none}, so
+   .authbar{display:flex} left an empty grey bar sitting there while the element
+   was, as far as the DOM was concerned, hidden. Settle it once for everything. */
+[hidden] { display: none !important; }
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin:0; background:var(--plane); color:var(--ink);
@@ -221,6 +225,16 @@ h2.occ { font-size:19px; margin:0 0 6px; font-weight:600; letter-spacing:-.01em;
 .repbar input:focus-visible { outline:2px solid var(--s1); outline-offset:1px; }
 .repbar .hint { margin:0; }
 #aiReportOut a { color:var(--ink); word-break:break-all; }
+details.adv { border:1px solid var(--hair); border-radius:10px; background:var(--surface);
+              padding:0 14px; margin:0 0 18px; }
+details.adv > summary { cursor:pointer; padding:13px 0; font-size:13.5px; color:var(--ink2);
+                        list-style:none; }
+details.adv > summary::-webkit-details-marker { display:none; }
+details.adv > summary::before { content:"▸ "; color:var(--muted); }
+details.adv[open] > summary::before { content:"▾ "; }
+details.adv > summary b { color:var(--ink); font-weight:600; }
+details.adv > *:last-child { margin-bottom:14px; }
+ul.dont { margin:0; padding-left:19px; }
 </style>
 
 <div class="wrap">
@@ -232,7 +246,7 @@ h2.occ { font-size:19px; margin:0 0 6px; font-weight:600; letter-spacing:-.01em;
   <!--OCCPICKER-->
   <h2 class="occ" id="occTitle"></h2>
   <p class="sub" id="sub"></p>
-  <p class="src" id="src">数据源：澳大利亚就业与劳资关系部 SkillSelect EOI 公开看板（Qlik 引擎接口）。</p>
+  <p class="src" id="src">数据来自澳大利亚内政部 SkillSelect 公开看板。</p>
 
   <div class="filters">
     <span class="lab">签证类型</span>
@@ -242,7 +256,7 @@ h2.occ { font-size:19px; margin:0 0 6px; font-weight:600; letter-spacing:-.01em;
   <p class="ctx" id="scoreBanner" hidden></p>
 
   <details class="note">
-    <summary>读这份报告前必须知道的 6 件事（口径说明）</summary>
+    <summary>这些数字怎么来的、哪些不能信（6 条，建议看一眼）</summary>
     <ol>
       <li><b>池子是累积的，不是当前排队量。</b>每个"截至月份"的快照会保留已关闭的 EOI，所以总数每月只增不减。真正的竞争池是 <b>SUBMITTED（在池）</b>状态，本报告的"申请人数"一律指它。</li>
       <li><b>"获邀"是月末存量，不是当月发出的邀请数。</b>看板不公布邀请流量。EOI 被邀请后 60 天内失效或转为 LODGED，所以月末快照只抓得到当时手上还握着有效邀请的人——真实邀请量比这个数高。</li>
@@ -257,17 +271,16 @@ h2.occ { font-size:19px; margin:0 0 6px; font-weight:600; letter-spacing:-.01em;
 
   <div class="card findings">
     <h2>关键结论</h2>
-    <p class="cap">以下每一条都由脚本从数据算出，换任何职业都会自动重算，不是手写的。</p>
+
     <ol class="flist" id="flist"></ol>
     <h3 class="sub2">同样的分数，走哪条通道胜算最大</h3>
-    <p class="hint">每格是"该分数段中曾获邀的人占比"，只显示样本 n≥50 的格子；每行最高的一格加粗。</p>
+    <p class="hint">每行最高的一格加粗。只显示样本足够（n≥50）的格子。</p>
     <div class="tblwrap on" id="cmp"></div>
   </div>
 
   <div class="card">
     <h2>1 · 在池申请人数（SUBMITTED）</h2>
-    <p class="cap">每个月末处于 SUBMITTED 状态的 EOI 数量。所选签证类型高亮，其余作为对照置灰。</p>
-    <p class="warn">曲线的上升主要来自面板回填，不是真实排队增长——只看形状，不要读增幅（口径说明第 6 条）。</p>
+    <p class="cap">每个月末还在池子里排队的人数。<b>上升主要来自数据回填，不是真的在涨</b>——只看形状，别读增幅。</p>
     <div class="chart"><svg id="c1"></svg></div>
     <div class="legend" id="l1"></div>
     <button class="tblbtn" data-t="t1">表格视图</button>
@@ -276,9 +289,7 @@ h2.occ { font-size:19px; margin:0 0 6px; font-weight:600; letter-spacing:-.01em;
 
   <div class="card">
     <h2>2 · 在池人群的分数分位数</h2>
-    <p class="cap">在池 EOI 的分数中位数 / 75 分位 / 90 分位随时间变化——衡量"对手变强了没有"。</p>
-    <p class="hint">分数按 5 分一档，所以分位线只会跳档，不会平滑上升。</p>
-    <p class="warn">早期月份覆盖不全，跨月对比不可靠；最右端（最新月份）才是可信的横截面。</p>
+    <p class="cap">排在你前面的人有多少分。<b>只有最右端（最新月份）可信</b>，早期月份数据不全。</p>
     <div class="chart"><svg id="c2"></svg></div>
     <div class="legend" id="l2"></div>
     <button class="tblbtn" data-t="t2">表格视图</button>
@@ -287,9 +298,7 @@ h2.occ { font-size:19px; margin:0 0 6px; font-weight:600; letter-spacing:-.01em;
 
   <div class="card">
     <h2>3 · 分数分布随时间（热力图）</h2>
-    <p class="cap">每一列是一个月，颜色深浅＝该分数段在当月在池人群中的占比。</p>
-    <p class="hint">按列归一化，所以看的是分布形状的迁移，不是绝对人数。</p>
-    <p class="warn">同上：早期列的样本构成不完整，左右对比要谨慎。</p>
+    <p class="cap">每列一个月，颜色越深＝该分数段的人越集中。看分布形状，早期几列不可靠。</p>
     <div class="chart scrollx"><svg id="c3"></svg></div>
     <p class="scrollnote" id="s3"></p>
     <div class="legend" id="l3"></div>
@@ -354,10 +363,10 @@ h2.occ { font-size:19px; margin:0 0 6px; font-weight:600; letter-spacing:-.01em;
     <div class="authbar" id="aiAuthBar" hidden></div>
     <p class="ctx" id="aiEnvWarn" hidden></p>
 
-    <div class="card">
-      <h2>1 · 选择模型服务</h2>
-      <p class="cap">两种用法：用<b>公共服务</b>（本站代付，需邮箱登录，每天有额度），或换成<b>你自己的服务</b>——本机跑的模型，或你自己的 DeepSeek / Claude 等 API Key（不需要登录，也不占本站额度）。</p>
-      <p class="hint">端点和密钥只存在你浏览器的 localStorage 里，不随页面发布，请求也是从你的浏览器直接发给服务商，不经过本站任何服务器。每个服务商的配置分开保存，切换不会丢。</p>
+    <details class="adv">
+      <summary>模型服务：<b id="aiProvSummary">公共服务（本站代付）</b> · 点开可换成自己的 API Key</summary>
+      <p class="hint">默认用本站代付的公共服务，每天有次数额度。想不受限、或想用本机模型，
+        在这里换。端点和密钥只存在你这台设备的浏览器里，请求直接发给对应服务商，不经过本站。</p>
       <div class="cgrid">
         <div class="cfield">
           <label for="aiProvider">服务商</label>
@@ -367,32 +376,31 @@ h2.occ { font-size:19px; margin:0 0 6px; font-weight:600; letter-spacing:-.01em;
         <div class="cfield" id="aiEndpointField">
           <label for="aiEndpoint">端点地址</label>
           <input id="aiEndpoint" type="url" autocomplete="off" spellcheck="false" placeholder="https://api.example.com">
-          <div class="cite">选服务商会自动填，可改；不用带 /v1</div>
+          <div class="cite">选服务商会自动填，不用带 /v1</div>
         </div>
         <div class="cfield" id="aiModelField">
           <label for="aiModel">模型名</label>
           <input id="aiModel" type="text" autocomplete="off" spellcheck="false" list="aiModelList" placeholder="模型 ID">
           <datalist id="aiModelList"></datalist>
-          <div class="cite">可从下拉选，也可自己填</div>
         </div>
         <div class="cfield" id="aiKeyField">
           <label for="aiKey" id="aiKeyLabel">API Key</label>
           <input id="aiKey" type="password" autocomplete="off" placeholder="sk-…">
-          <div class="cite">仅存于本机 localStorage</div>
+          <div class="cite">只存在本机</div>
         </div>
       </div>
       <div class="cbtnrow">
         <button class="tblbtn nt" type="button" id="aiTest">测试连接</button>
-        <button class="tblbtn nt" type="button" id="aiForget">清除全部端点与密钥</button>
+        <button class="tblbtn nt" type="button" id="aiForget">清除已保存的密钥</button>
       </div>
       <p class="hint" id="aiTestOut"></p>
-      <p class="warn">用云端服务商时，密钥是<b>会产生费用的凭证</b>。它只保存在这台设备的浏览器里、只发给对应服务商，但仍建议用一把额度受限的专用 key，不要用主账号的全权限 key。
-    </div>
+      <p class="hint">用云端服务商时，API Key 是会产生费用的凭证，建议用一把额度受限的专用 key。</p>
+    </details>
 
     <div class="card">
-      <h2>2 · 提供简历</h2>
-      <p class="cap">解析<b>全部在你的浏览器里完成</b>，原文件不会上传。发送前会在本地剥掉邮箱、电话、网址和长串数字，出生日期只保留年份。</p>
-      <p class="hint">支持 .pdf / .docx / .txt / .md，以及直接粘贴。PDF 用内置的 pdf.js 在本地解析（约 1.4 MB，选中 PDF 时才加载）；扫描件没有文字层，解析不出来。</p>
+      <h2>上传简历</h2>
+      <p class="cap">支持 PDF / Word / 纯文本，也可以直接粘贴。
+        <b>文件不会上传</b>——在你的浏览器里解析，发送前自动去掉邮箱、电话和身份信息。</p>
       <div class="cbtnrow">
         <input type="file" id="aiFile" accept=".txt,.md,.docx,.pdf,.text" hidden>
         <button class="tblbtn nt" type="button" id="aiPick">选择文件…</button>
@@ -401,8 +409,8 @@ h2.occ { font-size:19px; margin:0 0 6px; font-weight:600; letter-spacing:-.01em;
       <label class="plab" for="aiRaw" style="margin-top:12px">简历正文（可直接粘贴或编辑）</label>
       <textarea id="aiRaw" rows="8" spellcheck="false" placeholder="把简历正文粘贴到这里…"></textarea>
       <div class="cbtnrow">
-        <button class="tblbtn nt" type="button" id="aiSend">发送给模型识别职业</button>
-        <button class="tblbtn" type="button" data-t="aiBody" data-label="将发送的内容">将发送的内容</button>
+        <button class="tblbtn" type="button" id="aiSend">开始识别职业</button>
+        <button class="tblbtn nt" type="button" data-t="aiBody" data-label="看看会发送什么">看看会发送什么</button>
       </div>
       <p class="hint" id="aiRedactStat"></p>
       <div class="tblwrap" id="aiBody"></div>
@@ -410,21 +418,20 @@ h2.occ { font-size:19px; margin:0 0 6px; font-weight:600; letter-spacing:-.01em;
     </div>
 
     <div class="card" id="aiResultCard" hidden>
-      <h2>3 · 相关职业，按你的分数排获邀率</h2>
-      <p class="cap">模型只负责判断简历对应哪个 ANZSCO 职业；相关职业由代码层级推出，排序用的是你在「计算分数」页算出的分数。</p>
-      <p class="warn"><b>这不是让你挑一个获邀率高的填上去。</b>你能用哪个职业递交 EOI，取决于职业评估机构是否认可你的学历和工作经历符合该职业——这一步本工具无法替代。下表只回答一个问题：<b>在你可能够得上的相关职业里，同样的分数历史上哪些更容易拿到邀请。</b></p>
+      <h2>可能匹配的职业</h2>
+      <p class="warn"><b>别直接挑获邀率高的那个填。</b>你能用哪个职业递交，由职业评估机构认定，
+        本工具管不了。下表只回答：在你够得上的职业里，同样的分数历史上哪些更容易获邀。</p>
       <p class="hint" id="aiRead" style="white-space:pre-line"></p>
       <p class="hint" id="aiOccNote"></p>
       <div id="aiOccList"></div>
       <div class="repbar">
-        <label class="hint" for="aiMail">发到邮箱（可留空，只用来发这一封）</label>
+        <label class="hint" for="aiMail">发到邮箱（可留空）</label>
         <input id="aiMail" type="email" inputmode="email" autocomplete="email"
                placeholder="you@example.com">
         <button class="tblbtn" type="button" id="aiReport">生成可分享的报告</button>
       </div>
       <p class="hint" id="aiReportOut"></p>
-      <p class="hint">报告会把上面的打分明细、匹配职业与获邀率、加分建议和数据口径排成一页，
-        给你一个链接。<b>链接本身就是凭证</b>——谁拿到谁能看，转发前想一下。</p>
+      <p class="hint">报告是一个链接，30 天有效。<b>拿到链接的人都能看</b>，转发前想一下。</p>
       <div class="cbtnrow">
         <button class="tblbtn" type="button" data-t="aiRawOut" data-label="模型原始输出">模型原始输出</button>
         <button class="tblbtn" type="button" data-t="aiThink" data-label="模型思考过程">模型思考过程</button>
@@ -433,15 +440,15 @@ h2.occ { font-size:19px; margin:0 0 6px; font-weight:600; letter-spacing:-.01em;
       <div class="tblwrap" id="aiThink"></div>
     </div>
 
-    <div class="card soon">
-      <h2>这一页不做什么</h2>
-      <ul>
-        <li><b>不算分。</b>打分表是成文法规（Schedule 6D），模型算分会在边界情况上编数字而且你看不出来。分数在「计算分数」页由本地确定性代码算，这里一分都不碰。</li>
-        <li><b>不替你决定职业。</b>候选只会从 SkillSelect 在册的 492 个职业里选——模型编出来的名字会被丢弃。相关职业按 ANZSCO 代码层级推出（同一四位小类 / 三位中类 / 两位大类），不是模型自由发挥。真正算数的是职业评估机构的判定。</li>
-        <li><b>不保证你符合排在前面的职业。</b>获邀率高只说明历史上这个职业的竞争没那么激烈，不代表你的背景能通过它的职业评估。</li>
+    <details class="adv">
+      <summary>这一页<b>不</b>做什么（四条边界，建议看一眼）</summary>
+      <ul class="dont">
+        <li><b>不算分。</b>打分是成文法规，模型算会在边界情况编数字。分数在「计算分数」页由本地代码算，这里一分都不碰。</li>
+        <li><b>不替你决定职业。</b>候选只从在册的 492 个职业里选，模型编的名字会被丢弃。真正算数的是职业评估机构的判定。</li>
+        <li><b>不保证你符合排在前面的职业。</b>获邀率高只说明竞争没那么激烈，不代表你的背景能通过它的评估。</li>
         <li><b>不预测结果。</b>获邀率是历史统计，不是你的成功率。</li>
       </ul>
-    </div>
+    </details>
   </div>
 
   <div id="view-group" hidden>
@@ -1327,9 +1334,9 @@ function boot(data) {
   document.getElementById("sub").textContent =
     `按月快照，${DATA.monthLabels[0]} – ${DATA.monthLabels[DATA.monthLabels.length - 1]}（24 个月）`;
   document.getElementById("foot").textContent =
-    "口径：所有计数均为去重 EOI 数（COUNT DISTINCT %EOIID）。“在池”＝ EOI Status = SUBMITTED。" +
+    "口径：人数均为去重 EOI 数，“在池”指状态为 SUBMITTED 的 EOI。" +
     "打分规则来自 Migration Regulations 1994 Schedule 6D；获邀率来自 SkillSelect 公开看板。" +
-    "本站由 immi-analysis/scripts/ 的抽取与渲染脚本生成，可对任意 ANZSCO 职业重跑。";
+    "本站不是移民中介，不提供个案建议。";
   // collapse only the tables a button controls -- #cmp and #mrg have no toggle
   // and are meant to stay open
   const toggleable = new Set([...document.querySelectorAll(".tblbtn[data-t]")]

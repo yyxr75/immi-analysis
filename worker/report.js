@@ -202,7 +202,10 @@ export const tooBig = body => JSON.stringify(body).length > MAX_BODY;
    the repo is public, so workflow run metadata is public with it. The dispatch
    carries an opaque id; the runner comes back here for the address. */
 
-export const MAILS_PER_IP_DAY = 5;
+// Per source address, so it is shared by everyone behind one NAT -- mobile
+// carriers put thousands of users on a handful of addresses. Loose enough not
+// to punish them, still bounded.
+export const MAILS_PER_IP_DAY = 20;
 export const PENDING_TTL = 3600;
 
 export const mailSubject = "你的澳洲技术移民评估报告";

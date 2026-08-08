@@ -31,6 +31,11 @@ function aiSignOut() {
   try { localStorage.removeItem(AUTH_KEY); sessionStorage.removeItem(AUTH_KEY); } catch (e) {}
 }
 let AI_RESULT = null, AI_BODY = null, AI_RAW = "", AI_ROWS = null, BASIS_LAST = {};
+// The score the occupation table was computed against. Rates are looked up per
+// score, so if the user goes back and changes the calculator the table on
+// screen is stale -- and a report built from it would show the new score beside
+// the old rates.
+let AI_ROWS_SCORE = null;
 // Mirror of the shared endpoint's MAX_CHARS, used only to fail fast in the
 // page. The Worker is the authority; this is refreshed from its ping and 413
 // replies, so raising it there does not require another site build.
@@ -614,17 +619,21 @@ function aiRelated(seedCodes, idx, cap) {
   return out;
 }
 
-/* The score the user actually filled in on the points page. */
-function aiBaseScore() {
-  let saved = CALC;
-  if (!saved || !Object.keys(saved).length) {
-    try { saved = JSON.parse(localStorage.getItem(CALC_KEY)) || {}; } catch (e) { saved = {}; }
-  }
-  const prev = CALC; CALC = saved;
-  const total = calcBreakdown().total;
-  CALC = prev;
-  return total;
+/* The answers the user gave on the points page, and the breakdown of those
+   same answers. Previously the score came from one of these and the breakdown
+   from the other (global CALC vs storage), which could disagree -- a report is
+   not allowed to contradict itself. Everything downstream goes through here. */
+function calcAnswers() {
+  if (CALC && Object.keys(CALC).length) return CALC;
+  try { return JSON.parse(localStorage.getItem(CALC_KEY)) || {}; } catch (e) { return {}; }
 }
+
+function calcFor(answers) {
+  const prev = CALC; CALC = answers;
+  try { return calcBreakdown(); } finally { CALC = prev; }
+}
+
+function aiBaseScore() { return calcFor(calcAnswers()).total; }
 
 async function aiRateFor(code, score) {
   try {
@@ -737,6 +746,7 @@ async function aiRenderResult(x) {
   }));
   withRates.sort((a, b) => b.best - a.best || b.o.pool - a.o.pool);
   AI_ROWS = withRates;
+  AI_ROWS_SCORE = base;
 
   const cols = ["189", "190", "491 (州担保)"];
   const head = ["职业", `189 (${base}分)`, `190 (${base + 5}分)`, `491 (${base + 15}分)`, "在池", "关系"];
@@ -798,6 +808,13 @@ async function aiRenderResult(x) {
    are and what is left today, so quota is visible before you spend it, not
    after. It says nothing at all when you are on your own API key -- that path
    never touches this site's budget. */
+/* The provider panel is folded away by default, so its summary line is the only
+   thing most people ever see of it -- it has to say what is actually in use. */
+function aiSyncProvSummary() {
+  const el = $ai("aiProvSummary");
+  if (el) el.textContent = aiProv().label;
+}
+
 function aiRenderGate() {
   const bar = $ai("aiAuthBar");
   if (!bar) return;
@@ -870,8 +887,9 @@ async function aiRefreshAuth() {
 /* Assemble the report from what is already on screen. Nothing is recomputed:
    a report that disagrees with the page it came from is worse than no report. */
 function aiReportPayload() {
-  const base = aiBaseScore();
-  const brk = base ? calcBreakdown() : { rows: [], total: null };
+  const answers = calcAnswers();
+  const brk = calcFor(answers);
+  const base = brk.total;
   const visas = base
     ? [{ key: "189", label: `189 独立技术（${base} 分）`, score: base },
        { key: "190", label: `190 州担保（${base + 5} 分）`, score: base + 5 },
@@ -882,14 +900,13 @@ function aiReportPayload() {
   const ups = [];
   if (base) {
     for (const f of RULES.fields) {
-      if (f.key === "age") continue;
-      const now = f.options[CALC[f.key] | 0].v;
+      if (f.key === "age") continue;                     // age only ever goes down
+      const now = f.options[answers[f.key] | 0].v;
       const best = Math.max(...f.options.map(o => o.v));
       if (best <= now) continue;
-      const saved = CALC[f.key];
-      CALC[f.key] = f.options.findIndex(o => o.v === best);
-      const nt = calcBreakdown().total;
-      CALC[f.key] = saved;
+      const probe = Object.assign({}, answers);
+      probe[f.key] = f.options.findIndex(o => o.v === best);
+      const nt = calcFor(probe).total;
       if (nt <= brk.total) continue;
       ups.push({ label: f.label, to: f.options.find(o => o.v === best).t,
                  gain: nt - brk.total, score: nt, part: f.part });
@@ -926,6 +943,9 @@ async function aiMakeReport() {
   }
   btn.disabled = true; out.textContent = "生成中…";
   try {
+    // Redraw first if the score moved since the table was built, so the report
+    // and the screen it came from cannot disagree.
+    if (AI_RESULT && AI_ROWS_SCORE !== aiBaseScore()) await aiRenderResult(AI_RESULT);
     const r = await fetch(PUBLIC_PROXY_URL.replace(/\/+$/, "") + "/report", {
       method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify(Object.assign(aiReportPayload(),
@@ -959,7 +979,13 @@ async function aiMakeReport() {
 }
 
 function aiInit() {
-  if ($ai("aiEndpoint") && $ai("aiEndpoint").dataset.wired) { aiRenderGate(); aiRefreshAuth(); return; }
+  if ($ai("aiEndpoint") && $ai("aiEndpoint").dataset.wired) {
+    aiRenderGate(); aiRefreshAuth();
+    // Came back after editing the calculator: the table was ranked for the old
+    // score, so redraw it rather than leave stale rates on screen.
+    if (AI_RESULT && AI_ROWS_SCORE !== aiBaseScore()) aiRenderResult(AI_RESULT);
+    return;
+  }
   aiLoadCfg(); aiEnvCheck();
   ["aiEndpoint", "aiModel", "aiKey"].forEach(id => {
     const el = $ai(id); if (!el) return;
@@ -971,7 +997,7 @@ function aiInit() {
     AI_BODY = null;
     aiFillProfile(); aiSaveCfg(); aiEnvCheck();
     $ai("aiTestOut").textContent = "";
-    aiRenderGate();
+    aiRenderGate(); aiSyncProvSummary();
   });
   $ai("aiTest").addEventListener("click", aiTest);
   $ai("aiForget").addEventListener("click", () => {
@@ -1001,7 +1027,7 @@ function aiInit() {
   // Typing or pasting into the box must invalidate it too, or a second send
   // after an edit would ship the previous text.
   $ai("aiRaw").addEventListener("input", () => { AI_BODY = null; });
-  aiRenderGate();
+  aiRenderGate(); aiSyncProvSummary();
   aiRefreshAuth();
   $ai("aiSend").addEventListener("click", aiSend);
   $ai("aiReport").addEventListener("click", aiMakeReport);
