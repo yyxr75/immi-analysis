@@ -1556,7 +1556,13 @@ async function aiRenderResult(x) {
 
   const cols = ["189", "190", "491 (州担保)"];
   const head = ["职业", `189 (${base}分)`, `190 (${base + 5}分)`, `491 (${base + 15}分)`, "在池", "关系"];
-  const cell = r => !r ? "—" : (r.n < 50 ? `${r.rate}%▲` : `${r.rate}%`);
+  // Points are published in 5-point bands, and the top bands often do not
+  // exist for an occupation at all -- at 100 points most cells in this table
+  // fall back. Printing 2.4% under a "105分" header when the figure is really
+  // the 95-point band is the kind of quiet substitution that makes a whole
+  // table untrustworthy, so name the band that was actually used.
+  const cell = r => !r ? "—"
+    : `${r.rate}%` + (r.exact ? "" : `（${r.at}分）`) + (r.n < 50 ? "▲" : "");
   const relOf = w => w.rel === "模型判定最贴近"
     ? (BASIS[w.o.code] === "study" ? "最贴近（按专业）"
        : BASIS[w.o.code] === "work" ? "最贴近（按职责）" : "模型判定最贴近")
@@ -1591,9 +1597,15 @@ async function aiRenderResult(x) {
   });
   tb.appendChild(tbody); wrap.appendChild(tb); list.appendChild(wrap);
 
-  note.textContent = `按你在「计算分数」页算出的 ${base} 分排序（189 用 ${base} 分、` +
-    `190 用 ${base + 5} 分、491 用 ${base + 15} 分，含提名加分）。每行最高的一格加粗；` +
-    "带 ▲ 的样本不足 50，不可靠。点职业名可查看它的完整数据页。" +
+  const approx = withRates.reduce((a, w) =>
+    a + cols.filter(c => w.per[c] && !w.per[c].exact).length, 0);
+  note.textContent = `按你在「计算分数」页算出的 ${base} 分排序：189 查 ${base} 分、` +
+    `190 查 ${base + 5} 分、491 查 ${base + 15} 分（后两者含州/地区提名加分）。` +
+    "每格是「正好在那一档」的人里历史上获邀的比例，不是「≥该分数」的累计值。" +
+    "官方按 5 分一档发布，所以高分档常常没有数据；括号里标出实际取的是哪一档，" +
+    "读的时候要当成下限。带 ▲ 的样本不足 50，不可靠。每行最高的一格加粗，" +
+    "点职业名可查看完整数据页。" +
+    (approx ? `本表 ${approx} 格因为你那一档无数据而落回了更低档。` : "") +
     (dropped.length ? `模型还提到了 ${dropped.join("、")}，不在 SkillSelect 清单上，已略过。` : "");
 }
 
