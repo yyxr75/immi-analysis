@@ -22,7 +22,10 @@ import {
   CODE_TTL, CODE_TRIES, PLANS, account, bearer, emailKey, issueToken,
   looksLikeEmail, newCode, normEmail, planLimit, readToken, sendCode,
 } from "./auth.js";
-import { REPORTS_PER_IP_DAY, REPORT_TTL, clean, newId, render, tooBig } from "./report.js";
+import {
+  MAILS_PER_IP_DAY, PENDING_TTL, REPORTS_PER_IP_DAY, REPORT_TTL, clean, dispatch,
+  looksLikeEmail as looksLikeMailTo, mailSubject, mailText, newId, render, tooBig,
+} from "./report.js";
 
 const UPSTREAM = "https://api.deepseek.com/v1/chat/completions";
 const MODEL = "deepseek-chat";
@@ -204,8 +207,51 @@ export default {
       const id = newId();
       await env.RATE.put("rep:" + id, JSON.stringify(clean(body)),
                          { expirationTtl: REPORT_TTL });
-      return json({ ok: true, id, url: url.origin + "/r/" + id,
-                    days: Math.round(REPORT_TTL / 86400) }, 200, H);
+      const link = url.origin + "/r/" + id;
+      const days = Math.round(REPORT_TTL / 86400);
+      const out = { ok: true, id, url: link, days };
+
+      // Optional: also mail the link. The report exists either way, so a mail
+      // failure degrades to "here is your link" rather than losing the report.
+      const to = String(body.email || "").trim().toLowerCase();
+      if (to) {
+        if (!looksLikeMailTo(to)) { out.mail = { ok: false, error: "邮箱地址看起来不对。" }; }
+        else if (await bump(env, `mp:${day}:${ip}`, 172800) > MAILS_PER_IP_DAY) {
+          out.mail = { ok: false, error: `每天最多发送 ${MAILS_PER_IP_DAY} 封邮件。` };
+        } else {
+          await env.RATE.put("pend:" + id, JSON.stringify({ to, url: link, days }),
+                             { expirationTtl: PENDING_TTL });
+          const d = await dispatch(env, id);
+          // Nothing will come and collect it if the trigger failed, so do not
+          // sit on someone's address for an hour for no reason.
+          if (!d.ok) await env.RATE.delete("pend:" + id);
+          out.mail = d.ok ? { ok: true, to } : { ok: false, error: d.error, detail: d.detail };
+        }
+      }
+      return json(out, 200, H);
+    }
+
+    /* ---------------- the runner collects the address ----------------
+       Called by the GitHub Action, not by a browser. The recipient lives here
+       rather than in the dispatch payload because the repo is public and so is
+       everything attached to a workflow run. Guarded by a shared secret, and
+       the record is one-shot: /pending/done deletes it. */
+    if (path === "/pending" || path === "/pending/done") {
+      if (!env.DISPATCH_SECRET || bearer(req) !== env.DISPATCH_SECRET)
+        return json({ error: "nope" }, 403, H);
+      const id = String(body.id || "");
+      if (!/^[0-9a-f]{32}$/.test(id)) return json({ error: "bad id" }, 400, H);
+      if (path === "/pending/done") {
+        await env.RATE.delete("pend:" + id);
+        return json({ ok: true }, 200, H);
+      }
+      const raw = await env.RATE.get("pend:" + id);
+      if (!raw) return json({ error: "not pending" }, 404, H);
+      const pend = JSON.parse(raw);
+      // The body is composed here too, so the wording lives in one file rather
+      // than drifting between the Worker and the runner that sends it.
+      return json({ ok: true, to: pend.to, subject: mailSubject,
+                    text: mailText(pend.url, pend.days) }, 200, H);
     }
 
     /* ---------------- who am I ---------------- */

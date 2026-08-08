@@ -1,0 +1,37 @@
+name: 发送报告邮件
+
+# Triggered by the Worker (POST /repos/.../dispatches) the moment someone asks
+# for their report by email. The payload carries only an opaque report id --
+# this repo is public, and a recipient address in the payload would be public
+# with it. The runner fetches the address from the Worker over a shared secret.
+on:
+  repository_dispatch:
+    types: [send-report]
+
+# One at a time. Two runners racing on the same id would both find the record
+# and send twice; the loser here just finds it gone and exits quietly.
+concurrency:
+  group: send-report
+  cancel-in-progress: false
+
+permissions: {}          # this job needs nothing from the repo but its own code
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 发信
+        env:
+          WORKER_URL: https://immi-occupation-match.yyxr75.workers.dev
+          DISPATCH_SECRET: ${{ secrets.DISPATCH_SECRET }}
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+          REPORT_ID: ${{ github.event.client_payload.id }}
+        run: python scripts/send_report_mail.py

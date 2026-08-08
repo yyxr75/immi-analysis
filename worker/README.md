@@ -65,6 +65,41 @@ AI 页跑完识别后有一个「生成可分享的报告」按钮：把打分�
 **发到用户邮箱这一步还没做**，因为它和验证码一样需要一个验证过的发件域名。域名
 到位后，`auth.js` 里的 `sendCode` 就是现成的样板，把链接放进正文即可。
 
+## 报告发到用户邮箱
+
+Worker 发不了信（没有 SMTP 出口），而 HTTP 邮件 API 都要求验证发件域名。
+GitHub Actions 的 runner 可以直连 `smtp.gmail.com` 并**以账号本人身份**登录，
+这时候信是 Google 替你发的，SPF/DKIM 天然对齐，不需要任何域名。所以发信这一步
+放在 Action 里。
+
+流程：页面填邮箱 → Worker 存报告、存一条待发记录、调 GitHub API 触发
+`repository_dispatch` → Action 拉起 `scripts/send_report_mail.py` → 脚本凭
+`DISPATCH_SECRET` 向 Worker 取收件人和正文 → 用 Gmail SMTP 发出 → 回调
+`/pending/done` 删除记录。
+
+**收件人地址不进 dispatch payload**：这个仓库是公开的，workflow run 附带的
+一切也是公开的。payload 只有一个不透明的报告 id，地址由 runner 回头来取，
+日志里也只打印打码后的地址。
+
+需要的密钥：
+
+| 放在哪 | 名字 | 说明 |
+|---|---|---|
+| Worker | `DISPATCH_SECRET` | 已生成，本地副本 `~/.immi-dispatch-secret` |
+| Worker | `GH_REPO` | 已设为 `yyxr75/immi-analysis` |
+| Worker | `GH_DISPATCH_TOKEN` | **待配**：细粒度 PAT，只给这一个仓库 |
+| Actions | `DISPATCH_SECRET` | 和 Worker 里那个一模一样 |
+| Actions | `MAIL_USER` | 发信用的 Gmail 地址 |
+| Actions | `MAIL_PASS` | **Gmail App Password**，不是账号密码 |
+
+限制，别忽略：Gmail 免费账号每天约 500 个收件人；**Google 条款不允许用 Gmail
+做批量商业发信**，低量事务性邮件实际没人管，有规模会被限流。这是过桥方案，
+真做起来还是要回到一个自己的域名 + 正规邮件服务。
+
+另：Worker 里有一个 `RESENT_API_KEY`（拼写少了 D），代码只读
+`RESEND_API_KEY`，所以它从来没生效过。现在不用 Resend，可以删掉：
+`wrangler secret delete RESENT_API_KEY`。
+
 ## 密钥清单
 
 | 名字 | 用途 | 谁生成 |

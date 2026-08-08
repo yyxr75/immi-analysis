@@ -928,7 +928,8 @@ async function aiMakeReport() {
   try {
     const r = await fetch(PUBLIC_PROXY_URL.replace(/\/+$/, "") + "/report", {
       method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(aiReportPayload()),
+      body: JSON.stringify(Object.assign(aiReportPayload(),
+        { email: (($ai("aiMail") || {}).value || "").trim() })),
     });
     const d = await r.json().catch(() => ({}));
     if (!r.ok || !d.url) { out.textContent = d.error || "生成失败，请稍后再试。"; return; }
@@ -941,8 +942,17 @@ async function aiMakeReport() {
       navigator.clipboard && navigator.clipboard.writeText(d.url);
       copy.textContent = "已复制";
     });
-    out.append(document.createTextNode("报告已生成（"), document.createTextNode(d.days + " 天后失效）："),
+    out.append(document.createTextNode(`报告已生成（${d.days} 天后失效）：`),
                document.createElement("br"), a, document.createTextNode(" "), copy);
+    if (d.mail) {
+      const m = document.createElement("div");
+      // The report exists regardless; a mail failure must read as "here is your
+      // link anyway", not as a failure to produce anything.
+      m.textContent = d.mail.ok
+        ? `已发送到 ${d.mail.to}，通常一分钟内到，没看到就找一下垃圾邮件。`
+        : `报告已生成，但邮件没发出去：${d.mail.error || "未知原因"}。上面的链接照常可用。`;
+      out.appendChild(m);
+    }
   } catch (e) {
     out.textContent = "生成失败：" + e.message;
   } finally { btn.disabled = false; }

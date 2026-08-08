@@ -190,3 +190,53 @@ ${ups}</table></div>` : '<p class="cap">各项均已达最高档，没有可再�
 }
 
 export const tooBig = body => JSON.stringify(body).length > MAX_BODY;
+
+/* ---------- delivery by email ----------
+   Cloudflare Workers have no SMTP path, and an HTTP mail API would need a
+   verified sending domain we do not have. GitHub Actions does have SMTP, and
+   sending through Gmail's own servers as the account owner passes SPF/DKIM
+   because it genuinely is that account sending -- so the Action does the
+   sending and this only queues the job.
+
+   The recipient address deliberately does NOT travel in the dispatch payload:
+   the repo is public, so workflow run metadata is public with it. The dispatch
+   carries an opaque id; the runner comes back here for the address. */
+
+export const MAILS_PER_IP_DAY = 5;
+export const PENDING_TTL = 3600;
+
+export const mailSubject = "你的澳洲技术移民评估报告";
+
+export const mailText = (url, days) =>
+  `你在澳洲移民工具箱生成的评估报告：\n\n${url}\n\n`
+  + `报告包含：Schedule 6D 打分明细（标注了条目号）、可能匹配的职业及其在你分数上的\n`
+  + `历史获邀率、还能从哪里加分、以及这些数字的口径和局限。\n\n`
+  + `链接 ${days} 天后失效。这个地址本身就是凭证，谁拿到谁能看，转发前想一下。\n\n`
+  + `本站是数据工具，不是移民中介，不提供个案建议。涉及你个人情况的正式意见，\n`
+  + `请咨询持牌移民代理（MARA）。\n`;
+
+/** Trigger the workflow. Failure is reported, never silently swallowed: a paid
+    report that never arrives must not look like success. */
+export async function dispatch(env, id) {
+  if (!env.GH_DISPATCH_TOKEN || !env.GH_REPO) {
+    return { ok: false, error: "邮件发送还没配置好，请联系站点维护者。" };
+  }
+  const r = await fetch(`https://api.github.com/repos/${env.GH_REPO}/dispatches`, {
+    method: "POST",
+    headers: {
+      authorization: `Bearer ${env.GH_DISPATCH_TOKEN}`,
+      accept: "application/vnd.github+json",
+      "content-type": "application/json",
+      "user-agent": "immi-toolbox-worker",
+    },
+    body: JSON.stringify({ event_type: "send-report", client_payload: { id } }),
+  });
+  if (!r.ok) {
+    return { ok: false, error: "邮件发送失败，请稍后再试。",
+             detail: `github ${r.status} ${(await r.text()).slice(0, 160)}` };
+  }
+  return { ok: true };
+}
+
+export const looksLikeEmail = e =>
+  typeof e === "string" && /^[^\s@]+@[^\s@.]+\.[^\s@]{2,}$/.test(e) && e.length <= 254;
