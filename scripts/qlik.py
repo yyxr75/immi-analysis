@@ -4,7 +4,27 @@ import ssl
 import urllib.request
 import http.cookiejar
 
+import http.cookies
+
 import websocket
+from websocket import _cookiejar
+
+# Since 2026-09-04 the F5 balancer sets a cookie whose name contains "/"
+# ("BIGipServer1u8eX/Sx..."). websocket-client feeds every handshake Set-Cookie
+# to http.cookies.SimpleCookie, which raises on that name and kills the
+# connection. We send the Cookie header ourselves, so its jar is not needed:
+# skip what it cannot parse.
+_jar_add = _cookiejar.SimpleCookieJar.add
+
+
+def _tolerant_add(self, set_cookie):
+    try:
+        _jar_add(self, set_cookie)
+    except http.cookies.CookieError:
+        pass
+
+
+_cookiejar.SimpleCookieJar.add = _tolerant_add
 
 HOST = "api.dynamic.reports.employment.gov.au"
 APP_ID = "aaac76b5-ad30-477e-9ca0-472f8ab57fc8"
