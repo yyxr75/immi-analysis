@@ -96,10 +96,6 @@ GitHub Actions 的 runner 可以直连 `smtp.gmail.com` 并**以账号本人身�
 做批量商业发信**，低量事务性邮件实际没人管，有规模会被限流。这是过桥方案，
 真做起来还是要回到一个自己的域名 + 正规邮件服务。
 
-另：Worker 里有一个 `RESENT_API_KEY`（拼写少了 D），代码只读
-`RESEND_API_KEY`，所以它从来没生效过。现在不用 Resend，可以删掉：
-`wrangler secret delete RESENT_API_KEY`。
-
 ## 密钥清单
 
 | 名字 | 用途 | 谁生成 |
