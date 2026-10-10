@@ -25,7 +25,7 @@ SRC = os.path.join(HERE, "..", "asset")
 OUT = os.path.join(HERE, "..", "site", "asset")
 
 LOGO = "AusImmiToolboxLogo.png"
-QR = "AusImmiGroup1.jpg"
+QR = "WeChatPersonal.jpg"  # personal QR: never expires (group QRs die after 7 days)
 
 
 def kb(path):
@@ -42,14 +42,11 @@ def build_logo():
         print("  %-16s %4dx%-4d %6.1f KB" % (name, width, h, kb(p)))
 
 
-def crop_qr(gray):
-    """The code is the large dark block in the lower part of the screenshot."""
-    dark = np.array(gray) < 100
-    rows = np.where(dark.sum(1) > 5)[0]
-    low = rows[rows > gray.height * 0.35]
-    y0, y1 = low.min(), low.max()
-    cols = np.where(dark[y0:y1 + 1].sum(0) > 5)[0]
-    x0, x1 = cols.min(), cols.max()
+def crop_qr(gray, corners):
+    """Crop to the code using the detector's corner points. Group and personal
+    QR screenshots put the code at different heights, so no layout guess."""
+    xs, ys = corners[:, 0], corners[:, 1]
+    x0, y0, x1, y1 = int(xs.min()), int(ys.min()), int(xs.max()), int(ys.max())
     pad = 28                             # keep a quiet zone around the code
     box = (max(0, x0 - pad), max(0, y0 - pad),
            min(gray.width, x1 + 1 + pad), min(gray.height, y1 + 1 + pad))
@@ -67,21 +64,21 @@ def build_qr():
         img = cv2.imread(path)
         if img is None:
             raise SystemExit("cannot read " + path)
-        res, _ = det.detectAndDecode(img)
-        return res[0] if res else None
+        res, pts = det.detectAndDecode(img)
+        return (res[0], pts[0]) if res else (None, None)
 
     src = os.path.join(SRC, QR)
-    truth = decode(src)
+    truth, corners = decode(src)
     if not truth:
         raise SystemExit("the source QR does not decode -- refusing to guess")
 
-    square = crop_qr(Image.open(src).convert("L"))
+    square = crop_qr(Image.open(src).convert("L"), corners)
     out = os.path.join(OUT, "wechat-group.png")
     square.resize((720, 720), Image.LANCZOS) \
           .point(lambda v: 255 if v > 128 else 0, mode="1") \
           .save(out, optimize=True)
 
-    got = decode(out)
+    got, _ = decode(out)
     if got != truth:
         raise SystemExit("cropped QR decodes differently -- not shipping it")
     print("  %-16s %4dx%-4d %6.1f KB  payload identical to source"

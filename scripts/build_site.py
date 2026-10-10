@@ -30,8 +30,8 @@ PUBLIC_PROXY_URL = "https://api.ausimmitool.com"
 # The WeChat group QR in asset/ carries its own expiry, printed on the image.
 # Replacing the code means updating this date too, or the page will keep
 # claiming a dead code is good. Set to "" to drop the notice entirely.
-GROUP_NAME = "澳洲移民工具箱交流群 1"
-GROUP_QR_EXPIRES = "2026-08-15"
+GROUP_NAME = "澳洲移民工具箱交流群"
+GROUP_QR_EXPIRES = ""  # personal QR: no expiry
 
 # login.html is a front door. Left false it has no lock -- the site is static,
 # so index.html answers to anyone who types the URL, and a check that runs in

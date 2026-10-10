@@ -21,3 +21,7 @@ data/hSKLS02_SkillSelect_EOI_Data.js
 
 # wrangler build cache
 .wrangler/
+
+# Raw personal-WeChat screenshot shows name and city; only the cropped QR
+# (site/asset/wechat-group.png) is published.
+asset/WeChatPersonal.jpg

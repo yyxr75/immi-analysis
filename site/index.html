@@ -523,14 +523,14 @@ ul.dont { margin:0; padding-left:19px; }
     <div class="grpwrap">
       <div class="card grp">
         <img class="grpqr" id="grpQr" src="asset/wechat-group.png" width="720" height="720"
-             alt="微信群二维码：澳洲移民工具箱交流群 1">
-        <p class="grpname">澳洲移民工具箱交流群 1</p>
+             alt="加群二维码：澳洲移民工具箱交流群">
+        <p class="grpname">澳洲移民工具箱交流群</p>
         <p class="grpexp" id="grpExp"></p>
       </div>
       <div class="grptext">
         <h2 class="occ">进群交流</h2>
-        <p class="sub">用微信「扫一扫」扫二维码即可入群。手机上打开本页的话，长按二维码保存到相册，
-          再到微信里用「从相册选取二维码」。</p>
+        <p class="sub">用微信「扫一扫」加我好友，<strong>备注「工具箱」</strong>，我拉你进群。手机上打开本页的话，
+          长按二维码保存到相册，再到微信里用「从相册选取二维码」。</p>
         <h3>群里聊什么</h3>
         <ul class="grplist">
           <li>每月官方数据更新后的变化：哪些职业的获邀分数线动了。</li>
@@ -2022,7 +2022,7 @@ const VIEWS = [["points", "计算分数"], ["ai", "AI 分析"], ["data", "职业
 const HOME = VIEWS[0][0];
 // A WeChat group QR expires; build_site.py stamps the date printed on the image
 // so the page can say so itself instead of silently handing out a dead code.
-const GROUP_QR_EXPIRES = "2026-08-15";
+const GROUP_QR_EXPIRES = "";
 let curView = "data";
 let curCode = null;                 // set by the site shell; null in a one-occupation build
 
