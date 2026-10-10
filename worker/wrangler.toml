@@ -2,10 +2,24 @@ name = "immi-occupation-match"
 main = "worker.js"
 compatibility_date = "2026-01-01"
 
+# Serve on our own domain. *.workers.dev is blocked in mainland China and
+# carries the account name; a custom domain fixes both. Wrangler creates the
+# DNS record and certificate on deploy. The workers.dev URL stays live as a
+# fallback until the site has switched over.
+routes = [
+  { pattern = "api.ausimmitool.com", custom_domain = true },
+]
+# Declaring routes turns workers.dev off by default. Keep it on explicitly:
+# pages already open in browsers (and old cached copies) still call it.
+workers_dev = true
+
 # Only these origins may call the Worker. Leave the list empty to allow any
 # origin (not recommended -- the quota is yours to pay for).
+# yyxr75.github.io stays until old links stop arriving (it redirects anyway).
 [vars]
-ALLOWED_ORIGINS = "https://yyxr75.github.io,http://localhost:8000"
+ALLOWED_ORIGINS = "https://ausimmitool.com,https://www.ausimmitool.com,https://yyxr75.github.io,http://localhost:8000"
+# Linked from the footer of shared report pages.
+SITE_URL = "https://ausimmitool.com"
 
 # Counter store for the rate limits. Create it once with:
 #   npx wrangler kv namespace create RATE

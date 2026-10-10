@@ -25,7 +25,7 @@ SITE_TITLE = "澳洲技术移民工具箱"
 # without every visitor needing their own key. This is a URL, not a credential
 # -- the API key stays a Wrangler secret inside the Worker and never reaches
 # the page. Leave empty to hide the shared option entirely.
-PUBLIC_PROXY_URL = "https://immi-occupation-match.yyxr75.workers.dev"
+PUBLIC_PROXY_URL = "https://api.ausimmitool.com"
 
 # The WeChat group QR in asset/ carries its own expiry, printed on the image.
 # Replacing the code means updating this date too, or the page will keep

@@ -11,7 +11,7 @@ dispatch payload: this repo is public, and so is everything attached to a
 workflow run. For the same reason nothing here ever prints a full address.
 
 env:
-  WORKER_URL        https://...workers.dev
+  WORKER_URL        https://api.ausimmitool.com
   DISPATCH_SECRET   shared with the Worker
   MAIL_USER         the Gmail address doing the sending
   MAIL_PASS         a Gmail App Password (not the account password)

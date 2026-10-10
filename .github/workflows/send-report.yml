@@ -33,7 +33,7 @@ jobs:
       # or the Worker, "发送邮件" means Gmail.
       - name: 自检：三个 Secret 是否都存在
         env: &mailenv
-          WORKER_URL: https://immi-occupation-match.yyxr75.workers.dev
+          WORKER_URL: https://api.ausimmitool.com
           DISPATCH_SECRET: ${{ secrets.DISPATCH_SECRET }}
           MAIL_USER: ${{ secrets.MAIL_USER }}
           MAIL_PASS: ${{ secrets.MAIL_PASS }}

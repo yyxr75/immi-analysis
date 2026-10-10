@@ -34,7 +34,7 @@
 4. 验证一下：
 
    ```bash
-   curl -s -X POST https://immi-occupation-match.yyxr75.workers.dev/auth/request \
+   curl -s -X POST https://api.ausimmitool.com/auth/request \
      -H 'Origin: https://yyxr75.github.io' -H 'Content-Type: application/json' \
      -d '{"email":"你自己的邮箱"}'
    # 期望 {"ok":true,"ttl":600}，然后邮箱收到 6 位验证码
@@ -122,7 +122,7 @@ Secret 的名字是手打的，打错了是**静默失败**：值存进去了，
 
 ```bash
 ADM=$(cat ~/.immi-admin-token)
-curl -s -X POST https://immi-occupation-match.yyxr75.workers.dev/admin/config \
+curl -s -X POST https://api.ausimmitool.com/admin/config \
   -H 'Origin: https://yyxr75.github.io' -H 'Content-Type: application/json' \
   -H "Authorization: Bearer $ADM" -d '{}' | python3 -m json.tool
 ```
@@ -134,7 +134,7 @@ curl -s -X POST https://immi-occupation-match.yyxr75.workers.dev/admin/config \
 
 ```bash
 ADM=$(cat ~/.immi-admin-token)
-curl -s -X POST https://immi-occupation-match.yyxr75.workers.dev/auth/grant \
+curl -s -X POST https://api.ausimmitool.com/auth/grant \
   -H 'Origin: https://yyxr75.github.io' -H 'Content-Type: application/json' \
   -H "Authorization: Bearer $ADM" \
   -d '{"email":"someone@example.com","plan":"paid","until":"2027-01-01"}'
