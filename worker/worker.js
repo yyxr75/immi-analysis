@@ -45,6 +45,8 @@ const GLOBAL_PER_DAY = 400;   // the budget backstop, across everyone
 // plan rather than by IP either way.
 const REQUIRE_AUTH = false;
 const ANON_PER_IP_PER_DAY = 10;
+// How long a saved resume stays. The page tells visitors this number.
+const CV_TTL = 180 * 86400;
 
 // Sign-in abuse guards. Without these the endpoint is a free way to mail
 // arbitrary people: one address can only be asked for a few codes an hour, and
@@ -163,6 +165,23 @@ export default {
         return row;
       }));
       return json({ ok: true, rows }, 200, H);
+    }
+
+    /* ---------------- operator: saved resumes ----------------
+       {} lists keys (KV lists in key order, which is time order);
+       {cursor} continues a long list; {key} returns one record. */
+    if (path === "/admin/cvs") {
+      if (!env.ADMIN_TOKEN || bearer(req) !== env.ADMIN_TOKEN)
+        return json({ error: "nope" }, 403, H);
+      if (body.key) {
+        if (!/^cv:/.test(body.key)) return json({ error: "bad key" }, 400, H);
+        const raw = await env.RATE.get(body.key);
+        return raw ? json({ ok: true, ...JSON.parse(raw) }, 200, H)
+                   : json({ error: "gone" }, 404, H);
+      }
+      const l = await env.RATE.list({ prefix: "cv:", cursor: body.cursor || undefined });
+      return json({ ok: true, keys: l.keys.map(k => ({ key: k.name, ...k.metadata })),
+                    cursor: l.list_complete ? null : l.cursor }, 200, H);
     }
 
     /* ---------------- sign-in: ask for a code ---------------- */
@@ -449,6 +468,20 @@ export default {
 
     const d = await upstream.json();
     const content = d?.choices?.[0]?.message?.content || "";
+
+    // Keep the (already redacted) text and the model's answer for the operator,
+    // only when the visitor left the consent box ticked. `=== true`, not
+    // `!== false`: a cached page from before the box existed sends no flag,
+    // and its visitor was never asked. The page strips email, phone and ID
+    // numbers before sending. Metadata rides on the key so /admin/cvs can list
+    // without one read per row.
+    if (body.keep === true) {
+      const at = new Date().toISOString();
+      const key = `cv:${at}:${crypto.randomUUID().slice(0, 8)}`;
+      await env.RATE.put(key, JSON.stringify({ at, text, result: content }),
+        { expirationTtl: CV_TTL, metadata: { at, len: text.length } });
+    }
+
     return json({ content,
                   usage: d.usage || null,
                   plan: acct.plan,

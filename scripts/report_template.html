@@ -438,7 +438,7 @@ ul.dont { margin:0; padding-left:19px; }
     <div class="card">
       <h2>上传简历</h2>
       <p class="cap">支持 PDF / Word / 纯文本，也可以直接粘贴。
-        <b>文件不会上传</b>——在你的浏览器里解析，发送前自动去掉邮箱、电话和身份信息。</p>
+        <b>文件本身不会上传</b>——在你的浏览器里解析，发送前自动去掉邮箱、电话和身份信息，只发送脱敏后的文字。</p>
       <div class="cbtnrow">
         <input type="file" id="aiFile" accept=".txt,.md,.docx,.pdf,.text" hidden>
         <button class="tblbtn nt" type="button" id="aiPick">选择文件…</button>
@@ -450,6 +450,10 @@ ul.dont { margin:0; padding-left:19px; }
         <button class="tblbtn" type="button" id="aiSend">开始识别职业</button>
         <button class="tblbtn nt" type="button" data-t="aiBody" data-label="看看会发送什么">看看会发送什么</button>
       </div>
+      <label class="hint" style="display:flex;gap:6px;align-items:flex-start;margin-top:8px">
+        <input type="checkbox" id="aiKeep" checked style="margin-top:3px">
+        <span>使用公共服务时，允许保存脱敏后的简历文本，用于改进职业识别（仅站长本人可见、不对外公开，180 天后自动删除）。不同意就取消勾选，不影响使用。</span>
+      </label>
       <p class="hint" id="aiRedactStat"></p>
       <div class="tblwrap" id="aiBody"></div>
       <p class="hint" id="aiSendStat"></p>

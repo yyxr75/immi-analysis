@@ -488,6 +488,8 @@ async function aiSend() {
     stat.textContent = "先在第 1 步填模型名。"; return; }
   if (!($ai("aiRaw").value || "").trim()) { stat.textContent = "第 2 步还没有简历正文。"; return; }
   const body = AI_BODY || aiBuildBody();
+  // Read the consent box at send time, not build time: it may have changed.
+  if (aiProv().api === "proxy") body.keep = !!($ai("aiKeep") || {}).checked;
   if (aiProv().api === "proxy" && AI_REQUIRE_AUTH && !aiAuth()) {
     stat.textContent = "公共服务需要先用邮箱登录。点上方的「去登录」，" +
       "或在第 1 步换成自己的 API Key。";
