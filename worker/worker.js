@@ -49,6 +49,9 @@ const ANON_PER_IP_PER_DAY = 10;
 // Sign-in abuse guards. Without these the endpoint is a free way to mail
 // arbitrary people: one address can only be asked for a few codes an hour, and
 // one source address can only start a few sign-ins an hour.
+// Campaign tags the page may report (?src=...). Add one before using a new tag.
+const SOURCES = ["xhs", "wechat", "zhihu", "reddit", "other"];
+
 const CODES_PER_EMAIL_HOUR = 3;
 const CODES_PER_IP_HOUR = 8;
 
@@ -132,6 +135,35 @@ export default {
     const day = new Date().toISOString().slice(0, 10);
     const hour = new Date().toISOString().slice(0, 13);
     const ip = req.headers.get("CF-Connecting-IP") || "unknown";
+
+    /* ---------------- where visitors came from ----------------
+       Web Analytics drops query strings, so the page reports ?src= here. A fixed
+       set of tags keeps the KV keys bounded, and one count per address per tag
+       per day means a reload is not a new visitor. */
+    if (path === "/hit") {
+      const src = String(body.src || "").toLowerCase();
+      if (!SOURCES.includes(src)) return json({ ok: false }, 200, H);
+      const seen = `hs:${day}:${src}:${ip}`;
+      if (!(await env.RATE.get(seen))) {
+        await env.RATE.put(seen, "1", { expirationTtl: 172800 });
+        await bump(env, `hit:${day}:${src}`, 90 * 86400);
+      }
+      return json({ ok: true }, 200, H);
+    }
+
+    /* ---------------- operator: visitors by source + AI calls, last 14 days -- */
+    if (path === "/admin/stats") {
+      if (!env.ADMIN_TOKEN || bearer(req) !== env.ADMIN_TOKEN)
+        return json({ error: "nope" }, 403, H);
+      const days = [...Array(14)].map((_, i) =>
+        new Date(Date.now() - i * 86400000).toISOString().slice(0, 10));
+      const rows = await Promise.all(days.map(async d => {
+        const row = { day: d, ai: await read(env, `g:${d}`) };
+        for (const src of SOURCES) row[src] = await read(env, `hit:${d}:${src}`);
+        return row;
+      }));
+      return json({ ok: true, rows }, 200, H);
+    }
 
     /* ---------------- sign-in: ask for a code ---------------- */
     if (path === "/auth/request") {

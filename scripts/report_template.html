@@ -1424,3 +1424,17 @@ addEventListener("resize", () => {
   clearTimeout(rt); rt = setTimeout(() => { if (curView === "data" && DATA) renderCharts(); }, 140);
 });
 </script>
+<script>
+// Web Analytics drops query strings, so a campaign tag like ?src=xhs would be
+// lost there. Report it to the Worker once per page load; it only counts.
+(() => {
+  const src = new URLSearchParams(location.search).get("src");
+  if (!src || !PUBLIC_PROXY_URL) return;
+  fetch(PUBLIC_PROXY_URL + "/hit", {
+    method: "POST", keepalive: true,
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ src }),
+  }).catch(() => {});
+})();
+</script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c72e22d3a7374fa3828f55423bbec3ac"}'></script><!-- End Cloudflare Web Analytics -->
