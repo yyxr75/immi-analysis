@@ -425,6 +425,17 @@ def main():
     with open(os.path.join(SITE_DATA, "board.json"), "w") as f:
         json.dump({"month": mlabel[latest], "m12": [mlabel[k] for k in months[-12:]],
                    "visas": board}, f, ensure_ascii=False, separators=(",", ":"))
+    # The board carries only the cumulative invite rate as of this month. Keep a
+    # copy per month so a later page can show how each band's rate moves; the
+    # first snapshot is 09/2026. Same shape as board.json's "r": band -> [rate %, n].
+    hist = os.path.join(SITE_DATA, "hist")
+    os.makedirs(hist, exist_ok=True)
+    mm, yy = mlabel[latest].split("/")
+    with open(os.path.join(hist, f"rates-{yy}-{mm}.json"), "w") as f:
+        json.dump({"month": mlabel[latest],
+                   "visas": {v: {r["c"]: {k: x for k, x in r["r"].items() if x[1]}
+                                 for r in rows if r["r"]} for v, rows in board.items()}},
+                  f, ensure_ascii=False, separators=(",", ":"))
     with open(os.path.join(SITE_DATA, "occupations.json"), "w") as f:
         json.dump(index, f, ensure_ascii=False, separators=(",", ":"))
     meta["occupations"] = len(index)
@@ -438,6 +449,8 @@ def main():
     # never name an occupation the site has no data for.
     tpl = aiview.inject(tpl, index)
     # The 自选 home view lives in its own file, like the AI panel.
+    tpl = tpl.replace("<!--HEATJS-->", "<script>\n" +
+                      open(os.path.join(HERE, "heat_view.js")).read() + "</script>")
     tpl = tpl.replace("<!--WATCHJS-->", "<script>\n" +
                       open(os.path.join(HERE, "watch_view.js")).read() + "</script>")
     html = (tpl.replace("__DATA__", "null")
