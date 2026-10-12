@@ -182,7 +182,11 @@ PICKER_JS = """
     }
   }
 
-  sel.addEventListener("change", () => { if (sel.value) load(sel.value); });
+  const picked = code => {
+    if (typeof reportLook === "function") reportLook(code, "pick");
+    load(code);
+  };
+  sel.addEventListener("change", () => { if (sel.value) picked(sel.value); });
   search.addEventListener("input", () => {
     const list = filtered();
     fill(list);
@@ -197,7 +201,7 @@ PICKER_JS = """
     if (e.key !== "Enter") return;
     e.preventDefault();
     const list = filtered();
-    if (list.length && list[0].code !== current) load(list[0].code);
+    if (list.length && list[0].code !== current) picked(list[0].code);
   });
   addEventListener("hashchange", () => {
     const c = parseHash().code;

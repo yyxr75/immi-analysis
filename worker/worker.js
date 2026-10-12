@@ -153,6 +153,46 @@ export default {
       return json({ ok: true }, 200, H);
     }
 
+    /* ---------------- which occupations people look up ----------------
+       Code + route only. One count per address per code per day, like /hit.
+       The running count also rides in the key's metadata, so /admin/looks
+       can total a fortnight from one list() instead of a read per key. */
+    if (path === "/look") {
+      const code = String(body.code || "");
+      const via = body.via === "name" ? "name" : "pick";
+      if (!/^\d{6}$/.test(code)) return json({ ok: false }, 200, H);
+      const seen = `ls:${day}:${code}:${ip}`;
+      if (!(await env.RATE.get(seen))) {
+        await env.RATE.put(seen, "1", { expirationTtl: 172800 });
+        const key = `lk:${day}:${code}:${via}`;
+        const n = (await read(env, key)) + 1;
+        await env.RATE.put(key, String(n), { expirationTtl: 90 * 86400, metadata: { n } });
+      }
+      return json({ ok: true }, 200, H);
+    }
+
+    /* ---------------- operator: most looked-up occupations ---------------- */
+    if (path === "/admin/looks") {
+      if (!env.ADMIN_TOKEN || bearer(req) !== env.ADMIN_TOKEN)
+        return json({ error: "nope" }, 403, H);
+      const since = new Date(Date.now() - (parseInt(body.days, 10) || 14) * 86400000)
+        .toISOString().slice(0, 10);
+      const tot = {};
+      let cursor;
+      do {
+        const l = await env.RATE.list({ prefix: "lk:", cursor });
+        for (const k of l.keys) {
+          const [, d, code, via] = k.name.split(":");
+          if (d < since) continue;
+          const t = tot[code] || (tot[code] = { code, name: 0, pick: 0 });
+          t[via] += (k.metadata && k.metadata.n) || 0;
+        }
+        cursor = l.list_complete ? null : l.cursor;
+      } while (cursor);
+      const rows = Object.values(tot).sort((a, b) => (b.name + b.pick) - (a.name + a.pick));
+      return json({ ok: true, since, rows }, 200, H);
+    }
+
     /* ---------------- operator: visitors by source + AI calls, last 14 days -- */
     if (path === "/admin/stats") {
       if (!env.ADMIN_TOKEN || bearer(req) !== env.ADMIN_TOKEN)

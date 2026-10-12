@@ -498,6 +498,7 @@ async function aiSend() {
                     candidates: codes.map(code => ({ code, name: "", basis: "name", why: "" })) };
       stat.textContent = `「${typed}」看起来是职业名称，已直接匹配职业清单（没有调用 AI，不消耗额度）。` +
         "想让 AI 根据学历和工作经历判断，请粘贴完整简历。";
+      if (typeof reportLook === "function") reportLook(codes[0], "name");
       await aiRenderResult(AI_RESULT);
       return;
     }

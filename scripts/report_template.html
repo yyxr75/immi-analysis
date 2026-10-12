@@ -1440,5 +1440,15 @@ addEventListener("resize", () => {
     body: JSON.stringify({ src }),
   }).catch(() => {});
 })();
+// Which occupations people look up: a code and how they got there, nothing
+// else. Called on a deliberate pick, never on the default first load.
+function reportLook(code, via) {
+  if (!PUBLIC_PROXY_URL || !/^\d{6}$/.test(code || "")) return;
+  fetch(PUBLIC_PROXY_URL + "/look", {
+    method: "POST", keepalive: true,
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ code, via }),
+  }).catch(() => {});
+}
 </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c72e22d3a7374fa3828f55423bbec3ac"}'></script><!-- End Cloudflare Web Analytics -->
