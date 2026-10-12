@@ -243,6 +243,22 @@ PICKER_JS = """
 """
 
 
+# The 龙虎榜 view ranks every occupation client-side, so it needs one small
+# file with just the columns its boards read: 12 months of pool, p75 now vs
+# three months ago, and the cumulative invite rate per points band.
+BOARD_VISAS = {"189": "189", "190": "190", "491 (州担保)": "491"}
+
+
+def board_row(code, payload, vk):
+    p75 = payload["percentiles"][vk]["p75"]
+    r = payload["rate"].get(vk, {})
+    return {"c": code, "en": payload["occupation"].split(" ", 1)[-1],
+            "s": payload["series"][vk]["SUBMITTED"][-12:],
+            "p75": [p75[-4], p75[-1]],
+            "r": {str(pt): [rt, n] for pt, rt, n in
+                  zip(r.get("points", []), r.get("rate", []), r.get("total", []))}}
+
+
 def build_payload(occ, g_series, g_points, g_rate, g_states, months, mlabel):
     """Same JSON shape prep_report.py emits, assembled from the bulk tables."""
     latest = months[-1]
@@ -359,6 +375,7 @@ def main():
             .groupby("occupation").eois.sum())
 
     index, skipped = [], 0
+    board = {v: [] for v in BOARD_VISAS.values()}
     occs = sorted(gser.keys())
     for i, occ in enumerate(occs, 1):
         code = code_of(occ)
@@ -376,6 +393,9 @@ def main():
         if OCC_ZH.get(code):
             row["zh"] = OCC_ZH[code]
         index.append(row)
+        for vk, v in BOARD_VISAS.items():
+            if vk in payload["series"]:
+                board[v].append(board_row(code, payload, vk))
         if i % 100 == 0:
             print(f"  {i}/{len(occs)} ...")
 
@@ -397,6 +417,13 @@ def main():
                        .strftime("%Y-%m-%dT%H:%M:%SZ")}
 
     index.sort(key=lambda o: -o["pool"])
+    zh = {o["code"]: (o.get("zh") or [""])[0] for o in index}
+    for rows in board.values():
+        for r in rows:
+            r["zh"] = zh.get(r["c"], "")
+    with open(os.path.join(SITE_DATA, "board.json"), "w") as f:
+        json.dump({"month": mlabel[latest], "m12": [mlabel[k] for k in months[-12:]],
+                   "visas": board}, f, ensure_ascii=False, separators=(",", ":"))
     with open(os.path.join(SITE_DATA, "occupations.json"), "w") as f:
         json.dump(index, f, ensure_ascii=False, separators=(",", ":"))
     meta["occupations"] = len(index)

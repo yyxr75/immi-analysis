@@ -13,6 +13,7 @@
   --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
   --ord1:#86b6ef; --ord2:#2a78d6; --ord3:#104281;
   --heat0:#eef4fd; --heat1:#0d366b;
+  --bad:#c9412f; --bad-soft:#fbeae6; --good:#16936a; --good-soft:#e3f4ec; --acc-soft:#e8f0fb;
 }
 @media (prefers-color-scheme: dark) {
   :root:where(:not([data-theme="light"])) {
@@ -23,6 +24,7 @@
     --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
     --ord1:#86b6ef; --ord2:#2a78d6; --ord3:#184f95;
     --heat0:#15202f; --heat1:#9ec5f4;
+    --bad:#ef6a57; --bad-soft:#3a1a15; --good:#3cc492; --good-soft:#12301f; --acc-soft:#16253a;
   }
 }
 :root[data-theme="dark"] {
@@ -33,6 +35,7 @@
   --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
   --ord1:#86b6ef; --ord2:#2a78d6; --ord3:#184f95;
   --heat0:#15202f; --heat1:#9ec5f4;
+  --bad:#ef6a57; --bad-soft:#3a1a15; --good:#3cc492; --good-soft:#12301f; --acc-soft:#16253a;
 }
 * { box-sizing: border-box; }
 /* A class that sets display beats the user-agent's [hidden]{display:none}, so
@@ -260,6 +263,47 @@ ul.dont { margin:0; padding-left:19px; }
 @media (max-width:720px) { .howto { grid-template-columns:1fr; gap:10px; }
                            .howto li { padding:12px 14px; } }
 
+/* ---- 龙虎榜 ---- */
+.lb { max-width:680px; display:flex; flex-direction:column; gap:14px; }
+.lb .occ { margin:0; } .lb .sub { margin:2px 0 0; }
+.lb-seg { display:flex; gap:4px; background:var(--surface); border:1px solid var(--hair); border-radius:8px; padding:3px; }
+.lb-seg button { flex:1; border:0; background:none; color:var(--ink2); font:inherit; font-size:14px; padding:6px 0; border-radius:6px; cursor:pointer; }
+.lb-seg button[aria-pressed="true"] { background:var(--ink); color:var(--plane); font-weight:600; }
+.lb-tape { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; background:var(--hair); border:1px solid var(--hair); border-radius:8px; overflow:hidden; }
+.lb-tape div { background:var(--surface); padding:10px 12px; min-width:0; }
+.lb-tape b { display:block; font-size:18px; font-variant-numeric:tabular-nums; }
+.lb-tape span { font-size:11.5px; color:var(--muted); letter-spacing:.04em; }
+.lb-chips { display:flex; gap:6px; overflow-x:auto; padding-bottom:2px; }
+.lb-chips button { flex:none; border:1px solid var(--hair); background:var(--surface); color:var(--ink2); font:inherit; font-size:13.5px; padding:6px 12px; border-radius:999px; cursor:pointer; }
+.lb-chips button[aria-pressed="true"] { border-color:var(--s1); color:var(--s1); background:var(--acc-soft); font-weight:600; }
+.lb-board { background:var(--surface); border:1px solid var(--hair); border-radius:10px; }
+.lb-head { padding:14px 14px 10px; border-bottom:1px solid var(--hair); display:flex; flex-direction:column; gap:6px; }
+.lb-head h3 { margin:0; font-size:17px; }
+.lb-head p { margin:0; font-size:12.5px; color:var(--ink2); }
+.lb-pts { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--ink2); }
+.lb-pts select { font:inherit; padding:3px 6px; border-radius:6px; border:1px solid var(--hair); background:var(--plane); color:var(--ink); }
+.lb-row { display:grid; grid-template-columns:22px minmax(0,1fr) 64px auto; gap:10px; align-items:center; padding:10px 14px; border-bottom:1px solid var(--hair); text-decoration:none; color:inherit; }
+.lb-row:hover { background:var(--plane); }
+.lb-rk { font-variant-numeric:tabular-nums; color:var(--muted); font-size:13px; text-align:right; }
+.lb-row:nth-child(-n+4) .lb-rk { color:var(--ink); font-weight:700; }
+.lb-nm { min-width:0; }
+.lb-nm b { display:block; font-size:15px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.lb-nm small { display:block; color:var(--muted); font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.lb-sp { width:64px; height:26px; display:block; color:var(--muted); }
+.lb-val { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; min-width:64px; }
+.lb-val b { display:block; font-size:16px; }
+.lb-val small { display:block; font-size:11.5px; color:var(--muted); }
+.lb .up { color:var(--bad); } .lb .down { color:var(--good); }
+.lb-pill { display:inline-block; padding:0 6px; border-radius:4px; }
+.lb-pill.up { background:var(--bad-soft); } .lb-pill.down { background:var(--good-soft); }
+.lb-more { display:block; width:100%; border:0; background:none; color:var(--s1); font:inherit; font-size:14px; padding:12px; cursor:pointer; }
+.lb-cav { font-size:12.5px; color:var(--ink2); padding:10px 14px; margin:0; }
+.lb-legend { display:flex; gap:14px; font-size:12px; color:var(--muted); flex-wrap:wrap; }
+.lb-sw { display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:4px; vertical-align:-1px; background:currentColor; }
+.lb-foot { font-size:12px; color:var(--muted); line-height:1.6; margin:0; }
+.lb-seg button:focus-visible, .lb-chips button:focus-visible, .lb-row:focus-visible, .lb-more:focus-visible { outline:2px solid var(--s1); outline-offset:2px; }
+@media (max-width:380px) { .lb-row { grid-template-columns:20px minmax(0,1fr) auto; } .lb-sp { display:none; } }
+
 .picker { background:var(--surface); border:1px solid var(--hair); border-radius:12px;
           padding:15px 16px; margin:0 0 22px; }
 .plab { display:block; font-size:12.5px; color:var(--ink2); margin-bottom:8px; font-weight:600; }
@@ -401,6 +445,11 @@ ul.dont { margin:0; padding-left:19px; }
         <button type="button" class="linkbtn" data-go="ai">去 AI 分析 →</button></p>
     </li>
     <li>
+      <div class="t">看看本月龙虎榜</div>
+      <p>哪些职业的获邀率高、哪些池子在扩张、哪些分数线在涨，每月数据更新后自动重排。
+        <button type="button" class="linkbtn" data-go="board">去龙虎榜 →</button></p>
+    </li>
+    <li>
       <div class="t">盯住一个职业细看</div>
       <p>某个职业的分数线、在池人数、获邀率随时间怎么走。
         <button type="button" class="linkbtn" data-go="data">去职业数据查询 →</button></p>
@@ -521,6 +570,28 @@ ul.dont { margin:0; padding-left:19px; }
         <li><b>不预测结果。</b>获邀率是历史统计，不是你的成功率。</li>
       </ul>
     </details>
+  </div>
+
+  <div id="view-board" hidden>
+    <div class="lb">
+      <div>
+        <h2 class="occ">职业龙虎榜</h2>
+        <p class="sub">每月更新 · 按签证类别看职业池子变化与历史分数数据</p>
+      </div>
+      <div class="lb-seg" role="group" aria-label="签证类别" id="lbSeg">
+        <button type="button" data-v="189" aria-pressed="true">189 独立</button>
+        <button type="button" data-v="190" aria-pressed="false">190 州担保</button>
+        <button type="button" data-v="491" aria-pressed="false">491 偏远州担保</button>
+      </div>
+      <div class="lb-tape" id="lbTape"></div>
+      <div class="lb-chips" role="group" aria-label="榜单" id="lbChips"></div>
+      <section class="lb-board" id="lbBoard" aria-live="polite"><p class="lb-cav">载入中…</p></section>
+      <div class="lb-legend">
+        <span><i class="lb-sw up"></i>对申请人不利：池子变大、分数线上升</span>
+        <span><i class="lb-sw down"></i>相对缓和：池子变小、分数线下降</span>
+      </div>
+      <p class="lb-foot">数据来自澳洲内政部 SkillSelect EOI 公开看板的月度快照，反映池内人数和历史累计情况，不是获邀预测，也不是移民建议。池子少于 200 人的职业不参与排名。能否用某个职业递交，以职业评估结果为准。</p>
+    </div>
   </div>
 
   <div id="view-group" hidden>
@@ -2070,7 +2141,8 @@ function aiInit() {
 /* Order is the order of use: work out your score, see which occupations that
    score reaches, then dig into one. The occupation browser is where you go to
    check a specific answer, not where you start. */
-const VIEWS = [["points", "计算分数"], ["ai", "AI 分析"], ["data", "职业数据查询"],
+const VIEWS = [["points", "计算分数"], ["ai", "AI 分析"], ["board", "龙虎榜"],
+               ["data", "职业数据查询"],
                ["group", "交流群"]];
 const HOME = VIEWS[0][0];
 // A WeChat group QR expires; build_site.py stamps the date printed on the image
@@ -2102,7 +2174,7 @@ function setView(name) {
     b.setAttribute("aria-pressed", b.dataset.v === name));
   // the visa filter scopes the data and points views; it means nothing on the AI page
   const f = document.querySelector(".filters");
-  if (f) f.style.display = (name === "ai" || name === "group") ? "none" : "";
+  if (f) f.style.display = (name === "ai" || name === "group" || name === "board") ? "none" : "";
   hideTip();
   const want = hashFor(name, curCode);
   if (location.hash !== want) history.replaceState(null, "", want);
@@ -2112,6 +2184,7 @@ function setView(name) {
   if (name === "points" && DATA) renderCalc();
   if (name === "data" && DATA) renderScoreBanner();
   if (name === "ai") aiInit();
+  if (name === "board") lbInit();
   if (name === "group") renderGroup();
   if (name === "points") wireHowto();
 }
@@ -2541,6 +2614,120 @@ addEventListener("resize", () => {
   lastW = innerWidth;
   clearTimeout(rt); rt = setTimeout(() => { if (curView === "data" && DATA) renderCharts(); }, 140);
 });
+</script>
+<script>
+/* ---------- 龙虎榜 ----------
+   Ranks every occupation from data/board.json, built each month with the rest
+   of the site. Boards were chosen against the data's quirks: invitation counts
+   are status snapshots that swing with each round, so there is deliberately no
+   "invites up/down" board -- month-on-month it is mostly noise. Pools under 200
+   are left out, or a 40-person occupation tops every percentage table. Colour
+   speaks to the applicant: red = more competition, green = easing. */
+const LB = { data: null, visa: "189", board: "rate", pts: 90, open: false };
+const LB_MIN_POOL = 200, LB_MIN_N = 50;
+const LB_BOARDS = {
+  rate:  { chip: "历史获邀率", title: () => `${LB.pts} 分历史获邀率最高`,
+           desc: () => `在 ${LB.pts} 分这一档里，曾经拿到邀请的人占这一档总人数的比例（累计）。这一档少于 ${LB_MIN_N} 人的职业不排名。` },
+  grow:  { chip: "池子扩张", title: () => "近 6 个月池子扩张最多",
+           desc: () => "排队人数（提交 EOI 的人）净增最多的职业，竞争在加剧。" },
+  shrink:{ chip: "池子收缩", title: () => "近 6 个月池子收缩最多",
+           desc: () => "排队人数净减少最多的职业。池子变小不等于获邀机会变大，可能只是有人放弃或转了签证。" },
+  p75:   { chip: "分数线异动", title: () => "近 3 个月高分线变化最大",
+           desc: () => "池子里排在前 25% 的人的分数（p75）变化了多少。反映竞争者分数在变高还是变低，不是官方邀请分数线。" },
+};
+const lbFmt = n => n.toLocaleString("en-US");
+const lbEsc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const lbNow = r => r.s[r.s.length - 1], lbAgo6 = r => r.s[r.s.length - 7];
+
+function lbSpark(s, tone) {
+  const w = 64, h = 26, lo = Math.min(...s), hi = Math.max(...s), span = hi - lo || 1;
+  const xy = s.map((v, i) => [i * (w - 4) / (s.length - 1) + 2, h - 3 - (v - lo) / span * (h - 6)]);
+  const line = xy.map(p => p.map(n => n.toFixed(1)).join(",")).join(" ");
+  const [ex, ey] = xy[xy.length - 1];
+  return `<svg class="lb-sp ${tone}" viewBox="0 0 ${w} ${h}" aria-hidden="true">
+    <polygon points="2,${h} ${line} ${w - 2},${h}" fill="currentColor" opacity=".12"/>
+    <polyline points="${line}" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+    <circle cx="${ex.toFixed(1)}" cy="${ey.toFixed(1)}" r="2.2" fill="currentColor"/></svg>`;
+}
+
+function lbRank() {
+  const rows = LB.data.visas[LB.visa] || [], pts = LB.pts;
+  if (LB.board === "rate")
+    return rows.filter(r => lbNow(r) >= LB_MIN_POOL && r.r[pts] && r.r[pts][1] >= LB_MIN_N)
+      .sort((a, b) => b.r[pts][0] - a.r[pts][0] || b.r[pts][1] - a.r[pts][1])
+      .map(r => ({ r, tone: "", main: `<b>${r.r[pts][0].toFixed(1)}%</b>`,
+                   sub: `${lbFmt(r.r[pts][1])} 人中` }));
+  if (LB.board === "grow" || LB.board === "shrink") {
+    const sign = LB.board === "grow" ? 1 : -1;
+    return rows.filter(r => lbNow(r) >= LB_MIN_POOL && lbAgo6(r) >= LB_MIN_POOL &&
+                            sign * (lbNow(r) - lbAgo6(r)) > 0)
+      .sort((a, b) => sign * ((lbNow(b) - lbAgo6(b)) - (lbNow(a) - lbAgo6(a))) || lbNow(a) - lbNow(b))
+      .map(r => { const d = lbNow(r) - lbAgo6(r), pc = d / lbAgo6(r) * 100, t = d > 0 ? "up" : "down";
+        return { r, tone: t, main: `<b class="${t}">${d > 0 ? "▲ +" : "▼ "}${lbFmt(d)}</b>`,
+                 sub: `6 个月前 ${lbFmt(lbAgo6(r))}（${pc > 0 ? "+" : ""}${pc.toFixed(0)}%）` }; });
+  }
+  return rows.filter(r => lbNow(r) >= LB_MIN_POOL && r.p75[0] && r.p75[1] && r.p75[0] !== r.p75[1])
+    .sort((a, b) => Math.abs(b.p75[1] - b.p75[0]) - Math.abs(a.p75[1] - a.p75[0]) || lbNow(b) - lbNow(a))
+    .map(r => { const d = r.p75[1] - r.p75[0], t = d > 0 ? "up" : "down";
+      return { r, tone: t, main: `<b class="${t}"><span class="lb-pill ${t}">${d > 0 ? "▲ +" : "▼ "}${d}</span></b>`,
+               sub: `${r.p75[0]}→${r.p75[1]} 分` }; });
+}
+
+function lbRender() {
+  const D = LB.data;
+  document.querySelectorAll("#lbSeg button").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === LB.visa));
+  const all = D.visas[LB.visa] || [];
+  const pool = all.reduce((a, r) => a + lbNow(r), 0), pool6 = all.reduce((a, r) => a + lbAgo6(r), 0);
+  const dp = pool6 ? (pool - pool6) / pool6 * 100 : 0;
+  document.getElementById("lbTape").innerHTML =
+    `<div><span>数据月份</span><b>${D.month}</b></div>
+     <div><span>${LB.visa} 池子总人数</span><b>${lbFmt(pool)}</b></div>
+     <div><span>较 6 个月前</span><b class="${dp > 0 ? "up" : "down"}">${dp > 0 ? "▲ +" : "▼ "}${dp.toFixed(1)}%</b></div>`;
+  document.getElementById("lbChips").innerHTML = Object.entries(LB_BOARDS).map(([k, b]) =>
+    `<button type="button" data-b="${k}" aria-pressed="${k === LB.board}">${b.chip}</button>`).join("");
+  const B = LB_BOARDS[LB.board], list = lbRank(), shown = list.slice(0, LB.open ? 30 : 10);
+  const ptsCtl = LB.board !== "rate" ? "" :
+    `<label class="lb-pts" for="lbPts">按分数查看
+       <select id="lbPts">${[80, 85, 90, 95, 100].map(p =>
+         `<option${p === LB.pts ? " selected" : ""}>${p}</option>`).join("")}</select> 分
+       <span>（只影响这个榜）</span></label>`;
+  document.getElementById("lbBoard").innerHTML =
+    `<div class="lb-head"><h3>${B.title()}</h3><p>${B.desc()}</p>${ptsCtl}</div>` +
+    (shown.length ? shown.map((x, i) =>
+      `<a class="lb-row" href="#/data/${x.r.c}">
+         <span class="lb-rk">${i + 1}</span>
+         <span class="lb-nm"><b>${lbEsc(x.r.zh || x.r.en)}</b><small>${x.r.c} ${lbEsc(x.r.en)} · 在池 ${lbFmt(lbNow(x.r))}</small></span>
+         ${lbSpark(x.r.s, x.tone)}
+         <span class="lb-val">${x.main}<small>${x.sub}</small></span></a>`).join("")
+      : `<p class="lb-cav">这个签证类别下没有满足条件的职业。</p>`) +
+    (list.length > 10 ? `<button class="lb-more" type="button" id="lbMore">${LB.open ? "收起" :
+       `展开更多（共 ${Math.min(list.length, 30)} 个）`}</button>` : "") +
+    `<p class="lb-cav">走势图为近 12 个月池子人数（${D.m12[0]}–${D.m12[D.m12.length - 1]}）。点职业看完整趋势。</p>`;
+}
+
+function lbInit() {
+  if (LB.data || LB.loading) return;
+  LB.loading = true;
+  document.getElementById("lbSeg").addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b || !LB.data) return;
+    LB.visa = b.dataset.v; LB.open = false; lbRender(); });
+  document.getElementById("lbChips").addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    LB.board = b.dataset.b; LB.open = false; lbRender(); });
+  const box = document.getElementById("lbBoard");
+  box.addEventListener("click", e => {
+    if (e.target.id === "lbMore") { LB.open = !LB.open; lbRender(); return; }
+    const a = e.target.closest(".lb-row");
+    if (a && typeof reportLook === "function") reportLook(a.getAttribute("href").slice(-6), "pick");
+  });
+  box.addEventListener("change", e => {
+    if (e.target.id === "lbPts") { LB.pts = +e.target.value; lbRender(); } });
+  fetch("data/board.json", { cache: "no-cache" })
+    .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+    .then(d => { LB.data = d; lbRender(); })
+    .catch(e => { LB.loading = false;
+      box.innerHTML = `<p class="lb-cav">榜单数据载入失败：${lbEsc(e.message)}。刷新页面重试。</p>`; });
+}
 </script>
 <script>
 // Web Analytics drops query strings, so a campaign tag like ?src=xhs would be
