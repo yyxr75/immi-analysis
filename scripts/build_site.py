@@ -51,7 +51,7 @@ GROUP_QR_EXPIRES = ""  # personal QR: no expiry
 AUTH_URL = PUBLIC_PROXY_URL   # sign-in syncs the 自选 list; AI stays open either way
 
 # Nobody is stopped at the door any more: the gate moved to the AI view.
-LOGIN_AS_ENTRY = False
+LOGIN_AS_ENTRY = True   # first visit lands on login.html (skippable)
 
 # Runs before anything renders, so there is no flash of the tool first. The
 # hash rides along, so a shared deep link still opens its occupation after the
@@ -65,7 +65,8 @@ try {
                  || sessionStorage.getItem("immi.entry.v1")); }
     catch (e) { seen = true; }   // storage blocked: never lock anyone out
   }
-  if (!seen) location.replace("login.html" + location.hash);
+  // keep ?src=xhs: the campaign counter on index.html reads it on the way back
+  if (!seen) location.replace("login.html" + location.search + location.hash);
 } catch (e) {}
 """
 MIN_POOL = 0          # keep every occupation; the picker sorts by size

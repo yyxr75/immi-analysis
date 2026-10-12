@@ -3,7 +3,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>澳洲技术移民工具箱</title>
-<script></script>
+<script>
+try {
+  var seen = /[?&]entry=1/.test(location.search);
+  if (!seen) {
+    try { seen = !!(localStorage.getItem("immi.entry.v1")
+                 || sessionStorage.getItem("immi.entry.v1")); }
+    catch (e) { seen = true; }   // storage blocked: never lock anyone out
+  }
+  // keep ?src=xhs: the campaign counter on index.html reads it on the way back
+  if (!seen) location.replace("login.html" + location.search + location.hash);
+} catch (e) {}
+</script>
 <style>
 :root {
   color-scheme: light;

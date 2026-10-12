@@ -170,6 +170,18 @@ const KEY = "immi.entry.v1";
 const TOK = "immi.auth.v1";
 
 const $ = id => document.getElementById(id);
+// Back to the site with whatever query it arrived with (?src=xhs feeds the
+// campaign counter there), plus a one-shot entry=1 when storage is blocked.
+const back = extra => {
+  const q = new URLSearchParams(location.search);
+  if (extra) q.set("entry", "1");
+  const qs = q.toString();
+  return "index.html" + (qs ? "?" + qs : "") + (location.hash || "");
+};
+// How many land here, skip, or sign in -- to tell whether the gate costs
+// visitors. Counted per address per day on the Worker, like ?src.
+const tally = ev => { if (AUTH) fetch(AUTH.replace(/\/+$/, "") + "/hit", { method: "POST", keepalive: true,
+  headers: { "content-type": "application/json" }, body: JSON.stringify({ src: ev }) }).catch(() => {}); };
 const msg = (t, cls) => { const m = $("msg"); m.textContent = t; m.className = "msg " + (cls || ""); };
 
 const store = {
@@ -182,7 +194,8 @@ const store = {
 };
 
 // Already signed in and just landed here again: pass them through.
-if (store.get(TOK)) location.replace("index.html" + (location.hash || ""));
+if (store.get(TOK)) location.replace(back());
+else tally("login-view");
 
 if (!AUTH) {
   $("lede").textContent = "本站所有功能都是公开的，直接进就行。";
@@ -200,7 +213,8 @@ function enterAnon() {
   // Nothing would persist (blocked storage): carry a one-shot marker in the
   // query instead, or index.html would send us straight back here. The query
   // goes before the hash -- after it, it is just part of the fragment.
-  location.replace("index.html" + (ok ? "" : "?entry=1") + (location.hash || ""));
+  tally("login-skip");
+  location.replace(back(!ok));
 }
 $("skip").addEventListener("click", enterAnon);
 
@@ -246,7 +260,8 @@ $("form").addEventListener("submit", async e => {
     token: d.token, email: d.email, plan: d.plan, perDay: d.perDay }));
   store.set(KEY, JSON.stringify({ who: (d.email || "").split("@")[0], at: Date.now() }));
   if (!saved) { msg("浏览器禁止了本地存储，登录状态存不下来。请关掉无痕模式再试。", "bad"); return; }
-  location.replace("index.html" + (location.hash || ""));
+  tally("login-ok");
+  location.replace(back());
 });
 </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c72e22d3a7374fa3828f55423bbec3ac"}'></script><!-- End Cloudflare Web Analytics -->

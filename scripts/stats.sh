@@ -11,6 +11,6 @@ python3 -c '
 import json, sys
 rows = json.load(sys.stdin)["rows"]
 keys = [k for k in rows[0] if k != "day"]
-print("day        " + "".join(f"{k:>8}" for k in keys))
+print("day        " + "".join(f"{k:>11}" for k in keys))
 for r in rows:
-    print(r["day"] + " " + "".join(f"{r[k]:>8}" for k in keys))'
+    print(r["day"] + " " + "".join(f"{r[k]:>11}" for k in keys))'

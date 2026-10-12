@@ -52,7 +52,8 @@ const CV_TTL = 180 * 86400;
 // arbitrary people: one address can only be asked for a few codes an hour, and
 // one source address can only start a few sign-ins an hour.
 // Campaign tags the page may report (?src=...). Add one before using a new tag.
-const SOURCES = ["xhs", "wechat", "zhihu", "reddit", "other"];
+const SOURCES = ["xhs", "wechat", "zhihu", "reddit", "other",
+                 "login-view", "login-skip", "login-ok"];   // the sign-in gate's funnel
 
 const CODES_PER_EMAIL_HOUR = 3;
 const CODES_PER_IP_HOUR = 8;
