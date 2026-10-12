@@ -417,6 +417,28 @@ export default {
                     } }, 200, H);
     }
 
+    /* ---------------- a signed-in user's watchlist + score ----------------
+       {} reads, {prefs} replaces. Keyed by the account's HMAC like acct:, so
+       the address itself is never a KV key. Shape is re-typed and capped
+       here: the browser's copy is a convenience, not trusted input. */
+    if (path === "/me/prefs") {
+      const p = await readToken(env, bearer(req));
+      if (!p) return json({ error: "请先登录。", needAuth: true }, 401, H);
+      const key = "prefs:" + p.sub;
+      if (!body.prefs) {
+        const raw = await env.RATE.get(key);
+        return json({ ok: true, prefs: raw ? JSON.parse(raw) : null }, 200, H);
+      }
+      const q = body.prefs || {};
+      const list = Array.isArray(q.list)
+        ? [...new Set(q.list.map(String).filter(c => /^\d{6}$/.test(c)))].slice(0, 60) : [];
+      const me = Number.isFinite(+q.me) ? Math.max(0, Math.min(150, Math.round(+q.me))) : null;
+      const visa = ["189", "190", "491"].includes(q.visa) ? q.visa : "189";
+      const prefs = { list, me, visa, at: new Date().toISOString() };
+      await env.RATE.put(key, JSON.stringify(prefs));
+      return json({ ok: true, prefs }, 200, H);
+    }
+
     /* ---------------- who am I ---------------- */
     if (path === "/auth/me" || body.ping === true) {
       const p = await readToken(env, bearer(req));

@@ -771,7 +771,7 @@ async function aiRenderResult(x) {
       const b = document.createElement("button");
       b.type = "button"; b.className = "tblbtn nt";
       b.textContent = `${o.name}　在池 ${fmt(o.pool)}`;
-      b.addEventListener("click", () => { location.hash = "#/data/" + o.code; });
+      b.addEventListener("click", () => { location.hash = "#/watch/" + o.code; });
       const r = document.createElement("span"); r.className = "occwhy";
       r.textContent = rel === "模型判定最贴近" ? aiBasisLabel(BASIS[o.code]) : rel;
       row.append(b, r); list.appendChild(row);
@@ -828,7 +828,7 @@ async function aiRenderResult(x) {
       if (j === 0) {
         const b = document.createElement("button");
         b.type = "button"; b.className = "linkbtn"; b.textContent = c;
-        b.addEventListener("click", () => { location.hash = "#/data/" + withRates[i].o.code; });
+        b.addEventListener("click", () => { location.hash = "#/watch/" + withRates[i].o.code; });
         td.appendChild(b);
       } else td.textContent = c;
       if (j >= 1 && j <= 3 && withRates[i].bestVisa === cols[j - 1] && withRates[i].best > 0) {

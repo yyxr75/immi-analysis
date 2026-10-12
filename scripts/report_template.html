@@ -312,6 +312,104 @@ ul.dont { margin:0; padding-left:19px; }
   .lb-head { min-height:112px; }
 }
 @media (max-width:380px) { .lb-row { grid-template-columns:20px minmax(0,1fr) auto; } .lb-sp { display:none; } }
+
+/* ---- 自选 (home terminal) ---- */
+:root { --wt-pool:#2a78d6; --wt-pool-fill:rgba(42,120,214,.10); --wt-inv:#8a8fa0; --wt-p50:#86b6ef;
+        --wt-p75:#2a78d6; --wt-p90:#104281; --wt-you:#eb6834; --wt-hot:#fdf0e6; --wt-sel:#e8f0fb; }
+@media (prefers-color-scheme: dark) { :root:where(:not([data-theme="light"])) {
+  --wt-pool:#4b95ea; --wt-pool-fill:rgba(75,149,234,.14); --wt-inv:#7d8293; --wt-p50:#5f7fa8;
+  --wt-p75:#4b95ea; --wt-p90:#a9cdf7; --wt-you:#f08048; --wt-hot:#33210f; --wt-sel:#16253a; } }
+:root[data-theme="dark"] { --wt-pool:#4b95ea; --wt-pool-fill:rgba(75,149,234,.14); --wt-inv:#7d8293; --wt-p50:#5f7fa8;
+  --wt-p75:#4b95ea; --wt-p90:#a9cdf7; --wt-you:#f08048; --wt-hot:#33210f; --wt-sel:#16253a; }
+body[data-view="watch"] .wrap { max-width:1440px; }
+.wt { display:flex; flex-direction:column; gap:12px; font-variant-numeric:tabular-nums; }
+.wt .up { color:var(--bad); } .wt .down { color:var(--good); } .wt .flat { color:var(--muted); }
+.wt-bar { display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center; }
+.wt-seg { display:flex; gap:2px; background:var(--surface); border:1px solid var(--hair); border-radius:7px; padding:2px; }
+.wt-seg button { border:0; background:none; color:var(--ink2); font:inherit; font-size:13px; padding:4px 12px; border-radius:5px; cursor:pointer; }
+.wt-seg button[aria-pressed="true"] { background:var(--ink); color:var(--plane); font-weight:600; }
+.wt-score { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--ink2); }
+.wt-score input { width:60px; font:inherit; font-size:14px; font-weight:700; color:var(--wt-you); background:var(--surface);
+  border:1px solid var(--hair); border-radius:6px; padding:3px 6px; text-align:center; }
+.wt-score small { color:var(--muted); font-size:12px; }
+.wt-acct { margin-left:auto; font-size:12.5px; color:var(--muted); }
+.wt-desk { display:grid; grid-template-columns:260px minmax(0,1fr) 300px; gap:12px; align-items:start; }
+.wt-pane { background:var(--surface); border:1px solid var(--hair); border-radius:10px; min-width:0; }
+.wt-side { display:flex; flex-direction:column; gap:12px; min-width:0; }
+.wt-ph { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:10px 12px; border-bottom:1px solid var(--hair); }
+.wt-ph.wt-top { border-top:1px solid var(--hair); }
+.wt-ph h3 { margin:0; font-size:14px; } .wt-ph small { color:var(--muted); font-size:12px; font-weight:400; }
+.wt-btn { border:1px solid var(--hair); background:var(--plane); color:var(--ink); font:inherit; font-size:12.5px; padding:3px 9px; border-radius:6px; cursor:pointer; white-space:nowrap; }
+.wt-btn[aria-pressed="true"] { color:var(--wt-you); border-color:var(--wt-you); }
+.wt-addbox { padding:8px 12px; border-bottom:1px solid var(--hair); display:flex; flex-direction:column; gap:4px; }
+.wt-addbox input { font:inherit; padding:5px 8px; border-radius:6px; border:1px solid var(--hair); background:var(--plane); color:var(--ink); }
+.wt-addbox button { text-align:left; border:0; background:none; color:var(--ink); font:inherit; font-size:13px; padding:4px 2px; cursor:pointer; }
+.wt-addbox button span { color:var(--muted); font-size:11.5px; }
+.wt-addbox button:hover { color:var(--wt-pool); }
+.wt-lhead { display:flex; justify-content:space-between; padding:6px 12px; font-size:11.5px; color:var(--muted); border-bottom:1px solid var(--hair); }
+.wt-list { list-style:none; margin:0; padding:0; }
+.wt-list li { position:relative; }
+.wt-list li.wt-empty { padding:14px 12px; font-size:13px; color:var(--muted); }
+.wt-it { width:100%; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:2px 8px; padding:9px 12px; border:0;
+  border-bottom:1px solid var(--hair); background:none; color:inherit; font:inherit; text-align:left; cursor:pointer; }
+.wt-it:hover { background:var(--plane); }
+.wt-list li.on .wt-it { background:var(--wt-sel); }
+.wt-n { font-weight:600; font-size:14px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.wt-c { font-size:11.5px; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.wt-r { text-align:right; font-weight:700; font-size:15px; }
+.wt-r.na { font-weight:400; font-size:12px; color:var(--muted); }
+.wt-d { text-align:right; font-size:11.5px; }
+.wt-x { position:absolute; right:3px; top:2px; border:0; background:none; color:var(--muted); cursor:pointer; font-size:11px; opacity:0; padding:2px 4px; }
+.wt-list li:hover .wt-x, .wt-x:focus-visible { opacity:1; }
+.wt-note { font-size:11.5px; color:var(--muted); padding:8px 12px 10px; margin:0; }
+.wt-th { align-items:flex-start; flex-wrap:wrap; }
+.wt-title b { font-size:20px; display:block; line-height:1.25; }
+.wt-title span { font-size:12.5px; color:var(--muted); }
+.wt-tools { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.wt-tf { display:flex; gap:2px; }
+.wt-tf button { border:0; background:none; color:var(--muted); font:inherit; font-size:12.5px; padding:2px 8px; border-radius:5px; cursor:pointer; }
+.wt-tf button[aria-pressed="true"] { color:var(--ink); background:var(--plane); font-weight:700; }
+.wt-kpis { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); border-bottom:1px solid var(--hair); }
+.wt-kpis div { padding:9px 12px; border-right:1px solid var(--hair); min-width:0; }
+.wt-kpis div:last-child { border-right:0; }
+.wt-kpis span { display:block; font-size:11.5px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.wt-kpis b { display:block; font-size:17px; white-space:nowrap; }
+.wt-kpis b.you { color:var(--wt-you); }
+.wt-ro { font-size:12px; color:var(--ink2); padding:6px 12px 0; min-height:24px; }
+.wt-ro b { color:var(--ink); }
+.wt-panel { padding:4px 0 6px; border-bottom:1px solid var(--hair); }
+.wt-plab { display:flex; gap:12px; flex-wrap:wrap; align-items:baseline; padding:4px 12px 0; font-size:12px; color:var(--ink2); }
+.wt-plab b { color:var(--ink); font-size:12.5px; } .wt-plab i { font-style:normal; color:var(--muted); }
+.wt-key { display:inline-flex; align-items:center; gap:4px; }
+.wt-key::before { content:""; width:12px; height:2px; background:var(--k); display:inline-block; }
+.wt-key.dash::before { background:none; border-top:2px dashed var(--k); }
+svg.wt-ch { display:block; width:100%; }
+svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
+.wt-dist { padding:8px 12px 4px; }
+.wt-drow { display:grid; grid-template-columns:30px minmax(0,1fr) 58px; gap:8px; align-items:center; height:21px; font-size:12px; }
+.wt-drow .pt { text-align:right; color:var(--ink2); }
+.wt-drow .bar, .wt-srow .bar { height:12px; background:var(--grid); border-radius:2px; position:relative; }
+.wt-drow .bar i { position:absolute; left:0; top:0; bottom:0; background:var(--wt-pool); border-radius:2px; opacity:.75; }
+.wt-drow .rt { text-align:right; color:var(--ink2); }
+.wt-drow.cliff .rt { color:var(--ink); font-weight:700; }
+.wt-drow.me { background:var(--wt-hot); border-radius:4px; }
+.wt-drow.me .pt { color:var(--wt-you); font-weight:700; }
+.wt-find { padding:10px 12px; display:flex; flex-direction:column; gap:8px; font-size:12.5px; color:var(--ink2); }
+.wt-find p { margin:0; } .wt-find b { color:var(--ink); margin-right:4px; }
+.wt-states { padding:8px 12px 12px; display:flex; flex-direction:column; gap:4px; }
+.wt-srow { display:grid; grid-template-columns:36px minmax(0,1fr) 40px; gap:8px; align-items:center; font-size:12px; }
+.wt-srow .bar { height:8px; } .wt-srow .bar i { position:absolute; inset:0 auto 0 0; background:var(--wt-inv); border-radius:2px; }
+.wt-srow .pc { text-align:right; }
+.wt-foot { font-size:11.5px; color:var(--muted); line-height:1.65; margin:0; max-width:900px; }
+@media (max-width:1180px) { .wt-desk { grid-template-columns:240px minmax(0,1fr); }
+  .wt-side { grid-column:1 / -1; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:760px) {
+  .wt-desk { grid-template-columns:minmax(0,1fr); } .wt-side { display:flex; }
+  .wt-kpis { grid-template-columns:repeat(2,minmax(0,1fr)); } .wt-kpis div { border-bottom:1px solid var(--hair); }
+  .wt-acct { margin-left:0; }
+  .wt-list { display:flex; overflow-x:auto; } .wt-list li { flex:none; width:168px; border-right:1px solid var(--hair); }
+  .wt-it { border-bottom:0; } .wt-lhead { display:none; } .wt-x { opacity:1; }
+}
 </style>
 
 <div class="wrap">
@@ -432,9 +530,9 @@ ul.dont { margin:0; padding-left:19px; }
         <button type="button" class="linkbtn" data-go="board">去龙虎榜 →</button></p>
     </li>
     <li>
-      <div class="t">盯住一个职业细看</div>
-      <p>某个职业的分数线、在池人数、获邀率随时间怎么走。
-        <button type="button" class="linkbtn" data-go="data">去职业数据查询 →</button></p>
+      <div class="t">把关心的职业加进自选</div>
+      <p>首页「自选」里盯着看：在池人数、分数线、你这个分数段的历史获邀率，每月自动更新。
+        <button type="button" class="linkbtn" data-go="watch">去自选 →</button></p>
     </li>
   </ol>
 
@@ -552,6 +650,65 @@ ul.dont { margin:0; padding-left:19px; }
         <li><b>不预测结果。</b>获邀率是历史统计，不是你的成功率。</li>
       </ul>
     </details>
+  </div>
+
+  <div id="view-watch" hidden>
+    <div class="wt">
+      <div class="wt-bar">
+        <div class="wt-seg" id="wtVisa" role="group" aria-label="签证类别">
+          <button type="button" data-v="189" aria-pressed="true">189 独立</button>
+          <button type="button" data-v="190" aria-pressed="false">190 州担保</button>
+          <button type="button" data-v="491" aria-pressed="false">491 偏远州担保</button>
+        </div>
+        <label class="wt-score" for="wtMe">我的分数
+          <input id="wtMe" type="number" min="0" max="150" step="5" placeholder="—"> 分
+          <small id="wtMeSrc"></small></label>
+        <span class="wt-acct" id="wtAcct"></span>
+      </div>
+      <div class="wt-desk">
+        <aside class="wt-pane">
+          <div class="wt-ph"><h3>自选 <small id="wtCnt"></small></h3>
+            <button class="wt-btn" type="button" id="wtAdd">＋ 添加</button></div>
+          <div class="wt-addbox" id="wtAddBox" hidden>
+            <input id="wtQ" type="search" placeholder="搜中英文职业名或代码，如 会计 / 2613" autocomplete="off">
+            <div id="wtQres"></div>
+          </div>
+          <div class="wt-lhead"><span>职业 · 在池 · 较上月</span><span id="wtCol"></span></div>
+          <ul class="wt-list" id="wtList"></ul>
+          <p class="wt-note" id="wtListNote"></p>
+        </aside>
+        <main class="wt-pane wt-ctr">
+          <div class="wt-ph wt-th">
+            <div class="wt-title"><b id="wtName"></b><span id="wtSub"></span></div>
+            <div class="wt-tools">
+              <button class="wt-btn" type="button" id="wtStar" aria-pressed="false"></button>
+              <div class="wt-tf" id="wtTf" role="group" aria-label="时间范围">
+                <button type="button" data-n="6" aria-pressed="false">6个月</button>
+                <button type="button" data-n="12" aria-pressed="true">12个月</button>
+                <button type="button" data-n="24" aria-pressed="false">24个月</button>
+              </div>
+            </div>
+          </div>
+          <div class="wt-kpis" id="wtKpis"></div>
+          <div class="wt-ro" id="wtRo"></div>
+          <div id="wtCharts"></div>
+          <p class="wt-note"><a class="linkbtn" id="wtFull" href="#/data">看这个职业的完整图表（热力图、各签证对比、州分布）→</a></p>
+        </main>
+        <aside class="wt-side">
+          <section class="wt-pane">
+            <div class="wt-ph"><h3>池内分数分布</h3><small id="wtDSub"></small></div>
+            <div class="wt-dist" id="wtDist"></div>
+            <p class="wt-note">条长 = 当前池里这一分数段的人数；右侧 = 这一段的历史获邀率（累计）。分布反映排队的人，不代表邀请分数线。</p>
+          </section>
+          <section class="wt-pane">
+            <div class="wt-ph"><h3>要点</h3><small>自动生成</small></div>
+            <div class="wt-find" id="wtFind"></div>
+            <div id="wtStates"></div>
+          </section>
+        </aside>
+      </div>
+      <p class="wt-foot">池人数：该月快照中处于 SUBMITTED 状态的 EOI 数。获邀状态人数：该月快照中处于 INVITED 状态的 EOI 数，受邀请轮次影响，不等于当月发出的邀请数。历史获邀率：截至统计时，该分数段累计曾获邀人数的占比，不代表未来获邀概率。190 和 491 已自动加上州担保分（+5 / +15）。数据来自澳洲内政部 SkillSelect 公开看板，不是移民建议。</p>
+    </div>
   </div>
 
   <div id="view-board" hidden>
@@ -1039,10 +1196,12 @@ function chart6() {
 /* Order is the order of use: work out your score, see which occupations that
    score reaches, then dig into one. The occupation browser is where you go to
    check a specific answer, not where you start. */
-const VIEWS = [["points", "计算分数"], ["ai", "AI 分析"], ["board", "龙虎榜"],
-               ["data", "职业数据查询"],
+const VIEWS = [["watch", "自选"], ["points", "计算分数"], ["ai", "AI 分析"], ["board", "龙虎榜"],
                ["group", "交流群"]];
 const HOME = VIEWS[0][0];
+// Reachable by link ("完整图表 →"), not shown as a tab: the full per-occupation
+// chart set that the 自选 view summarises.
+const ALL_VIEWS = VIEWS.concat([["data", "完整图表"]]);
 // A WeChat group QR expires; build_site.py stamps the date printed on the image
 // so the page can say so itself instead of silently handing out a dead code.
 const GROUP_QR_EXPIRES = __GROUP_QR_EXPIRES__;
@@ -1055,16 +1214,17 @@ function parseHash() {
   const p = h.split("/").filter(Boolean);
   const isCode = x => /^\d{6}$/.test(x);
   if (isCode(p[0])) return { view: "data", code: p[0] };          // legacy #261313
-  const view = VIEWS.some(v => v[0] === p[0]) ? p[0] : HOME;
+  const view = ALL_VIEWS.some(v => v[0] === p[0]) ? p[0] : HOME;
   return { view, code: p[1] && isCode(p[1]) ? p[1] : null };
 }
 const hashFor = (view, code) =>
-  "#/" + view + (view === "data" && code ? "/" + code : "");
+  "#/" + view + ((view === "data" || view === "watch") && code ? "/" + code : "");
 
 function setView(name) {
-  if (!VIEWS.some(v => v[0] === name)) name = HOME;
+  if (!ALL_VIEWS.some(v => v[0] === name)) name = HOME;
   curView = name;
-  VIEWS.forEach(([k]) => {
+  document.body.dataset.view = name;
+  ALL_VIEWS.forEach(([k]) => {
     const el = document.getElementById("view-" + k);
     if (el) el.hidden = k !== name;
   });
@@ -1072,9 +1232,9 @@ function setView(name) {
     b.setAttribute("aria-pressed", b.dataset.v === name));
   // the visa filter scopes the data and points views; it means nothing on the AI page
   const f = document.querySelector(".filters");
-  if (f) f.style.display = (name === "ai" || name === "group" || name === "board") ? "none" : "";
+  if (f) f.style.display = (name === "data" || name === "points") ? "" : "none";
   hideTip();
-  const want = hashFor(name, curCode);
+  const want = hashFor(name, name === "watch" ? (WT.sel || parseHash().code) : curCode);
   if (location.hash !== want) history.replaceState(null, "", want);
   // charts size themselves from their container, so a chart drawn while its
   // view was hidden would come out zero-width -- draw them on reveal instead
@@ -1083,6 +1243,7 @@ function setView(name) {
   if (name === "data" && DATA) renderScoreBanner();
   if (name === "ai") aiInit();
   if (name === "board") lbInit();
+  if (name === "watch") wtInit();
   if (name === "group") renderGroup();
   if (name === "points") wireHowto();
 }
@@ -1127,8 +1288,9 @@ function buildTabs() {
     nav.appendChild(b);
   });
   addEventListener("hashchange", () => {
-    const { view } = parseHash();
+    const { view, code } = parseHash();
     if (view !== curView) setView(view);
+    else if (view === "watch" && code && code !== WT.sel) wtOpen(code);
   });
 }
 
@@ -1598,7 +1760,7 @@ function lbBoardHtml(k, D) {
   return `<section class="lb-board${k === LB.board ? " on" : ""}" data-b="${k}">` +
     `<div class="lb-head"><h3>${B.title()}</h3><p>${B.desc()}</p>${ptsCtl}</div>` +
     (shown.length ? shown.map((x, i) =>
-      `<a class="lb-row" href="#/data/${x.r.c}">
+      `<a class="lb-row" href="#/watch/${x.r.c}">
          <span class="lb-rk">${i + 1}</span>
          <span class="lb-nm"><b>${lbEsc(x.r.zh || x.r.en)}</b><small>${x.r.c} ${lbEsc(x.r.en)} · 在池 ${lbFmt(lbNow(x.r))}</small></span>
          ${lbSpark(x.r.s, x.tone)}
@@ -1635,6 +1797,7 @@ function lbInit() {
       box.innerHTML = `<p class="lb-cav">榜单数据载入失败：${lbEsc(e.message)}。刷新页面重试。</p>`; });
 }
 </script>
+<!--WATCHJS-->
 <script>
 // Web Analytics drops query strings, so a campaign tag like ?src=xhs would be
 // lost there. Report it to the Worker once per page load; it only counts.

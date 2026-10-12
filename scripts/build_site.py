@@ -48,7 +48,7 @@ GROUP_QR_EXPIRES = ""  # personal QR: no expiry
 # Empty: login.html degrades to a plain front door. Point it at the Worker only
 # together with REQUIRE_AUTH in worker.js -- a page asking for a code that the
 # endpoint does not want is worse than no page at all.
-AUTH_URL = ""
+AUTH_URL = PUBLIC_PROXY_URL   # sign-in syncs the 自选 list; AI stays open either way
 
 # Nobody is stopped at the door any more: the gate moved to the AI view.
 LOGIN_AS_ENTRY = False
@@ -436,6 +436,9 @@ def main():
     # ANZSCO list built from the index written just above so the prompt can
     # never name an occupation the site has no data for.
     tpl = aiview.inject(tpl, index)
+    # The 自选 home view lives in its own file, like the AI panel.
+    tpl = tpl.replace("<!--WATCHJS-->", "<script>\n" +
+                      open(os.path.join(HERE, "watch_view.js")).read() + "</script>")
     html = (tpl.replace("__DATA__", "null")
                .replace("__TITLE__", SITE_TITLE)
                .replace("<!--PICKER-->", PICKER_HTML)
