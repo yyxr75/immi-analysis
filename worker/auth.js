@@ -12,7 +12,7 @@
 
 export const CODE_TTL = 600;          // 10 minutes to type a 6-digit code
 export const CODE_TRIES = 5;          // then the code is burned
-export const TOKEN_DAYS = 30;
+export const TOKEN_DAYS = 180;     // and renewed on use, see /me/prefs
 
 // Daily AI calls. "paid" is set by hand today via the /auth/grant route in
 // worker.js; wiring a payment provider later only has to write that same

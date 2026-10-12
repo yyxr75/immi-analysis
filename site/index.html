@@ -425,6 +425,14 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
   .wt-it { border-bottom:0; } .wt-lhead { display:none; } .wt-x { opacity:1; }
 }
 
+/* ---- 我的: sub-switch + account line on top of the points and AI views ---- */
+.mesub { display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center; margin:0 0 16px; }
+.mesub-seg { display:flex; gap:2px; background:var(--surface); border:1px solid var(--hair); border-radius:7px; padding:2px; }
+.mesub-seg button { border:0; background:none; color:var(--ink2); font:inherit; font-size:13.5px; padding:5px 14px; border-radius:5px; cursor:pointer; }
+.mesub-seg button[aria-pressed="true"] { background:var(--ink); color:var(--plane); font-weight:600; }
+.mesub-acct { margin-left:auto; font-size:12.5px; color:var(--muted); }
+@media (max-width:640px) { .mesub-acct { margin-left:0; } }
+
 .picker { background:var(--surface); border:1px solid var(--hair); border-radius:12px;
           padding:15px 16px; margin:0 0 22px; }
 .plab { display:block; font-size:12.5px; color:var(--ink2); margin-bottom:8px; font-weight:600; }
@@ -555,6 +563,13 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
   </div>
 
   <div id="view-points" hidden>
+    <div class="mesub">
+      <div class="mesub-seg" role="group" aria-label="我的">
+        <button type="button" data-go="points">我的分数</button>
+        <button type="button" data-go="ai">AI 匹配职业</button>
+      </div>
+      <span class="mesub-acct"></span>
+    </div>
   <ol class="howto" id="howto">
     <li>
       <div class="t">先算分</div>
@@ -563,7 +578,7 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
     <li>
       <div class="t">再看能对上哪些职业</div>
       <p>上传简历，模型从在册的 492 个职业里找出你可能对得上的，按你的分数排历史获邀率。
-        <button type="button" class="linkbtn" data-go="ai">去 AI 分析 →</button></p>
+        <button type="button" class="linkbtn" data-go="ai">去 AI 匹配职业 →</button></p>
     </li>
     <li>
       <div class="t">看看本月龙虎榜</div>
@@ -598,6 +613,13 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
   </div>
 
   <div id="view-ai" hidden>
+    <div class="mesub">
+      <div class="mesub-seg" role="group" aria-label="我的">
+        <button type="button" data-go="points">我的分数</button>
+        <button type="button" data-go="ai">AI 匹配职业</button>
+      </div>
+      <span class="mesub-acct"></span>
+    </div>
     <div class="authbar" id="aiAuthBar" hidden></div>
     <p class="ctx" id="aiEnvWarn" hidden></p>
 
@@ -685,7 +707,7 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
     <details class="adv">
       <summary>这一页<b>不</b>做什么（四条边界，建议看一眼）</summary>
       <ul class="dont">
-        <li><b>不算分。</b>打分是成文法规，模型算会在边界情况编数字。分数在「计算分数」页由本地代码算，这里一分都不碰。</li>
+        <li><b>不算分。</b>打分是成文法规，模型算会在边界情况编数字。分数在「我的分数」页由本地代码算，这里一分都不碰。</li>
         <li><b>不替你决定职业。</b>候选只从在册的 492 个职业里选，模型编的名字会被丢弃。真正算数的是职业评估机构的判定。</li>
         <li><b>不保证你符合排在前面的职业。</b>获邀率高只说明竞争没那么激烈，不代表你的背景能通过它的评估。</li>
         <li><b>不预测结果。</b>获邀率是历史统计，不是你的成功率。</li>
@@ -1994,7 +2016,7 @@ async function aiRenderResult(x) {
   const rows = aiRelated(seeds, idx, 14);
 
   if (!base) {
-    note.textContent = "找到了相关职业，但还不知道你的分数——先到「计算分数」页把表填了，" +
+    note.textContent = "找到了相关职业，但还不知道你的分数——先到「我的分数」页把表填了，" +
       "回来这里就会按你的分数把这些职业按历史获邀率排序。" +
       (dropped.length ? `（模型还提到了 ${dropped.join("、")}，不在 SkillSelect 清单上，已略过。）` : "");
     rows.slice(0, 8).forEach(({ o, rel }) => {
@@ -2010,7 +2032,7 @@ async function aiRenderResult(x) {
     return;
   }
 
-  note.textContent = `以下按你在「计算分数」页算出的 ${base} 分（未含州/地区提名），` +
+  note.textContent = `以下按你在「我的分数」页算出的 ${base} 分（未含州/地区提名），` +
     "查每个职业在对应分数上的历史获邀率，从高到低排。189 用 " + base + " 分、" +
     "190 用 " + (base + 5) + " 分、491 用 " + (base + 15) + " 分。加载中…";
 
@@ -2073,7 +2095,7 @@ async function aiRenderResult(x) {
 
   const approx = withRates.reduce((a, w) =>
     a + cols.filter(c => w.per[c] && !w.per[c].exact).length, 0);
-  note.textContent = `按你在「计算分数」页算出的 ${base} 分排序：189 查 ${base} 分、` +
+  note.textContent = `按你在「我的分数」页算出的 ${base} 分排序：189 查 ${base} 分、` +
     `190 查 ${base + 5} 分、491 查 ${base + 15} 分（后两者含州/地区提名加分）。` +
     "每格是「正好在那一档」的人里历史上获邀的比例，不是「≥该分数」的累计值。" +
     "官方按 5 分一档发布，所以高分档常常没有数据；括号里标出实际取的是哪一档，" +
@@ -2218,7 +2240,7 @@ async function aiMakeReport() {
   const out = $ai("aiReportOut"), btn = $ai("aiReport");
   if (!PUBLIC_PROXY_URL) { out.textContent = "本站没有配置报告服务。"; return; }
   if (!AI_ROWS || !AI_ROWS.length) {
-    out.textContent = "先在上面跑一次识别，并且在「计算分数」页填好分数，报告才有内容。";
+    out.textContent = "先在上面跑一次识别，并且在「我的分数」页填好分数，报告才有内容。";
     return;
   }
   btn.disabled = true; out.textContent = "生成中…";
@@ -2321,12 +2343,15 @@ function aiInit() {
 /* Order is the order of use: work out your score, see which occupations that
    score reaches, then dig into one. The occupation browser is where you go to
    check a specific answer, not where you start. */
-const VIEWS = [["watch", "自选"], ["points", "计算分数"], ["ai", "AI 分析"], ["board", "龙虎榜"],
-               ["group", "交流群"]];
+// "我的" is one tab over two views (points calculator, AI match) with its own
+// sub-switch; keeping them separate views keeps their deep links (#/points,
+// #/ai) and their lazy init intact.
+const VIEWS = [["watch", "自选"], ["board", "龙虎榜"], ["points", "我的"], ["group", "交流群"]];
+const ME_VIEWS = ["points", "ai"];
 const HOME = VIEWS[0][0];
 // Reachable by link ("完整图表 →"), not shown as a tab: the full per-occupation
 // chart set that the 自选 view summarises.
-const ALL_VIEWS = VIEWS.concat([["data", "完整图表"]]);
+const ALL_VIEWS = VIEWS.concat([["ai", "AI 匹配职业"], ["data", "完整图表"]]);
 // A WeChat group QR expires; build_site.py stamps the date printed on the image
 // so the page can say so itself instead of silently handing out a dead code.
 const GROUP_QR_EXPIRES = "";
@@ -2354,7 +2379,9 @@ function setView(name) {
     if (el) el.hidden = k !== name;
   });
   document.querySelectorAll("#tabs button").forEach(b =>
-    b.setAttribute("aria-pressed", b.dataset.v === name));
+    b.setAttribute("aria-pressed", b.dataset.v === name ||
+                   (b.dataset.v === "points" && ME_VIEWS.includes(name))));
+  if (ME_VIEWS.includes(name)) meRender(name);
   // the visa filter scopes the data and points views; it means nothing on the AI page
   const f = document.querySelector(".filters");
   if (f) f.style.display = (name === "data" || name === "points") ? "" : "none";
@@ -2616,7 +2643,7 @@ function renderScoreBanner() {
   if (!r) tail = `。本职业没有 ${score} 分这一档的历史样本。`;
   else if (r.total < 50) tail = `。本职业该分数段历史获邀率 ${r.rate}%，但样本仅 ${r.total}，不可靠。`;
   else tail = `。本职业${r.exact ? "" : ` ${r.at} 分档`}历史获邀率 ${r.rate}%（n=${fmt(r.total)}）。`;
-  b.appendChild(document.createTextNode(tail + "分数在「计算分数」页修改。"));
+  b.appendChild(document.createTextNode(tail + "分数在「我的 → 我的分数」修改。"));
 }
 
 function buildCalcForm() {
@@ -2923,6 +2950,23 @@ function lbInit() {
 }
 </script>
 <script>
+function meRender(name) {
+  document.querySelectorAll(".mesub-seg button").forEach(b =>
+    b.setAttribute("aria-pressed", b.dataset.go === name));
+  const a = typeof aiAuth === "function" ? aiAuth() : null;
+  document.querySelectorAll(".mesub-acct").forEach(el => {
+    el.innerHTML = a
+      ? `已登录 ${String(a.email || "").replace(/[<>&"]/g, "")} · 自选和分数已同步 <button type="button" class="linkbtn" data-out="1">退出</button>`
+      : `未登录 · <a class="linkbtn" href="login.html#/points">登录后多设备同步自选</a>`;
+  });
+}
+document.addEventListener("click", e => {
+  const go = e.target.closest(".mesub [data-go]");
+  if (go) { setView(go.dataset.go); return; }
+  if (e.target.closest(".mesub [data-out]")) { aiSignOut(); meRender(curView); }
+});
+</script>
+<script>
 /* ---------- 自选职业：the home view ----------
    Left: the visitor's watchlist. Centre: one occupation's pool, invited-status
    and points-percentile series on a shared month axis. Right: the current pool
@@ -2988,6 +3032,9 @@ async function wtPull() {
       headers: { "content-type": "application/json", authorization: "Bearer " + a.token }, body: "{}" });
     if (r.status === 401) { aiSignOut(); return; }
     const d = await r.json();
+    if (d && d.token) {               // renewed: keep signed in without a new code
+      try { localStorage.setItem(AUTH_KEY, JSON.stringify(Object.assign({}, a, { token: d.token }))); } catch (e) {}
+    }
     const p = d && d.prefs;
     if (p && Array.isArray(p.list)) {
       // First sign-in on a device that already had its own list: keep both.
@@ -3184,7 +3231,7 @@ function wtRenderTop() {
   document.querySelectorAll("#wtTf button").forEach(b => b.setAttribute("aria-pressed", +b.dataset.n === WT.n));
   const base = wtBase();
   if (document.activeElement !== wt$("wtMe")) wt$("wtMe").value = base == null ? "" : base;
-  wt$("wtMeSrc").textContent = WT.me == null && base != null ? "来自「计算分数」页" :
+  wt$("wtMeSrc").textContent = WT.me == null && base != null ? "来自「我的分数」" :
     WT_BONUS[WT.visa] ? `${WT.visa} 自动 +${WT_BONUS[WT.visa]} 分州担保` : "";
   const a = aiAuth();
   wt$("wtAcct").innerHTML = a

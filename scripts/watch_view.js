@@ -63,6 +63,9 @@ async function wtPull() {
       headers: { "content-type": "application/json", authorization: "Bearer " + a.token }, body: "{}" });
     if (r.status === 401) { aiSignOut(); return; }
     const d = await r.json();
+    if (d && d.token) {               // renewed: keep signed in without a new code
+      try { localStorage.setItem(AUTH_KEY, JSON.stringify(Object.assign({}, a, { token: d.token }))); } catch (e) {}
+    }
     const p = d && d.prefs;
     if (p && Array.isArray(p.list)) {
       // First sign-in on a device that already had its own list: keep both.
@@ -259,7 +262,7 @@ function wtRenderTop() {
   document.querySelectorAll("#wtTf button").forEach(b => b.setAttribute("aria-pressed", +b.dataset.n === WT.n));
   const base = wtBase();
   if (document.activeElement !== wt$("wtMe")) wt$("wtMe").value = base == null ? "" : base;
-  wt$("wtMeSrc").textContent = WT.me == null && base != null ? "来自「计算分数」页" :
+  wt$("wtMeSrc").textContent = WT.me == null && base != null ? "来自「我的分数」" :
     WT_BONUS[WT.visa] ? `${WT.visa} 自动 +${WT_BONUS[WT.visa]} 分州担保` : "";
   const a = aiAuth();
   wt$("wtAcct").innerHTML = a

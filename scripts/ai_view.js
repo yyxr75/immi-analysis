@@ -763,7 +763,7 @@ async function aiRenderResult(x) {
   const rows = aiRelated(seeds, idx, 14);
 
   if (!base) {
-    note.textContent = "找到了相关职业，但还不知道你的分数——先到「计算分数」页把表填了，" +
+    note.textContent = "找到了相关职业，但还不知道你的分数——先到「我的分数」页把表填了，" +
       "回来这里就会按你的分数把这些职业按历史获邀率排序。" +
       (dropped.length ? `（模型还提到了 ${dropped.join("、")}，不在 SkillSelect 清单上，已略过。）` : "");
     rows.slice(0, 8).forEach(({ o, rel }) => {
@@ -779,7 +779,7 @@ async function aiRenderResult(x) {
     return;
   }
 
-  note.textContent = `以下按你在「计算分数」页算出的 ${base} 分（未含州/地区提名），` +
+  note.textContent = `以下按你在「我的分数」页算出的 ${base} 分（未含州/地区提名），` +
     "查每个职业在对应分数上的历史获邀率，从高到低排。189 用 " + base + " 分、" +
     "190 用 " + (base + 5) + " 分、491 用 " + (base + 15) + " 分。加载中…";
 
@@ -842,7 +842,7 @@ async function aiRenderResult(x) {
 
   const approx = withRates.reduce((a, w) =>
     a + cols.filter(c => w.per[c] && !w.per[c].exact).length, 0);
-  note.textContent = `按你在「计算分数」页算出的 ${base} 分排序：189 查 ${base} 分、` +
+  note.textContent = `按你在「我的分数」页算出的 ${base} 分排序：189 查 ${base} 分、` +
     `190 查 ${base + 5} 分、491 查 ${base + 15} 分（后两者含州/地区提名加分）。` +
     "每格是「正好在那一档」的人里历史上获邀的比例，不是「≥该分数」的累计值。" +
     "官方按 5 分一档发布，所以高分档常常没有数据；括号里标出实际取的是哪一档，" +
@@ -987,7 +987,7 @@ async function aiMakeReport() {
   const out = $ai("aiReportOut"), btn = $ai("aiReport");
   if (!PUBLIC_PROXY_URL) { out.textContent = "本站没有配置报告服务。"; return; }
   if (!AI_ROWS || !AI_ROWS.length) {
-    out.textContent = "先在上面跑一次识别，并且在「计算分数」页填好分数，报告才有内容。";
+    out.textContent = "先在上面跑一次识别，并且在「我的分数」页填好分数，报告才有内容。";
     return;
   }
   btn.disabled = true; out.textContent = "生成中…";

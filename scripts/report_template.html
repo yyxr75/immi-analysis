@@ -410,6 +410,14 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
   .wt-list { display:flex; overflow-x:auto; } .wt-list li { flex:none; width:168px; border-right:1px solid var(--hair); }
   .wt-it { border-bottom:0; } .wt-lhead { display:none; } .wt-x { opacity:1; }
 }
+
+/* ---- 我的: sub-switch + account line on top of the points and AI views ---- */
+.mesub { display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center; margin:0 0 16px; }
+.mesub-seg { display:flex; gap:2px; background:var(--surface); border:1px solid var(--hair); border-radius:7px; padding:2px; }
+.mesub-seg button { border:0; background:none; color:var(--ink2); font:inherit; font-size:13.5px; padding:5px 14px; border-radius:5px; cursor:pointer; }
+.mesub-seg button[aria-pressed="true"] { background:var(--ink); color:var(--plane); font-weight:600; }
+.mesub-acct { margin-left:auto; font-size:12.5px; color:var(--muted); }
+@media (max-width:640px) { .mesub-acct { margin-left:0; } }
 </style>
 
 <div class="wrap">
@@ -514,6 +522,13 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
   </div>
 
   <div id="view-points" hidden>
+    <div class="mesub">
+      <div class="mesub-seg" role="group" aria-label="我的">
+        <button type="button" data-go="points">我的分数</button>
+        <button type="button" data-go="ai">AI 匹配职业</button>
+      </div>
+      <span class="mesub-acct"></span>
+    </div>
   <ol class="howto" id="howto">
     <li>
       <div class="t">先算分</div>
@@ -522,7 +537,7 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
     <li>
       <div class="t">再看能对上哪些职业</div>
       <p>上传简历，模型从在册的 492 个职业里找出你可能对得上的，按你的分数排历史获邀率。
-        <button type="button" class="linkbtn" data-go="ai">去 AI 分析 →</button></p>
+        <button type="button" class="linkbtn" data-go="ai">去 AI 匹配职业 →</button></p>
     </li>
     <li>
       <div class="t">看看本月龙虎榜</div>
@@ -557,6 +572,13 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
   </div>
 
   <div id="view-ai" hidden>
+    <div class="mesub">
+      <div class="mesub-seg" role="group" aria-label="我的">
+        <button type="button" data-go="points">我的分数</button>
+        <button type="button" data-go="ai">AI 匹配职业</button>
+      </div>
+      <span class="mesub-acct"></span>
+    </div>
     <div class="authbar" id="aiAuthBar" hidden></div>
     <p class="ctx" id="aiEnvWarn" hidden></p>
 
@@ -644,7 +666,7 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
     <details class="adv">
       <summary>这一页<b>不</b>做什么（四条边界，建议看一眼）</summary>
       <ul class="dont">
-        <li><b>不算分。</b>打分是成文法规，模型算会在边界情况编数字。分数在「计算分数」页由本地代码算，这里一分都不碰。</li>
+        <li><b>不算分。</b>打分是成文法规，模型算会在边界情况编数字。分数在「我的分数」页由本地代码算，这里一分都不碰。</li>
         <li><b>不替你决定职业。</b>候选只从在册的 492 个职业里选，模型编的名字会被丢弃。真正算数的是职业评估机构的判定。</li>
         <li><b>不保证你符合排在前面的职业。</b>获邀率高只说明竞争没那么激烈，不代表你的背景能通过它的评估。</li>
         <li><b>不预测结果。</b>获邀率是历史统计，不是你的成功率。</li>
@@ -1196,12 +1218,15 @@ function chart6() {
 /* Order is the order of use: work out your score, see which occupations that
    score reaches, then dig into one. The occupation browser is where you go to
    check a specific answer, not where you start. */
-const VIEWS = [["watch", "自选"], ["points", "计算分数"], ["ai", "AI 分析"], ["board", "龙虎榜"],
-               ["group", "交流群"]];
+// "我的" is one tab over two views (points calculator, AI match) with its own
+// sub-switch; keeping them separate views keeps their deep links (#/points,
+// #/ai) and their lazy init intact.
+const VIEWS = [["watch", "自选"], ["board", "龙虎榜"], ["points", "我的"], ["group", "交流群"]];
+const ME_VIEWS = ["points", "ai"];
 const HOME = VIEWS[0][0];
 // Reachable by link ("完整图表 →"), not shown as a tab: the full per-occupation
 // chart set that the 自选 view summarises.
-const ALL_VIEWS = VIEWS.concat([["data", "完整图表"]]);
+const ALL_VIEWS = VIEWS.concat([["ai", "AI 匹配职业"], ["data", "完整图表"]]);
 // A WeChat group QR expires; build_site.py stamps the date printed on the image
 // so the page can say so itself instead of silently handing out a dead code.
 const GROUP_QR_EXPIRES = __GROUP_QR_EXPIRES__;
@@ -1229,7 +1254,9 @@ function setView(name) {
     if (el) el.hidden = k !== name;
   });
   document.querySelectorAll("#tabs button").forEach(b =>
-    b.setAttribute("aria-pressed", b.dataset.v === name));
+    b.setAttribute("aria-pressed", b.dataset.v === name ||
+                   (b.dataset.v === "points" && ME_VIEWS.includes(name))));
+  if (ME_VIEWS.includes(name)) meRender(name);
   // the visa filter scopes the data and points views; it means nothing on the AI page
   const f = document.querySelector(".filters");
   if (f) f.style.display = (name === "data" || name === "points") ? "" : "none";
@@ -1491,7 +1518,7 @@ function renderScoreBanner() {
   if (!r) tail = `。本职业没有 ${score} 分这一档的历史样本。`;
   else if (r.total < 50) tail = `。本职业该分数段历史获邀率 ${r.rate}%，但样本仅 ${r.total}，不可靠。`;
   else tail = `。本职业${r.exact ? "" : ` ${r.at} 分档`}历史获邀率 ${r.rate}%（n=${fmt(r.total)}）。`;
-  b.appendChild(document.createTextNode(tail + "分数在「计算分数」页修改。"));
+  b.appendChild(document.createTextNode(tail + "分数在「我的 → 我的分数」修改。"));
 }
 
 function buildCalcForm() {
@@ -1796,6 +1823,23 @@ function lbInit() {
     .catch(e => { LB.loading = false;
       box.innerHTML = `<p class="lb-cav">榜单数据载入失败：${lbEsc(e.message)}。刷新页面重试。</p>`; });
 }
+</script>
+<script>
+function meRender(name) {
+  document.querySelectorAll(".mesub-seg button").forEach(b =>
+    b.setAttribute("aria-pressed", b.dataset.go === name));
+  const a = typeof aiAuth === "function" ? aiAuth() : null;
+  document.querySelectorAll(".mesub-acct").forEach(el => {
+    el.innerHTML = a
+      ? `已登录 ${String(a.email || "").replace(/[<>&"]/g, "")} · 自选和分数已同步 <button type="button" class="linkbtn" data-out="1">退出</button>`
+      : `未登录 · <a class="linkbtn" href="login.html#/points">登录后多设备同步自选</a>`;
+  });
+}
+document.addEventListener("click", e => {
+  const go = e.target.closest(".mesub [data-go]");
+  if (go) { setView(go.dataset.go); return; }
+  if (e.target.closest(".mesub [data-out]")) { aiSignOut(); meRender(curView); }
+});
 </script>
 <!--WATCHJS-->
 <script>

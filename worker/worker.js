@@ -428,7 +428,13 @@ export default {
       const key = "prefs:" + p.sub;
       if (!body.prefs) {
         const raw = await env.RATE.get(key);
-        return json({ ok: true, prefs: raw ? JSON.parse(raw) : null }, 200, H);
+        // Sliding sign-in: the page reads prefs on every visit, so hand back a
+        // fresh token once the old one is past a third of its life. Someone
+        // who keeps coming back never sees a code again; each code costs a
+        // mail from a monthly allowance.
+        const left = p.exp - Math.floor(Date.now() / 1000);
+        const token = left < 120 * 86400 && p.eml ? await issueToken(env, p.eml) : undefined;
+        return json({ ok: true, prefs: raw ? JSON.parse(raw) : null, token }, 200, H);
       }
       const q = body.prefs || {};
       const list = Array.isArray(q.list)
