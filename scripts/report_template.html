@@ -261,7 +261,11 @@ ul.dont { margin:0; padding-left:19px; }
                            .howto li { padding:12px 14px; } }
 
 /* ---- 龙虎榜 ---- */
-.lb { max-width:680px; display:flex; flex-direction:column; gap:14px; }
+.lb { display:flex; flex-direction:column; gap:14px; }
+/* Phone: one board at a time, picked by the chips. Desktop: all four at once,
+   2x2, so they can be compared side by side and the chips are not needed. */
+.lb-grid { display:grid; gap:14px; align-items:start; }
+.lb-grid .lb-board:not(.on) { display:none; }
 .lb .occ { margin:0; } .lb .sub { margin:2px 0 0; }
 .lb-seg { display:flex; gap:4px; background:var(--surface); border:1px solid var(--hair); border-radius:8px; padding:3px; }
 .lb-seg button { flex:1; border:0; background:none; color:var(--ink2); font:inherit; font-size:14px; padding:6px 0; border-radius:6px; cursor:pointer; }
@@ -299,6 +303,14 @@ ul.dont { margin:0; padding-left:19px; }
 .lb-sw { display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:4px; vertical-align:-1px; background:currentColor; }
 .lb-foot { font-size:12px; color:var(--muted); line-height:1.6; margin:0; }
 .lb-seg button:focus-visible, .lb-chips button:focus-visible, .lb-row:focus-visible, .lb-more:focus-visible { outline:2px solid var(--s1); outline-offset:2px; }
+/* after the base .lb-* rules, so these win the cascade */
+@media (min-width:900px) {
+  .lb-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .lb-grid .lb-board:not(.on) { display:block; }
+  .lb-chips { display:none; }
+  .lb-seg { max-width:520px; }
+  .lb-head { min-height:112px; }
+}
 @media (max-width:380px) { .lb-row { grid-template-columns:20px minmax(0,1fr) auto; } .lb-sp { display:none; } }
 </style>
 
@@ -555,7 +567,7 @@ ul.dont { margin:0; padding-left:19px; }
       </div>
       <div class="lb-tape" id="lbTape"></div>
       <div class="lb-chips" role="group" aria-label="榜单" id="lbChips"></div>
-      <section class="lb-board" id="lbBoard" aria-live="polite"><p class="lb-cav">载入中…</p></section>
+      <div class="lb-grid" id="lbBoard" aria-live="polite"><p class="lb-cav">载入中…</p></div>
       <div class="lb-legend">
         <span><i class="lb-sw up"></i>对申请人不利：池子变大、分数线上升</span>
         <span><i class="lb-sw down"></i>相对缓和：池子变小、分数线下降</span>
@@ -1509,7 +1521,7 @@ addEventListener("resize", () => {
    "invites up/down" board -- month-on-month it is mostly noise. Pools under 200
    are left out, or a 40-person occupation tops every percentage table. Colour
    speaks to the applicant: red = more competition, green = easing. */
-const LB = { data: null, visa: "189", board: "rate", pts: 90, open: false };
+const LB = { data: null, visa: "189", board: "rate", pts: 90, open: {} };
 const LB_MIN_POOL = 200, LB_MIN_N = 50;
 const LB_BOARDS = {
   rate:  { chip: "历史获邀率", title: () => `${LB.pts} 分历史获邀率最高`,
@@ -1536,15 +1548,15 @@ function lbSpark(s, tone) {
     <circle cx="${ex.toFixed(1)}" cy="${ey.toFixed(1)}" r="2.2" fill="currentColor"/></svg>`;
 }
 
-function lbRank() {
+function lbRank(board) {
   const rows = LB.data.visas[LB.visa] || [], pts = LB.pts;
-  if (LB.board === "rate")
+  if (board === "rate")
     return rows.filter(r => lbNow(r) >= LB_MIN_POOL && r.r[pts] && r.r[pts][1] >= LB_MIN_N)
       .sort((a, b) => b.r[pts][0] - a.r[pts][0] || b.r[pts][1] - a.r[pts][1])
       .map(r => ({ r, tone: "", main: `<b>${r.r[pts][0].toFixed(1)}%</b>`,
                    sub: `${lbFmt(r.r[pts][1])} 人中` }));
-  if (LB.board === "grow" || LB.board === "shrink") {
-    const sign = LB.board === "grow" ? 1 : -1;
+  if (board === "grow" || board === "shrink") {
+    const sign = board === "grow" ? 1 : -1;
     return rows.filter(r => lbNow(r) >= LB_MIN_POOL && lbAgo6(r) >= LB_MIN_POOL &&
                             sign * (lbNow(r) - lbAgo6(r)) > 0)
       .sort((a, b) => sign * ((lbNow(b) - lbAgo6(b)) - (lbNow(a) - lbAgo6(a))) || lbNow(a) - lbNow(b))
@@ -1571,13 +1583,19 @@ function lbRender() {
      <div><span>较 6 个月前</span><b class="${dp > 0 ? "up" : "down"}">${dp > 0 ? "▲ +" : "▼ "}${dp.toFixed(1)}%</b></div>`;
   document.getElementById("lbChips").innerHTML = Object.entries(LB_BOARDS).map(([k, b]) =>
     `<button type="button" data-b="${k}" aria-pressed="${k === LB.board}">${b.chip}</button>`).join("");
-  const B = LB_BOARDS[LB.board], list = lbRank(), shown = list.slice(0, LB.open ? 30 : 10);
-  const ptsCtl = LB.board !== "rate" ? "" :
+  document.getElementById("lbBoard").innerHTML =
+    Object.keys(LB_BOARDS).map(k => lbBoardHtml(k, D)).join("");
+}
+
+function lbBoardHtml(k, D) {
+  const B = LB_BOARDS[k], list = lbRank(k), open = !!LB.open[k];
+  const shown = list.slice(0, open ? 30 : 10);
+  const ptsCtl = k !== "rate" ? "" :
     `<label class="lb-pts" for="lbPts">按分数查看
        <select id="lbPts">${[80, 85, 90, 95, 100].map(p =>
          `<option${p === LB.pts ? " selected" : ""}>${p}</option>`).join("")}</select> 分
        <span>（只影响这个榜）</span></label>`;
-  document.getElementById("lbBoard").innerHTML =
+  return `<section class="lb-board${k === LB.board ? " on" : ""}" data-b="${k}">` +
     `<div class="lb-head"><h3>${B.title()}</h3><p>${B.desc()}</p>${ptsCtl}</div>` +
     (shown.length ? shown.map((x, i) =>
       `<a class="lb-row" href="#/data/${x.r.c}">
@@ -1586,9 +1604,10 @@ function lbRender() {
          ${lbSpark(x.r.s, x.tone)}
          <span class="lb-val">${x.main}<small>${x.sub}</small></span></a>`).join("")
       : `<p class="lb-cav">这个签证类别下没有满足条件的职业。</p>`) +
-    (list.length > 10 ? `<button class="lb-more" type="button" id="lbMore">${LB.open ? "收起" :
+    (list.length > 10 ? `<button class="lb-more" type="button" data-more="${k}">${open ? "收起" :
        `展开更多（共 ${Math.min(list.length, 30)} 个）`}</button>` : "") +
-    `<p class="lb-cav">走势图为近 12 个月池子人数（${D.m12[0]}–${D.m12[D.m12.length - 1]}）。点职业看完整趋势。</p>`;
+    `<p class="lb-cav">走势图为近 12 个月池子人数（${D.m12[0]}–${D.m12[D.m12.length - 1]}）。点职业看完整趋势。</p>` +
+    `</section>`;
 }
 
 function lbInit() {
@@ -1596,13 +1615,14 @@ function lbInit() {
   LB.loading = true;
   document.getElementById("lbSeg").addEventListener("click", e => {
     const b = e.target.closest("button"); if (!b || !LB.data) return;
-    LB.visa = b.dataset.v; LB.open = false; lbRender(); });
+    LB.visa = b.dataset.v; LB.open = {}; lbRender(); });
   document.getElementById("lbChips").addEventListener("click", e => {
     const b = e.target.closest("button"); if (!b) return;
-    LB.board = b.dataset.b; LB.open = false; lbRender(); });
+    LB.board = b.dataset.b; lbRender(); });
   const box = document.getElementById("lbBoard");
   box.addEventListener("click", e => {
-    if (e.target.id === "lbMore") { LB.open = !LB.open; lbRender(); return; }
+    const m = e.target.dataset && e.target.dataset.more;
+    if (m) { LB.open[m] = !LB.open[m]; lbRender(); return; }
     const a = e.target.closest(".lb-row");
     if (a && typeof reportLook === "function") reportLook(a.getAttribute("href").slice(-6), "pick");
   });
