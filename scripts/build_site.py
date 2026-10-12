@@ -19,6 +19,11 @@ DATA = os.path.join(HERE, "..", "data")
 SITE = os.path.join(HERE, "..", "site")
 SITE_DATA = os.path.join(SITE, "data")
 
+# code -> Chinese search terms (standard name first, then colloquial aliases).
+# Most visitors type 会计 / 贴砖工, not the ANZSCO English title.
+_ZH = os.path.join(HERE, "occ_zh.json")
+OCC_ZH = json.load(open(_ZH)) if os.path.exists(_ZH) else {}
+
 SITE_TITLE = "澳洲技术移民工具箱"
 
 # Deploy worker/ to Cloudflare and paste its URL here to offer the AI feature
@@ -76,7 +81,7 @@ OCCPICKER_HTML = """  <div class="picker">
     <label class="plab" for="occSearch">选择职业（ANZSCO）</label>
     <div class="prow">
       <input type="search" id="occSearch" autocomplete="off"
-             placeholder="输入职业名称或代码筛选，例如 software / 2613 / 社工">
+             placeholder="输入中英文职业名或代码，例如 会计 / software / 2613">
       <select id="occSelect" aria-label="职业列表"></select>
     </div>
     <p class="pstat" id="pstat">正在载入职业列表…</p>
@@ -115,7 +120,7 @@ PICKER_JS = """
   let INDEX = [], current = null;
 
   const fmtN = n => n.toLocaleString("en-US");
-  const label = o => `${o.name} · 在池 ${fmtN(o.pool)}`;
+  const label = o => `${o.name}${o.zh ? " " + o.zh[0] : ""} · 在池 ${fmtN(o.pool)}`;
 
   function fill(list) {
     sel.textContent = "";
@@ -143,6 +148,7 @@ PICKER_JS = """
     const q = search.value.trim().toLowerCase();
     if (!q) return INDEX;
     return INDEX.filter(o => o.name.toLowerCase().includes(q) ||
+                             (o.zh || []).some(z => z.includes(q)) ||
                              (o.group || "").toLowerCase().includes(q));
   }
 
@@ -362,7 +368,10 @@ def main():
             continue
         with open(os.path.join(SITE_DATA, f"{code}.json"), "w") as f:
             json.dump(payload, f, ensure_ascii=False, separators=(",", ":"))
-        index.append({"code": code, "name": occ, "pool": int(pool.get(occ, 0))})
+        row = {"code": code, "name": occ, "pool": int(pool.get(occ, 0))}
+        if OCC_ZH.get(code):
+            row["zh"] = OCC_ZH[code]
+        index.append(row)
         if i % 100 == 0:
             print(f"  {i}/{len(occs)} ...")
 

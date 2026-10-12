@@ -487,6 +487,21 @@ async function aiSend() {
   if (aiProv().api !== "proxy" && !prof.model) {
     stat.textContent = "先在第 1 步填模型名。"; return; }
   if (!($ai("aiRaw").value || "").trim()) { stat.textContent = "第 2 步还没有简历正文。"; return; }
+  // An occupation name, not a resume: answer locally and reuse the normal
+  // result view, so it still ranks by the visitor's own score. If nothing
+  // matches (a typo, "我做算法的"), fall through and let the model try.
+  const typed = $ai("aiRaw").value.trim();
+  if (typed.length <= AI_SHORT_MAX && !/\n/.test(typed)) {
+    const codes = aiLocalMatch(typed);
+    if (codes.length) {
+      AI_RESULT = { jobTitles: [typed], keyDuties: [], fieldOfStudy: null,
+                    candidates: codes.map(code => ({ code, name: "", basis: "name", why: "" })) };
+      stat.textContent = `「${typed}」看起来是职业名称，已直接匹配职业清单（没有调用 AI，不消耗额度）。` +
+        "想让 AI 根据学历和工作经历判断，请粘贴完整简历。";
+      await aiRenderResult(AI_RESULT);
+      return;
+    }
+  }
   const body = AI_BODY || aiBuildBody();
   // Read the consent box at send time, not build time: it may have changed.
   if (aiProv().api === "proxy") body.keep = !!($ai("aiKeep") || {}).checked;
@@ -604,7 +619,37 @@ function aiShowRaw(raw, think) {
 const aiBasisLabel = b =>
   b === "study" ? "模型判定最贴近（依据所学专业）"
   : b === "work" ? "模型判定最贴近（依据职位与职责）"
+  : b === "name" ? "按你输入的职业名称匹配"
   : "模型判定最贴近";
+
+/* Half the visitors type an occupation name here ("会计", "urban planner")
+   rather than a resume. That needs no model: match it against the index's
+   English titles and Chinese aliases, instantly and without spending quota.
+   Returns up to 6 codes, best first; empty means "let the model try". */
+const AI_SHORT_MAX = 30;
+function aiLocalMatch(q) {
+  const idx = (typeof window !== "undefined" && window.OCC_INDEX) || [];
+  const s = q.toLowerCase().replace(/\s+/g, " ").trim();
+  if (/^\d{4,6}$/.test(s))
+    return idx.filter(o => o.code.startsWith(s)).slice(0, 6).map(o => o.code);
+  const STOP = new Set(["and", "the", "for", "with"]);
+  const words = s.split(/[^a-z0-9]+/).filter(w => w.length >= 3 && !STOP.has(w));
+  const rows = idx.map(o => {
+    const zh = o.zh || [], n = o.name.toLowerCase().replace(/^\d+\s*/, "");
+    let sc = zh.includes(q) || n === s ? 100
+      : zh.some(z => z.includes(q)) ? 60
+      : zh.some(z => z.length >= 2 && q.includes(z)) ? 40 : 0;
+    if (words.length) {
+      const hit = words.filter(w => n.includes(w)).length;
+      sc = Math.max(sc, hit === words.length ? 50 + hit : 10 * hit);
+    }
+    return { o, sc };
+  }).filter(r => r.sc > 0).sort((a, b) => b.sc - a.sc || b.o.pool - a.o.pool);
+  // A strong hit makes one-word partial hits noise ("planner" alone pulls in
+  // every planner); keep those only when nothing better exists.
+  const floor = rows.length && rows[0].sc >= 40 ? 40 : 0;
+  return rows.filter(r => r.sc >= floor).slice(0, 6).map(r => r.o.code);
+}
 
 function aiRelated(seedCodes, idx, cap) {
   const out = [], seen = new Set();
@@ -761,7 +806,8 @@ async function aiRenderResult(x) {
     : `${r.rate}%` + (r.exact ? "" : `（${r.at}分）`) + (r.n < 50 ? "▲" : "");
   const relOf = w => w.rel === "模型判定最贴近"
     ? (BASIS[w.o.code] === "study" ? "最贴近（按专业）"
-       : BASIS[w.o.code] === "work" ? "最贴近（按职责）" : "模型判定最贴近")
+       : BASIS[w.o.code] === "work" ? "最贴近（按职责）"
+       : BASIS[w.o.code] === "name" ? "名称匹配" : "模型判定最贴近")
     : w.rel;
   const body = withRates.map(w => [w.o.name].concat(
     cols.map(c => cell(w.per[c])), [fmt(w.o.pool), relOf(w)]));
