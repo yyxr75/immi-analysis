@@ -652,9 +652,9 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
         <button type="button" class="linkbtn" data-go="ai">去 AI 匹配职业 →</button></p>
     </li>
     <li>
-      <div class="t">看看本月龙虎榜</div>
-      <p>哪些职业的获邀率高、哪些池子在扩张、哪些分数线在涨，每月数据更新后自动重排。
-        <button type="button" class="linkbtn" data-go="board">去龙虎榜 →</button></p>
+      <div class="t">看看本月职业行情</div>
+      <p>热力图一眼看全部职业的池子变化和获邀率，龙虎榜看哪些职业的获邀率高、哪些池子在扩张、哪些分数线在涨，每月数据更新后自动重排。
+        <button type="button" class="linkbtn" data-go="board">去行情 →</button></p>
     </li>
     <li>
       <div class="t">把关心的职业加进自选</div>
@@ -849,12 +849,12 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
   <div id="view-board" hidden>
     <div class="lb">
       <div>
-        <h2 class="occ">职业龙虎榜</h2>
+        <h2 class="occ">职业行情</h2>
         <p class="sub">每月更新 · 按签证类别看职业池子变化与历史分数数据</p>
       </div>
       <div class="wt-seg lb-mode" role="group" aria-label="显示方式" id="lbMode">
         <button type="button" data-m="heat" aria-pressed="true">热力图</button>
-        <button type="button" data-m="list" aria-pressed="false">榜单</button>
+        <button type="button" data-m="list" aria-pressed="false">龙虎榜</button>
       </div>
       <div class="lb-seg" role="group" aria-label="签证类别" id="lbSeg">
         <button type="button" data-v="189" aria-pressed="true">189 独立</button>
@@ -2445,7 +2445,7 @@ function aiInit() {
 // "我的" is one tab over two views (points calculator, AI match) with its own
 // sub-switch; keeping them separate views keeps their deep links (#/points,
 // #/ai) and their lazy init intact.
-const VIEWS = [["watch", "自选"], ["board", "龙虎榜"], ["points", "我的"], ["group", "交流群"]];
+const VIEWS = [["watch", "自选"], ["board", "行情"], ["points", "我的"], ["group", "交流群"]];
 const ME_VIEWS = ["points", "ai"];
 const HOME = VIEWS[0][0];
 // Reachable by link ("完整图表 →"), not shown as a tab: the full per-occupation
