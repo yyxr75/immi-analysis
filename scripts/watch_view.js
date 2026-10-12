@@ -18,7 +18,7 @@ const WT_DEFAULT = ["261313", "221111", "233211", "241111", "254499", "233411"];
 const WT_MIN_N = 30;                       // fewer than this in a band: "数据不足"
 const WT_VISA = { "189": "189", "190": "190", "491": "491 (州担保)" };
 const WT_BONUS = { "189": 0, "190": 5, "491": 15 };
-const WT = { visa: "189", me: null, n: 12, sel: null, list: [], example: true,
+const WT = { visa: "189", me: null, n: 12, sel: null, list: [], example: true, mdet: false,
              hover: null, board: null, index: null, cache: {}, inited: false };
 
 const wt$ = id => document.getElementById(id);
@@ -101,6 +101,40 @@ function wtCliff(rate) {
   return null;
 }
 
+/* ---------- phone: list page vs detail page ----------
+   Desktop always shows both panes and keeps the selection in the hash. On a
+   phone the hash decides: #/watch is the list, #/watch/<code> the detail. */
+const wtMobile = () => matchMedia("(max-width:760px)").matches;
+function wtHashCode() {
+  const h = parseHash();
+  return h.view === "watch" && h.code ? h.code : wtMobile() ? null : WT.sel;
+}
+const wtHash = () => "#/watch" + (WT.sel && (WT.mdet || !wtMobile()) ? "/" + WT.sel : "");
+function wtMode() {
+  const el = document.querySelector("#view-watch .wt");
+  if (el) el.classList.toggle("m-det", !!WT.mdet);
+}
+function wtRoute(code) {
+  const was = WT.mdet;
+  WT.mdet = !!code;
+  if (code && code !== WT.sel) { wtOpen(code); return; }
+  wtMode();
+  if (WT.mdet && !was) { scrollTo(0, 0); wtRenderCenter(); }
+}
+
+/* 12-month pool sparkline for the phone list. */
+function wtSpark(s) {
+  const v = s.slice(-12), W = 76, H = 30;
+  if (v.length < 2 || !Math.max(...v)) return "";
+  const lo = Math.min(...v), hi = Math.max(...v);
+  const x = i => (1 + i * (W - 2) / (v.length - 1)).toFixed(1);
+  const y = t => (hi === lo ? H / 2 : H - 3 - (t - lo) / (hi - lo) * (H - 6)).toFixed(1);
+  const pts = v.map((t, i) => `${x(i)},${y(t)}`).join(" ");
+  return `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" aria-hidden="true">
+    <polygon points="${x(0)},${H} ${pts} ${x(v.length - 1)},${H}" fill="currentColor" opacity=".12"/>
+    <polyline points="${pts}" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>`;
+}
+
 /* ---------- left: watchlist ---------- */
 function wtRow(code) {
   const rows = (WT.board && WT.board.visas[WT.visa]) || [];
@@ -115,7 +149,8 @@ function wtRenderList() {
   wt$("wtCnt").textContent = WT.list.length;
   wt$("wtCol").textContent = mine == null ? "在池人数" : `${mine} 分获邀率`;
   wt$("wtListNote").textContent = WT.example
-    ? "这是示例自选。点 ✕ 删掉，点「＋ 添加」加你关心的职业。"
+    ? (wtMobile() ? "这是示例自选。点「＋ 添加」加你关心的职业；点进职业页，再点「★ 已加自选」可以移除。"
+                  : "这是示例自选。点 ✕ 删掉，点「＋ 添加」加你关心的职业。")
     : mine == null ? "填上你的分数，就会按你分数段的历史获邀率排序。"
     : `按你 ${mine} 分这一段的历史获邀率排序；样本少于 ${WT_MIN_N} 人的显示「数据不足」。`;
   const rows = WT.list.map(c => {
@@ -125,15 +160,18 @@ function wtRenderList() {
     ? ((b.r ? b.r.s[b.r.s.length - 1] : -1) - (a.r ? a.r.s[a.r.s.length - 1] : -1))
     : (b.ok ? b.b.rate : -1) - (a.ok ? a.b.rate : -1));
   wt$("wtList").innerHTML = rows.length ? rows.map(({ c, r, nm, b, ok }) => {
-    const s = r ? r.s : [], now = s[s.length - 1], d = now - s[s.length - 2];
+    const s = r ? r.s : [], now = s[s.length - 1], prev = s[s.length - 2], d = now - prev;
+    const pct = !r ? "" : !prev ? "—" : (d > 0 ? "+" : d < 0 ? "−" : "") + Math.abs(d / prev * 100).toFixed(1) + "%";
     const head = !r ? `<span class="wt-r na">无此签证</span>`
       : mine == null ? `<span class="wt-r">${wtFmt(now)}</span>`
       : `<span class="wt-r ${ok ? "" : "na"}">${ok ? b.rate.toFixed(1) + "%" : "数据不足"}</span>`;
     return `<li class="${c === WT.sel ? "on" : ""}">
       <button class="wt-it" type="button" data-c="${c}">
-        <span class="wt-n">${wtEsc(nm.zh || nm.en)}</span>${head}
+        <span class="wt-n">${wtEsc(nm.zh || nm.en)}</span>
+        <span class="wt-sp ${r ? wtCls(s[s.length - 1] - s[Math.max(0, s.length - 12)]) : ""}">${r ? wtSpark(s) : ""}</span>${head}
         <span class="wt-c">${c}${r ? " · 在池 " + wtFmt(now) : ""}</span>
         <span class="wt-d ${r ? wtCls(d) : ""}">${r ? "较上月 " + wtSgn(d) : ""}</span>
+        ${r ? `<span class="wt-b ${wtCls(d)}" title="在池人数较上月">${pct}</span>` : ""}
       </button>
       <button class="wt-x" type="button" data-rm="${c}" aria-label="从自选移除 ${wtEsc(nm.zh)}">✕</button></li>`;
   }).join("") : `<li class="wt-empty">还没有自选职业。点「＋ 添加」搜一个。</li>`;
@@ -272,13 +310,18 @@ function wtRenderTop() {
 
 function wtRenderAll() { wtRenderTop(); wtRenderList(); wtRenderCenter(); wtRenderRight(); }
 
-async function wtOpen(code) {
+async function wtOpen(code, how) {
   if (!/^\d{6}$/.test(code || "")) return;
   WT.sel = code; WT.hover = null;
+  const tap = how === "tap" && wtMobile();
+  if (tap || parseHash().code === code) WT.mdet = true;
   if (typeof curView !== "undefined" && curView === "watch") {
-    const want = "#/watch/" + code;
-    if (location.hash !== want) history.replaceState(null, "", want);
+    const want = wtHash();
+    // a tap on the phone list is a page change: push it so Back returns to the list
+    if (location.hash !== want) history[tap ? "pushState" : "replaceState"](tap ? { wt: 1 } : null, "", want);
   }
+  wtMode();
+  if (tap) scrollTo(0, 0);
   wtRenderAll();
   try { await wtDetail(code); } catch (e) {
     wt$("wtRo").textContent = `载入 ${code} 失败：${e.message}。刷新页面重试。`; return; }
@@ -303,9 +346,11 @@ function wtAdd(code) {
 
 function wtInit() {
   const want = parseHash().code;
-  if (WT.inited) { if (want && want !== WT.sel) wtOpen(want); else wtRenderAll(); return; }
+  WT.mdet = !!want;
+  if (WT.inited) { if (want && want !== WT.sel) wtOpen(want); else { wtMode(); wtRenderAll(); } return; }
   WT.inited = true;
   wtLoad();
+  wtMode();
   wt$("wtVisa").addEventListener("click", e => { const b = e.target.closest("button");
     if (b) { WT.visa = b.dataset.v; wtSave(); wtRenderAll(); } });
   wt$("wtTf").addEventListener("click", e => { const b = e.target.closest("button");
@@ -320,7 +365,7 @@ function wtInit() {
     if (rm) { WT.list = WT.list.filter(c => c !== rm.dataset.rm); WT.example = false; wtSave();
               if (WT.sel === rm.dataset.rm && WT.list.length) wtOpen(WT.list[0]); else wtRenderAll(); return; }
     const it = e.target.closest("[data-c]");
-    if (it) { wtOpen(it.dataset.c); if (typeof reportLook === "function") reportLook(it.dataset.c, "pick"); }
+    if (it) { wtOpen(it.dataset.c, "tap"); if (typeof reportLook === "function") reportLook(it.dataset.c, "pick"); }
   });
   wt$("wtStar").addEventListener("click", () => {
     if (WT.list.includes(WT.sel)) { WT.list = WT.list.filter(c => c !== WT.sel); WT.example = false; wtSave(); }
@@ -332,6 +377,9 @@ function wtInit() {
   wt$("wtQres").addEventListener("click", e => { const b = e.target.closest("[data-addc]");
     if (b) { wtAdd(b.dataset.addc); wt$("wtQ").value = ""; wtSearch(); wtOpen(b.dataset.addc);
              if (typeof reportLook === "function") reportLook(b.dataset.addc, "pick"); } });
+  wt$("wtBack").addEventListener("click", () => {
+    if (history.state && history.state.wt) { history.back(); return; }
+    history.replaceState(null, "", "#/watch"); wtRoute(null); });
   wt$("wtAcct").addEventListener("click", e => { if (e.target.id === "wtOut") { aiSignOut(); wtRenderTop(); } });
   const ch = wt$("wtCharts");
   ch.addEventListener("mousemove", e => {
@@ -343,7 +391,7 @@ function wtInit() {
   });
   ch.addEventListener("mouseleave", () => { WT.hover = null; wtRenderCenter(); });
   let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => {
-    if (curView === "watch") wtRenderCenter(); }, 140); });
+    if (curView === "watch") { wtMode(); wtRenderCenter(); } }, 140); });
 
   Promise.all([
     fetch("data/board.json", { cache: "no-cache" }).then(r => r.json()),

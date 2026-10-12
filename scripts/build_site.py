@@ -173,7 +173,7 @@ PICKER_JS = """
       stat.className = "pstat";
       stat.textContent = `共 ${fmtN(INDEX.length)} 个职业可选。当前：${hit.name}`;
       curCode = code;
-      const want = hashFor(curView, code);
+      const want = hashFor(curView, curView === "watch" ? wtHashCode() : code);
       if (location.hash !== want) history.replaceState(null, "", want);
     } catch (e) {
       report.classList.remove("busy");

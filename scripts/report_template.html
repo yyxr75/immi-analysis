@@ -359,6 +359,12 @@ body[data-view="watch"] .wrap { max-width:1440px; }
 .wt-r { text-align:right; font-weight:700; font-size:15px; }
 .wt-r.na { font-weight:400; font-size:12px; color:var(--muted); }
 .wt-d { text-align:right; font-size:11.5px; }
+.wt-sp, .wt-b, .wt-back { display:none; }
+.wt-sp svg { display:block; }
+.wt .wt-b { justify-self:end; min-width:66px; text-align:center; padding:2px 6px; border-radius:4px; color:#fff;
+  font-weight:700; font-size:13px; background:var(--muted); }
+.wt .wt-b.up { background:var(--bad); } .wt .wt-b.down { background:var(--good); }
+.wt-back { border:0; background:none; color:var(--ink); font:inherit; font-size:15px; padding:0 8px 0 0; cursor:pointer; }
 .wt-x { position:absolute; right:3px; top:2px; border:0; background:none; color:var(--muted); cursor:pointer; font-size:11px; opacity:0; padding:2px 4px; }
 .wt-list li:hover .wt-x, .wt-x:focus-visible { opacity:1; }
 .wt-note { font-size:11.5px; color:var(--muted); padding:8px 12px 10px; margin:0; }
@@ -407,8 +413,22 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
   .wt-desk { grid-template-columns:minmax(0,1fr); } .wt-side { display:flex; }
   .wt-kpis { grid-template-columns:repeat(2,minmax(0,1fr)); } .wt-kpis div { border-bottom:1px solid var(--hair); }
   .wt-acct { margin-left:0; }
-  .wt-list { display:flex; overflow-x:auto; } .wt-list li { flex:none; width:168px; border-right:1px solid var(--hair); }
-  .wt-it { border-bottom:0; } .wt-lhead { display:none; } .wt-x { opacity:1; }
+  /* Phone: moomoo-style. The list is a page of its own; tapping a row opens
+     the detail page (#/watch/<code>), and ‹ 自选 / the back gesture returns. */
+  .wt:not(.m-det) .wt-ctr, .wt:not(.m-det) .wt-side { display:none; }
+  .wt.m-det .wt-desk > aside.wt-pane:first-child { display:none; }
+  .wt-back { display:block; }
+  .wt-it { grid-template-columns:minmax(0,1fr) 76px minmax(78px,auto); grid-template-areas:"n sp r" "c sp b";
+    gap:3px 12px; padding:12px 14px; align-items:center; }
+  .wt-n { grid-area:n; font-size:16px; } .wt-c { grid-area:c; font-size:12px; }
+  .wt-sp { grid-area:sp; display:block; } .wt-r { grid-area:r; font-size:17px; }
+  .wt-d { display:none; } .wt-b { grid-area:b; display:block; }
+  .wt-x { display:none; }
+  .wt-lhead span:first-child { font-size:0; } .wt-lhead span:first-child::after { content:"职业 · 近 12 个月在池走势"; font-size:11.5px; }
+  .wt-lhead #wtCol::after { content:" · 较上月"; }
+  .wt-list li.on .wt-it { background:none; }
+  .wt-th { flex-direction:column; align-items:stretch; gap:8px; } .wt-back { align-self:flex-start; }
+  .wt-kpis div:last-child { grid-column:1 / -1; }
 }
 
 /* ---- 我的: sub-switch + account line on top of the points and AI views ---- */
@@ -701,6 +721,7 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
         </aside>
         <main class="wt-pane wt-ctr">
           <div class="wt-ph wt-th">
+            <button class="wt-back" type="button" id="wtBack" aria-label="返回自选列表">‹ 自选</button>
             <div class="wt-title"><b id="wtName"></b><span id="wtSub"></span></div>
             <div class="wt-tools">
               <button class="wt-btn" type="button" id="wtStar" aria-pressed="false"></button>
@@ -1261,7 +1282,7 @@ function setView(name) {
   const f = document.querySelector(".filters");
   if (f) f.style.display = (name === "data" || name === "points") ? "" : "none";
   hideTip();
-  const want = hashFor(name, name === "watch" ? (WT.sel || parseHash().code) : curCode);
+  const want = hashFor(name, name === "watch" ? wtHashCode() : curCode);
   if (location.hash !== want) history.replaceState(null, "", want);
   // charts size themselves from their container, so a chart drawn while its
   // view was hidden would come out zero-width -- draw them on reveal instead
@@ -1317,7 +1338,7 @@ function buildTabs() {
   addEventListener("hashchange", () => {
     const { view, code } = parseHash();
     if (view !== curView) setView(view);
-    else if (view === "watch" && code && code !== WT.sel) wtOpen(code);
+    else if (view === "watch") wtRoute(code);
   });
 }
 
