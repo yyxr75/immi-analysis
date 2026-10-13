@@ -19,7 +19,7 @@ const HM_GROUP = { "12": "农场主", "13": "专业管理", "14": "酒店零售�
   "32": "汽车工程技工", "33": "建筑技工", "34": "电工电子", "35": "食品技工", "36": "动物园艺", "39": "其他技工",
   "41": "医护社区服务", "44": "安保应急", "45": "体育", "51": "办公管理", "59": "文员", "61": "销售", "63": "销售" };
 const HM_BONUS = { "189": 0, "190": 5, "491": 15 };
-const HM_MIN_POOL = 100, HM_MIN_N = 30;
+const HM_MIN_POOL = 100, HM_MIN_N = 30, HM_FEW = 10;   // rate: <10 hidden, 10-29 flagged *
 const HM_MODE_KEY = "immi.lb.mode";
 const HM = { met: "pool", per: 6, rel: 1, me: null, zoom: null, sel: null, base: 0, wired: false };
 const hm$ = id => document.getElementById(id);
@@ -36,12 +36,12 @@ function hmRows() {
     const ok = now >= HM_MIN_POOL && then >= HM_MIN_POOL;
     const b = mine == null ? null : r.r[String(Math.floor(mine / 5) * 5)] || null;
     return { r, c: r.c, zh: r.zh || r.en, now, then, pct: ok ? (now - then) / then * 100 : null,
-             band: b, rate: b && b[1] >= HM_MIN_N ? b[0] : null };
+             band: b, rate: b && b[1] >= HM_FEW ? b[0] : null, few: !!b && b[1] < HM_MIN_N };
   });
 }
 
 const hmPctTxt = p => p == null ? "样本少" : (p > 0 ? "+" : p < 0 ? "−" : "") + Math.abs(p).toFixed(1) + "%";
-const hmRateTxt = x => x == null ? "样本少" : (x < 10 ? x.toFixed(1) : Math.round(x)) + "%";
+const hmRateTxt = x => x == null ? "人数少" : (x < 10 ? x.toFixed(1) : Math.round(x)) + "%";
 const hmVal = t => HM.met === "rate" ? t.rate : t.pct;
 const hmTxt = x => HM.met === "rate" ? hmRateTxt(x) : hmPctTxt(x);
 function hmCls(x) { return x == null ? "na" : HM.rel || HM.met === "rate" ? "" : x > 0.05 ? "up" : x < -0.05 ? "down" : ""; }
@@ -118,7 +118,7 @@ function hmTiles(ts, area, minArea) {
     const now = tail.reduce((a, t) => a + t.now, 0), then = tail.reduce((a, t) => a + t.then, 0);
     const bs = tail.filter(t => t.band), n = bs.reduce((a, t) => a + t.band[1], 0);
     const inv = bs.reduce((a, t) => a + t.band[0] * t.band[1] / 100, 0);
-    out.push({ v: now, other: tail.length, val: HM.met === "rate" ? (n >= HM_MIN_N ? inv / n * 100 : null)
+    out.push({ v: now, other: tail.length, val: HM.met === "rate" ? (n >= HM_FEW ? inv / n * 100 : null)
       : now >= HM_MIN_POOL && then >= HM_MIN_POOL ? (now - then) / then * 100 : null });
   }
   return out;
@@ -132,12 +132,12 @@ function hmTile(it, rc) {
       `<span class="${hmCls(it.val)}" style="font-size:${Math.min(fs, 12)}px">${hmTxt(it.val)}</span>` : "";
     return `<button type="button" class="hm-t hm-o${hmDk(it.val)}" data-other="1" style="${pos}background:${hmFill(it.val)}" aria-label="其他 ${it.other} 个职业，点开放大">${lbl}</button>`;
   }
-  const t = it.t, v = hmVal(t);
+  const t = it.t, v = hmVal(t), star = HM.met === "rate" && v != null && t.few ? "*" : "";
   let inner = "";
-  if (w >= 60 && h >= 40) inner = `<b style="font-size:${fs}px">${lbEsc(t.zh)}</b><span class="${hmCls(v)}" style="font-size:${fs * .85}px">${hmTxt(v)}</span>`;
+  if (w >= 60 && h >= 40) inner = `<b style="font-size:${fs}px">${lbEsc(t.zh)}</b><span class="${hmCls(v)}" style="font-size:${fs * .85}px">${hmTxt(v)}${star}</span>`;
   else if (w >= 44 && h >= 18) inner = `<b style="font-size:${Math.min(fs, 12)}px">${lbEsc(t.zh)}</b>`;
   return `<button type="button" class="hm-t${HM.sel === t.c ? " on" : ""}${hmDk(v)}" data-c="${t.c}" style="${pos}background:${hmFill(v)}"
-    title="${lbEsc(t.zh)} ${hmTxt(v)}" aria-label="${lbEsc(t.zh)}，在池 ${lbFmt(t.now)}，${hmTxt(v)}">${inner}</button>`;
+    title="${lbEsc(t.zh)} ${hmTxt(v)}${star}" aria-label="${lbEsc(t.zh)}，在池 ${lbFmt(t.now)}，${hmTxt(v)}${star ? "，人数少" : ""}">${inner}</button>`;
 }
 
 function hmRender() {
@@ -148,15 +148,14 @@ function hmRender() {
   if (document.activeElement !== hm$("hmMe")) hm$("hmMe").value = HM.me == null ? "" : HM.me;
   const map = hm$("hmMap"), W = map.clientWidth, H = map.clientHeight, phone = W < 600, HD = 20;
   const all = hmRows(), gs = hmGroups(all);
-  const ok = all.filter(t => t.pct != null), n = ok.reduce((a, t) => a + t.now, 0), th = ok.reduce((a, t) => a + t.then, 0);
-  HM.base = th ? (n - th) / th * 100 : 0;
+  HM.base = wtOverall(LB.data.visas[LB.visa] || [], HM.per) || 0;     // same figure the check-up card quotes
   const visa = LB.visa, mine = HM.me == null ? null : HM.me + HM_BONUS[visa];
   const legend = HM.met === "rate"
     ? (mine == null ? ` · <b class="hm-you">先填你的分数</b>，才能按获邀率上色`
        : ` · 你 <b class="hm-you">${mine}</b> 分${HM_BONUS[visa] ? `（含州担保 ${HM_BONUS[visa]} 分）` : ""}这一段的历史获邀率` +
-         `<span class="hm-lg">0% <i class="rt"></i> 50%+</span>`)
+         `<span class="hm-lg">0% <i class="rt"></i> 50%+ · * 这一档不到 30 人</span>`)
     : ` · 整体${HM.per === 1 ? "较上月" : "近 6 个月"} <b>${hmPctTxt(HM.base)}</b>` +
-      (HM.rel ? `<span class="hm-lg">比整体慢 <i></i> 比整体快</span>`
+      (HM.rel ? `<span class="hm-lg">比整体涨得慢 <i></i> 比整体涨得快</span><span class="hm-hint">绿色不等于池子在缩小，格子里的百分比才是它自己的变化</span>`
               : `<span class="hm-lg">${HM.per === 1 ? "−6%" : "−20%"} <i></i> ${HM.per === 1 ? "+6%" : "+20%"}</span>`);
   let html = "";
   const g = HM.zoom && gs.find(x => x.g === HM.zoom);
@@ -188,8 +187,11 @@ function hmPanel(all) {
   }
   p.classList.remove("idle");
   const visa = LB.visa, mine = HM.me == null ? null : HM.me + HM_BONUS[visa], s = t.r.s;
-  const m1 = s[s.length - 1] - s[s.length - 2], m6 = s[s.length - 1] - s[s.length - 7];
-  const sg = d => (d > 0 ? "+" : d < 0 ? "−" : "") + lbFmt(Math.abs(d)), cl = d => d > 0 ? "up" : d < 0 ? "down" : "";
+  // the card needs the per-occupation file (pool by band, invited series); fetch once, redraw when it lands
+  const o = WT.cache[t.c];
+  if (!o) wtDetail(t.c).then(() => { if (HM.sel === t.c) hmPanel(hmRows()); }).catch(() => {});
+  const card = o ? wtCard(o, visa, mine, wtOverall(LB.data.visas[visa] || []))
+    : `<p class="wt-cardh">载入中…</p>`;
   const lo = Math.min(...s), hi = Math.max(...s), Wd = 270, Hd = 70;
   const px = i => 4 + i * (Wd - 8) / (s.length - 1), py = v => hi === lo ? Hd / 2 : Hd - 14 - (v - lo) / (hi - lo) * (Hd - 22);
   const pts = s.map((v, i) => `${px(i).toFixed(1)},${py(v).toFixed(1)}`).join(" ");
@@ -201,14 +203,7 @@ function hmPanel(all) {
       <polygon points="${px(0)},${Hd - 12} ${pts} ${px(s.length - 1)},${Hd - 12}" fill="var(--wt-pool)" opacity=".10"/>
       <polyline points="${pts}" fill="none" stroke="var(--wt-pool)" stroke-width="1.8" vector-effect="non-scaling-stroke"/>
       <text x="4" y="${Hd - 1}">${m12[0]}</text><text x="${Wd - 4}" y="${Hd - 1}" text-anchor="end">${m12[m12.length - 1]}</text></svg>
-    <div class="hm-kv">
-      <div><span>在池人数</span><b>${lbFmt(t.now)}</b></div>
-      <div><span>池内 p75 分数</span><b>${t.r.p75[1] ? t.r.p75[1] + " 分" : "—"}</b></div>
-      <div><span>较上月</span><b class="${cl(m1)}">${sg(m1)}</b></div>
-      <div><span>近 6 个月</span><b class="${cl(m6)}">${sg(m6)}</b></div>
-      <div class="w"><span>${mine == null ? "填上分数后显示你分数段的历史获邀率" : `你 ${mine} 分段历史获邀率${HM_BONUS[visa] ? `（含州担保 ${HM_BONUS[visa]} 分）` : ""}`}</span>
-        <b class="hm-you">${mine == null ? "—" : t.band && t.band[1] < HM_MIN_N ? "样本少" : t.band ? t.band[0].toFixed(1) + "%" : "—"}</b></div>
-    </div>
+    <div class="wt-card">${card}</div>
     <div class="hm-acts"><button type="button" data-star="${t.c}">${inList ? "★ 已加自选" : "＋ 加自选"}</button>
       <a class="hm-pri" href="#/watch/${t.c}">看详情 →</a></div>
     <p class="wt-note">历史获邀率：截至统计时这一分数段累计获邀的比例，不代表未来获邀概率。</p>`;

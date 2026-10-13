@@ -427,6 +427,17 @@ body[data-view="watch"] .wrap { max-width:1440px; }
 .wt-tf { display:flex; gap:2px; }
 .wt-tf button { border:0; background:none; color:var(--muted); font:inherit; font-size:12.5px; padding:2px 8px; border-radius:5px; cursor:pointer; }
 .wt-tf button[aria-pressed="true"] { color:var(--ink); background:var(--plane); font-weight:700; }
+/* check-up card: label | value, then a one-line note on what the number is and is not */
+.wt-card { display:flex; flex-direction:column; border-bottom:1px solid var(--hair); min-width:0; }
+.wt-cardh { margin:0; padding:8px 12px; font-size:12px; color:var(--muted); border-bottom:1px solid var(--hair); }
+.wt-cr { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:2px 12px; padding:8px 12px; border-bottom:1px solid var(--hair); align-items:baseline; }
+.wt-cr:last-child { border-bottom:0; }
+.wt-cr .k { font-size:13px; color:var(--ink2); }
+.wt-cr .v { font-size:17px; font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; }
+.wt-cr .v.you { color:var(--wt-you); } .wt-cr .v.up { color:var(--bad); } .wt-cr .v.down { color:var(--good); }
+.wt-cr .n { grid-column:1 / -1; font-size:11.5px; color:var(--muted); line-height:1.5; }
+.hm-panel .wt-card { border:1px solid var(--hair); border-radius:8px; }
+.hm-hint { flex-basis:100%; font-size:12px; color:var(--muted); }
 .wt-kpis { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); border-bottom:1px solid var(--hair); }
 .wt-kpis div { padding:9px 12px; border-right:1px solid var(--hair); min-width:0; }
 .wt-kpis div:last-child { border-right:0; }
@@ -784,7 +795,7 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
               </div>
             </div>
           </div>
-          <div class="wt-kpis" id="wtKpis"></div>
+          <div class="wt-card" id="wtKpis"></div>
           <div class="wt-ro" id="wtRo"></div>
           <div id="wtCharts"></div>
           <p class="wt-note"><a class="linkbtn" id="wtFull" href="#/data">看这个职业的完整图表（热力图、各签证对比、州分布）→</a></p>
@@ -840,7 +851,7 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
           <div class="hm-map" id="hmMap" role="group" aria-label="职业热力图"></div>
           <aside class="hm-panel idle" id="hmPanel"></aside>
         </div>
-        <p class="lb-foot">面积 = 当前池里的 EOI 人数。「池子变化」：格子里的百分比是这个职业池子人数的变化。几乎所有职业的池子都在变大，所以颜色默认「比整体」：红色是比整体涨得快（排队的人增加得更快），绿色是比整体慢或在缩小；「绝对变化」只看自己涨还是跌。池子少于 100 人的变化不稳定，显示为灰色。「获邀率」：格子大小不变，颜色和数字换成你这个分数段的历史获邀率（截至统计时，这一段累计获邀的比例），越绿越高；样本少于 30 人显示灰色。颜色都不代表未来获邀概率。数据来自 SkillSelect 公开看板，不是移民建议。</p>
+        <p class="lb-foot">面积 = 当前池里的 EOI 人数。「池子变化」：格子里的百分比是这个职业池子人数的变化。几乎所有职业的池子都在变大，所以颜色默认「比整体」：红色是比整体涨得快（排队的人增加得更快），绿色是比整体涨得慢或在缩小（绿色不等于缩小，格子里的百分比才是它自己的变化）；「绝对变化」只看自己涨还是跌。池子少于 100 人的变化不稳定，显示为灰色。「获邀率」：格子大小不变，颜色和数字换成你这个分数段的历史获邀率（截至统计时，这一段累计获邀的比例），越绿越高；这一档历史上不到 30 人的带 *（波动大），不到 10 人的显示灰色。颜色都不代表未来获邀概率。池子是排队的 EOI，不是工作岗位；池子变小常常是一轮邀请把人带走了，也可能是 EOI 到期、撤回或换了职业。数据来自 SkillSelect 公开看板，不是移民建议。</p>
       </div>
       <div class="lb-list" id="lbList" hidden>
       <div class="lb-tape" id="lbTape"></div>

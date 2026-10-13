@@ -15,7 +15,8 @@
    so the list follows them across devices. */
 const WT_KEY = "immi.watch.v1";
 const WT_DEFAULT = ["261313", "221111", "233211", "241111", "254499", "233411"];
-const WT_MIN_N = 30;                       // fewer than this in a band: "数据不足"
+const WT_MIN_N = 30;                       // fewer than this in a band: shown, but flagged "人数少"
+const WT_FEW = 10;                         // fewer than this: not shown at all
 const WT_VISA = { "189": "189", "190": "190", "491": "491 (州担保)" };
 const WT_BONUS = { "189": 0, "190": 5, "491": 15 };
 const WT = { visa: "189", me: null, n: 12, sel: null, list: [], example: true, mdet: false,
@@ -152,10 +153,10 @@ function wtRenderList() {
     ? (wtMobile() ? "这是示例自选。点「＋ 添加」加你关心的职业；点进职业页，再点「★ 已加自选」可以移除。"
                   : "这是示例自选。点 ✕ 删掉，点「＋ 添加」加你关心的职业。")
     : mine == null ? "填上你的分数，就会按你分数段的历史获邀率排序。"
-    : `按你 ${mine} 分这一段的历史获邀率排序；样本少于 ${WT_MIN_N} 人的显示「数据不足」。`;
+    : `按你 ${mine} 分这一段的历史获邀率排序。带 * 的这一档历史上不到 ${WT_MIN_N} 人，波动大；不到 ${WT_FEW} 人的不显示。`;
   const rows = WT.list.map(c => {
     const r = wtRow(c), nm = wtName(c), b = r ? wtBand(r.r, mine) : null;
-    return { c, r, nm, b, ok: b && b.n >= WT_MIN_N };
+    return { c, r, nm, b, ok: b && b.n >= WT_FEW };
   }).sort((a, b) => mine == null
     ? ((b.r ? b.r.s[b.r.s.length - 1] : -1) - (a.r ? a.r.s[a.r.s.length - 1] : -1))
     : (b.ok ? b.b.rate : -1) - (a.ok ? a.b.rate : -1));
@@ -164,7 +165,7 @@ function wtRenderList() {
     const pct = !r ? "" : !prev ? "—" : (d > 0 ? "+" : d < 0 ? "−" : "") + Math.abs(d / prev * 100).toFixed(1) + "%";
     const head = !r ? `<span class="wt-r na">无此签证</span>`
       : mine == null ? `<span class="wt-r">${wtFmt(now)}</span>`
-      : `<span class="wt-r ${ok ? "" : "na"}">${ok ? b.rate.toFixed(1) + "%" : "数据不足"}</span>`;
+      : `<span class="wt-r ${ok ? "" : "na"}">${ok ? b.rate.toFixed(1) + "%" + (b.n < WT_MIN_N ? "*" : "") : "人数太少"}</span>`;
     return `<li class="${c === WT.sel ? "on" : ""}">
       <button class="wt-it" type="button" data-c="${c}">
         <span class="wt-n">${wtEsc(nm.zh || nm.en)}</span>
@@ -175,6 +176,47 @@ function wtRenderList() {
       </button>
       <button class="wt-x" type="button" data-rm="${c}" aria-label="从自选移除 ${wtEsc(nm.zh)}">✕</button></li>`;
   }).join("") : `<li class="wt-empty">还没有自选职业。点「＋ 添加」搜一个。</li>`;
+}
+
+/* ---------- the check-up card ----------
+   One occupation, one visa, the visitor's score: the five things a reader
+   needs side by side, each with what it is and what it is not. Facts only --
+   no verdict and no number derived from two others (EOIs at or above you
+   divided by the invite pace would read as a waiting time it cannot be).
+   Shared by the 自选 detail and the 行情 heatmap panel. */
+function wtOverall(rows, per = 6) {
+  let n = 0, t = 0;
+  rows.forEach(r => { n += r.s[r.s.length - 1]; t += r.s[r.s.length - 1 - per]; });
+  return t ? (n - t) / t * 100 : null;
+}
+function wtCard(o, visa, mine, overall) {
+  const v = WT_VISA[visa], s = o.series[v];
+  if (!s) return "";
+  const p = s.SUBMITTED, L = p.length - 1, d1 = p[L] - p[L - 1], d6 = p[L] - p[L - 6];
+  const pc6 = p[L - 6] ? d6 / p[L - 6] * 100 : null;
+  const pct = x => (x > 0 ? "+" : x < 0 ? "−" : "") + Math.abs(x).toFixed(1) + "%";
+  const pp = o.poolPoints[v], tot = pp ? pp.counts.reduce((a, c) => a + c, 0) : 0;
+  const ahead = mine == null || !pp ? null : pp.points.reduce((a, pt, i) => a + (pt >= mine ? pp.counts[i] : 0), 0);
+  const inv = s.INVITED.slice(-12), invSum = inv.reduce((a, x) => a + x, 0), invM = inv.filter(x => x > 0).length;
+  const b = wtBand(o.rate[v], mine), pc = o.percentiles[v], P = k => pc[k][pc[k].length - 1];
+  const month = o.monthLabels[o.monthLabels.length - 1], bonus = WT_BONUS[visa];
+  const vs = overall == null || pc6 == null ? "" : `整体 ${pct(overall)}，这个职业${pc6 > overall ? "比整体涨得快" : "比整体涨得慢"}${d6 < 0 ? "，而且在缩小" : ""}。`;
+  const rate = mine == null ? ["先填分数", "填上你的分数，这里显示你这一档的历史获邀率。"]
+    : !b ? ["—", "这一档没有历史记录。"]
+    : b.n < WT_FEW ? ["人数太少", `这一档历史上只有 ${b.n} 人，比例没有参考意义，不显示。`]
+    : [b.rate.toFixed(1) + "%", `${wtFmt(b.n)} 人中，截至 ${month} 累计。` + (b.n < WT_MIN_N ? "人数少，波动大。" : "") + "历史数据，不代表未来获邀概率。"];
+  const row = (k, val, note, cls = "") => `<div class="wt-cr"><span class="k">${k}</span><b class="v ${cls}">${val}</b><span class="n">${note}</span></div>`;
+  return `<p class="wt-cardh">${visa === "491" ? "491 州担保" : visa} · 数据 ${month}${mine != null && bonus ? ` · 你的分数已含州担保 +${bonus}` : ""}</p>` +
+    row("池子人数", wtFmt(p[L]), `较上月 ${wtSgn(d1)}。提交了 EOI、还在排队的人，不是工作岗位数。`) +
+    row("近 6 个月", `${wtSgn(d6)}${pc6 == null ? "" : `（${pct(pc6)}）`}`,
+        `${vs}池子变小常见原因：一轮邀请把人带走、EOI 到期或撤回、换了职业。`, wtCls(d6)) +
+    row(mine == null ? "池里分数不低于你的" : `池里 ≥ ${mine} 分的 EOI`,
+        ahead == null ? "先填分数" : `${wtFmt(ahead)} 个${tot ? `（${Math.round(ahead / tot * 100)}%）` : ""}`,
+        "同一职业、同一签证的当前快照。同分按提交 EOI 的时间先后，快照看不出实际邀请顺序。", "you") +
+    row("近 12 个月获邀状态记录", wtFmt(invSum),
+        `12 个月里有 ${invM} 个月有记录。月末快照累加，同一人可能被算进两个月，不等于独立获邀人数。`) +
+    row(mine == null ? "你这一档历史获邀率" : `${mine} 分这一档历史获邀率`, rate[0], rate[1], "you") +
+    row("池内分数线", `p50 ${P("p50")} · p75 ${P("p75")} · p90 ${P("p90")}`, "池里排队的人的分数分布，不是官方邀请分数线。");
 }
 
 /* ---------- centre: charts ---------- */
@@ -236,13 +278,7 @@ function wtRenderCenter() {
   const lab = sl(o.monthLabels).map(l => l.replace(/^(\d\d)\/20(\d\d)$/, "$2.$1"));
   const p = s.SUBMITTED, inv = s.INVITED, pc = o.percentiles[v];
   const mine = wtMine(), b = wtBand(o.rate[v], mine), last = p.length - 1;
-  wt$("wtKpis").innerHTML =
-    `<div><span>在池人数</span><b>${wtFmt(p[last])}</b></div>
-     <div><span>较上月</span><b class="${wtCls(p[last] - p[last - 1])}">${wtSgn(p[last] - p[last - 1])}</b></div>
-     <div><span>较 6 个月前</span><b class="${wtCls(p[last] - p[last - 6])}">${wtSgn(p[last] - p[last - 6])}</b></div>
-     <div><span>池内 p75 分数</span><b>${pc.p75[pc.p75.length - 1]} 分</b></div>
-     <div><span>${mine == null ? "你的分数段获邀率" : `你 ${mine} 分段历史获邀率`}</span>
-       <b class="you">${mine == null ? "先填分数" : b && b.n >= WT_MIN_N ? b.rate.toFixed(1) + "%" : "数据不足"}</b></div>`;
+  wt$("wtKpis").innerHTML = wtCard(o, WT.visa, mine, wtOverall((WT.board && WT.board.visas[WT.visa]) || []));
   const pv = sl(p), iv = sl(inv), p50 = sl(pc.p50), p75 = sl(pc.p75), p90 = sl(pc.p90);
   const lo = Math.min(...pv), hi = Math.max(...pv), pad = (hi - lo) * .25 || hi * .1 || 1;
   const yMin = Math.max(0, Math.floor((lo - pad) / 10) * 10), yMax = Math.ceil((hi + pad) / 10) * 10;
@@ -281,7 +317,7 @@ function wtRenderRight() {
   const rows = pp.points.map((pt, i) => ({ pt, c: pp.counts[i] })).filter(x => x.pt >= 55).reverse();
   wt$("wtDist").innerHTML = rows.map(({ pt, c }) => {
     const i = r ? r.points.indexOf(pt) : -1, nn = i >= 0 ? r.total[i] : 0;
-    const rt = i < 0 ? "—" : nn < WT_MIN_N ? "样本少" : r.rate[i].toFixed(1) + "%";
+    const rt = i < 0 ? "—" : nn < WT_FEW ? "人数少" : r.rate[i].toFixed(1) + "%" + (nn < WT_MIN_N ? "*" : "");
     return `<div class="wt-drow ${pt === mb ? "me" : ""} ${cl && pt >= cl ? "cliff" : ""}">
       <span class="pt">${pt}</span><span class="bar"><i style="width:${(c / max * 100).toFixed(1)}%"></i></span>
       <span class="rt">${rt}</span></div>`;

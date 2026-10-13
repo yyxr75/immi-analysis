@@ -441,6 +441,17 @@ body[data-view="watch"] .wrap { max-width:1440px; }
 .wt-tf { display:flex; gap:2px; }
 .wt-tf button { border:0; background:none; color:var(--muted); font:inherit; font-size:12.5px; padding:2px 8px; border-radius:5px; cursor:pointer; }
 .wt-tf button[aria-pressed="true"] { color:var(--ink); background:var(--plane); font-weight:700; }
+/* check-up card: label | value, then a one-line note on what the number is and is not */
+.wt-card { display:flex; flex-direction:column; border-bottom:1px solid var(--hair); min-width:0; }
+.wt-cardh { margin:0; padding:8px 12px; font-size:12px; color:var(--muted); border-bottom:1px solid var(--hair); }
+.wt-cr { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:2px 12px; padding:8px 12px; border-bottom:1px solid var(--hair); align-items:baseline; }
+.wt-cr:last-child { border-bottom:0; }
+.wt-cr .k { font-size:13px; color:var(--ink2); }
+.wt-cr .v { font-size:17px; font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; }
+.wt-cr .v.you { color:var(--wt-you); } .wt-cr .v.up { color:var(--bad); } .wt-cr .v.down { color:var(--good); }
+.wt-cr .n { grid-column:1 / -1; font-size:11.5px; color:var(--muted); line-height:1.5; }
+.hm-panel .wt-card { border:1px solid var(--hair); border-radius:8px; }
+.hm-hint { flex-basis:100%; font-size:12px; color:var(--muted); }
 .wt-kpis { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); border-bottom:1px solid var(--hair); }
 .wt-kpis div { padding:9px 12px; border-right:1px solid var(--hair); min-width:0; }
 .wt-kpis div:last-child { border-right:0; }
@@ -825,7 +836,7 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
               </div>
             </div>
           </div>
-          <div class="wt-kpis" id="wtKpis"></div>
+          <div class="wt-card" id="wtKpis"></div>
           <div class="wt-ro" id="wtRo"></div>
           <div id="wtCharts"></div>
           <p class="wt-note"><a class="linkbtn" id="wtFull" href="#/data">看这个职业的完整图表（热力图、各签证对比、州分布）→</a></p>
@@ -881,7 +892,7 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
           <div class="hm-map" id="hmMap" role="group" aria-label="职业热力图"></div>
           <aside class="hm-panel idle" id="hmPanel"></aside>
         </div>
-        <p class="lb-foot">面积 = 当前池里的 EOI 人数。「池子变化」：格子里的百分比是这个职业池子人数的变化。几乎所有职业的池子都在变大，所以颜色默认「比整体」：红色是比整体涨得快（排队的人增加得更快），绿色是比整体慢或在缩小；「绝对变化」只看自己涨还是跌。池子少于 100 人的变化不稳定，显示为灰色。「获邀率」：格子大小不变，颜色和数字换成你这个分数段的历史获邀率（截至统计时，这一段累计获邀的比例），越绿越高；样本少于 30 人显示灰色。颜色都不代表未来获邀概率。数据来自 SkillSelect 公开看板，不是移民建议。</p>
+        <p class="lb-foot">面积 = 当前池里的 EOI 人数。「池子变化」：格子里的百分比是这个职业池子人数的变化。几乎所有职业的池子都在变大，所以颜色默认「比整体」：红色是比整体涨得快（排队的人增加得更快），绿色是比整体涨得慢或在缩小（绿色不等于缩小，格子里的百分比才是它自己的变化）；「绝对变化」只看自己涨还是跌。池子少于 100 人的变化不稳定，显示为灰色。「获邀率」：格子大小不变，颜色和数字换成你这个分数段的历史获邀率（截至统计时，这一段累计获邀的比例），越绿越高；这一档历史上不到 30 人的带 *（波动大），不到 10 人的显示灰色。颜色都不代表未来获邀概率。池子是排队的 EOI，不是工作岗位；池子变小常常是一轮邀请把人带走了，也可能是 EOI 到期、撤回或换了职业。数据来自 SkillSelect 公开看板，不是移民建议。</p>
       </div>
       <div class="lb-list" id="lbList" hidden>
       <div class="lb-tape" id="lbTape"></div>
@@ -3087,7 +3098,8 @@ document.addEventListener("click", e => {
    so the list follows them across devices. */
 const WT_KEY = "immi.watch.v1";
 const WT_DEFAULT = ["261313", "221111", "233211", "241111", "254499", "233411"];
-const WT_MIN_N = 30;                       // fewer than this in a band: "数据不足"
+const WT_MIN_N = 30;                       // fewer than this in a band: shown, but flagged "人数少"
+const WT_FEW = 10;                         // fewer than this: not shown at all
 const WT_VISA = { "189": "189", "190": "190", "491": "491 (州担保)" };
 const WT_BONUS = { "189": 0, "190": 5, "491": 15 };
 const WT = { visa: "189", me: null, n: 12, sel: null, list: [], example: true, mdet: false,
@@ -3224,10 +3236,10 @@ function wtRenderList() {
     ? (wtMobile() ? "这是示例自选。点「＋ 添加」加你关心的职业；点进职业页，再点「★ 已加自选」可以移除。"
                   : "这是示例自选。点 ✕ 删掉，点「＋ 添加」加你关心的职业。")
     : mine == null ? "填上你的分数，就会按你分数段的历史获邀率排序。"
-    : `按你 ${mine} 分这一段的历史获邀率排序；样本少于 ${WT_MIN_N} 人的显示「数据不足」。`;
+    : `按你 ${mine} 分这一段的历史获邀率排序。带 * 的这一档历史上不到 ${WT_MIN_N} 人，波动大；不到 ${WT_FEW} 人的不显示。`;
   const rows = WT.list.map(c => {
     const r = wtRow(c), nm = wtName(c), b = r ? wtBand(r.r, mine) : null;
-    return { c, r, nm, b, ok: b && b.n >= WT_MIN_N };
+    return { c, r, nm, b, ok: b && b.n >= WT_FEW };
   }).sort((a, b) => mine == null
     ? ((b.r ? b.r.s[b.r.s.length - 1] : -1) - (a.r ? a.r.s[a.r.s.length - 1] : -1))
     : (b.ok ? b.b.rate : -1) - (a.ok ? a.b.rate : -1));
@@ -3236,7 +3248,7 @@ function wtRenderList() {
     const pct = !r ? "" : !prev ? "—" : (d > 0 ? "+" : d < 0 ? "−" : "") + Math.abs(d / prev * 100).toFixed(1) + "%";
     const head = !r ? `<span class="wt-r na">无此签证</span>`
       : mine == null ? `<span class="wt-r">${wtFmt(now)}</span>`
-      : `<span class="wt-r ${ok ? "" : "na"}">${ok ? b.rate.toFixed(1) + "%" : "数据不足"}</span>`;
+      : `<span class="wt-r ${ok ? "" : "na"}">${ok ? b.rate.toFixed(1) + "%" + (b.n < WT_MIN_N ? "*" : "") : "人数太少"}</span>`;
     return `<li class="${c === WT.sel ? "on" : ""}">
       <button class="wt-it" type="button" data-c="${c}">
         <span class="wt-n">${wtEsc(nm.zh || nm.en)}</span>
@@ -3247,6 +3259,47 @@ function wtRenderList() {
       </button>
       <button class="wt-x" type="button" data-rm="${c}" aria-label="从自选移除 ${wtEsc(nm.zh)}">✕</button></li>`;
   }).join("") : `<li class="wt-empty">还没有自选职业。点「＋ 添加」搜一个。</li>`;
+}
+
+/* ---------- the check-up card ----------
+   One occupation, one visa, the visitor's score: the five things a reader
+   needs side by side, each with what it is and what it is not. Facts only --
+   no verdict and no number derived from two others (EOIs at or above you
+   divided by the invite pace would read as a waiting time it cannot be).
+   Shared by the 自选 detail and the 行情 heatmap panel. */
+function wtOverall(rows, per = 6) {
+  let n = 0, t = 0;
+  rows.forEach(r => { n += r.s[r.s.length - 1]; t += r.s[r.s.length - 1 - per]; });
+  return t ? (n - t) / t * 100 : null;
+}
+function wtCard(o, visa, mine, overall) {
+  const v = WT_VISA[visa], s = o.series[v];
+  if (!s) return "";
+  const p = s.SUBMITTED, L = p.length - 1, d1 = p[L] - p[L - 1], d6 = p[L] - p[L - 6];
+  const pc6 = p[L - 6] ? d6 / p[L - 6] * 100 : null;
+  const pct = x => (x > 0 ? "+" : x < 0 ? "−" : "") + Math.abs(x).toFixed(1) + "%";
+  const pp = o.poolPoints[v], tot = pp ? pp.counts.reduce((a, c) => a + c, 0) : 0;
+  const ahead = mine == null || !pp ? null : pp.points.reduce((a, pt, i) => a + (pt >= mine ? pp.counts[i] : 0), 0);
+  const inv = s.INVITED.slice(-12), invSum = inv.reduce((a, x) => a + x, 0), invM = inv.filter(x => x > 0).length;
+  const b = wtBand(o.rate[v], mine), pc = o.percentiles[v], P = k => pc[k][pc[k].length - 1];
+  const month = o.monthLabels[o.monthLabels.length - 1], bonus = WT_BONUS[visa];
+  const vs = overall == null || pc6 == null ? "" : `整体 ${pct(overall)}，这个职业${pc6 > overall ? "比整体涨得快" : "比整体涨得慢"}${d6 < 0 ? "，而且在缩小" : ""}。`;
+  const rate = mine == null ? ["先填分数", "填上你的分数，这里显示你这一档的历史获邀率。"]
+    : !b ? ["—", "这一档没有历史记录。"]
+    : b.n < WT_FEW ? ["人数太少", `这一档历史上只有 ${b.n} 人，比例没有参考意义，不显示。`]
+    : [b.rate.toFixed(1) + "%", `${wtFmt(b.n)} 人中，截至 ${month} 累计。` + (b.n < WT_MIN_N ? "人数少，波动大。" : "") + "历史数据，不代表未来获邀概率。"];
+  const row = (k, val, note, cls = "") => `<div class="wt-cr"><span class="k">${k}</span><b class="v ${cls}">${val}</b><span class="n">${note}</span></div>`;
+  return `<p class="wt-cardh">${visa === "491" ? "491 州担保" : visa} · 数据 ${month}${mine != null && bonus ? ` · 你的分数已含州担保 +${bonus}` : ""}</p>` +
+    row("池子人数", wtFmt(p[L]), `较上月 ${wtSgn(d1)}。提交了 EOI、还在排队的人，不是工作岗位数。`) +
+    row("近 6 个月", `${wtSgn(d6)}${pc6 == null ? "" : `（${pct(pc6)}）`}`,
+        `${vs}池子变小常见原因：一轮邀请把人带走、EOI 到期或撤回、换了职业。`, wtCls(d6)) +
+    row(mine == null ? "池里分数不低于你的" : `池里 ≥ ${mine} 分的 EOI`,
+        ahead == null ? "先填分数" : `${wtFmt(ahead)} 个${tot ? `（${Math.round(ahead / tot * 100)}%）` : ""}`,
+        "同一职业、同一签证的当前快照。同分按提交 EOI 的时间先后，快照看不出实际邀请顺序。", "you") +
+    row("近 12 个月获邀状态记录", wtFmt(invSum),
+        `12 个月里有 ${invM} 个月有记录。月末快照累加，同一人可能被算进两个月，不等于独立获邀人数。`) +
+    row(mine == null ? "你这一档历史获邀率" : `${mine} 分这一档历史获邀率`, rate[0], rate[1], "you") +
+    row("池内分数线", `p50 ${P("p50")} · p75 ${P("p75")} · p90 ${P("p90")}`, "池里排队的人的分数分布，不是官方邀请分数线。");
 }
 
 /* ---------- centre: charts ---------- */
@@ -3308,13 +3361,7 @@ function wtRenderCenter() {
   const lab = sl(o.monthLabels).map(l => l.replace(/^(\d\d)\/20(\d\d)$/, "$2.$1"));
   const p = s.SUBMITTED, inv = s.INVITED, pc = o.percentiles[v];
   const mine = wtMine(), b = wtBand(o.rate[v], mine), last = p.length - 1;
-  wt$("wtKpis").innerHTML =
-    `<div><span>在池人数</span><b>${wtFmt(p[last])}</b></div>
-     <div><span>较上月</span><b class="${wtCls(p[last] - p[last - 1])}">${wtSgn(p[last] - p[last - 1])}</b></div>
-     <div><span>较 6 个月前</span><b class="${wtCls(p[last] - p[last - 6])}">${wtSgn(p[last] - p[last - 6])}</b></div>
-     <div><span>池内 p75 分数</span><b>${pc.p75[pc.p75.length - 1]} 分</b></div>
-     <div><span>${mine == null ? "你的分数段获邀率" : `你 ${mine} 分段历史获邀率`}</span>
-       <b class="you">${mine == null ? "先填分数" : b && b.n >= WT_MIN_N ? b.rate.toFixed(1) + "%" : "数据不足"}</b></div>`;
+  wt$("wtKpis").innerHTML = wtCard(o, WT.visa, mine, wtOverall((WT.board && WT.board.visas[WT.visa]) || []));
   const pv = sl(p), iv = sl(inv), p50 = sl(pc.p50), p75 = sl(pc.p75), p90 = sl(pc.p90);
   const lo = Math.min(...pv), hi = Math.max(...pv), pad = (hi - lo) * .25 || hi * .1 || 1;
   const yMin = Math.max(0, Math.floor((lo - pad) / 10) * 10), yMax = Math.ceil((hi + pad) / 10) * 10;
@@ -3353,7 +3400,7 @@ function wtRenderRight() {
   const rows = pp.points.map((pt, i) => ({ pt, c: pp.counts[i] })).filter(x => x.pt >= 55).reverse();
   wt$("wtDist").innerHTML = rows.map(({ pt, c }) => {
     const i = r ? r.points.indexOf(pt) : -1, nn = i >= 0 ? r.total[i] : 0;
-    const rt = i < 0 ? "—" : nn < WT_MIN_N ? "样本少" : r.rate[i].toFixed(1) + "%";
+    const rt = i < 0 ? "—" : nn < WT_FEW ? "人数少" : r.rate[i].toFixed(1) + "%" + (nn < WT_MIN_N ? "*" : "");
     return `<div class="wt-drow ${pt === mb ? "me" : ""} ${cl && pt >= cl ? "cliff" : ""}">
       <span class="pt">${pt}</span><span class="bar"><i style="width:${(c / max * 100).toFixed(1)}%"></i></span>
       <span class="rt">${rt}</span></div>`;
@@ -3497,7 +3544,7 @@ const HM_GROUP = { "12": "农场主", "13": "专业管理", "14": "酒店零售�
   "32": "汽车工程技工", "33": "建筑技工", "34": "电工电子", "35": "食品技工", "36": "动物园艺", "39": "其他技工",
   "41": "医护社区服务", "44": "安保应急", "45": "体育", "51": "办公管理", "59": "文员", "61": "销售", "63": "销售" };
 const HM_BONUS = { "189": 0, "190": 5, "491": 15 };
-const HM_MIN_POOL = 100, HM_MIN_N = 30;
+const HM_MIN_POOL = 100, HM_MIN_N = 30, HM_FEW = 10;   // rate: <10 hidden, 10-29 flagged *
 const HM_MODE_KEY = "immi.lb.mode";
 const HM = { met: "pool", per: 6, rel: 1, me: null, zoom: null, sel: null, base: 0, wired: false };
 const hm$ = id => document.getElementById(id);
@@ -3514,12 +3561,12 @@ function hmRows() {
     const ok = now >= HM_MIN_POOL && then >= HM_MIN_POOL;
     const b = mine == null ? null : r.r[String(Math.floor(mine / 5) * 5)] || null;
     return { r, c: r.c, zh: r.zh || r.en, now, then, pct: ok ? (now - then) / then * 100 : null,
-             band: b, rate: b && b[1] >= HM_MIN_N ? b[0] : null };
+             band: b, rate: b && b[1] >= HM_FEW ? b[0] : null, few: !!b && b[1] < HM_MIN_N };
   });
 }
 
 const hmPctTxt = p => p == null ? "样本少" : (p > 0 ? "+" : p < 0 ? "−" : "") + Math.abs(p).toFixed(1) + "%";
-const hmRateTxt = x => x == null ? "样本少" : (x < 10 ? x.toFixed(1) : Math.round(x)) + "%";
+const hmRateTxt = x => x == null ? "人数少" : (x < 10 ? x.toFixed(1) : Math.round(x)) + "%";
 const hmVal = t => HM.met === "rate" ? t.rate : t.pct;
 const hmTxt = x => HM.met === "rate" ? hmRateTxt(x) : hmPctTxt(x);
 function hmCls(x) { return x == null ? "na" : HM.rel || HM.met === "rate" ? "" : x > 0.05 ? "up" : x < -0.05 ? "down" : ""; }
@@ -3596,7 +3643,7 @@ function hmTiles(ts, area, minArea) {
     const now = tail.reduce((a, t) => a + t.now, 0), then = tail.reduce((a, t) => a + t.then, 0);
     const bs = tail.filter(t => t.band), n = bs.reduce((a, t) => a + t.band[1], 0);
     const inv = bs.reduce((a, t) => a + t.band[0] * t.band[1] / 100, 0);
-    out.push({ v: now, other: tail.length, val: HM.met === "rate" ? (n >= HM_MIN_N ? inv / n * 100 : null)
+    out.push({ v: now, other: tail.length, val: HM.met === "rate" ? (n >= HM_FEW ? inv / n * 100 : null)
       : now >= HM_MIN_POOL && then >= HM_MIN_POOL ? (now - then) / then * 100 : null });
   }
   return out;
@@ -3610,12 +3657,12 @@ function hmTile(it, rc) {
       `<span class="${hmCls(it.val)}" style="font-size:${Math.min(fs, 12)}px">${hmTxt(it.val)}</span>` : "";
     return `<button type="button" class="hm-t hm-o${hmDk(it.val)}" data-other="1" style="${pos}background:${hmFill(it.val)}" aria-label="其他 ${it.other} 个职业，点开放大">${lbl}</button>`;
   }
-  const t = it.t, v = hmVal(t);
+  const t = it.t, v = hmVal(t), star = HM.met === "rate" && v != null && t.few ? "*" : "";
   let inner = "";
-  if (w >= 60 && h >= 40) inner = `<b style="font-size:${fs}px">${lbEsc(t.zh)}</b><span class="${hmCls(v)}" style="font-size:${fs * .85}px">${hmTxt(v)}</span>`;
+  if (w >= 60 && h >= 40) inner = `<b style="font-size:${fs}px">${lbEsc(t.zh)}</b><span class="${hmCls(v)}" style="font-size:${fs * .85}px">${hmTxt(v)}${star}</span>`;
   else if (w >= 44 && h >= 18) inner = `<b style="font-size:${Math.min(fs, 12)}px">${lbEsc(t.zh)}</b>`;
   return `<button type="button" class="hm-t${HM.sel === t.c ? " on" : ""}${hmDk(v)}" data-c="${t.c}" style="${pos}background:${hmFill(v)}"
-    title="${lbEsc(t.zh)} ${hmTxt(v)}" aria-label="${lbEsc(t.zh)}，在池 ${lbFmt(t.now)}，${hmTxt(v)}">${inner}</button>`;
+    title="${lbEsc(t.zh)} ${hmTxt(v)}${star}" aria-label="${lbEsc(t.zh)}，在池 ${lbFmt(t.now)}，${hmTxt(v)}${star ? "，人数少" : ""}">${inner}</button>`;
 }
 
 function hmRender() {
@@ -3626,15 +3673,14 @@ function hmRender() {
   if (document.activeElement !== hm$("hmMe")) hm$("hmMe").value = HM.me == null ? "" : HM.me;
   const map = hm$("hmMap"), W = map.clientWidth, H = map.clientHeight, phone = W < 600, HD = 20;
   const all = hmRows(), gs = hmGroups(all);
-  const ok = all.filter(t => t.pct != null), n = ok.reduce((a, t) => a + t.now, 0), th = ok.reduce((a, t) => a + t.then, 0);
-  HM.base = th ? (n - th) / th * 100 : 0;
+  HM.base = wtOverall(LB.data.visas[LB.visa] || [], HM.per) || 0;     // same figure the check-up card quotes
   const visa = LB.visa, mine = HM.me == null ? null : HM.me + HM_BONUS[visa];
   const legend = HM.met === "rate"
     ? (mine == null ? ` · <b class="hm-you">先填你的分数</b>，才能按获邀率上色`
        : ` · 你 <b class="hm-you">${mine}</b> 分${HM_BONUS[visa] ? `（含州担保 ${HM_BONUS[visa]} 分）` : ""}这一段的历史获邀率` +
-         `<span class="hm-lg">0% <i class="rt"></i> 50%+</span>`)
+         `<span class="hm-lg">0% <i class="rt"></i> 50%+ · * 这一档不到 30 人</span>`)
     : ` · 整体${HM.per === 1 ? "较上月" : "近 6 个月"} <b>${hmPctTxt(HM.base)}</b>` +
-      (HM.rel ? `<span class="hm-lg">比整体慢 <i></i> 比整体快</span>`
+      (HM.rel ? `<span class="hm-lg">比整体涨得慢 <i></i> 比整体涨得快</span><span class="hm-hint">绿色不等于池子在缩小，格子里的百分比才是它自己的变化</span>`
               : `<span class="hm-lg">${HM.per === 1 ? "−6%" : "−20%"} <i></i> ${HM.per === 1 ? "+6%" : "+20%"}</span>`);
   let html = "";
   const g = HM.zoom && gs.find(x => x.g === HM.zoom);
@@ -3666,8 +3712,11 @@ function hmPanel(all) {
   }
   p.classList.remove("idle");
   const visa = LB.visa, mine = HM.me == null ? null : HM.me + HM_BONUS[visa], s = t.r.s;
-  const m1 = s[s.length - 1] - s[s.length - 2], m6 = s[s.length - 1] - s[s.length - 7];
-  const sg = d => (d > 0 ? "+" : d < 0 ? "−" : "") + lbFmt(Math.abs(d)), cl = d => d > 0 ? "up" : d < 0 ? "down" : "";
+  // the card needs the per-occupation file (pool by band, invited series); fetch once, redraw when it lands
+  const o = WT.cache[t.c];
+  if (!o) wtDetail(t.c).then(() => { if (HM.sel === t.c) hmPanel(hmRows()); }).catch(() => {});
+  const card = o ? wtCard(o, visa, mine, wtOverall(LB.data.visas[visa] || []))
+    : `<p class="wt-cardh">载入中…</p>`;
   const lo = Math.min(...s), hi = Math.max(...s), Wd = 270, Hd = 70;
   const px = i => 4 + i * (Wd - 8) / (s.length - 1), py = v => hi === lo ? Hd / 2 : Hd - 14 - (v - lo) / (hi - lo) * (Hd - 22);
   const pts = s.map((v, i) => `${px(i).toFixed(1)},${py(v).toFixed(1)}`).join(" ");
@@ -3679,14 +3728,7 @@ function hmPanel(all) {
       <polygon points="${px(0)},${Hd - 12} ${pts} ${px(s.length - 1)},${Hd - 12}" fill="var(--wt-pool)" opacity=".10"/>
       <polyline points="${pts}" fill="none" stroke="var(--wt-pool)" stroke-width="1.8" vector-effect="non-scaling-stroke"/>
       <text x="4" y="${Hd - 1}">${m12[0]}</text><text x="${Wd - 4}" y="${Hd - 1}" text-anchor="end">${m12[m12.length - 1]}</text></svg>
-    <div class="hm-kv">
-      <div><span>在池人数</span><b>${lbFmt(t.now)}</b></div>
-      <div><span>池内 p75 分数</span><b>${t.r.p75[1] ? t.r.p75[1] + " 分" : "—"}</b></div>
-      <div><span>较上月</span><b class="${cl(m1)}">${sg(m1)}</b></div>
-      <div><span>近 6 个月</span><b class="${cl(m6)}">${sg(m6)}</b></div>
-      <div class="w"><span>${mine == null ? "填上分数后显示你分数段的历史获邀率" : `你 ${mine} 分段历史获邀率${HM_BONUS[visa] ? `（含州担保 ${HM_BONUS[visa]} 分）` : ""}`}</span>
-        <b class="hm-you">${mine == null ? "—" : t.band && t.band[1] < HM_MIN_N ? "样本少" : t.band ? t.band[0].toFixed(1) + "%" : "—"}</b></div>
-    </div>
+    <div class="wt-card">${card}</div>
     <div class="hm-acts"><button type="button" data-star="${t.c}">${inList ? "★ 已加自选" : "＋ 加自选"}</button>
       <a class="hm-pri" href="#/watch/${t.c}">看详情 →</a></div>
     <p class="wt-note">历史获邀率：截至统计时这一分数段累计获邀的比例，不代表未来获邀概率。</p>`;
