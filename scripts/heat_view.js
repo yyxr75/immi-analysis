@@ -45,16 +45,21 @@ const hmRateTxt = x => x == null ? "样本少" : (x < 10 ? x.toFixed(1) : Math.r
 const hmVal = t => HM.met === "rate" ? t.rate : t.pct;
 const hmTxt = x => HM.met === "rate" ? hmRateTxt(x) : hmPctTxt(x);
 function hmCls(x) { return x == null ? "na" : HM.rel || HM.met === "rate" ? "" : x > 0.05 ? "up" : x < -0.05 ? "down" : ""; }
-function hmFill(x) {
-  if (x == null) return "var(--hm-flat)";
-  if (HM.met === "rate") {             // sqrt: most rates sit under 5%, a few pass 70%
-    const k = Math.min(1, Math.sqrt(x / 50));
-    return `color-mix(in oklab, var(--good) ${Math.round(4 + k * 66)}%, var(--hm-flat))`;
-  }
+/* How much of the full-strength colour a value gets (0..100). Full strength is
+   reached at the clamp; past ~60% the tile is dark enough to need white text. */
+function hmMix(x) {
+  if (x == null) return { m: 0 };
+  if (HM.met === "rate")               // sqrt: most rates sit under 5%, a few pass 70%
+    return { m: Math.round(12 + Math.min(1, Math.sqrt(x / 50)) * 88), c: "--hm-dn" };
   if (HM.rel) x -= HM.base;
   const k = Math.min(1, Math.abs(x) / (HM.per === 1 ? 6 : 20));
-  return `color-mix(in oklab, ${x > 0 ? "var(--bad)" : "var(--good)"} ${Math.round(8 + k * 52)}%, var(--hm-flat))`;
+  return { m: Math.round(18 + k * 82), c: x > 0 ? "--hm-up" : "--hm-dn" };
 }
+function hmFill(x) {
+  const { m, c } = hmMix(x);
+  return m ? `color-mix(in oklab, var(${c}) ${m}%, var(--hm-flat))` : "var(--hm-flat)";
+}
+const hmDk = x => hmMix(x).m >= 62 ? " hm-dk" : "";
 
 /* Squarified treemap (Bruls, Huizing & van Wijk): fill rows along the shorter
    side, closing a row when adding the next item would worsen its aspect ratio. */
@@ -125,13 +130,13 @@ function hmTile(it, rc) {
   if (it.other) {
     const lbl = w > 46 && h > 30 ? `<b style="font-size:${Math.min(fs, 13)}px">其他 ${it.other} 个</b>` +
       `<span class="${hmCls(it.val)}" style="font-size:${Math.min(fs, 12)}px">${hmTxt(it.val)}</span>` : "";
-    return `<button type="button" class="hm-t hm-o" data-other="1" style="${pos}background:${hmFill(it.val)}" aria-label="其他 ${it.other} 个职业，点开放大">${lbl}</button>`;
+    return `<button type="button" class="hm-t hm-o${hmDk(it.val)}" data-other="1" style="${pos}background:${hmFill(it.val)}" aria-label="其他 ${it.other} 个职业，点开放大">${lbl}</button>`;
   }
   const t = it.t, v = hmVal(t);
   let inner = "";
   if (w >= 60 && h >= 40) inner = `<b style="font-size:${fs}px">${lbEsc(t.zh)}</b><span class="${hmCls(v)}" style="font-size:${fs * .85}px">${hmTxt(v)}</span>`;
   else if (w >= 44 && h >= 18) inner = `<b style="font-size:${Math.min(fs, 12)}px">${lbEsc(t.zh)}</b>`;
-  return `<button type="button" class="hm-t${HM.sel === t.c ? " on" : ""}" data-c="${t.c}" style="${pos}background:${hmFill(v)}"
+  return `<button type="button" class="hm-t${HM.sel === t.c ? " on" : ""}${hmDk(v)}" data-c="${t.c}" style="${pos}background:${hmFill(v)}"
     title="${lbEsc(t.zh)} ${hmTxt(v)}" aria-label="${lbEsc(t.zh)}，在池 ${lbFmt(t.now)}，${hmTxt(v)}">${inner}</button>`;
 }
 

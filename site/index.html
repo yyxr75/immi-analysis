@@ -328,9 +328,9 @@ ul.dont { margin:0; padding-left:19px; }
 @media (max-width:380px) { .lb-row { grid-template-columns:20px minmax(0,1fr) auto; } .lb-sp { display:none; } }
 
 /* ---- 龙虎榜 · 热力图 ---- */
-:root { --hm-flat:#eceef1; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --hm-flat:#24272e; } }
-:root[data-theme="dark"] { --hm-flat:#24272e; }
+:root { --hm-flat:#eceef1; --hm-up:#f0283c; --hm-dn:#00b26b; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --hm-flat:#24272e; --hm-up:#f23b4e; --hm-dn:#0fbf78; } }
+:root[data-theme="dark"] { --hm-flat:#24272e; --hm-up:#f23b4e; --hm-dn:#0fbf78; }
 body[data-view="board"] .wrap { max-width:1440px; }
 .lb-mode { align-self:flex-start; } .lb-mode button { font-size:14px; padding:6px 18px; }
 .lb-list { display:flex; flex-direction:column; gap:14px; }
@@ -340,8 +340,8 @@ body[data-view="board"] .wrap { max-width:1440px; }
 .hm-you { color:var(--wt-you); }
 .hm-lg { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--muted); margin-left:auto; }
 .hm-lg i { display:block; width:140px; height:10px; border-radius:2px;
-  background:linear-gradient(90deg, color-mix(in oklab,var(--good) 60%,var(--hm-flat)), var(--hm-flat), color-mix(in oklab,var(--bad) 60%,var(--hm-flat))); }
-.hm-lg i.rt { background:linear-gradient(90deg, var(--hm-flat), color-mix(in oklab,var(--good) 70%,var(--hm-flat))); }
+  background:linear-gradient(90deg, var(--hm-dn), color-mix(in oklab,var(--hm-dn) 18%,var(--hm-flat)), var(--hm-flat), color-mix(in oklab,var(--hm-up) 18%,var(--hm-flat)), var(--hm-up)); }
+.hm-lg i.rt { background:linear-gradient(90deg, color-mix(in oklab,var(--hm-dn) 12%,var(--hm-flat)), var(--hm-dn)); }
 .hm-stage { display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:12px; align-items:start; }
 .hm-map { position:relative; height:640px; background:var(--surface); border:1px solid var(--hair); border-radius:10px; overflow:hidden; }
 .hm-g { position:absolute; }
@@ -354,6 +354,7 @@ body[data-view="board"] .wrap { max-width:1440px; }
 .hm-t:focus-visible, .hm-gh:focus-visible { outline:2px solid var(--s1); outline-offset:-2px; z-index:2; }
 .hm-t b { font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%; }
 .hm-t span { font-variant-numeric:tabular-nums; white-space:nowrap; }
+.hm-t.hm-dk, .hm-t.hm-dk b, .hm-t.hm-dk span { color:#fff; }
 .hm-o { cursor:zoom-in; } .hm-o b { font-weight:400; color:var(--ink2); }
 .hm .up { color:var(--bad); } .hm .down { color:var(--good); } .hm .na { color:var(--muted); }
 .hm-panel { position:relative; background:var(--surface); border:1px solid var(--hair); border-radius:10px; padding:14px; display:flex; flex-direction:column; gap:10px; min-width:0; }
@@ -3522,16 +3523,21 @@ const hmRateTxt = x => x == null ? "样本少" : (x < 10 ? x.toFixed(1) : Math.r
 const hmVal = t => HM.met === "rate" ? t.rate : t.pct;
 const hmTxt = x => HM.met === "rate" ? hmRateTxt(x) : hmPctTxt(x);
 function hmCls(x) { return x == null ? "na" : HM.rel || HM.met === "rate" ? "" : x > 0.05 ? "up" : x < -0.05 ? "down" : ""; }
-function hmFill(x) {
-  if (x == null) return "var(--hm-flat)";
-  if (HM.met === "rate") {             // sqrt: most rates sit under 5%, a few pass 70%
-    const k = Math.min(1, Math.sqrt(x / 50));
-    return `color-mix(in oklab, var(--good) ${Math.round(4 + k * 66)}%, var(--hm-flat))`;
-  }
+/* How much of the full-strength colour a value gets (0..100). Full strength is
+   reached at the clamp; past ~60% the tile is dark enough to need white text. */
+function hmMix(x) {
+  if (x == null) return { m: 0 };
+  if (HM.met === "rate")               // sqrt: most rates sit under 5%, a few pass 70%
+    return { m: Math.round(12 + Math.min(1, Math.sqrt(x / 50)) * 88), c: "--hm-dn" };
   if (HM.rel) x -= HM.base;
   const k = Math.min(1, Math.abs(x) / (HM.per === 1 ? 6 : 20));
-  return `color-mix(in oklab, ${x > 0 ? "var(--bad)" : "var(--good)"} ${Math.round(8 + k * 52)}%, var(--hm-flat))`;
+  return { m: Math.round(18 + k * 82), c: x > 0 ? "--hm-up" : "--hm-dn" };
 }
+function hmFill(x) {
+  const { m, c } = hmMix(x);
+  return m ? `color-mix(in oklab, var(${c}) ${m}%, var(--hm-flat))` : "var(--hm-flat)";
+}
+const hmDk = x => hmMix(x).m >= 62 ? " hm-dk" : "";
 
 /* Squarified treemap (Bruls, Huizing & van Wijk): fill rows along the shorter
    side, closing a row when adding the next item would worsen its aspect ratio. */
@@ -3602,13 +3608,13 @@ function hmTile(it, rc) {
   if (it.other) {
     const lbl = w > 46 && h > 30 ? `<b style="font-size:${Math.min(fs, 13)}px">其他 ${it.other} 个</b>` +
       `<span class="${hmCls(it.val)}" style="font-size:${Math.min(fs, 12)}px">${hmTxt(it.val)}</span>` : "";
-    return `<button type="button" class="hm-t hm-o" data-other="1" style="${pos}background:${hmFill(it.val)}" aria-label="其他 ${it.other} 个职业，点开放大">${lbl}</button>`;
+    return `<button type="button" class="hm-t hm-o${hmDk(it.val)}" data-other="1" style="${pos}background:${hmFill(it.val)}" aria-label="其他 ${it.other} 个职业，点开放大">${lbl}</button>`;
   }
   const t = it.t, v = hmVal(t);
   let inner = "";
   if (w >= 60 && h >= 40) inner = `<b style="font-size:${fs}px">${lbEsc(t.zh)}</b><span class="${hmCls(v)}" style="font-size:${fs * .85}px">${hmTxt(v)}</span>`;
   else if (w >= 44 && h >= 18) inner = `<b style="font-size:${Math.min(fs, 12)}px">${lbEsc(t.zh)}</b>`;
-  return `<button type="button" class="hm-t${HM.sel === t.c ? " on" : ""}" data-c="${t.c}" style="${pos}background:${hmFill(v)}"
+  return `<button type="button" class="hm-t${HM.sel === t.c ? " on" : ""}${hmDk(v)}" data-c="${t.c}" style="${pos}background:${hmFill(v)}"
     title="${lbEsc(t.zh)} ${hmTxt(v)}" aria-label="${lbEsc(t.zh)}，在池 ${lbFmt(t.now)}，${hmTxt(v)}">${inner}</button>`;
 }
 
