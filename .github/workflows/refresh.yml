@@ -49,6 +49,7 @@ jobs:
           python extract_all.py
           python extract_thresholds.py
           python build_site.py
+          python extract_rounds_occ.py
 
       - name: Verify the rebuild before committing
         if: steps.probe.outputs.changed == 'true' || inputs.force

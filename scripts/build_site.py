@@ -450,7 +450,8 @@ def main():
     tpl = aiview.inject(tpl, index)
     # The 自选 home view lives in its own file, like the AI panel.
     tpl = tpl.replace("<!--HEATJS-->", "<script>\n" +
-                      open(os.path.join(HERE, "heat_view.js")).read() + "</script>")
+                      open(os.path.join(HERE, "heat_view.js")).read() + "\n" +
+                      open(os.path.join(HERE, "round_view.js")).read() + "</script>")
     tpl = tpl.replace("<!--WATCHJS-->", "<script>\n" +
                       open(os.path.join(HERE, "watch_view.js")).read() + "</script>")
     html = (tpl.replace("__DATA__", "null")

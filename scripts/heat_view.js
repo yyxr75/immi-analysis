@@ -221,10 +221,12 @@ async function hmStar(code) {
 }
 
 function lbMode(m) {
-  hm$("lbHeat").hidden = m !== "heat"; hm$("lbList").hidden = m === "heat";
+  hm$("lbHeat").hidden = m !== "heat"; hm$("lbList").hidden = m !== "list"; hm$("lbRound").hidden = m !== "round";
+  hm$("lbSeg").hidden = m === "round";   // rounds are 189 only
   hm$("lbMode").querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.m === m));
   try { localStorage.setItem(HM_MODE_KEY, m); } catch (e) {}
   if (m === "heat") hmRender();
+  if (m === "round" && typeof rdRender === "function") { rdWire(); rdRender(); }
 }
 
 function hmWire() {
@@ -256,5 +258,5 @@ function hmWire() {
   let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { if (curView === "board") hmRender(); }, 140); });
   // desktop opens with a tile selected so the side panel shows what it is for
   if (!matchMedia("(max-width:760px)").matches) HM.sel = "261313";
-  lbMode(m === "list" ? "list" : "heat");
+  lbMode(m === "list" || m === "round" ? m : "heat");
 }

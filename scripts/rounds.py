@@ -17,6 +17,7 @@ ANZSCO codes via site/data/occupations.json, and write
 
 Prints `changed=true|false` (and round=<date>) to $GITHUB_OUTPUT when set.
 """
+import difflib
 import html
 import json
 import os
@@ -114,6 +115,9 @@ def attach_codes(rnd):
     miss = []
     for o in rnd["occupations"]:
         hit = by.get(norm(o["name"]))
+        if not hit:  # the page has typos ("Enviromental", "Paeditrician")
+            close = difflib.get_close_matches(norm(o["name"]), list(by), n=1, cutoff=0.9)
+            hit = by[close[0]] if close else None
         o["code"] = hit["code"] if hit else None
         if hit:
             o["zh"] = hit["zh"][0] if hit.get("zh") else None

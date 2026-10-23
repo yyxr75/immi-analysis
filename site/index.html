@@ -327,6 +327,39 @@ ul.dont { margin:0; padding-left:19px; }
 }
 @media (max-width:380px) { .lb-row { grid-template-columns:20px minmax(0,1fr) auto; } .lb-sp { display:none; } }
 
+/* ---- 行情 · 邀请轮次 ---- */
+.rd { display:flex; flex-direction:column; gap:12px; }
+.rd-lede { margin:0; font-size:14px; color:var(--ink2); }
+.rd .lb-chips { display:flex; flex-wrap:wrap; }   /* the 龙虎榜 rule hides .lb-chips on desktop */
+.rd-tape { grid-template-columns:repeat(4,minmax(0,1fr)); }
+.rd-tape small { font-size:12px; color:var(--muted); font-weight:400; }
+.rd-bar2 { display:flex; flex-wrap:wrap; gap:8px 12px; align-items:center; justify-content:space-between; }
+.rd-q { font:inherit; font-size:14px; padding:6px 10px; border-radius:8px; border:1px solid var(--hair); background:var(--surface); color:var(--ink); min-width:220px; }
+.rd-row { grid-template-columns:28px minmax(0,1.1fr) minmax(0,1.3fr) auto; }
+.rd-mid { min-width:0; display:flex; flex-direction:column; gap:4px; }
+.rd-mid small, .rd-occ td small { font-size:11.5px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.rd-bar { display:flex; height:10px; border-radius:3px; overflow:hidden; gap:1px; background:var(--hair); }
+.rd-bar i { display:block; min-width:2px; background:color-mix(in oklab, var(--s1) calc(30% + var(--k) * 70%), var(--surface)); }
+.rd-occ { padding:8px 12px 10px; border-bottom:1px solid var(--hair); }
+.rd-occ .k { margin:0 0 6px; font-size:13px; color:var(--ink2); }
+.rd-occ .n { margin:6px 0 0; font-size:11.5px; color:var(--muted); line-height:1.5; }
+.rd-occ table { width:100%; border-collapse:collapse; font-size:13px; table-layout:fixed; }
+.rd-occ th { font-weight:500; color:var(--muted); font-size:11.5px; text-align:left; padding:2px 6px 4px 0; }
+.rd-occ td { padding:6px 6px 6px 0; border-top:1px solid var(--hair); vertical-align:top; }
+.rd-occ th:nth-child(1), .rd-occ td:nth-child(1) { width:30%; }
+.rd-occ th:nth-child(2), .rd-occ td:nth-child(2) { width:16%; }
+.rd-occ th:nth-child(3), .rd-occ td:nth-child(3) { width:15%; }
+.rd-occ .num { text-align:right; font-variant-numeric:tabular-nums; padding-right:12px; }
+.rd-occ .z { color:var(--muted); }
+.rd-occ td.d { display:flex; flex-direction:column; gap:3px; }
+.rd-occ td.d:not(:has(.rd-bar)) { color:var(--muted); font-size:12px; }
+@media (max-width:760px) {
+  .rd-tape { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .rd-row { grid-template-columns:22px minmax(0,1fr) auto; }
+  .rd-mid { grid-column:2 / -1; grid-row:2; }
+  .rd-q { min-width:0; width:100%; }
+}
+
 /* ---- 龙虎榜 · 热力图 ---- */
 :root { --hm-flat:#eceef1; --hm-up:#f0283c; --hm-dn:#00b26b; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --hm-flat:#24272e; --hm-up:#f23b4e; --hm-dn:#0fbf78; } }
@@ -867,6 +900,7 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
       <div class="wt-seg lb-mode" role="group" aria-label="显示方式" id="lbMode">
         <button type="button" data-m="heat" aria-pressed="true">热力图</button>
         <button type="button" data-m="list" aria-pressed="false">龙虎榜</button>
+        <button type="button" data-m="round" aria-pressed="false">邀请轮次</button>
       </div>
       <div class="lb-seg" role="group" aria-label="签证类别" id="lbSeg">
         <button type="button" data-v="189" aria-pressed="true">189 独立</button>
@@ -893,6 +927,18 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
           <aside class="hm-panel idle" id="hmPanel"></aside>
         </div>
         <p class="lb-foot">面积 = 当前池里的 EOI 人数。「池子变化」：格子里的百分比是这个职业池子人数的变化。几乎所有职业的池子都在变大，所以颜色默认「比整体」：红色是比整体涨得快（排队的人增加得更快），绿色是比整体涨得慢或在缩小（绿色不等于缩小，格子里的百分比才是它自己的变化）；「绝对变化」只看自己涨还是跌。池子少于 100 人的变化不稳定，显示为灰色。「获邀率」：格子大小不变，颜色和数字换成你这个分数段的历史获邀率（截至统计时，这一段累计获邀的比例），越绿越高；这一档历史上不到 30 人的带 *（波动大），不到 10 人的显示灰色。颜色都不代表未来获邀概率。池子是排队的 EOI，不是工作岗位；池子变小常常是一轮邀请把人带走了，也可能是 EOI 到期、撤回或换了职业。数据来自 SkillSelect 公开看板，不是移民建议。</p>
+      </div>
+      <div class="rd" id="lbRound" hidden>
+        <p class="rd-lede">每一轮 189 邀请里，每个职业<strong>邀请了多少人、都是多少分</strong>。人数很少的职业，说明这一轮名额给得很少。</p>
+        <div class="rd-days lb-chips" role="group" aria-label="选择轮次"></div>
+        <div class="lb-tape rd-tape"></div>
+        <div class="rd-bar2">
+          <div class="rd-sort lb-chips" role="group" aria-label="排序"></div>
+          <input class="rd-q" type="search" placeholder="搜职业：中文 / 英文 / 代码" aria-label="搜索职业">
+        </div>
+        <div class="lb-board rd-list" aria-live="polite"></div>
+        <p class="lb-foot rd-note"></p>
+        <p class="lb-foot">获邀人数：用 SkillSelect 公开看板里每个 EOI 的状态日期还原。邀请当天状态变成 INVITED，递交签证后变成 LODGED，两者都算进这一轮，和官方公布的总数对得上 96% 以上。最低分来自内政部官网公布的轮次表；低于官方最低分的零星记录（多为邀请后分数变动或其他签证）已去掉。条形图是这个职业获邀者的分数构成，左边低分、右边高分。这是历史结果，不代表下一轮，也不是移民建议。</p>
       </div>
       <div class="lb-list" id="lbList" hidden>
       <div class="lb-tape" id="lbTape"></div>
@@ -3303,17 +3349,9 @@ function wtCard(o, visa, mine, overall) {
     wtRound(WT.sel, visa);
 }
 
-/* latest official round (data/rounds.json, from the Home Affairs "Invitation rounds" page) */
+/* every 189 round for this occupation: invitees and their scores (round_view.js) */
 function wtRound(code, visa) {
-  const R = WT.rounds;
-  if (!R || visa !== "189" || !R.totals["189"]) return "";
-  const t = R.totals["189"], hit = R.occupations.find(x => x.code === code);
-  const day = R.date.replace(/^(\d+)-0?(\d+)-0?(\d+)$/, "$1年$2月$3日");
-  const tb = /^\d{4}-\d{2}-\d{2}$/.test(t.tieBreak) ? t.tieBreak.replace(/^(\d+)-0?(\d+)-0?(\d+)$/, "$1年$2月$3日") : t.tieBreak;
-  const head = `${day}轮 189 共邀请 ${wtFmt(t.invited)} 份，tie break 到 ${tb}。移民局官网公布。`;
-  return hit && hit.min["189"] != null
-    ? `<div class="wt-cr"><span class="k">最近一轮官方最低邀请分</span><b class="v you">${hit.min["189"]} 分</b><span class="n">${head}这是这一轮被邀请的最低分，不是下一轮的分数线。</span></div>`
-    : `<div class="wt-cr"><span class="k">最近一轮官方最低邀请分</span><b class="v">未邀请</b><span class="n">${head}官方表里没有这个职业：可能没有可邀请的 EOI，或没达到条件。</span></div>`;
+  return visa === "189" && typeof rdOccHtml === "function" ? rdOccHtml(code) : "";
 }
 
 /* ---------- centre: charts ---------- */
@@ -3529,9 +3567,9 @@ function wtInit() {
   Promise.all([
     fetch("data/board.json", { cache: "no-cache" }).then(r => r.json()),
     fetch("data/occupations.json", { cache: "force-cache" }).then(r => r.json()),
-    fetch("data/rounds.json", { cache: "no-cache" }).then(r => r.ok ? r.json() : null).catch(() => null),
-  ]).then(([board, index, rounds]) => {
-    WT.board = board; WT.index = index; WT.rounds = rounds && rounds.latest;
+    typeof rdLoad === "function" ? rdLoad().catch(() => null) : null,
+  ]).then(([board, index]) => {
+    WT.board = board; WT.index = index;
     wtOpen(want || WT.sel || WT.list[0] || index[0].code);
   }).catch(e => { wt$("wtRo").textContent = "数据载入失败：" + e.message + "。刷新页面重试。"; });
   wtPull().then(() => { if (WT.board) wtRenderAll(); });
@@ -3761,10 +3799,12 @@ async function hmStar(code) {
 }
 
 function lbMode(m) {
-  hm$("lbHeat").hidden = m !== "heat"; hm$("lbList").hidden = m === "heat";
+  hm$("lbHeat").hidden = m !== "heat"; hm$("lbList").hidden = m !== "list"; hm$("lbRound").hidden = m !== "round";
+  hm$("lbSeg").hidden = m === "round";   // rounds are 189 only
   hm$("lbMode").querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.m === m));
   try { localStorage.setItem(HM_MODE_KEY, m); } catch (e) {}
   if (m === "heat") hmRender();
+  if (m === "round" && typeof rdRender === "function") { rdWire(); rdRender(); }
 }
 
 function hmWire() {
@@ -3796,7 +3836,126 @@ function hmWire() {
   let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { if (curView === "board") hmRender(); }, 140); });
   // desktop opens with a tile selected so the side panel shows what it is for
   if (!matchMedia("(max-width:760px)").matches) HM.sel = "261313";
-  lbMode(m === "list" ? "list" : "heat");
+  lbMode(m === "list" || m === "round" ? m : "heat");
+}
+
+/* ---------- 邀请轮次 ----------
+   Per-round, per-occupation 189 invitations from data/round_occ.json
+   (scripts/extract_rounds_occ.py): how many EOIs each occupation had invited
+   in each round and at which scores. Counts are rebuilt from the EOI
+   dashboard's status dates; the minimum score is the official one when Home
+   Affairs published a table for that round. Used by 行情 → 邀请轮次 and by the
+   occupation card in 自选. */
+const RD = { data: null, loading: null, day: null, sort: "most", q: "" };
+const rdFmt = n => n.toLocaleString("en-US");
+const rdEsc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const rdDay = d => d.replace(/^(\d+)-0?(\d+)-0?(\d+)$/, "$1年$2月$3日");
+const rdTb = t => !t ? "—" : /^\d{4}-\d{2}-\d{2}$/.test(t) ? rdDay(t) : /^\d{2}\/\d{4}$/.test(t) ? t.replace(/^0?(\d+)\/(\d+)$/, "$2年$1月") : t;
+
+function rdLoad() {
+  if (!RD.loading)
+    RD.loading = Promise.all([
+      fetch("data/round_occ.json", { cache: "no-cache" }).then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); }),
+      fetch("data/occupations.json", { cache: "force-cache" }).then(r => r.json()),
+    ]).then(([d, index]) => {
+        RD.names = {}; index.forEach(o => { RD.names[o.code] = o; });
+        RD.data = d; RD.day = RD.day || (d.rounds.length ? d.rounds[d.rounds.length - 1].date : null); return d; })
+      .catch(e => { RD.loading = null; throw e; });
+  return RD.loading;
+}
+
+/* score distribution: "80分 1,158 · 85分 381 · 75分 122" (largest first) */
+function rdDist(dist, top = 3) {
+  const e = Object.entries(dist).sort((a, b) => b[1] - a[1]);
+  return e.slice(0, top).map(([s, n]) => `${s}分 ${rdFmt(n)}`).join(" · ") + (e.length > top ? " …" : "");
+}
+
+/* stacked bar of one occupation's invitees by score, low score on the left */
+function rdBar(dist) {
+  const e = Object.entries(dist).map(([s, n]) => [+s, n]).sort((a, b) => a[0] - b[0]);
+  const tot = e.reduce((a, x) => a + x[1], 0);
+  return `<span class="rd-bar" aria-hidden="true">` + e.map(([s, n]) =>
+    `<i style="flex:${n};--k:${Math.max(0, Math.min(1, (s - 60) / 45)).toFixed(2)}" title="${s}分 ${rdFmt(n)}"></i>`).join("") +
+    `</span>`;
+}
+
+/* occupation card (自选): every 189 round, this occupation's invitees */
+function rdOccHtml(code) {
+  const D = RD.data;
+  if (!D || !D.rounds.length) return "";
+  const mine = {};
+  (D.occ[code] || []).forEach(x => { mine[x[0]] = x; });
+  const rows = D.rounds.slice().reverse().map(r => {
+    const x = mine[r.date];
+    if (!x) return `<tr><td>${rdDay(r.date)}</td><td class="num z">0</td><td class="num">—</td><td class="d">${r.official ? "官方表里没有这个职业：这一轮没邀请" : "没有统计到邀请"}</td></tr>`;
+    return `<tr><td>${rdDay(r.date)}</td><td class="num"><b>${rdFmt(x[1])}</b></td><td class="num">${x[3]} 分${r.official ? "" : "*"}</td><td class="d">${rdBar(x[2])}<small>${rdDist(x[2])}</small></td></tr>`;
+  }).join("");
+  return `<div class="rd-occ"><p class="k">历次 189 邀请：这个职业邀请了多少人、什么分数</p>
+    <table><thead><tr><th>轮次</th><th class="num">获邀人数</th><th class="num">最低分</th><th>分数分布</th></tr></thead><tbody>${rows}</tbody></table>
+    <p class="n">获邀人数由 SkillSelect 看板里每个 EOI 的状态日期还原，和官方总数对得上 96% 以上，个别人可能漏计。最低分来自移民局官网公布的轮次表${D.rounds.some(r => !r.official) ? "，带 * 的轮次官网表没存档，最低分是按统计结果推算" : ""}。历史结果，不代表下一轮。</p></div>`;
+}
+
+/* 行情 → 邀请轮次 */
+const RD_SORTS = {
+  most: ["获邀人数最多", (a, b) => b[1] - a[1] || b[3] - a[3]],
+  least: ["获邀人数最少", (a, b) => a[1] - b[1] || b[3] - a[3]],
+  hi: ["最低分最高", (a, b) => b[3] - a[3] || a[1] - b[1]],
+  lo: ["最低分最低", (a, b) => a[3] - b[3] || b[1] - a[1]],
+};
+
+function rdRender() {
+  const box = document.getElementById("lbRound");
+  if (!box) return;
+  if (!RD.data) {
+    box.querySelector(".rd-list").innerHTML = `<p class="lb-cav">载入中…</p>`;
+    rdLoad().then(rdRender).catch(e => {
+      box.querySelector(".rd-list").innerHTML = `<p class="lb-cav">邀请数据载入失败：${rdEsc(e.message)}。刷新页面重试。</p>`; });
+    return;
+  }
+  const D = RD.data, r = D.rounds.find(x => x.date === RD.day) || D.rounds[D.rounds.length - 1];
+  const names = RD.names;
+  const rows = Object.entries(D.occ).map(([c, v]) => { const x = v.find(y => y[0] === r.date); return x && [c, x[1], x[2], x[3]]; })
+    .filter(Boolean);
+  const q = RD.q.trim().toLowerCase();
+  const nm = c => { const o = names[c]; return o ? { zh: (o.zh && o.zh[0]) || "", en: o.name.replace(/^\d+ /, "") } : { zh: "", en: "" }; };
+  const shown = rows.filter(([c]) => !q || c.includes(q) || (nm(c).zh + " " + nm(c).en + " " + ((names[c] && names[c].zh) || []).join(" ")).toLowerCase().includes(q))
+    .sort(RD_SORTS[RD.sort][1]);
+
+  box.querySelector(".rd-days").innerHTML = D.rounds.slice().reverse().map(x =>
+    `<button type="button" data-d="${x.date}" aria-pressed="${x.date === r.date}">${rdDay(x.date)}</button>`).join("");
+  box.querySelector(".lb-tape").innerHTML =
+    `<div><span>官方邀请总数</span><b>${r.invitedOfficial == null ? "未存档" : rdFmt(r.invitedOfficial)}</b></div>
+     <div><span>按职业统计到</span><b>${rdFmt(r.counted)}${r.invitedOfficial ? `<small> ${Math.round(r.counted / r.invitedOfficial * 100)}%</small>` : ""}</b></div>
+     <div><span>获邀职业数</span><b>${rows.length}</b></div>
+     <div><span>同分 tie break 到</span><b>${rdTb(r.tieBreak)}</b></div>`;
+  box.querySelector(".rd-sort").innerHTML = Object.entries(RD_SORTS).map(([k, s]) =>
+    `<button type="button" data-s="${k}" aria-pressed="${k === RD.sort}">${s[0]}</button>`).join("");
+  box.querySelector(".rd-list").innerHTML = shown.length ? shown.map(([c, n, dist, lo], i) => {
+    const o = nm(c);
+    return `<a class="lb-row rd-row" href="#/watch/${c}">
+      <span class="lb-rk">${i + 1}</span>
+      <span class="lb-nm"><b>${rdEsc(o.zh || o.en || c)}</b><small>${c} ${rdEsc(o.en)}</small></span>
+      <span class="rd-mid">${rdBar(dist)}<small>${rdDist(dist)}</small></span>
+      <span class="lb-val"><b>${rdFmt(n)} 人</b><small>最低 ${lo} 分${r.official ? "" : "*"}</small></span></a>`;
+  }).join("") : `<p class="lb-cav">${q ? "没有找到这个职业：这一轮可能没有邀请它。" : "这一轮没有数据。"}</p>`;
+  box.querySelector(".rd-note").textContent = r.official
+    ? `${rdDay(r.date)}这一轮官网表列出 ${rows.length} 个职业。不在这里的职业，这一轮没有发 189 邀请。`
+    : `${rdDay(r.date)}这一轮官网表没有存档，带 * 的最低分按统计结果推算（去掉了零星记录）。`;
+}
+
+function rdWire() {
+  const box = document.getElementById("lbRound");
+  if (!box || RD.wired) return;
+  RD.wired = true;
+  box.querySelector(".rd-days").addEventListener("click", e => {
+    const b = e.target.closest("button"); if (b) { RD.day = b.dataset.d; rdRender(); } });
+  box.querySelector(".rd-sort").addEventListener("click", e => {
+    const b = e.target.closest("button"); if (b) { RD.sort = b.dataset.s; rdRender(); } });
+  box.querySelector(".rd-q").addEventListener("input", e => { RD.q = e.target.value; rdRender(); });
+  box.querySelector(".rd-list").addEventListener("click", e => {
+    const a = e.target.closest(".lb-row");
+    if (a && typeof reportLook === "function") reportLook(a.getAttribute("href").slice(-6), "pick");
+  });
 }
 </script>
 <script>

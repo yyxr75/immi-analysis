@@ -220,17 +220,9 @@ function wtCard(o, visa, mine, overall) {
     wtRound(WT.sel, visa);
 }
 
-/* latest official round (data/rounds.json, from the Home Affairs "Invitation rounds" page) */
+/* every 189 round for this occupation: invitees and their scores (round_view.js) */
 function wtRound(code, visa) {
-  const R = WT.rounds;
-  if (!R || visa !== "189" || !R.totals["189"]) return "";
-  const t = R.totals["189"], hit = R.occupations.find(x => x.code === code);
-  const day = R.date.replace(/^(\d+)-0?(\d+)-0?(\d+)$/, "$1年$2月$3日");
-  const tb = /^\d{4}-\d{2}-\d{2}$/.test(t.tieBreak) ? t.tieBreak.replace(/^(\d+)-0?(\d+)-0?(\d+)$/, "$1年$2月$3日") : t.tieBreak;
-  const head = `${day}轮 189 共邀请 ${wtFmt(t.invited)} 份，tie break 到 ${tb}。移民局官网公布。`;
-  return hit && hit.min["189"] != null
-    ? `<div class="wt-cr"><span class="k">最近一轮官方最低邀请分</span><b class="v you">${hit.min["189"]} 分</b><span class="n">${head}这是这一轮被邀请的最低分，不是下一轮的分数线。</span></div>`
-    : `<div class="wt-cr"><span class="k">最近一轮官方最低邀请分</span><b class="v">未邀请</b><span class="n">${head}官方表里没有这个职业：可能没有可邀请的 EOI，或没达到条件。</span></div>`;
+  return visa === "189" && typeof rdOccHtml === "function" ? rdOccHtml(code) : "";
 }
 
 /* ---------- centre: charts ---------- */
@@ -446,9 +438,9 @@ function wtInit() {
   Promise.all([
     fetch("data/board.json", { cache: "no-cache" }).then(r => r.json()),
     fetch("data/occupations.json", { cache: "force-cache" }).then(r => r.json()),
-    fetch("data/rounds.json", { cache: "no-cache" }).then(r => r.ok ? r.json() : null).catch(() => null),
-  ]).then(([board, index, rounds]) => {
-    WT.board = board; WT.index = index; WT.rounds = rounds && rounds.latest;
+    typeof rdLoad === "function" ? rdLoad().catch(() => null) : null,
+  ]).then(([board, index]) => {
+    WT.board = board; WT.index = index;
     wtOpen(want || WT.sel || WT.list[0] || index[0].code);
   }).catch(e => { wt$("wtRo").textContent = "数据载入失败：" + e.message + "。刷新页面重试。"; });
   wtPull().then(() => { if (WT.board) wtRenderAll(); });
