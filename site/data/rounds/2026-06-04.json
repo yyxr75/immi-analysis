@@ -1,0 +1,1166 @@
+{
+ "date": "2026-06-04",
+ "totals": {
+  "189": {
+   "invited": 10000,
+   "tieBreak": "2026-04-24"
+  }
+ },
+ "occupations": [
+  {
+   "name": "Actuary",
+   "min": {
+    "189": 90
+   },
+   "code": "224111",
+   "zh": "精算师"
+  },
+  {
+   "name": "Agricultural Consultant",
+   "min": {
+    "189": 80
+   },
+   "code": "234111",
+   "zh": "农业顾问"
+  },
+  {
+   "name": "Agricultural Scientist",
+   "min": {
+    "189": 80
+   },
+   "code": "234112",
+   "zh": "农业科学家"
+  },
+  {
+   "name": "Airconditioning and Mechanical Services Plumber",
+   "min": {
+    "189": 65
+   },
+   "code": "334112",
+   "zh": "空调机械管道工"
+  },
+  {
+   "name": "Airconditioning and Refrigeration Mechanic",
+   "min": {
+    "189": 80
+   },
+   "code": "342111",
+   "zh": "空调制冷技工"
+  },
+  {
+   "name": "Architect",
+   "min": {
+    "189": 85
+   },
+   "code": "232111",
+   "zh": "建筑师"
+  },
+  {
+   "name": "Arts Administrator or Manager",
+   "min": {
+    "189": 80
+   },
+   "code": "139911",
+   "zh": "艺术管理经理"
+  },
+  {
+   "name": "Audiologist",
+   "min": {
+    "189": 75
+   },
+   "code": "252711",
+   "zh": "听力学家"
+  },
+  {
+   "name": "Automotive Electrician",
+   "min": {
+    "189": 80
+   },
+   "code": "321111",
+   "zh": "汽车电工"
+  },
+  {
+   "name": "Barrister",
+   "min": {
+    "189": 80
+   },
+   "code": "271111",
+   "zh": "出庭律师"
+  },
+  {
+   "name": "Biotechnologist",
+   "min": {
+    "189": 95
+   },
+   "code": "234514",
+   "zh": "生物技术专家"
+  },
+  {
+   "name": "Boat Builder and Repairer",
+   "min": {
+    "189": 80
+   },
+   "code": "399111",
+   "zh": "船舶制造维修工"
+  },
+  {
+   "name": "Bricklayer",
+   "min": {
+    "189": 65
+   },
+   "code": "331111",
+   "zh": "砌砖工"
+  },
+  {
+   "name": "Cabinetmaker",
+   "min": {
+    "189": 80
+   },
+   "code": "394111",
+   "zh": "橱柜工"
+  },
+  {
+   "name": "Cardiologist",
+   "min": {
+    "189": 80
+   },
+   "code": "253312",
+   "zh": "心脏科医生"
+  },
+  {
+   "name": "Carpenter",
+   "min": {
+    "189": 65
+   },
+   "code": "331212",
+   "zh": "木工"
+  },
+  {
+   "name": "Carpenter and Joiner",
+   "min": {
+    "189": 65
+   },
+   "code": "331211",
+   "zh": "木工及细木工"
+  },
+  {
+   "name": "Cartographer",
+   "min": {
+    "189": 85
+   },
+   "code": "232213",
+   "zh": "制图师"
+  },
+  {
+   "name": "Chemist",
+   "min": {
+    "189": 85
+   },
+   "code": "234211",
+   "zh": "化学家"
+  },
+  {
+   "name": "Child Care Centre Manager",
+   "min": {
+    "189": 80
+   },
+   "code": "134111",
+   "zh": "幼儿园园长"
+  },
+  {
+   "name": "Chiropractor",
+   "min": {
+    "189": 80
+   },
+   "code": "252111",
+   "zh": "脊椎按摩师"
+  },
+  {
+   "name": "Clinical Psychologist",
+   "min": {
+    "189": 75
+   },
+   "code": "272311",
+   "zh": "临床心理学家"
+  },
+  {
+   "name": "Construction Project Manager",
+   "min": {
+    "189": 80
+   },
+   "code": "133111",
+   "zh": "建筑项目经理"
+  },
+  {
+   "name": "Dancer or Choreographer",
+   "min": {
+    "189": 80
+   },
+   "code": "211112",
+   "zh": "舞蹈演员"
+  },
+  {
+   "name": "Dermatologist",
+   "min": {
+    "189": 85
+   },
+   "code": "253911",
+   "zh": "皮肤科医生"
+  },
+  {
+   "name": "Diagnostic and Interventional Radiologist",
+   "min": {
+    "189": 85
+   },
+   "code": "253917",
+   "zh": "放射科医生"
+  },
+  {
+   "name": "Drainer",
+   "min": {
+    "189": 65
+   },
+   "code": "334113",
+   "zh": "排水工"
+  },
+  {
+   "name": "Economist",
+   "min": {
+    "189": 80
+   },
+   "code": "224311",
+   "zh": "经济学家"
+  },
+  {
+   "name": "Electrical Engineering Draftsperson",
+   "min": {
+    "189": 80
+   },
+   "code": "312311",
+   "zh": "电气制图员"
+  },
+  {
+   "name": "Electrical Engineering Technician",
+   "min": {
+    "189": 80
+   },
+   "code": "312312",
+   "zh": "电气工程技术员"
+  },
+  {
+   "name": "Electrician (General)",
+   "min": {
+    "189": 65
+   },
+   "code": "341111",
+   "zh": "电工"
+  },
+  {
+   "name": "Electrician (Special Class)",
+   "min": {
+    "189": 65
+   },
+   "code": "341112",
+   "zh": "特级电工"
+  },
+  {
+   "name": "Electronic Equipment Trades Worker",
+   "min": {
+    "189": 80
+   },
+   "code": "342313",
+   "zh": "电子设备技工"
+  },
+  {
+   "name": "Electronic Instrument Trades Worker (General)",
+   "min": {
+    "189": 80
+   },
+   "code": "342314",
+   "zh": "电子仪表技工"
+  },
+  {
+   "name": "Electronic Instrument Trades Worker (Special Class)",
+   "min": {
+    "189": 80
+   },
+   "code": "342315",
+   "zh": "特级电子仪表技工"
+  },
+  {
+   "name": "Electronics Engineer",
+   "min": {
+    "189": 95
+   },
+   "code": "233411",
+   "zh": "电子工程师"
+  },
+  {
+   "name": "Emergency Medicine Specialist",
+   "min": {
+    "189": 75
+   },
+   "code": "253912",
+   "zh": "急诊科医生"
+  },
+  {
+   "name": "Endocrinologist",
+   "min": {
+    "189": 80
+   },
+   "code": "253315",
+   "zh": "内分泌科医生"
+  },
+  {
+   "name": "Engineering Manager",
+   "min": {
+    "189": 80
+   },
+   "code": "133211",
+   "zh": "工程经理"
+  },
+  {
+   "name": "Environmental Consultant",
+   "min": {
+    "189": 80
+   },
+   "code": "234312",
+   "zh": "环境顾问"
+  },
+  {
+   "name": "Environmental Manager",
+   "min": {
+    "189": 80
+   },
+   "code": "139912",
+   "zh": "环境经理"
+  },
+  {
+   "name": "Environmental Research Scientist",
+   "min": {
+    "189": 80
+   },
+   "code": "234313",
+   "zh": "环境研究科学家"
+  },
+  {
+   "name": "Environmental Scientists nec",
+   "min": {
+    "189": 80
+   },
+   "code": "234399",
+   "zh": "其他环境科学家"
+  },
+  {
+   "name": "Fibrous Plasterer",
+   "min": {
+    "189": 65
+   },
+   "code": "333211",
+   "zh": "石膏板工"
+  },
+  {
+   "name": "Fitter (General)",
+   "min": {
+    "189": 80
+   },
+   "code": "323211",
+   "zh": "钳工"
+  },
+  {
+   "name": "Fitter and Turner",
+   "min": {
+    "189": 80
+   },
+   "code": "323212",
+   "zh": "钳工车工"
+  },
+  {
+   "name": "Food Technologist",
+   "min": {
+    "189": 85
+   },
+   "code": "234212",
+   "zh": "食品技术员"
+  },
+  {
+   "name": "Footballer",
+   "min": {
+    "189": 80
+   },
+   "code": "452411",
+   "zh": "足球运动员"
+  },
+  {
+   "name": "Forester",
+   "min": {
+    "189": 80
+   },
+   "code": "234113",
+   "zh": "林业专家"
+  },
+  {
+   "name": "Gasfitter",
+   "min": {
+    "189": 70
+   },
+   "code": "334114",
+   "zh": "燃气工"
+  },
+  {
+   "name": "Gastroenterologist",
+   "min": {
+    "189": 85
+   },
+   "code": "253316",
+   "zh": "消化科医生"
+  },
+  {
+   "name": "General Practitioner",
+   "min": {
+    "189": 75
+   },
+   "code": "253111",
+   "zh": "全科医生"
+  },
+  {
+   "name": "Geophysicist",
+   "min": {
+    "189": 80
+   },
+   "code": "234412",
+   "zh": "地球物理学家"
+  },
+  {
+   "name": "Glazier",
+   "min": {
+    "189": 65
+   },
+   "code": "333111",
+   "zh": "玻璃安装工"
+  },
+  {
+   "name": "Hydrogeologist",
+   "min": {
+    "189": 80
+   },
+   "code": "234413",
+   "zh": "水文地质学家"
+  },
+  {
+   "name": "Intensive Care Specialist",
+   "min": {
+    "189": 80
+   },
+   "code": "253317",
+   "zh": "ICU医生"
+  },
+  {
+   "name": "Joiner",
+   "min": {
+    "189": 65
+   },
+   "code": "331213",
+   "zh": "细木工"
+  },
+  {
+   "name": "Land Economist",
+   "min": {
+    "189": 80
+   },
+   "code": "224511",
+   "zh": "土地经济学家"
+  },
+  {
+   "name": "Landscape Architect",
+   "min": {
+    "189": 85
+   },
+   "code": "232112",
+   "zh": "景观设计师"
+  },
+  {
+   "name": "Life Scientist (General)",
+   "min": {
+    "189": 95
+   },
+   "code": "234511",
+   "zh": "生命科学家"
+  },
+  {
+   "name": "Life Scientists nec",
+   "min": {
+    "189": 95
+   },
+   "code": "234599",
+   "zh": "其他生命科学家"
+  },
+  {
+   "name": "Lift mechanic",
+   "min": {
+    "189": 80
+   },
+   "code": "341113",
+   "zh": "电梯技工"
+  },
+  {
+   "name": "Management Consultant",
+   "min": {
+    "189": 80
+   },
+   "code": "224711",
+   "zh": "管理咨询师"
+  },
+  {
+   "name": "Marine Biologist",
+   "min": {
+    "189": 95
+   },
+   "code": "234516",
+   "zh": "海洋生物学家"
+  },
+  {
+   "name": "Medical Diagnostic Radiographer",
+   "min": {
+    "189": 80
+   },
+   "code": "251211",
+   "zh": "放射技师"
+  },
+  {
+   "name": "Medical Laboratory Scientist",
+   "min": {
+    "189": 80
+   },
+   "code": "234611",
+   "zh": "医学检验师"
+  },
+  {
+   "name": "Medical Practitioners nec",
+   "min": {
+    "189": 75
+   },
+   "code": "253999",
+   "zh": "其他医生"
+  },
+  {
+   "name": "Medical Radiation Therapist",
+   "min": {
+    "189": 80
+   },
+   "code": "251212",
+   "zh": "放疗师"
+  },
+  {
+   "name": "Metal Fabricator",
+   "min": {
+    "189": 80
+   },
+   "code": "322311",
+   "zh": "金属制造工"
+  },
+  {
+   "name": "Metal Machinist (First Class)",
+   "min": {
+    "189": 85
+   },
+   "code": "323214",
+   "zh": "一级金属机械师"
+  },
+  {
+   "name": "Metallurgist",
+   "min": {
+    "189": 80
+   },
+   "code": "234912",
+   "zh": "冶金学家"
+  },
+  {
+   "name": "Meteorologist",
+   "min": {
+    "189": 85
+   },
+   "code": "234913",
+   "zh": "气象学家"
+  },
+  {
+   "name": "Microbiologist",
+   "min": {
+    "189": 95
+   },
+   "code": "234517",
+   "zh": "微生物学家"
+  },
+  {
+   "name": "Midwife",
+   "min": {
+    "189": 75
+   },
+   "code": "254111",
+   "zh": "助产士"
+  },
+  {
+   "name": "Mining Engineer (excluding Petroleum)",
+   "min": {
+    "189": 80
+   },
+   "code": "233611",
+   "zh": "采矿工程师"
+  },
+  {
+   "name": "Multimedia Specialist",
+   "min": {
+    "189": 95
+   },
+   "code": "261211",
+   "zh": "多媒体专家"
+  },
+  {
+   "name": "Music Director",
+   "min": {
+    "189": 80
+   },
+   "code": "211212",
+   "zh": "音乐总监"
+  },
+  {
+   "name": "Musician (Instrumental)",
+   "min": {
+    "189": 80
+   },
+   "code": "211213",
+   "zh": "乐器演奏家"
+  },
+  {
+   "name": "Natural and Physical Science Professionals nec",
+   "min": {
+    "189": 80
+   },
+   "code": "234999",
+   "zh": "其他自然物理科学家"
+  },
+  {
+   "name": "Nuclear Medicine Technologist",
+   "min": {
+    "189": 80
+   },
+   "code": "251213",
+   "zh": "核医学技师"
+  },
+  {
+   "name": "Nurse Practitioner",
+   "min": {
+    "189": 80
+   },
+   "code": "254411",
+   "zh": "执业护士"
+  },
+  {
+   "name": "Obstetrician and Gynaecologist",
+   "min": {
+    "189": 85
+   },
+   "code": "253913",
+   "zh": "妇产科医生"
+  },
+  {
+   "name": "Occupational Therapist",
+   "min": {
+    "189": 75
+   },
+   "code": "252411",
+   "zh": "职业治疗师"
+  },
+  {
+   "name": "Ophthalmologist",
+   "min": {
+    "189": 80
+   },
+   "code": "253914",
+   "zh": "眼科医生"
+  },
+  {
+   "name": "Optometrist",
+   "min": {
+    "189": 80
+   },
+   "code": "251411",
+   "zh": "验光师"
+  },
+  {
+   "name": "Organisational Psychologist",
+   "min": {
+    "189": 80
+   },
+   "code": "272313",
+   "zh": "组织心理学家"
+  },
+  {
+   "name": "Orthopaedic Surgeon",
+   "min": {
+    "189": 85
+   },
+   "code": "253514",
+   "zh": "骨科医生"
+  },
+  {
+   "name": "Orthotist or Prosthetist",
+   "min": {
+    "189": 80
+   },
+   "code": "251912",
+   "zh": "假肢矫形师"
+  },
+  {
+   "name": "Osteopath",
+   "min": {
+    "189": 80
+   },
+   "code": "252112",
+   "zh": "整骨师"
+  },
+  {
+   "name": "Other Spatial Scientist",
+   "min": {
+    "189": 80
+   },
+   "code": "232214",
+   "zh": "其他空间科学家"
+  },
+  {
+   "name": "Paediatrician",
+   "min": {
+    "189": 75
+   },
+   "code": "253321",
+   "zh": "儿科医生"
+  },
+  {
+   "name": "Panelbeater",
+   "min": {
+    "189": 80
+   },
+   "code": "324111",
+   "zh": "钣喷工"
+  },
+  {
+   "name": "Petroleum Engineer",
+   "min": {
+    "189": 80
+   },
+   "code": "233612",
+   "zh": "石油工程师"
+  },
+  {
+   "name": "Physicist",
+   "min": {
+    "189": 80
+   },
+   "code": "234914",
+   "zh": "物理学家"
+  },
+  {
+   "name": "Physiotherapist",
+   "min": {
+    "189": 75
+   },
+   "code": "252511",
+   "zh": "物理治疗师"
+  },
+  {
+   "name": "Plumber (General)",
+   "min": {
+    "189": 65
+   },
+   "code": "334111",
+   "zh": "水管工"
+  },
+  {
+   "name": "Podiatrist",
+   "min": {
+    "189": 75
+   },
+   "code": "252611",
+   "zh": "足病师"
+  },
+  {
+   "name": "Primary Health Organisation Manager",
+   "min": {
+    "189": 80
+   },
+   "code": "134213",
+   "zh": "初级卫生机构经理"
+  },
+  {
+   "name": "Psychiatrist",
+   "min": {
+    "189": 80
+   },
+   "code": "253411",
+   "zh": "精神科医生"
+  },
+  {
+   "name": "Psychologists nec",
+   "min": {
+    "189": 75
+   },
+   "code": "272399",
+   "zh": "其他心理学家"
+  },
+  {
+   "name": "Registered Nurse (Aged Care)",
+   "min": {
+    "189": 75
+   },
+   "code": "254412",
+   "zh": "老年护理护士"
+  },
+  {
+   "name": "Registered Nurse (Child and Family Health)",
+   "min": {
+    "189": 80
+   },
+   "code": "254413",
+   "zh": "儿童家庭护士"
+  },
+  {
+   "name": "Registered Nurse (Community Health)",
+   "min": {
+    "189": 75
+   },
+   "code": "254414",
+   "zh": "社区护士"
+  },
+  {
+   "name": "Registered Nurse (Critical Care and Emergency)",
+   "min": {
+    "189": 75
+   },
+   "code": "254415",
+   "zh": "急诊重症护士"
+  },
+  {
+   "name": "Registered Nurse (Developmental Disability)",
+   "min": {
+    "189": 80
+   },
+   "code": "254416",
+   "zh": "发育障碍护士"
+  },
+  {
+   "name": "Registered Nurse (Disability and Rehabilitation)",
+   "min": {
+    "189": 80
+   },
+   "code": "254417",
+   "zh": "残障康复护士"
+  },
+  {
+   "name": "Registered Nurse (Medical Practice)",
+   "min": {
+    "189": 75
+   },
+   "code": "254421",
+   "zh": "诊所护士"
+  },
+  {
+   "name": "Registered Nurse (Medical)",
+   "min": {
+    "189": 75
+   },
+   "code": "254418",
+   "zh": "内科护士"
+  },
+  {
+   "name": "Registered Nurse (Mental Health)",
+   "min": {
+    "189": 75
+   },
+   "code": "254422",
+   "zh": "精神科护士"
+  },
+  {
+   "name": "Registered Nurse (Paediatrics)",
+   "min": {
+    "189": 80
+   },
+   "code": "254425",
+   "zh": "儿科护士"
+  },
+  {
+   "name": "Registered Nurse (Perioperative)",
+   "min": {
+    "189": 75
+   },
+   "code": "254423",
+   "zh": "手术室护士"
+  },
+  {
+   "name": "Registered Nurse (Surgical)",
+   "min": {
+    "189": 75
+   },
+   "code": "254424",
+   "zh": "外科护士"
+  },
+  {
+   "name": "Registered Nurses nec",
+   "min": {
+    "189": 75
+   },
+   "code": "254499",
+   "zh": "注册护士(其他)"
+  },
+  {
+   "name": "Roof Plumber",
+   "min": {
+    "189": 65
+   },
+   "code": "334115",
+   "zh": "屋顶水管工"
+  },
+  {
+   "name": "Secondary School Teacher",
+   "min": {
+    "189": 75
+   },
+   "code": "241411",
+   "zh": "中学老师"
+  },
+  {
+   "name": "Sheetmetal Trades Worker",
+   "min": {
+    "189": 80
+   },
+   "code": "322211",
+   "zh": "钣金工"
+  },
+  {
+   "name": "Shipwright",
+   "min": {
+    "189": 80
+   },
+   "code": "399112",
+   "zh": "造船木工"
+  },
+  {
+   "name": "Social Worker",
+   "min": {
+    "189": 75
+   },
+   "code": "272511",
+   "zh": "社工"
+  },
+  {
+   "name": "Solicitor",
+   "min": {
+    "189": 80
+   },
+   "code": "271311",
+   "zh": "律师"
+  },
+  {
+   "name": "Solid Plasterer",
+   "min": {
+    "189": 65
+   },
+   "code": "333212",
+   "zh": "抹灰工"
+  },
+  {
+   "name": "Sonographer",
+   "min": {
+    "189": 85
+   },
+   "code": "251214",
+   "zh": "超声技师"
+  },
+  {
+   "name": "Special Education Teachers nec",
+   "min": {
+    "189": 85
+   },
+   "code": "241599",
+   "zh": "其他特殊教育老师"
+  },
+  {
+   "name": "Special Needs Teacher",
+   "min": {
+    "189": 75
+   },
+   "code": "241511",
+   "zh": "特殊教育老师"
+  },
+  {
+   "name": "Specialist Physician (General Medicine)",
+   "min": {
+    "189": 80
+   },
+   "code": "253311",
+   "zh": "内科医生"
+  },
+  {
+   "name": "Specialist Physicians nec",
+   "min": {
+    "189": 80
+   },
+   "code": "253399",
+   "zh": "其他专科内科医生"
+  },
+  {
+   "name": "Speech Pathologist",
+   "min": {
+    "189": 75
+   },
+   "code": "252712",
+   "zh": "言语病理学家"
+  },
+  {
+   "name": "Statistician",
+   "min": {
+    "189": 90
+   },
+   "code": "224113",
+   "zh": "统计师"
+  },
+  {
+   "name": "Stonemason",
+   "min": {
+    "189": 65
+   },
+   "code": "331112",
+   "zh": "石匠"
+  },
+  {
+   "name": "Surgeon (General)",
+   "min": {
+    "189": 85
+   },
+   "code": "253511",
+   "zh": "普外科医生"
+  },
+  {
+   "name": "Surveyor",
+   "min": {
+    "189": 80
+   },
+   "code": "232212",
+   "zh": "测量师"
+  },
+  {
+   "name": "Telecommunications Engineer",
+   "min": {
+    "189": 95
+   },
+   "code": "263311",
+   "zh": "电信工程师"
+  },
+  {
+   "name": "Telecommunications Network Engineer",
+   "min": {
+    "189": 95
+   },
+   "code": "263312",
+   "zh": "电信网络工程师"
+  },
+  {
+   "name": "Tennis Coach",
+   "min": {
+    "189": 80
+   },
+   "code": "452316",
+   "zh": "网球教练"
+  },
+  {
+   "name": "Thoracic Medicine Specialist",
+   "min": {
+    "189": 95
+   },
+   "code": "253324",
+   "zh": "呼吸科医生"
+  },
+  {
+   "name": "Urologist",
+   "min": {
+    "189": 100
+   },
+   "code": "253518",
+   "zh": "泌尿科医生"
+  },
+  {
+   "name": "Valuer",
+   "min": {
+    "189": 80
+   },
+   "code": "224512",
+   "zh": "估价师"
+  },
+  {
+   "name": "Veterinarian",
+   "min": {
+    "189": 80
+   },
+   "code": "234711",
+   "zh": "兽医"
+  },
+  {
+   "name": "Wall and Floor Tiler",
+   "min": {
+    "189": 65
+   },
+   "code": "333411",
+   "zh": "墙地砖铺贴工"
+  },
+  {
+   "name": "Welder (First Class)",
+   "min": {
+    "189": 80
+   },
+   "code": "322313",
+   "zh": "一级焊工"
+  },
+  {
+   "name": "Welfare Centre Manager",
+   "min": {
+    "189": 85
+   },
+   "code": "134214",
+   "zh": "福利中心经理"
+  }
+ ],
+ "program": {
+  "year": "2026-27",
+  "byMonth": {
+   "189": {
+    "Jul": 0,
+    "Aug": 0,
+    "Sep": 0,
+    "Oct": 0,
+    "Nov": 0,
+    "Dec": 0,
+    "Jan": 0,
+    "Feb": 0,
+    "Mar": 0,
+    "Apr": 0,
+    "May": 0,
+    "Jun": 0
+   },
+   "491F": {
+    "Jul": 0,
+    "Aug": 0,
+    "Sep": 0,
+    "Oct": 0,
+    "Nov": 0,
+    "Dec": 0,
+    "Jan": 0,
+    "Feb": 0,
+    "Mar": 0,
+    "Apr": 0,
+    "May": 0,
+    "Jun": 0
+   }
+  }
+ },
+ "source": "https://immi.homeaffairs.gov.au/visas/working-in-australia/skillselect/invitation-rounds",
+ "fetchedAt": "2026-10-23T03:37:46Z"
+}

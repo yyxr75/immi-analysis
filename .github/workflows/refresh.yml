@@ -19,6 +19,7 @@ on:
 
 permissions:
   contents: write
+  actions: write   # pushes made with GITHUB_TOKEN do not trigger pages.yml; dispatch it
 
 concurrency:
   group: refresh
@@ -67,6 +68,12 @@ jobs:
           git diff --staged --quiet && echo "no file changes" && exit 0
           git commit -m "data: refresh to ${{ steps.probe.outputs.latest_month }} (source reloaded ${{ steps.probe.outputs.reload_time }})"
           git push
+
+      - name: Redeploy the site
+        if: steps.probe.outputs.changed == 'true' || inputs.force
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --ref "${GITHUB_REF_NAME}"
 
       - name: Summary
         run: |
