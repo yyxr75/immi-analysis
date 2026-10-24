@@ -1,0 +1,197 @@
+{
+  "about": "Cross-cutting checks for the 'study for it, then 189' route gates: 485 post-study visa age and occupation rules, LANTITE eligibility, and board/council approval of the courses cited in route_health.json. Each fact quotes the official source word for word.",
+  "checkedAt": "2026-10-24",
+  "visa485": {
+    "higherEducationAge": {
+      "value": {
+        "rule": "Primary applicant for a Subclass 485 visa (any stream, incl. Post-Higher Education Work) must be 35 years old or younger at application; less than 50 years old if holding a Hong Kong or British National (Overseas) passport, or having completed a masters degree (research) or doctoral degree",
+        "maxAge": 35,
+        "exceptionMaxAgeBelow": 50,
+        "provision": "Migration Regulations 1994, Schedule 1 item 1229, subitem (4)(b) (with (3)(m))",
+        "compilation": "Compilation No. 289, F2026C01017, compilation date 2 October 2026"
+      },
+      "source": "https://www.legislation.gov.au/F1996B03551/latest/text",
+      "quote": "(b) the applicant seeking to satisfy the primary criteria for the grant of a Subclass 485 (Temporary Graduate) visa must be: (i) if the applicant holds a Hong Kong passport or a British National (Overseas) passport, or has completed a masters degree (research) or a doctoral degree—less than 50 years old; or (ii) otherwise—35 years old or younger.",
+      "sourceType": "legislation"
+    },
+    "vocationalAge": {
+      "value": {
+        "rule": "The same age limit in item 1229(4)(b) applies to every primary 485 applicant, so the Post-Vocational Education Work stream is also limited to 35 years old or younger (less than 50 for HK/BNO passport holders)",
+        "maxAge": 35,
+        "provision": "Migration Regulations 1994, Schedule 1 item 1229, subitems (3)(m) and (4)(b)",
+        "compilation": "Compilation No. 289, F2026C01017, compilation date 2 October 2026"
+      },
+      "source": "https://www.legislation.gov.au/F1996B03551/latest/text",
+      "quote": "(m) An applicant seeking to satisfy the primary criteria for the grant of a Subclass 485 (Temporary Graduate) visa must meet the requirements of subitem (4). ... (ii) otherwise—35 years old or younger.",
+      "sourceType": "legislation"
+    },
+    "vocationalOccupation": {
+      "value": {
+        "rule": "Post-Vocational Education Work stream: must nominate a skilled occupation specified by the Minister in an instrument; the qualification (registered course, at least 16 calendar months and 2 academic years, studied in Australia on a student visa, completed in the 6 months before applying) must be closely related to that occupation; the application must be accompanied by evidence of having applied for a skills assessment, and the skills must have been assessed as suitable by the relevant assessing authority during the last 3 years",
+        "provisions": [
+          "Schedule 1 item 1229(3)(k)",
+          "Schedule 2 clauses 485.221, 485.222, 485.223, 485.224"
+        ],
+        "compilation": "Compilation No. 289, F2026C01017, compilation date 2 October 2026"
+      },
+      "source": "https://www.legislation.gov.au/F1996B03551/latest/text",
+      "quote": "(k) An applicant seeking to satisfy the primary criteria for the grant of a Subclass 485 (Temporary Graduate) visa in the PostVocational Education Work stream must nominate a skilled occupation for the applicant that is specified by the Minister in an instrument in writing for this paragraph. ... 485.223 When the application was made, it was accompanied by evidence that the applicant had applied for an assessment of the applicant's skills for the nominated skilled occupation by a relevant assessing authority for that occupation. 485.224 (1) The skills of the applicant for the applicant's nominated skilled occupation have been assessed, during the last 3 years, by a relevant assessing authority for the occupation as suitable for that occupation.",
+      "sourceType": "legislation"
+    }
+  },
+  "lantite": {
+    "internationalStudents": {
+      "value": {
+        "rule": "Eligibility to sit LANTITE is defined only by enrolment status: an enrolled ITE student (enrolled in an accredited ITE course) or a prospective/unenrolled candidate. The eligibility page states no citizenship, residency or visa condition; a current photo-bearing passport is an accepted ID. The page does not mention international students explicitly.",
+        "explicitInternationalStatement": false,
+        "acceptedId": "Current photo-bearing passport",
+        "testWindows2026": 4
+      },
+      "source": "https://teacheredtest.acer.edu.au/about/eligibility",
+      "quote": "To be eligible to sit the test, individuals must be one of the following: an enrolled ITE student, defined as 'a person who is enrolled in an accredited ITE course, either undergraduate or postgraduate' a prospective or unenrolled test candidate, defined as 'a person who is not currently enrolled in an accredited ITE course.'",
+      "sourceType": "regulator",
+      "related": {
+        "source": "https://teacheredtest.acer.edu.au/register/identification",
+        "quote": "The only acceptable forms of identification are: Current photo-bearing passport Current photo-bearing driver's licence (learner's permit, probationary or full licence) Current photo-bearing Australian Proof of Age Card"
+      }
+    }
+  },
+  "ahpra": {
+    "uqNursingMaster": {
+      "value": {
+        "profession": "Nursing",
+        "provider": "The University of Queensland",
+        "program": "Master of Nursing (Graduate Entry)",
+        "registrationType": "General",
+        "division": "Registered nurse (Division 1)",
+        "status": "Approved",
+        "matchesRouteHealthCricosCourse": "069418D",
+        "searchedAs": "Profession = Nursing, Program of study name contains the program title (Ahpra Approved Programs of Study search tool, results table row)"
+      },
+      "source": "https://portal.ahpra.gov.au/s/approved-programs-of-study",
+      "quote": "Nursing | The University of Queensland | Master of Nursing (Graduate Entry) | General | Registered nurse (Division 1) | Approved",
+      "sourceType": "regulator"
+    },
+    "acuNursingBachelor": {
+      "value": {
+        "profession": "Nursing",
+        "provider": "Australian Catholic University",
+        "program": "Bachelor of Nursing",
+        "registrationType": "General",
+        "division": "Registered nurse (Division 1)",
+        "status": "Approved",
+        "matchesRouteHealthCricosCourse": "001293G",
+        "searchedAs": "Profession = Nursing, Program of study name contains the program title (Ahpra Approved Programs of Study search tool, results table row)"
+      },
+      "source": "https://portal.ahpra.gov.au/s/approved-programs-of-study",
+      "quote": "Nursing | Australian Catholic University | Bachelor of Nursing | General | Registered nurse (Division 1) | Approved",
+      "sourceType": "regulator"
+    },
+    "uqPhysioMaster": {
+      "value": {
+        "profession": "Physiotherapy",
+        "provider": "The University of Queensland",
+        "program": "Master of Physiotherapy Studies",
+        "registrationType": "General",
+        "division": null,
+        "status": "Approved",
+        "matchesRouteHealthCricosCourse": "039545A",
+        "searchedAs": "Profession = Physiotherapy, Program of study name contains the program title (Ahpra Approved Programs of Study search tool, results table row)"
+      },
+      "source": "https://portal.ahpra.gov.au/s/approved-programs-of-study",
+      "quote": "Physiotherapy | The University of Queensland | Master of Physiotherapy Studies | General | Approved",
+      "sourceType": "regulator"
+    },
+    "acuPhysioBachelor": {
+      "value": {
+        "profession": "Physiotherapy",
+        "provider": "Australian Catholic University",
+        "program": "Bachelor of Physiotherapy",
+        "registrationType": "General",
+        "division": null,
+        "status": "Approved",
+        "matchesRouteHealthCricosCourse": "071515G",
+        "searchedAs": "Profession = Physiotherapy, Program of study name contains the program title (Ahpra Approved Programs of Study search tool, results table row)"
+      },
+      "source": "https://portal.ahpra.gov.au/s/approved-programs-of-study",
+      "quote": "Physiotherapy | Australian Catholic University | Bachelor of Physiotherapy | General | Approved",
+      "sourceType": "regulator"
+    },
+    "usydOtMaster": {
+      "value": {
+        "profession": "Occupational Therapy",
+        "provider": "University of Sydney",
+        "program": "Master of Occupational Therapy",
+        "registrationType": "General",
+        "division": null,
+        "status": "Approved",
+        "matchesRouteHealthCricosCourse": "027888K",
+        "searchedAs": "Profession = Occupational Therapy, Program of study name contains the program title (Ahpra Approved Programs of Study search tool, results table row)"
+      },
+      "source": "https://portal.ahpra.gov.au/s/approved-programs-of-study",
+      "quote": "Occupational Therapy | University of Sydney | Master of Occupational Therapy | General | Approved",
+      "sourceType": "regulator"
+    },
+    "acuOtBachelor": {
+      "value": {
+        "profession": "Occupational Therapy",
+        "provider": "Australian Catholic University",
+        "program": "Bachelor of Occupational Therapy",
+        "registrationType": "General",
+        "division": null,
+        "status": "Approved",
+        "matchesRouteHealthCricosCourse": "078172B",
+        "searchedAs": "Profession = Occupational Therapy, Program of study name contains the program title (Ahpra Approved Programs of Study search tool, results table row)"
+      },
+      "source": "https://portal.ahpra.gov.au/s/approved-programs-of-study",
+      "quote": "Occupational Therapy | Australian Catholic University | Bachelor of Occupational Therapy | General | Approved",
+      "sourceType": "regulator"
+    },
+    "adelaideMidwiferyMaster": {
+      "value": {
+        "profession": "Midwifery",
+        "provider": "Adelaide University",
+        "program": "Master of Midwifery (Graduate Entry)",
+        "registrationType": "General",
+        "division": null,
+        "status": "Approved",
+        "matchesRouteHealthCricosCourse": "115932M",
+        "searchedAs": "Profession = Midwifery, Program of study name contains the program title (Ahpra Approved Programs of Study search tool, results table row)"
+      },
+      "source": "https://portal.ahpra.gov.au/s/approved-programs-of-study",
+      "quote": "Midwifery | Adelaide University | Master of Midwifery (Graduate Entry) | General | Approved",
+      "sourceType": "regulator"
+    },
+    "uqMidwiferyBachelor": {
+      "value": {
+        "profession": "Midwifery",
+        "provider": "The University of Queensland",
+        "program": "Bachelor of Midwifery",
+        "registrationType": "General",
+        "division": null,
+        "status": "Approved",
+        "matchesRouteHealthCricosCourse": "058541C",
+        "searchedAs": "Profession = Midwifery, Program of study name contains the program title (Ahpra Approved Programs of Study search tool, results table row)"
+      },
+      "source": "https://portal.ahpra.gov.au/s/approved-programs-of-study",
+      "quote": "Midwifery | The University of Queensland | Bachelor of Midwifery | General | Approved",
+      "sourceType": "regulator"
+    },
+    "physioCouncilList": {
+      "value": {
+        "note": "Australian Physiotherapy Council list: UQ Master of Physiotherapy Studies and ACU Bachelor of Physiotherapy are listed as accredited and approved"
+      },
+      "source": "https://physiocouncil.com.au/accreditation-for-education-providers/accredited-programs",
+      "quote": "The programs below show the breadth and calibre of universities accredited by the Australian Physiotherapy Council and approved by the Physiotherapy Board of Australia.",
+      "sourceType": "accreditation authority"
+    },
+    "otCouncilList": {
+      "value": {
+        "note": "Occupational Therapy Council list: The University of Sydney Master of Occupational Therapy Accredited, next review due before 31-Dec-27; ACU Bachelor of Occupational Therapy [pass & honours] Accredited (Melbourne, Sydney, Brisbane campuses, 31-Dec-26)"
+      },
+      "source": "https://otcouncil.com.au/program-accreditation/accredited-programs/",
+      "quote": "The University of Sydney Camperdown/Darlington campus Master of Occupational Therapy Accredited 31-Dec-27",
+      "sourceType": "accreditation authority"
+    }
+  }
+}

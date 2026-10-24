@@ -1,0 +1,224 @@
+{
+ "about": "Route gates for trades (Cert III/IV via a CRICOS provider, then TRA PSA + Job Ready) and degree routes for engineering, IT, accounting and VETASSESS management occupations. Facts in data/occ_manual/route_mix.json.",
+ "routes": {
+  "331212": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程，例如 TAFE Queensland 的 Certificate III in Carpentry（CPC30220），103 周；这是 TRA 认可的该职业澳洲资格",
+    "ref": [
+     "route_mix:cricos/104863K",
+     "route_mix:traQual/331212"
+    ]
+   },
+   "finish": {
+    "t": "课程含 400 小时工作实习，已登记在 CRICOS 课程里；TRA 的 PSA 认 CRICOS 注册培训机构在澳洲颁发、不含 RPL 的资格",
+    "ref": [
+     "route_mix:cricos/104863K",
+     "route_mix:shared/traPsaQualification"
+    ]
+   }
+  },
+  "331211": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程，例如 TAFE Queensland 的 Certificate III in Carpentry（CPC30220），103 周；这是 TRA 认可的该职业澳洲资格",
+    "ref": [
+     "route_mix:cricos/104863K",
+     "route_mix:traQual/331211"
+    ]
+   },
+   "finish": {
+    "t": "课程含 400 小时工作实习，已登记在 CRICOS 课程里；TRA 的 PSA 认 CRICOS 注册培训机构在澳洲颁发、不含 RPL 的资格",
+    "ref": [
+     "route_mix:cricos/104863K",
+     "route_mix:shared/traPsaQualification"
+    ]
+   }
+  },
+  "331111": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程，例如 Melbourne Polytechnic 的 Certificate III in Bricklaying and Blocklaying（CPC33020），48 周；这是 TRA 认可的该职业澳洲资格",
+    "ref": [
+     "route_mix:cricos/103834A",
+     "route_mix:traQual/331111"
+    ]
+   },
+   "finish": {
+    "t": "CRICOS 登记里没有工作实习环节；TRA 的 PSA 认 CRICOS 注册培训机构在澳洲颁发、不含 RPL 的资格",
+    "ref": [
+     "route_mix:cricos/103834A",
+     "route_mix:shared/traPsaQualification"
+    ]
+   }
+  },
+  "333411": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程，例如 Central Australian Institute of Technology 的 Certificate III in Wall and Floor Tiling（CPC31320），52 周；这是 TRA 认可的该职业澳洲资格",
+    "ref": [
+     "route_mix:cricos/117497J",
+     "route_mix:traQual/333411"
+    ]
+   },
+   "finish": {
+    "t": "CRICOS 登记里没有工作实习环节；TRA 的 PSA 认 CRICOS 注册培训机构在澳洲颁发、不含 RPL 的资格",
+    "ref": [
+     "route_mix:cricos/117497J",
+     "route_mix:shared/traPsaQualification"
+    ]
+   }
+  },
+  "332211": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程，例如 Central Australian Institute of Technology 的 Certificate III in Painting and Decorating（CPC30620），52 周；这是 TRA 认可的该职业澳洲资格",
+    "ref": [
+     "route_mix:cricos/117496K",
+     "route_mix:traQual/332211"
+    ]
+   },
+   "finish": {
+    "t": "CRICOS 登记里没有工作实习环节；TRA 的 PSA 认 CRICOS 注册培训机构在澳洲颁发、不含 RPL 的资格",
+    "ref": [
+     "route_mix:cricos/117496K",
+     "route_mix:shared/traPsaQualification"
+    ]
+   }
+  },
+  "324111": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程，例如 UTA Institute of Technology 的 Certificate III in Automotive Body Repair Technology（AUR32120），62 周；这是 TRA 认可的该职业澳洲资格",
+    "ref": [
+     "route_mix:cricos/111946D",
+     "route_mix:traQual/324111"
+    ]
+   },
+   "finish": {
+    "t": "CRICOS 登记里没有工作实习环节；TRA 的 PSA 认 CRICOS 注册培训机构在澳洲颁发、不含 RPL 的资格",
+    "ref": [
+     "route_mix:cricos/111946D",
+     "route_mix:shared/traPsaQualification"
+    ]
+   }
+  },
+  "321211": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程，例如 Box Hill Institute 的 Certificate III in Light Vehicle Mechanical Technology（AUR30620），52 周；这是 TRA 认可的该职业澳洲资格",
+    "ref": [
+     "route_mix:cricos/103666A",
+     "route_mix:traQual/321211"
+    ]
+   },
+   "finish": {
+    "t": "课程含 400 小时工作实习，已登记在 CRICOS 课程里；TRA 的 PSA 认 CRICOS 注册培训机构在澳洲颁发、不含 RPL 的资格",
+    "ref": [
+     "route_mix:cricos/103666A",
+     "route_mix:shared/traPsaQualification"
+    ]
+   }
+  },
+  "351311": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程，例如 Canberra Institute of Technology 的 Certificate IV in Kitchen Management（SIT40521），26 周；这是 TRA 认可的该职业澳洲资格",
+    "ref": [
+     "route_mix:cricos/109721F",
+     "route_mix:traQual/351311"
+    ]
+   },
+   "finish": {
+    "t": "课程含 200 小时工作实习，已登记在 CRICOS 课程里；TRA 的 PSA 认 CRICOS 注册培训机构在澳洲颁发、不含 RPL 的资格",
+    "ref": [
+     "route_mix:cricos/109721F",
+     "route_mix:shared/traPsaQualification"
+    ]
+   }
+  },
+  "133111": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程，例如墨尔本大学 Master of Construction Management，104 周；属于 VETASSESS 认定的高度相关专业（建筑项目管理）",
+    "ref": [
+     "route_mix:cricos/061210G",
+     "route_mix:shared/vetassessCpmField"
+    ]
+   },
+   "finish": {
+    "t": "CRICOS 登记里没有必修工作实习环节",
+    "ref": "route_mix:cricos/061210G"
+   }
+  },
+  "224711": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程，例如麦考瑞大学 Master of Business Administration，104 周；专业领域为 Business Management，属于 VETASSESS 认定的高度相关专业",
+    "ref": [
+     "route_mix:cricos/083781A",
+     "route_mix:shared/vetassessMcField"
+    ]
+   },
+   "finish": {
+    "t": "CRICOS 登记里没有必修工作实习环节",
+    "ref": "route_mix:cricos/083781A"
+   }
+  },
+  "233211": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程，例如悉尼大学 Master of Professional Engineering（Civil），104 周；工程师协会完全认证（2009 年起）",
+    "ref": [
+     "route_mix:cricos/064107D",
+     "route_mix:shared/eaUsydMpe"
+    ]
+   },
+   "finish": {
+    "t": "课程含 420 小时必修工作实习，已登记在 CRICOS 课程里",
+    "ref": "route_mix:cricos/064107D"
+   }
+  },
+  "233311": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程，例如悉尼大学 Master of Professional Engineering（Electrical），104 周；工程师协会完全认证（2009 年起）",
+    "ref": [
+     "route_mix:cricos/064107D",
+     "route_mix:shared/eaUsydMpe"
+    ]
+   },
+   "finish": {
+    "t": "课程含 420 小时必修工作实习，已登记在 CRICOS 课程里",
+    "ref": "route_mix:cricos/064107D"
+   }
+  },
+  "233512": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程，例如悉尼大学 Master of Professional Engineering（Mechanical），104 周；工程师协会完全认证（2009 年起）",
+    "ref": [
+     "route_mix:cricos/064107D",
+     "route_mix:shared/eaUsydMpe"
+    ]
+   },
+   "finish": {
+    "t": "课程含 420 小时必修工作实习，已登记在 CRICOS 课程里",
+    "ref": "route_mix:cricos/064107D"
+   }
+  },
+  "261313": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程，例如昆士兰大学 Master of Information Technology，104 周；ACS 要求 IT 专业与职业密切相关，由 ACS 认定",
+    "ref": [
+     "route_mix:cricos/080723B",
+     "assess:shared/ACS/postAustralianStudy"
+    ]
+   },
+   "finish": {
+    "t": "CRICOS 登记里没有必修工作实习环节",
+    "ref": "route_mix:cricos/080723B"
+   }
+  },
+  "221111": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程，例如新南威尔士大学 Master of Professional Accounting，104 周；学校写明涵盖 CPA 要求的全部核心知识",
+    "ref": [
+     "route_mix:cricos/051221J",
+     "route_mix:shared/unswMpaCpa"
+    ]
+   },
+   "finish": {
+    "t": "CRICOS 登记里没有必修工作实习环节",
+    "ref": "route_mix:cricos/051221J"
+   }
+  }
+ }
+}

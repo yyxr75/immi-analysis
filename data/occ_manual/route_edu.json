@@ -1,0 +1,123 @@
+{
+ "group": "route_edu",
+ "checkedAt": "2026-10-24",
+ "about": "Route gates for teaching occupations: can a student-visa holder enrol, finish (placements), and register. CRICOS rows from the official CRICOS Courses export on data.gov.au (dataset updated 2026-09-30).",
+ "enrol": {
+  "UNSW_MTeachSecondary": {
+   "value": {
+    "provider": "The University of New South Wales (UNSW)",
+    "course": "Master of Teaching (Secondary)",
+    "cricosCourseCode": "073442C",
+    "level": "Masters Degree (Coursework)",
+    "workComponent": true,
+    "workComponentTotalHours": 560,
+    "durationWeeks": 104,
+    "expired": false
+   },
+   "source": "https://data.gov.au/data/dataset/e5ae7059-bfa8-4fa4-a5c0-c13cf3520193/resource/48cacf69-2082-415e-9595-f17d0c3a4af0/download/cricos-courses.csv",
+   "quote": "00098G,The University of New South Wales (UNSW),073442C,Master of Teaching (Secondary),,No,07 - Education,0701 - Teacher Education,070105 - Teacher Education: Secondary,,,,Masters Degree (Coursework),No,Yes,35.00,16,560,English,104,\"$96,500.00\",\"$2,000.00\",\"$98,500.00\",No",
+   "sourceType": "register"
+  },
+  "MQ_BEdSecondary": {
+   "value": {
+    "provider": "Macquarie University",
+    "course": "Bachelor of Education (Secondary)",
+    "cricosCourseCode": "116112F",
+    "level": "Bachelor Degree",
+    "workComponent": true,
+    "workComponentTotalHours": 640,
+    "durationWeeks": 208,
+    "expired": false
+   },
+   "source": "https://data.gov.au/data/dataset/e5ae7059-bfa8-4fa4-a5c0-c13cf3520193/resource/48cacf69-2082-415e-9595-f17d0c3a4af0/download/cricos-courses.csv",
+   "quote": "00002J,Macquarie University (Macquarie),116112F,Bachelor of Education (Secondary),,No,07 - Education,0701 - Teacher Education,070105 - Teacher Education: Secondary,,,,Bachelor Degree,No,Yes,40.00,16,640,English,208,\"$171,500.00\",\"$1,492.00\",\"$172,992.00\",No",
+   "sourceType": "register"
+  },
+  "USYD_BEdEarlyChildhood": {
+   "value": {
+    "provider": "The University of Sydney",
+    "course": "Bachelor of Education (Early Childhood)",
+    "cricosCourseCode": "068551G",
+    "level": "Bachelor Degree",
+    "workComponent": true,
+    "workComponentTotalHours": 630,
+    "durationWeeks": 208,
+    "expired": false
+   },
+   "source": "https://data.gov.au/data/dataset/e5ae7059-bfa8-4fa4-a5c0-c13cf3520193/resource/48cacf69-2082-415e-9595-f17d0c3a4af0/download/cricos-courses.csv",
+   "quote": "00026A,The University of Sydney,068551G,Bachelor of Education (Early Childhood),,No,07 - Education,0701 - Teacher Education,070101 - Teacher Education: Early Childhood,,,,Bachelor Degree,No,Yes,35.00,18,630,English,208,\"$274,100.00\",\"$1,579.08\",\"$275,679.08\",No",
+   "sourceType": "register"
+  },
+  "USYD_MEdSpecialInclusive": {
+   "value": {
+    "provider": "The University of Sydney",
+    "course": "Master of Education (Special and Inclusive Education)",
+    "cricosCourseCode": "118413K",
+    "level": "Masters Degree (Coursework)",
+    "workComponent": false,
+    "durationWeeks": 78,
+    "expired": false
+   },
+   "source": "https://data.gov.au/data/dataset/e5ae7059-bfa8-4fa4-a5c0-c13cf3520193/resource/48cacf69-2082-415e-9595-f17d0c3a4af0/download/cricos-courses.csv",
+   "quote": "00026A,The University of Sydney,118413K,Master of Education (Special and Inclusive Education),,No,07 - Education,0701 - Teacher Education,070113 - Teacher Education: Special Education,,,,Masters Degree (Coursework),No,No,,,,English,78,\"$86,600.00\",$579.00,\"$87,179.00\",No",
+   "sourceType": "register"
+  }
+ },
+ "accreditation": {
+  "USYD_MTeachSecondary_NESA": {
+   "value": "USyd Master of Teaching (Secondary) is NESA-accredited; graduates can be accredited as teachers (pending LANTITE).",
+   "source": "https://www.sydney.edu.au/courses/courses/pc/master-of-teaching-secondary.html",
+   "quote": "This course is accredited with NSW Education Standards Authority (NESA). Graduates are accredited to become teachers in Australia (pending completion of LANTITE).",
+   "sourceType": "provider"
+  },
+  "USYD_BEdEarlyChildhood_ACECQA": {
+   "value": "USyd Bachelor of Education (Early Childhood), 4 years full-time, is ACECQA-accredited.",
+   "source": "https://www.sydney.edu.au/courses/courses/uc/bachelor-of-education-early-childhood.html",
+   "quote": "This course is accredited by the Australian Children's Education and Care Quality Authority (ACECQA).",
+   "sourceType": "provider"
+  }
+ },
+ "finish": {
+  "condition8105_courseWork": {
+   "value": {
+    "studentVisaWorkLimitHoursPerFortnight": 48,
+    "exempt": "work specified as a requirement of the course in its CRICOS registration"
+   },
+   "source": "https://www.legislation.gov.au/F1996B03551/2026-10-02/2026-10-02/text/original/epub/OEBPS/document_3/document_3.html",
+   "quote": "(2) Subclause (1) does not apply: (a) to work that was specified as a requirement of the course when the course particulars were entered in the Commonwealth Register of Institutions and Courses for Overseas Students; ... (2A) If the visa held is a Subclass 500 (Student) visa ... this clause applies as if the reference in subclause (1) to 40 hours were instead a reference to 48 hours.",
+   "sourceType": "legislation"
+  },
+  "wwccNSW_visaHolders": {
+   "value": "NSW Working With Children Check accepts an Australian visa (with foreign passport) as commencement-of-identity document, so visa holders can apply.",
+   "source": "https://ocg.nsw.gov.au/working-children-check/applicant/proof-identity",
+   "quote": "Australian Visa current at the time of entry to Australia as a resident or tourist* Note: this must be supported by a foreign passport, which is needed for verification",
+   "sourceType": "regulator"
+  },
+  "wwccVIC_visaHolders": {
+   "value": "Victorian WWC Check accepts a foreign passport linked to a valid Australian visa (Group B), plus one Group A document (driver licence, learner permit or Medicare card); otherwise verify in person at Australia Post. Page updated 5 October 2026.",
+   "source": "https://www.vic.gov.au/application-process-wwcc",
+   "quote": "Foreign passport linked to a valid Australian visa",
+   "sourceType": "regulator"
+  }
+ },
+ "licence": {
+  "NESA_graduateProvisional": {
+   "value": "A graduate of a teaching degree in Australia may be eligible for NESA Provisional accreditation; no citizenship condition stated.",
+   "source": "https://www.nsw.gov.au/education-and-training/nesa/teacher-accreditation/get-accredited",
+   "quote": "I’ve graduated from a teaching degree in Australia You may be eligible for Provisional accreditation.",
+   "sourceType": "regulator"
+  },
+  "NSWDoE_internationalStudents": {
+   "value": "International students/graduates can get casual and temporary approval to teach in NSW public schools with a visa that allows work; full approval and permanent employment require citizenship or permanent residency.",
+   "source": "https://education.nsw.gov.au/teach-nsw/become-a-teacher/approval-to-teach/faqs.html",
+   "quote": "Yes, you can apply for casual and temporary teaching approval provided you hold a valid visa for employment in Australia. You will not be eligible for full approval to teach or permanent employment if you do not hold Australian citizenship or permanent residency",
+   "sourceType": "employer"
+  },
+  "VIT_provisional": {
+   "value": "VIT provisional registration requires a completed approved qualification (ITE program for teachers, EC program for early childhood teachers); no citizenship condition stated. Granted for 2 years.",
+   "source": "https://www.vit.vic.edu.au/register/categories/provisional",
+   "quote": "Teachers who wish to apply for provisional registration must have completed an approved qualification – an ITE program for teachers or an EC program for early childhood teachers.",
+   "sourceType": "regulator"
+  }
+ }
+}

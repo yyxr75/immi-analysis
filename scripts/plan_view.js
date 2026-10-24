@@ -222,16 +222,42 @@ function plPath(o, base) {
    is open to them, and the occupation is on the 189 list. A points total that
    clears the cut-off is worth nothing if one of these fails, so routes with an
    unconfirmed step are listed apart, unranked, with the step named. */
-const PL_GATES = { enrol: "能入学", finish: "能读完", assess: "能评估", licence: "能注册/执照", visa: "能申请 189" };
+const PL_GATES = { enrol: "能入学", finish: "能读完", stay: "能留下工作", assess: "能评估", licence: "能注册/执照", visa: "能申请 189" };
 function plGates(r) {
   const o = r.o, c = o.card || {}, rt = c.route || {};
   const g = k => rt[k] ? { k, ok: rt[k].ok, t: rt[k].t, src: rt[k].src }
                        : { k, ok: false, t: k === "enrol" ? "有没有收留学生的课程，还没核实" : k === "finish"
                              ? "实习、学徒等环节学生签证能不能做，还没核实" : "留学生毕业后能不能注册或拿执照，还没核实" };
   const checked = (c.notes || []).some(n => n.src);
-  const out = [g("enrol"), g("finish"),
+  // with a bachelor already, the route is a shorter graduate-entry course (a 2-year master's):
+  // that it takes a bachelor in an unrelated field has to be confirmed too
+  const grad = plEduPts(plCalc().edu) >= 15 && c.study !== null && (() => {
+    const st = c.study || {};
+    return st.has != null ? st.has < st.new : o.skillLevel === 1;
+  })();
+  const enrol = g("enrol");
+  if (grad && enrol.ok) {
+    const h = rt.enrolHas;
+    if (!h) { enrol.ok = false; enrol.t = "有课程，但这门硕士收不收其他专业的本科，还没核实"; }
+    else Object.assign(enrol, { ok: h.ok, t: enrol.t + "；" + h.t, src: h.src || enrol.src });
+  }
+  const out = [enrol, g("finish"),
     { k: "assess", ok: checked && c.work !== null,
       t: !checked ? "评估条件还没核对" : c.work === null ? "评估要几年工作，官方没写明" : "评估条件已核对" }];
+  // the work an assessor asks for after graduating has to be done in Australia on a 485 graduate visa,
+  // which Schedule 1 item 1229 caps at 35 (50 after a research master's or a doctorate)
+  if (r.work) {
+    const v = PL.data.entry.visa485, ga = plAgeAt(plNow() + r.st.y * 12);
+    out.push(!v ? { k: "stay", ok: false, t: "485 毕业生签证的条件还没核实" }
+      : plEduPts(plCalc().edu) >= 20 ? { k: "stay", ok: false, src: v.src,
+          t: `毕业时 ${ga} 岁。485 一般要 ${v.maxAge} 岁及以下；有博士学位的上限可能是 50 岁，要看具体情况，还没核实` }
+      // the vocational stream also needs the occupation on a list in a Minister's instrument -- not checked yet
+      : o.assessors.some(a => a.abbr === "TRA") && !(c.route || {}).stay485
+        ? { k: "stay", ok: false, src: v.src, t: `毕业时 ${ga} 岁。技工走 485 职业教育类，还要求职业在部长公布的清单上，这一条还没核实` }
+      : { k: "stay", ok: ga <= v.maxAge, src: v.src,
+          t: ga <= v.maxAge ? `毕业时 ${ga} 岁，在 485 毕业生签证的 ${v.maxAge} 岁上限内，可以留下来攒评估要的工作经验`
+                           : `毕业时 ${ga} 岁，超过 485 毕业生签证的 ${v.maxAge} 岁上限，评估要的工作经验没法靠 485 在澳洲攒` });
+  }
   if (o.regulated) out.push(g("licence"));
   out.push({ k: "visa", ok: o.visas.includes("189"), t: "在 189 职业清单上" });
   return out;

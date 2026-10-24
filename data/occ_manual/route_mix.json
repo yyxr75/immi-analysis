@@ -1,0 +1,340 @@
+{
+ "checkedAt": "2026-10-24",
+ "about": "Route gates (can a non-PR enrol in and finish a course that leads to the occupation) for trades, engineering, IT, accounting and VETASSESS management occupations. CRICOS rows are quoted verbatim from the Department of Education's CRICOS Courses export on data.gov.au (resource last modified 2026-09-30).",
+ "shared": {
+  "traPsaQualification": {
+   "value": "TRA Provisional Skills Assessment (first step to the Job Ready Program) accepts a qualification issued by a CRICOS-registered RTO, completed in Australia, matching the nominated occupation, without RPL (Guidelines v2.0, April 2026)",
+   "source": "https://www.tradesrecognitionaustralia.gov.au/download/352/provisional-skills-assessment-program-guidelines/629/provisional-skills-assessment-applicant-guidelines/pdf",
+   "quote": "Be issued by a CRICOS registered RTO. Be completed in Australia. Match the Nominated Occupation you selected for your PSA application.",
+   "sourceType": "assessor"
+  },
+  "traAqoCaution": {
+   "value": "TRA's Australian Qualifications by Occupation list (3 December 2025) tells international students to check training.gov.au and seek advice on any eligibility requirements or restrictions before studying",
+   "source": "https://www.tradesrecognitionaustralia.gov.au/download/238/australian-qualifications-occupation/803/australian-qualification-occupation/pdf",
+   "quote": "International students intending study in Australia should consult training.gov.au and seek advice on suitability of any training for their preferred occupation, including any eligibility requirements or restrictions.",
+   "sourceType": "assessor"
+  },
+  "qbccEmployee": {
+   "value": "Queensland: in most cases no QBCC licence is needed to carry out building work as an employee of a licensed contractor; needed if responsible for supervising/quality of the work",
+   "source": "https://www.qbcc.qld.gov.au/licences/start-your-career/when-you-need-licence",
+   "quote": "In most cases you do not need a QBCC licence if you are carrying out building work as an employee of a licenced contractor.",
+   "sourceType": "regulator"
+  },
+  "eaUsydMpe": {
+   "value": {
+    "Civil": "fully accredited (F), first accredited 2009, University of Sydney, Washington Accord level",
+    "Electrical": "fully accredited (F), first accredited 2009, University of Sydney, Washington Accord level",
+    "Mechanical": "fully accredited (F), first accredited 2009, University of Sydney, Washington Accord level"
+   },
+   "source": "https://www.engineersaustralia.org.au/sites/default/files/2026-09/engineers-australia-accredited-programs-V73-sep26.pdf",
+   "quote": "Master of Professional Engineering (Civil)* 2009 F | Master of Professional Engineering (Electrical)* 2009 F | Master of Professional Engineering (Mechanical)* 2009 F",
+   "sourceType": "assessor"
+  },
+  "vetassessCpmField": {
+   "value": "VETASSESS 133111: highly relevant major fields are Construction Project Management, Building Technology or Building Science, Civil Engineering",
+   "source": "https://www.vetassess.com.au/check-my-occupation/professional-occupations/construction-project-manager",
+   "quote": "The highly relevant major field of study is: Construction Project Management Building Technology or Building Science Civil Engineering",
+   "sourceType": "assessor"
+  },
+  "vetassessMcField": {
+   "value": "VETASSESS 224711: highly relevant major fields include Business Management, Organisation Management",
+   "source": "https://www.vetassess.com.au/check-my-occupation/professional-occupations/management-consultant",
+   "quote": "Highly relevant major fields of study include: Business Management Organisation Management",
+   "sourceType": "assessor"
+  },
+  "unswMpaCpa": {
+   "value": "UNSW Master of Professional Accounting (CRICOS 051221J): graduates may be eligible for CPA Australia associate membership; includes all the core knowledge requirements; also covers CA ANZ core knowledge",
+   "source": "https://www.unsw.edu.au/study/postgraduate/master-of-professional-accounting",
+   "quote": "Graduates who complete the Master of Professional Accounting or the Master of Professional Accounting (Extension) may be eligible for associate membership of CPA Australia. Each program include all the core knowledge requirements.",
+   "sourceType": "provider"
+  }
+ },
+ "cricos": {
+  "109721F": {
+   "value": {
+    "provider": "Canberra Institute of Technology",
+    "providerCode": "00001K",
+    "cricosCourseCode": "109721F",
+    "course": "Certificate IV in Kitchen Management",
+    "vetCode": "SIT40521",
+    "level": "Certificate IV",
+    "workComponent": "Yes",
+    "workComponentHours": 200,
+    "durationWeeks": 26,
+    "expired": "No"
+   },
+   "source": "https://data.gov.au/data/dataset/e5ae7059-bfa8-4fa4-a5c0-c13cf3520193/resource/48cacf69-2082-415e-9595-f17d0c3a4af0/download/cricos-courses.csv",
+   "quote": "00001K,Canberra Institute of Technology,109721F,Certificate IV in Kitchen Management,SIT40521,No,\"11 - Food, Hospitality and Personal Services\",1101 - Food and Hospitality,110109 - Cookery,,,,Certificate IV,No,Yes,10.00,20,200,English,26,\"$10,140.00\",$0.00,\"$10,140.00\",No",
+   "sourceType": "register"
+  },
+  "083781A": {
+   "value": {
+    "provider": "Macquarie University (Macquarie)",
+    "providerCode": "00002J",
+    "cricosCourseCode": "083781A",
+    "course": "Master of Business Administration",
+    "vetCode": null,
+    "level": "Masters Degree (Coursework)",
+    "workComponent": "No",
+    "workComponentHours": null,
+    "durationWeeks": 104,
+    "expired": "No"
+   },
+   "source": "https://data.gov.au/data/dataset/e5ae7059-bfa8-4fa4-a5c0-c13cf3520193/resource/48cacf69-2082-415e-9595-f17d0c3a4af0/download/cricos-courses.csv",
+   "quote": "00002J,Macquarie University (Macquarie),083781A,Master of Business Administration,,No,08 - Management and Commerce,0803 - Business and Management,080301 - Business Management,,,,Masters Degree (Coursework),No,No,,,,English,104,\"$94,900.00\",$746.00,\"$95,646.00\",No",
+   "sourceType": "register"
+  },
+  "080723B": {
+   "value": {
+    "provider": "The University of Queensland",
+    "providerCode": "00025B",
+    "cricosCourseCode": "080723B",
+    "course": "Master of Information Technology",
+    "vetCode": null,
+    "level": "Masters Degree (Coursework)",
+    "workComponent": "No",
+    "workComponentHours": null,
+    "durationWeeks": 104,
+    "expired": "No"
+   },
+   "source": "https://data.gov.au/data/dataset/e5ae7059-bfa8-4fa4-a5c0-c13cf3520193/resource/48cacf69-2082-415e-9595-f17d0c3a4af0/download/cricos-courses.csv",
+   "quote": "00025B,The University of Queensland,080723B,Master of Information Technology,,No,02 - Information Technology,0200 - Information Technology,\"020000 - Information Technology, n.f.d.\",,,,Masters Degree (Coursework),No,No,,,,English,104,\"$97,840.00\",\"$2,089.00\",\"$99,929.00\",No",
+   "sourceType": "register"
+  },
+  "064107D": {
+   "value": {
+    "provider": "The University of Sydney",
+    "providerCode": "00026A",
+    "cricosCourseCode": "064107D",
+    "course": "Master of Professional Engineering",
+    "vetCode": null,
+    "level": "Masters Degree (Coursework)",
+    "workComponent": "Yes",
+    "workComponentHours": 420,
+    "durationWeeks": 104,
+    "expired": "No"
+   },
+   "source": "https://data.gov.au/data/dataset/e5ae7059-bfa8-4fa4-a5c0-c13cf3520193/resource/48cacf69-2082-415e-9595-f17d0c3a4af0/download/cricos-courses.csv",
+   "quote": "00026A,The University of Sydney,064107D,Master of Professional Engineering,,No,03 - Engineering and Related Technologies,0399 - Other Engineering and Related Technologies,\"039999 - Engineering and Related Technologies, n.e.c.\",,,,Masters Degree (Coursework),No,Yes,35.00,12,420,English,104,\"$117,500.00\",$751.60,\"$118,251.60\",No",
+   "sourceType": "register"
+  },
+  "051221J": {
+   "value": {
+    "provider": "The University of New South Wales (UNSW)",
+    "providerCode": "00098G",
+    "cricosCourseCode": "051221J",
+    "course": "Master of Professional Accounting",
+    "vetCode": null,
+    "level": "Masters Degree (Coursework)",
+    "workComponent": "No",
+    "workComponentHours": null,
+    "durationWeeks": 104,
+    "expired": "No"
+   },
+   "source": "https://data.gov.au/data/dataset/e5ae7059-bfa8-4fa4-a5c0-c13cf3520193/resource/48cacf69-2082-415e-9595-f17d0c3a4af0/download/cricos-courses.csv",
+   "quote": "00098G,The University of New South Wales (UNSW),051221J,Master of Professional Accounting,,No,08 - Management and Commerce,0801 - Accounting,080101 - Accounting,,,,Masters Degree (Coursework),No,No,,,,English,104,\"$94,500.00\",\"$1,500.00\",\"$96,000.00\",No",
+   "sourceType": "register"
+  },
+  "061210G": {
+   "value": {
+    "provider": "The University of Melbourne (UniMelb)",
+    "providerCode": "00116K",
+    "cricosCourseCode": "061210G",
+    "course": "Master of Construction Management",
+    "vetCode": null,
+    "level": "Masters Degree (Coursework)",
+    "workComponent": "No",
+    "workComponentHours": null,
+    "durationWeeks": 104,
+    "expired": "No"
+   },
+   "source": "https://data.gov.au/data/dataset/e5ae7059-bfa8-4fa4-a5c0-c13cf3520193/resource/48cacf69-2082-415e-9595-f17d0c3a4af0/download/cricos-courses.csv",
+   "quote": "00116K,The University of Melbourne (UniMelb),061210G,Master of Construction Management,,No,04 - Architecture and Building,0403 - Building,040303 - Building Construction Management,,,,Masters Degree (Coursework),No,No,,,,English,104,\"$87,707.20\",$150.00,\"$87,857.20\",No",
+   "sourceType": "register"
+  },
+  "103834A": {
+   "value": {
+    "provider": "Melbourne Polytechnic",
+    "providerCode": "00724G",
+    "cricosCourseCode": "103834A",
+    "course": "Certificate III in Bricklaying and Blocklaying",
+    "vetCode": "CPC33020",
+    "level": "Certificate III",
+    "workComponent": "No",
+    "workComponentHours": null,
+    "durationWeeks": 48,
+    "expired": "No"
+   },
+   "source": "https://data.gov.au/data/dataset/e5ae7059-bfa8-4fa4-a5c0-c13cf3520193/resource/48cacf69-2082-415e-9595-f17d0c3a4af0/download/cricos-courses.csv",
+   "quote": "00724G,Melbourne Polytechnic,103834A,Certificate III in Bricklaying and Blocklaying,CPC33020,No,04 - Architecture and Building,0403 - Building,040309 - Bricklaying and Stonemasonry,,,,Certificate III,No,No,,,,English,48,\"$19,600.00\",$0.00,\"$19,600.00\",No",
+   "sourceType": "register"
+  },
+  "103666A": {
+   "value": {
+    "provider": "Box Hill Institute",
+    "providerCode": "02411J",
+    "cricosCourseCode": "103666A",
+    "course": "Certificate III in Light Vehicle Mechanical Technology",
+    "vetCode": "AUR30620",
+    "level": "Certificate III",
+    "workComponent": "Yes",
+    "workComponentHours": 400,
+    "durationWeeks": 52,
+    "expired": "No"
+   },
+   "source": "https://data.gov.au/data/dataset/e5ae7059-bfa8-4fa4-a5c0-c13cf3520193/resource/48cacf69-2082-415e-9595-f17d0c3a4af0/download/cricos-courses.csv",
+   "quote": "02411J,Box Hill Institute,103666A,Certificate III in Light Vehicle Mechanical Technology,AUR30620,No,03 - Engineering and Related Technologies,0305 - Automotive Engineering and Technology,030503 - Vehicle Mechanics,,,,Certificate III,No,Yes,10.00,40,400,English,52,\"$20,000.00\",$0.00,\"$20,000.00\",No",
+   "sourceType": "register"
+  },
+  "104863K": {
+   "value": {
+    "provider": "TAFE Queensland",
+    "providerCode": "03020E",
+    "cricosCourseCode": "104863K",
+    "course": "Certificate III in Carpentry",
+    "vetCode": "CPC30220",
+    "level": "Certificate III",
+    "workComponent": "Yes",
+    "workComponentHours": 400,
+    "durationWeeks": 103,
+    "expired": "No"
+   },
+   "source": "https://data.gov.au/data/dataset/e5ae7059-bfa8-4fa4-a5c0-c13cf3520193/resource/48cacf69-2082-415e-9595-f17d0c3a4af0/download/cricos-courses.csv",
+   "quote": "03020E,TAFE Queensland,104863K,Certificate III in Carpentry,CPC30220,No,04 - Architecture and Building,0403 - Building,040311 - Carpentry and Joinery,,,,Certificate III,No,Yes,20.00,20,400,English,103,\"$28,800.00\",$0.00,\"$28,800.00\",No",
+   "sourceType": "register"
+  },
+  "117496K": {
+   "value": {
+    "provider": "Central Australian Institute of Technology Pty Ltd",
+    "providerCode": "03217C",
+    "cricosCourseCode": "117496K",
+    "course": "Certificate III in Painting and Decorating",
+    "vetCode": "CPC30620",
+    "level": "Certificate III",
+    "workComponent": "No",
+    "workComponentHours": null,
+    "durationWeeks": 52,
+    "expired": "No"
+   },
+   "source": "https://data.gov.au/data/dataset/e5ae7059-bfa8-4fa4-a5c0-c13cf3520193/resource/48cacf69-2082-415e-9595-f17d0c3a4af0/download/cricos-courses.csv",
+   "quote": "03217C,Central Australian Institute of Technology Pty Ltd,117496K,Certificate III in Painting and Decorating,CPC30620,No,04 - Architecture and Building,0403 - Building,\"040325 - Painting, Decorating and Sign Writing\",,,,Certificate III,No,No,,,,English,52,\"$20,000.00\",\"$4,850.00\",\"$24,850.00\",No",
+   "sourceType": "register"
+  },
+  "117497J": {
+   "value": {
+    "provider": "Central Australian Institute of Technology Pty Ltd",
+    "providerCode": "03217C",
+    "cricosCourseCode": "117497J",
+    "course": "Certificate III in Wall and Floor Tiling",
+    "vetCode": "CPC31320",
+    "level": "Certificate III",
+    "workComponent": "No",
+    "workComponentHours": null,
+    "durationWeeks": 52,
+    "expired": "No"
+   },
+   "source": "https://data.gov.au/data/dataset/e5ae7059-bfa8-4fa4-a5c0-c13cf3520193/resource/48cacf69-2082-415e-9595-f17d0c3a4af0/download/cricos-courses.csv",
+   "quote": "03217C,Central Australian Institute of Technology Pty Ltd,117497J,Certificate III in Wall and Floor Tiling,CPC31320,No,04 - Architecture and Building,0403 - Building,\"040313 - Ceiling, Wall and Floor Fixing\",,,,Certificate III,No,No,,,,English,52,\"$20,000.00\",\"$4,850.00\",\"$24,850.00\",No",
+   "sourceType": "register"
+  },
+  "111946D": {
+   "value": {
+    "provider": "UTA Institute of Technology Pty. Ltd.",
+    "providerCode": "04064G",
+    "cricosCourseCode": "111946D",
+    "course": "Certificate III in Automotive Body Repair Technology",
+    "vetCode": "AUR32120",
+    "level": "Certificate III",
+    "workComponent": "No",
+    "workComponentHours": null,
+    "durationWeeks": 62,
+    "expired": "No"
+   },
+   "source": "https://data.gov.au/data/dataset/e5ae7059-bfa8-4fa4-a5c0-c13cf3520193/resource/48cacf69-2082-415e-9595-f17d0c3a4af0/download/cricos-courses.csv",
+   "quote": "04064G,UTA Institute of Technology Pty. Ltd.,111946D,Certificate III in Automotive Body Repair Technology,AUR32120,No,03 - Engineering and Related Technologies,0305 - Automotive Engineering and Technology,030511 - Panel Beating,,,,Certificate III,No,No,,,,English,62,\"$17,100.00\",\"$1,000.00\",\"$18,100.00\",No",
+   "sourceType": "register"
+  }
+ },
+ "traQual": {
+  "331212": {
+   "value": {
+    "occupation": "331212",
+    "qualification": "Certificate III in Carpentry",
+    "code": "CPC30220"
+   },
+   "source": "https://www.tradesrecognitionaustralia.gov.au/download/238/australian-qualifications-occupation/803/australian-qualification-occupation/pdf",
+   "quote": "20 331212 Carpenter Certificate III in Carpentry CPC30220",
+   "sourceType": "assessor"
+  },
+  "331211": {
+   "value": {
+    "occupation": "331211",
+    "qualification": "Certificate III in Carpentry",
+    "code": "CPC30220"
+   },
+   "source": "https://www.tradesrecognitionaustralia.gov.au/download/238/australian-qualifications-occupation/803/australian-qualification-occupation/pdf",
+   "quote": "21 331211 Carpenter and Joiner Certificate III in Carpentry CPC30220",
+   "sourceType": "assessor"
+  },
+  "331111": {
+   "value": {
+    "occupation": "331111",
+    "qualification": "Certificate III in Bricklaying and Blocklaying",
+    "code": "CPC33020"
+   },
+   "source": "https://www.tradesrecognitionaustralia.gov.au/download/238/australian-qualifications-occupation/803/australian-qualification-occupation/pdf",
+   "quote": "12 331111 Bricklayer Certificate III in Bricklaying and Blocklaying CPC33020",
+   "sourceType": "assessor"
+  },
+  "333411": {
+   "value": {
+    "occupation": "333411",
+    "qualification": "Certificate III in Wall and Floor Tiling",
+    "code": "CPC31320"
+   },
+   "source": "https://www.tradesrecognitionaustralia.gov.au/download/238/australian-qualifications-occupation/803/australian-qualification-occupation/pdf",
+   "quote": "127 333411 Wall and Floor Tiler Certificate III in Wall and Floor Tiling CPC31320",
+   "sourceType": "assessor"
+  },
+  "332211": {
+   "value": {
+    "occupation": "332211",
+    "qualification": "Certificate III in Painting and Decorating",
+    "code": "CPC30620"
+   },
+   "source": "https://www.tradesrecognitionaustralia.gov.au/download/238/australian-qualifications-occupation/803/australian-qualification-occupation/pdf",
+   "quote": "88 332211 Painting Trades Worker Certificate III in Painting and Decorating CPC30620",
+   "sourceType": "assessor"
+  },
+  "324111": {
+   "value": {
+    "occupation": "324111",
+    "qualification": "Certificate III in Automotive Body Repair Technology",
+    "code": "AUR32120"
+   },
+   "source": "https://www.tradesrecognitionaustralia.gov.au/download/238/australian-qualifications-occupation/803/australian-qualification-occupation/pdf",
+   "quote": "89 324111 Panelbeater Certificate III in Automotive Body Repair Technology AUR32120",
+   "sourceType": "assessor"
+  },
+  "321211": {
+   "value": {
+    "occupation": "321211",
+    "qualification": "Certificate III in Light Vehicle Mechanical Technology",
+    "code": "AUR30620"
+   },
+   "source": "https://www.tradesrecognitionaustralia.gov.au/download/238/australian-qualifications-occupation/803/australian-qualification-occupation/pdf",
+   "quote": "82 321211 Motor Mechanic (General) Certificate III in Light Vehicle Mechanical Technology AUR30620",
+   "sourceType": "assessor"
+  },
+  "351311": {
+   "value": {
+    "occupation": "351311",
+    "qualification": "Certificate IV in Kitchen Management",
+    "code": "SIT40521"
+   },
+   "source": "https://www.tradesrecognitionaustralia.gov.au/download/238/australian-qualifications-occupation/803/australian-qualification-occupation/pdf",
+   "quote": "Certificate IV in Kitchen Management SIT40521",
+   "sourceType": "assessor"
+  }
+ }
+}

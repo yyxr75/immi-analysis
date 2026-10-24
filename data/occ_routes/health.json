@@ -1,0 +1,460 @@
+{
+ "about": "Route gates for health and social occupations; facts in data/occ_manual/route_health.json (checked 2026-10-24).",
+ "routes": {
+  "254499": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程：护理硕士（入门型）如 104 周；护理本科如 156 周",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor",
+     "route_health:shared/cricosDefinition"
+    ]
+   },
+   "finish": {
+    "t": "这些课程在 CRICOS 登记了实习环节（952 小时、800 小时），实习是课程的一部分",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor"
+    ]
+   },
+   "licence": {
+    "t": "上面这两门课在 Ahpra 批准课程名单上（Approved）；毕业后满足注册标准（含英语）、核实身份、交费即可注册，可在读完前 90 天申请",
+    "ref": [
+     "route_health:shared/ahpraGraduate",
+     "route_checks:ahpra/uqNursingMaster",
+     "route_checks:ahpra/acuNursingBachelor"
+    ]
+   }
+  },
+  "254415": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程：护理硕士（入门型）如 104 周；护理本科如 156 周",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor",
+     "route_health:shared/cricosDefinition"
+    ]
+   },
+   "finish": {
+    "t": "这些课程在 CRICOS 登记了实习环节（952 小时、800 小时），实习是课程的一部分",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor"
+    ]
+   },
+   "licence": {
+    "t": "上面这两门课在 Ahpra 批准课程名单上（Approved）；毕业后满足注册标准（含英语）、核实身份、交费即可注册，可在读完前 90 天申请",
+    "ref": [
+     "route_health:shared/ahpraGraduate",
+     "route_checks:ahpra/uqNursingMaster",
+     "route_checks:ahpra/acuNursingBachelor"
+    ]
+   }
+  },
+  "254418": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程：护理硕士（入门型）如 104 周；护理本科如 156 周",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor",
+     "route_health:shared/cricosDefinition"
+    ]
+   },
+   "finish": {
+    "t": "这些课程在 CRICOS 登记了实习环节（952 小时、800 小时），实习是课程的一部分",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor"
+    ]
+   },
+   "licence": {
+    "t": "上面这两门课在 Ahpra 批准课程名单上（Approved）；毕业后满足注册标准（含英语）、核实身份、交费即可注册，可在读完前 90 天申请",
+    "ref": [
+     "route_health:shared/ahpraGraduate",
+     "route_checks:ahpra/uqNursingMaster",
+     "route_checks:ahpra/acuNursingBachelor"
+    ]
+   }
+  },
+  "254412": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程：护理硕士（入门型）如 104 周；护理本科如 156 周",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor",
+     "route_health:shared/cricosDefinition"
+    ]
+   },
+   "finish": {
+    "t": "这些课程在 CRICOS 登记了实习环节（952 小时、800 小时），实习是课程的一部分",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor"
+    ]
+   },
+   "licence": {
+    "t": "上面这两门课在 Ahpra 批准课程名单上（Approved）；毕业后满足注册标准（含英语）、核实身份、交费即可注册，可在读完前 90 天申请",
+    "ref": [
+     "route_health:shared/ahpraGraduate",
+     "route_checks:ahpra/uqNursingMaster",
+     "route_checks:ahpra/acuNursingBachelor"
+    ]
+   }
+  },
+  "254424": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程：护理硕士（入门型）如 104 周；护理本科如 156 周",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor",
+     "route_health:shared/cricosDefinition"
+    ]
+   },
+   "finish": {
+    "t": "这些课程在 CRICOS 登记了实习环节（952 小时、800 小时），实习是课程的一部分",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor"
+    ]
+   },
+   "licence": {
+    "t": "上面这两门课在 Ahpra 批准课程名单上（Approved）；毕业后满足注册标准（含英语）、核实身份、交费即可注册，可在读完前 90 天申请",
+    "ref": [
+     "route_health:shared/ahpraGraduate",
+     "route_checks:ahpra/uqNursingMaster",
+     "route_checks:ahpra/acuNursingBachelor"
+    ]
+   }
+  },
+  "254423": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程：护理硕士（入门型）如 104 周；护理本科如 156 周",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor",
+     "route_health:shared/cricosDefinition"
+    ]
+   },
+   "finish": {
+    "t": "这些课程在 CRICOS 登记了实习环节（952 小时、800 小时），实习是课程的一部分",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor"
+    ]
+   },
+   "licence": {
+    "t": "上面这两门课在 Ahpra 批准课程名单上（Approved）；毕业后满足注册标准（含英语）、核实身份、交费即可注册，可在读完前 90 天申请",
+    "ref": [
+     "route_health:shared/ahpraGraduate",
+     "route_checks:ahpra/uqNursingMaster",
+     "route_checks:ahpra/acuNursingBachelor"
+    ]
+   }
+  },
+  "254425": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程：护理硕士（入门型）如 104 周；护理本科如 156 周",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor",
+     "route_health:shared/cricosDefinition"
+    ]
+   },
+   "finish": {
+    "t": "这些课程在 CRICOS 登记了实习环节（952 小时、800 小时），实习是课程的一部分",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor"
+    ]
+   },
+   "licence": {
+    "t": "上面这两门课在 Ahpra 批准课程名单上（Approved）；毕业后满足注册标准（含英语）、核实身份、交费即可注册，可在读完前 90 天申请",
+    "ref": [
+     "route_health:shared/ahpraGraduate",
+     "route_checks:ahpra/uqNursingMaster",
+     "route_checks:ahpra/acuNursingBachelor"
+    ]
+   }
+  },
+  "254422": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程：护理硕士（入门型）如 104 周；护理本科如 156 周",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor",
+     "route_health:shared/cricosDefinition"
+    ]
+   },
+   "finish": {
+    "t": "这些课程在 CRICOS 登记了实习环节（952 小时、800 小时），实习是课程的一部分",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor"
+    ]
+   },
+   "licence": {
+    "t": "上面这两门课在 Ahpra 批准课程名单上（Approved）；毕业后满足注册标准（含英语）、核实身份、交费即可注册，可在读完前 90 天申请",
+    "ref": [
+     "route_health:shared/ahpraGraduate",
+     "route_checks:ahpra/uqNursingMaster",
+     "route_checks:ahpra/acuNursingBachelor"
+    ]
+   }
+  },
+  "254414": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程：护理硕士（入门型）如 104 周；护理本科如 156 周",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor",
+     "route_health:shared/cricosDefinition"
+    ]
+   },
+   "finish": {
+    "t": "这些课程在 CRICOS 登记了实习环节（952 小时、800 小时），实习是课程的一部分",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor"
+    ]
+   },
+   "licence": {
+    "t": "上面这两门课在 Ahpra 批准课程名单上（Approved）；毕业后满足注册标准（含英语）、核实身份、交费即可注册，可在读完前 90 天申请",
+    "ref": [
+     "route_health:shared/ahpraGraduate",
+     "route_checks:ahpra/uqNursingMaster",
+     "route_checks:ahpra/acuNursingBachelor"
+    ]
+   }
+  },
+  "254421": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程：护理硕士（入门型）如 104 周；护理本科如 156 周",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor",
+     "route_health:shared/cricosDefinition"
+    ]
+   },
+   "finish": {
+    "t": "这些课程在 CRICOS 登记了实习环节（952 小时、800 小时），实习是课程的一部分",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor"
+    ]
+   },
+   "licence": {
+    "t": "上面这两门课在 Ahpra 批准课程名单上（Approved）；毕业后满足注册标准（含英语）、核实身份、交费即可注册，可在读完前 90 天申请",
+    "ref": [
+     "route_health:shared/ahpraGraduate",
+     "route_checks:ahpra/uqNursingMaster",
+     "route_checks:ahpra/acuNursingBachelor"
+    ]
+   }
+  },
+  "254417": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程：护理硕士（入门型）如 104 周；护理本科如 156 周",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor",
+     "route_health:shared/cricosDefinition"
+    ]
+   },
+   "finish": {
+    "t": "这些课程在 CRICOS 登记了实习环节（952 小时、800 小时），实习是课程的一部分",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor"
+    ]
+   },
+   "licence": {
+    "t": "上面这两门课在 Ahpra 批准课程名单上（Approved）；毕业后满足注册标准（含英语）、核实身份、交费即可注册，可在读完前 90 天申请",
+    "ref": [
+     "route_health:shared/ahpraGraduate",
+     "route_checks:ahpra/uqNursingMaster",
+     "route_checks:ahpra/acuNursingBachelor"
+    ]
+   }
+  },
+  "254413": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程：护理硕士（入门型）如 104 周；护理本科如 156 周",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor",
+     "route_health:shared/cricosDefinition"
+    ]
+   },
+   "finish": {
+    "t": "这些课程在 CRICOS 登记了实习环节（952 小时、800 小时），实习是课程的一部分",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor"
+    ]
+   },
+   "licence": {
+    "t": "上面这两门课在 Ahpra 批准课程名单上（Approved）；毕业后满足注册标准（含英语）、核实身份、交费即可注册，可在读完前 90 天申请",
+    "ref": [
+     "route_health:shared/ahpraGraduate",
+     "route_checks:ahpra/uqNursingMaster",
+     "route_checks:ahpra/acuNursingBachelor"
+    ]
+   }
+  },
+  "254416": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程：护理硕士（入门型）如 104 周；护理本科如 156 周",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor",
+     "route_health:shared/cricosDefinition"
+    ]
+   },
+   "finish": {
+    "t": "这些课程在 CRICOS 登记了实习环节（952 小时、800 小时），实习是课程的一部分",
+    "ref": [
+     "route_health:courses/nursingMaster",
+     "route_health:courses/nursingBachelor"
+    ]
+   },
+   "licence": {
+    "t": "上面这两门课在 Ahpra 批准课程名单上（Approved）；毕业后满足注册标准（含英语）、核实身份、交费即可注册，可在读完前 90 天申请",
+    "ref": [
+     "route_health:shared/ahpraGraduate",
+     "route_checks:ahpra/uqNursingMaster",
+     "route_checks:ahpra/acuNursingBachelor"
+    ]
+   }
+  },
+  "254111": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程：助产硕士（Graduate Entry）如 104 周；助产本科如 156 周",
+    "ref": [
+     "route_health:courses/midwiferyMaster",
+     "route_health:courses/midwiferyBachelor",
+     "route_health:shared/cricosDefinition"
+    ]
+   },
+   "finish": {
+    "t": "这些课程在 CRICOS 登记了实习环节（800 小时、1,505 小时），实习是课程的一部分",
+    "ref": [
+     "route_health:courses/midwiferyMaster",
+     "route_health:courses/midwiferyBachelor"
+    ]
+   },
+   "licence": {
+    "t": "上面这两门课在 Ahpra 批准课程名单上（Approved）；毕业后满足注册标准（含英语）、核实身份、交费即可注册，可在读完前 90 天申请",
+    "ref": [
+     "route_health:shared/ahpraGraduate",
+     "route_checks:ahpra/adelaideMidwiferyMaster",
+     "route_checks:ahpra/uqMidwiferyBachelor"
+    ]
+   }
+  },
+  "252511": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程：理疗硕士如 104 周；理疗本科如 208 周，比常见估计长",
+    "ref": [
+     "route_health:courses/physioMaster",
+     "route_health:courses/physioBachelor",
+     "route_health:shared/cricosDefinition"
+    ]
+   },
+   "finish": {
+    "t": "这些课程在 CRICOS 登记了实习环节（848 小时、1,040 小时），实习是课程的一部分",
+    "ref": [
+     "route_health:courses/physioMaster",
+     "route_health:courses/physioBachelor"
+    ]
+   },
+   "licence": {
+    "t": "上面这两门课在 Ahpra 批准课程名单上（Approved）；毕业后满足注册标准（含英语）、核实身份、交费即可注册，可在读完前 90 天申请",
+    "ref": [
+     "route_health:shared/ahpraGraduate",
+     "route_checks:ahpra/uqPhysioMaster",
+     "route_checks:ahpra/acuPhysioBachelor"
+    ]
+   }
+  },
+  "252411": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程：职业治疗硕士如 104 周；职业治疗本科如 208 周，比常见估计长",
+    "ref": [
+     "route_health:courses/otMaster",
+     "route_health:courses/otBachelor",
+     "route_health:shared/cricosDefinition"
+    ]
+   },
+   "finish": {
+    "t": "这些课程在 CRICOS 登记了实习环节（各 1,000 小时），实习是课程的一部分",
+    "ref": [
+     "route_health:courses/otMaster",
+     "route_health:courses/otBachelor"
+    ]
+   },
+   "licence": {
+    "t": "上面这两门课在 Ahpra 批准课程名单上（Approved）；毕业后满足注册标准（含英语）、核实身份、交费即可注册，可在读完前 90 天申请",
+    "ref": [
+     "route_health:shared/ahpraGraduate",
+     "route_checks:ahpra/usydOtMaster",
+     "route_checks:ahpra/acuOtBachelor"
+    ]
+   }
+  },
+  "272511": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程：社工硕士（Qualifying）如 104 周；社工本科如 208 周",
+    "ref": [
+     "route_health:courses/swMaster",
+     "route_health:courses/swBachelor",
+     "route_health:shared/cricosDefinition"
+    ]
+   },
+   "finish": {
+    "t": "这些课程在 CRICOS 登记了实习环节（各 1,000 小时），实习是课程的一部分",
+    "ref": [
+     "route_health:courses/swMaster",
+     "route_health:courses/swBachelor"
+    ]
+   }
+  },
+  "252712": {
+   "enrol": {
+    "t": "有收留学生的 CRICOS 课程：言语病理硕士如 104 周；言语病理本科如 208 周，比常见估计长",
+    "ref": [
+     "route_health:courses/spMaster",
+     "route_health:courses/spBachelor",
+     "route_health:shared/cricosDefinition"
+    ]
+   },
+   "finish": {
+    "t": "这些课程在 CRICOS 登记了实习环节（280 小时、480 小时），实习是课程的一部分",
+    "ref": [
+     "route_health:courses/spMaster",
+     "route_health:courses/spBachelor"
+    ]
+   },
+   "licence": {
+    "t": "法律上不用注册（多数雇主要求 SPA 的 CPSP 资格）",
+    "ref": "other:shared/SPA/registration"
+   }
+  },
+  "251214": {
+   "enrol": {
+    "t": "CRICOS 里只找到一门收留学生的超声课程：研究生文凭（Graduate Diploma）52 周",
+    "ref": [
+     "route_health:courses/sonoGradDip",
+     "route_health:shared/cricosDefinition"
+    ]
+   },
+   "finish": {
+    "t": "这门课在 CRICOS 登记了实习环节（1,360 小时）",
+    "ref": "route_health:courses/sonoGradDip"
+   },
+   "licence": {
+    "t": "超声不归 Ahpra 注册，行业认证要求还没核实",
+    "gap": true
+   }
+  }
+ }
+}

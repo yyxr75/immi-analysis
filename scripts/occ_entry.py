@@ -150,7 +150,7 @@ def _hay_nums(t):
     return out
 
 
-ROUTE_GATES = ("enrol", "finish", "licence")
+ROUTE_GATES = ("enrol", "enrolHas", "finish", "licence")
 
 
 def load_cards():
@@ -207,10 +207,16 @@ def load_cards():
             card["notes"].append({"t": n["t"], "src": got[0][0]["source"], "checkedAt": got[0][2]})
         if "study" in c:
             st = c["study"]
+            if st and st.get("weeks"):
+                # a course length straight from its CRICOS row: check the weeks, plan in whole years
+                check(" ".join(str(w) for w in st["weeks"].values()), refs(st["ref"]), key + " study weeks")
+                st = dict(st, **{k: -(-w // 52) for k, w in st["weeks"].items()})
+                st.setdefault("assumed", [])
+                st["assumed"] = st["assumed"] + [k for k in ("new", "has") if k not in st["weeks"]]
             if st and st.get("ref"):
-                sure = [str(st[k]) for k in ("new", "has") if k not in st.get("assumed", [])]
+                sure = [str(st[k]) for k in ("new", "has") if k not in st.get("assumed", []) and k not in st.get("weeks", {})]
                 check(" ".join(sure), refs(st["ref"]), key + " study")
-                st = dict(st, src=fact(st["ref"])[0]["source"])
+                st = dict(st, src=fact(refs(st["ref"])[0])[0]["source"])
             card["study"] = st
         if "work" in c:
             w = c["work"]
@@ -329,13 +335,19 @@ def main():
         for k in ("lists", "visas"):
             if p.get(k) != e[k]:
                 moved.append(f"{c} {k}: {','.join(p.get(k) or [])} -> {','.join(e[k])}")
-    changed = old["occ"] != occ
+    # 485 graduate visa age limit: the plan needs it for routes that require work after graduating
+    v485 = json.load(open(os.path.join(MANUAL, "route_checks.json"), encoding="utf-8"))["visa485"]["higherEducationAge"]
+    if "35 years old or younger" not in v485["quote"]:
+        raise SystemExit("route_checks.json: visa485 age quote no longer says 35")
+    visa485 = {"maxAge": 35, "src": v485["source"], "quote": v485["quote"]}
+    changed = old["occ"] != occ or old.get("visa485") != visa485
     if changed:
         now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
         out = {"builtAt": now,
                "sources": {"occupationList": {"url": SOL_URL, "fetchedAt": now},
                            "anzsco": {"url": ANZSCO_URL, "release": "ANZSCO 2022 Australian Update"}},
                "levels": {str(k): {"qualification": v[0], "points": v[1]} for k, v in LEVELS.items()},
+               "visa485": visa485,
                "occ": occ}
         with open(OUT, "w", encoding="utf-8") as f:
             json.dump(out, f, ensure_ascii=False, separators=(",", ":"))

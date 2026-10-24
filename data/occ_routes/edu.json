@@ -1,0 +1,85 @@
+{
+ "about": "Route gates, area edu (checked 2026-10-24).",
+ "routes": {
+  "241411": {
+   "enrol": {
+    "t": "有招留学生的教学课程：如 UNSW Master of Teaching (Secondary)（CRICOS 073442C，104 周，NESA 认证课程）、Macquarie Bachelor of Education (Secondary)（CRICOS 116112F，208 周）",
+    "ref": [
+     "route_edu:enrol/UNSW_MTeachSecondary",
+     "route_edu:enrol/MQ_BEdSecondary",
+     "route_edu:accreditation/USYD_MTeachSecondary_NESA"
+    ]
+   },
+   "finish": {
+    "t": "课程在 CRICOS 登记含 560 小时实习；登记在册的课程实习不受学生签证每两周 48 小时打工限制；新州、维州的儿童工作检查都接受外国护照加澳洲签证；毕业前要过 LANTITE，ACER 的报考条件只看是否在读教师课程，没写国籍或签证限制",
+    "ref": [
+     "route_edu:enrol/UNSW_MTeachSecondary",
+     "route_edu:finish/condition8105_courseWork",
+     "route_edu:finish/wwccNSW_visaHolders",
+     "route_edu:finish/wwccVIC_visaHolders",
+     "route_checks:lantite/internationalStudents"
+    ]
+   },
+   "licence": {
+    "t": "新州：在澳洲读完教师学位可申请 NESA 临时认证，留学生凭有工作权的签证可接公立学校代课和临时教职（长期教职要 PR）；维州：VIT 临时注册只要求读完认可的教师课程",
+    "ref": [
+     "route_edu:licence/NESA_graduateProvisional",
+     "route_edu:licence/NSWDoE_internationalStudents",
+     "route_edu:licence/VIT_provisional"
+    ]
+   }
+  },
+  "241511": {
+   "enrol": {
+    "t": "先读教学课程（如 UNSW Master of Teaching (Secondary)，CRICOS 073442C），特教另需的一年可读如悉尼大学 Master of Education (Special and Inclusive Education)（CRICOS 118413K，78 周）",
+    "ref": [
+     "route_edu:enrol/UNSW_MTeachSecondary",
+     "route_edu:enrol/USYD_MEdSpecialInclusive"
+    ]
+   },
+   "finish": {
+    "t": "课程在 CRICOS 登记含 560 小时实习；登记在册的课程实习不受学生签证每两周 48 小时打工限制；新州、维州的儿童工作检查都接受外国护照加澳洲签证；毕业前要过 LANTITE，ACER 的报考条件只看是否在读教师课程，没写国籍或签证限制",
+    "ref": [
+     "route_edu:enrol/UNSW_MTeachSecondary",
+     "route_edu:finish/condition8105_courseWork",
+     "route_edu:finish/wwccNSW_visaHolders",
+     "route_edu:finish/wwccVIC_visaHolders",
+     "route_checks:lantite/internationalStudents"
+    ]
+   },
+   "licence": {
+    "t": "新州：在澳洲读完教师学位可申请 NESA 临时认证，留学生凭有工作权的签证可接公立学校代课和临时教职（长期教职要 PR）；维州：VIT 临时注册只要求读完认可的教师课程",
+    "ref": [
+     "route_edu:licence/NESA_graduateProvisional",
+     "route_edu:licence/NSWDoE_internationalStudents",
+     "route_edu:licence/VIT_provisional"
+    ]
+   }
+  },
+  "241111": {
+   "enrol": {
+    "t": "有招留学生的 ACECQA 认证幼教本科：如悉尼大学 Bachelor of Education (Early Childhood)（CRICOS 068551G，208 周）",
+    "ref": [
+     "route_edu:enrol/USYD_BEdEarlyChildhood",
+     "route_edu:accreditation/USYD_BEdEarlyChildhood_ACECQA"
+    ]
+   },
+   "finish": {
+    "t": "课程在 CRICOS 登记含 630 小时实习；登记在册的课程实习不受学生签证每两周 48 小时打工限制；新州、维州的儿童工作检查都接受外国护照加澳洲签证",
+    "ref": [
+     "route_edu:enrol/USYD_BEdEarlyChildhood",
+     "route_edu:finish/condition8105_courseWork",
+     "route_edu:finish/wwccNSW_visaHolders",
+     "route_edu:finish/wwccVIC_visaHolders"
+    ]
+   },
+   "licence": {
+    "t": "维州：VIT 临时注册只要求读完认可的幼教课程；新州：在澳洲读完教师学位可申请 NESA 临时认证",
+    "ref": [
+     "route_edu:licence/VIT_provisional",
+     "route_edu:licence/NESA_graduateProvisional"
+    ]
+   }
+  }
+ }
+}
