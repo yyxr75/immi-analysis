@@ -546,6 +546,7 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
 .mesub-seg { display:flex; gap:2px; background:var(--surface); border:1px solid var(--hair); border-radius:7px; padding:2px; }
 .mesub-seg button { border:0; background:none; color:var(--ink2); font:inherit; font-size:13.5px; padding:5px 14px; border-radius:5px; cursor:pointer; }
 .mesub-seg button[aria-pressed="true"] { background:var(--ink); color:var(--plane); font-weight:600; }
+.pl-next { display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center; margin:18px 0 6px; }
 .mesub-acct { margin-left:auto; font-size:12.5px; color:var(--muted); }
 @media (max-width:640px) { .mesub-acct { margin-left:0; } }
 
@@ -764,9 +765,8 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
   <div id="view-plan" hidden>
     <div class="mesub">
       <div class="mesub-seg" role="group" aria-label="我的">
-        <button type="button" data-go="plan">我的方案</button>
-        <button type="button" data-go="points">我的分数</button>
-        <button type="button" data-go="ai">AI 匹配职业</button>
+        <button type="button" data-go="points">1. 我的分数</button>
+        <button type="button" data-go="plan">2. 我的方案</button>
       </div>
       <span class="mesub-acct"></span>
     </div>
@@ -789,7 +789,7 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
         <div class="pl-quiz">
           <div class="pl-q" id="plQ"></div>
           <aside class="pl-tally" aria-live="polite">
-            <span class="pl-foot">按你现在的答案</span>
+            <span class="pl-foot">按你在「我的分数」填的</span>
             <div class="pl-big" id="plPts">0</div>
             <span class="pl-foot">分（189，今天递 EOI）</span>
             <ul id="plTlist"></ul>
@@ -818,9 +818,8 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
   <div id="view-points" hidden>
     <div class="mesub">
       <div class="mesub-seg" role="group" aria-label="我的">
-        <button type="button" data-go="plan">我的方案</button>
-        <button type="button" data-go="points">我的分数</button>
-        <button type="button" data-go="ai">AI 匹配职业</button>
+        <button type="button" data-go="points">1. 我的分数</button>
+        <button type="button" data-go="plan">2. 我的方案</button>
       </div>
       <span class="mesub-acct"></span>
     </div>
@@ -830,9 +829,9 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
       <p>按 Schedule 6D 逐项选，本地算，不上传。<b>就在下面</b>，两分钟填完。</p>
     </li>
     <li>
-      <div class="t">再看能对上哪些职业</div>
-      <p>上传简历，模型从在册的 492 个职业里找出你可能对得上的，按你的分数排历史获邀率。
-        <button type="button" class="linkbtn" data-go="ai">去 AI 匹配职业 →</button></p>
+      <div class="t">再找方案</div>
+      <p>再答几个问题（现在在哪一步、现在的职业、愿意再读几年、对哪些方向有兴趣），把所有能走 189 的职业按你的分数排出来。
+        <button type="button" class="linkbtn" data-go="plan">去我的方案 →</button></p>
     </li>
     <li>
       <div class="t">看看本月职业行情</div>
@@ -862,16 +861,18 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
     <div class="tblwrap on" id="mrg"></div>
     <p class="note2" id="calcnote"></p>
   </div>
+  <div class="pl-next"><button type="button" class="pl-btn pri" data-go="plan">分数填好了，去找方案 →</button>
+    <span class="pl-foot">再答几个问题，用这个分数比较所有能走 189 的职业。</span></div>
   <p class="ctx cta">分数本身与职业无关。想知道它在某个职业里的<b>历史获邀率</b>，
     到 <button type="button" class="linkbtn" id="toData">「职业数据查询」</button>选一个职业——分数会自动带过去。</p>
   </div>
 
+  <!-- the AI match page is no longer reachable; its markup stays because ai_view.js (sign-in, proxy settings) reads it -->
   <div id="view-ai" hidden>
     <div class="mesub">
       <div class="mesub-seg" role="group" aria-label="我的">
-        <button type="button" data-go="plan">我的方案</button>
-        <button type="button" data-go="points">我的分数</button>
-        <button type="button" data-go="ai">AI 匹配职业</button>
+        <button type="button" data-go="points">1. 我的分数</button>
+        <button type="button" data-go="plan">2. 我的方案</button>
       </div>
       <span class="mesub-acct"></span>
     </div>
@@ -1127,7 +1128,7 @@ let DATA = null;
 // stays a secret inside the Worker. Empty means the shared option is hidden.
 const PUBLIC_PROXY_URL = "https://api.ausimmitool.com";
 const SITE_TITLE = "澳洲技术移民工具箱";
-const SITE_TAGLINE = "Schedule 6D 打分 · AI 匹配职业 · 查历史获邀率 · 数据来自 SkillSelect 官方看板";
+const SITE_TAGLINE = "Schedule 6D 打分 · 移民方案 · 查历史获邀率 · 数据来自 SkillSelect 官方看板";
 const SVGNS = "http://www.w3.org/2000/svg";
 const CSS = k => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
 const SERIES_VAR = ["--s1","--s2","--s3","--s4"];
@@ -2639,15 +2640,15 @@ function aiInit() {
 /* Order is the order of use: work out your score, see which occupations that
    score reaches, then dig into one. The occupation browser is where you go to
    check a specific answer, not where you start. */
-// "我的" is one tab over two views (points calculator, AI match) with its own
-// sub-switch; keeping them separate views keeps their deep links (#/points,
-// #/ai) and their lazy init intact.
-const VIEWS = [["watch", "自选"], ["board", "行情"], ["plan", "我的"], ["group", "交流群"]];
-const ME_VIEWS = ["plan", "points", "ai"];
+// "我的" is one tab over two steps with its own sub-switch: 1. the points
+// calculator, then 2. the plan, which reuses those answers. Separate views keep
+// their deep links (#/points, #/plan) and their lazy init intact.
+const VIEWS = [["watch", "自选"], ["board", "行情"], ["points", "我的"], ["group", "交流群"]];
+const ME_VIEWS = ["points", "plan"];
 const HOME = VIEWS[0][0];
 // Reachable by link ("完整图表 →"), not shown as a tab: the full per-occupation
 // chart set that the 自选 view summarises.
-const ALL_VIEWS = VIEWS.concat([["points", "我的分数"], ["ai", "AI 匹配职业"], ["data", "完整图表"]]);
+const ALL_VIEWS = VIEWS.concat([["plan", "我的方案"], ["data", "完整图表"]]);
 // A WeChat group QR expires; build_site.py stamps the date printed on the image
 // so the page can say so itself instead of silently handing out a dead code.
 const GROUP_QR_EXPIRES = "";
@@ -2660,6 +2661,7 @@ function parseHash() {
   const p = h.split("/").filter(Boolean);
   const isCode = x => /^\d{6}$/.test(x);
   if (isCode(p[0])) return { view: "data", code: p[0] };          // legacy #261313
+  if (p[0] === "ai") return { view: "points", code: null };      // the AI match page is gone
   const view = ALL_VIEWS.some(v => v[0] === p[0]) ? p[0] : HOME;
   return { view, code: p[1] && isCode(p[1]) ? p[1] : null };
 }
@@ -2676,7 +2678,7 @@ function setView(name) {
   });
   document.querySelectorAll("#tabs button").forEach(b =>
     b.setAttribute("aria-pressed", b.dataset.v === name ||
-                   (b.dataset.v === "plan" && ME_VIEWS.includes(name))));
+                   (b.dataset.v === "points" && ME_VIEWS.includes(name))));
   if (ME_VIEWS.includes(name)) meRender(name);
   // the visa filter scopes the data and points views; it means nothing on the AI page
   const f = document.querySelector(".filters");
@@ -3261,7 +3263,7 @@ function meRender(name) {
   });
 }
 document.addEventListener("click", e => {
-  const go = e.target.closest(".mesub [data-go]");
+  const go = e.target.closest(".mesub [data-go], .pl [data-go], .pl-next [data-go]");
   if (go) { setView(go.dataset.go); return; }
   if (e.target.closest(".mesub [data-out]")) { aiSignOut(); meRender(curView); }
 });
@@ -3821,19 +3823,8 @@ const PL_QS = [
     opts: [["new", "还没开始学", "高中毕业、准备读书"], ["study", "在读或刚毕业", "专业已经定了"], ["work", "工作了，想换赛道", "现在的职业邀请太少"]] },
   { k: "birth", t: "出生年月", input: "month",
     why: "<b>年龄分</b>：25–32 岁 30 分，33–39 岁 25 分，40–44 岁 15 分。读书几年会不会刚好跨过 33 岁，是换赛道最大的代价。" },
-  { k: "edu", calc: true, t: "已经拿到的最高学历",
-    why: "<b>学历分</b>：博士 20，本科或硕士 15，Diploma 或技工资格 10。再读一个同级或更低的学位，这一项不会变高。",
-    opts: [[0, "高中或以下"], [3, "Diploma / 技工证书"], [2, "本科或硕士"], [1, "博士"]] },
-  { k: "auStudy", calc: true, t: "在澳洲读满两年了吗？", why: "<b>澳洲学习要求</b> +5。读一个两年以上的课程，届时也能拿到。",
-    opts: [[1, "读满了"], [0, "还没有"]] },
-  { k: "english", calc: true, t: "英语现在什么水平？",
-    why: "<b>英语分</b>：Proficient（雅思四个 7 / PTE 65）10 分，Superior（四个 8 / PTE 79）20 分。护士、教师、社工、医生的注册英语另有要求，卡片上会写。",
-    opts: [[0, "没考，或不到 Proficient"], [1, "Proficient（雅思 7 / PTE 65）"], [2, "Superior（雅思 8 / PTE 79）"]] },
-  { k: "partner", calc: true, t: "婚姻状况",
-    why: "<b>配偶分</b>：单身或配偶是澳洲 PR/公民 10 分；配偶有职业评估加 competent 英语 10 分；配偶只有 competent 英语 5 分。",
-    opts: [[1, "单身，或配偶是 PR / 公民"], [2, "配偶有职业评估 + 英语达标"], [3, "配偶只有英语达标"], [0, "配偶不满足以上"]] },
   { k: "cur", input: "occ", t: "现在的职业或专业", skip: () => PLAN.door === "new",
-    why: "作为<b>不读书</b>的那一行。在读就填专业对应的职业。不确定可以先去「AI 匹配职业」用简历识别。" },
+    why: "作为<b>不读书</b>的那一行。在读就填专业对应的职业。" },
   { k: "years", t: "最多愿意再读几年书？", why: "决定能比较哪些路。卡片上会写清楚每条路按几年算、是官方学制还是常见学制。",
     opts: [["0", "不读了"], ["2", "最多 2 年"], ["4", "3–4 年也行"], ["6", "5 年以上也行"]] },
   { k: "areas", multi: true, t: "对哪些方向有兴趣？", why: "可以多选。不选就在全部职业里找。",
@@ -3848,7 +3839,7 @@ function plTally() {
   $pl("plPts").textContent = plScore(over);
   $pl("plTlist").innerHTML = (age == null ? `<li><span>年龄</span><b>先填出生年月</b></li>` : "") +
     rows.map(r => `<li><span>${plEsc(r.label)}</span><b>${r.pts > 0 ? "+" : ""}${r.pts}</b></li>`).join("") +
-    `<li><span>工作经验、NAATI、职业年</span><b><button type="button" class="linkbtn" data-go="points">在「我的分数」填</button></b></li>`;
+    `<li><span>分数不对？</span><b><button type="button" class="linkbtn" data-go="points">回「我的分数」改</button></b></li>`;
 }
 // CALC is the calculator's live state: always put it back, even if scoring throws
 function calcBreakdownWith(over) {
@@ -3869,18 +3860,11 @@ function plRenderQ() {
     const o = PLAN.cur && PL.data.by[PLAN.cur];
     body += `<input type="search" id="plOcc" placeholder="搜职业：中文、英文或代码" autocomplete="off" value="${o ? plEsc((o.zh || o.en) + " " + o.c) : ""}">
       <div class="pl-sug" id="plSug"></div>`;
-    const ai = typeof AI_RESULT !== "undefined" && AI_RESULT && AI_RESULT.candidates ? AI_RESULT.candidates.filter(x => PL.data.by[x.code]) : [];
-    body += ai.length
-      ? `<p class="pl-foot">AI 从你的简历里识别出：</p><div class="pl-chips">${ai.slice(0, 6).map(x =>
-          `<button type="button" class="pl-opt" data-cur="${x.code}" aria-pressed="${PLAN.cur === x.code}">${plEsc(PL.data.by[x.code].zh || PL.data.by[x.code].en)} <small>${x.code}</small></button>`).join("")}</div>`
-      : `<p class="pl-foot">不确定填哪个？<button type="button" class="linkbtn" data-go="ai">去「AI 匹配职业」用简历识别 →</button></p>`;
     body += `<button type="button" class="linkbtn" id="plNoCur">跳过，不比较现在的职业</button>`;
   } else {
-    const cur = q.calc ? (plCalc()[q.k] | 0) : PLAN[q.k];
+    const cur = PLAN[q.k];
     body += `<div class="${q.multi ? "pl-chips" : "pl-opts"}">${q.opts.map(([v, l, s]) => {
-      // a calculator answer counts as given once it was picked here or set to non-zero there
-      const on = q.multi ? PLAN.areas.includes(v)
-        : String(cur) === String(v) && (q.calc ? !!(PLAN["_" + q.k] || cur) : true);
+      const on = q.multi ? PLAN.areas.includes(v) : String(cur) === String(v);
       return `<button type="button" class="pl-opt" data-v="${v}" aria-pressed="${!!on}"><b>${l}</b>${s ? `<small>${s}</small>` : ""}</button>`;
     }).join("")}</div>`;
   }
@@ -3894,15 +3878,13 @@ function plRenderQ() {
     $pl("plOcc").addEventListener("input", f); f();
     $pl("plNoCur").addEventListener("click", () => { PLAN.cur = null; plSave(); plGo(1); });
   }
-  $pl("plQ").querySelectorAll(".pl-opt[data-cur]").forEach(b => b.addEventListener("click", () => {
-    PLAN.cur = b.dataset.cur; plSave(); plGo(1); }));
   $pl("plQ").querySelectorAll(".pl-opt[data-v]").forEach(b => b.addEventListener("click", () => {
     const v = b.dataset.v;
     if (q.multi) {
       PLAN.areas = PLAN.areas.includes(v) ? PLAN.areas.filter(x => x !== v) : PLAN.areas.concat([v]);
       b.setAttribute("aria-pressed", PLAN.areas.includes(v));
     } else {
-      if (q.calc) { plSetCalc(q.k, +v); PLAN["_" + q.k] = 1; } else PLAN[q.k] = v;
+      PLAN[q.k] = v;
       $pl("plQ").querySelectorAll(".pl-opt[data-v]").forEach(x => x.setAttribute("aria-pressed", x === b));
       setTimeout(() => plGo(1), 160);
     }
@@ -4144,31 +4126,17 @@ async function plAiRun() {
   const facts = plFacts(r);
   const stat = $pl("plAiStat"), out = $pl("plAiOut");
   out.textContent = "";
-  if (typeof aiLoadCfg === "function" && !document.getElementById("aiProvider").childElementCount) aiLoadCfg();
-  const prov = aiProv(), prof = aiProf();
-  stat.textContent = `已发送到 ${prov.label}，等待返回…`;
+  stat.textContent = "已发送到公共服务，等待返回…";
   try {
-    let text = "";
-    if (prov.api === "proxy") {
-      const res = await fetch(prof.endpoint.replace(/\/+$/, "") + "/plan",
-        { method: "POST", headers: aiHeaders(), body: JSON.stringify({ facts }) });
-      const d = await res.json().catch(() => ({}));
-      // a Worker deployed before /plan existed answers as the occupation match
-      if (res.status === 400 && d.error === "text required")
-        throw new Error("公共服务的解读接口还没上线；可以在「AI 匹配职业」页换成自己的 DeepSeek Key 先用。");
-      if (!res.ok) throw new Error(d.error || "HTTP " + res.status);
-      text = d.content || "";
-    } else {
-      if (!prof.endpoint || !prof.model) throw new Error("先在「AI 匹配职业」页的「模型服务」里填好端点和模型名。");
-      const user = JSON.stringify(facts);
-      const body = prov.api === "anthropic"
-        ? { model: prof.model, max_tokens: 1200, system: PL_AI_SYSTEM, messages: [{ role: "user", content: user }] }
-        : { model: prof.model, max_tokens: 1200, temperature: 0.3,
-            messages: [{ role: "system", content: PL_AI_SYSTEM }, { role: "user", content: user }] };
-      const res = await fetch(aiChatUrl(), { method: "POST", headers: aiHeaders(), body: JSON.stringify(body) });
-      if (!res.ok) throw new Error("HTTP " + res.status + " " + (await res.text()).slice(0, 160));
-      text = aiWireRead(await res.json()).text || "";
-    }
+    const a = typeof aiAuth === "function" ? aiAuth() : null;
+    const res = await fetch(String(PUBLIC_PROXY_URL).replace(/\/+$/, "") + "/plan",
+      { method: "POST", body: JSON.stringify({ facts }),
+        headers: Object.assign({ "Content-Type": "application/json" }, a ? { Authorization: "Bearer " + a.token } : {}) });
+    const d = await res.json().catch(() => ({}));
+    // a Worker deployed before /plan existed answers as the occupation match
+    if (res.status === 400 && d.error === "text required") throw new Error("解读接口还没上线，过几天再试。");
+    if (!res.ok) throw new Error(d.error || "HTTP " + res.status);
+    const text = d.content || "";
     const chk = plAiCheck(text, facts);
     if (!chk.ok) {
       stat.textContent = "AI 的回答没通过核对，已丢弃：" +
@@ -4177,7 +4145,7 @@ async function plAiRun() {
       return;
     }
     out.textContent = text.trim();
-    stat.textContent = `${prov.label} 生成，已核对：回答里的每个数字都出自本页算出的结果。`;
+    stat.textContent = "已核对：回答里的每个数字都出自本页算出的结果。";
   } catch (e) {
     stat.textContent = "没拿到解读：" + (e instanceof TypeError ? "连不上服务。" : e.message);
   }
@@ -4199,7 +4167,10 @@ function plInit() {
   const stat = $pl("plStat");
   if (!PL.data) stat.textContent = "正在载入 489 个职业的清单、评估和邀请数据…";
   plLoad().then(() => {
-    stat.textContent = "";
+    // the plan stands on the calculator's answers; say so if there are none yet
+    const filled = Object.keys(plCalc()).some(k => k !== "age" && plCalc()[k]);
+    stat.innerHTML = filled ? "" : `还没填「我的分数」，下面的分数只算了年龄。
+      <button type="button" class="linkbtn" data-go="points">先去填分数 →</button>`;
     if (!PL_WIRED) {
       PL_WIRED = true;
       $pl("plNext").addEventListener("click", () => plGo(1));

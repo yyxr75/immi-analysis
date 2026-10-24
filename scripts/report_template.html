@@ -532,6 +532,7 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
 .mesub-seg { display:flex; gap:2px; background:var(--surface); border:1px solid var(--hair); border-radius:7px; padding:2px; }
 .mesub-seg button { border:0; background:none; color:var(--ink2); font:inherit; font-size:13.5px; padding:5px 14px; border-radius:5px; cursor:pointer; }
 .mesub-seg button[aria-pressed="true"] { background:var(--ink); color:var(--plane); font-weight:600; }
+.pl-next { display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center; margin:18px 0 6px; }
 .mesub-acct { margin-left:auto; font-size:12.5px; color:var(--muted); }
 @media (max-width:640px) { .mesub-acct { margin-left:0; } }
 
@@ -723,9 +724,8 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
   <div id="view-plan" hidden>
     <div class="mesub">
       <div class="mesub-seg" role="group" aria-label="我的">
-        <button type="button" data-go="plan">我的方案</button>
-        <button type="button" data-go="points">我的分数</button>
-        <button type="button" data-go="ai">AI 匹配职业</button>
+        <button type="button" data-go="points">1. 我的分数</button>
+        <button type="button" data-go="plan">2. 我的方案</button>
       </div>
       <span class="mesub-acct"></span>
     </div>
@@ -748,7 +748,7 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
         <div class="pl-quiz">
           <div class="pl-q" id="plQ"></div>
           <aside class="pl-tally" aria-live="polite">
-            <span class="pl-foot">按你现在的答案</span>
+            <span class="pl-foot">按你在「我的分数」填的</span>
             <div class="pl-big" id="plPts">0</div>
             <span class="pl-foot">分（189，今天递 EOI）</span>
             <ul id="plTlist"></ul>
@@ -777,9 +777,8 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
   <div id="view-points" hidden>
     <div class="mesub">
       <div class="mesub-seg" role="group" aria-label="我的">
-        <button type="button" data-go="plan">我的方案</button>
-        <button type="button" data-go="points">我的分数</button>
-        <button type="button" data-go="ai">AI 匹配职业</button>
+        <button type="button" data-go="points">1. 我的分数</button>
+        <button type="button" data-go="plan">2. 我的方案</button>
       </div>
       <span class="mesub-acct"></span>
     </div>
@@ -789,9 +788,9 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
       <p>按 Schedule 6D 逐项选，本地算，不上传。<b>就在下面</b>，两分钟填完。</p>
     </li>
     <li>
-      <div class="t">再看能对上哪些职业</div>
-      <p>上传简历，模型从在册的 492 个职业里找出你可能对得上的，按你的分数排历史获邀率。
-        <button type="button" class="linkbtn" data-go="ai">去 AI 匹配职业 →</button></p>
+      <div class="t">再找方案</div>
+      <p>再答几个问题（现在在哪一步、现在的职业、愿意再读几年、对哪些方向有兴趣），把所有能走 189 的职业按你的分数排出来。
+        <button type="button" class="linkbtn" data-go="plan">去我的方案 →</button></p>
     </li>
     <li>
       <div class="t">看看本月职业行情</div>
@@ -821,16 +820,18 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
     <div class="tblwrap on" id="mrg"></div>
     <p class="note2" id="calcnote"></p>
   </div>
+  <div class="pl-next"><button type="button" class="pl-btn pri" data-go="plan">分数填好了，去找方案 →</button>
+    <span class="pl-foot">再答几个问题，用这个分数比较所有能走 189 的职业。</span></div>
   <p class="ctx cta">分数本身与职业无关。想知道它在某个职业里的<b>历史获邀率</b>，
     到 <button type="button" class="linkbtn" id="toData">「职业数据查询」</button>选一个职业——分数会自动带过去。</p>
   </div>
 
+  <!-- the AI match page is no longer reachable; its markup stays because ai_view.js (sign-in, proxy settings) reads it -->
   <div id="view-ai" hidden>
     <div class="mesub">
       <div class="mesub-seg" role="group" aria-label="我的">
-        <button type="button" data-go="plan">我的方案</button>
-        <button type="button" data-go="points">我的分数</button>
-        <button type="button" data-go="ai">AI 匹配职业</button>
+        <button type="button" data-go="points">1. 我的分数</button>
+        <button type="button" data-go="plan">2. 我的方案</button>
       </div>
       <span class="mesub-acct"></span>
     </div>
@@ -1085,7 +1086,7 @@ let DATA = __DATA__;
 // stays a secret inside the Worker. Empty means the shared option is hidden.
 const PUBLIC_PROXY_URL = __PUBLIC_PROXY_URL__;
 const SITE_TITLE = "澳洲技术移民工具箱";
-const SITE_TAGLINE = "Schedule 6D 打分 · AI 匹配职业 · 查历史获邀率 · 数据来自 SkillSelect 官方看板";
+const SITE_TAGLINE = "Schedule 6D 打分 · 移民方案 · 查历史获邀率 · 数据来自 SkillSelect 官方看板";
 const SVGNS = "http://www.w3.org/2000/svg";
 const CSS = k => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
 const SERIES_VAR = ["--s1","--s2","--s3","--s4"];
@@ -1514,15 +1515,15 @@ function chart6() {
 /* Order is the order of use: work out your score, see which occupations that
    score reaches, then dig into one. The occupation browser is where you go to
    check a specific answer, not where you start. */
-// "我的" is one tab over two views (points calculator, AI match) with its own
-// sub-switch; keeping them separate views keeps their deep links (#/points,
-// #/ai) and their lazy init intact.
-const VIEWS = [["watch", "自选"], ["board", "行情"], ["plan", "我的"], ["group", "交流群"]];
-const ME_VIEWS = ["plan", "points", "ai"];
+// "我的" is one tab over two steps with its own sub-switch: 1. the points
+// calculator, then 2. the plan, which reuses those answers. Separate views keep
+// their deep links (#/points, #/plan) and their lazy init intact.
+const VIEWS = [["watch", "自选"], ["board", "行情"], ["points", "我的"], ["group", "交流群"]];
+const ME_VIEWS = ["points", "plan"];
 const HOME = VIEWS[0][0];
 // Reachable by link ("完整图表 →"), not shown as a tab: the full per-occupation
 // chart set that the 自选 view summarises.
-const ALL_VIEWS = VIEWS.concat([["points", "我的分数"], ["ai", "AI 匹配职业"], ["data", "完整图表"]]);
+const ALL_VIEWS = VIEWS.concat([["plan", "我的方案"], ["data", "完整图表"]]);
 // A WeChat group QR expires; build_site.py stamps the date printed on the image
 // so the page can say so itself instead of silently handing out a dead code.
 const GROUP_QR_EXPIRES = __GROUP_QR_EXPIRES__;
@@ -1535,6 +1536,7 @@ function parseHash() {
   const p = h.split("/").filter(Boolean);
   const isCode = x => /^\d{6}$/.test(x);
   if (isCode(p[0])) return { view: "data", code: p[0] };          // legacy #261313
+  if (p[0] === "ai") return { view: "points", code: null };      // the AI match page is gone
   const view = ALL_VIEWS.some(v => v[0] === p[0]) ? p[0] : HOME;
   return { view, code: p[1] && isCode(p[1]) ? p[1] : null };
 }
@@ -1551,7 +1553,7 @@ function setView(name) {
   });
   document.querySelectorAll("#tabs button").forEach(b =>
     b.setAttribute("aria-pressed", b.dataset.v === name ||
-                   (b.dataset.v === "plan" && ME_VIEWS.includes(name))));
+                   (b.dataset.v === "points" && ME_VIEWS.includes(name))));
   if (ME_VIEWS.includes(name)) meRender(name);
   // the visa filter scopes the data and points views; it means nothing on the AI page
   const f = document.querySelector(".filters");
@@ -2136,7 +2138,7 @@ function meRender(name) {
   });
 }
 document.addEventListener("click", e => {
-  const go = e.target.closest(".mesub [data-go]");
+  const go = e.target.closest(".mesub [data-go], .pl [data-go], .pl-next [data-go]");
   if (go) { setView(go.dataset.go); return; }
   if (e.target.closest(".mesub [data-out]")) { aiSignOut(); meRender(curView); }
 });

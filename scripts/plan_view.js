@@ -103,19 +103,8 @@ const PL_QS = [
     opts: [["new", "还没开始学", "高中毕业、准备读书"], ["study", "在读或刚毕业", "专业已经定了"], ["work", "工作了，想换赛道", "现在的职业邀请太少"]] },
   { k: "birth", t: "出生年月", input: "month",
     why: "<b>年龄分</b>：25–32 岁 30 分，33–39 岁 25 分，40–44 岁 15 分。读书几年会不会刚好跨过 33 岁，是换赛道最大的代价。" },
-  { k: "edu", calc: true, t: "已经拿到的最高学历",
-    why: "<b>学历分</b>：博士 20，本科或硕士 15，Diploma 或技工资格 10。再读一个同级或更低的学位，这一项不会变高。",
-    opts: [[0, "高中或以下"], [3, "Diploma / 技工证书"], [2, "本科或硕士"], [1, "博士"]] },
-  { k: "auStudy", calc: true, t: "在澳洲读满两年了吗？", why: "<b>澳洲学习要求</b> +5。读一个两年以上的课程，届时也能拿到。",
-    opts: [[1, "读满了"], [0, "还没有"]] },
-  { k: "english", calc: true, t: "英语现在什么水平？",
-    why: "<b>英语分</b>：Proficient（雅思四个 7 / PTE 65）10 分，Superior（四个 8 / PTE 79）20 分。护士、教师、社工、医生的注册英语另有要求，卡片上会写。",
-    opts: [[0, "没考，或不到 Proficient"], [1, "Proficient（雅思 7 / PTE 65）"], [2, "Superior（雅思 8 / PTE 79）"]] },
-  { k: "partner", calc: true, t: "婚姻状况",
-    why: "<b>配偶分</b>：单身或配偶是澳洲 PR/公民 10 分；配偶有职业评估加 competent 英语 10 分；配偶只有 competent 英语 5 分。",
-    opts: [[1, "单身，或配偶是 PR / 公民"], [2, "配偶有职业评估 + 英语达标"], [3, "配偶只有英语达标"], [0, "配偶不满足以上"]] },
   { k: "cur", input: "occ", t: "现在的职业或专业", skip: () => PLAN.door === "new",
-    why: "作为<b>不读书</b>的那一行。在读就填专业对应的职业。不确定可以先去「AI 匹配职业」用简历识别。" },
+    why: "作为<b>不读书</b>的那一行。在读就填专业对应的职业。" },
   { k: "years", t: "最多愿意再读几年书？", why: "决定能比较哪些路。卡片上会写清楚每条路按几年算、是官方学制还是常见学制。",
     opts: [["0", "不读了"], ["2", "最多 2 年"], ["4", "3–4 年也行"], ["6", "5 年以上也行"]] },
   { k: "areas", multi: true, t: "对哪些方向有兴趣？", why: "可以多选。不选就在全部职业里找。",
@@ -130,7 +119,7 @@ function plTally() {
   $pl("plPts").textContent = plScore(over);
   $pl("plTlist").innerHTML = (age == null ? `<li><span>年龄</span><b>先填出生年月</b></li>` : "") +
     rows.map(r => `<li><span>${plEsc(r.label)}</span><b>${r.pts > 0 ? "+" : ""}${r.pts}</b></li>`).join("") +
-    `<li><span>工作经验、NAATI、职业年</span><b><button type="button" class="linkbtn" data-go="points">在「我的分数」填</button></b></li>`;
+    `<li><span>分数不对？</span><b><button type="button" class="linkbtn" data-go="points">回「我的分数」改</button></b></li>`;
 }
 // CALC is the calculator's live state: always put it back, even if scoring throws
 function calcBreakdownWith(over) {
@@ -151,18 +140,11 @@ function plRenderQ() {
     const o = PLAN.cur && PL.data.by[PLAN.cur];
     body += `<input type="search" id="plOcc" placeholder="搜职业：中文、英文或代码" autocomplete="off" value="${o ? plEsc((o.zh || o.en) + " " + o.c) : ""}">
       <div class="pl-sug" id="plSug"></div>`;
-    const ai = typeof AI_RESULT !== "undefined" && AI_RESULT && AI_RESULT.candidates ? AI_RESULT.candidates.filter(x => PL.data.by[x.code]) : [];
-    body += ai.length
-      ? `<p class="pl-foot">AI 从你的简历里识别出：</p><div class="pl-chips">${ai.slice(0, 6).map(x =>
-          `<button type="button" class="pl-opt" data-cur="${x.code}" aria-pressed="${PLAN.cur === x.code}">${plEsc(PL.data.by[x.code].zh || PL.data.by[x.code].en)} <small>${x.code}</small></button>`).join("")}</div>`
-      : `<p class="pl-foot">不确定填哪个？<button type="button" class="linkbtn" data-go="ai">去「AI 匹配职业」用简历识别 →</button></p>`;
     body += `<button type="button" class="linkbtn" id="plNoCur">跳过，不比较现在的职业</button>`;
   } else {
-    const cur = q.calc ? (plCalc()[q.k] | 0) : PLAN[q.k];
+    const cur = PLAN[q.k];
     body += `<div class="${q.multi ? "pl-chips" : "pl-opts"}">${q.opts.map(([v, l, s]) => {
-      // a calculator answer counts as given once it was picked here or set to non-zero there
-      const on = q.multi ? PLAN.areas.includes(v)
-        : String(cur) === String(v) && (q.calc ? !!(PLAN["_" + q.k] || cur) : true);
+      const on = q.multi ? PLAN.areas.includes(v) : String(cur) === String(v);
       return `<button type="button" class="pl-opt" data-v="${v}" aria-pressed="${!!on}"><b>${l}</b>${s ? `<small>${s}</small>` : ""}</button>`;
     }).join("")}</div>`;
   }
@@ -176,15 +158,13 @@ function plRenderQ() {
     $pl("plOcc").addEventListener("input", f); f();
     $pl("plNoCur").addEventListener("click", () => { PLAN.cur = null; plSave(); plGo(1); });
   }
-  $pl("plQ").querySelectorAll(".pl-opt[data-cur]").forEach(b => b.addEventListener("click", () => {
-    PLAN.cur = b.dataset.cur; plSave(); plGo(1); }));
   $pl("plQ").querySelectorAll(".pl-opt[data-v]").forEach(b => b.addEventListener("click", () => {
     const v = b.dataset.v;
     if (q.multi) {
       PLAN.areas = PLAN.areas.includes(v) ? PLAN.areas.filter(x => x !== v) : PLAN.areas.concat([v]);
       b.setAttribute("aria-pressed", PLAN.areas.includes(v));
     } else {
-      if (q.calc) { plSetCalc(q.k, +v); PLAN["_" + q.k] = 1; } else PLAN[q.k] = v;
+      PLAN[q.k] = v;
       $pl("plQ").querySelectorAll(".pl-opt[data-v]").forEach(x => x.setAttribute("aria-pressed", x === b));
       setTimeout(() => plGo(1), 160);
     }
@@ -426,31 +406,17 @@ async function plAiRun() {
   const facts = plFacts(r);
   const stat = $pl("plAiStat"), out = $pl("plAiOut");
   out.textContent = "";
-  if (typeof aiLoadCfg === "function" && !document.getElementById("aiProvider").childElementCount) aiLoadCfg();
-  const prov = aiProv(), prof = aiProf();
-  stat.textContent = `已发送到 ${prov.label}，等待返回…`;
+  stat.textContent = "已发送到公共服务，等待返回…";
   try {
-    let text = "";
-    if (prov.api === "proxy") {
-      const res = await fetch(prof.endpoint.replace(/\/+$/, "") + "/plan",
-        { method: "POST", headers: aiHeaders(), body: JSON.stringify({ facts }) });
-      const d = await res.json().catch(() => ({}));
-      // a Worker deployed before /plan existed answers as the occupation match
-      if (res.status === 400 && d.error === "text required")
-        throw new Error("公共服务的解读接口还没上线；可以在「AI 匹配职业」页换成自己的 DeepSeek Key 先用。");
-      if (!res.ok) throw new Error(d.error || "HTTP " + res.status);
-      text = d.content || "";
-    } else {
-      if (!prof.endpoint || !prof.model) throw new Error("先在「AI 匹配职业」页的「模型服务」里填好端点和模型名。");
-      const user = JSON.stringify(facts);
-      const body = prov.api === "anthropic"
-        ? { model: prof.model, max_tokens: 1200, system: PL_AI_SYSTEM, messages: [{ role: "user", content: user }] }
-        : { model: prof.model, max_tokens: 1200, temperature: 0.3,
-            messages: [{ role: "system", content: PL_AI_SYSTEM }, { role: "user", content: user }] };
-      const res = await fetch(aiChatUrl(), { method: "POST", headers: aiHeaders(), body: JSON.stringify(body) });
-      if (!res.ok) throw new Error("HTTP " + res.status + " " + (await res.text()).slice(0, 160));
-      text = aiWireRead(await res.json()).text || "";
-    }
+    const a = typeof aiAuth === "function" ? aiAuth() : null;
+    const res = await fetch(String(PUBLIC_PROXY_URL).replace(/\/+$/, "") + "/plan",
+      { method: "POST", body: JSON.stringify({ facts }),
+        headers: Object.assign({ "Content-Type": "application/json" }, a ? { Authorization: "Bearer " + a.token } : {}) });
+    const d = await res.json().catch(() => ({}));
+    // a Worker deployed before /plan existed answers as the occupation match
+    if (res.status === 400 && d.error === "text required") throw new Error("解读接口还没上线，过几天再试。");
+    if (!res.ok) throw new Error(d.error || "HTTP " + res.status);
+    const text = d.content || "";
     const chk = plAiCheck(text, facts);
     if (!chk.ok) {
       stat.textContent = "AI 的回答没通过核对，已丢弃：" +
@@ -459,7 +425,7 @@ async function plAiRun() {
       return;
     }
     out.textContent = text.trim();
-    stat.textContent = `${prov.label} 生成，已核对：回答里的每个数字都出自本页算出的结果。`;
+    stat.textContent = "已核对：回答里的每个数字都出自本页算出的结果。";
   } catch (e) {
     stat.textContent = "没拿到解读：" + (e instanceof TypeError ? "连不上服务。" : e.message);
   }
@@ -481,7 +447,10 @@ function plInit() {
   const stat = $pl("plStat");
   if (!PL.data) stat.textContent = "正在载入 489 个职业的清单、评估和邀请数据…";
   plLoad().then(() => {
-    stat.textContent = "";
+    // the plan stands on the calculator's answers; say so if there are none yet
+    const filled = Object.keys(plCalc()).some(k => k !== "age" && plCalc()[k]);
+    stat.innerHTML = filled ? "" : `还没填「我的分数」，下面的分数只算了年龄。
+      <button type="button" class="linkbtn" data-go="points">先去填分数 →</button>`;
     if (!PL_WIRED) {
       PL_WIRED = true;
       $pl("plNext").addEventListener("click", () => plGo(1));
