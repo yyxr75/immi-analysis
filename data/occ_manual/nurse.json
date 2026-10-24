@@ -1,0 +1,596 @@
+{
+ "group": "nurse",
+ "checkedAt": "2026-10-24",
+ "shared": {
+  "assessment": {
+   "pathway": {
+    "value": "Modified skills assessment (being renamed 'Essential' / 'Essential Plus' later in 2026) for people currently registered with NMBA/Ahpra (or NCNZ/MCNZ)",
+    "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+    "quote": "Apply for this assessment if you are currently registered as a nurse or midwife in Australia or New Zealand.",
+    "sourceType": "assessor"
+   },
+   "registrationRequired": {
+    "value": true,
+    "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+    "quote": "To qualify for a Modified skills assessment, you need current registration from one of the following: Nursing and Midwifery Board of Australia (NMBA/Ahpra)",
+    "sourceType": "assessor"
+   },
+   "qualificationEvidence": {
+    "value": "Graduation certificates and transcripts for all relevant qualifications (with commencement/completion dates); for a masters in nursing/midwifery, also prior qualifications",
+    "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+    "quote": "If you are submitting a masters degree in nursing or midwifery, please also provide the qualifications you completed prior to this",
+    "sourceType": "assessor"
+   },
+   "englishTestForAssessment": {
+    "value": false,
+    "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+    "quote": "If you are applying for a Modified Skills Assessment, you do not need to provide English language test results.",
+    "sourceType": "assessor"
+   },
+   "workExperienceForGeneralCodes": {
+    "value": "None required for 254499 RN NEC, 254111 Midwife, 411411 Enrolled Nurse",
+    "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+    "quote": "If you do not have work experience, choose one of these general codes that apply to you:",
+    "sourceType": "assessor"
+   },
+   "workExperienceForSpecificCodes": {
+    "value": "At least 3 months (260 hours) paid employment within the last 5 years aligned with the nominated specialty code, supported by a professional reference letter from a nurse/midwife/clinical supervisor (not HR/payroll); without it, only 254499 RN NEC can be assessed",
+    "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+    "quote": "You must provide at least 3 months (260 hours) paid employment within the last 5 years that aligns with your nominated ANZSCO code.",
+    "sourceType": "assessor"
+   },
+   "workExperienceForPoints": {
+    "value": "To have experience listed on the outcome letter for visa points: 12 months (1040 hours) paid Australian or 36 months (3120 hours) paid overseas experience",
+    "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+    "quote": "12 months (1040 hours) paid Australian work experience, or",
+    "sourceType": "assessor"
+   },
+   "validity": {
+    "value": "2 years from date of issue",
+    "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+    "quote": "confirm the validity period (2 years from the date of issue).",
+    "sourceType": "assessor"
+   },
+   "fee": {
+    "value": "AUD 395 (fees and names due to change later in 2026)",
+    "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+    "quote": "$395 AUD",
+    "sourceType": "assessor"
+   },
+   "upcomingChange": {
+    "value": "Essential = Australian-registered, qualifications only; Essential Plus = qualifications plus work experience (for specific ANZSCO codes or points); expected later in 2026",
+    "source": "https://www.anmac.org.au/upcoming-changes-to-anmac-skilled-migration-services",
+    "quote": "This assessment only assesses your qualifications.",
+    "sourceType": "assessor"
+   }
+  },
+  "australianStudyRoute": {
+   "qualification": {
+    "value": "NMBA-approved, ANMAC-accredited entry-to-practice RN program (Bachelor or Masters degree), AQF Level 7 or above, delivered in Australia",
+    "source": "https://www.anmac.org.au/assets/documents/registerednurseaccreditationstandards2019_0.pdf",
+    "quote": "The program of study is delivered at an Australian Qualifications Framework Level 7 or above for the award of a Bachelor Degree, as a minimum.",
+    "sourceType": "assessor"
+   },
+   "programType": {
+    "value": "Bachelor or Masters (graduate-entry) degree",
+    "source": "https://www.anmac.org.au/assets/documents/registerednurseaccreditationstandards2019_0.pdf",
+    "quote": "Nurse program (Bachelor or Masters degree).",
+    "sourceType": "assessor"
+   },
+   "clinicalPlacement": {
+    "value": "Minimum 800 hours professional experience placement (PEP)",
+    "source": "https://www.anmac.org.au/assets/documents/registerednurseaccreditationstandards2019_0.pdf",
+    "quote": "a minimum of 800 hours of quality PEP",
+    "sourceType": "assessor"
+   },
+   "nominalDuration": null
+  },
+  "registration": {
+   "body": {
+    "value": "Nursing and Midwifery Board of Australia (NMBA) via Ahpra",
+    "source": "https://www.anmac.org.au/skilled-migrants/frequently-asked-questions",
+    "quote": "To work in Australia as a nurse or midwife, you need to be registered with the Nursing and Midwifery Board of Australia (NMBA).",
+    "sourceType": "assessor"
+   },
+   "requiredToWork": {
+    "value": true,
+    "source": "https://www.nursingmidwiferyboard.gov.au/Registration-and-Endorsement.aspx",
+    "quote": "Nurses and midwives must be registered with the Nursing and Midwifery Board of Australia",
+    "sourceType": "regulator"
+   },
+   "englishStandardAppliesToAustralianGraduates": {
+    "value": true,
+    "source": "https://www.nursingmidwiferyboard.gov.au/Registration-Standards/English-language-skills.aspx",
+    "quote": "This registration standard applies to all nurses and midwives applying for initial registration, regardless of whether they qualified in Australia or overseas.",
+    "sourceType": "regulator"
+   },
+   "englishPathways": {
+    "value": [
+     "Primary language pathway",
+     "English language test pathway",
+     "Extended education pathway (exceptional)"
+    ],
+    "source": "https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/FAQ/fact-sheet-english-language-skills-registration-standard",
+    "quote": "The revised ELS registration standard outlines three pathways that you can use to demonstrate your English language competence:",
+    "sourceType": "regulator"
+   },
+   "englishTestScores_testsOnOrAfter2026-04-23": {
+    "value": {
+     "IELTS_Academic": {
+      "overall": 7,
+      "listening": 7,
+      "reading": 7,
+      "writing": 6.5,
+      "speaking": 7
+     },
+     "PTE_Academic": {
+      "overall": 63,
+      "listening": 58,
+      "reading": 59,
+      "writing": 60,
+      "speaking": 76
+     },
+     "OET": {
+      "overall": null,
+      "listening": 350,
+      "reading": 360,
+      "writing": 350,
+      "speaking": 360
+     },
+     "TOEFL_iBT": {
+      "overall": 91,
+      "listening": 22,
+      "reading": 22,
+      "writing": 23,
+      "speaking": 24
+     },
+     "Cambridge_C1_Advanced": {
+      "overall": 178,
+      "listening": 175,
+      "reading": 179,
+      "writing": 180,
+      "speaking": 194
+     },
+     "Cambridge_C2_Proficiency": {
+      "overall": 185,
+      "listening": 185,
+      "reading": 185,
+      "writing": 176,
+      "speaking": 185
+     },
+     "sittings": "One sitting, or max two sittings within 12 months subject to per-component floors"
+    },
+    "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/Accepted-English-language-tests",
+    "quote": "Minimum test scores for tests taken on or after 23 April 2026.",
+    "sourceType": "regulator"
+   },
+   "englishTestScores_testsOnOrBefore2026-04-22": {
+    "value": {
+     "IELTS_Academic": {
+      "overall": 7,
+      "listening": 7,
+      "reading": 7,
+      "writing": 6.5,
+      "speaking": 7
+     },
+     "PTE_Academic": {
+      "overall": 66,
+      "listening": 66,
+      "reading": 66,
+      "writing": 56,
+      "speaking": 66
+     },
+     "OET": {
+      "listening": "B",
+      "reading": "B",
+      "writing": "C+",
+      "speaking": "B"
+     },
+     "TOEFL_iBT": {
+      "overall": 94,
+      "listening": 24,
+      "reading": 24,
+      "writing": 24,
+      "speaking": 23
+     }
+    },
+    "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/Accepted-English-language-tests",
+    "quote": "Minimum test scores and requirements for tests taken on or before 22 April 2026.",
+    "sourceType": "regulator"
+   },
+   "exemptionPrimaryLanguage": {
+    "value": "English as primary language plus at least 6 years primary+secondary education taught and assessed in English in a recognised country (incl. 2 years in years 7-12); suits those who grew up and studied in Australia",
+    "source": "https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/FAQ/fact-sheet-english-language-skills-registration-standard",
+    "quote": "at least six years of primary and secondary education taught and assessed in English",
+    "sourceType": "regulator"
+   },
+   "exemptionExtendedEducation": {
+    "value": "At least 5 years (FTE) continuous education taught and assessed solely in English in a recognised country, including the nursing/midwifery tertiary qualification; exceptional pathway. International students who completed only a 2-3 year Australian degree generally will not meet this and need the test pathway",
+    "source": "https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/FAQ/fact-sheet-english-language-skills-registration-standard",
+    "quote": "at least five (5) years (full-time equivalent) continuous education, in English in a recognised country, which includes tertiary qualifications in the relevant professional discipline.",
+    "sourceType": "regulator"
+   }
+  },
+  "otherConditions": {
+   "recencyOfPractice": {
+    "value": "Minimum 450 hours practice within the past five years (for renewal/registration)",
+    "source": "https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/FAQ/recency-of-practice",
+    "quote": "You need to provide evidence that you have practised for a period equivalent to a minimum of 450 hours, within the past five years.",
+    "sourceType": "regulator"
+   },
+   "keepRegistrationCurrent": {
+    "value": true,
+    "source": "https://www.anmac.org.au/skilled-migrants/frequently-asked-questions",
+    "quote": "You also need to keep your Australian registration current.",
+    "sourceType": "assessor"
+   },
+   "nonGenuineClaims": {
+    "value": "Negative outcome and 2-year lock-out",
+    "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+    "quote": "Non-genuine claims will result in a negative skills assessment outcome and a 2-year lock-out period for a new skills assessment.",
+    "sourceType": "assessor"
+   }
+  }
+ },
+ "occupations": {
+  "254499": {
+   "differences": {}
+  },
+  "254111": {
+   "differences": {
+    "qualification": {
+     "value": "NMBA-approved, ANMAC-accredited entry-to-practice midwifery program (Bachelor, Graduate Diploma or Masters), AQF Level 7+ Bachelor minimum",
+     "source": "https://anmac.org.au/sites/default/files/2025-08/06920_anmac_midwife_std_2021_online_05_fa.pdf",
+     "quote": "Australian Qualifications Framework level 7 or above for the award of a Bachelor Degree as a minimum.",
+     "sourceType": "assessor"
+    },
+    "registrationType": {
+     "value": "Registration as a midwife with NMBA (not RN registration)",
+     "source": "https://www.anmac.org.au/skilled-migrants/frequently-asked-questions",
+     "quote": "If you hold registration as a registered nurse, enrolled nurse or midwife in Australia",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "411411": {
+   "differences": {
+    "qualification": {
+     "value": "NMBA-approved Diploma of Nursing (HLT54115 or current), AQF Level 5, from an RTO",
+     "source": "https://www.anmac.org.au/assets/documents/ANMAC_EN_Standards_web.pdf",
+     "quote": "the qualification of Diploma of Nursing, derived from the current National Health Training Package, at Australian Qualification Framework (AQF) Level 5.",
+     "sourceType": "assessor"
+    },
+    "clinicalPlacement": {
+     "value": "Minimum 400 hours workplace experience",
+     "source": "https://www.anmac.org.au/assets/documents/ANMAC_EN_Standards_web.pdf",
+     "quote": "A minimum of 400 hours of successfully completed workplace experience as an enrolled nursing student",
+     "sourceType": "assessor"
+    },
+    "englishExtendedEducationNote": {
+     "value": "Same total years of English education, but only 1 year FTE pre-registration study in English needed",
+     "source": "https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/FAQ/fact-sheet-english-language-skills-registration-standard",
+     "quote": "they are only required to have successfully completed a minimum of one year of a full-time equivalent pre-registration program of study in English",
+     "sourceType": "regulator"
+    },
+    "registrationType": {
+     "value": "Enrolled nurse registration with NMBA",
+     "source": "https://www.anmac.org.au/skilled-migrants/frequently-asked-questions",
+     "quote": "If you hold registration as a registered nurse, enrolled nurse or midwife in Australia",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "254415": {
+   "differences": {
+    "specialtyExperience": {
+     "value": "At least 3 months (260 hours) paid employment within the last 5 years aligned with the nominated specialty code, supported by a professional reference letter from a nurse/midwife/clinical supervisor (not HR/payroll); without it, only 254499 RN NEC can be assessed",
+     "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+     "quote": "You must provide at least 3 months (260 hours) paid employment within the last 5 years that aligns with your nominated ANZSCO code.",
+     "sourceType": "assessor"
+    },
+    "oldExperience": {
+     "value": "Work older than 5 years can only be allocated 254499",
+     "source": "https://www.anmac.org.au/skilled-migrants/frequently-asked-questions",
+     "quote": "any work that is over 5 years old can only be allocated the ANZSCO code 254499 Registered Nurse (Not Elsewhere Classified).",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "254418": {
+   "differences": {
+    "specialtyExperience": {
+     "value": "At least 3 months (260 hours) paid employment within the last 5 years aligned with the nominated specialty code, supported by a professional reference letter from a nurse/midwife/clinical supervisor (not HR/payroll); without it, only 254499 RN NEC can be assessed",
+     "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+     "quote": "You must provide at least 3 months (260 hours) paid employment within the last 5 years that aligns with your nominated ANZSCO code.",
+     "sourceType": "assessor"
+    },
+    "oldExperience": {
+     "value": "Work older than 5 years can only be allocated 254499",
+     "source": "https://www.anmac.org.au/skilled-migrants/frequently-asked-questions",
+     "quote": "any work that is over 5 years old can only be allocated the ANZSCO code 254499 Registered Nurse (Not Elsewhere Classified).",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "254412": {
+   "differences": {
+    "specialtyExperience": {
+     "value": "At least 3 months (260 hours) paid employment within the last 5 years aligned with the nominated specialty code, supported by a professional reference letter from a nurse/midwife/clinical supervisor (not HR/payroll); without it, only 254499 RN NEC can be assessed",
+     "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+     "quote": "You must provide at least 3 months (260 hours) paid employment within the last 5 years that aligns with your nominated ANZSCO code.",
+     "sourceType": "assessor"
+    },
+    "oldExperience": {
+     "value": "Work older than 5 years can only be allocated 254499",
+     "source": "https://www.anmac.org.au/skilled-migrants/frequently-asked-questions",
+     "quote": "any work that is over 5 years old can only be allocated the ANZSCO code 254499 Registered Nurse (Not Elsewhere Classified).",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "254424": {
+   "differences": {
+    "specialtyExperience": {
+     "value": "At least 3 months (260 hours) paid employment within the last 5 years aligned with the nominated specialty code, supported by a professional reference letter from a nurse/midwife/clinical supervisor (not HR/payroll); without it, only 254499 RN NEC can be assessed",
+     "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+     "quote": "You must provide at least 3 months (260 hours) paid employment within the last 5 years that aligns with your nominated ANZSCO code.",
+     "sourceType": "assessor"
+    },
+    "oldExperience": {
+     "value": "Work older than 5 years can only be allocated 254499",
+     "source": "https://www.anmac.org.au/skilled-migrants/frequently-asked-questions",
+     "quote": "any work that is over 5 years old can only be allocated the ANZSCO code 254499 Registered Nurse (Not Elsewhere Classified).",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "254423": {
+   "differences": {
+    "specialtyExperience": {
+     "value": "At least 3 months (260 hours) paid employment within the last 5 years aligned with the nominated specialty code, supported by a professional reference letter from a nurse/midwife/clinical supervisor (not HR/payroll); without it, only 254499 RN NEC can be assessed",
+     "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+     "quote": "You must provide at least 3 months (260 hours) paid employment within the last 5 years that aligns with your nominated ANZSCO code.",
+     "sourceType": "assessor"
+    },
+    "oldExperience": {
+     "value": "Work older than 5 years can only be allocated 254499",
+     "source": "https://www.anmac.org.au/skilled-migrants/frequently-asked-questions",
+     "quote": "any work that is over 5 years old can only be allocated the ANZSCO code 254499 Registered Nurse (Not Elsewhere Classified).",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "254425": {
+   "differences": {
+    "specialtyExperience": {
+     "value": "At least 3 months (260 hours) paid employment within the last 5 years aligned with the nominated specialty code, supported by a professional reference letter from a nurse/midwife/clinical supervisor (not HR/payroll); without it, only 254499 RN NEC can be assessed",
+     "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+     "quote": "You must provide at least 3 months (260 hours) paid employment within the last 5 years that aligns with your nominated ANZSCO code.",
+     "sourceType": "assessor"
+    },
+    "oldExperience": {
+     "value": "Work older than 5 years can only be allocated 254499",
+     "source": "https://www.anmac.org.au/skilled-migrants/frequently-asked-questions",
+     "quote": "any work that is over 5 years old can only be allocated the ANZSCO code 254499 Registered Nurse (Not Elsewhere Classified).",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "254422": {
+   "differences": {
+    "specialtyExperience": {
+     "value": "At least 3 months (260 hours) paid employment within the last 5 years aligned with the nominated specialty code, supported by a professional reference letter from a nurse/midwife/clinical supervisor (not HR/payroll); without it, only 254499 RN NEC can be assessed",
+     "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+     "quote": "You must provide at least 3 months (260 hours) paid employment within the last 5 years that aligns with your nominated ANZSCO code.",
+     "sourceType": "assessor"
+    },
+    "oldExperience": {
+     "value": "Work older than 5 years can only be allocated 254499",
+     "source": "https://www.anmac.org.au/skilled-migrants/frequently-asked-questions",
+     "quote": "any work that is over 5 years old can only be allocated the ANZSCO code 254499 Registered Nurse (Not Elsewhere Classified).",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "254414": {
+   "differences": {
+    "specialtyExperience": {
+     "value": "At least 3 months (260 hours) paid employment within the last 5 years aligned with the nominated specialty code, supported by a professional reference letter from a nurse/midwife/clinical supervisor (not HR/payroll); without it, only 254499 RN NEC can be assessed",
+     "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+     "quote": "You must provide at least 3 months (260 hours) paid employment within the last 5 years that aligns with your nominated ANZSCO code.",
+     "sourceType": "assessor"
+    },
+    "oldExperience": {
+     "value": "Work older than 5 years can only be allocated 254499",
+     "source": "https://www.anmac.org.au/skilled-migrants/frequently-asked-questions",
+     "quote": "any work that is over 5 years old can only be allocated the ANZSCO code 254499 Registered Nurse (Not Elsewhere Classified).",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "254421": {
+   "differences": {
+    "specialtyExperience": {
+     "value": "At least 3 months (260 hours) paid employment within the last 5 years aligned with the nominated specialty code, supported by a professional reference letter from a nurse/midwife/clinical supervisor (not HR/payroll); without it, only 254499 RN NEC can be assessed",
+     "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+     "quote": "You must provide at least 3 months (260 hours) paid employment within the last 5 years that aligns with your nominated ANZSCO code.",
+     "sourceType": "assessor"
+    },
+    "oldExperience": {
+     "value": "Work older than 5 years can only be allocated 254499",
+     "source": "https://www.anmac.org.au/skilled-migrants/frequently-asked-questions",
+     "quote": "any work that is over 5 years old can only be allocated the ANZSCO code 254499 Registered Nurse (Not Elsewhere Classified).",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "254417": {
+   "differences": {
+    "specialtyExperience": {
+     "value": "At least 3 months (260 hours) paid employment within the last 5 years aligned with the nominated specialty code, supported by a professional reference letter from a nurse/midwife/clinical supervisor (not HR/payroll); without it, only 254499 RN NEC can be assessed",
+     "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+     "quote": "You must provide at least 3 months (260 hours) paid employment within the last 5 years that aligns with your nominated ANZSCO code.",
+     "sourceType": "assessor"
+    },
+    "oldExperience": {
+     "value": "Work older than 5 years can only be allocated 254499",
+     "source": "https://www.anmac.org.au/skilled-migrants/frequently-asked-questions",
+     "quote": "any work that is over 5 years old can only be allocated the ANZSCO code 254499 Registered Nurse (Not Elsewhere Classified).",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "254413": {
+   "differences": {
+    "specialtyExperience": {
+     "value": "At least 3 months (260 hours) paid employment within the last 5 years aligned with the nominated specialty code, supported by a professional reference letter from a nurse/midwife/clinical supervisor (not HR/payroll); without it, only 254499 RN NEC can be assessed",
+     "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+     "quote": "You must provide at least 3 months (260 hours) paid employment within the last 5 years that aligns with your nominated ANZSCO code.",
+     "sourceType": "assessor"
+    },
+    "oldExperience": {
+     "value": "Work older than 5 years can only be allocated 254499",
+     "source": "https://www.anmac.org.au/skilled-migrants/frequently-asked-questions",
+     "quote": "any work that is over 5 years old can only be allocated the ANZSCO code 254499 Registered Nurse (Not Elsewhere Classified).",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "254211": {
+   "differences": {
+    "specialtyExperience": {
+     "value": "At least 3 months (260 hours) paid employment within the last 5 years aligned with the nominated specialty code, supported by a professional reference letter from a nurse/midwife/clinical supervisor (not HR/payroll); without it, only 254499 RN NEC can be assessed",
+     "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+     "quote": "You must provide at least 3 months (260 hours) paid employment within the last 5 years that aligns with your nominated ANZSCO code.",
+     "sourceType": "assessor"
+    },
+    "oldExperience": {
+     "value": "Work older than 5 years can only be allocated 254499",
+     "source": "https://www.anmac.org.au/skilled-migrants/frequently-asked-questions",
+     "quote": "any work that is over 5 years old can only be allocated the ANZSCO code 254499 Registered Nurse (Not Elsewhere Classified).",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "254416": {
+   "differences": {
+    "specialtyExperience": {
+     "value": "At least 3 months (260 hours) paid employment within the last 5 years aligned with the nominated specialty code, supported by a professional reference letter from a nurse/midwife/clinical supervisor (not HR/payroll); without it, only 254499 RN NEC can be assessed",
+     "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+     "quote": "You must provide at least 3 months (260 hours) paid employment within the last 5 years that aligns with your nominated ANZSCO code.",
+     "sourceType": "assessor"
+    },
+    "oldExperience": {
+     "value": "Work older than 5 years can only be allocated 254499",
+     "source": "https://www.anmac.org.au/skilled-migrants/frequently-asked-questions",
+     "quote": "any work that is over 5 years old can only be allocated the ANZSCO code 254499 Registered Nurse (Not Elsewhere Classified).",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "254311": {
+   "differences": {
+    "specialtyExperience": {
+     "value": "At least 3 months (260 hours) paid employment within the last 5 years aligned with the nominated specialty code, supported by a professional reference letter from a nurse/midwife/clinical supervisor (not HR/payroll); without it, only 254499 RN NEC can be assessed",
+     "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+     "quote": "You must provide at least 3 months (260 hours) paid employment within the last 5 years that aligns with your nominated ANZSCO code.",
+     "sourceType": "assessor"
+    },
+    "oldExperience": {
+     "value": "Work older than 5 years can only be allocated 254499",
+     "source": "https://www.anmac.org.au/skilled-migrants/frequently-asked-questions",
+     "quote": "any work that is over 5 years old can only be allocated the ANZSCO code 254499 Registered Nurse (Not Elsewhere Classified).",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "134212": {
+   "differences": {
+    "specialtyExperience": {
+     "value": "At least 3 months (260 hours) paid employment within the last 5 years aligned with the nominated specialty code, supported by a professional reference letter from a nurse/midwife/clinical supervisor (not HR/payroll); without it, only 254499 RN NEC can be assessed",
+     "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+     "quote": "You must provide at least 3 months (260 hours) paid employment within the last 5 years that aligns with your nominated ANZSCO code.",
+     "sourceType": "assessor"
+    },
+    "oldExperience": {
+     "value": "Work older than 5 years can only be allocated 254499",
+     "source": "https://www.anmac.org.au/skilled-migrants/frequently-asked-questions",
+     "quote": "any work that is over 5 years old can only be allocated the ANZSCO code 254499 Registered Nurse (Not Elsewhere Classified).",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "254212": {
+   "differences": {
+    "specialtyExperience": {
+     "value": "At least 3 months (260 hours) paid employment within the last 5 years aligned with the nominated specialty code, supported by a professional reference letter from a nurse/midwife/clinical supervisor (not HR/payroll); without it, only 254499 RN NEC can be assessed",
+     "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+     "quote": "You must provide at least 3 months (260 hours) paid employment within the last 5 years that aligns with your nominated ANZSCO code.",
+     "sourceType": "assessor"
+    },
+    "oldExperience": {
+     "value": "Work older than 5 years can only be allocated 254499",
+     "source": "https://www.anmac.org.au/skilled-migrants/frequently-asked-questions",
+     "quote": "any work that is over 5 years old can only be allocated the ANZSCO code 254499 Registered Nurse (Not Elsewhere Classified).",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "254411": {
+   "differences": {
+    "specialtyExperience": {
+     "value": "At least 3 months (260 hours) paid employment within the last 5 years aligned with the nominated specialty code, supported by a professional reference letter from a nurse/midwife/clinical supervisor (not HR/payroll); without it, only 254499 RN NEC can be assessed",
+     "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
+     "quote": "You must provide at least 3 months (260 hours) paid employment within the last 5 years that aligns with your nominated ANZSCO code.",
+     "sourceType": "assessor"
+    },
+    "oldExperience": {
+     "value": "Work older than 5 years can only be allocated 254499",
+     "source": "https://www.anmac.org.au/skilled-migrants/frequently-asked-questions",
+     "quote": "any work that is over 5 years old can only be allocated the ANZSCO code 254499 Registered Nurse (Not Elsewhere Classified).",
+     "sourceType": "assessor"
+    },
+    "endorsement": {
+     "value": "NMBA endorsement as nurse practitioner: current general RN registration; 5,000 hours advanced practice in past 6 years; NMBA-approved NP program (Master of Nursing (NP)) or equivalent",
+     "source": "https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/Codes-Guidelines/Guidelines-on-endorsement-as-a-nurse-practitioner",
+     "quote": "The equivalent of three years’ (5,000 hours) full-time experience at an advanced practice level, within the past six years",
+     "sourceType": "regulator"
+    },
+    "studyHoursExcluded": {
+     "value": "Advanced practice hours inside the NP program do not count",
+     "source": "https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/Codes-Guidelines/Guidelines-on-endorsement-as-a-nurse-practitioner",
+     "quote": "Advanced practice hours that are part of an NMBA-approved program of study cannot be included as evidence towards the 5,000 hours of advanced practice.",
+     "sourceType": "regulator"
+    },
+    "standardChange": {
+     "value": "Revised NP endorsement standard takes effect 14 January 2027",
+     "source": "https://www.nursingmidwiferyboard.gov.au/Registration-Standards/Endorsement-as-a-nurse-practitioner.aspx",
+     "quote": "The revised Registration standard: Endorsement as a nurse practitioner will come into effect on 14 January 2027.",
+     "sourceType": "regulator"
+    },
+    "anmacEndorsementRequirement": null
+   }
+  }
+ },
+ "gaps": [
+  "australianStudyRoute.nominalDuration: null - ANMAC/NMBA standards set AQF level and placement hours but no course duration; durations vary by university and were not taken from any single university page.",
+  "Midwife and EN nominal durations likewise not stated by regulator: null.",
+  "ANMAC pages do not say whether 254411 Nurse Practitioner requires NMBA NP endorsement for a positive assessment; anmacEndorsementRequirement is null. The NMBA endorsement rules are recorded, but ANMAC's own criteria for this code are not.",
+  "For 254211, 254311, 134212 and 254212, ANMAC states only the generic rule (3 months/260 hours within 5 years aligned with the code). No role-specific criteria were found, e.g. management or research duties, or whether 134212 needs a nurse-registration-based role.",
+  "Did not verify on Home Affairs that ANMAC is the assessing authority for every listed code (notably 134212); assumed per task.",
+  "ANMAC says new assessment names, fees and a new portal (Essential/Essential Plus/Comprehensive) take effect 'later this year' (2026). The $395 fee and 'Modified' name may change soon.",
+  "The RN Accreditation Standards 2019 PDF URL is on an older /assets path; ANMAC's standards page lists the 2019 standards as current.",
+  "Primary language pathway full criteria (e.g. 'recognised country' list) are in the ELS standard PDF and were not separately quoted."
+ ],
+ "secondCheck": {
+  "date": "2026-10-24",
+  "note": "Quotes checked again by script against the cited pages on 2026-10-24; paths in `unverified` could not be re-fetched (the page loads its content by script) and rest on the first check only.",
+  "unverified": [
+   ".shared.assessment.pathway",
+   ".shared.assessment.registrationRequired",
+   ".shared.assessment.englishTestForAssessment",
+   ".shared.assessment.validity",
+   ".shared.assessment.fee"
+  ]
+ }
+}

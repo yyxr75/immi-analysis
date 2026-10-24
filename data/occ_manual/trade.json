@@ -1,0 +1,580 @@
+{
+ "group": "trade",
+ "checkedAt": "2026-10-24",
+ "shared": {
+  "assessingAuthority": {
+   "value": "Trades Recognition Australia (TRA), within the Department of Employment and Workplace Relations",
+   "source": "https://www.tradesrecognitionaustralia.gov.au/",
+   "quote": "Trades Recognition Australia (TRA) is a skills assessment service for people with trade skills gained overseas or in Australia for the purpose of migration.",
+   "sourceType": "assessor"
+  },
+  "occupationsAssessedByTRA": {
+   "value": "All 9 occupations appear on TRA's 'Australian Qualifications by Occupation' list (current from 3 December 2025)",
+   "source": "https://www.tradesrecognitionaustralia.gov.au/download/238/australian-qualifications-occupation/803/australian-qualification-occupation/pdf",
+   "quote": "Current from 3 December 2025",
+   "sourceType": "assessor"
+  },
+  "tradeGroupSplit": {
+   "value": "TRA defines exactly four 'Licensed Occupations': 342111 Airconditioning and Refrigeration Mechanic, 341111 Electrician (General), 341112 Electrician (Special Class), 334111 Plumber (General). The other five in this group (341113, 334112, 334113, 334114, 334115) are not TRA 'licensed occupations' and follow the standard international-graduate pathway.",
+   "source": "https://www.tradesrecognitionaustralia.gov.au/download/170/offshore-skills-assessment-program-guidelines/647/offshore-skills-assessment-applicant-guidelines/pdf",
+   "quote": "Licensed Occupation – This refers to the occupations of Airconditioning and Refrigeration Mechanic, Electrician (General), Electrician (Special Class) and Plumber (General).",
+   "sourceType": "assessor"
+  },
+  "assessment": {
+   "provisionalSkillsAssessment": {
+    "value": {
+     "program": "Provisional Skills Assessment (PSA)",
+     "purpose": "for recent international graduates applying for Temporary Graduate visa (subclass 485, Post-Vocational Education Work Stream); prerequisite for the Job Ready Program",
+     "eligibility": [
+      "Australian qualification completed through a CRICOS-registered RTO",
+      "Nominated occupation assessed by TRA",
+      "valid passport"
+     ],
+     "validity": "3 years from outcome letter",
+     "feeAUD": 130,
+     "processing": "typically within 12 weeks (as of July 2026)",
+     "guidelinesUpdated": "April 2026 (v2.0)"
+    },
+    "source": "https://www.tradesrecognitionaustralia.gov.au/our-programs/provisional-skills-assessment-program",
+    "quote": "The Provisional Skills Assessment Program is for recent international graduates who wish to apply for a Temporary Graduate visa (subclass 485) also known as the Post-Vocational Education Work Stream.",
+    "sourceType": "assessor"
+   },
+   "jobReadyProgram": {
+    "value": {
+     "status": "open (TRA program page live; guidelines last updated April 2026, v37.0; JRP news items dated July 2026)",
+     "appliesTo": "non-licensed TRA occupations only (in this group: 341113, 334112, 334113, 334114, 334115)",
+     "prerequisite": "successful PSA within the last 3 years",
+     "steps": [
+      "Job Ready Employment (JRE) – $490",
+      "Job Ready Workplace Assessment (JRWA) by TRA-approved RTO assessor at the workplace, after 6 months full-time-equivalent paid employment and TRA invitation – $2,845",
+      "Job Ready Final Assessment (JRFA) – $75"
+     ],
+     "employment": "minimum 12 months full-time (avg 38 h/week; part-time pro-rata) paid employment in Australia with TRA-approved employer(s), completed within 3 years; at least 6 months FTE with one employer; max 5 employers; up to 3 months prior employment may be claimed",
+     "totalFeeAUD": 3410,
+     "outcome": "skills assessment outcome letter usable for a skilled visa"
+    },
+    "source": "https://www.tradesrecognitionaustralia.gov.au/our-programs/job-ready-program",
+    "quote": "The Job Ready Program is a minimum 12-month employment-based skills assessment that verifies your applied skills meet the Australian standards in your Nominated Occupation.",
+    "sourceType": "assessor"
+   },
+   "jobReadyProgramLicensedExclusion": {
+    "value": [
+     "Electrician (General and Special Class)",
+     "Plumber (General)",
+     "Air-conditioning and Refrigeration Mechanic"
+    ],
+    "source": "https://www.tradesrecognitionaustralia.gov.au/our-programs/job-ready-program",
+    "quote": "The following licensed occupations are not eligible for the Job Ready Program",
+    "sourceType": "assessor"
+   },
+   "jobReadyProgramAudience": {
+    "value": "international student graduates of an Australian VET course working in Australia",
+    "source": "https://www.tradesrecognitionaustralia.gov.au/our-programs/job-ready-program",
+    "quote": "This program is for international student graduates of an Australian Vocational Education and Training (VET) course, who are working in Australia and seeking a pathway to a skilled visa.",
+    "sourceType": "assessor"
+   },
+   "offshoreSkillsAssessmentProgram": {
+    "value": {
+     "appliesTo": "compulsory for permanent migration in the four TRA licensed occupations (all countries), except 482 (ask Home Affairs) and 485 (use PSA)",
+     "pathway2": "for applicants who have a relevant Australian VET qualification or a current identified Australian occupation licence (without restrictions) – i.e. the route for an Australian-trained graduate in a licensed trade",
+     "pathway2Steps": "documentary evidence (incl. Australian VET qualification/licence and employment evidence) + technical interview, via a TRA-approved RTO",
+     "pathway2FeeAUD": 2020,
+     "pathway1FeeAUD": 5320,
+     "pathway1Experience": "licensed trade: 4 years with formal training / 6 years without",
+     "processing": "approx. 15 weeks after complete documentary evidence (as of July 2026)",
+     "guidelinesUpdated": "April 2026 (v15.0)",
+     "registrationPause": "OSAP/TSS registrations paused 14–29 March 2026, recommenced 30 March 2026 (refreshed RTO panel)"
+    },
+    "source": "https://www.tradesrecognitionaustralia.gov.au/programs/offshore-skills-assessment-program-osap",
+    "quote": "Pathway 2 is for applicants who have a relevant Australian VET qualification or a current identified Australian occupation licence (without restrictions).",
+    "sourceType": "assessor"
+   },
+   "osapCompulsoryLicensed": {
+    "value": "OSAP compulsory for permanent migration in the four licensed occupations",
+    "source": "https://www.tradesrecognitionaustralia.gov.au/programs/offshore-skills-assessment-program-osap",
+    "quote": "This program is compulsory if you are applying for permanent migration in the following licensed occupations",
+    "sourceType": "assessor"
+   },
+   "osapLicensed485Exception": {
+    "value": "For the licensed occupations, 485 applicants use the PSA instead of OSAP; 482 applicants must seek Home Affairs advice",
+    "source": "https://www.tradesrecognitionaustralia.gov.au/osap-nominated-occupations-countries-and-sars",
+    "quote": "Applicants from all countries in this occupation are required to have an OSAP assessment unless you are applying for a: 482 visa",
+    "sourceType": "assessor"
+   },
+   "otsr": {
+    "value": "Offshore Technical Skills Record (OTSR) is issued for licensed occupations under OSAP Pathway 1 (overseas-trained); used to apply for a provisional/restricted licence, then Australian-context gap training + supervised employment to obtain the Australian VET qualification. The guidelines describe Pathway 2 (Australian VET qualification) as producing an outcome letter only.",
+    "source": "https://www.tradesrecognitionaustralia.gov.au/download/170/offshore-skills-assessment-program-guidelines/647/offshore-skills-assessment-applicant-guidelines/pdf",
+    "quote": "If you nominated a TRA-licensed occupation, you will be issued an Offshore Technical Skills Record.",
+    "sourceType": "assessor"
+   },
+   "migrationSkillsAssessment": {
+    "value": {
+     "program": "Migration Skills Assessment (MSA) – documentary, $795, ~120 days",
+     "excludes": [
+      "the four licensed occupations",
+      "485 applicants",
+      "482 applicants",
+      "passport/occupation combinations requiring OSAP"
+     ]
+    },
+    "source": "https://www.tradesrecognitionaustralia.gov.au/programs/migration-skills-assessment",
+    "quote": "This program is a pathway for people applying for a skilled migration visa in occupations and countries that are not required to be assessed in any of our other programs.",
+    "sourceType": "assessor"
+   },
+   "traDoesNotLicense": {
+    "value": "TRA does not issue licences; applicants must separately meet state/territory licensing requirements",
+    "source": "https://www.tradesrecognitionaustralia.gov.au/programs/migration-skills-assessment",
+    "quote": "We do not award Australian qualifications, occupational registrations or occupational licences.",
+    "sourceType": "assessor"
+   },
+   "constructionPrioritisation": {
+    "value": "TRA prioritised assessments for targeted construction occupations 1 July 2024 – 30 June 2026 (no fee); no official extension beyond 30 June 2026 found",
+    "source": "https://www.tradesrecognitionaustralia.gov.au/help/job-ready-program-faqs",
+    "quote": "Between 1 July 2024 and 30 June 2026 Trades Recognition Australia (TRA) will be  prioritising skills assessments for  targeted construction occupations",
+    "sourceType": "assessor"
+   }
+  },
+  "australianStudyRoute": {
+   "value": "See per-occupation qualification from TRA's 'Australian Qualifications by Occupation' (current from 3 Dec 2025). TRA may accept alternative/older versions if relevant. Nominal durations: not stated in any official source checked.",
+   "source": "https://www.tradesrecognitionaustralia.gov.au/download/238/australian-qualifications-occupation/803/australian-qualification-occupation/pdf",
+   "quote": "Where a TRA skills assessment requires an Australian qualification alternative qualifications or older versions of the qualification may be accepted if they are relevant to your occupation",
+   "sourceType": "assessor"
+  },
+  "registration": {
+   "general": {
+    "value": "Occupational licensing is the responsibility of state/territory licensing authorities",
+    "source": "https://www.tradesrecognitionaustralia.gov.au/help/offshore-skills-assessment-program-osap-faqs",
+    "quote": "occupational licensing is the responsibility of the relevant state or territory licensing authority.",
+    "sourceType": "assessor"
+   }
+  },
+  "otherConditions": {
+   "visaMaintenance": {
+    "value": "Applicant must keep a valid visa throughout the JRP; TRA gives no visa advice",
+    "source": "https://www.tradesrecognitionaustralia.gov.au/our-programs/job-ready-program",
+    "quote": "It is your responsibility to make sure that you maintain a visa for the duration of your time in the program.",
+    "sourceType": "assessor"
+   },
+   "jrpEmploymentInAustraliaOnly": {
+    "value": "All JRP employment must be in Australia",
+    "source": "https://www.tradesrecognitionaustralia.gov.au/help/job-ready-program-faqs",
+    "quote": "No. All employment under the JRP must be undertaken within Australia.",
+    "sourceType": "assessor"
+   }
+  }
+ },
+ "occupations": {
+  "341111": {
+   "differences": {
+    "assessment": {
+     "value": "OSAP Pathway 2 (Australian VET qualification) for permanent migration; PSA only for a 485 visa. Job Ready Program NOT available.",
+     "source": "https://www.tradesrecognitionaustralia.gov.au/osap-nominated-occupations-countries-and-sars",
+     "quote": "Applicants from all countries in this occupation are required to have an OSAP assessment unless you are applying for a: 482 visa",
+     "sourceType": "assessor"
+    },
+    "australianStudyRoute": {
+     "value": "Certificate III in Electrotechnology Electrician (UEE30820)",
+     "source": "https://www.tradesrecognitionaustralia.gov.au/download/238/australian-qualifications-occupation/803/australian-qualification-occupation/pdf",
+     "quote": "Certificate III in Electrotechnology Electrician UEE30820",
+     "sourceType": "assessor"
+    },
+    "registration": {
+     "NSW": {
+      "value": {
+       "regulator": "NSW Government – Building Commission NSW (licences issued via Service NSW)",
+       "licence": "Qualified supervisor certificate / contractor licence (electrical); apprentices cannot hold a licence",
+       "requirements": [
+        "Certificate III in Electrotechnology Electrician UEE30820 (or UEE30806/07/11)",
+        "Certificate of proficiency as electrician from the Vocational Training Review Panel of NSW (i.e. completed NSW apprenticeship)",
+        "at least 12 months relevant electrical wiring work experience (AS/NZS 3000:2018)",
+        "National Police Check"
+       ],
+       "capstone": "Capstone named explicitly only for superseded qualifications (Pathway E, 6077AC Capstone Assessment); for UEE30820 the page requires the certificate of proficiency (apprenticeship) rather than naming a capstone",
+       "pageUpdated": "23 June 2026"
+      },
+      "source": "https://www.nsw.gov.au/business-and-economy/licences-and-credentials/building-and-trade-licences-and-registrations/electrical",
+      "quote": "A certificate of proficiency as an electrician or an electrical mechanic from the Vocational Training Review Panel of NSW",
+      "sourceType": "regulator"
+     },
+     "NSW_apprentices": {
+      "value": "Apprentices cannot be issued a licence",
+      "source": "https://www.nsw.gov.au/business-and-economy/licences-and-credentials/building-and-trade-licences-and-registrations/electrical",
+      "quote": "If you are currently an apprentice or trainee, you cannot be issued with a licence or certificate.",
+      "sourceType": "regulator"
+     },
+     "VIC": {
+      "value": {
+       "regulator": "Energy Safe Victoria",
+       "licence": "Electrician's licence (A Grade); contracting additionally requires Registered Electrical Contractor (REC) registration",
+       "apprenticePathway": [
+        "Certificate III in Electrotechnology Electrician (UEE30820 or equivalent)",
+        "completed 4-year apprenticeship contract incl. at least 12 months electrical installation work confirmed by employer",
+        "VRQA completion letter",
+        "Licensed Electrician's Assessment (LEA: Safe Working Practice, Licensed Electrician's Practical, Licensed Electrician's Theory) within 5 years"
+       ],
+       "internationalPathway": "OTSR + Australian context gap training + Certificate III"
+      },
+      "source": "https://www.energysafe.vic.gov.au/licensing/electrical-licences/licence-types/electricians-licence-aae",
+      "quote": "You've completed a 4-year contract of training as an apprentice electrician. This includes at least 12 months of experience carrying out electrical installation work",
+      "sourceType": "regulator"
+     },
+     "QLD": {
+      "value": null,
+      "source": null,
+      "quote": null,
+      "sourceType": "regulator"
+     }
+    }
+   }
+  },
+  "341112": {
+   "differences": {
+    "assessment": {
+     "value": "OSAP Pathway 2 (Australian VET qualification) for permanent migration; PSA only for a 485 visa. Job Ready Program NOT available.",
+     "source": "https://www.tradesrecognitionaustralia.gov.au/osap-nominated-occupations-countries-and-sars",
+     "quote": "Applicants from all countries in this occupation are required to have an OSAP assessment unless you are applying for a: 482 visa",
+     "sourceType": "assessor"
+    },
+    "australianStudyRoute": {
+     "value": "Certificate III in Electrotechnology Electrician (UEE30820)",
+     "source": "https://www.tradesrecognitionaustralia.gov.au/download/238/australian-qualifications-occupation/803/australian-qualification-occupation/pdf",
+     "quote": "Certificate III in Electrotechnology Electrician UEE30820",
+     "sourceType": "assessor"
+    },
+    "registration": {
+     "NSW": {
+      "value": {
+       "regulator": "NSW Government – Building Commission NSW (licences issued via Service NSW)",
+       "licence": "Qualified supervisor certificate / contractor licence (electrical); apprentices cannot hold a licence",
+       "requirements": [
+        "Certificate III in Electrotechnology Electrician UEE30820 (or UEE30806/07/11)",
+        "Certificate of proficiency as electrician from the Vocational Training Review Panel of NSW (i.e. completed NSW apprenticeship)",
+        "at least 12 months relevant electrical wiring work experience (AS/NZS 3000:2018)",
+        "National Police Check"
+       ],
+       "capstone": "Capstone named explicitly only for superseded qualifications (Pathway E, 6077AC Capstone Assessment); for UEE30820 the page requires the certificate of proficiency (apprenticeship) rather than naming a capstone",
+       "pageUpdated": "23 June 2026"
+      },
+      "source": "https://www.nsw.gov.au/business-and-economy/licences-and-credentials/building-and-trade-licences-and-registrations/electrical",
+      "quote": "A certificate of proficiency as an electrician or an electrical mechanic from the Vocational Training Review Panel of NSW",
+      "sourceType": "regulator"
+     },
+     "NSW_apprentices": {
+      "value": "Apprentices cannot be issued a licence",
+      "source": "https://www.nsw.gov.au/business-and-economy/licences-and-credentials/building-and-trade-licences-and-registrations/electrical",
+      "quote": "If you are currently an apprentice or trainee, you cannot be issued with a licence or certificate.",
+      "sourceType": "regulator"
+     },
+     "VIC": {
+      "value": {
+       "regulator": "Energy Safe Victoria",
+       "licence": "Electrician's licence (A Grade); contracting additionally requires Registered Electrical Contractor (REC) registration",
+       "apprenticePathway": [
+        "Certificate III in Electrotechnology Electrician (UEE30820 or equivalent)",
+        "completed 4-year apprenticeship contract incl. at least 12 months electrical installation work confirmed by employer",
+        "VRQA completion letter",
+        "Licensed Electrician's Assessment (LEA: Safe Working Practice, Licensed Electrician's Practical, Licensed Electrician's Theory) within 5 years"
+       ],
+       "internationalPathway": "OTSR + Australian context gap training + Certificate III"
+      },
+      "source": "https://www.energysafe.vic.gov.au/licensing/electrical-licences/licence-types/electricians-licence-aae",
+      "quote": "You've completed a 4-year contract of training as an apprentice electrician. This includes at least 12 months of experience carrying out electrical installation work",
+      "sourceType": "regulator"
+     },
+     "QLD": {
+      "value": null,
+      "source": null,
+      "quote": null,
+      "sourceType": "regulator"
+     }
+    },
+    "specialClassNote": {
+     "value": null,
+     "source": null,
+     "quote": null,
+     "sourceType": "regulator"
+    }
+   }
+  },
+  "341113": {
+   "differences": {
+    "assessment": {
+     "value": "Not a TRA licensed occupation: PSA (for 485) then Job Ready Program",
+     "source": "https://www.tradesrecognitionaustralia.gov.au/our-programs/job-ready-program",
+     "quote": "To be eligible for the Job Ready Program you must: • Have a successful Provisional Skills Assessment outcome from us within the last 3 years",
+     "sourceType": "assessor"
+    },
+    "australianStudyRoute": {
+     "value": "Certificate IV in Electrical - Lift Systems (UEE41120)",
+     "source": "https://www.tradesrecognitionaustralia.gov.au/download/238/australian-qualifications-occupation/803/australian-qualification-occupation/pdf",
+     "quote": "Certificate IV in Electrical - Lift Systems UEE41120",
+     "sourceType": "assessor"
+    },
+    "registration": {
+     "value": null,
+     "source": null,
+     "quote": null,
+     "sourceType": "regulator"
+    }
+   }
+  },
+  "334111": {
+   "differences": {
+    "assessment": {
+     "value": "OSAP Pathway 2 for permanent migration; PSA only for 485. Job Ready Program NOT available.",
+     "source": "https://www.tradesrecognitionaustralia.gov.au/osap-nominated-occupations-countries-and-sars",
+     "quote": "Plumber (General)* [334111]  Applicants from all countries in this occupation are required to have an OSAP assessment",
+     "sourceType": "assessor"
+    },
+    "australianStudyRoute": {
+     "value": "Certificate III in Plumbing (CPC32420)",
+     "source": "https://www.tradesrecognitionaustralia.gov.au/download/238/australian-qualifications-occupation/803/australian-qualification-occupation/pdf",
+     "quote": "Certificate III in Plumbing CPC32420",
+     "sourceType": "assessor"
+    },
+    "registration": {
+     "NSW": {
+      "value": {
+       "regulator": "NSW Government – Building Commission NSW",
+       "licence": "Tradesperson certificate (do work) / qualified supervisor certificate or contractor licence (supervise/contract); licence needed for any plumbing, draining or gasfitting work",
+       "tradespersonQualification": "Certificate III in Plumbing (CPC32420 or later)",
+       "supervisorOrContractor": "apprenticeship/traineeship + at least two years' combined industry experience, plus Certificate IV in Plumbing and Services (Operations) (CPC40920 or later) for plumbing categories",
+       "pageUpdated": "31 July 2026"
+      },
+      "source": "https://www.nsw.gov.au/business-and-economy/licences-and-credentials/building-and-trade-licences-and-registrations/plumbing-draining-and-gasfitting",
+      "quote": "Complete an apprenticeship or traineeship and at least two years’ combined industry experience in the work covered by the relevant qualification.",
+      "sourceType": "regulator"
+     },
+     "VIC": {
+      "value": null,
+      "source": null,
+      "quote": null,
+      "sourceType": "regulator"
+     },
+     "QLD": {
+      "value": {
+       "regulator": "Queensland Building and Construction Commission (QBCC)",
+       "licence": "Occupational plumber / drainer / combined licence; provisional licence (1 year, supervised) if qualification or experience is missing",
+       "requirements": [
+        "CPC32413 Certificate III in plumbing (including the drainage stream) per the page (TRA lists CPC32420 as the current qualification)",
+        "12 months experience in the plumbing (and/or drainage) scope of work"
+       ]
+      },
+      "source": "https://www.qbcc.qld.gov.au/licences/apply-licence/available-licences/plumbing-drainage-licences/occupational-plumber-drainer",
+      "quote": "You must demonstrate you have had 12 months experience in the: plumbing scope of work",
+      "sourceType": "regulator"
+     }
+    }
+   }
+  },
+  "334112": {
+   "differences": {
+    "assessment": {
+     "value": "Not a TRA licensed occupation: PSA then Job Ready Program",
+     "source": "https://www.tradesrecognitionaustralia.gov.au/our-programs/job-ready-program",
+     "quote": "To be eligible for the Job Ready Program you must: • Have a successful Provisional Skills Assessment outcome from us within the last 3 years",
+     "sourceType": "assessor"
+    },
+    "australianStudyRoute": {
+     "value": "Certificate III in Plumbing (Mechanical Services) (CPC32513)",
+     "source": "https://www.tradesrecognitionaustralia.gov.au/download/238/australian-qualifications-occupation/803/australian-qualification-occupation/pdf",
+     "quote": "Certificate III in Plumbing (Mechanical Services) CPC32513",
+     "sourceType": "assessor"
+    },
+    "registration": {
+     "NSW": {
+      "value": {
+       "regulator": "NSW Government – Building Commission NSW",
+       "licence": "Mechanical services and medical gas licence or certificate",
+       "experience": "at least 2 years",
+       "pageUpdated": "23 June 2026"
+      },
+      "source": "https://www.nsw.gov.au/business-and-economy/licences-and-credentials/building-and-trade-licences-and-registrations/medical-gas-and-mechanical-services-work",
+      "quote": "You must have the right qualifications and have at least 2 years' experience before you can apply for a licence or certificate.",
+      "sourceType": "regulator"
+     },
+     "VIC": {
+      "value": null,
+      "source": null,
+      "quote": null,
+      "sourceType": "regulator"
+     },
+     "QLD": {
+      "value": null,
+      "source": null,
+      "quote": null,
+      "sourceType": "regulator"
+     }
+    }
+   }
+  },
+  "334113": {
+   "differences": {
+    "assessment": {
+     "value": "Not a TRA licensed occupation: PSA then Job Ready Program",
+     "source": "https://www.tradesrecognitionaustralia.gov.au/our-programs/job-ready-program",
+     "quote": "To be eligible for the Job Ready Program you must: • Have a successful Provisional Skills Assessment outcome from us within the last 3 years",
+     "sourceType": "assessor"
+    },
+    "australianStudyRoute": {
+     "value": "Certificate II in Drainage (CPC20720)",
+     "source": "https://www.tradesrecognitionaustralia.gov.au/download/238/australian-qualifications-occupation/803/australian-qualification-occupation/pdf",
+     "quote": "Certificate II in Drainage CPC20720",
+     "sourceType": "assessor"
+    },
+    "registration": {
+     "NSW": {
+      "value": "Draining work tradesperson certificate: Certificate III in Plumbing (CPC32420 or later) OR Certificate II in Drainage",
+      "source": "https://www.nsw.gov.au/business-and-economy/licences-and-credentials/building-and-trade-licences-and-registrations/plumbing-draining-and-gasfitting",
+      "quote": "Draining work Qualifications You must complete ONE of the following: Certificate III in Plumbing (CPC32420 or later)",
+      "sourceType": "regulator"
+     },
+     "VIC": {
+      "value": null,
+      "source": null,
+      "quote": null,
+      "sourceType": "regulator"
+     },
+     "QLD": {
+      "value": "QBCC occupational drainer licence: 12 months experience in the drainage scope of work",
+      "source": "https://www.qbcc.qld.gov.au/licences/apply-licence/available-licences/plumbing-drainage-licences/occupational-plumber-drainer",
+      "quote": "You must demonstrate you have had 12 months experience in the: drainage scope of work",
+      "sourceType": "regulator"
+     }
+    }
+   }
+  },
+  "334114": {
+   "differences": {
+    "assessment": {
+     "value": "Not a TRA licensed occupation: PSA then Job Ready Program",
+     "source": "https://www.tradesrecognitionaustralia.gov.au/our-programs/job-ready-program",
+     "quote": "To be eligible for the Job Ready Program you must: • Have a successful Provisional Skills Assessment outcome from us within the last 3 years",
+     "sourceType": "assessor"
+    },
+    "australianStudyRoute": {
+     "value": "Certificate III in Gas Fitting (CPC32720)",
+     "source": "https://www.tradesrecognitionaustralia.gov.au/download/238/australian-qualifications-occupation/803/australian-qualification-occupation/pdf",
+     "quote": "Certificate III in Gas Fitting CPC32720",
+     "sourceType": "assessor"
+    },
+    "registration": {
+     "NSW": {
+      "value": "Gasfitting work tradesperson certificate: Certificate III in Plumbing (CPC32420 or later) OR Certificate III in Gasfitting; transitional rules for qualifications completed before 1 November 2024",
+      "source": "https://www.nsw.gov.au/business-and-economy/licences-and-credentials/building-and-trade-licences-and-registrations/plumbing-draining-and-gasfitting",
+      "quote": "Gasfitting work Qualifications You must complete ONE of the following: Certificate III in Plumbing (CPC32420 or later)",
+      "sourceType": "regulator"
+     },
+     "VIC": {
+      "value": null,
+      "source": null,
+      "quote": null,
+      "sourceType": "regulator"
+     },
+     "QLD": {
+      "value": null,
+      "source": null,
+      "quote": null,
+      "sourceType": "regulator"
+     }
+    }
+   }
+  },
+  "334115": {
+   "differences": {
+    "assessment": {
+     "value": "Not a TRA licensed occupation: PSA then Job Ready Program",
+     "source": "https://www.tradesrecognitionaustralia.gov.au/our-programs/job-ready-program",
+     "quote": "To be eligible for the Job Ready Program you must: • Have a successful Provisional Skills Assessment outcome from us within the last 3 years",
+     "sourceType": "assessor"
+    },
+    "australianStudyRoute": {
+     "value": "Certificate III in Roof Plumbing (CPC32620)",
+     "source": "https://www.tradesrecognitionaustralia.gov.au/download/238/australian-qualifications-occupation/803/australian-qualification-occupation/pdf",
+     "quote": "Certificate III in Roof Plumbing CPC32620",
+     "sourceType": "assessor"
+    },
+    "registration": {
+     "NSW": {
+      "value": "NSW's 'plumbing' licence category excludes roof plumbing; whether a separate NSW roof-plumbing licence exists was not confirmed",
+      "source": "https://www.nsw.gov.au/business-and-economy/licences-and-credentials/building-and-trade-licences-and-registrations/plumbing-draining-and-gasfitting",
+      "quote": "It does not include draining work or roof plumbing .",
+      "sourceType": "regulator"
+     },
+     "VIC": {
+      "value": null,
+      "source": null,
+      "quote": null,
+      "sourceType": "regulator"
+     },
+     "QLD": {
+      "value": null,
+      "source": null,
+      "quote": null,
+      "sourceType": "regulator"
+     }
+    }
+   }
+  },
+  "342111": {
+   "differences": {
+    "assessment": {
+     "value": "OSAP Pathway 2 for permanent migration; PSA only for 485. Job Ready Program NOT available.",
+     "source": "https://www.tradesrecognitionaustralia.gov.au/osap-nominated-occupations-countries-and-sars",
+     "quote": "Airconditioning and Refrigeration Mechanic* [342111]   Applicants from all countries in this occupation are required to have an OSAP assessment",
+     "sourceType": "assessor"
+    },
+    "australianStudyRoute": {
+     "value": "Certificate III in Air Conditioning and Refrigeration (UEE32225)",
+     "source": "https://www.tradesrecognitionaustralia.gov.au/download/238/australian-qualifications-occupation/803/australian-qualification-occupation/pdf",
+     "quote": "Certificate III in Air Conditioning and Refrigeration UEE32225",
+     "sourceType": "assessor"
+    },
+    "registration": {
+     "refrigerantHandlingLicence": {
+      "value": {
+       "issuer": "Australian Refrigeration Council (ARC / ARCtick), under the federal Ozone Protection and Synthetic Greenhouse Gas Management framework",
+       "licence": "RAC01 – full refrigeration and air conditioning licence",
+       "acceptedQualifications": "includes UEE32225, UEE32220 or UEE32211 Certificate III in Air conditioning and Refrigeration"
+      },
+      "source": "https://www.arctick.org/refrigerant-handling-licence/licence-types",
+      "quote": "UEE32225, UEE32220 or UEE32211 Certificate III in Air conditioning and Refrigeration",
+      "sourceType": "regulator"
+     },
+     "licenceRequiredFederal": {
+      "value": "A Refrigerant Handling Licence is required to do anything with a regulated refrigerant that could cause leakage (page updated 30 April 2026)",
+      "source": "https://www.dcceew.gov.au/environment/protection/ozone/rac/technicians",
+      "quote": "You need a Refrigerant Handling Licence to do anything with a regulated refrigerant that could cause leakage.",
+      "sourceType": "regulator"
+     },
+     "stateElectricalLicence": {
+      "value": null,
+      "source": null,
+      "quote": null,
+      "sourceType": "regulator"
+     }
+    }
+   }
+  }
+ },
+ "gaps": [
+  "QLD electrical licence (Electrical Safety Office / WorkSafe QLD) set to null: worksafe.qld.gov.au and its Electrical Licensing Eligibility Guide PDF returned HTTP 403 (bot protection) so could not be read directly. Search-index snippets indicate the RTO sends a completion statement (ATF-012) to the ESO after the apprenticeship (UEE30820, Capstone via Skills Assure Supplier) – verify manually before using.",
+  "VIC plumbing (Building and Plumbing Commission, formerly VBA) set to null for all plumbing occupations: bpc.vic.gov.au and vba.vic.gov.au returned HTTP 403. Search snippets suggest registration requires Cert III via apprenticeship + prescribed units + BPC registration exam, and licence needs extra experience + licence exam – unverified.",
+  "QLD licensing for mechanical services plumbing, gasfitting and roof plumbing not checked (gas work in QLD may be regulated by a different body than QBCC) – null.",
+  "Lift Mechanic (341113) registration: no official state licensing page found/checked – null.",
+  "Electrician (Special Class) (341112): no official source found distinguishing it from 341111 for assessment/licensing beyond the same Cert III (UEE30820) – specialClassNote null.",
+  "AC&R Mechanic (342111) state electrical (restricted) licence requirements not checked – null.",
+  "OSAP Pathway 2 minimum years of employment is not stated in the OSAP guidelines (April 2026) or evidence factsheet (Pathway 1 is 4 yrs with formal training for licensed trades). Also the guidelines say Pathway 2 = technical interview + employer evidence, while the evidence factsheet says the technical assessment includes 'a Practical Assessment for licenced occupations' – unresolved inconsistency.",
+  "Whether OSAP Pathway 2 for a licensed trade issues an OTSR or a full outcome only: guidelines mention OTSR only under Pathway 1.",
+  "Whether an Australian-trained graduate in a non-licensed occupation (334112–334115, 341113) may use the Migration Skills Assessment instead of the JRP is not explicitly stated; MSA page only excludes 485/482 applicants and licensed occupations.",
+  "No nominal course durations stated in official sources checked (VIC ESV refers to a 4-year apprenticeship contract for electricians only).",
+  "No Home Affairs page was successfully retrieved (skilled occupation list is JS-rendered); list status (MLTSSL/CSOL) and visa-specific skills assessment requirements not confirmed here.",
+  "Construction prioritisation (1 Jul 2024–30 Jun 2026) appears in the JRP FAQ; no official statement found about extension past 30 June 2026.",
+  "QBCC occupational plumber page still cites CPC32413 (superseded) whereas TRA lists CPC32420; reported as-is."
+ ],
+ "secondCheck": {
+  "date": "2026-10-24",
+  "note": "All quotes re-checked on 2026-10-24; the qualification names were matched in TRA's PDF, where name and code sit in separate table columns.",
+  "unverified": []
+ }
+}

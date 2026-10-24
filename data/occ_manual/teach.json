@@ -1,0 +1,541 @@
+{
+ "group": "teach",
+ "checkedAt": "2026-10-24",
+ "shared": {
+  "AITSL": {
+   "occupationsCovered": {
+    "value": [
+     "241213",
+     "241311",
+     "241411",
+     "241511",
+     "241512",
+     "241513",
+     "241599"
+    ],
+    "source": "https://www.aitsl.edu.au/teacher-migration-services/skills-assessments/application-process",
+    "quote": "Complete the occupation checklist that is most relevant",
+    "sourceType": "assessor"
+   },
+   "assessment": {
+    "criteria": {
+     "value": "Must meet BOTH a qualifications criterion and an English language proficiency criterion.",
+     "source": "https://www.aitsl.edu.au/teacher-migration-services/skills-assessments/application-process",
+     "quote": "All applications will be assessed against a qualifications and English language proficiency criteria, and you must meet both for a successful outcome.",
+     "sourceType": "assessor"
+    },
+    "totalStudy": {
+     "value": "Minimum 4 years full-time (or part-time equivalent) higher education (university) study, including a relevant initial teacher education (ITE) qualification.",
+     "source": "https://library.aitsl.edu.au/media-library/docs/default-source/teacher-migration-services/occupation-checklists/tmss-secondary-teacher-checklist.pdf",
+     "quote": "Completion of a minimum of 4 years full-time (or part-time equivalent) higher education (university) level study that results in qualification/s. This must include a relevant initial teacher education qualification",
+     "sourceType": "assessor"
+    },
+    "iteLevel": {
+     "value": "ITE qualification at AQF Level 7 (bachelor) or higher, including at least 1 year FTE of ITE study relevant to the occupation.",
+     "source": "https://library.aitsl.edu.au/media-library/docs/default-source/teacher-migration-services/occupation-checklists/tmss-secondary-teacher-checklist.pdf",
+     "quote": "The study must include an initial teacher education qualification comparable to the educational level of an Australian Bachelor degree (Australian Qualifications Framework Level 7) or higher",
+     "sourceType": "assessor"
+    },
+    "otherQualifications": {
+     "value": "Other qualifications counted toward the 4 years must be AQF Level 6 (Advanced Diploma/Associate Degree) or higher; short courses (<1 year FT) not assessed.",
+     "source": "https://library.aitsl.edu.au/media-library/docs/default-source/teacher-migration-services/occupation-checklists/tmss-secondary-teacher-checklist.pdf",
+     "quote": "Other higher education qualification/s contributing to the four years of study must be comparable to the educational level of an Australian Advanced Diploma/Associate Degree (Australian Qualifications Framework Level 6) or higher.",
+     "sourceType": "assessor"
+    },
+    "supervisedTeachingPracticeDays": {
+     "value": 45,
+     "source": "https://www.aitsl.edu.au/teacher-migration-services/skills-assessments/application-process/supervised-teaching-practice",
+     "quote": "The minimum 45 days duration of STP must be undertaken within the specified age range in the relevant school setting",
+     "sourceType": "assessor"
+    },
+    "stpEvidence": {
+     "value": "Official signed, dated statement on university letterhead stating STP duration, student age range and school setting; placement reports, work experience and registration certificates not accepted.",
+     "source": "https://www.aitsl.edu.au/teacher-migration-services/skills-assessments/application-process/supervised-teaching-practice",
+     "quote": "We require an official statement from the university awarding the ITE qualification as evidence of STP.",
+     "sourceType": "assessor"
+    },
+    "englishStudyOption": {
+     "value": "Option 1: at least 4 full years of higher education in Australia, Canada, Ireland, NZ, UK or USA at AQF7+ level, including a recognised ITE qualification; all ITE components including STP must be completed in those countries. An Australian-studied applicant meets this only if the whole 4 years were in these countries (credit transfer/RPL may affect this; a PhD counts max 2 years).",
+     "source": "https://www.aitsl.edu.au/teacher-migration-services/skills-assessments/application-process/english-language-proficiency",
+     "quote": "your total study must equal 4 full years in any of the 6 listed English speaking countries (Australia, Canada, the Republic of Ireland, New Zealand, the United Kingdom or the United States of America) and this study must include a recognised initial teacher education qualification.",
+     "sourceType": "assessor"
+    },
+    "englishTestOption": {
+     "value": {
+      "test": "IELTS Academic only (paper or computer at a test centre)",
+      "reading": 7.0,
+      "writing": 7.0,
+      "speaking": 8.0,
+      "listening": 8.0,
+      "singleTRF": true,
+      "validityYears": 3,
+      "oneSkillRetakeAccepted": true,
+      "notAccepted": [
+       "PTE",
+       "PEAT",
+       "ISLPR",
+       "TOEFL",
+       "Cambridge",
+       "IELTS Online",
+       "IELTS Indicator"
+      ]
+     },
+     "source": "https://library.aitsl.edu.au/media-library/docs/default-source/teacher-migration-services/occupation-checklists/tmss-secondary-teacher-checklist.pdf",
+     "quote": "a score of at least 7.0 for both Reading and Writing; and a score of at least 8.0 for both Speaking and Listening. The IELTS test scores must appear on a single IELTS TRF and be the result of a test undertaken during the 3-year period prior to submitting an application.",
+     "sourceType": "assessor"
+    },
+    "englishOtherTestsRejected": {
+     "value": [
+      "PTE",
+      "PEAT",
+      "ISLPR",
+      "TOEFL",
+      "Cambridge"
+     ],
+     "source": "https://www.aitsl.edu.au/teacher-migration-services/skills-assessments/application-process/english-language-proficiency",
+     "quote": "AITSL will only accept an Academic IELTS Test Report Form. We do NOT accept PTE, PEAT, ISLPR, TOEFL, Cambridge or any other form of English language test.",
+     "sourceType": "assessor"
+    },
+    "australianRegistrationConsidered": {
+     "value": "Holding full or provisional Australian teacher registration may be considered (since 21 July 2023) but does not replace the criteria.",
+     "source": "https://www.aitsl.edu.au/teacher-migration-services/skills-assessments/application-process/australian-teacher-registration",
+     "quote": "From 21 July 2023, Australian teacher registration may be considered as part of the assessment process.",
+     "sourceType": "assessor"
+    }
+   },
+   "australianStudyRoute": {
+    "programStructure": {
+     "value": "Nationally accredited ITE leads to 4+ years FTE study in one of: 3-year undergraduate degree + 2-year FTE graduate-entry professional qualification (e.g. Master of Teaching); integrated degree of at least 4 years FTE (e.g. Bachelor of Education); or combined degrees of at least 4 years FTE.",
+     "source": "https://library.aitsl.edu.au/media-library/docs/default-source/archived-documents/national-policy-framework/accreditation-of-initial-teacher-education-programs-in-australia---standards-and-procedures.pdf",
+     "quote": "a 3-year FTE undergraduate degree providing the required discipline knowledge, plus a 2-year FTE graduate entry professional qualification",
+     "sourceType": "assessor"
+    },
+    "minimumDuration": {
+     "value": "4 years FTE total",
+     "source": "https://library.aitsl.edu.au/media-library/docs/default-source/archived-documents/national-policy-framework/accreditation-of-initial-teacher-education-programs-in-australia---standards-and-procedures.pdf",
+     "quote": "They are structured so that a graduate undertakes a 4-year or longer FTE program(s) that leads to a higher education qualification(s)",
+     "sourceType": "assessor"
+    },
+    "placementDaysInAccreditedITE": {
+     "value": {
+      "undergraduateOrDoubleDegree": 80,
+      "graduateEntry": 60
+     },
+     "source": "https://library.aitsl.edu.au/media-library/docs/default-source/archived-documents/national-policy-framework/accreditation-of-initial-teacher-education-programs-in-australia---standards-and-procedures.pdf",
+     "quote": "include at least 80 days in undergraduate and double-degree initial teacher education programs; and at least 60 days in graduate-entry programs",
+     "sourceType": "assessor"
+    },
+    "iteEntryEnglish": {
+     "value": "ITE entrants must meet registration-level English proficiency on entry to or on graduation from the program.",
+     "source": "https://library.aitsl.edu.au/media-library/docs/default-source/archived-documents/national-policy-framework/accreditation-of-initial-teacher-education-programs-in-australia---standards-and-procedures.pdf",
+     "quote": "Program entrants must meet English language proficiency requirements for teacher registration in Australia, either on entry to or on graduation from the program.",
+     "sourceType": "assessor"
+    }
+   },
+   "registration": {
+    "whoRegisters": {
+     "value": "Teacher registration is granted by each state/territory teacher regulatory authority (e.g. NESA in NSW, VIT in VIC, QCT in QLD), not by AITSL.",
+     "source": "https://www.aitsl.edu.au/teacher-migration-services/skills-assessments/application-process/australian-teacher-registration",
+     "quote": "Registration is granted and managed by teacher regulatory authorities in each Australian state and territory.",
+     "sourceType": "assessor"
+    },
+    "neededToWork": {
+     "value": "Yes - registration/accreditation is a legal licence to teach (example: VIC makes it a legislative requirement for school and early childhood teachers).",
+     "source": "https://www.vit.vic.edu.au/register/purpose",
+     "quote": "It is a legislative requirement for anyone undertaking the duties of a teacher in a Victorian school or early childhood setting to be registered with VIT.",
+     "sourceType": "regulator"
+    },
+    "neededForSkillsAssessment": {
+     "value": false,
+     "source": "https://www.aitsl.edu.au/teacher-migration-services/skills-assessments/application-process/australian-teacher-registration",
+     "quote": "No. You can submit an application without Australian teacher registration.",
+     "sourceType": "assessor"
+    },
+    "englishNSW": {
+     "value": {
+      "exemptIfAllQualificationsFrom": [
+       "Australia",
+       "NZ",
+       "UK",
+       "USA",
+       "Canada",
+       "Republic of Ireland"
+      ],
+      "IELTSAcademic": {
+       "reading": 7.0,
+       "writing": 7.0,
+       "speaking": 8.0,
+       "listening": 8.0
+      },
+      "ISLPRTeacher": "Level 4 all skills",
+      "validityYears": 3,
+      "alternative": "ELPT exemption meeting at least 2 of 5 criteria"
+     },
+     "source": "https://www.nsw.gov.au/education-and-training/nesa/teacher-accreditation/get-accredited/english-language-proficiency",
+     "quote": "If all your qualifications are from Australia, NZ, UK, USA, Canada, and/or Republic of Ireland, the transcripts and degree certificates (testamurs) you share with NESA are evidence you have English language proficiency.",
+     "sourceType": "regulator"
+    },
+    "englishVIC": {
+     "value": {
+      "testRequiredIf": "any ITE/EC program studies completed outside Australia, NZ, UK, USA, Canada or Republic of Ireland",
+      "IELTSAcademic": {
+       "reading": 7.0,
+       "writing": 7.0,
+       "speaking": 8.0,
+       "listening": 8.0
+      },
+      "ISLPR": "Level 4 all four areas (teaching-focused)",
+      "validityYears": 3,
+      "IELTSOnlineAccepted": false
+     },
+     "source": "https://www.vit.vic.edu.au/education/new-teachers/english",
+     "quote": "If an applicant for teacher registration has completed any of their initial teacher education (ITE) or early childhood (EC) program studies outside of Australia, New Zealand, the United Kingdom, the United States of America, Canada or the Republic of Ireland, they are required to complete an English language competency (ELC) test",
+     "sourceType": "regulator"
+    },
+    "englishQLD": {
+     "value": {
+      "testRequiredIf": "did not undertake the entire four years of higher education required for registration in English in an exempt country",
+      "IELTSAcademic": {
+       "reading": 7.0,
+       "writing": 7.0,
+       "speaking": 8.0,
+       "listening": 8.0
+      },
+      "ISLPR": "Level 4 all four areas (teacher focused)",
+      "validityYears": 3
+     },
+     "source": "https://cdn.qct.edu.au/pdf/English_language_proficiency_requirements_for_registration_Policy.pdf",
+     "quote": "with a score of no less than 7 in reading and writing and a score of no less than 8 in speaking and listening",
+     "sourceType": "regulator"
+    }
+   },
+   "otherConditions": {
+    "noPreAssessment": {
+     "value": "AITSL does not give pre-assessment advice.",
+     "source": "https://www.aitsl.edu.au/teacher-migration-services/skills-assessments/application-process/australian-teacher-registration",
+     "quote": "AITSL does not provide a pre-assessment service",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "ACECQA": {
+   "occupationsCovered": {
+    "value": [
+     "241111",
+     "134111"
+    ],
+    "source": "https://www.acecqa.gov.au/sites/default/files/2025-11/20251114%20Skills%20Assessment%20Application%20Guidelines.pdf",
+    "quote": "ACECQA is the approved Assessing Authority for the following occupations",
+    "sourceType": "assessor"
+   },
+   "assessment": {
+    "standardsBasis": {
+     "value": "ACECQA sets the assessment standards under Migration Regulations sub-reg 2.26B(2).",
+     "source": "https://www.acecqa.gov.au/sites/default/files/2025-11/20251114%20Skills%20Assessment%20Application%20Guidelines.pdf",
+     "quote": "Under Sub regulation 2.26B (2) of the Migration Regulations 1994, ACECQA sets the standards",
+     "sourceType": "assessor"
+    },
+    "validity": {
+     "value": "3 years",
+     "source": "https://www.acecqa.gov.au/sites/default/files/2025-11/20251114%20Skills%20Assessment%20Application%20Guidelines.pdf",
+     "quote": "Your skills assessment is valid for a three-year period.",
+     "sourceType": "assessor"
+    },
+    "processingTarget": {
+     "value": "80 calendar days from an assessment-ready application",
+     "source": "https://www.acecqa.gov.au/sites/default/files/2025-11/20251114%20Skills%20Assessment%20Application%20Guidelines.pdf",
+     "quote": "ACECQA is committed to completing skills assessment applications within 80 calendar days",
+     "sourceType": "assessor"
+    }
+   },
+   "australianStudyRoute": {
+    "approvedQualificationsList": {
+     "value": "Qualification must be on ACECQA's NQF approved qualifications list (or be taken to hold / assessed as equivalent).",
+     "source": "https://www.acecqa.gov.au/sites/default/files/2025-11/20251114%20Skills%20Assessment%20Application%20Guidelines.pdf",
+     "quote": "hold a nationally approved qualification published on ACECQA's NQF approved qualifications list",
+     "sourceType": "assessor"
+    }
+   },
+   "registration": {
+    "note": {
+     "value": "ACECQA does not register teachers; early childhood teacher registration/accreditation is state-based (see 241111 differences).",
+     "source": "https://www.acecqa.gov.au/sites/default/files/2025-11/20251114%20Skills%20Assessment%20Application%20Guidelines.pdf",
+     "quote": "Australian teacher registration/accreditation (if applicable)",
+     "sourceType": "assessor"
+    }
+   },
+   "otherConditions": {
+    "versionNote": {
+     "value": "Guidelines PDF is the November 2025 version; ACECQA HTML pages returned HTTP 403 to automated fetch so the PDF is the source.",
+     "source": "https://www.acecqa.gov.au/sites/default/files/2025-11/20251114%20Skills%20Assessment%20Application%20Guidelines.pdf",
+     "quote": "Last Updated – November 2025",
+     "sourceType": "assessor"
+    }
+   }
+  }
+ },
+ "occupations": {
+  "241213": {
+   "differences": {
+    "iteSpecialisation": {
+     "value": "At least 1 year FTE of Primary School Teacher ITE",
+     "source": "https://library.aitsl.edu.au/media-library/docs/default-source/teacher-migration-services/occupation-checklists/tmss-primary-teacher-checklist.pdf",
+     "quote": "at least 1 year full-time (or part-time equivalent) higher education (university) level study of Primary School Teacher initial teacher education",
+     "sourceType": "assessor"
+    },
+    "stpSetting": {
+     "value": "45 days with students aged 5-12 in a primary school setting",
+     "source": "https://library.aitsl.edu.au/media-library/docs/default-source/teacher-migration-services/occupation-checklists/tmss-primary-teacher-checklist.pdf",
+     "quote": "completion of at least 45 days of supervised teaching practice with students across the 5 to 12 years age range in a primary school setting",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "241411": {
+   "differences": {
+    "iteSpecialisation": {
+     "value": "At least 1 year FTE of Secondary School Teacher ITE",
+     "source": "https://library.aitsl.edu.au/media-library/docs/default-source/teacher-migration-services/occupation-checklists/tmss-secondary-teacher-checklist.pdf",
+     "quote": "at least 1 year full-time (or part-time equivalent) higher education (university) level study of Secondary School Teacher initial teacher education",
+     "sourceType": "assessor"
+    },
+    "stpSetting": {
+     "value": "45 days with students aged 13-18 in a secondary school setting",
+     "source": "https://library.aitsl.edu.au/media-library/docs/default-source/teacher-migration-services/occupation-checklists/tmss-secondary-teacher-checklist.pdf",
+     "quote": "completion of at least 45 days of supervised teaching practice with students across the 13 to 18 years age range in a secondary school setting",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "241311": {
+   "differences": {
+    "iteSpecialisation": {
+     "value": "At least 1 year FTE of Middle School Teacher ITE",
+     "source": "https://library.aitsl.edu.au/media-library/docs/default-source/teacher-migration-services/occupation-checklists/tmss-middle-teacher-checklist.pdf",
+     "quote": "at least 1 year full-time (or part-time equivalent) higher education (university) level study of Middle School Teacher initial teacher education",
+     "sourceType": "assessor"
+    },
+    "stpSetting": {
+     "value": "45 days with students aged 10-15 in a middle school, or split across upper primary and lower secondary with at least 10 days with 10-12 year olds and 10 days with 13-15 year olds",
+     "source": "https://library.aitsl.edu.au/media-library/docs/default-source/teacher-migration-services/occupation-checklists/tmss-middle-teacher-checklist.pdf",
+     "quote": "with a minimum of 10 days teaching upper primary aged students (10–12 years) and a minimum of 10 days teaching lower secondary school aged students (13–15 years)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "241511": {
+   "differences": {
+    "iteAndStp": {
+     "value": "Generic ITE (at least 1 year FTE) with 45 days STP with students in a school setting",
+     "source": "https://library.aitsl.edu.au/media-library/docs/default-source/teacher-migration-services/occupation-checklists/tmss-special-needs-teacher-checklist.pdf",
+     "quote": "completion of at least 45 days of supervised teaching practice with students in a school setting",
+     "sourceType": "assessor"
+    },
+    "specialistStudy": {
+     "value": "Plus 1 year FTE study of special needs resulting in an AQF7+ qualification; if part of the ITE degree, STP must be in a special needs setting",
+     "source": "https://library.aitsl.edu.au/media-library/docs/default-source/teacher-migration-services/occupation-checklists/tmss-special-needs-teacher-checklist.pdf",
+     "quote": "The study must include one year full-time (or part-time equivalent) study of special needs resulting in award of a qualification comparable to the educational level of an Australian Bachelor degree",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "241599": {
+   "differences": {
+    "iteAndStp": {
+     "value": "Generic ITE (at least 1 year FTE) with 45 days STP with students in a school setting",
+     "source": "https://library.aitsl.edu.au/media-library/docs/default-source/teacher-migration-services/occupation-checklists/tmss-special-education-teachers-checklist.pdf",
+     "quote": "completion of at least 45 days of supervised teaching practice with students in a school setting",
+     "sourceType": "assessor"
+    },
+    "specialistStudy": {
+     "value": "Plus 1 year FTE study of special education resulting in an AQF7+ qualification; if part of the ITE degree, STP must be in a special education setting. Covers roles not described by special needs/hearing/sight impaired.",
+     "source": "https://library.aitsl.edu.au/media-library/docs/default-source/teacher-migration-services/occupation-checklists/tmss-special-education-teachers-checklist.pdf",
+     "quote": "The study must include 1 year full-time (or part-time equivalent) study of special education resulting in award of a qualification comparable to the educational level of an Australian Bachelor degree",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "241512": {
+   "differences": {
+    "iteAndStp": {
+     "value": "Generic ITE (at least 1 year FTE) with 45 days STP with students in a school setting",
+     "source": "https://library.aitsl.edu.au/media-library/docs/default-source/teacher-migration-services/occupation-checklists/tmss-teacher-hearing-impaired-checklist.pdf",
+     "quote": "completion of at least 45 days of supervised teaching practice with students in a school setting",
+     "sourceType": "assessor"
+    },
+    "specialistStudy": {
+     "value": "Plus 1 year FTE study of relevant special education (AQF7+). If within the ITE degree, STP must be with hearing impaired students; if separate, the special education study must include at least 30 days STP with hearing impaired students.",
+     "source": "https://library.aitsl.edu.au/media-library/docs/default-source/teacher-migration-services/occupation-checklists/tmss-teacher-hearing-impaired-checklist.pdf",
+     "quote": "the special education study must include a minimum of 30 days of supervised teaching practice with hearing impaired students.",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "241513": {
+   "differences": {
+    "iteAndStp": {
+     "value": "Generic ITE (at least 1 year FTE) with 45 days STP with students in a school setting",
+     "source": "https://library.aitsl.edu.au/media-library/docs/default-source/teacher-migration-services/occupation-checklists/tmss-teacher-sight-impaired-checklist.pdf",
+     "quote": "completion of at least 45 days of supervised teaching practice with students in a school setting",
+     "sourceType": "assessor"
+    },
+    "specialistStudy": {
+     "value": "Plus 1 year FTE study of relevant special education (AQF7+). If within the ITE degree, STP must be with sight impaired students; if separate, the special education study must include at least 30 days STP with sight impaired students.",
+     "source": "https://library.aitsl.edu.au/media-library/docs/default-source/teacher-migration-services/occupation-checklists/tmss-teacher-sight-impaired-checklist.pdf",
+     "quote": "the special education study must include a minimum of 30 days of supervised teaching practice with sight impaired students.",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "241111": {
+   "differences": {
+    "assessment": {
+     "qualification": {
+      "value": "ACECQA nationally approved early childhood teaching (ECT) qualification (or equivalent); otherwise ACECQA does a dual NQF assessment.",
+      "source": "https://www.acecqa.gov.au/sites/default/files/2025-11/20251114%20Skills%20Assessment%20Application%20Guidelines.pdf",
+      "quote": "An ACECQA nationally approved early childhood teaching (ECT) qualification (or equivalent).",
+      "sourceType": "assessor"
+     },
+     "noEmploymentRequired": {
+      "value": "No employment experience requirement for this occupation; additional requirement is English proficiency.",
+      "source": "https://www.acecqa.gov.au/sites/default/files/2025-11/20251114%20Skills%20Assessment%20Application%20Guidelines.pdf",
+      "quote": "Applicants requiring a skills assessment for these occupations must provide evidence of English language proficiency.",
+      "sourceType": "assessor"
+     },
+     "englishStudyOption": {
+      "value": "One year of full-time tertiary or higher education study in Australia, NZ, Ireland, Canada, UK or USA (part-time equivalent considered) - an Australian ECT graduate normally meets this.",
+      "source": "https://www.acecqa.gov.au/sites/default/files/2025-11/20251114%20Skills%20Assessment%20Application%20Guidelines.pdf",
+      "quote": "one year of full-time tertiary or higher education level study in either: Australia, New Zealand, Ireland, Canada, the United Kingdom or the United States of America",
+      "sourceType": "assessor"
+     },
+     "englishTestOption": {
+      "value": {
+       "IELTSAcademic": {
+        "reading": 7.0,
+        "writing": 7.0,
+        "speaking": 8.0,
+        "listening": 8.0
+       },
+       "ISLPRTeacher": "Level 4 all four skills at approved site",
+       "validityYears": 3,
+       "employerReference": "case-by-case from employer in AU/NZ/IE/CA/UK/US"
+      },
+      "source": "https://www.acecqa.gov.au/sites/default/files/2025-11/20251114%20Skills%20Assessment%20Application%20Guidelines.pdf",
+      "quote": "a score of seven (7.0) or more in the reading and writing components, and a score of eight (8.0) or more in the speaking and listening components, undertaken in the last three years.",
+      "sourceType": "assessor"
+     },
+     "equivalenceCriteriaIfNotOnList": {
+      "value": {
+       "level": "AQF7 bachelor or higher",
+       "ageFocus": "birth to five years (birth to eight preferred)",
+       "supervisedProfessionalExperienceDays": 45,
+       "minDaysBirthToUnder3": 10,
+       "daysWith3ToSchoolAge": "typically at least 25-30"
+      },
+      "source": "https://www.acecqa.gov.au/sites/default/files/2025-08/Guidelines%20for%20determination%20of%20equivalent%20early%20childhood%20qualifications.pdf",
+      "quote": "45 days supervised professional experience for early childhood teaching qualifications. This must include a minimum of 10 days supervised professional experience with children aged birth to under 3 years old",
+      "sourceType": "assessor"
+     }
+    },
+    "australianStudyRoute": {
+     "value": "An ACECQA-approved early childhood teaching qualification, e.g. a Bachelor of Early Childhood, or a graduate-entry Master of Teaching (Early Childhood) / 1-year Graduate Diploma in Early Childhood on top of a bachelor; NSW accreditation requires a 4-year qualification package for graduate-entry holders.",
+     "source": "https://www.nsw.gov.au/education-and-training/nesa/teacher-accreditation/get-accredited/early-childhood-teachers",
+     "quote": "such as a Master of Teaching (Early Childhood) or a 1-year Graduate Diploma in Early Childhood, you must provide evidence of a 4-year qualification package",
+     "sourceType": "regulator"
+    },
+    "registration": {
+     "NSW": {
+      "value": "To work as an ECT in an approved centre-based service in NSW you need an ACECQA-approved ECT qualification AND current NESA accreditation.",
+      "source": "https://www.nsw.gov.au/education-and-training/nesa/teacher-accreditation/get-accredited/early-childhood-teachers",
+      "quote": "To be employed as an early childhood teacher in an approved centre-based early childhood service in NSW you must hold:",
+      "sourceType": "regulator"
+     },
+     "VIC": {
+      "value": "Registration with VIT is legally required for early childhood teachers in Victoria.",
+      "source": "https://www.vit.vic.edu.au/register/purpose",
+      "quote": "It is a legislative requirement for anyone undertaking the duties of a teacher in a Victorian school or early childhood setting to be registered with VIT.",
+      "sourceType": "regulator"
+     },
+     "QLD": null
+    },
+    "assessorChangeNote": null
+   }
+  },
+  "134111": {
+   "differences": {
+    "assessment": {
+     "qualification": {
+      "value": "ACECQA nationally approved diploma level (or higher) education and care qualification.",
+      "source": "https://www.acecqa.gov.au/sites/default/files/2025-11/20251114%20Skills%20Assessment%20Application%20Guidelines.pdf",
+      "quote": "An ACECQA nationally approved diploma level (or higher) education and care qualification.",
+      "sourceType": "assessor"
+     },
+     "employmentExperience": {
+      "value": "3 years full-time (or part-time equivalent) employment as a Child Care Centre Manager in a regulated early childhood education and care service, completed after the qualification was awarded.",
+      "source": "https://www.acecqa.gov.au/sites/default/files/2025-11/20251114%20Skills%20Assessment%20Application%20Guidelines.pdf",
+      "quote": "Evidence of three years full time (or part time equivalent) employment experience as a Child Care Centre Manager in a regulated early childhood education and care service.",
+      "sourceType": "assessor"
+     },
+     "recency": {
+      "value": "At least 6 months full-time (or part-time equivalent) in the past 3 years.",
+      "source": "https://www.acecqa.gov.au/sites/default/files/2025-11/20251114%20Skills%20Assessment%20Application%20Guidelines.pdf",
+      "quote": "applicants need to provide evidence of at least six months full time (or part time equivalent) experience in the past three years.",
+      "sourceType": "assessor"
+     },
+     "postQualification": {
+      "value": true,
+      "source": "https://www.acecqa.gov.au/sites/default/files/2025-11/20251114%20Skills%20Assessment%20Application%20Guidelines.pdf",
+      "quote": "The employment experience needs to have been completed after you were awarded your relevant qualification.",
+      "sourceType": "assessor"
+     },
+     "englishRequirement": {
+      "value": "No separate English requirement listed in the Child Care Centre Manager assessment standards (unlike ECT); the additional requirement is employment experience.",
+      "source": "https://www.acecqa.gov.au/sites/default/files/2025-11/20251114%20Skills%20Assessment%20Application%20Guidelines.pdf",
+      "quote": "Applicants requiring a skills assessment for these occupations must provide evidence of relevant and current employment experience.",
+      "sourceType": "assessor"
+     },
+     "evidence": {
+      "value": "Employment contract, position description, service registration evidence, Employer Reference and Employment Experience templates.",
+      "source": "https://www.acecqa.gov.au/sites/default/files/2025-11/20251114%20Skills%20Assessment%20Application%20Guidelines.pdf",
+      "quote": "formal employment contract and formal position description",
+      "sourceType": "assessor"
+     }
+    },
+    "australianStudyRoute": {
+     "value": "Diploma of Early Childhood Education and Care (CHC50113, CHC50121 or CHC50125) from a CRICOS RTO/institution, with supervised work placement of 240 hours (CHC50113) or 280 hours (CHC50121/CHC50125) in an Australian workplace - this route gives a PROVISIONAL skills assessment for the subclass 485 visa only.",
+     "source": "https://www.acecqa.gov.au/sites/default/files/2026-03/20260316%20Provisional%20Skills%20Assessment%20Application%20Guidelines.pdf",
+     "quote": "For individuals that hold the Diploma of Early Childhood Education and Care CHC50121 / CHC50125, evidence of at least 280 hours (47 days) supervised work placement completed in an Australian workplace as part of your qualification.",
+     "sourceType": "assessor"
+    },
+    "otherConditions": {
+     "provisionalAssessment485": {
+      "value": "Provisional assessment is for international student graduates applying for the Temporary Graduate visa (subclass 485); fee $330; valid 3 years. A full (PR-relevant) assessment still requires the 3 years' manager experience.",
+      "source": "https://www.acecqa.gov.au/sites/default/files/2026-03/20260316%20Provisional%20Skills%20Assessment%20Application%20Guidelines.pdf",
+      "quote": "This application is for international student graduates who have studied and been awarded an ACECQA nationally approved diploma level education and care qualification and wish to apply for the Temporary Graduate Visa (subclass 485 visa).",
+      "sourceType": "assessor"
+     }
+    },
+    "registration": {
+     "value": "No teacher registration required for this occupation per ACECQA standards; teacher registration listed only 'if applicable'.",
+     "source": "https://www.acecqa.gov.au/sites/default/files/2025-11/20251114%20Skills%20Assessment%20Application%20Guidelines.pdf",
+     "quote": "Australian teacher registration/accreditation (if applicable)",
+     "sourceType": "assessor"
+    }
+   }
+  }
+ },
+ "gaps": [
+  "AITSL: no official source found stating nominal durations for specific Australian degrees (e.g. 'Master of Teaching = 2 years'); used the ITE Accreditation Standards (2025) configuration rule (3-yr UG + 2-yr FTE graduate entry, or 4-yr integrated) instead. Those standards take full effect 1 Jan 2027 (transition during 2026).",
+  "241111 registration QLD: QCT website pages returned HTTP 403; could not confirm on an official page whether QCT registration is mandatory for early childhood teachers in Queensland - set null. QCT English scores taken from QCT policy PDF (revised 2024, review date Oct 2027).",
+  "241111 assessorChangeNote: ACECQA took over the ECT occupation from AITSL (reported as 7 Dec 2024), but ACECQA HTML pages returned 403 so the exact wording could not be quoted - set null.",
+  "ACECQA HTML pages (acecqa.gov.au skilled migration pages, approved qualifications list) blocked automated access (HTTP 403); all ACECQA data comes from official ACECQA PDFs (Skills Assessment Application Guidelines Nov 2025, Provisional Skills Assessment Guidelines Mar 2026, Qualification Assessment Guidelines Aug 2025). A newer ACECQA guideline could exist on the HTML page without being detected.",
+  "ACECQA approved ECT qualification list itself (specific Australian courses) not captured - users should check ACECQA's qualifications checker.",
+  "Fees (AITSL) not captured; ACECQA fees are $1100 standard / $330 provisional per the PDFs.",
+  "Registration English requirements for other states/territories (SA, WA, TAS, ACT, NT) not checked; NSW/VIC/QLD all use IELTS Academic R7/W7/S8/L8 with 3-year validity, matching AITSL's test scores but with differing study exemptions (NSW: all qualifications from listed countries; VIC: all ITE/EC study in listed countries; QLD: entire 4 years in exempt country)."
+ ],
+ "secondCheck": {
+  "date": "2026-10-24",
+  "note": "All quotes re-checked word for word against the cited pages on 2026-10-24.",
+  "unverified": []
+ }
+}

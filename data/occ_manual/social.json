@@ -1,0 +1,366 @@
+{
+ "group": "social",
+ "checkedAt": "2026-10-24",
+ "shared": {
+  "AASW": {
+   "assessingAuthority": {
+    "value": "AASW is the assessing authority for Social Worker 272511",
+    "source": "https://aasw-media.s3.ap-southeast-4.amazonaws.com/wp-content/uploads/2026/05/AASW-MIG-Guide-2026_v1.pdf",
+    "quote": "as the assessing authority for the occupation Social Worker 272511",
+    "sourceType": "assessor"
+   },
+   "assessment": {
+    "criteria": {
+     "value": [
+      "Proof of identity",
+      "English proficiency meeting AASW English Language Policy",
+      "Successful completion of an AASW accredited social work qualification in Australia"
+     ],
+     "source": "https://aasw-media.s3.ap-southeast-4.amazonaws.com/wp-content/uploads/2026/05/AASW-MIG-Guide-2026_v1.pdf",
+     "quote": "Criterion 3: Successful completion of an AASW accredited social work qualification in Australia",
+     "sourceType": "assessor"
+    },
+    "qualification": {
+     "value": "AASW-accredited Bachelor of Social Work or Master of Social Work (Qualifying); related degrees (social care, sociology, psychology) not accepted unless they include a professional social work qualification",
+     "source": "https://aasw-media.s3.ap-southeast-4.amazonaws.com/wp-content/uploads/2026/05/AASW-MIG-Guide-2026_v1.pdf",
+     "quote": "Related qualifications such as Social Care, Sociology or Psychology for example will not be accepted",
+     "sourceType": "assessor"
+    },
+    "fieldEducation": {
+     "value": {
+      "minHours": 1000,
+      "minDirectPracticeHours": 500,
+      "minHoursInAustralia": 500,
+      "maxPlacements": 3,
+      "minHoursPerPlacement": 250,
+      "spreadOverYears": 2,
+      "note": "Accreditation standard the course must meet; built into any AASW-accredited degree"
+     },
+     "source": "https://aasw-media.s3.ap-southeast-4.amazonaws.com/wp-content/uploads/2025/10/00.-AASW-ASWEAS-2024.pdf",
+     "quote": "students complete a program of supervised professional practice placements of at least 1000 hours",
+     "sourceType": "assessor"
+    },
+    "english": {
+     "value": {
+      "test": "IELTS Academic only (no IELTS Online)",
+      "option1": "IELTS Academic overall 7.0 in one sitting (guide PDF wording: 'A minimum overall score of 7.0 achieved in one sitting'; MEA web page summary adds 7.0 in all four components; see gaps)",
+      "option2": "7.0 in each component across max two sittings within 6 months, no component below 6.5",
+      "option3": "one sitting with 7.0 in three components (none below 6.5) plus IELTS One Skill Retake scoring 7.0 in the retaken component, within 60 days of the original test",
+      "testValidity": "results obtained within 3 years before applying",
+      "exemption": "all secondary education (Years 7-12) AND 3+ years full-time tertiary study (Bachelor or higher), both taught and assessed in English in Australia, Canada, NZ, Ireland, South Africa, UK or USA"
+     },
+     "source": "https://aasw-media.s3.ap-southeast-4.amazonaws.com/wp-content/uploads/2026/05/AASW-MIG-Guide-2026_v1.pdf",
+     "quote": "A minimum score of 7.0 in each of the four components (listening, reading, writing and speaking)",
+     "sourceType": "assessor"
+    }
+   },
+   "australianStudyRoute": {
+    "value": {
+     "options": [
+      {
+       "qualification": "Bachelor of Social Work (AQF 7/8)",
+       "nominalDuration": "4 years full-time (or 2 years full-time after at least 2 years of a relevant undergraduate degree)"
+      },
+      {
+       "qualification": "Master of Social Work (Qualifying) (AQF 9)",
+       "nominalDuration": "2 years full-time"
+      }
+     ]
+    },
+    "source": "https://aasw-media.s3.ap-southeast-4.amazonaws.com/wp-content/uploads/2025/10/00.-AASW-ASWEAS-2024.pdf",
+    "quote": "MSW(Q) graduates are required to complete two years full-time of a Master of Social Work degree at AQF Level 9",
+    "sourceType": "assessor"
+   },
+   "registration": {
+    "value": {
+     "required": false,
+     "note": "No legislated registration in force. South Australia legislated a scheme (Social Workers Registration Act 2021) but in June 2026 the SA Government decided not to proceed with it. AASW describes social work as self-regulating."
+    },
+    "source": "https://www.aasw.asn.au/aasw-position-statement-registration-of-social-workers/",
+    "quote": "South Australia is currently the only jurisdiction with legislated registration of social workers.",
+    "sourceType": "assessor"
+   },
+   "registrationSA": {
+    "value": "SA Government decided not to proceed with the Social Workers Registration Scheme (AASW response dated 20 June 2026)",
+    "source": "https://www.aasw.asn.au/aasw-responds-to-sa-government-decision-on-social-workers-registration-scheme/",
+    "quote": "is disappointed by the South Australian Government's decision not to proceed with the Social Workers Registration Scheme",
+    "sourceType": "assessor"
+   },
+   "selfRegulating": {
+    "value": true,
+    "source": "https://aasw-media.s3.ap-southeast-4.amazonaws.com/wp-content/uploads/2026/05/AASW-MIG-Guide-2026_v1.pdf",
+    "quote": "It is a self-regulating profession.",
+    "sourceType": "assessor"
+   },
+   "otherConditions": {
+    "postQualificationEmployment": {
+     "value": {
+      "requiredForQualificationAssessment": false,
+      "optionalSkilledEmploymentAssessment": "available after a positive qualification outcome; needs at least 1 year of post-qualifying social work employment in Australia (or 3 years overseas) in the past 10 years, paid full-time"
+     },
+     "source": "https://www.aasw.asn.au/education-employment/optional-migration-assessment/",
+     "quote": "The skilled employment assessment is an optional additional assessment for those with at least one year",
+     "sourceType": "assessor"
+    },
+    "policeCheck": null,
+    "documents": {
+     "value": "Identity verified via One Click Verify (passport mandatory, minimum three ID documents); qualification certificate or completion letter, transcripts, CV",
+     "source": "https://aasw-media.s3.ap-southeast-4.amazonaws.com/wp-content/uploads/2026/05/AASW-MIG-Guide-2026_v1.pdf",
+     "quote": "Passport (mandatory)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "CWA": {
+   "assessment": {
+    "criteria": {
+     "value": [
+      "Relevant qualification (level varies by occupation)",
+      "Proficiency in English",
+      "Employment & currency"
+     ],
+     "source": "https://www.communitywork.org.au/occupation/community-worker",
+     "quote": "Criterion 3 - Employment & Currency",
+     "sourceType": "assessor"
+    },
+    "english": {
+     "value": {
+      "testValidity": "within 3 years of application; for IELTS/MET multiple tests within 12 months can be combined (incl. IELTS One Skill Retake)",
+      "scoresTestsOnOrAfter2025-08-07": {
+       "IELTS (General or Academic)": "7 in each band",
+       "PTE Academic": "L58 S76 R59 W69",
+       "C1 Advanced": "L175 S194 R179 W193",
+       "TOEFL iBT": "L22 S24 R22 W26",
+       "CELPIP General": "L9 S8 R8 W10",
+       "LanguageCert Academic": "L67 S82 R71 W78",
+       "MET": "L61 S59 R63 W74"
+      },
+      "scoresTestsOnOrBefore2025-08-06": {
+       "IELTS": "7 in each band",
+       "PTE Academic": "65 in each band",
+       "C1 Advanced": "185 in each band",
+       "TOEFL iBT": "L24 S23 R24 W27"
+      },
+      "notAccepted": [
+       "CELPIP Online",
+       "IELTS Online",
+       "LANGUAGECERT Academic Online",
+       "MET Digital (at-home)",
+       "TOEFL iBT Home Edition"
+      ],
+      "studyExemption": "completed Bachelor/Master/Doctorate, or all secondary schooling plus a post-secondary/vocational Diploma or higher, delivered and assessed in English in Australia, Canada, Ireland, NZ, UK or USA",
+      "employmentAsEvidence": "no longer accepted from 7 August 2025",
+      "note": "Identical across all CWA occupation pages checked"
+     },
+     "source": "https://www.communitywork.org.au/occupation/community-worker",
+     "quote": "PTE Academic = Listening 58, Speaking 76, Reading 59, Writing 69",
+     "sourceType": "assessor"
+    },
+    "currency": {
+     "value": [
+      "qualification less than 4 years old",
+      "or at least 3 months full-time (or equivalent) in a relevant current role at the required skill level",
+      "or at least 6 months relevant employment at the required skill level within the last 18 months"
+     ],
+     "source": "https://www.communitywork.org.au/occupation/community-worker",
+     "quote": "holding a qualification that is less than 4 years old",
+     "sourceType": "assessor"
+    },
+    "fullTimeDefinition": {
+     "value": "Paid employment of 30 hours or more per week",
+     "source": "https://www.communitywork.org.au/occupation/community-worker",
+     "quote": "Paid employment of 30 hours or more per week.",
+     "sourceType": "assessor"
+    },
+    "accreditedCourseRule": {
+     "value": "Course and campus must have been CWA-accredited for the whole period of study",
+     "source": "https://www.communitywork.org.au/occupation/community-worker",
+     "quote": "if the course and campus was accredited by Community Work Australia for the entire duration of the applicant’s study",
+     "sourceType": "assessor"
+    },
+    "rplLimit": {
+     "value": "Maximum 40% RPL",
+     "source": "https://www.communitywork.org.au/occupation/community-worker",
+     "quote": "Community Work Australia will accept a maximum of 40% RPL",
+     "sourceType": "assessor"
+    },
+    "placementEvidence": {
+     "value": "Accredited/recognised graduates: provider letter showing total placement hours across at least two placements, plus placement reports",
+     "source": "https://www.communitywork.org.au/skills-assessment/document-checklist",
+     "quote": "evidence of total hours in at least two different placements",
+     "sourceType": "assessor"
+    }
+   },
+   "australianStudyRoute": {
+    "value": {
+     "qualification": "Community Work Australia accredited Diploma or higher (e.g. CHC52021 Diploma of Community Services, Bachelor of Community Services/Human Services listed in the CWA accredited-course finder)",
+     "nominalDuration": null
+    },
+    "source": "https://www.communitywork.org.au/education-training/find-an-accredited-course",
+    "quote": "CHC52021 Diploma of Community Services (Case Management)",
+    "sourceType": "assessor"
+   },
+   "registration": null,
+   "otherConditions": {
+    "outcomeValidity": {
+     "value": "Skills assessment valid 3 years from date of issue",
+     "source": "https://www.communitywork.org.au/skills-assessment/skills-assessment-faqs",
+     "quote": "A skills assessment is valid for 3 years from the date of issue.",
+     "sourceType": "assessor"
+    },
+    "policeCheck": null,
+    "supportRolesExcluded": {
+     "value": "Certificate-level (AQF 3/4) support-worker employment not counted",
+     "source": "https://www.communitywork.org.au/occupation/community-worker",
+     "quote": "Employment at this skill level will not be considered.",
+     "sourceType": "assessor"
+    }
+   }
+  }
+ },
+ "occupations": {
+  "272511": {
+   "differences": {}
+  },
+  "411711": {
+   "differences": {
+    "qualification": {
+     "value": "AQF 5: CWA-accredited Diploma or higher; or recognised professionally accredited Bachelor+; or relevant community-services Diploma or higher",
+     "source": "https://www.communitywork.org.au/occupation/community-worker",
+     "quote": "Community Work Australia accredited diploma or higher course.",
+     "sourceType": "assessor"
+    },
+    "employment": {
+     "value": "CWA-accredited/recognised qualification: deemed sufficient via field placement. Relevant (non-accredited) diploma or higher: min 1 year full-time industry experience in last 4 years",
+     "source": "https://www.communitywork.org.au/occupation/community-worker",
+     "quote": "Applicants must have a minimum of 1 year of full-time (or part-time equivalent) industry experience within the last 4 years.",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "272613": {
+   "differences": {
+    "qualification": {
+     "value": "AQF 7 (Bachelor) criterion: CWA-accredited Diploma, Bachelor or higher; or recognised professionally accredited Bachelor+; or relevant Bachelor or higher in community services",
+     "source": "https://www.communitywork.org.au/occupation/welfare-worker",
+     "quote": "Community Work Australia accredited Diploma, Bachelor degree or higher",
+     "sourceType": "assessor"
+    },
+    "employment": {
+     "value": "CWA-accredited/recognised qualification: deemed sufficient via field placement. Relevant (non-accredited) Bachelor: min 2 years full-time industry experience in last 4 years",
+     "source": "https://www.communitywork.org.au/occupation/welfare-worker",
+     "quote": "Applicants must have a minimum of 2 years full-time (or part-time equivalent) industry experience within the last 4 years.",
+     "sourceType": "assessor"
+    },
+    "skillLevel": {
+     "value": "AQF Level 5/7",
+     "source": "https://www.communitywork.org.au/occupation/welfare-worker",
+     "quote": "require a qualification equivalent to AQF Level 5/7",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "411716": {
+   "differences": {
+    "qualification": {
+     "value": "AQF 5 with youth-work specialisation (relevant or CWA-accredited Diploma+), or recognised accredited youth-work course (e.g. Youth Workers Australia) with at least 400 placement hours in a youth setting, or non-specialised relevant AQF 5+",
+     "source": "https://www.communitywork.org.au/occupation/youth-worker",
+     "quote": "must provide evidence of their fieldwork placement/s within a youth work setting (no less than 400 hours)",
+     "sourceType": "assessor"
+    },
+    "employment": {
+     "value": "CWA-accredited or recognised youth-work qualification: deemed sufficient via practicum. Relevant specialised Diploma+: at least 1 year full-time in a youth services setting. Non-specialised: 2 years full-time in a youth services setting",
+     "source": "https://www.communitywork.org.au/occupation/youth-worker",
+     "quote": "Applicants must have 2 years full time (or part time equivalent) employment in a youth services setting",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "411712": {
+   "differences": {
+    "qualification": {
+     "value": "AQF 5 Diploma: relevant or CWA-accredited Diploma+ specialising in disability services, or non-specialised relevant AQF 5+",
+     "source": "https://www.communitywork.org.au/occupation/disability-services-officer",
+     "quote": "A Community Work Australia accredited diploma or higher with a specialisation in disability services.",
+     "sourceType": "assessor"
+    },
+    "employment": {
+     "value": "CWA-accredited: deemed sufficient via field placement. Relevant specialised: at least 12 months full-time in a disability services setting. Non-specialised: 2 years full-time in a disability services setting",
+     "source": "https://www.communitywork.org.au/occupation/disability-services-officer",
+     "quote": "Applicants must have at least 12 months full-time (or part-time equivalent) employment in a disability services setting",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "411713": {
+   "differences": {
+    "qualification": {
+     "value": "AQF 5 Diploma: relevant or CWA-accredited Diploma+ specialising in family services or children and families, or non-specialised relevant AQF 5+",
+     "source": "https://www.communitywork.org.au/occupation/family-support-worker",
+     "quote": "A Community Work Australia accredited diploma or higher with a specialisation in family services or children and families",
+     "sourceType": "assessor"
+    },
+    "employment": {
+     "value": "CWA-accredited: deemed sufficient via practicum. Relevant specialised: at least 1 year full-time in a family support service setting. Non-specialised: 2 years full-time in a family support setting",
+     "source": "https://www.communitywork.org.au/occupation/family-support-worker",
+     "quote": "Applicants must have 2 years full time (or part time equivalent) employment in a family support setting",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "134214": {
+   "differences": {
+    "qualification": {
+     "value": "AQF 7: relevant qualification comparable to an Australian Bachelor or higher (community services, human services, welfare, social work, social services management, social policy or similar). No accredited-course shortcut is listed.",
+     "source": "https://www.communitywork.org.au/occupation/welfare-centre-manager",
+     "quote": "A relevant qualification comparable to an Australian bachelor's degree or higher",
+     "sourceType": "assessor"
+    },
+    "employment": {
+     "value": "Min 3 years full-time industry experience, including at least 1 year in a welfare centre management role within the last 5 years; that 1 year must be within the last 2 years. A new graduate cannot meet this.",
+     "source": "https://www.communitywork.org.au/occupation/welfare-centre-manager",
+     "quote": "The minimum 1-year experience in a welfare centre manager must be within the last 2 years.",
+     "sourceType": "assessor"
+    },
+    "skillLevel": {
+     "value": "AQF Level 7 Bachelor or higher",
+     "source": "https://www.communitywork.org.au/occupation/welfare-centre-manager",
+     "quote": "require a qualification equivalent to AQF Level 7 bachelor’s degree or higher",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "411715": {
+   "differences": {
+    "qualification": {
+     "value": "AQF 5 Diploma: relevant or CWA-accredited Diploma+ specialising in residential care services, health and wellbeing, disability services or youth work, or non-specialised relevant AQF 5+",
+     "source": "https://www.communitywork.org.au/occupation/residential-care-officer",
+     "quote": "A Community Work Australia accredited diploma or higher with a specialisation in residential care services, health and wellbeing, disability services, or youth work.",
+     "sourceType": "assessor"
+    },
+    "employment": {
+     "value": "CWA-accredited: deemed sufficient via practicum. Relevant specialised: at least 1 year full-time in a residential care services setting. Non-specialised: 2 years full-time in a residential care services setting",
+     "source": "https://www.communitywork.org.au/occupation/residential-care-officer",
+     "quote": "Applicants must have 2 years full-time (or part-time equivalent) employment in a residential care services setting",
+     "sourceType": "assessor"
+    }
+   }
+  }
+ },
+ "gaps": [
+  "AASW policeCheck: the AASW international-graduate migration guide lists no police or character check; left null rather than asserting none.",
+  "AASW outcome validity: not stated in the official guide (only agent blogs claim 3 years), so it is not recorded.",
+  "AASW English: MEA page wording for Option 1 is 'overall 7.0 in one sitting' with 7.0 in all four components; guide PDF example shows 7.0 minimum per band. The tool should show 7.0 in each band as the safe reading. IELTS Academic is the only accepted test.",
+  "AASW registration: SA swrb.sa.gov.au could not be fetched (DNS failure). The status is taken from AASW pages (position statement 26 May 2026; SA decision 20 June 2026). Some states have role-specific checks (e.g. Working with Children), but the assessor does not state them, so they are not recorded.",
+  "CWA registration: no official CWA or regulator page found stating any registration/licensing requirement for these occupations; set null. Sector checks such as NDIS worker screening and Working with Children Checks are not stated by CWA.",
+  "CWA policeCheck: not mentioned on CWA occupation pages or document checklist; null.",
+  "CWA australianStudyRoute nominalDuration: no official CWA page states course durations; null. The minimum placement hours for CWA-accredited Diplomas are not published on the criteria pages (only the youth-work recognised route states 400 hours).",
+  "CWA quotes and criteria were read from communitywork.org.au occupation pages (fetched 2026-10-24). The pages still show a stale portal-maintenance banner for 'Tuesday 16th June'.",
+  "aasw.asn.au HTML pages were behind Cloudflare for direct download, so they were read via a fetch tool. The quotes from the MIG guide and the ASWEAS PDF were verified verbatim from the PDF text."
+ ],
+ "secondCheck": {
+  "date": "2026-10-24",
+  "note": "All quotes re-checked word for word against the cited pages on 2026-10-24 (AASW pages through a reader, the site blocks plain fetches).",
+  "unverified": []
+ }
+}
