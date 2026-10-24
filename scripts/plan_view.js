@@ -32,7 +32,8 @@ function plLoadState() {
   try { const s = JSON.parse(localStorage.getItem(PLAN_KEY)); if (s) PLAN = Object.assign(PLAN, s); } catch (e) {}
 }
 function plSave() { try { localStorage.setItem(PLAN_KEY, JSON.stringify(PLAN)); } catch (e) {} }
-// the calculator asks for an age band; with a birth month we know it, so keep it current
+// the calculator asks for an age band; when the birth month is typed in here, set it to match.
+// Only then: opening the plan never rewrites 我的分数 behind the visitor's back.
 function plSyncAge() {
   const a = plAgeAt(plNow());
   if (a != null && (plCalc().age | 0) !== plAgeIdx(a)) plSetCalc("age", plAgeIdx(a));
@@ -152,7 +153,10 @@ function plRenderQ() {
   $pl("plBack").disabled = PL.qi === 0;
   $pl("plNext").textContent = PL.qi === Q.length - 1 ? "生成方案" : "下一题";
   if (q.input === "month") $pl("plMonth").addEventListener("input", e => {
-    PLAN.birth = e.target.value || PLAN.birth; plSave(); plSyncAge(); plTally(); });
+    // while the year is being typed the input passes through "0001-05", "0019-05"...: ignore those
+    const v = e.target.value, y = +(v || "").slice(0, 4);
+    if (!v || y < 1940 || y > new Date().getFullYear()) return;
+    PLAN.birth = v; plSave(); plSyncAge(); plTally(); });
   if (q.input === "occ") {
     const f = () => plSug($pl("plOcc").value);
     $pl("plOcc").addEventListener("input", f); f();
@@ -440,16 +444,25 @@ function plRender() {
   plRenderNow();
   plResults();
 }
+// the birth month here and the age band in 我的分数 can drift apart (a birthday, or an edit on
+// either side); say so and let the visitor pick, rather than overwrite one with the other
+function plAgeClash() {
+  const a = plAgeAt(plNow());
+  if (a == null || (plCalc().age | 0) === plAgeIdx(a)) return "";
+  const band = i => RULES.fields.find(f => f.key === "age").options[i].t;
+  return `「我的分数」里年龄是 <b>${band(plCalc().age | 0)}</b>，按这里的出生年月 ${plEsc(PLAN.birth)} 算，你现在 ${a} 岁（${band(plAgeIdx(a))}）。
+    <button type="button" class="linkbtn" data-age="fix">按出生年月改分数</button> ·
+    <button type="button" class="linkbtn" data-age="redo">出生年月填错了，重填</button>`;
+}
 let PL_WIRED = false;
 function plInit() {
   plLoadState();
-  plSyncAge();
   const stat = $pl("plStat");
   if (!PL.data) stat.textContent = "正在载入 489 个职业的清单、评估和邀请数据…";
   plLoad().then(() => {
     // the plan stands on the calculator's answers; say so if there are none yet
     const filled = Object.keys(plCalc()).some(k => k !== "age" && plCalc()[k]);
-    stat.innerHTML = filled ? "" : `还没填「我的分数」，下面的分数只算了年龄。
+    stat.innerHTML = filled ? plAgeClash() : `还没填「我的分数」，下面的分数只算了年龄。
       <button type="button" class="linkbtn" data-go="points">先去填分数 →</button>`;
     if (!PL_WIRED) {
       PL_WIRED = true;
@@ -461,6 +474,12 @@ function plInit() {
         const b = e.target.closest("button"); if (!b) return;
         PLAN.sort[b.dataset.k] = PLAN.sort[b.dataset.k] ? 0 : 1; plSave(); plResults(); });
       $pl("plAiBtn").addEventListener("click", plAiRun);
+      $pl("plStat").addEventListener("click", e => {
+        const b = e.target.closest("[data-age]"); if (!b) return;
+        if (b.dataset.age === "fix") plSyncAge();
+        else { PLAN.done = false; PL.qi = plVis().findIndex(q => q.k === "birth"); plSave(); }
+        $pl("plStat").innerHTML = ""; plRender();
+      });
       $pl("plUnpin").addEventListener("click", () => { PLAN.pinned = null; plSave(); plRender(); });
     }
     plRender();
