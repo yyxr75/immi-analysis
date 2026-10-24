@@ -714,11 +714,8 @@
  ],
  "secondCheck": {
   "date": "2026-10-24",
-  "note": "All quotes re-checked on 2026-10-24 (BPC and WorkSafe pages rendered in headless Chrome; TRA qualification names matched in its PDF where name and code sit in separate columns). The WorkSafe QLD eligibility-policy PDF sits behind a Cloudflare check and could not be re-read.",
-  "unverified": [
-   ".occupations.341111.differences.registration.QLD",
-   ".occupations.341112.differences.registration.QLD"
-  ]
+  "note": "All quotes re-checked on 2026-10-24 (BPC and WorkSafe pages rendered in headless Chrome; TRA qualification names matched in its PDF where name and code sit in separate columns). The WorkSafe QLD eligibility-policy PDF sits behind a Cloudflare check and could not be re-read. Re-checked later the same day against a copy of the PDF the owner downloaded in his browser: the QLD quotes match.",
+  "unverified": []
  },
  "gapFill": {
   "date": "2026-10-24",
