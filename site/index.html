@@ -619,6 +619,12 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
 .pl-n.warn { background:var(--warn-soft); color:var(--warn); border-color:transparent; }
 .pl-pinb { font:inherit; font-size:12.5px; border:1px solid var(--hair); background:var(--surface); border-radius:8px; padding:6px 10px; color:var(--ink); white-space:nowrap; cursor:pointer; }
 .pl-pc.pin .pl-pinb { background:var(--s1); color:#fff; border-color:var(--s1); }
+.pl-gates { grid-column:1/-1; display:flex; flex-wrap:wrap; gap:6px; align-items:center; font-size:12px; }
+.pl-gates a { color:inherit; }
+.pl-pend { margin:14px 0 4px; border:1px dashed var(--hair); border-radius:10px; padding:10px 14px; font-size:13px; }
+.pl-pend summary { cursor:pointer; font-weight:600; }
+.pl-pend ul { margin:8px 0 0; padding-left:18px; display:grid; gap:5px; color:var(--ink2); }
+.pl-pend li b { color:var(--ink); }
 .pl-cond { grid-column:1/-1; font-size:12.5px; color:var(--ink2); }
 .pl-cond summary { cursor:pointer; color:var(--ink); }
 .pl-cond ul { margin:6px 0 0; padding-left:18px; display:grid; gap:3px; }
@@ -4005,13 +4011,35 @@ function plPath(o, base) {
   return { o, st, work, workGap: !base && o.card && o.card.work === null, eoi, age, pts, min,
            margin: min == null ? null : pts - min, zeros, b33: plYm(PLAN.birth) + 33 * 12, base };
 }
+/* A study route is only offered as a plan once every step is confirmed by an
+   official source for someone who is not a PR yet: they can enrol, they can
+   finish (placements, apprenticeships), the assessor takes that Australian
+   qualification and says how much work it wants, the licence or registration
+   is open to them, and the occupation is on the 189 list. A points total that
+   clears the cut-off is worth nothing if one of these fails, so routes with an
+   unconfirmed step are listed apart, unranked, with the step named. */
+const PL_GATES = { enrol: "能入学", finish: "能读完", assess: "能评估", licence: "能注册/执照", visa: "能申请 189" };
+function plGates(r) {
+  const o = r.o, c = o.card || {}, rt = c.route || {};
+  const g = k => rt[k] ? { k, ok: rt[k].ok, t: rt[k].t, src: rt[k].src }
+                       : { k, ok: false, t: k === "enrol" ? "有没有收留学生的课程，还没核实" : k === "finish"
+                             ? "实习、学徒等环节学生签证能不能做，还没核实" : "留学生毕业后能不能注册或拿执照，还没核实" };
+  const checked = (c.notes || []).some(n => n.src);
+  const out = [g("enrol"), g("finish"),
+    { k: "assess", ok: checked && c.work !== null,
+      t: !checked ? "评估条件还没核对" : c.work === null ? "评估要几年工作，官方没写明" : "评估条件已核对" }];
+  if (o.regulated) out.push(g("licence"));
+  out.push({ k: "visa", ok: o.visas.includes("189"), t: "在 189 职业清单上" });
+  return out;
+}
 const plCur = () => PLAN.door === "new" ? null : PLAN.cur;
 function plCandidates() {
   const ys = +(PLAN.years || 0);
   if (!ys) return [];
   return PL.data.occ.filter(o => o.visas.includes("189") && o.skillLevel && o.skillLevel <= 3 && o.c !== plCur())
     .filter(o => !PLAN.areas.length || PLAN.areas.includes(plArea(o.c)))
-    .map(o => plPath(o, false)).filter(r => r && r.st.y <= ys);
+    .map(o => plPath(o, false)).filter(r => r && r.st.y <= ys)
+    .map(r => { r.gates = plGates(r); r.ok = r.gates.every(x => x.ok); return r; });
 }
 function plRank(r) {
   const S = PLAN.sort, last = r.o.r[r.o.r.length - 1];
@@ -4048,6 +4076,8 @@ function plCard(r) {
       `<div><em>${n ? plFmt(n) : "0"}</em><i class="${n ? "" : "z"}" style="${n ? `height:${Math.max(3, n / mx * 26)}px` : ""}"></i><small>${PL.data.days[k].slice(2, 7)}${m ? " · " + m : ""}</small></div>`).join("")}</div></div>
     <div>${r.base ? "" : `<button type="button" class="pl-pinb" data-c="${o.c}">${pinned ? "已固定" : "固定这条"}</button>`}</div>
     <div class="pl-notes">${notes.map(([c, t]) => `<span class="pl-n ${c}">${plEsc(t)}</span>`).join("")}</div>
+    ${r.gates ? `<div class="pl-gates"><span class="pl-foot">能不能走通：</span>${r.gates.map(x =>
+      `<span class="pl-n ${x.ok ? "good" : "warn"}" title="${plEsc(x.t)}">${x.ok ? "✓" : "?"} ${PL_GATES[x.k]}${x.src ? ` <a href="${plEsc(x.src)}" target="_blank" rel="noopener">来源</a>` : ""}</span>`).join("")}</div>` : ""}
     ${cn.length ? `<details class="pl-cond"${pinned ? " open" : ""}><summary>评估和注册条件（${cn.length} 条，已核对官方原文）</summary><ul>${cn.map(n =>
       `<li class="${n.gap ? "gap" : ""}">${plEsc(n.t)}${n.src ? ` <a href="${plEsc(n.src)}" target="_blank" rel="noopener">来源</a>` : ""}</li>`).join("")}</ul></details>`
       : o.regulated ? "" : `<p class="pl-foot pl-cond0">${plEsc(ass)} 的评估条件本站还没逐条核对，以评估机构官网为准。</p>`}
@@ -4056,7 +4086,9 @@ function plCard(r) {
 
 function plResults() {
   const D = PL.data;
-  const all = plCandidates().sort((a, b) => plRank(b) - plRank(a));
+  const cand = plCandidates();
+  const all = cand.filter(r => r.ok).sort((a, b) => plRank(b) - plRank(a));
+  const pend = cand.filter(r => !r.ok).sort((a, b) => b.o.r[b.o.r.length - 1][0] - a.o.r[a.o.r.length - 1][0]);
   const cur = plCur() && D.by[plCur()];
   const base = cur ? plPath(cur, true) : null;
   // first screen: the best route in each direction, then the rest by rank
@@ -4069,12 +4101,20 @@ function plResults() {
   const today = plScore({ age: plAgeIdx(plAgeAt(plNow())) });
   $pl("plSum").innerHTML = `<span>今天 <b>${today} 分</b>（189，不含提名）</span><span>最多再读 <b>${+(PLAN.years || 0)} 年</b></span>
     <span>${PLAN.areas.length ? PLAN.areas.map(k => PL_AREAS[k][0]).join("、") : "全部方向"}</span>
-    <span>符合条件 <b>${all.length}</b> 个职业，其中 <b>${ok}</b> 个届时分数够得上上一次最低分</span>`;
+    <span>读书年限内能转的 ${cand.length} 个职业里，<b>${all.length}</b> 条每一步都有官方原文确认能走通，其中 <b>${ok}</b> 条届时分数够得上上一次最低分</span>`;
   let baseNote = "";
   if (cur && !cur.visas.includes("189"))
     baseNote = `<p class="pl-warn">${plEsc(cur.zh || cur.en)} 现在不能用于 189（可用签证：${cur.visas.join("、") || "无"}）。</p>`;
+  const why = r => r.gates.filter(x => !x.ok).map(x => PL_GATES[x.k] + "：" + x.t).join("；");
+  const pendHtml = pend.length ? `<details class="pl-pend"><summary>还没核实能走通的 ${pend.length} 条路线（不排名、不比分数）</summary>
+    <p class="pl-foot">这些职业分数上也许够，但从入学到拿评估、注册，至少有一步还没找到官方原文确认留学生能做到。交学费前请自己向学校、评估机构和注册机构问清楚。</p>
+    <ul>${pend.slice(0, 60).map(r => { const L = r.o.r[r.o.r.length - 1];
+      return `<li><b>${plEsc(r.o.zh || r.o.en)}</b> ${r.o.c} · 上一轮邀请 ${plFmt(L[0])} 人<br>卡在 ${plEsc(why(r))}</li>`; }).join("")}</ul>
+    ${pend.length > 60 ? `<p class="pl-foot">只列邀请人数最多的 60 条。</p>` : ""}</details>` : "";
   $pl("plCards").innerHTML = baseNote + (base ? plCard(base) : "") + (shown.length ? shown.map(plCard).join("")
-    : `<p class="pl-foot">${+(PLAN.years || 0) ? "没有符合条件的路线：试试放宽读书年限或兴趣方向。" : "选了「不读了」，所以只比较现在的职业。改答案可以把读书换赛道的路也放进来。"}</p>`);
+    : `<p class="pl-foot">${!+(PLAN.years || 0) ? "选了「不读了」，所以只比较现在的职业。改答案可以把读书换赛道的路也放进来。"
+        : cand.length ? "读书换赛道的路线里，还没有一条每一步都核实过能走通。我们在逐个职业核对，下面列出了卡在哪一步。"
+        : "没有符合条件的路线：试试放宽读书年限或兴趣方向。"}</p>`) + pendHtml;
   $pl("plMore").hidden = all.length <= 8;
   $pl("plMore").textContent = PL.showAll ? "只看每个方向最好的一条" : `看全部 ${all.length} 条（按排序）`;
   document.querySelectorAll("#plSort button").forEach(b => b.setAttribute("aria-pressed", !!PLAN.sort[b.dataset.k]));

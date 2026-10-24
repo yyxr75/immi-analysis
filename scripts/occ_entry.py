@@ -29,6 +29,7 @@ summary of what moved) to $GITHUB_OUTPUT when set.
 """
 import html
 import io
+import glob
 import json
 import os
 import re
@@ -149,11 +150,22 @@ def _hay_nums(t):
     return out
 
 
+ROUTE_GATES = ("enrol", "finish", "licence")
+
+
 def load_cards():
     """data/occ_cards.json -> {key: card}, every ref resolved to its fact."""
     if not os.path.exists(CARDS):
         return {}
     spec = json.load(open(CARDS, encoding="utf-8"))["notes"]
+    # route gates are researched area by area, one file each, so they can be added in parallel
+    for fn in sorted(glob.glob(os.path.join(os.path.dirname(CARDS), "occ_routes", "*.json"))):
+        for key, c in json.load(open(fn, encoding="utf-8"))["routes"].items():
+            have = spec.setdefault(key, {"notes": []}).setdefault("route", {})
+            clash = set(have) & set(c)
+            if clash:
+                raise SystemExit(f"{fn}: {key} gates {sorted(clash)} already set elsewhere")
+            have.update(c)
     files = {}
 
     def fact(ref):
@@ -206,6 +218,21 @@ def load_cards():
                 check(w.get("label") or str(w["months"]), refs(w["ref"]), key + " work")
                 w = dict(w, src=fact(w["ref"])[0]["source"])
             card["work"] = w
+        # route gates for "study for it, then 189" -- can a non-PR enrol, finish,
+        # get licensed. Each is a sourced fact or an explicit gap, like the notes.
+        if "route" in c:
+            card["route"] = {}
+            for g, n in c["route"].items():
+                if g not in ROUTE_GATES:
+                    raise SystemExit(f"occ_cards.json: {key} route gate {g!r} unknown")
+                if n.get("gap"):
+                    if _nums(n["t"]):
+                        raise SystemExit(f"occ_cards.json: gap {n['t']!r} must not state a number")
+                    card["route"][g] = {"t": n["t"], "ok": False}
+                    continue
+                got = check(n["t"], refs(n.get("ref")), key + " route " + g)
+                card["route"][g] = {"t": n["t"], "ok": n.get("ok", True) is True,
+                                    "src": got[0][0]["source"], "checkedAt": got[0][2]}
         for k in ("own", "use"):
             if k in c:
                 card[k] = c[k]
@@ -231,6 +258,8 @@ def card_for(code, abbrs, cards):
         for f in ("study", "work"):
             if f in c:
                 merged[f] = c[f]
+        if "route" in c:
+            merged["route"] = dict(merged.get("route", {}), **c["route"])
     for k in keys:
         add(k)
     return merged if (merged["notes"] or len(merged) > 1) else None
