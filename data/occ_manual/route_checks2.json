@@ -1,0 +1,235 @@
+{
+ "group": "route_checks2",
+ "checkedAt": "2026-10-25",
+ "about": "Entry requirements of the graduate-entry master's courses cited by the route gates (does a bachelor in an unrelated field get in?), and the instrument that lists occupations for the 485 Post-Vocational Education Work stream. Quotes are copied word for word from the official course page / legislation text.",
+ "entry": {
+  "uqNursingMaster": {
+   "value": {
+    "course": "UQ Master of Nursing (Graduate Entry) 5776",
+    "anyBachelor": true,
+    "minGPA": "4.0/7",
+    "recency": "previous qualification within 10 years"
+   },
+   "source": "https://study.uq.edu.au/study-options/programs/master-nursing-graduate-entry-5776?year=2026",
+   "quote": "To be eligible for entry, you'll need: a bachelor's degree (or equivalent) in any discipline. You must have a grade point average (GPA) of 4.0 on a 7-point scale in your previous qualification.Your previous qualification must have been completed within the last 10 years",
+   "sourceType": "provider"
+  },
+  "adelaideMidwiferyMaster": {
+   "value": {
+    "course": "Adelaide University Master of Midwifery (Graduate Entry)",
+    "anyBachelor": false,
+    "nonHealthNeeds": "12 units (0.250 EFTSL) of human anatomy and physiology at AQF 7+"
+   },
+   "source": "https://adelaide.edu.au/study/degrees/2026/master-of-midwifery-graduate-entry/int/",
+   "quote": "A completed bachelor degree (AQF level 7) or higher in a health-related field from a recognised higher education institution; OR A completed bachelor degree (AQF level 7) or higher in a non-health field from a recognised higher education institution, plus the equivalent of 12 units (0.250 EFTSL) of dedicated Human Anatomy and Physiology undertaken at AQF Level 7 (bachelor degree level) or higher.",
+   "sourceType": "provider"
+  },
+  "uqPhysioMaster": {
+   "value": {
+    "course": "UQ Master of Physiotherapy Studies 5267",
+    "anyBachelor": false,
+    "needs": "university-level human anatomy and human physiology",
+    "minGPA": "4.5/7"
+   },
+   "source": "https://study.uq.edu.au/study-options/programs/master-physiotherapy-studies-5267?year=2026",
+   "quote": "A bachelor's degree (or equivalent), with completed university-level studies in human anatomy and human physiology. Please see 'Additional application information' below for further details on entry requirements. You must have a grade point average (GPA) of 4.5 on a 7-point scale in your previous qualification.",
+   "sourceType": "provider"
+  },
+  "usydOtMaster": {
+   "value": {
+    "course": "University of Sydney Master of Occupational Therapy",
+    "anyBachelor": true,
+    "nonHealthNote": "must take prescribed anatomy and/or psychology units as selectives within the course"
+   },
+   "source": "https://www.sydney.edu.au/handbooks/medicine-health-pg/coursework/occupational-therapy.html",
+   "quote": "(2) Admission to candidature for the Master of Occupational Therapy requires: (a) a PhD, masters or bachelors degree from an Australian institution or equivalent, and (b) evidence of any other minimum standards specified by the Faculty of Medicine and Health. (3) Applicants without a degree in a health related area such as medicine, nursing, allied health or health sciences or human functioning (education, anthropology, anthropometrics, built environment) must complete prescribed units of study in anatomy and/or psychology as selectives.",
+   "sourceType": "provider"
+  },
+  "utsSpMaster": {
+   "value": {
+    "course": "UTS Master of Speech Pathology C04386 (Autumn B 2027 intake page)",
+    "anyBachelor": true,
+    "minGPA": "4.75/7",
+    "interview": true
+   },
+   "source": "https://www.uts.edu.au/courses/master-of-speech-pathology",
+   "quote": "Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with a minimum GPA of 4.75/7 AND Communication skills, interpersonal skills, interest in speech pathology, and commitment to speech pathology as a career (assessed through an interview)",
+   "sourceType": "provider"
+  },
+  "uqSwMaster": {
+   "value": {
+    "course": "UQ Master of Social Work (Qualifying) 5767",
+    "anyBachelor": false,
+    "needs": "relevant discipline with one year FTE of social and behavioural sciences",
+    "minGPA": "4.0/7"
+   },
+   "source": "https://study.uq.edu.au/study-options/programs/master-social-work-qualifying-5767?year=2026",
+   "quote": "A bachelor's degree (or equivalent) in a relevant discipline (see below), with one year, full-time equivalent study in social and behavioural sciences. You must have a grade point average (GPA) of 4.0 on a 7-point scale in your previous qualification.",
+   "sourceType": "provider"
+  },
+  "unswMTeachSecondary": {
+   "value": {
+    "course": "UNSW Master of Teaching (Secondary) 8926, CRICOS 073442C",
+    "anyBachelor": false,
+    "needs": "three-year bachelor meeting the prerequisites of the chosen teaching areas",
+    "minWAM": "60/100"
+   },
+   "source": "https://www.unsw.edu.au/study/postgraduate/master-of-teaching-secondary",
+   "quote": "Undergraduate degree: A recognised three-year Bachelor degree which meets the prerequisites for their selected teaching methods/specialisation/s. Minimum WAM: 60/100 (or equivalent).",
+   "sourceType": "provider"
+  },
+  "unimelbMCM": {
+   "value": {
+    "course": "University of Melbourne Master of Construction Management (MC-CM)",
+    "anyBachelor": true,
+    "minWAM": "65%"
+   },
+   "source": "https://handbook.unimelb.edu.au/courses/mc-cm/entry-participation-requirements",
+   "quote": "Have completed a bachelor degree (AQF7) in any discipline with a weighted average mark (WAM) of 65%, or equivalent.",
+   "sourceType": "provider"
+  },
+  "mqMBA": {
+   "value": {
+    "course": "Macquarie University MBA",
+    "anyBachelor": false,
+    "needs": "designed for managers with at least three years professional experience; domestic entry requires three years managerial/professional work"
+   },
+   "source": "https://page.mq.edu.au/MQBS-MBA-master-of-business-administration.html",
+   "quote": "Our MBA program is designed for managers with at least three years professional experience.",
+   "sourceType": "provider"
+  },
+  "usydMPE": {
+   "value": {
+    "course": "University of Sydney Master of Professional Engineering",
+    "anyBachelor": false,
+    "nonEngineeringNeeds": "48 credit points of mathematics, physics, chemistry, biology, geology, computing or statistics related to the stream"
+   },
+   "source": "https://www.sydney.edu.au/handbooks/engineering-pg/engineering-mpe/course-resolutions.html",
+   "quote": "(b) a non-engineering bachelor's degree with a minimum credit average, with studies equivalent to 48 credit points in mathematics, physics, chemistry, biology, geology, computing or statistics, as related to the stream sought for admission.",
+   "sourceType": "provider"
+  },
+  "uqMIT": {
+   "value": {
+    "course": "UQ Master of Information Technology 5581",
+    "anyBachelor": true,
+    "excluded": "IT, computer science, software/computer engineering, interaction design, multimedia design",
+    "minGPA": "5.0/7"
+   },
+   "source": "https://study.uq.edu.au/study-options/programs/master-information-technology-5581?year=2026",
+   "quote": "a bachelor's degree (or equivalent) in a field  other than  information technology, computer science, software/computer engineering, interaction design or multimedia design. You must have a grade point average (GPA) of 5.0 on a 7-point scale in your previous qualification.",
+   "sourceType": "provider"
+  },
+  "unswMPA": {
+   "value": {
+    "course": "UNSW Master of Professional Accounting 8409, CRICOS 051221J",
+    "anyBachelor": true,
+    "note": "designed for graduates with no or limited accounting studies; credit average"
+   },
+   "source": "https://www.unsw.edu.au/study/postgraduate/master-of-professional-accounting",
+   "quote": "Recognised bachelor degree (or equivalent qualification) with a credit average as determined by the UNSW Postgraduate Coursework Entry Score Calculator . Notes: This degree is designed for graduates with no or limited accounting studies.",
+   "sourceType": "provider"
+  }
+ },
+ "visa485": {
+  "lin19051": {
+   "value": {
+    "instrument": "Migration (LIN 19/051: Specification of Occupations and Relevant Assessing Authorities) Instrument 2019",
+    "compilation": "Compilation No. 5, F2026C00265, in force from 2026-03-28",
+    "rule": "For persons applying for a Subclass 485 visa the applicable list is the Medium and Longterm Strategic Skills List (s 7(1) item 2), and each occupation on it is specified as a skilled occupation for paragraph 1229(3)(k) (s 7(6)(b))"
+   },
+   "source": "https://www.legislation.gov.au/F2019L00278/latest/text",
+   "quote": "persons who apply for a Subclass 485 (Temporary Graduate) visa on or after the day this instrument commences | Medium and Longterm Strategic Skills List ... (b)if item 2 of the table in subsection (1) of this section applies—for the purposes of paragraph 1229(3)(k) of Schedule 1 to the Regulations",
+   "sourceType": "legislation"
+  }
+ },
+ "mltssl": {
+  "331212": {
+   "value": {
+    "list": "Medium and Longterm Strategic Skills List, LIN 19/051 s 8(1)",
+    "item": 186,
+    "occupation": "carpenter",
+    "anzsco": "331212"
+   },
+   "source": "https://www.legislation.gov.au/F2019L00278/latest/text",
+   "quote": "186 | carpenter | 331212",
+   "sourceType": "legislation"
+  },
+  "331211": {
+   "value": {
+    "list": "Medium and Longterm Strategic Skills List, LIN 19/051 s 8(1)",
+    "item": 185,
+    "occupation": "carpenter and joiner",
+    "anzsco": "331211"
+   },
+   "source": "https://www.legislation.gov.au/F2019L00278/latest/text",
+   "quote": "185 | carpenter and joiner | 331211",
+   "sourceType": "legislation"
+  },
+  "331111": {
+   "value": {
+    "list": "Medium and Longterm Strategic Skills List, LIN 19/051 s 8(1)",
+    "item": 183,
+    "occupation": "bricklayer",
+    "anzsco": "331111"
+   },
+   "source": "https://www.legislation.gov.au/F2019L00278/latest/text",
+   "quote": "183 | bricklayer | 331111",
+   "sourceType": "legislation"
+  },
+  "333411": {
+   "value": {
+    "list": "Medium and Longterm Strategic Skills List, LIN 19/051 s 8(1)",
+    "item": 192,
+    "occupation": "wall and floor tiler",
+    "anzsco": "333411"
+   },
+   "source": "https://www.legislation.gov.au/F2019L00278/latest/text",
+   "quote": "192 | wall and floor tiler | 333411",
+   "sourceType": "legislation"
+  },
+  "332211": {
+   "value": {
+    "list": "Medium and Longterm Strategic Skills List, LIN 19/051 s 8(1)",
+    "item": 188,
+    "occupation": "painter",
+    "anzsco": "332211"
+   },
+   "source": "https://www.legislation.gov.au/F2019L00278/latest/text",
+   "quote": "188 | painter | 332211",
+   "sourceType": "legislation"
+  },
+  "324111": {
+   "value": {
+    "list": "Medium and Longterm Strategic Skills List, LIN 19/051 s 8(1)",
+    "item": 182,
+    "occupation": "panelbeater",
+    "anzsco": "324111"
+   },
+   "source": "https://www.legislation.gov.au/F2019L00278/latest/text",
+   "quote": "182 | panelbeater | 324111",
+   "sourceType": "legislation"
+  },
+  "321211": {
+   "value": {
+    "list": "Medium and Longterm Strategic Skills List, LIN 19/051 s 8(1)",
+    "item": 169,
+    "occupation": "motor mechanic (general)",
+    "anzsco": "321211"
+   },
+   "source": "https://www.legislation.gov.au/F2019L00278/latest/text",
+   "quote": "169 | motor mechanic (general) | 321211",
+   "sourceType": "legislation"
+  },
+  "351311": {
+   "value": {
+    "list": "Medium and Longterm Strategic Skills List, LIN 19/051 s 8(1)",
+    "item": 206,
+    "occupation": "chef",
+    "anzsco": "351311"
+   },
+   "source": "https://www.legislation.gov.au/F2019L00278/latest/text",
+   "quote": "206 | chef | 351311",
+   "sourceType": "legislation"
+  }
+ }
+}

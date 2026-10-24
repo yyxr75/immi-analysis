@@ -1,0 +1,247 @@
+{
+ "routes": {
+  "254499": {
+   "enrolHas": {
+    "t": "UQ 护理硕士（Graduate Entry）收任何专业的本科：GPA 4.0/7 以上，本科在 10 年内读完",
+    "ref": "route_checks2:entry/uqNursingMaster"
+   }
+  },
+  "254415": {
+   "enrolHas": {
+    "t": "UQ 护理硕士（Graduate Entry）收任何专业的本科：GPA 4.0/7 以上，本科在 10 年内读完",
+    "ref": "route_checks2:entry/uqNursingMaster"
+   }
+  },
+  "254418": {
+   "enrolHas": {
+    "t": "UQ 护理硕士（Graduate Entry）收任何专业的本科：GPA 4.0/7 以上，本科在 10 年内读完",
+    "ref": "route_checks2:entry/uqNursingMaster"
+   }
+  },
+  "254412": {
+   "enrolHas": {
+    "t": "UQ 护理硕士（Graduate Entry）收任何专业的本科：GPA 4.0/7 以上，本科在 10 年内读完",
+    "ref": "route_checks2:entry/uqNursingMaster"
+   }
+  },
+  "254424": {
+   "enrolHas": {
+    "t": "UQ 护理硕士（Graduate Entry）收任何专业的本科：GPA 4.0/7 以上，本科在 10 年内读完",
+    "ref": "route_checks2:entry/uqNursingMaster"
+   }
+  },
+  "254423": {
+   "enrolHas": {
+    "t": "UQ 护理硕士（Graduate Entry）收任何专业的本科：GPA 4.0/7 以上，本科在 10 年内读完",
+    "ref": "route_checks2:entry/uqNursingMaster"
+   }
+  },
+  "254425": {
+   "enrolHas": {
+    "t": "UQ 护理硕士（Graduate Entry）收任何专业的本科：GPA 4.0/7 以上，本科在 10 年内读完",
+    "ref": "route_checks2:entry/uqNursingMaster"
+   }
+  },
+  "254422": {
+   "enrolHas": {
+    "t": "UQ 护理硕士（Graduate Entry）收任何专业的本科：GPA 4.0/7 以上，本科在 10 年内读完",
+    "ref": "route_checks2:entry/uqNursingMaster"
+   }
+  },
+  "254414": {
+   "enrolHas": {
+    "t": "UQ 护理硕士（Graduate Entry）收任何专业的本科：GPA 4.0/7 以上，本科在 10 年内读完",
+    "ref": "route_checks2:entry/uqNursingMaster"
+   }
+  },
+  "254421": {
+   "enrolHas": {
+    "t": "UQ 护理硕士（Graduate Entry）收任何专业的本科：GPA 4.0/7 以上，本科在 10 年内读完",
+    "ref": "route_checks2:entry/uqNursingMaster"
+   }
+  },
+  "254417": {
+   "enrolHas": {
+    "t": "UQ 护理硕士（Graduate Entry）收任何专业的本科：GPA 4.0/7 以上，本科在 10 年内读完",
+    "ref": "route_checks2:entry/uqNursingMaster"
+   }
+  },
+  "254413": {
+   "enrolHas": {
+    "t": "UQ 护理硕士（Graduate Entry）收任何专业的本科：GPA 4.0/7 以上，本科在 10 年内读完",
+    "ref": "route_checks2:entry/uqNursingMaster"
+   }
+  },
+  "254416": {
+   "enrolHas": {
+    "t": "UQ 护理硕士（Graduate Entry）收任何专业的本科：GPA 4.0/7 以上，本科在 10 年内读完",
+    "ref": "route_checks2:entry/uqNursingMaster"
+   }
+  },
+  "254111": {
+   "enrolHas": {
+    "t": "Adelaide 助产硕士（Graduate Entry）：非健康类本科要先修过 12 个单元的人体解剖和生理",
+    "ref": "route_checks2:entry/adelaideMidwiferyMaster",
+    "ok": false
+   }
+  },
+  "252511": {
+   "enrolHas": {
+    "t": "UQ 理疗硕士：本科里要修过大学程度的人体解剖和人体生理，GPA 4.5/7 以上",
+    "ref": "route_checks2:entry/uqPhysioMaster",
+    "ok": false
+   }
+  },
+  "252411": {
+   "enrolHas": {
+    "t": "悉尼大学职业治疗硕士收任何本科；非健康类本科要在课程里加修指定的解剖或心理学科目",
+    "ref": "route_checks2:entry/usydOtMaster"
+   }
+  },
+  "252712": {
+   "enrolHas": {
+    "t": "UTS 言语病理硕士收任何本科：GPA 4.75/7 以上，另有面试",
+    "ref": "route_checks2:entry/utsSpMaster"
+   }
+  },
+  "272511": {
+   "enrolHas": {
+    "t": "UQ 社工硕士（Qualifying）：要相关专业本科，含一年全日制的社会和行为科学课程",
+    "ref": "route_checks2:entry/uqSwMaster",
+    "ok": false
+   }
+  },
+  "241411": {
+   "enrolHas": {
+    "t": "UNSW 中学教学硕士：本科要满足所选任教科目的先修要求，WAM 60/100 以上",
+    "ref": "route_checks2:entry/unswMTeachSecondary",
+    "ok": false
+   }
+  },
+  "241511": {
+   "enrolHas": {
+    "t": "UNSW 中学教学硕士：本科要满足所选任教科目的先修要求，WAM 60/100 以上",
+    "ref": "route_checks2:entry/unswMTeachSecondary",
+    "ok": false
+   }
+  },
+  "133111": {
+   "enrolHas": {
+    "t": "墨尔本大学建筑管理硕士收任何专业的本科，WAM 65% 以上",
+    "ref": "route_checks2:entry/unimelbMCM"
+   }
+  },
+  "224711": {
+   "enrolHas": {
+    "t": "Macquarie MBA 面向至少 3 年专业工作经验的管理者，刚毕业的本科不符合",
+    "ref": "route_checks2:entry/mqMBA",
+    "ok": false
+   }
+  },
+  "233211": {
+   "enrolHas": {
+    "t": "悉尼大学专业工程硕士：非工科本科要有相当于 48 学分的数学、物理、化学、计算机等课程",
+    "ref": "route_checks2:entry/usydMPE",
+    "ok": false
+   }
+  },
+  "233311": {
+   "enrolHas": {
+    "t": "悉尼大学专业工程硕士：非工科本科要有相当于 48 学分的数学、物理、化学、计算机等课程",
+    "ref": "route_checks2:entry/usydMPE",
+    "ok": false
+   }
+  },
+  "233512": {
+   "enrolHas": {
+    "t": "悉尼大学专业工程硕士：非工科本科要有相当于 48 学分的数学、物理、化学、计算机等课程",
+    "ref": "route_checks2:entry/usydMPE",
+    "ok": false
+   }
+  },
+  "261313": {
+   "enrolHas": {
+    "t": "UQ IT 硕士收 IT、计算机、软件工程以外任何专业的本科，GPA 5.0/7 以上",
+    "ref": "route_checks2:entry/uqMIT"
+   }
+  },
+  "221111": {
+   "enrolHas": {
+    "t": "UNSW 专业会计硕士收任何专业的本科（均分 credit 以上），专为没学过或很少学会计的人设计",
+    "ref": "route_checks2:entry/unswMPA"
+   }
+  },
+  "331212": {
+   "stay485": {
+    "t": "485 职业教育类：职业在 LIN 19/051 的 MLTSSL 上，可以提名；另外课程要至少 16 个月、2 个学年，在 485 申请前 6 个月内读完",
+    "ref": [
+     "route_checks2:visa485/lin19051",
+     "route_checks2:mltssl/331212",
+     "route_checks:visa485/vocationalOccupation"
+    ]
+   }
+  },
+  "331211": {
+   "stay485": {
+    "t": "485 职业教育类：职业在 LIN 19/051 的 MLTSSL 上，可以提名；另外课程要至少 16 个月、2 个学年，在 485 申请前 6 个月内读完",
+    "ref": [
+     "route_checks2:visa485/lin19051",
+     "route_checks2:mltssl/331211",
+     "route_checks:visa485/vocationalOccupation"
+    ]
+   }
+  },
+  "331111": {
+   "stay485": {
+    "t": "在毕业生签证的职业清单上，但所引课程时长不够该签证的澳洲学习要求，要叠读别的课程，这一步还没核实",
+    "gap": true
+   }
+  },
+  "333411": {
+   "stay485": {
+    "t": "485 职业教育类：职业在 LIN 19/051 的 MLTSSL 上，可以提名；另外课程要至少 16 个月、2 个学年，在 485 申请前 6 个月内读完",
+    "ref": [
+     "route_checks2:visa485/lin19051",
+     "route_checks2:mltssl/333411",
+     "route_checks:visa485/vocationalOccupation"
+    ]
+   }
+  },
+  "332211": {
+   "stay485": {
+    "t": "485 职业教育类：职业在 LIN 19/051 的 MLTSSL 上，可以提名；另外课程要至少 16 个月、2 个学年，在 485 申请前 6 个月内读完",
+    "ref": [
+     "route_checks2:visa485/lin19051",
+     "route_checks2:mltssl/332211",
+     "route_checks:visa485/vocationalOccupation"
+    ]
+   }
+  },
+  "324111": {
+   "stay485": {
+    "t": "485 职业教育类：职业在 LIN 19/051 的 MLTSSL 上，可以提名；另外课程要至少 16 个月、2 个学年，在 485 申请前 6 个月内读完",
+    "ref": [
+     "route_checks2:visa485/lin19051",
+     "route_checks2:mltssl/324111",
+     "route_checks:visa485/vocationalOccupation"
+    ]
+   }
+  },
+  "321211": {
+   "stay485": {
+    "t": "485 职业教育类：职业在 LIN 19/051 的 MLTSSL 上，可以提名；另外课程要至少 16 个月、2 个学年，在 485 申请前 6 个月内读完",
+    "ref": [
+     "route_checks2:visa485/lin19051",
+     "route_checks2:mltssl/321211",
+     "route_checks:visa485/vocationalOccupation"
+    ]
+   }
+  },
+  "351311": {
+   "stay485": {
+    "t": "在毕业生签证的职业清单上，但所引课程时长不够该签证的澳洲学习要求，要叠读别的课程，这一步还没核实",
+    "gap": true
+   }
+  }
+ }
+}
