@@ -1,0 +1,275 @@
+{
+  "about": "Short Chinese notes shown on the plan cards, and the study/work assumptions the plan engine uses. Every note points (ref) at a hand-checked fact in data/occ_manual/<file>.json (file:path/inside/file); occ_entry.py refuses to build if a ref does not resolve to a fact with a source, or if a number in the note does not appear in the fact it cites. Keys: '@<assessor abbr>' applies to every occupation that assessor covers; a six-digit code adds to that, and 'own': true drops the assessor-level notes. 'study' replaces the default study assumption (years when the person has no bachelor / already has one); 'work' is the paid work an assessment needs before it can be lodged. 'gap' notes state what the official sources do not say, so they carry no number and no ref.",
+  "notes": {
+    "@ANMAC": {
+      "notes": [
+        {"t": "注册英语（NMBA）：IELTS 总分 7、写作 6.5，或 PTE 63（2026-04-23 起的考试）", "ref": "nurse:shared/registration/englishTestScores_testsOnOrAfter2026-04-23"},
+        {"t": "澳洲护理毕业生也要过注册英语标准", "ref": "nurse:shared/registration/englishStandardAppliesToAustralianGraduates"},
+        {"t": "读 NMBA 认可的护理本科或硕士，含至少 800 小时临床实习", "ref": ["nurse:shared/australianStudyRoute/qualification", "nurse:shared/australianStudyRoute/clinicalPlacement"]},
+        {"t": "已注册的走 Modified 评估，费用 AUD 395（2026 年内会改名改价）", "ref": ["nurse:shared/assessment/pathway", "nurse:shared/assessment/fee"]}
+      ]
+    },
+    "254415": {"notes": [{"t": "专科代码：近 5 年内至少 3 个月（260 小时）对口带薪工作", "ref": "nurse:occupations/254415/differences/specialtyExperience"}], "work": {"months": 3, "label": "3 个月", "ref": "nurse:occupations/254415/differences/specialtyExperience"}},
+    "254418": {"notes": [{"t": "专科代码：近 5 年内至少 3 个月（260 小时）对口带薪工作", "ref": "nurse:occupations/254418/differences/specialtyExperience"}], "work": {"months": 3, "label": "3 个月", "ref": "nurse:occupations/254418/differences/specialtyExperience"}},
+    "254412": {"notes": [{"t": "专科代码：近 5 年内至少 3 个月（260 小时）对口带薪工作", "ref": "nurse:occupations/254412/differences/specialtyExperience"}], "work": {"months": 3, "label": "3 个月", "ref": "nurse:occupations/254412/differences/specialtyExperience"}},
+    "254424": {"notes": [{"t": "专科代码：近 5 年内至少 3 个月（260 小时）对口带薪工作", "ref": "nurse:occupations/254424/differences/specialtyExperience"}], "work": {"months": 3, "label": "3 个月", "ref": "nurse:occupations/254424/differences/specialtyExperience"}},
+    "254423": {"notes": [{"t": "专科代码：近 5 年内至少 3 个月（260 小时）对口带薪工作", "ref": "nurse:occupations/254423/differences/specialtyExperience"}], "work": {"months": 3, "label": "3 个月", "ref": "nurse:occupations/254423/differences/specialtyExperience"}},
+    "254425": {"notes": [{"t": "专科代码：近 5 年内至少 3 个月（260 小时）对口带薪工作", "ref": "nurse:occupations/254425/differences/specialtyExperience"}], "work": {"months": 3, "label": "3 个月", "ref": "nurse:occupations/254425/differences/specialtyExperience"}},
+    "254422": {"notes": [{"t": "专科代码：近 5 年内至少 3 个月（260 小时）对口带薪工作", "ref": "nurse:occupations/254422/differences/specialtyExperience"}], "work": {"months": 3, "label": "3 个月", "ref": "nurse:occupations/254422/differences/specialtyExperience"}},
+    "254414": {"notes": [{"t": "专科代码：近 5 年内至少 3 个月（260 小时）对口带薪工作", "ref": "nurse:occupations/254414/differences/specialtyExperience"}], "work": {"months": 3, "label": "3 个月", "ref": "nurse:occupations/254414/differences/specialtyExperience"}},
+    "254421": {"notes": [{"t": "专科代码：近 5 年内至少 3 个月（260 小时）对口带薪工作", "ref": "nurse:occupations/254421/differences/specialtyExperience"}], "work": {"months": 3, "label": "3 个月", "ref": "nurse:occupations/254421/differences/specialtyExperience"}},
+    "254417": {"notes": [{"t": "专科代码：近 5 年内至少 3 个月（260 小时）对口带薪工作", "ref": "nurse:occupations/254417/differences/specialtyExperience"}], "work": {"months": 3, "label": "3 个月", "ref": "nurse:occupations/254417/differences/specialtyExperience"}},
+    "254413": {"notes": [{"t": "专科代码：近 5 年内至少 3 个月（260 小时）对口带薪工作", "ref": "nurse:occupations/254413/differences/specialtyExperience"}], "work": {"months": 3, "label": "3 个月", "ref": "nurse:occupations/254413/differences/specialtyExperience"}},
+    "254211": {"notes": [{"t": "专科代码：近 5 年内至少 3 个月（260 小时）对口带薪工作", "ref": "nurse:occupations/254211/differences/specialtyExperience"}], "work": {"months": 3, "label": "3 个月", "ref": "nurse:occupations/254211/differences/specialtyExperience"}},
+    "254416": {"notes": [{"t": "专科代码：近 5 年内至少 3 个月（260 小时）对口带薪工作", "ref": "nurse:occupations/254416/differences/specialtyExperience"}], "work": {"months": 3, "label": "3 个月", "ref": "nurse:occupations/254416/differences/specialtyExperience"}},
+    "254311": {"notes": [{"t": "专科代码：近 5 年内至少 3 个月（260 小时）对口带薪工作", "ref": "nurse:occupations/254311/differences/specialtyExperience"}], "work": {"months": 3, "label": "3 个月", "ref": "nurse:occupations/254311/differences/specialtyExperience"}},
+    "134212": {"notes": [{"t": "专科代码：近 5 年内至少 3 个月（260 小时）对口带薪工作", "ref": "nurse:occupations/134212/differences/specialtyExperience"}], "work": {"months": 3, "label": "3 个月", "ref": "nurse:occupations/134212/differences/specialtyExperience"}},
+    "254212": {"notes": [{"t": "专科代码：近 5 年内至少 3 个月（260 小时）对口带薪工作", "ref": "nurse:occupations/254212/differences/specialtyExperience"}], "work": {"months": 3, "label": "3 个月", "ref": "nurse:occupations/254212/differences/specialtyExperience"}},
+    "254411": {"notes": [
+        {"t": "需 NMBA 执业护士认证：过去 6 年 5,000 小时高级实践 + NP 硕士", "ref": "nurse:occupations/254411/differences/endorsement"},
+        {"t": "执业护士认证新标准 2027 年 1 月 14 日生效", "ref": "nurse:occupations/254411/differences/standardChange"}],
+      "study": null},
+    "254111": {"notes": [{"t": "要读助产专业并注册为助产士（不是护士注册）", "ref": ["nurse:occupations/254111/differences/qualification", "nurse:occupations/254111/differences/registrationType"]}]},
+    "411411": {"notes": [{"t": "读 Diploma of Nursing（AQF 5），至少 400 小时实习，注册为登记护士", "ref": ["nurse:occupations/411411/differences/qualification", "nurse:occupations/411411/differences/clinicalPlacement"]}]},
+
+    "@AITSL": {
+      "notes": [
+        {"t": "评估要求至少 4 年全日制大学学习，含教师教育（ITE）资格", "ref": "teach:shared/AITSL/assessment/totalStudy"},
+        {"t": "评估英语只认 IELTS 学术类：听说 8、读写 7", "ref": "teach:shared/AITSL/assessment/englishTestOption"},
+        {"t": "或在澳英加爱新美完成 4 年高等教育（含教师教育）可免考", "ref": "teach:shared/AITSL/assessment/englishStudyOption"},
+        {"t": "要有 45 天对口年龄段的教学实习", "ref": "teach:shared/AITSL/assessment/supervisedTeachingPracticeDays"},
+        {"t": "上岗要在州教师局注册（NESA / VIT / QCT），评估本身不要求", "ref": ["teach:shared/AITSL/registration/whoRegisters", "teach:shared/AITSL/registration/neededForSkillsAssessment"]}
+      ],
+      "study": {"new": 4, "has": 2, "newLabel": "教育本科（4 年）", "hasLabel": "教学硕士（2 年，接在本科后）", "ref": "teach:shared/AITSL/australianStudyRoute/programStructure"}
+    },
+    "241511": {"notes": [{"t": "特教：另需 1 年全日制特殊教育学习（AQF 7 以上）", "ref": "teach:occupations/241511/differences/specialistStudy"}]},
+    "241599": {"notes": [{"t": "特教：另需 1 年全日制特殊教育学习（AQF 7 以上）", "ref": "teach:occupations/241599/differences/specialistStudy"}]},
+    "241512": {"notes": [{"t": "听障教师：另需 1 年全日制相关特殊教育学习（AQF 7 以上）", "ref": "teach:occupations/241512/differences/specialistStudy"}]},
+    "241513": {"notes": [{"t": "视障教师：另需 1 年全日制相关特殊教育学习（AQF 7 以上）", "ref": "teach:occupations/241513/differences/specialistStudy"}]},
+    "241111": {"own": true, "notes": [
+        {"t": "要读 ACECQA 认可的幼教教师资格", "ref": "teach:occupations/241111/differences/assessment/qualification"},
+        {"t": "评估英语：IELTS 听说 8、读写 7，或在英语国家全日制学习 1 年", "ref": ["teach:occupations/241111/differences/assessment/englishTestOption", "teach:occupations/241111/differences/assessment/englishStudyOption"]},
+        {"t": "评估不要求工作经验", "ref": "teach:occupations/241111/differences/assessment/noEmploymentRequired"},
+        {"t": "上岗：新州要 NESA 认证，维州要 VIT 注册，昆州目前自愿", "ref": ["teach:occupations/241111/differences/registration/NSW", "teach:occupations/241111/differences/registration/VIC", "teach:occupations/241111/differences/registration/QLD_voluntaryNow"]},
+        {"t": "昆州提案：2028 年 7 月 1 日起幼教教师须 QCT 注册（尚未通过）", "ref": "teach:occupations/241111/differences/registration/QLD_proposed"}]},
+    "134111": {"own": true, "notes": [
+        {"t": "资格：ACECQA 认可的 Diploma 或以上", "ref": "teach:occupations/134111/differences/assessment/qualification"},
+        {"t": "评估要拿到资格后做满 3 年中心经理，且近 3 年内至少 6 个月", "ref": ["teach:occupations/134111/differences/assessment/employmentExperience", "teach:occupations/134111/differences/assessment/recency"]}],
+      "work": {"months": 36, "label": "3 年", "ref": "teach:occupations/134111/differences/assessment/employmentExperience"}},
+
+    "@AASW": {
+      "notes": [
+        {"t": "只认 AASW 认证的社工本科或社工硕士（Qualifying）", "ref": "social:shared/AASW/assessment/qualification"},
+        {"t": "实习至少 1,000 小时，其中至少 500 小时在澳洲", "ref": "social:shared/AASW/assessment/fieldEducation"},
+        {"t": "英语只认 IELTS 学术类，总分 7.0（按各项 7.0 准备最稳）", "ref": "social:shared/AASW/assessment/english"},
+        {"t": "社工没有法定注册；南澳已决定不推行注册（2026 年）", "ref": ["social:shared/AASW/registration", "social:shared/AASW/registrationSA"]}
+      ],
+      "study": {"new": 4, "has": 2, "newLabel": "社工本科 BSW（4 年）", "hasLabel": "社工硕士 MSW(Q)（2 年）", "ref": "social:shared/AASW/australianStudyRoute"}
+    },
+    "@Community Work Australia": {
+      "notes": [
+        {"t": "读 CWA 认证课程（学习期间课程和校区都要在认证内），实习可抵工作经验", "ref": ["social:shared/CWA/assessment/accreditedCourseRule", "social:shared/CWA/assessment/placementEvidence"]},
+        {"t": "资格时效：资格不满 4 年，或近期有至少 3 个月对口全职工作", "ref": "social:shared/CWA/assessment/currency"},
+        {"t": "证书级（AQF 3/4）支援岗的工作不算经验", "ref": "social:shared/CWA/otherConditions/supportRolesExcluded"}
+      ]
+    },
+    "134214": {"notes": [{"t": "需 3 年全职行业经验，其中近 5 年内 1 年福利中心管理", "ref": "social:occupations/134214/differences/employment"}], "work": {"months": 36, "label": "3 年", "ref": "social:occupations/134214/differences/employment"}},
+
+    "@TRA": {
+      "notes": [
+        {"t": "Job Ready：先过 PSA，再在澳洲给认可雇主全职干满 12 个月，费用合计 AUD 3,410", "ref": "trade:shared/assessment/jobReadyProgram"},
+        {"t": "TRA 不发执照，州执照要另外办", "ref": "trade:shared/assessment/traDoesNotLicense"}
+      ],
+      "work": {"months": 12, "label": "12 个月", "ref": "trade:shared/assessment/jobReadyProgram"}
+    },
+    "341111": {"own": true, "notes": [
+        {"t": "持牌工种：不能走 Job Ready，PR 评估走 OSAP 澳洲学历通道", "ref": "trade:occupations/341111/differences/assessment"},
+        {"t": "课程：Certificate III in Electrotechnology Electrician（UEE30820）", "ref": "trade:occupations/341111/differences/australianStudyRoute"},
+        {"t": "昆州电工执照：完成证明 ATF012 由 RTO 提交，3 年内有效", "ref": "trade:occupations/341111/differences/registration/QLD"},
+        {"t": "维州：Energy Safe Victoria 的 A 级电工执照", "ref": "trade:occupations/341111/differences/registration/VIC"},
+        {"t": "OSAP 澳洲学历通道要几年工作，官方没写明", "gap": true}],
+      "work": null},
+    "341112": {"own": true, "notes": [
+        {"t": "持牌工种：不能走 Job Ready，PR 评估走 OSAP 澳洲学历通道", "ref": "trade:occupations/341112/differences/assessment"},
+        {"t": "课程：Certificate III in Electrotechnology Electrician（UEE30820）", "ref": "trade:occupations/341112/differences/australianStudyRoute"},
+        {"t": "昆州电工执照：完成证明 ATF012 由 RTO 提交，3 年内有效", "ref": "trade:occupations/341112/differences/registration/QLD"},
+        {"t": "特级电工和普通电工在评估上的区别，官方没写明", "gap": true}],
+      "work": null},
+    "334111": {"own": true, "notes": [
+        {"t": "持牌工种：不能走 Job Ready，PR 评估走 OSAP 澳洲学历通道", "ref": "trade:occupations/334111/differences/assessment"},
+        {"t": "课程：Certificate III in Plumbing（CPC32420）", "ref": "trade:occupations/334111/differences/australianStudyRoute"},
+        {"t": "维州执照另需 2 年实践经验 + 执照考试", "ref": "trade:occupations/334111/differences/registration/VIC_licence"},
+        {"t": "OSAP 澳洲学历通道要几年工作，官方没写明", "gap": true}],
+      "work": null},
+    "342111": {"own": true, "notes": [
+        {"t": "持牌工种：不能走 Job Ready，PR 评估走 OSAP 澳洲学历通道", "ref": "trade:occupations/342111/differences/assessment"},
+        {"t": "课程：Certificate III in Air Conditioning and Refrigeration（UEE32225）", "ref": "trade:occupations/342111/differences/australianStudyRoute"},
+        {"t": "要有 ARC 冷媒操作执照（RAC01）", "ref": "trade:occupations/342111/differences/registration/refrigerantHandlingLicence"},
+        {"t": "OSAP 澳洲学历通道要几年工作，官方没写明", "gap": true}],
+      "work": null},
+    "341113": {"notes": [{"t": "课程：Certificate IV in Electrical - Lift Systems（UEE41120）", "ref": "trade:occupations/341113/differences/australianStudyRoute"}]},
+    "334112": {"notes": [{"t": "课程：Certificate III in Plumbing (Mechanical Services)（CPC32513）", "ref": "trade:occupations/334112/differences/australianStudyRoute"}]},
+    "334113": {"notes": [{"t": "课程：Certificate II in Drainage（CPC20720）；昆州排水执照要 12 个月经验", "ref": ["trade:occupations/334113/differences/australianStudyRoute", "trade:occupations/334113/differences/registration/QLD"]}]},
+    "334114": {"notes": [{"t": "课程：Certificate III in Gas Fitting（CPC32720）", "ref": "trade:occupations/334114/differences/australianStudyRoute"}]},
+    "334115": {"notes": [{"t": "课程：Certificate III in Roof Plumbing（CPC32620）", "ref": "trade:occupations/334115/differences/australianStudyRoute"}]},
+
+    "@MedBA": {
+      "notes": [
+        {"t": "医生的技能评估就是 Ahpra 完全注册；实习期的临时注册不算", "ref": ["medical:shared/assessment/whatCountsAsSkillsAssessment", "medical:shared/assessment/provisionalRegistrationNotEnough"]},
+        {"t": "毕业后要做 47 周实习（PGY1）才能拿一般注册", "ref": "medical:shared/australianStudyRoute/internshipDuration"},
+        {"t": "注册英语：IELTS 总分 7、写作 6.5（2026-04-23 起的考试），澳洲毕业生也要", "ref": ["medical:shared/registration/englishTestScoresFromTests23Apr2026", "medical:shared/registration/englishStandardAppliesToAustralianGraduates"]},
+        {"t": "实习岗位不保证：如昆州只保证本州公民和 PR 毕业生", "ref": "medical:shared/otherConditions/internshipNotGuaranteedQLDExample"},
+        {"t": "医学学位要读几年，官方没写明；本工具按常见学制估", "gap": true}
+      ],
+      "study": {"new": 6, "has": 4, "newLabel": "医学本科（常见 5–6 年）", "hasLabel": "医学博士 MD（常见 4 年）"},
+      "work": {"months": 11, "label": "实习 47 周", "ref": "medical:shared/australianStudyRoute/internshipDuration"}
+    },
+    "253111": {"notes": [{"t": "全科：要 RACGP 或 ACRRM fellowship 并拿专科注册，培训年限官方没写明", "ref": ["medical:occupations/253111/differences/registrationType", "medical:occupations/253111/differences/relevantCollege"]}], "study": null},
+    "253912": {"notes": [{"t": "专科：要 ACEM fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253912/differences/relevantCollege"}], "study": null},
+    "253411": {"notes": [{"t": "专科：要 RANZCP fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253411/differences/relevantCollege"}], "study": null},
+    "253311": {"notes": [{"t": "专科：要 RACP fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253311/differences/relevantCollege"}], "study": null},
+    "253913": {"notes": [{"t": "专科：要 RANZCOG fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253913/differences/relevantCollege"}], "study": null},
+    "253917": {"notes": [{"t": "专科：要 RANZCR fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253917/differences/relevantCollege"}], "study": null},
+    "253312": {"notes": [{"t": "专科：要 RACP fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253312/differences/relevantCollege"}], "study": null},
+    "253321": {"notes": [{"t": "专科：要 RACP fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253321/differences/relevantCollege"}], "study": null},
+    "253399": {"notes": [{"t": "专科：要 RACP fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253399/differences/relevantCollege"}], "study": null},
+    "253511": {"notes": [{"t": "专科：要 RACS fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253511/differences/relevantCollege"}], "study": null},
+    "253514": {"notes": [{"t": "专科：要 RACS fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253514/differences/relevantCollege"}], "study": null},
+    "253317": {"notes": [{"t": "专科：要 CICM fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253317/differences/relevantCollege"}], "study": null},
+    "253318": {"notes": [{"t": "专科：要 RACP fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253318/differences/relevantCollege"}], "study": null},
+    "253316": {"notes": [{"t": "专科：要 RACP fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253316/differences/relevantCollege"}], "study": null},
+    "253211": {"notes": [{"t": "专科：要 ANZCA fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253211/differences/relevantCollege"}], "study": null},
+    "253914": {"notes": [{"t": "专科：要 RANZCO fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253914/differences/relevantCollege"}], "study": null},
+    "253911": {"notes": [{"t": "专科：要 ACD fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253911/differences/relevantCollege"}], "study": null},
+    "253518": {"notes": [{"t": "专科：要 RACS fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253518/differences/relevantCollege"}], "study": null},
+    "253314": {"notes": [{"t": "专科：要 RACP fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253314/differences/relevantCollege"}], "study": null},
+    "253512": {"notes": [{"t": "专科：要 RACS fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253512/differences/relevantCollege"}], "study": null},
+    "253517": {"notes": [{"t": "专科：要 RACS fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253517/differences/relevantCollege"}], "study": null},
+    "253915": {"notes": [{"t": "专科：要 RCPA fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253915/differences/relevantCollege"}], "study": null},
+    "253313": {"notes": [{"t": "专科：要 RACP 或 RCPA fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253313/differences/relevantCollege"}], "study": null},
+    "253315": {"notes": [{"t": "专科：要 RACP fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253315/differences/relevantCollege"}], "study": null},
+    "253918": {"notes": [{"t": "专科：要 RANZCR fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253918/differences/relevantCollege"}], "study": null},
+    "253322": {"notes": [{"t": "专科：要 RACP fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253322/differences/relevantCollege"}], "study": null},
+    "253324": {"notes": [{"t": "专科：要 RACP fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253324/differences/relevantCollege"}], "study": null},
+    "253513": {"notes": [{"t": "专科：要 RACS fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253513/differences/relevantCollege"}], "study": null},
+    "253515": {"notes": [{"t": "专科：要 RACS fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253515/differences/relevantCollege"}], "study": null},
+    "253516": {"notes": [{"t": "专科：要 RACS fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253516/differences/relevantCollege"}], "study": null},
+    "253521": {"notes": [{"t": "专科：要 RACS fellowship 并拿专科注册，培训年限官方没写明", "ref": "medical:occupations/253521/differences/relevantCollege"}], "study": null},
+
+    "@AHPRA_ELS": {
+      "notes": [
+        {"t": "Ahpra 注册英语：IELTS 总分 7、写作 6.5，或 PTE 63（2026-04-23 起的考试），澳洲毕业生也要", "ref": ["allied:shared/AhpraNationalScheme/registration/testScoresTakenOnOrAfter2026-04-23", "allied:shared/AhpraNationalScheme/registration/elsForGraduates"]}
+      ]
+    },
+    "@APharmC": {
+      "use": ["@AHPRA_ELS"],
+      "notes": [
+        {"t": "澳洲药学毕业生走 International Student Stream，评估费 AUD 1110", "ref": ["allied:shared/APharmC/assessment/stream", "allied:shared/APharmC/assessment/fee"]},
+        {"t": "评估不要求注册；但上岗要实习 1,824 小时（现行 1,575）并通过考试", "ref": ["allied:shared/APharmC/otherConditions/supervisedHours", "allied:shared/APharmC/otherConditions/exams"]}
+      ]
+    },
+    "@APC": {
+      "use": ["@AHPRA_ELS"],
+      "notes": [
+        {"t": "要读理疗委员会认可的课程；评估要过 Ahpra 英语标准", "ref": ["allied:shared/APC/assessment/australianGraduateCriterion", "allied:shared/APC/assessment/english"]},
+        {"t": "评估不看工作经验（不申请工作加分时）", "ref": "allied:shared/APC/assessment/workExperience"}
+      ]
+    },
+    "@OTC": {
+      "use": ["@AHPRA_ELS"],
+      "notes": [
+        {"t": "澳洲毕业、已注册也要做 OTC 评估，并提供英语证明", "ref": ["allied:shared/OTC/assessment/registrationNotSubstitute", "allied:shared/OTC/assessment/englishTestByAssessor"]},
+        {"t": "评估不看工作经验，结果一般 3 年有效", "ref": ["allied:shared/OTC/assessment/workExperience", "allied:shared/OTC/assessment/validity"]}
+      ]
+    },
+    "@ASMIRT": {
+      "notes": [
+        {"t": "ASMIRT 评估页面维护中，30 October 后才能查（2026）", "ref": "allied:shared/ASMIRT/assessment/pageStatus"},
+        {"t": "评估条件暂缺：等 ASMIRT 页面恢复后再核", "gap": true}
+      ]
+    },
+    "251211": {"use": ["@AHPRA_ELS"], "notes": [{"t": "要在 Ahpra 医学放射委员会注册", "ref": "allied:occupations/251211/differences/ahpraRegistered"}]},
+    "251212": {"use": ["@AHPRA_ELS"], "notes": [{"t": "要在 Ahpra 医学放射委员会注册", "ref": "allied:occupations/251212/differences/ahpraRegistered"}]},
+    "251214": {"notes": [{"t": "超声不在 Ahpra 注册范围内", "ref": "allied:occupations/251214/differences/ahpraRegistered"}]},
+    "@APS": {
+      "use": ["@AHPRA_ELS"],
+      "notes": [
+        {"t": "评估要求相当于澳洲 6 年心理学序列，或 Ahpra 一般注册", "ref": "allied:shared/APS/assessment/criterion"},
+        {"t": "4+2 路线已关闭，现在走硕士或 5+1 实习（要考国家考试）", "ref": ["allied:shared/APS/australianStudyRoute/fourPlusTwoClosed", "allied:shared/APS/australianStudyRoute/nationalExam"]}
+      ],
+      "study": {"new": 6, "has": 6, "newLabel": "6 年心理学序列（4 年认证课程 + 2 年硕士）", "hasLabel": "6 年心理学序列（本科是心理学的可少读）", "ref": "allied:shared/APS/australianStudyRoute/sequence"}
+    },
+    "272311": {"notes": [{"t": "要有 Ahpra 临床心理方向认证，否则按 272399 评", "ref": "allied:shared/APS/assessment/endorsementForSpecialistCodes"}], "study": null},
+    "272312": {"notes": [{"t": "要有 Ahpra 教育与发展心理方向认证，否则按 272399 评", "ref": "allied:shared/APS/assessment/endorsementForSpecialistCodes"}], "study": null},
+    "272313": {"notes": [{"t": "要有 Ahpra 组织心理方向认证，否则按 272399 评", "ref": "allied:shared/APS/assessment/endorsementForSpecialistCodes"}], "study": null},
+    "@ADC": {
+      "use": ["@AHPRA_ELS"],
+      "notes": [
+        {"t": "澳洲牙科毕业只做技能评估，不用考试；费用 AUD 647，约 8 周", "ref": ["allied:shared/ADC/assessment/australianGraduateRoute", "allied:shared/ADC/assessment/fee"]}
+      ]
+    },
+    "252311": {"notes": [{"t": "牙科专科：要专科资格 + 至少 2 年全科牙医执业", "ref": "allied:occupations/252311/differences/specialistRegistration"}], "study": null},
+    "@CCEA": {
+      "use": ["@AHPRA_ELS"],
+      "notes": [{"t": "澳洲认证课程毕业免能力考核；评估不另考英语", "ref": ["allied:shared/CCEA/assessment/australianGraduateRoute", "allied:shared/CCEA/assessment/englishTestByAssessor"]}]
+    },
+    "@OCANZ": {
+      "use": ["@AHPRA_ELS"],
+      "notes": [{"t": "已在视光委员会注册的走 Form 1，附注册证书", "ref": "allied:shared/OCANZ/assessment/form1"}]
+    },
+    "@AOAC": {
+      "use": ["@AHPRA_ELS"],
+      "notes": [{"t": "持整骨委员会完全执业证书，或读完认可的澳洲整骨课程", "ref": "allied:shared/AOAC/assessment/rule"}]
+    },
+    "@CMBA": {
+      "use": ["@AHPRA_ELS"],
+      "notes": [{"t": "没有单独评估：中医委员会的一般注册证书就是技能评估", "ref": "allied:shared/CMBA/assessment/rule"}]
+    },
+
+    "@AIMS": {
+      "notes": [{"t": "英语考试人人必考，澳洲毕业生也不免", "ref": "other:shared/AIMS/assessment/englishTest"}]
+    },
+    "311213": {"notes": [{"t": "要有近 5 年内 2 年全职病理化验室经验，澳洲毕业也一样", "ref": "other:occupations/311213/differences/otherConditions"}], "work": {"months": 24, "label": "2 年", "ref": "other:occupations/311213/differences/otherConditions"}},
+    "234611": {"notes": [{"t": "读 AIMS 认证学位可免专业考试，毕业后不要求工作经验", "ref": ["other:occupations/234611/differences/assessment", "other:occupations/234611/differences/otherConditions"]}]},
+    "311216": {"notes": [{"t": "Cert III HLT37215 + 急救证 + 近 5 年内 2 年全职经验", "ref": ["other:occupations/311216/differences/australianStudyRoute", "other:occupations/311216/differences/otherConditions"]}], "work": {"months": 24, "label": "2 年", "ref": "other:occupations/311216/differences/otherConditions"}},
+    "@SPA": {
+      "notes": [
+        {"t": "读 SPA 认证的本科或硕士即可评估，不考试、不要求经验", "ref": "other:occupations/252712/differences/assessment"},
+        {"t": "法律上不用注册，但多数雇主要求 CPSP 资格", "ref": "other:shared/SPA/registration"}
+      ]
+    },
+    "@DAA": {
+      "notes": [
+        {"t": "读 Dietitians Australia 认证课程；毕业 2 年内评估免英语", "ref": "other:shared/DAA/assessment/englishExemption"},
+        {"t": "评估费 A$305", "ref": "other:shared/DAA/assessment/fee"}
+      ]
+    },
+    "@AVBC": {
+      "notes": [{"t": "评估前要先拿到州兽医局完全注册，并满足英语标准", "ref": "other:shared/AVBC/assessment/eligibility"}]
+    },
+    "@AACA": {
+      "notes": [
+        {"t": "要读 AACA 认证的建筑硕士，本科学位不认证", "ref": "other:occupations/232111/differences/assessment"},
+        {"t": "注册建筑师另需 3,300 小时经验和 APE 考试", "ref": ["other:occupations/232111/differences/otherConditions", "other:occupations/232111/differences/registration"]}
+      ],
+      "study": {"new": 5, "has": 2, "newLabel": "建筑本科 + 建筑硕士（共 5 年）", "hasLabel": "建筑硕士（本科是建筑相关时约 2 年）", "ref": "other:occupations/232111/differences/australianStudyRoute"}
+    },
+    "@Legal admissions authority of a state or territory": {
+      "notes": [
+        {"t": "要先在州里获准执业（admission）才能拿技能评估信，NSW 费用 A$120", "ref": "other:shared/LegalAdmissionAuthority/assessment/skilledMigrationLetter"},
+        {"t": "NSW 准入英语：IELTS 听 7 读 7 写 8 说 7.5，澳洲法学院毕业可申请豁免", "ref": ["other:shared/LegalAdmissionAuthority/assessment/englishScores", "other:shared/LegalAdmissionAuthority/assessment/englishExemptionAustralianLawSchool"]},
+        {"t": "只核对了新南威尔士，其他州的规定没查", "gap": true}
+      ],
+      "study": {"new": 4, "has": 3, "newLabel": "法学本科 LLB + 实务培训 PLT", "hasLabel": "法律博士 JD + 实务培训 PLT"}
+    },
+    "271311": {"notes": [{"t": "律师：PLT 毕业后有 24 个月受监督执业期", "ref": "other:occupations/271311/differences/otherConditions"}]},
+    "271111": {"notes": [{"t": "大律师：还要过 NSW Bar Exam，并跟导师见习至少 12 个月", "ref": ["other:occupations/271111/differences/australianStudyRoute", "other:occupations/271111/differences/otherConditions"]}]},
+    "@CASA": {
+      "notes": [
+        {"t": "要有 CASA 商照（CPL）或 ATPL，航空英语至少 4 级", "ref": ["other:shared/CASA/assessment/eligibility", "other:shared/CASA/assessment/english"]},
+        {"t": "评估前要有连续 5 年职业飞行经历", "ref": "other:shared/CASA/assessment/workExperience"}
+      ],
+      "work": {"months": 60, "label": "5 年", "ref": "other:shared/CASA/assessment/workExperience"}
+    }
+  }
+}

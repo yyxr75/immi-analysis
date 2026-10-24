@@ -44,6 +44,7 @@ ANZSCO_URL = ("https://www.abs.gov.au/statistics/classifications/anzsco-australi
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "site", "data")
 MANUAL = os.path.join(ROOT, "data", "occ_manual")
+CARDS = os.path.join(ROOT, "data", "occ_cards.json")
 OUT = os.path.join(DATA, "occ_entry.json")
 
 # assessors that also register or license the profession
@@ -127,7 +128,115 @@ def load_manual():
     return out
 
 
-def build(sol, levels, groups, manual):
+# Numbers in a card note must appear in the fact the note cites. Facts are in
+# English, so month names and small number words count as their digits.
+_WORDS = {w: i for i, w in enumerate("zero one two three four five six seven eight nine ten eleven twelve".split())}
+_WORDS.update({m: i + 1 for i, m in enumerate("january february march april may june july august september "
+                                              "october november december".split())})
+_WORDS.update({m[:3]: i + 1 for i, m in enumerate("january february march april may june july august september "
+                                                  "october november december".split())})
+
+
+def _nums(t):
+    return {float(x.replace(",", "")) for x in re.findall(r"\d+(?:[.,]\d+)*", t)}
+
+
+def _hay_nums(t):
+    out = _nums(t)
+    for w in re.findall(r"[a-z]+", t.lower()):
+        if w in _WORDS:
+            out.add(float(_WORDS[w]))
+    return out
+
+
+def load_cards():
+    """data/occ_cards.json -> {key: card}, every ref resolved to its fact."""
+    if not os.path.exists(CARDS):
+        return {}
+    spec = json.load(open(CARDS, encoding="utf-8"))["notes"]
+    files = {}
+
+    def fact(ref):
+        f, path = ref.split(":", 1)
+        if f not in files:
+            files[f] = json.load(open(os.path.join(MANUAL, f + ".json"), encoding="utf-8"))
+        v = files[f]
+        for k in path.split("/"):
+            if not isinstance(v, dict) or k not in v:
+                raise SystemExit(f"occ_cards.json: {ref} does not resolve")
+            v = v[k]
+        if not (isinstance(v, dict) and v.get("source") and "value" in v):
+            raise SystemExit(f"occ_cards.json: {ref} is not a sourced fact")
+        return v, path, files[f].get("checkedAt")
+
+    def refs(r):
+        return [r] if isinstance(r, str) else list(r or [])
+
+    def check(text, rs, what):
+        got = [fact(r) for r in rs]
+        hay = set()
+        for v, path, _ in got:
+            hay |= _hay_nums(json.dumps(v["value"], ensure_ascii=False) + " " + (v.get("quote") or "") + " " + path)
+        bad = _nums(text) - hay
+        if bad:
+            raise SystemExit(f"occ_cards.json: {what} {text!r} has numbers {sorted(bad)} not in {rs}")
+        return got
+
+    out = {}
+    for key, c in spec.items():
+        card = {"notes": []}
+        for n in c.get("notes", []):
+            if n.get("gap"):
+                if _nums(n["t"]):
+                    raise SystemExit(f"occ_cards.json: gap note {n['t']!r} must not state a number")
+                card["notes"].append({"t": n["t"], "gap": True})
+                continue
+            got = check(n["t"], refs(n.get("ref")), key)
+            card["notes"].append({"t": n["t"], "src": got[0][0]["source"], "checkedAt": got[0][2]})
+        if "study" in c:
+            st = c["study"]
+            if st and st.get("ref"):
+                sure = [str(st[k]) for k in ("new", "has") if k not in st.get("assumed", [])]
+                check(" ".join(sure), refs(st["ref"]), key + " study")
+                st = dict(st, src=fact(st["ref"])[0]["source"])
+            card["study"] = st
+        if "work" in c:
+            w = c["work"]
+            if w:
+                check(w.get("label") or str(w["months"]), refs(w["ref"]), key + " work")
+                w = dict(w, src=fact(w["ref"])[0]["source"])
+            card["work"] = w
+        for k in ("own", "use"):
+            if k in c:
+                card[k] = c[k]
+        out[key] = card
+    return out
+
+
+def card_for(code, abbrs, cards):
+    """The notes and assumptions for one occupation: its assessors' cards, then its own."""
+    own = cards.get(code, {})
+    keys = [] if own.get("own") else ["@" + a for a in abbrs]
+    keys += [code]
+    merged, seen = {"notes": []}, set()
+
+    def add(k):
+        if k in seen or k not in cards:
+            return
+        seen.add(k)
+        c = cards[k]
+        for u in c.get("use", []):
+            add(u)
+        merged["notes"] += c["notes"]
+        for f in ("study", "work"):
+            if f in c:
+                merged[f] = c[f]
+    for k in keys:
+        add(k)
+    return merged if (merged["notes"] or len(merged) > 1) else None
+
+
+def build(sol, levels, groups, manual, cards=None):
     ours = json.load(open(os.path.join(DATA, "occupations.json"), encoding="utf-8"))
     occ, missing = {}, []
     for o in ours:
@@ -152,6 +261,9 @@ def build(sol, levels, groups, manual):
         e["regulated"] = bool(abbrs & REGULATORS) or c in LICENSED_TRADES
         if c in manual:
             e["manual"] = manual[c]
+        card = card_for(c, [a["abbr"] for a in e["assessors"]], cards or {})
+        if card:
+            e["card"] = card
         if not s:
             missing.append(c)
         occ[c] = e
@@ -164,12 +276,16 @@ def main():
     xlsx = open(args["--anzsco"], "rb").read() if "--anzsco" in args else fetch(ANZSCO_URL)
     sol = parse_sol(page)
     levels, groups = parse_anzsco(xlsx)
-    occ, missing = build(sol, levels, groups, load_manual())
+    cards = load_cards()
+    occ, missing = build(sol, levels, groups, load_manual(), cards)
 
     n = len(occ)
     lv = sum(1 for e in occ.values() if e["skillLevel"])
     reg = [c for c, e in occ.items() if e["regulated"]]
     done = [c for c in reg if "manual" in occ[c]]
+    bare = [c for c in reg if not (occ[c].get("card") or {}).get("notes")]
+    if bare:
+        raise SystemExit("regulated occupations with no card notes: " + ", ".join(bare))
     print(f"{len(sol)} occupations on the official list; ours {n}: {n - len(missing)} matched, "
           f"{lv} with a skill level, {len(reg)} regulated ({len(done)} checked by hand)")
     if missing:

@@ -16,6 +16,7 @@
  *   POST /auth/verify   {email, code}    -> exchange it for a 30-day token
  *   POST /auth/me       (Bearer)         -> who am I, what plan, quota left
  *   POST /              (Bearer) {text}  -> the occupation match
+ *   POST /plan          (Bearer) {facts} -> plain-words read-out of a computed plan
  */
 import { SYSTEM, SCHEMA } from "./spec.generated.js";
 import {
@@ -38,6 +39,22 @@ const MODEL = "deepseek-chat";
 const MAX_CHARS = 40000;
 const MAX_TOKENS = 3000;
 const GLOBAL_PER_DAY = 400;   // the budget backstop, across everyone
+
+// /plan: the page's fact pack and the rules the read-out must follow. The
+// page keeps the same prompt and check for bring-your-own-key providers.
+const PLAN_MAX_CHARS = 8000;
+const PLAN_SYSTEM =
+  "你是一个解读员。用户会给你一份 JSON 事实包，是本站按澳洲 Schedule 6D 打分规则和官方公开数据算好的结果。" +
+  "请用 3 到 5 段大白话中文，向用户解释这条路线：现在多少分、递 EOI 时多少分、和上一次最低分比如何、最需要注意的条件、还能怎么加分。\n" +
+  "硬性规则：\n" +
+  "1. 只能使用事实包里出现过的数字，不许自己计算或编造任何新数字（包括年份、月份、分数、人数、费用、百分比）。\n" +
+  "2. 不许说概率、几率、成功率、把握、保证、一定能之类的话；历史邀请不代表下一轮。\n" +
+  "3. 不许推荐事实包以外的职业、课程、学校或签证。\n" +
+  "4. 不给移民法律建议；不需要写免责声明，页面已经有。\n" +
+  "5. 每段不超过 90 个字，不用标题、不用列表符号、不用 Markdown。";
+const PLAN_BAN = /概率|几率|成功率|把握|保证|一定|肯定|稳拿|稳了|包过|有望|很可能|大概率|应该能|胜算|%|％/;
+const PLAN_FMT = /\*\*|^\s*(#|[-*•]\s|\d+[.、)]\s?)/m;
+const planNums = t => (String(t).replace(/(\d),(?=\d{3})/g, "$1").match(/\d+(?:\.\d+)?/g) || []).map(Number);
 
 // Whether the AI endpoint demands a signed-in account. Off: anyone may call it,
 // metered per source address. The whole sign-in path stays wired underneath, so
@@ -462,6 +479,53 @@ export default {
                     email: p.eml, model: MODEL, maxChars: MAX_CHARS,
                     plan: acct.plan, until: acct.until || null,
                     quota: { used, perDay: planLimit(acct) } }, 200, H);
+    }
+
+    /* ---------------- the plan read-out ----------------
+       The page sends the facts it has already computed (Schedule 6D score,
+       official rounds, hand-checked conditions); the model may only restate
+       them. Any number in the reply that is not in the facts, or any odds
+       wording, fails the check: one stricter retry, then a 422 rather than an
+       unchecked answer. Metered on the same daily quota as the match. */
+    if (path === "/plan") {
+      const p = await readToken(env, bearer(req));
+      if (!p && REQUIRE_AUTH)
+        return json({ error: "请先用邮箱登录再使用 AI 功能。", needAuth: true }, 401, H);
+      const facts = body.facts;
+      const factsText = facts && typeof facts === "object" ? JSON.stringify(facts) : "";
+      if (!factsText || factsText.length > PLAN_MAX_CHARS)
+        return json({ error: "facts required (at most " + PLAN_MAX_CHARS + " chars)" }, 400, H);
+      const acct = p ? await account(env, p.sub) : { plan: "anon" };
+      const limit = p ? planLimit(acct) : ANON_PER_IP_PER_DAY;
+      const quotaKey = p ? `q:${day}:${p.sub}` : `q:${day}:ip:${ip}`;
+      if (await bump(env, `g:${day}`, 172800) > GLOBAL_PER_DAY)
+        return json({ error: "今日全站额度已用完，请明天再来，或换成自己的 API Key" }, 429, H);
+      const n = await bump(env, quotaKey, 172800);
+      if (n > limit)
+        return json({ error: `每天 ${limit} 次的额度已经用完了，明天再来，或换成自己的 API Key。` }, 429, H);
+
+      const allow = new Set(planNums(factsText));
+      let last = null;
+      for (const extra of ["", "\n上一次的回答里出现了事实包以外的数字或概率说法，被系统丢弃了。这次请只照抄事实包里的数字。"]) {
+        const up = await fetch(UPSTREAM, {
+          method: "POST",
+          headers: { "content-type": "application/json", authorization: `Bearer ${env.PROVIDER_API_KEY}` },
+          body: JSON.stringify({ model: MODEL, max_tokens: 1200, temperature: 0.3,
+            messages: [{ role: "system", content: PLAN_SYSTEM + extra },
+                       { role: "user", content: factsText }] }),
+        });
+        if (!up.ok) return json({ error: `upstream ${up.status}`, detail: (await up.text()).slice(0, 300) }, 502, H);
+        const d = await up.json();
+        const content = (d?.choices?.[0]?.message?.content || "").trim();
+        const bad = [...new Set(planNums(content).filter(x => !allow.has(x)))];
+        const ban = content.match(PLAN_BAN) || (PLAN_FMT.test(content) ? ["标题或列表格式"] : null);
+        if (content && !bad.length && !ban)
+          return json({ content, usage: d.usage || null, quota: { used: n, perDay: limit } }, 200, H);
+        last = { bad, ban: ban && ban[0] };
+      }
+      return json({ error: "AI 的回答两次都没通过核对（" +
+                    (last.bad.length ? "出现了事实以外的数字 " + last.bad.slice(0, 5).join("、") : "出现了「" + last.ban + "」") +
+                    "），已丢弃。以页面上算出的数字为准。" }, 422, H);
     }
 
     /* ---------------- the occupation match ---------------- */

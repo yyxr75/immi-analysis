@@ -344,6 +344,47 @@ def build_payload(occ, g_series, g_points, g_rate, g_states, months, mlabel):
     return out
 
 
+def write_html(index):
+    """Assemble site/index.html and site/login.html from the templates."""
+    tpl = open(os.path.join(HERE, "report_template.html")).read()
+    # The AI panel lives only in scripts/ai_view.js; inject it here, with the
+    # ANZSCO list built from the index written just above so the prompt can
+    # never name an occupation the site has no data for.
+    tpl = aiview.inject(tpl, index)
+    # The 自选 home view lives in its own file, like the AI panel.
+    tpl = tpl.replace("<!--HEATJS-->", "<script>\n" +
+                      open(os.path.join(HERE, "heat_view.js")).read() + "\n" +
+                      open(os.path.join(HERE, "round_view.js")).read() + "</script>")
+    tpl = tpl.replace("<!--WATCHJS-->", "<script>\n" +
+                      open(os.path.join(HERE, "watch_view.js")).read() + "</script>")
+    # 我的 → 方案 (scripts/plan_view.js)
+    tpl = tpl.replace("<!--PLANJS-->", "<script>\n" +
+                      open(os.path.join(HERE, "plan_view.js")).read() + "</script>")
+    html = (tpl.replace("__DATA__", "null")
+               .replace("__TITLE__", SITE_TITLE)
+               .replace("<!--PICKER-->", PICKER_HTML)
+               .replace("<!--OCCPICKER-->", OCCPICKER_HTML)
+               .replace("__PUBLIC_PROXY_URL__", json.dumps(PUBLIC_PROXY_URL))
+               .replace("__GROUP_QR_EXPIRES__", json.dumps(GROUP_QR_EXPIRES))
+               .replace("__GROUP_NAME__", GROUP_NAME)
+               .replace("__ENTRY_REDIRECT__", ENTRY_REDIRECT if LOGIN_AS_ENTRY else "")
+               .replace('  <p class="foot" id="foot"></p>\n</div>',
+                        '  <p class="foot" id="foot"></p>\n  </div>\n</div>')
+               .replace("</style>", PICKER_CSS + "</style>")
+            + PICKER_JS)
+    html = '<!doctype html>\n<html lang="zh-CN">\n<meta charset="utf-8">\n' + html
+    with open(os.path.join(SITE, "index.html"), "w") as f:
+        f.write(html)
+
+    login = (open(os.path.join(HERE, "login.html")).read()
+             .replace("__TITLE__", "登录 · " + SITE_TITLE)
+             .replace("__AUTH_URL__", json.dumps(AUTH_URL)))
+    with open(os.path.join(SITE, "login.html"), "w") as f:
+        f.write(login)
+
+    return html, login
+
+
 def main():
     os.makedirs(SITE_DATA, exist_ok=True)
     print("reading bulk tables ...")
@@ -443,39 +484,7 @@ def main():
         json.dump(meta, f, ensure_ascii=False, indent=2)
     print(f"  meta: reload={meta['reloadTime']} latest={meta['latestMonth']}")
 
-    tpl = open(os.path.join(HERE, "report_template.html")).read()
-    # The AI panel lives only in scripts/ai_view.js; inject it here, with the
-    # ANZSCO list built from the index written just above so the prompt can
-    # never name an occupation the site has no data for.
-    tpl = aiview.inject(tpl, index)
-    # The 自选 home view lives in its own file, like the AI panel.
-    tpl = tpl.replace("<!--HEATJS-->", "<script>\n" +
-                      open(os.path.join(HERE, "heat_view.js")).read() + "\n" +
-                      open(os.path.join(HERE, "round_view.js")).read() + "</script>")
-    tpl = tpl.replace("<!--WATCHJS-->", "<script>\n" +
-                      open(os.path.join(HERE, "watch_view.js")).read() + "</script>")
-    html = (tpl.replace("__DATA__", "null")
-               .replace("__TITLE__", SITE_TITLE)
-               .replace("<!--PICKER-->", PICKER_HTML)
-               .replace("<!--OCCPICKER-->", OCCPICKER_HTML)
-               .replace("__PUBLIC_PROXY_URL__", json.dumps(PUBLIC_PROXY_URL))
-               .replace("__GROUP_QR_EXPIRES__", json.dumps(GROUP_QR_EXPIRES))
-               .replace("__GROUP_NAME__", GROUP_NAME)
-               .replace("__ENTRY_REDIRECT__", ENTRY_REDIRECT if LOGIN_AS_ENTRY else "")
-               .replace('  <p class="foot" id="foot"></p>\n</div>',
-                        '  <p class="foot" id="foot"></p>\n  </div>\n</div>')
-               .replace("</style>", PICKER_CSS + "</style>")
-            + PICKER_JS)
-    html = '<!doctype html>\n<html lang="zh-CN">\n<meta charset="utf-8">\n' + html
-    with open(os.path.join(SITE, "index.html"), "w") as f:
-        f.write(html)
-
-    login = (open(os.path.join(HERE, "login.html")).read()
-             .replace("__TITLE__", "登录 · " + SITE_TITLE)
-             .replace("__AUTH_URL__", json.dumps(AUTH_URL)))
-    with open(os.path.join(SITE, "login.html"), "w") as f:
-        f.write(login)
-
+    html, login = write_html(index)
     total = sum(os.path.getsize(os.path.join(SITE_DATA, f))
                 for f in os.listdir(SITE_DATA))
     print(f"\nsite/index.html  ({len(html)/1024:.0f} KB)")
@@ -487,4 +496,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # --html: re-assemble the page from the templates and the occupation index
+    # already in site/data, without re-reading the dashboard tables
+    if "--html" in sys.argv:
+        write_html(json.load(open(os.path.join(SITE_DATA, "occupations.json"))))
+    else:
+        main()
