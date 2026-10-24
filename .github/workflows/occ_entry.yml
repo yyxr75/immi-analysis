@@ -1,0 +1,58 @@
+name: Occupation entry data
+
+# The skilled occupation list (lists, eligible visas, assessing authority)
+# changes a few times a year with no fixed date; ANZSCO skill levels change
+# far less often. Check weekly; when anything moves, commit, redeploy and open
+# an issue -- an occupation leaving 189 or changing assessor matters to anyone
+# whose plan is built on it.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 5 * * 1'
+
+permissions:
+  contents: write
+  issues: write
+  actions: write   # pushes made with GITHUB_TOKEN do not trigger pages.yml; dispatch it
+
+concurrency:
+  group: occ-entry
+  cancel-in-progress: false
+
+jobs:
+  entry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements.txt
+
+      - name: Fetch the occupation list and ANZSCO skill levels
+        id: e
+        working-directory: scripts
+        run: python occ_entry.py | tee ../occ_entry.log
+
+      - name: Commit
+        if: steps.e.outputs.changed == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/data/occ_entry.json
+          git commit -m "data: occupation entry data (${{ steps.e.outputs.moved }} list/visa changes)"
+          git pull --rebase
+          git push
+
+      - name: Redeploy the site
+        if: steps.e.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --ref "${GITHUB_REF_NAME}"
+
+      - name: Notify
+        if: steps.e.outputs.changed == 'true' && steps.e.outputs.moved != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue create --title "Skilled occupation list changed" --body-file occ_entry.log
