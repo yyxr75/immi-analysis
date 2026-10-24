@@ -32,13 +32,6 @@ function plLoadState() {
   try { const s = JSON.parse(localStorage.getItem(PLAN_KEY)); if (s) PLAN = Object.assign(PLAN, s); } catch (e) {}
 }
 function plSave() { try { localStorage.setItem(PLAN_KEY, JSON.stringify(PLAN)); } catch (e) {} }
-// the calculator asks for an age band; when the birth month is typed in here, set it to match.
-// Only then: opening the plan never rewrites 我的分数 behind the visitor's back.
-function plSyncAge() {
-  const a = plAgeAt(plNow());
-  if (a != null && (plCalc().age | 0) !== plAgeIdx(a)) plSetCalc("age", plAgeIdx(a));
-}
-
 /* The calculator's answers are the score part of the profile: the plan reads
    and writes the same CALC, so 我的分数 and 方案 never disagree. */
 function plCalc() {
@@ -53,8 +46,7 @@ function plSetCalc(key, idx) {
   const sel = document.getElementById("c_" + key);
   if (sel) sel.value = idx;
 }
-// RULES.fields age options: 0 = under 18 / 45+, 1 = 18-24, 2 = 25-32, 3 = 33-39, 4 = 40-44
-const plAgeIdx = a => a < 18 || a >= 45 ? 0 : a < 25 ? 1 : a < 33 ? 2 : a < 40 ? 3 : 4;
+const plAgeIdx = ageBand;            // the calculator's own band mapping
 const plAgeAt = t => PLAN.birth ? Math.floor((t - plYm(PLAN.birth)) / 12) : null;
 const plEduPts = i => RULES.fields.find(f => f.key === "edu").options[i | 0].v;
 const plEduIdx = pts => pts >= 20 ? 1 : pts >= 15 ? 2 : pts >= 10 ? 3 : 0;
@@ -102,8 +94,6 @@ function plArea(c) {
 const PL_QS = [
   { k: "door", t: "你现在在哪一步？", why: "决定后面问什么、比较哪些路。",
     opts: [["new", "还没开始学", "高中毕业、准备读书"], ["study", "在读或刚毕业", "专业已经定了"], ["work", "工作了，想换赛道", "现在的职业邀请太少"]] },
-  { k: "birth", t: "出生年月", input: "month",
-    why: "<b>年龄分</b>：25–32 岁 30 分，33–39 岁 25 分，40–44 岁 15 分。读书几年会不会刚好跨过 33 岁，是换赛道最大的代价。" },
   { k: "cur", input: "occ", t: "现在的职业或专业", skip: () => PLAN.door === "new",
     why: "作为<b>不读书</b>的那一行。在读就填专业对应的职业。" },
   { k: "years", t: "最多愿意再读几年书？", why: "决定能比较哪些路。卡片上会写清楚每条路按几年算、是官方学制还是常见学制。",
@@ -135,9 +125,7 @@ function plRenderQ() {
   const q = Q[PL.qi];
   $pl("plProg").innerHTML = Q.map((_, i) => `<i class="${i <= PL.qi ? "on" : ""}"></i>`).join("");
   let body = `<span class="pl-foot">第 ${PL.qi + 1} / ${Q.length} 题</span><h2>${q.t}</h2><p class="pl-why">${q.why}</p>`;
-  if (q.input === "month")
-    body += `<input type="month" id="plMonth" value="${plEsc(PLAN.birth)}" min="1960-01" max="2012-12">`;
-  else if (q.input === "occ") {
+  if (q.input === "occ") {
     const o = PLAN.cur && PL.data.by[PLAN.cur];
     body += `<input type="search" id="plOcc" placeholder="搜职业：中文、英文或代码" autocomplete="off" value="${o ? plEsc((o.zh || o.en) + " " + o.c) : ""}">
       <div class="pl-sug" id="plSug"></div>`;
@@ -152,11 +140,6 @@ function plRenderQ() {
   $pl("plQ").innerHTML = body;
   $pl("plBack").disabled = PL.qi === 0;
   $pl("plNext").textContent = PL.qi === Q.length - 1 ? "生成方案" : "下一题";
-  if (q.input === "month") $pl("plMonth").addEventListener("input", e => {
-    // while the year is being typed the input passes through "0001-05", "0019-05"...: ignore those
-    const v = e.target.value, y = +(v || "").slice(0, 4);
-    if (!v || y < 1940 || y > new Date().getFullYear()) return;
-    PLAN.birth = v; plSave(); plSyncAge(); plTally(); });
   if (q.input === "occ") {
     const f = () => plSug($pl("plOcc").value);
     $pl("plOcc").addEventListener("input", f); f();
@@ -189,7 +172,6 @@ function plSug(s) {
 }
 function plGo(d) {
   const Q = plVis(), q = Q[PL.qi];
-  if (d > 0 && q.k === "birth" && !PLAN.birth) { $pl("plMonth").focus(); return; }
   if (d > 0 && PL.qi === Q.length - 1) { PLAN.done = true; plSave(); plRender(); return; }
   PL.qi += d; plRenderQ();
 }
@@ -437,22 +419,18 @@ async function plAiRun() {
 
 /* ---- view ---- */
 function plRender() {
+  if (!PLAN.birth) {
+    $pl("plQuizBox").hidden = $pl("plResBox").hidden = $pl("plNowBox").hidden = true;
+    $pl("plStat").innerHTML = `方案要算读完书、递 EOI 时的年龄，先在「我的分数」填出生年月。
+      <button type="button" class="linkbtn" data-go="points">去填 →</button>`;
+    return;
+  }
   const quiz = !PLAN.done;
   $pl("plQuizBox").hidden = !quiz;
   $pl("plResBox").hidden = quiz;
   if (quiz) { $pl("plNowBox").hidden = true; plRenderQ(); return; }
   plRenderNow();
   plResults();
-}
-// the birth month here and the age band in 我的分数 can drift apart (a birthday, or an edit on
-// either side); say so and let the visitor pick, rather than overwrite one with the other
-function plAgeClash() {
-  const a = plAgeAt(plNow());
-  if (a == null || (plCalc().age | 0) === plAgeIdx(a)) return "";
-  const band = i => RULES.fields.find(f => f.key === "age").options[i].t;
-  return `「我的分数」里年龄是 <b>${band(plCalc().age | 0)}</b>，按这里的出生年月 ${plEsc(PLAN.birth)} 算，你现在 ${a} 岁（${band(plAgeIdx(a))}）。
-    <button type="button" class="linkbtn" data-age="fix">按出生年月改分数</button> ·
-    <button type="button" class="linkbtn" data-age="redo">出生年月填错了，重填</button>`;
 }
 let PL_WIRED = false;
 function plInit() {
@@ -462,7 +440,7 @@ function plInit() {
   plLoad().then(() => {
     // the plan stands on the calculator's answers; say so if there are none yet
     const filled = Object.keys(plCalc()).some(k => k !== "age" && plCalc()[k]);
-    stat.innerHTML = filled ? plAgeClash() : `还没填「我的分数」，下面的分数只算了年龄。
+    stat.innerHTML = filled ? "" : `还没填「我的分数」，下面的分数只算了年龄。
       <button type="button" class="linkbtn" data-go="points">先去填分数 →</button>`;
     if (!PL_WIRED) {
       PL_WIRED = true;
@@ -474,12 +452,6 @@ function plInit() {
         const b = e.target.closest("button"); if (!b) return;
         PLAN.sort[b.dataset.k] = PLAN.sort[b.dataset.k] ? 0 : 1; plSave(); plResults(); });
       $pl("plAiBtn").addEventListener("click", plAiRun);
-      $pl("plStat").addEventListener("click", e => {
-        const b = e.target.closest("[data-age]"); if (!b) return;
-        if (b.dataset.age === "fix") plSyncAge();
-        else { PLAN.done = false; PL.qi = plVis().findIndex(q => q.k === "birth"); plSave(); }
-        $pl("plStat").innerHTML = ""; plRender();
-      });
       $pl("plUnpin").addEventListener("click", () => { PLAN.pinned = null; plSave(); plRender(); });
     }
     plRender();

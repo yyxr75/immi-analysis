@@ -144,6 +144,7 @@ th:first-child,td:first-child { text-align:left; }
                  border:1px solid var(--hair); border-radius:8px; padding:8px 10px;
                  min-height:40px; width:100%; }
 .cfield select:focus-visible { outline:2px solid var(--s1); outline-offset:1px; }
+.cbirth { display:flex; gap:6px; }
 .cfield .cite { font-size:10.5px; color:var(--muted); margin-top:3px; font-variant-numeric:tabular-nums; }
 .cscores { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-top:18px; }
 .cscore { border:1px solid var(--hair); border-radius:10px; padding:13px 14px; background:var(--plane); }
@@ -1689,6 +1690,40 @@ const RULES = {
 const CALC_KEY = "immi.points.v1";
 let CALC = {};
 
+/* Age is asked as a birth month (two dropdowns, so nobody types "32" into a
+   date box) and the band follows from it. The month lives in the plan's
+   store, which needs it to project the age at a later EOI. */
+const BIRTH_KEY = "immi.plan.v1";
+function birthGet() {
+  try { return (JSON.parse(localStorage.getItem(BIRTH_KEY)) || {}).birth || ""; } catch (e) { return ""; }
+}
+function birthSet(v) {
+  let st = {};
+  try { st = JSON.parse(localStorage.getItem(BIRTH_KEY)) || {}; } catch (e) {}
+  st.birth = v;
+  try { localStorage.setItem(BIRTH_KEY, JSON.stringify(st)); } catch (e) {}
+  if (typeof PLAN === "object" && PLAN) PLAN.birth = v;
+}
+function ageNow(b) {
+  if (!b) return null;
+  const [y, m] = b.split("-").map(Number), d = new Date();
+  return Math.floor((d.getFullYear() * 12 + d.getMonth() - (y * 12 + m - 1)) / 12);
+}
+// RULES.fields age options: 0 = under 18 / 45+, 1 = 18-24, 2 = 25-32, 3 = 33-39, 4 = 40-44
+const ageBand = a => a < 18 || a >= 45 ? 0 : a < 25 ? 1 : a < 33 ? 2 : a < 40 ? 3 : 4;
+// with a birth month on file the band is derived, so a birthday moves it by itself
+function birthToCalc() {
+  const a = ageNow(birthGet());
+  if (a != null) CALC.age = ageBand(a);
+}
+function ageCite() {
+  const el = document.getElementById("c_age_cite"); if (!el) return;
+  const a = ageNow(birthGet()), opts = RULES.fields[0].options;
+  el.textContent = a != null ? `你现在 ${a} 岁 → ${opts[ageBand(a)].t}，${opts[ageBand(a)].v} 分 · Schedule 6D Part 6D.1`
+    : (CALC.age | 0) ? `暂按之前选的 ${opts[CALC.age | 0].t} 算，填出生年月后自动更新 · Schedule 6D Part 6D.1`
+    : "选好年和月，自动算年龄分 · Schedule 6D Part 6D.1";
+}
+
 function calcBreakdown() {
   const rows = [];
   let total = 0;
@@ -1726,6 +1761,7 @@ function rateAt(visa, score) {
 }
 
 function renderCalc() {
+  birthToCalc(); ageCite();
   const base = calcBreakdown();
   document.getElementById("rulesver").textContent =
     `规则依据：${RULES.source} · ${RULES.version}。每项后标注了 Schedule 条目号，可逐条核对。`;
@@ -1820,6 +1856,38 @@ function renderScoreBanner() {
   b.appendChild(document.createTextNode(tail + "分数在「我的 → 我的分数」修改。"));
 }
 
+function birthField() {
+  const frag = document.createDocumentFragment();
+  const lab = document.createElement("label");
+  lab.setAttribute("for", "c_by"); lab.textContent = "出生年月（自动算年龄分）";
+  const row = document.createElement("div"); row.className = "cbirth";
+  const [by, bm] = (birthGet() || "-").split("-");
+  const mk = (id, ph, vals, cur) => {
+    const sel = document.createElement("select"); sel.id = id;
+    sel.setAttribute("aria-label", ph);
+    [["", ph]].concat(vals).forEach(([v, t]) => {
+      const o = document.createElement("option"); o.value = v; o.textContent = t;
+      if (v === cur) o.selected = true;
+      sel.appendChild(o);
+    });
+    return sel;
+  };
+  const thisYear = new Date().getFullYear(), years = [];
+  for (let y = thisYear - 15; y >= 1960; y--) years.push([String(y), y + " 年"]);
+  const ys = mk("c_by", "出生年份", years, by);
+  const ms = mk("c_bm", "月份", Array.from({ length: 12 }, (_, i) => [String(i + 1).padStart(2, "0"), (i + 1) + " 月"]), bm);
+  const on = () => {
+    if (ys.value && ms.value) birthSet(ys.value + "-" + ms.value);
+    else if (birthGet()) { birthSet(""); CALC.age = 0; }
+    renderCalc();
+  };
+  ys.addEventListener("change", on); ms.addEventListener("change", on);
+  row.append(ys, ms);
+  const cite = document.createElement("div"); cite.className = "cite"; cite.id = "c_age_cite";
+  frag.append(lab, row, cite);
+  return frag;
+}
+
 function buildCalcForm() {
   const el = document.getElementById("cform");
   if (el.childElementCount) return;              // build once; survives visa switches
@@ -1827,6 +1895,7 @@ function buildCalcForm() {
   RULES.fields.forEach(f => {
     if (CALC[f.key] == null) CALC[f.key] = 0;
     const wrap = document.createElement("div"); wrap.className = "cfield";
+    if (f.key === "age") { wrap.appendChild(birthField()); el.appendChild(wrap); return; }
     const lab = document.createElement("label");
     lab.setAttribute("for", "c_" + f.key); lab.textContent = f.label;
     const sel = document.createElement("select"); sel.id = "c_" + f.key;
@@ -1842,6 +1911,7 @@ function buildCalcForm() {
     wrap.append(lab, sel, cite); el.appendChild(wrap);
   });
   document.getElementById("creset").addEventListener("click", () => {
+    birthSet(""); document.getElementById("c_by").value = ""; document.getElementById("c_bm").value = "";
     RULES.fields.forEach(f => {
       CALC[f.key] = 0;
       const sel = document.getElementById("c_" + f.key);
