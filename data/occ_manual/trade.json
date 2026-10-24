@@ -219,9 +219,29 @@
       "sourceType": "regulator"
      },
      "QLD": {
-      "value": null,
-      "source": null,
-      "quote": null,
+      "value": {
+       "regulator": "Electrical Safety Office (ESO), Office of Industrial Relations (worksafe.qld.gov.au)",
+       "licence": "Electrical work licence - electrical mechanic (UEE30820 Certificate III in Electrotechnology Electrician gives electrical mechanic; may also be eligible for electrical fitter)",
+       "apprenticePathway": [
+        "Electrical Safety Regulation 2026 s157(3): completed a relevant apprenticeship in Queensland + approved course (e.g. UEE30820) + completion statement verified by RTO and employer + regulator satisfied of competence",
+        "RTO sends the completion statement (DTET form ATF012 / ATF-012) directly to the ESO; the applicant cannot submit it",
+        "Completion statements are current for 3 years; apply within 3 years of completing the Queensland apprenticeship (otherwise another eligibility option / training permit may be needed)",
+        "CPR training within the last 12 months (PTR also for linespersons); identity documents; application via the ESO Electrical Licensing Portal (Digital ID)",
+        "Licence not issued until the ESO is notified by DTET that the apprentice has completed training"
+       ],
+       "capstone": "Neither the ESO Electrical Licensing Eligibility Guide (June 2025) nor the ESO completing-apprentices page mentions a capstone assessment; the ESO relies on the RTO completion statement",
+       "outsideQldApprenticeship": "s157(4): equivalent apprenticeship completed outside Queensland without a licence there; may need to complete UEEEL0002",
+       "internationalPathway": "TRA OSAP -> OTSR -> electrical work training permit + Australian minimum gap training via an RTO + CPR -> licence",
+       "guideDate": "June 2025 (guide); completing-apprentices page last updated 10 March 2020"
+      },
+      "source": "https://www.worksafe.qld.gov.au/__data/assets/pdf_file/0008/20042/es-licensing-eligibility-policy.pdf",
+      "quote": "Item three is generally satisfied by a completion statement (Department of Trade Employment and Training (DTET) form ATF012) issued by the RTO. The completion statement can only be submitted by the RTO.",
+      "sourceType": "regulator"
+     },
+     "QLD_completingApprentices": {
+      "value": "RTO sends completion statement (ATF-012) to the ESO; applicant confirms CPR within last 12 months",
+      "source": "https://www.worksafe.qld.gov.au/licensing-and-registrations/electrical-licences/electrical-worker-licences/completing-apprentices",
+      "quote": "Once you have completed your training your RTO will send your completion statement (ATF-012) to the Electrical Safety Office (ESO). You cannot submit this form.",
       "sourceType": "regulator"
      }
     }
@@ -282,9 +302,29 @@
       "sourceType": "regulator"
      },
      "QLD": {
-      "value": null,
-      "source": null,
-      "quote": null,
+      "value": {
+       "regulator": "Electrical Safety Office (ESO), Office of Industrial Relations (worksafe.qld.gov.au)",
+       "licence": "Electrical work licence - electrical mechanic (UEE30820 Certificate III in Electrotechnology Electrician gives electrical mechanic; may also be eligible for electrical fitter)",
+       "apprenticePathway": [
+        "Electrical Safety Regulation 2026 s157(3): completed a relevant apprenticeship in Queensland + approved course (e.g. UEE30820) + completion statement verified by RTO and employer + regulator satisfied of competence",
+        "RTO sends the completion statement (DTET form ATF012 / ATF-012) directly to the ESO; the applicant cannot submit it",
+        "Completion statements are current for 3 years; apply within 3 years of completing the Queensland apprenticeship (otherwise another eligibility option / training permit may be needed)",
+        "CPR training within the last 12 months (PTR also for linespersons); identity documents; application via the ESO Electrical Licensing Portal (Digital ID)",
+        "Licence not issued until the ESO is notified by DTET that the apprentice has completed training"
+       ],
+       "capstone": "Neither the ESO Electrical Licensing Eligibility Guide (June 2025) nor the ESO completing-apprentices page mentions a capstone assessment; the ESO relies on the RTO completion statement",
+       "outsideQldApprenticeship": "s157(4): equivalent apprenticeship completed outside Queensland without a licence there; may need to complete UEEEL0002",
+       "internationalPathway": "TRA OSAP -> OTSR -> electrical work training permit + Australian minimum gap training via an RTO + CPR -> licence",
+       "guideDate": "June 2025 (guide); completing-apprentices page last updated 10 March 2020"
+      },
+      "source": "https://www.worksafe.qld.gov.au/__data/assets/pdf_file/0008/20042/es-licensing-eligibility-policy.pdf",
+      "quote": "Item three is generally satisfied by a completion statement (Department of Trade Employment and Training (DTET) form ATF012) issued by the RTO. The completion statement can only be submitted by the RTO.",
+      "sourceType": "regulator"
+     },
+     "QLD_completingApprentices": {
+      "value": "RTO sends completion statement (ATF-012) to the ESO; applicant confirms CPR within last 12 months",
+      "source": "https://www.worksafe.qld.gov.au/licensing-and-registrations/electrical-licences/electrical-worker-licences/completing-apprentices",
+      "quote": "Once you have completed your training your RTO will send your completion statement (ATF-012) to the Electrical Safety Office (ESO). You cannot submit this form.",
       "sourceType": "regulator"
      }
     },
@@ -346,9 +386,28 @@
       "sourceType": "regulator"
      },
      "VIC": {
-      "value": null,
-      "source": null,
-      "quote": null,
+      "value": {
+       "regulator": "Building and Plumbing Commission (BPC, formerly Victorian Building Authority)",
+       "levels": "Accreditation is per class of plumbing work, at two levels: registration (lawfully carry out the work; up to 3 years; cannot supervise or issue compliance certificates) and licence (also design, supervise apprentices/registered plumbers, issue compliance certificates; must hold insurance; up to 12 months)",
+       "provisionalRegistration": "Graduates who have not yet passed the BPC apprentice exam may get provisional registration (work lawfully up to 12 months while waiting to sit the exam)",
+       "licenceRequirements": [
+        "hold (or be eligible for) registration in the class",
+        "additional 2 years of practical experience",
+        "prescribed units for licence in the class",
+        "BPC licence exam for the class",
+        "insurance"
+       ],
+       "pageUpdated": "30 June 2026",
+       "class": "Main classes such as sanitary and water supply (a general plumber registers in each class separately; drainage, gasfitting and roofing (stormwater) are further classes)",
+       "registrationApprenticePathway": [
+        "Certificate III in Plumbing completed via an Australian apprenticeship",
+        "prescribed units for the class",
+        "BPC apprentice registration exam for the class (typically in the final year of the apprenticeship)"
+       ],
+       "nonApprenticePathway": "Required if the Cert III was not done as an Australian apprenticeship or training was done overseas: at least 4 years in the class's areas of experience, current Construction Induction Card, prescribed units (or prescribed safety units + equivalent knowledge), Technical Referee Report from a licensed plumber in the class, BPC non-apprentice registration exam"
+      },
+      "source": "https://www.bpc.vic.gov.au/plumbers/plumber-classes-and-categories/sanitary-work",
+      "quote": "You are eligible to apply via this pathway if you have successfully completed the: Certificate III in in Plumbing via an Australian apprenticeship",
       "sourceType": "regulator"
      },
      "QLD": {
@@ -362,6 +421,12 @@
       },
       "source": "https://www.qbcc.qld.gov.au/licences/apply-licence/available-licences/plumbing-drainage-licences/occupational-plumber-drainer",
       "quote": "You must demonstrate you have had 12 months experience in the: plumbing scope of work",
+      "sourceType": "regulator"
+     },
+     "VIC_licence": {
+      "value": "Licence (per class): hold/eligible for registration + additional 2 years practical experience + prescribed licence units + BPC licence exam + insurance",
+      "source": "https://www.bpc.vic.gov.au/plumbers/registration-and-licensing/plumber-requirements/apply-for-a-plumbing-licence",
+      "quote": "Hold the required additional practical experience (varies by class)",
       "sourceType": "regulator"
      }
     }
@@ -394,9 +459,28 @@
       "sourceType": "regulator"
      },
      "VIC": {
-      "value": null,
-      "source": null,
-      "quote": null,
+      "value": {
+       "regulator": "Building and Plumbing Commission (BPC, formerly Victorian Building Authority)",
+       "levels": "Accreditation is per class of plumbing work, at two levels: registration (lawfully carry out the work; up to 3 years; cannot supervise or issue compliance certificates) and licence (also design, supervise apprentices/registered plumbers, issue compliance certificates; must hold insurance; up to 12 months)",
+       "provisionalRegistration": "Graduates who have not yet passed the BPC apprentice exam may get provisional registration (work lawfully up to 12 months while waiting to sit the exam)",
+       "licenceRequirements": [
+        "hold (or be eligible for) registration in the class",
+        "additional 2 years of practical experience",
+        "prescribed units for licence in the class",
+        "BPC licence exam for the class",
+        "insurance"
+       ],
+       "pageUpdated": "30 June 2026",
+       "class": "Mechanical services",
+       "registrationApprenticePathway": [
+        "Certificate III Plumbing via an Australian apprenticeship (as worded by BPC; the page does not name the Mechanical Services qualification CPC32513)",
+        "prescribed units for the class",
+        "BPC apprentice registration exam(s) for the class"
+       ],
+       "nonApprenticePathway": "Required if the Cert III was not done as an Australian apprenticeship or training was done overseas: at least 4 years in the class's areas of experience, current Construction Induction Card, prescribed units (or prescribed safety units + equivalent knowledge), Technical Referee Report from a licensed plumber in the class, BPC non-apprentice registration exam"
+      },
+      "source": "https://www.bpc.vic.gov.au/plumbers/plumber-classes-and-categories/mechanical-services-work",
+      "quote": "You are eligible to apply via this pathway if you have successfully completed the following: Certificate III Plumbing via an Australian apprenticeship",
       "sourceType": "regulator"
      },
      "QLD": {
@@ -430,9 +514,28 @@
       "sourceType": "regulator"
      },
      "VIC": {
-      "value": null,
-      "source": null,
-      "quote": null,
+      "value": {
+       "regulator": "Building and Plumbing Commission (BPC, formerly Victorian Building Authority)",
+       "levels": "Accreditation is per class of plumbing work, at two levels: registration (lawfully carry out the work; up to 3 years; cannot supervise or issue compliance certificates) and licence (also design, supervise apprentices/registered plumbers, issue compliance certificates; must hold insurance; up to 12 months)",
+       "provisionalRegistration": "Graduates who have not yet passed the BPC apprentice exam may get provisional registration (work lawfully up to 12 months while waiting to sit the exam)",
+       "licenceRequirements": [
+        "hold (or be eligible for) registration in the class",
+        "additional 2 years of practical experience",
+        "prescribed units for licence in the class",
+        "BPC licence exam for the class",
+        "insurance"
+       ],
+       "pageUpdated": "30 June 2026",
+       "class": "Drainage",
+       "registrationApprenticePathway": [
+        "Certificate III in Plumbing via an Australian apprenticeship OR Certificate II Drainage via an Australian traineeship",
+        "prescribed units for the class",
+        "BPC apprentice registration exam for the class"
+       ],
+       "nonApprenticePathway": "Required if the Cert III was not done as an Australian apprenticeship or training was done overseas: at least 2 years in the class's areas of experience, current Construction Induction Card, prescribed units (or prescribed safety units + equivalent knowledge), Technical Referee Report from a licensed plumber in the class, BPC non-apprentice registration exam"
+      },
+      "source": "https://www.bpc.vic.gov.au/plumbers/plumber-classes-and-categories/drainage-work",
+      "quote": "Certificate II Drainage completed via an Australian traineeship",
       "sourceType": "regulator"
      },
      "QLD": {
@@ -466,9 +569,29 @@
       "sourceType": "regulator"
      },
      "VIC": {
-      "value": null,
-      "source": null,
-      "quote": null,
+      "value": {
+       "regulator": "Building and Plumbing Commission (BPC, formerly Victorian Building Authority)",
+       "levels": "Accreditation is per class of plumbing work, at two levels: registration (lawfully carry out the work; up to 3 years; cannot supervise or issue compliance certificates) and licence (also design, supervise apprentices/registered plumbers, issue compliance certificates; must hold insurance; up to 12 months)",
+       "provisionalRegistration": "Graduates who have not yet passed the BPC apprentice exam may get provisional registration (work lawfully up to 12 months while waiting to sit the exam)",
+       "licenceRequirements": [
+        "hold (or be eligible for) registration in the class",
+        "additional 2 years of practical experience",
+        "prescribed units for licence in the class",
+        "BPC licence exam for the class",
+        "insurance"
+       ],
+       "pageUpdated": "30 June 2026",
+       "class": "Gasfitting",
+       "registrationApprenticePathway": [
+        "Certificate III in Plumbing completed via an Australian apprenticeship",
+        "prescribed units for the class",
+        "BPC apprentice registration exam for the class (typically in the final year of the apprenticeship)",
+        "(BPC page names Certificate III in Plumbing only; it does not mention Certificate III in Gas Fitting CPC32720)"
+       ],
+       "nonApprenticePathway": "At least 4 years in the class's areas of experience under supervision of a plumber licensed in the class, Technical Referee Report from that supervising licensed plumber, current Construction Induction Card, prescribed units (or prescribed safety units + equivalent knowledge), then the registration exams"
+      },
+      "source": "https://www.bpc.vic.gov.au/plumbers/plumber-classes-and-categories/gasfitting-work",
+      "quote": "Certificate III in in Plumbing via an Australian apprenticeship",
       "sourceType": "regulator"
      },
      "QLD": {
@@ -502,9 +625,28 @@
       "sourceType": "regulator"
      },
      "VIC": {
-      "value": null,
-      "source": null,
-      "quote": null,
+      "value": {
+       "regulator": "Building and Plumbing Commission (BPC, formerly Victorian Building Authority)",
+       "levels": "Accreditation is per class of plumbing work, at two levels: registration (lawfully carry out the work; up to 3 years; cannot supervise or issue compliance certificates) and licence (also design, supervise apprentices/registered plumbers, issue compliance certificates; must hold insurance; up to 12 months)",
+       "provisionalRegistration": "Graduates who have not yet passed the BPC apprentice exam may get provisional registration (work lawfully up to 12 months while waiting to sit the exam)",
+       "licenceRequirements": [
+        "hold (or be eligible for) registration in the class",
+        "additional 2 years of practical experience",
+        "prescribed units for licence in the class",
+        "BPC licence exam for the class",
+        "insurance"
+       ],
+       "pageUpdated": "30 June 2026",
+       "class": "Roofing (stormwater)",
+       "registrationApprenticePathway": [
+        "Certificate III in Plumbing completed via an Australian apprenticeship",
+        "prescribed units for the class",
+        "BPC apprentice registration exam for the class (typically in the final year of the apprenticeship)"
+       ],
+       "nonApprenticePathway": "Required if the Cert III was not done as an Australian apprenticeship or training was done overseas: at least 4 years in the class's areas of experience, current Construction Induction Card, prescribed units (or prescribed safety units + equivalent knowledge), Technical Referee Report from a licensed plumber in the class, BPC non-apprentice registration exam"
+      },
+      "source": "https://www.bpc.vic.gov.au/plumbers/plumber-classes-and-categories/roofing-stormwater-work",
+      "quote": "You are eligible to apply via this pathway if you have successfully completed the: Certificate III in in Plumbing via an Australian apprenticeship",
       "sourceType": "regulator"
      },
      "QLD": {
@@ -558,8 +700,6 @@
   }
  },
  "gaps": [
-  "QLD electrical licence (Electrical Safety Office / WorkSafe QLD) set to null: worksafe.qld.gov.au and its Electrical Licensing Eligibility Guide PDF returned HTTP 403 (bot protection) so could not be read directly. Search-index snippets indicate the RTO sends a completion statement (ATF-012) to the ESO after the apprenticeship (UEE30820, Capstone via Skills Assure Supplier) – verify manually before using.",
-  "VIC plumbing (Building and Plumbing Commission, formerly VBA) set to null for all plumbing occupations: bpc.vic.gov.au and vba.vic.gov.au returned HTTP 403. Search snippets suggest registration requires Cert III via apprenticeship + prescribed units + BPC registration exam, and licence needs extra experience + licence exam – unverified.",
   "QLD licensing for mechanical services plumbing, gasfitting and roof plumbing not checked (gas work in QLD may be regulated by a different body than QBCC) – null.",
   "Lift Mechanic (341113) registration: no official state licensing page found/checked – null.",
   "Electrician (Special Class) (341112): no official source found distinguishing it from 341111 for assessment/licensing beyond the same Cert III (UEE30820) – specialClassNote null.",
@@ -574,7 +714,17 @@
  ],
  "secondCheck": {
   "date": "2026-10-24",
-  "note": "All quotes re-checked on 2026-10-24; the qualification names were matched in TRA's PDF, where name and code sit in separate table columns.",
-  "unverified": []
+  "note": "All quotes re-checked on 2026-10-24 (BPC and WorkSafe pages rendered in headless Chrome; TRA qualification names matched in its PDF where name and code sit in separate columns). The WorkSafe QLD eligibility-policy PDF sits behind a Cloudflare check and could not be re-read.",
+  "unverified": [
+   ".occupations.341111.differences.registration.QLD",
+   ".occupations.341112.differences.registration.QLD"
+  ]
+ },
+ "gapFill": {
+  "date": "2026-10-24",
+  "resolved": [
+   "QLD electrical mechanic licence (ESO) for 341111/341112",
+   "VIC plumbing registration/licence (BPC) for 334111-334115"
+  ]
  }
 }

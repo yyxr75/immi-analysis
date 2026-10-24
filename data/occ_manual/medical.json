@@ -1,0 +1,882 @@
+{
+ "group": "medical",
+ "checkedAt": "2026-10-24",
+ "shared": {
+  "assessingAuthority": {
+   "value": "Medical Board of Australia (MedBA), administered through Ahpra",
+   "source": "https://immi.homeaffairs.gov.au/visas/working-in-australia/skill-occupation-list",
+   "quote": "MedBA Assessing authority Medical Board of Australia",
+   "sourceType": "homeaffairs"
+  },
+  "assessment": {
+   "whatCountsAsSkillsAssessment": {
+    "value": "For doctors, Home Affairs treats evidence of full registration issued by Ahpra as the suitable skills assessment: either general (full/unconditional) medical registration, or conditional specialist registration that allows practice only in the specialty with no further training or supervision requirements. There is no separate skills-assessment application for these occupations.",
+    "source": "https://immi.homeaffairs.gov.au/visas/working-in-australia/skills-assessment",
+    "quote": "For doctors, evidence of full registration is a suitable skills assessment.",
+    "sourceType": "homeaffairs"
+   },
+   "acceptedCertificates": {
+    "value": [
+     "full/unconditional/general medical registration",
+     "conditional specialist registration (practice only in the specialty, no further training or supervision requirements)"
+    ],
+    "source": "https://immi.homeaffairs.gov.au/visas/working-in-australia/skills-assessment",
+    "quote": "conditional specialist registration — this registration allows you to practise only in your particular speciality, with no further training or supervision requirements.",
+    "sourceType": "homeaffairs"
+   },
+   "provisionalRegistrationNotEnough": {
+    "value": "Provisional registration (held during the intern year) is not among the certificates Home Affairs lists, so on these pages it does not count as a skills assessment. This is an inference from what the list leaves out, not an explicit statement.",
+    "source": "https://immi.homeaffairs.gov.au/visas/working-in-australia/skills-assessment",
+    "quote": "We accept one of the following certificates issued by the Australian Health Practitioner Regulation Agency (AHPRA) as evidence of full registration:",
+    "sourceType": "homeaffairs"
+   },
+   "validity": {
+    "value": "If no validity period is shown, a skills assessment is valid for 3 years from the date of issue (points-tested visas).",
+    "source": "https://immi.homeaffairs.gov.au/visas/working-in-australia/skills-assessment",
+    "quote": "If no validity period is shown on a skills assessment, the assessment is valid for 3 years from date of issue,",
+    "sourceType": "homeaffairs"
+   },
+   "timingPointsTested": {
+    "value": "Must hold a suitable skills assessment by the time you are invited to apply (Home Affairs also accepts one obtained within the 60-day invitation period).",
+    "source": "https://immi.homeaffairs.gov.au/visas/working-in-australia/skills-assessment",
+    "quote": "Delegates of the Minister will now accept a suitable skills assessment for an applicant’s nominated skilled occupation which has been obtained within the 60 day invitation period.",
+    "sourceType": "homeaffairs"
+   },
+   "cricosRequirement485": {
+    "value": "For a 485 skills assessment based on a qualification obtained in Australia on a student visa, the course must be CRICOS-registered.",
+    "source": "https://immi.homeaffairs.gov.au/visas/working-in-australia/skills-assessment",
+    "quote": "If your skills are assessed on the basis of a qualification you got in Australia when you held a student visa, the qualification must be from studying a course registered on CRICOS.",
+    "sourceType": "homeaffairs"
+   }
+  },
+  "australianStudyRoute": {
+   "primaryDegree": {
+    "value": "A primary degree in medicine and surgery from an Australian or New Zealand medical school accredited by the Australian Medical Council (AMC), completed through a Board-approved program of study.",
+    "source": "https://www.medicalboard.gov.au/Registration/Types/General-Registration/Australian-and-NZ-medical-graduates",
+    "quote": "Provide evidence of having been awarded a primary degree in medicine and surgery, after completing an approved program of study from an Australian or New Zealand medical school accredited by the Australian Medical Council.",
+    "sourceType": "regulator"
+   },
+   "amcAccreditation": {
+    "value": "The AMC accredits medical schools and their programs; the Board then approves accredited programs for general registration (searchable online tool).",
+    "source": "https://www.medicalboard.gov.au/Accreditation/Medical-schools",
+    "quote": "The Australian Medical Council (the AMC) is responsible for accrediting education providers and their programs of study for the medical profession.",
+    "sourceType": "regulator"
+   },
+   "nominalDegreeDuration": {
+    "value": null,
+    "source": null,
+    "quote": null,
+    "sourceType": null
+   },
+   "provisionalRegistrationForInternship": {
+    "value": "Australian graduates first apply for provisional registration so they can complete accredited postgraduate year one (PGY1) training, i.e. the internship. Final-year students are encouraged to apply up to 3 months before finishing the course.",
+    "source": "https://www.medicalboard.gov.au/Registration/Interns",
+    "quote": "Australian and New Zealand medical graduates must apply for provisional registration so they can complete accredited postgraduate year one (PGY1) training (also known as a medical internship) to become eligible for general registration.",
+    "sourceType": "regulator"
+   },
+   "internshipDuration": {
+    "value": "47 weeks full-time equivalent, with at least four terms of at least 10 weeks each in different specialties, covering undifferentiated illness, chronic illness, acute and critical illness, and peri-procedural patient care.",
+    "source": "https://www.medicalboard.gov.au/Registration/Interns",
+    "quote": "PGY1 doctors must satisfactorily complete 47 weeks full-time equivalent training that includes a minimum of four terms (of at least 10 weeks each term) in different specialties",
+    "sourceType": "regulator"
+   },
+   "internPositionsOnly": {
+    "value": "PGY1 doctors may work only in accredited positions.",
+    "source": "https://www.medicalboard.gov.au/Registration/Interns",
+    "quote": "PGY1 doctors are only permitted to work in accredited positions.",
+    "sourceType": "regulator"
+   },
+   "generalRegistrationAfterIntern": {
+    "value": "After an accredited internship in Australia or NZ, no further supervised practice is needed for general registration. The employer sends evidence of completion directly to Ahpra.",
+    "source": "https://www.medicalboard.gov.au/Registration/Types/General-Registration/Australian-and-NZ-medical-graduates",
+    "quote": "Australian and New Zealand medical graduates who completed an accredited internship in Australia or New Zealand are not required to complete any additional supervised practise to become eligible for general registration.",
+    "sourceType": "regulator"
+   },
+   "internshipOverseasAlternative": {
+    "value": "Australian graduates who intern in another country must complete 12 months (47 weeks FTE) of approved supervised practice in Australia, under provisional registration, before general registration.",
+    "source": "https://www.medicalboard.gov.au/Registration/Types/General-Registration/Australian-and-NZ-medical-graduates",
+    "quote": "Australian and New Zealand medical graduates who have completed a medical internship in another country are required to satisfactorily complete 12 months (47 weeks full-time equivalent) of approved supervised practice in Australia",
+    "sourceType": "regulator"
+   },
+   "specialistTraining": {
+    "value": "Specialist registration requires an approved qualification, which means fellowship of an AMC-accredited specialist medical college (or a college assessment of eligibility for fellowship, or an accepted qualification on the Expedited Specialist pathway list for overseas specialists). Official pages fetched give no training durations.",
+    "source": "https://www.medicalboard.gov.au/Registration/Types/Specialist-Registration",
+    "quote": "have an approved qualification for specialist registration (fellowship of an AMC-accredited specialist medical college)",
+    "sourceType": "regulator"
+   },
+   "specialistTrainingDuration": {
+    "value": null,
+    "source": null,
+    "quote": null,
+    "sourceType": null
+   }
+  },
+  "registration": {
+   "typeForNonSpecialistOccupations": {
+    "value": "General registration",
+    "source": "https://www.medicalboard.gov.au/Registration/Types/General-Registration",
+    "quote": "General registration may be granted to: Australian and New Zealand medical graduates",
+    "sourceType": "regulator"
+   },
+   "typeForSpecialistOccupations": {
+    "value": "Specialist registration in the relevant specialty or field, on the Specialists Register. Specialist titles are protected by law.",
+    "source": "https://www.medicalboard.gov.au/Registration/Types/Specialist-Registration",
+    "quote": "Medical practitioners with the necessary qualifications in an approved specialty, who meet other registration requirements, are included on the Specialists Register and their specialist title is protected by law.",
+    "sourceType": "regulator"
+   },
+   "generalRegistrationRequirements": {
+    "value": [
+     "English language skills, recency of practice and professional indemnity insurance registration standards",
+     "proof of identity",
+     "AMC-accredited Australian/NZ primary medical degree",
+     "completed accredited internship (employer sends evidence directly to Ahpra)",
+     "criminal history check",
+     "fees"
+    ],
+    "source": "https://www.medicalboard.gov.au/Registration/Types/General-Registration/Australian-and-NZ-medical-graduates",
+    "quote": "You must meet the requirements of the registration standards for: English language skills recency of practice professional indemnity insurance",
+    "sourceType": "regulator"
+   },
+   "englishStandardAppliesToAustralianGraduates": {
+    "value": "Yes. The English language skills standard applies to every first-time applicant, Australian-trained applicants included. It does not apply to students, but it does apply to graduates.",
+    "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills",
+    "quote": "To get registration in Australia, every applicant must meet their National Board’s English language skills standard. This includes Australian-trained or overseas qualified applicants.",
+    "sourceType": "regulator"
+   },
+   "englishNoRetestProvisionalToGeneral": {
+    "value": "Once the standard is met (without conditions) for provisional registration, it does not need to be met again to move to general or specialist registration in the same profession.",
+    "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/English-language-skills-registration-standard",
+    "quote": "For example, you hold provisional registration and are applying for general registration, or you hold general registration and are applying for specialist registration or non-practising registration",
+    "sourceType": "regulator"
+   },
+   "englishPathways": {
+    "value": [
+     "Combined education pathway: at least 2 years of secondary education taught and assessed solely in English in a recognised country, plus your professional qualification taught and assessed solely in English in a recognised country (Australia is a recognised country)",
+     "School education pathway: at least 10 years of primary and secondary education in English in a recognised country, plus your qualification taught and assessed solely in English",
+     "Advanced education pathway: at least 6 years FTE of education taught and assessed solely in English in a recognised country, including your qualification and degree-level (AQF 7+) study; at most a 2-year break; last period of education finished no more than 2 years before applying",
+     "Test pathway"
+    ],
+    "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/English-language-skills-registration-standard",
+    "quote": "at least two years of your secondary education which was taught and assessed solely in English in a recognised country, and",
+    "sourceType": "regulator"
+   },
+   "englishAdvancedPathwayQuote": {
+    "value": "Advanced education pathway wording (relevant to international students who did secondary school outside a recognised country)",
+    "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/English-language-skills-registration-standard",
+    "quote": "To satisfy this pathway, you have carried out and successfully completed at least six years in total of (full-time equivalent) education, all taught and assessed solely in English in a recognised country which includes:",
+    "sourceType": "regulator"
+   },
+   "englishTestScoresFromTests23Apr2026": {
+    "value": {
+     "IELTS Academic": "overall 7; listening 7, reading 7, writing 6.5, speaking 7",
+     "OET": "listening 350, reading 360, writing 350, speaking 360 (no overall score)",
+     "PTE Academic": "overall 63; listening 58, reading 59, writing 60, speaking 76",
+     "TOEFL iBT": "overall 91; listening 22, reading 22, writing 23, speaking 24 (must select Taking TOEFL for Australia)",
+     "Cambridge C1 Advanced": "overall 178; listening 175, reading 179, writing 180, speaking 194",
+     "Cambridge C2 Proficiency": "overall 185; listening 185, reading 185, writing 176, speaking 185",
+     "note": "One test sitting, or at most two sittings within 12 months, subject to per-sitting floors. Results are generally valid for 2 years before you lodge. The Medical Board also accepts NZREX or the PLAB test."
+    },
+    "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/English-language-skills-registration-standard",
+    "quote": "Minimum test scores for tests taken on or after 23 April 2026.",
+    "sourceType": "regulator"
+   },
+   "englishTestScoresIELTSquote": {
+    "value": "IELTS row (on or after 23 April 2026)",
+    "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/English-language-skills-registration-standard",
+    "quote": "IELTS Academic (Academic paper and computer at test centre only) Overall: 7 Listening: 7 Reading: 7 Writing: 6.5 Speaking: 7",
+    "sourceType": "regulator"
+   },
+   "englishTestScoresPTEquote": {
+    "value": "PTE row (on or after 23 April 2026)",
+    "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/English-language-skills-registration-standard",
+    "quote": "PTE Academic Overall: 63 Listening: 58 Reading: 59 Writing: 60 Speaking: 76",
+    "sourceType": "regulator"
+   },
+   "englishTestScoresOETquote": {
+    "value": "OET row (on or after 23 April 2026)",
+    "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/English-language-skills-registration-standard",
+    "quote": "Listening: 350 Reading: 360 Writing: 350 Speaking: 360",
+    "sourceType": "regulator"
+   },
+   "englishTestScoresTOEFLquote": {
+    "value": "TOEFL row (on or after 23 April 2026)",
+    "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/English-language-skills-registration-standard",
+    "quote": "TOEFL iBT Overall: 91 Listening: 22 Reading: 22 Writing: 23 Speaking: 24",
+    "sourceType": "regulator"
+   },
+   "englishTestScoresBefore23Apr2026": {
+    "value": "Tests taken on or before 22 April 2026: IELTS overall 7 with L/R/S 7 and W 6.5; OET B in L/R/S and C+ in W; PTE overall 66 with L/R/S 66 and W 56; TOEFL iBT total 94 (L24 R24 W24 S23); Cambridge 185 overall, L/R/S 185, W 176.",
+    "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/English-language-skills-registration-standard",
+    "quote": "Minimum test scores and requirements for tests taken on or before 22 April 2026.",
+    "sourceType": "regulator"
+   },
+   "englishTestValidity": {
+    "value": "Test results must have been obtained within 2 years before you lodge the application. Exceptions apply for continuous registered work, or continuous enrolment in a Board-approved program that started within 12 months of the test.",
+    "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/English-language-skills-registration-standard",
+    "quote": "within the two years before the date you lodge your application for registration, or",
+    "sourceType": "regulator"
+   },
+   "englishMedicalExtra": {
+    "value": "The Medical Board also accepts NZREX or the PLAB test.",
+    "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/English-language-skills-registration-standard",
+    "quote": "The Medical Board of Australia will also accept successful completion of the profession specific New Zealand Registration Examination (NZREX) or Professional and Linguistic Assessments Board test (PLAB test).",
+    "sourceType": "regulator"
+   },
+   "australianGraduateExemption": {
+    "value": "There is no blanket exemption for Australian graduates. They meet the standard through an education pathway or a test. The only exemptions are for certain limited-registration purposes.",
+    "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/English-language-skills-registration-standard",
+    "quote": "The Board may grant an exemption to this standard when you apply for limited registration in the following circumstances:",
+    "sourceType": "regulator"
+   },
+   "specialistExtraRequirements": {
+    "value": "Since 21 October 2024, specialist registration also requires supervised practice, orientation to the Australian healthcare system and cultural safety education. Australian-trained doctors are typically exempt; see the next three fields.",
+    "source": "https://www.medicalboard.gov.au/Registration/Types/Specialist-Registration",
+    "quote": "From 21 October 2024, doctors granted specialist registration need to have successfully completed supervised practice, an orientation to the Australian healthcare system and cultural safety education.",
+    "sourceType": "regulator"
+   },
+   "supervisedPracticeExemption": {
+    "value": "Holders of an approved qualification in the specialty may be exempt from the 6-month FTE supervised-practice requirement.",
+    "source": "https://www.medicalboard.gov.au/Registration/Types/Specialist-Registration/Supervised-practice-requirements",
+    "quote": "If you have been awarded an approved qualification in the specialty, you may be exempt and not need to provide evidence of having completed six months full-time equivalent supervised practice within your specialty.",
+    "sourceType": "regulator"
+   },
+   "orientationExemption": {
+    "value": "Exempt if currently registered, or registered and practising in Australia in the past 3 years.",
+    "source": "https://www.medicalboard.gov.au/Registration/Types/Specialist-Registration/Orientation-requirements",
+    "quote": "If you are currently registered, or you have previously been registered and have practised as a medical practitioner in Australia in the past three years, you do not need to meet this requirement.",
+    "sourceType": "regulator"
+   },
+   "culturalSafetyExemption": {
+    "value": "Exempt, among other grounds, if you completed an AMC-accredited primary medical program in Australia from 21 December 2012 onwards.",
+    "source": "https://www.medicalboard.gov.au/Registration/Types/Specialist-Registration/Cultural-safety-education-requirements",
+    "quote": "have completed an AMC-accredited program of primary medical education in Australia from 21 December 2012 onwards, or",
+    "sourceType": "regulator"
+   }
+  },
+  "otherConditions": {
+   "internshipNotGuaranteedQLDExample": {
+    "value": "Queensland: only Queensland graduates who are Australian or NZ citizens or Australian permanent residents (Group A) are guaranteed an intern offer. Australian or NZ graduates who are not citizens or PRs (Group C, which includes international students) are not guaranteed one and go through a suitability assessment. Other states were not checked.",
+    "source": "https://www.careers.health.qld.gov.au/medical-careers/medical-internships/applicant-groups",
+    "quote": "Medical graduates of Australian (Queensland or interstate) or New Zealand universities who are not Australian or New Zealand citizens, or Australian permanent residents who:",
+    "sourceType": "stateHealth"
+   },
+   "privateHospitalStreamInternships": {
+    "value": "The federal Private Hospital Stream gives Priority One to full-fee-paying international students completing their whole medical degree in Australia, but applying does not guarantee a place.",
+    "source": "https://www.health.gov.au/our-work/junior-doctor-training-program/private-hospital-stream",
+    "quote": "are a full-fee-paying international student completing your medical degree during the current calendar year from a medical school in Australia, having completed all of your medical degree in Australia",
+    "sourceType": "federalHealth"
+   },
+   "privateHospitalStreamNoGuarantee": {
+    "value": "Applying for a PHS internship does not guarantee a placement.",
+    "source": "https://www.health.gov.au/our-work/junior-doctor-training-program/private-hospital-stream",
+    "quote": "Please be advised that applying for an internship place does not guarantee a placement.",
+    "sourceType": "federalHealth"
+   },
+   "medicare19AB": {
+    "value": "Section 19AB (Health Insurance Act 1973) covers doctors who enrolled in an Australian or NZ medical degree as a temporary resident (\"foreign graduates of an accredited medical school\"). To access Medicare benefits, they must work for at least 10 years from registration in a Distribution Priority Area (GPs) or District of Workforce Shortage (non-GP specialists). Scaling and exemptions can shorten this. It does not restrict salaried public-hospital work that does not attract Medicare benefits.",
+    "source": "https://www.health.gov.au/topics/medicare/access-practitioners-industry/doctors-and-specialists/19ab",
+    "quote": "enrolled in a medical degree in Australia or New Zealand as a temporary resident (foreign graduates of an accredited medical school).",
+    "sourceType": "federalHealth"
+   },
+   "medicare19ABpublicHospital": {
+    "value": "No restriction for salaried positions that do not attract Medicare benefits, such as in a public hospital.",
+    "source": "https://www.health.gov.au/topics/medicare/access-practitioners-industry/doctors-and-specialists/19ab",
+    "quote": "There is no restriction if you work in a salaried position that doesn’t attract Medicare benefits, like in a public hospital.",
+    "sourceType": "federalHealth"
+   },
+   "medicare19ABendsOnPR": {
+    "value": "The moratorium and location restrictions end after 10 years for permanent residents or citizens, and continue unchanged for temporary residents.",
+    "source": "https://www.health.gov.au/topics/doctors-and-specialists/what-we-do/19ab/moratorium",
+    "quote": "end after 10 years if you are a permanent resident or citizen continue unchanged if you remain a temporary resident.",
+    "sourceType": "federalHealth"
+   },
+   "internMedicareProviderNumber": {
+    "value": "Interns granted provisional registration without conditions or notations can apply online for an initial Medicare provider number.",
+    "source": "https://www.medicalboard.gov.au/Registration/Interns",
+    "quote": "Australian and New Zealand medical graduates granted provisional registration without conditions or notations, can get an initial Medicare provider number online from Services Australia.",
+    "sourceType": "regulator"
+   }
+  }
+ },
+ "occupations": {
+  "253111": {
+   "occupation": "General Practitioner",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"General practice\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "General practice — Specialist general practitioner",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australian College of General Practitioners (RACGP) or Australian College of Rural and Remote Medicine (ACRRM) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australian College of General Practitioners (RACGP)",
+     "sourceType": "assessor"
+    },
+    "medicareRequiresSpecialistReg": {
+     "value": "GP fellows need specialist registration to access Medicare rebates (in force since 16 June 2021).",
+     "source": "https://www.medicalboard.gov.au/Registration/Types/Specialist-Registration",
+     "quote": "GP fellows must have specialist registration to access Medicare rebates.",
+     "sourceType": "regulator"
+    },
+    "acrrmCollege": {
+     "value": "ACRRM is also an AMC-accredited college",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Australian College of Rural and Remote Medicine (ACRRM)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253999": {
+   "occupation": "Medical Practitioners nec",
+   "differences": {
+    "registrationType": {
+     "value": "General registration (an AMC-accredited Australian degree plus a completed accredited internship). Home Affairs accepts \"full/unconditional/general medical registration\".",
+     "source": "https://immi.homeaffairs.gov.au/visas/working-in-australia/skills-assessment",
+     "quote": "full/unconditional/general medical registration",
+     "sourceType": "homeaffairs"
+    }
+   }
+  },
+  "253112": {
+   "occupation": "Resident Medical Officer",
+   "differences": {
+    "registrationType": {
+     "value": "General registration (an AMC-accredited Australian degree plus a completed accredited internship). Home Affairs accepts \"full/unconditional/general medical registration\".",
+     "source": "https://immi.homeaffairs.gov.au/visas/working-in-australia/skills-assessment",
+     "quote": "full/unconditional/general medical registration",
+     "sourceType": "homeaffairs"
+    }
+   }
+  },
+  "253912": {
+   "occupation": "Emergency Medicine Specialist",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Emergency medicine\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Emergency medicine — Specialist emergency physician",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Australasian College for Emergency Medicine (ACEM) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Australasian College for Emergency Medicine (ACEM)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253411": {
+   "occupation": "Psychiatrist",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Psychiatry\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Psychiatry — Specialist psychiatrist",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australian and New Zealand College of Psychiatrists (RANZCP) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australian and New Zealand College of Psychiatrists (RANZCP)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253311": {
+   "occupation": "Specialist Physician (General Medicine)",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Physician — General medicine\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "General medicine Specialist general physician",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australasian College of Physicians (RACP) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australasian College of Physicians (RACP)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253913": {
+   "occupation": "Obstetrician and Gynaecologist",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Obstetrics and gynaecology\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Specialist obstetrician and gynaecologist",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australian and New Zealand College of Obstetricians and Gynaecologists (RANZCOG) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australian and New Zealand College of Obstetricians and Gynaecologists (RANZCOG)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253917": {
+   "occupation": "Diagnostic and Interventional Radiologist",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Radiology — Diagnostic radiology\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Radiology Diagnostic radiology Specialist radiologist",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australian and New Zealand College of Radiologists (RANZCR) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australian and New Zealand College of Radiologists (RANZCR)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253312": {
+   "occupation": "Cardiologist",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Physician — Cardiology\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Cardiology Specialist cardiologist",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australasian College of Physicians (RACP) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australasian College of Physicians (RACP)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253321": {
+   "occupation": "Paediatrician",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Paediatrics and child health\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Specialist paediatrician",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "RACP (Paediatrics and Child Health Division) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Paediatrics and Child Health Division",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253399": {
+   "occupation": "Specialist Physicians nec",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Physician — a field without its own ANZSCO code (e.g. geriatric medicine, infectious diseases, rheumatology)\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Geriatric medicine Specialist geriatrician",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australasian College of Physicians (RACP) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australasian College of Physicians (RACP)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253511": {
+   "occupation": "Surgeon (General)",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Surgery — General surgery\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "General surgery Specialist general surgeon",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australasian College of Surgeons (RACS) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australasian College of Surgeons (RACS)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253514": {
+   "occupation": "Orthopaedic Surgeon",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Surgery — Orthopaedic surgery\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Orthopaedic surgery Specialist orthopaedic surgeon",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australasian College of Surgeons (RACS) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australasian College of Surgeons (RACS)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253317": {
+   "occupation": "Intensive Care Specialist",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Intensive care medicine\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Specialist intensive care physician",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "College of Intensive Care Medicine of Australia and New Zealand (CICM) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "College of Intensive Care Medicine of Australia and New Zealand (CICM)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253318": {
+   "occupation": "Neurologist",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Physician — Neurology\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Neurology Specialist neurologist",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australasian College of Physicians (RACP) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australasian College of Physicians (RACP)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253316": {
+   "occupation": "Gastroenterologist",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Physician — Gastroenterology and hepatology\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Gastroenterology and hepatology Specialist gastroenterologist and hepatologist",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australasian College of Physicians (RACP) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australasian College of Physicians (RACP)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253211": {
+   "occupation": "Anaesthetist",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Anaesthesia\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Anaesthesia — Specialist anaesthetist",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Australian and New Zealand College of Anaesthetists (ANZCA) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Australian and New Zealand College of Anaesthetists (ANZCA)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253914": {
+   "occupation": "Ophthalmologist",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Ophthalmology\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Ophthalmology — Specialist ophthalmologist",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australian and New Zealand College of Ophthalmologists (RANZCO) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australian and New Zealand College of Ophthalmologists (RANZCO)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253911": {
+   "occupation": "Dermatologist",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Dermatology\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Dermatology — Specialist dermatologist",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Australasian College of Dermatologists (ACD) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Australasian College of Dermatologists (ACD)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253518": {
+   "occupation": "Urologist",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Surgery — Urology\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Urology Specialist urologist",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australasian College of Surgeons (RACS) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australasian College of Surgeons (RACS)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253314": {
+   "occupation": "Medical Oncologist",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Physician — Medical oncology\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Medical oncology Specialist medical oncologist",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australasian College of Physicians (RACP) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australasian College of Physicians (RACP)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253512": {
+   "occupation": "Cardiothoracic Surgeon",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Surgery — Cardio-thoracic surgery\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Cardio-thoracic surgery Specialist cardio-thoracic surgeon",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australasian College of Surgeons (RACS) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australasian College of Surgeons (RACS)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253517": {
+   "occupation": "Plastic and Reconstructive Surgeon",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Surgery — Plastic surgery\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Plastic surgery Specialist plastic surgeon",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australasian College of Surgeons (RACS) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australasian College of Surgeons (RACS)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253915": {
+   "occupation": "Pathologist",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Pathology\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Pathology — Specialist pathologist",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal College of Pathologists of Australasia (RCPA) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal College of Pathologists of Australasia (RCPA)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253313": {
+   "occupation": "Clinical Haematologist",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Haematology (a field of both the Physician and the Pathology specialties)\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Haematology Specialist haematologist",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "RACP or RCPA (haematology is a field under both Physician and Pathology) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal College of Pathologists of Australasia (RCPA)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253315": {
+   "occupation": "Endocrinologist",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Physician — Endocrinology\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Endocrinology Specialist endocrinologist",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australasian College of Physicians (RACP) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australasian College of Physicians (RACP)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253918": {
+   "occupation": "Radiation Oncologist",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Radiation oncology\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Radiation oncology — Specialist radiation oncologist",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australian and New Zealand College of Radiologists (RANZCR) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australian and New Zealand College of Radiologists (RANZCR)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253322": {
+   "occupation": "Renal Medicine Specialist",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Physician — Nephrology\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Nephrology Specialist nephrologist",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australasian College of Physicians (RACP) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australasian College of Physicians (RACP)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253324": {
+   "occupation": "Thoracic Medicine Specialist",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Physician — Respiratory and sleep medicine\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Respiratory and sleep medicine Specialist respiratory and sleep medicine",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australasian College of Physicians (RACP) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australasian College of Physicians (RACP)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253513": {
+   "occupation": "Neurosurgeon",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Surgery — Neurosurgery\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Neurosurgery Specialist neurosurgeon",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australasian College of Surgeons (RACS) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australasian College of Surgeons (RACS)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253515": {
+   "occupation": "Otorhinolaryngologist",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Surgery — Otolaryngology – head and neck surgery\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Specialist otolaryngologist – head and neck",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australasian College of Surgeons (RACS) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australasian College of Surgeons (RACS)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253516": {
+   "occupation": "Paediatric Surgeon",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Surgery — Paediatric surgery\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Paediatric surgery Specialist paediatric surgeon",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australasian College of Surgeons (RACS) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australasian College of Surgeons (RACS)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "253521": {
+   "occupation": "Vascular Surgeon",
+   "differences": {
+    "registrationType": {
+     "value": "Specialist registration: specialty/field \"Surgery — Vascular surgery\"",
+     "source": "https://www.ahpra.gov.au/documents/default.aspx?record=WD10%2f106&dbid=AP&chksum=07LyDUkqqYa5O5LXuqbSzg%3d%3d",
+     "quote": "Vascular surgery Specialist vascular surgeon",
+     "sourceType": "regulator"
+    },
+    "relevantCollege": {
+     "value": "Royal Australasian College of Surgeons (RACS) (AMC-accredited college; occupation-to-college mapping inferred from college name)",
+     "source": "https://www.amc.org.au/accredited-organisations/assessment-and-accreditation-of-specialist-medical-programs/specialist-medical-colleges/",
+     "quote": "Royal Australasian College of Surgeons (RACS)",
+     "sourceType": "assessor"
+    }
+   }
+  }
+ },
+ "gaps": [
+  "Home Affairs only says that \"full/unconditional/general medical registration\" or \"conditional specialist registration\" counts as the skills assessment for doctors. It does not say which registration type matches each ANZSCO occupation. The registration type per specialist occupation (and GP) is inferred from the MBA List of specialties, not from an official occupation-to-registration table.",
+  "For GP (253111), Home Affairs does not say whether general registration alone is enough for the GP occupation. The MBA states only that GP fellows need specialist registration to access Medicare rebates.",
+  "Occupation-to-college mapping (relevantCollege) is inferred from the college names on the AMC accredited-colleges page. No official ANZSCO-to-college table was found.",
+  "Nominal length of the primary medical degree: not stated on any MBA/AMC/Home Affairs page fetched. It varies by university (undergraduate vs graduate-entry) and would need each university page. Set to null.",
+  "Specialist training durations by college: not captured. They are on individual college websites, which were not fetched. Set to null.",
+  "English: the standard does not say whether one 5–6-year Australian medical degree alone meets the 6-year advanced education pathway for an international student without secondary schooling in a recognised country. FAQ/evidence guide not conclusive on this. Users should check the Ahpra pathway selection tool.",
+  "English test scores changed for tests taken on or after 23 April 2026 (Table 2). Older scores (Table 1) apply to tests taken on or before 22 April 2026. A separate transition policy exists and was not fetched.",
+  "Internship availability: only Queensland Health (applicant groups) and the federal Private Hospital Stream were checked. NSW Health intern pages returned 404, and VIC/WA/SA/TAS/ACT/NT policies were not captured. sourceType values \"stateHealth\" and \"federalHealth\" fall outside the requested enum because these are state or federal health departments, not the regulator, assessor or Home Affairs.",
+  "Section 19AB/Medicare restrictions come from Department of Health, Disability and Ageing pages (sourceType \"federalHealth\"), not from the MBA.",
+  "Home Affairs occupation-list data was taken from the JSON embedded in the rendered skill-occupation-list page. List tags: 253112 STSOL;CSOL, 253211 ROL;CSOL, 253917 MLTSSL only, all others MLTSSL;CSOL. Visa caveats were not extracted.",
+  "253399 Specialist Physicians nec: the example fields (geriatric medicine and others) are illustrative. Any Physician field without its own ANZSCO code may apply, and the quote shows only one example field."
+ ],
+ "secondCheck": {
+  "date": "2026-10-24",
+  "note": "All quotes re-checked on 2026-10-24. List/visa status per occupation was dropped here: it comes from site/data/occ_entry.json (scraped from the same Home Affairs page) instead.",
+  "unverified": []
+ }
+}

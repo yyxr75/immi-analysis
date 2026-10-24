@@ -1,0 +1,669 @@
+{
+ "group": "other",
+ "checkedAt": "2026-10-24",
+ "shared": {
+  "AIMS": {
+   "assessment": {
+    "englishTest": {
+     "value": "Mandatory for every applicant, no exemptions (including Australian graduates). Accepted tests: IELTS (Academic or General), TOEFL, PTE Academic, OET (Medicine/Nursing/Dentistry/Pharmacy/Veterinary Science), Cambridge C1 Advanced. Report valid if received within 3 years of test date.",
+     "source": "https://www.aims.org.au/common/Uploaded%20files/Overseas%20Skills%20Assessment/Guidelines%20for%20Assessment%20-%20MLS%20MLT%20v18.4.pdf",
+     "quote": "All applicants must provide an English proficiency test report. There are no exemptions to this requirement.",
+     "sourceType": "assessor"
+    },
+    "englishScores": {
+     "value": "Since 12 March 2026 AIMS publishes no scores of its own; it uses Home Affairs 'Proficient English' scores. AIMS does not accept One Skill Retake results; all four components in one sitting.",
+     "source": "https://www.aims.org.au/Web/Web/Services/Qualification-Assessment.aspx",
+     "quote": "AIMS does not accept English test results that include a One Skill Retake component",
+     "sourceType": "assessor"
+    },
+    "englishScoresHomeAffairsProficient": {
+     "value": {
+      "takenOnOrAfter2025-08-07": {
+       "IELTS Academic/General Training": {
+        "L": 7,
+        "R": 7,
+        "W": 7,
+        "S": 7
+       },
+       "PTE Academic": {
+        "L": 58,
+        "R": 59,
+        "W": 69,
+        "S": 76
+       },
+       "TOEFL iBT": {
+        "L": 22,
+        "R": 22,
+        "W": 26,
+        "S": 24
+       },
+       "OET": {
+        "L": 350,
+        "R": 360,
+        "W": 380,
+        "S": 360
+       },
+       "Cambridge C1 Advanced": {
+        "L": 175,
+        "R": 179,
+        "W": 193,
+        "S": 194
+       }
+      },
+      "takenBefore2025-08-07 (Table 2)": {
+       "PTE Academic": {
+        "L": 65,
+        "R": 65,
+        "W": 65,
+        "S": 65
+       },
+       "TOEFL iBT": {
+        "L": 24,
+        "R": 24,
+        "W": 27,
+        "S": 23
+       },
+       "OET": {
+        "L": "B",
+        "R": "B",
+        "W": "B",
+        "S": "B"
+       }
+      }
+     },
+     "source": "https://immi.homeaffairs.gov.au/help-support/meeting-our-requirements/english-language/proficient-english",
+     "quote": "Table 1 - Proficient English approved tests and scores taken on or after 7 August 2025",
+     "sourceType": "homeaffairs"
+    },
+    "validity": {
+     "value": "Assessment valid 3 years from the Stage 1 Skills Assessment Results letter",
+     "source": "https://www.aims.org.au/common/Uploaded%20files/Overseas%20Skills%20Assessment/Guidelines%20for%20Assessment%20-%20MLS%20MLT%20v18.4.pdf",
+     "quote": "An assessment is valid for three (3) years from the date of the original (Stage 1) Skills Assessment Results letter.",
+     "sourceType": "assessor"
+    },
+    "australianTranscripts": {
+     "value": "Australian transcripts verified via My eQuals / USI",
+     "source": "https://www.aims.org.au/common/Uploaded%20files/Overseas%20Skills%20Assessment/Guidelines%20for%20Assessment%20-%20MLS%20MLT%20v18.4.pdf",
+     "quote": "AIMS will need to verify your academic transcript via the My eQuals system.",
+     "sourceType": "assessor"
+    }
+   },
+   "registration": null
+  },
+  "SPA": {
+   "assessment": {
+    "australianTrainedForm": {
+     "value": "Australian-trained graduates use a separate 'Application for skills assessment for migration purposes' form: certified copies of degree/letter of completion and transcripts plus two ID documents. Fee $60 member / $120 non-member. The form lists no English test requirement.",
+     "source": "https://www.speechpathologyaustralia.org.au/Common/Uploaded%20files/Smart%20Suite/Smart%20Library/08d6d4f2-8d47-4517-98af-ac487296081b/20240509_COMMS_Fillable%20Skills%20Assessment%20for%20Migration%20Purposes%20Application.pdf",
+     "quote": "Australian trained speech pathologists only",
+     "sourceType": "assessor"
+    },
+    "validity": {
+     "value": "2 years",
+     "source": "https://www.speechpathologyaustralia.org.au/Public/Public/Certification-and-universities/Becoming-certified/Becoming-certified.aspx?hkey=5dd2f46f-0d80-40a4-9967-76663cffe04e",
+     "quote": "Assessments are valid for 2 years.",
+     "sourceType": "assessor"
+    },
+    "englishTest": null
+   },
+   "registration": {
+    "value": "No statutory registration identified; most employers, insurers and funders require Certified Practising Speech Pathologist (CPSP) status via SPA membership (or eligibility for it).",
+    "source": "https://www.speechpathologyaustralia.org.au/Public/Public/Certification-and-universities/Become-a-speech-pathologist.aspx?hkey=9aef1d0f-6fba-4f73-bc54-a282f47a7268",
+    "quote": "To work in Australia, most employers, insurance schemes and funding bodies require speech pathologists to be a Certified Practising Speech Pathologist (CPSP) which requires membership of Speech Pathology Australia, or to be eligible for membership of Speech Pathology Australia.",
+    "sourceType": "assessor"
+   }
+  },
+  "DAA": {
+   "assessment": {
+    "eligibility": {
+     "value": "Graduate of a Dietitians Australia-accredited Australian dietetics program (or overseas route via DSR).",
+     "source": "https://dietitiansaustralia.org.au/working-dietetics/skills-recognition-australia/skills-assessment-visa",
+     "quote": "you have an accredited Australian qualification",
+     "sourceType": "assessor"
+    },
+    "englishExemption": {
+     "value": "No English test if the accredited Australian degree was completed no more than 2 years before applying for the skills migration assessment.",
+     "source": "https://dietitiansaustralia.org.au/working-dietetics/skills-recognition-australia/process-overseas-educated-dietitians/english-language-proficiency",
+     "quote": "You don't need to take an English language test if you finished an accredited dietetics degree in Australia. You must have completed your degree no more than 2 years before applying for your skills migration assessment.",
+     "sourceType": "assessor"
+    },
+    "englishScores": {
+     "value": {
+      "IELTS Academic": "min 7 in each of L/R/W/S and overall 7 (One Skill Retake accepted)",
+      "OET": "min 350 (B) in each component",
+      "PTE Academic": "min 65 across all components",
+      "validity": "2 years"
+     },
+     "source": "https://dietitiansaustralia.org.au/working-dietetics/skills-recognition-australia/process-overseas-educated-dietitians/english-language-proficiency",
+     "quote": "You must achieve a minimum score of 7 in each of the four components:",
+     "sourceType": "assessor"
+    },
+    "fee": {
+     "value": "A$305 (appeal A$174)",
+     "source": "https://dietitiansaustralia.org.au/working-dietetics/skills-recognition-australia/skills-assessment-visa",
+     "quote": "$305",
+     "sourceType": "assessor"
+    },
+    "documents": {
+     "value": "Final academic transcript, CV, supervisor references if worked as a dietitian since graduating, English results if applicable, ID",
+     "source": "https://dietitiansaustralia.org.au/working-dietetics/skills-recognition-australia/skills-assessment-visa",
+     "quote": "a copy of your final academic transcript (if you have an accredited Australian qualification)",
+     "sourceType": "assessor"
+    }
+   },
+   "registration": {
+    "value": "No statutory registration identified on official pages; national credential is Accredited Practising Dietitian (APD), which requires a Dietitians Australia-accredited degree.",
+    "source": "https://dietitiansaustralia.org.au/working-nutrition-and-dietetics-australia",
+    "quote": "You need to hold a degree accredited by Dietitians Australia to be an Accredited Practicing Dietitian (APD) and member of Dietitians Australia.",
+    "sourceType": "assessor"
+   }
+  },
+  "AVBC": {
+   "assessment": {
+    "eligibility": {
+     "value": "Qualification on AVBC 'generally recognised' list + FULL (unconditional) registration with an Australian state/territory veterinary board + meet AVBC English Language Standards.",
+     "source": "https://avbc.asn.au/for-veterinarians/skills-assessment-for-migration/are-you-ready-to-apply-for-a-migration-skills-assessment/",
+     "quote": "Do you have FULL registration (without conditions) with an Australian state or territory veterinary registration board ?",
+     "sourceType": "assessor"
+    },
+    "englishPathways": {
+     "value": "Four pathways: primary language, combined secondary+tertiary, extended education (>=5 years FTE continuous education incl. vet degree taught/assessed solely in English in a recognised country; Australia is a recognised country), or test.",
+     "source": "https://avbc.asn.au/wp-content/uploads/2025/04/AVBC-English-Language_Standards_2025.pdf",
+     "quote": "You have undertaken and satisfactorily completed at least five years (full-time equivalent) continuous education, including your relevant veterinary qualification, taught and assessed solely in English, in any of the recognised countries.",
+     "sourceType": "assessor"
+    },
+    "englishScores": {
+     "value": {
+      "IELTS Academic": "7 each component (One Skill Retake accepted)",
+      "OET": "B/350 each component, single sitting",
+      "PTE Academic": "65 each, single sitting",
+      "TOEFL iBT": "L24 R24 W27 S23, single sitting",
+      "testValidity": "taken within 3 years before lodging"
+     },
+     "source": "https://avbc.asn.au/wp-content/uploads/2025/04/AVBC-English-Language_Standards_2025.pdf",
+     "quote": "(academic module) with a minimum score of 7 in each of the four components",
+     "sourceType": "assessor"
+    },
+    "workExperience": {
+     "value": "Optional; only paid employment >=20 h/week after an AVBC-approved qualification is considered; two competence references required.",
+     "source": "https://avbc.asn.au/for-veterinarians/skills-assessment-for-migration/are-you-ready-to-apply-for-a-migration-skills-assessment/",
+     "quote": "AVBC will only consider employment that is at least 20 hours per week.",
+     "sourceType": "assessor"
+    },
+    "processing": {
+     "value": "Most applications within 5 weeks",
+     "source": "https://avbc.asn.au/for-veterinarians/skills-assessment-for-migration/are-you-ready-to-apply-for-a-migration-skills-assessment/",
+     "quote": "Most applications are processed within 5 weeks from the date all required documents and payment are received.",
+     "sourceType": "assessor"
+    }
+   },
+   "registration": {
+    "value": "Required before applying: full registration with the veterinary board of the state/territory where you will work (boards use the AVBC Qualifications Generally Recognised list).",
+    "source": "https://avbc.asn.au/for-veterinarians/veterinary-registration-in-australia-and-new-zealand/",
+    "quote": "To register as a veterinarian in Australia or New Zealand, contact the veterinary board in the jurisdiction in which you wish to work.",
+    "sourceType": "assessor"
+   }
+  },
+  "AACA": {
+   "assessment": {
+    "route": {
+     "value": "Verification of Australian Accredited Architecture Qualification (documents only: testamur, transcript, 3 IDs). No English test or work experience listed for this route. ~4 weeks.",
+     "source": "https://aaca.org.au/migration-assessments/verification-of-australian-accredited-architecture-qualification/",
+     "quote": "Applicants must have completed an AACA Australian accredited academic qualification in architecture.",
+     "sourceType": "assessor"
+    },
+    "fee": {
+     "value": "A$446.56 (Australian card)",
+     "source": "https://aaca.org.au/migration-assessments/verification-of-australian-accredited-architecture-qualification/",
+     "quote": "Australian Card Application fee: $446.56",
+     "sourceType": "assessor"
+    },
+    "validity": {
+     "value": "3 years",
+     "source": "https://aaca.org.au/migration-assessments/",
+     "quote": "Skilled Migration Assessments for migration purposes are valid for a period of three (3) years from the date of issue.",
+     "sourceType": "assessor"
+    },
+    "occupationCode": {
+     "value": "AACA now cites OSCA 241131 (previously ANZSCO 232111)",
+     "source": "https://aaca.org.au/migration-assessments/",
+     "quote": "OSCA code 241131 ( previously ANZSCO code 232111 )",
+     "sourceType": "assessor"
+    },
+    "englishTest": null
+   },
+   "registration": {
+    "value": "Use of the title 'architect' is regulated by state/territory Architect Registration Boards; registration normally follows an accredited qualification plus the Architectural Practice Examination (APE). Verification outcome gives no entitlement to use the title.",
+    "source": "https://aaca.org.au/migration-assessments/verification-of-australian-accredited-architecture-qualification/",
+    "quote": "does not offer any guarantee of employment in Australia in the profession or any entitlement to use the title ‘Architect’.",
+    "sourceType": "assessor"
+   }
+  },
+  "LegalAdmissionAuthority": {
+   "note": "Assessor is the admission authority of the state/territory of admission. Values below use NSW (Legal Profession Admission Board, LPAB) as the verified example.",
+   "assessment": {
+    "skilledMigrationLetter": {
+     "value": "LPAB issues a 'Skilled Migration Letter' only after the person has been admitted as a lawyer in NSW (fee A$120). A provisional skills assessment exists for subclass 485 applicants.",
+     "source": "https://lpab.nsw.gov.au/documents/guides-and-facts-sheets/guide_for_applicants_for_admission_version_5.2.pdf",
+     "quote": "In order to obtain a ‘Skilled Migration Letter’ from the LPAB, a person will need to have had their qualifications assessed in accordance with the Board's Rules and the ‘Uniform Principles for Assessing Qualifications of Overseas Applicants for Admission’, and been admitted as a lawyer in NSW.",
+     "sourceType": "regulator"
+    },
+    "fee": {
+     "value": "A$120",
+     "source": "https://lpab.nsw.gov.au/content/dam/dcj/legal-professional-admission-board/documents/fee-schedules-/lpab_schedule_of_fees_16_October_2026_1.3.pdf",
+     "quote": "Skills Assessment letter $120",
+     "sourceType": "regulator"
+    },
+    "englishScores": {
+     "value": {
+      "IELTS Academic": {
+       "L": 7.0,
+       "R": 7.0,
+       "W": 8.0,
+       "S": 7.5
+      },
+      "notes": "Academic only, results no more than 2 years old at admission application"
+     },
+     "source": "https://lpab.nsw.gov.au/documents/guides-and-facts-sheets/guide_for_applicants_for_admission_version_5.2.pdf",
+     "quote": "Test results must be no more than two years old at the time of applying for admission.",
+     "sourceType": "regulator"
+    },
+    "englishExemptionAustralianLawSchool": {
+     "value": "LPAB may grant a standard exemption from IELTS where the law qualification relied on was undertaken at a law school accredited in Australia (Board may still require IELTS).",
+     "source": "https://lpab.nsw.gov.au/content/dam/dcj/legal-professional-admission-board/documents/guides-and-facts-sheets/ielts-guidelines-for-exemption-applications-approved-4-june-2019.pdf",
+     "quote": "undertook the academic qualification in law (on which the applicant relies for admission) at a law school that is accredited in Australia",
+     "sourceType": "regulator"
+    }
+   },
+   "australianStudyRoute": {
+    "value": "Accredited academic qualification in law (e.g. LLB or JD) plus accredited Practical Legal Training (e.g. Graduate Diploma of Legal Practice), then admission via compliance certificate and Supreme Court ceremony.",
+    "source": "https://lpab.nsw.gov.au/documents/guides-and-facts-sheets/guide_for_applicants_for_admission_version_5.2.pdf",
+    "quote": "has satisfactorily completed the specified practical legal training prerequisite",
+    "sourceType": "regulator"
+   },
+   "admissionNotPractice": {
+    "value": "Admission alone does not entitle a person to practise; a practising certificate is required (Law Society of NSW for solicitors, NSW Bar Association for barristers).",
+    "source": "https://lpab.nsw.gov.au/documents/guides-and-facts-sheets/guide_for_applicants_for_admission_version_5.2.pdf",
+    "quote": "Admission does not of itself entitle a person to engage in legal practice, but is a prerequisite for being able to apply for an Australian practising certificate",
+    "sourceType": "regulator"
+   }
+  },
+  "CASA": {
+   "assessment": {
+    "eligibility": {
+     "value": "Must apply under SOL/ENSOL, hold Australian flight crew qualifications and a CASA-issued CPL or ATPL.",
+     "source": "https://www.casa.gov.au/standard-page/application-skills-assessment-purposes-migration-aircraft-pilots",
+     "quote": "hold a CASA-issued commercial pilot licence (CPL) or air transport pilot licence (ATPL).",
+     "sourceType": "assessor"
+    },
+    "english": {
+     "value": "At least current level 4 Aviation English Language Proficiency (AELP); pass background security check.",
+     "source": "https://www.casa.gov.au/standard-page/application-skills-assessment-purposes-migration-aircraft-pilots",
+     "quote": "have at least a current level 4 Aviation English Language Proficiency (AELP) assessment",
+     "sourceType": "assessor"
+    },
+    "workExperience": {
+     "value": "Evidence of at least 5 years flying for work immediately before submitting Form 79, with employer references and logbook evidence.",
+     "source": "https://www.casa.gov.au/standard-page/application-skills-assessment-purposes-migration-aircraft-pilots",
+     "quote": "evidence of at least 5 years flying for work immediately to the date of submission of the Form 79",
+     "sourceType": "assessor"
+    },
+    "fee": {
+     "value": "A$100; ~14 days processing",
+     "source": "https://www.casa.gov.au/standard-page/application-skills-assessment-purposes-migration-aircraft-pilots",
+     "quote": "The cost for the skills assessment is $100.",
+     "sourceType": "assessor"
+    }
+   },
+   "registration": {
+    "value": "A CPL is required to fly for work purposes (CASR Part 61).",
+    "source": "https://www.casa.gov.au/licences-and-certificates/pilots/pilot-licences/commercial-pilot-licences/getting-commercial-pilot-licence-cpl",
+    "quote": "If you would like to fly an aircraft for work purposes, you need a commercial pilot licence (CPL).",
+    "sourceType": "regulator"
+   }
+  }
+ },
+ "occupations": {
+  "311213": {
+   "title": "Medical Laboratory Technician",
+   "assessor": "AIMS",
+   "differences": {
+    "assessment": {
+     "value": "Option 1: qualification comparable to an Australian diploma (at least AQF 5) with pathology subjects AND >=2 years full-time diagnostic pathology lab experience within the 5 years before applying. No professional exam.",
+     "source": "https://www.aims.org.au/common/Uploaded%20files/Overseas%20Skills%20Assessment/Guidelines%20for%20Assessment%20-%20MLS%20MLT%20v18.4.pdf",
+     "quote": "AIMS does not require the successful completion of a professional examination for the assessment of Medical Laboratory Technicians.",
+     "sourceType": "assessor"
+    },
+    "australianStudyRoute": {
+     "value": "Two-year diploma in laboratory technology (pathology testing)",
+     "source": "https://www.aims.org.au/common/Uploaded%20files/Overseas%20Skills%20Assessment/Guidelines%20for%20Assessment%20-%20MLS%20MLT%20v18.4.pdf",
+     "quote": "The primary qualification for a Medical Laboratory Technician in Australia is a two-year diploma in laboratory technology (pathology testing).",
+     "sourceType": "assessor"
+    },
+    "registration": {
+     "value": "Not required (no statutory registration/licensing); voluntary certification scheme exists.",
+     "source": "https://www.aims.org.au/common/Uploaded%20files/Overseas%20Skills%20Assessment/Guidelines%20for%20Assessment%20-%20MLS%20MLT%20v18.4.pdf",
+     "quote": "There is no statutory registration or licensing of Medical Laboratory Scientists or Technicians in Australia",
+     "sourceType": "assessor"
+    },
+    "otherConditions": {
+     "value": "Minimum 2 years full-time (or part-time equivalent) diagnostic medical pathology lab experience wholly within the 5 years before applying — applies even to Australian diploma holders.",
+     "source": "https://www.aims.org.au/common/Uploaded%20files/Overseas%20Skills%20Assessment/Guidelines%20for%20Assessment%20-%20MLS%20MLT%20v18.4.pdf",
+     "quote": "A minimum of two (2) years full-time (or part-time equivalent) diagnostic medical pathology laboratory work experience wholly within the five-year period immediately prior to applying for assessment.",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "234611": {
+   "title": "Medical Laboratory Scientist",
+   "assessor": "AIMS",
+   "differences": {
+    "assessment": {
+     "value": "Option 1 (AIMS-accredited degree): classified as MLS without the AIMS Professional Examination; subjects must follow the AIMS accredited subject pathway. Non-accredited degrees need Stage 1 + exam and 2 years' experience.",
+     "source": "https://www.aims.org.au/common/Uploaded%20files/Overseas%20Skills%20Assessment/Guidelines%20for%20Assessment%20-%20MLS%20MLT%20v18.4.pdf",
+     "quote": "Applicants who have completed an AIMS accredited program will be classified as a Medical Laboratory Scientist ANZSCO 234611.",
+     "sourceType": "assessor"
+    },
+    "australianStudyRoute": {
+     "value": "AIMS-accredited 3- or 4-year degree in medical laboratory science / laboratory medicine (accredited Bachelor and Masters programs listed by AIMS).",
+     "source": "https://www.aims.org.au/common/Uploaded%20files/Overseas%20Skills%20Assessment/Guidelines%20for%20Assessment%20-%20MLS%20MLT%20v18.4.pdf",
+     "quote": "The primary qualification for Medical Laboratory Scientists in Australia is a three or four year degree in medical laboratory science / laboratory medicine, accredited by AIMS.",
+     "sourceType": "assessor"
+    },
+    "registration": {
+     "value": "Not required (no statutory registration/licensing).",
+     "source": "https://www.aims.org.au/common/Uploaded%20files/Overseas%20Skills%20Assessment/Guidelines%20for%20Assessment%20-%20MLS%20MLT%20v18.4.pdf",
+     "quote": "There is no statutory registration or licensing of Medical Laboratory Scientists or Technicians in Australia",
+     "sourceType": "assessor"
+    },
+    "otherConditions": {
+     "value": "No post-graduate experience required under Option 1.",
+     "source": "https://www.aims.org.au/common/Uploaded%20files/Overseas%20Skills%20Assessment/Guidelines%20for%20Assessment%20-%20MLS%20MLT%20v18.4.pdf",
+     "quote": "Postgraduate professional experience is not a requirement for option 1.",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "311216": {
+   "title": "Pathology Collector",
+   "assessor": "AIMS",
+   "differences": {
+    "assessment": {
+     "value": "Australian HLT37215 Certificate III in Pathology Collection + current first aid (HLTAID010 equivalent) + >=2 years full-time experience within 5 years: classified without written exam.",
+     "source": "https://www.aims.org.au/common/Uploaded%20files/Overseas%20Skills%20Assessment/Guidelines%20For%20Assessment_Pathology%20Collector_v12.4.pdf",
+     "quote": "will be classified as a Pathology Collector / Phlebotomist ANZSCO 311216 and will not be required to take a written examination.",
+     "sourceType": "assessor"
+    },
+    "australianStudyRoute": {
+     "value": "Certificate III in Pathology Collection HLT37215 (AQF 3) from an approved institution, plus current first aid certification.",
+     "source": "https://www.aims.org.au/common/Uploaded%20files/Overseas%20Skills%20Assessment/Guidelines%20For%20Assessment_Pathology%20Collector_v12.4.pdf",
+     "quote": "The minimum primary qualification for Pathology Collectors in Australia is a Certificate III† in Pathology Collection HLT37215",
+     "sourceType": "assessor"
+    },
+    "registration": {
+     "value": "Not required (no statutory registration).",
+     "source": "https://www.aims.org.au/common/Uploaded%20files/Overseas%20Skills%20Assessment/Guidelines%20For%20Assessment_Pathology%20Collector_v12.4.pdf",
+     "quote": "There is no statutory registration for Pathology Collectors or Phlebotomists in Australia.",
+     "sourceType": "assessor"
+    },
+    "otherConditions": {
+     "value": "Minimum 2 years full-time (or equivalent part-time) experience within the 5 years before applying; current first aid certificate equivalent to HLTAID010.",
+     "source": "https://www.aims.org.au/common/Uploaded%20files/Overseas%20Skills%20Assessment/Guidelines%20For%20Assessment_Pathology%20Collector_v12.4.pdf",
+     "quote": "a minimum of two (2) years full-time experience (or equivalent part-time) within the five (5) years prior to applying for assessment",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "252712": {
+   "title": "Speech Pathologist",
+   "assessor": "SPA",
+   "differences": {
+    "assessment": {
+     "value": "Australian graduates of an SPA-accredited program apply with the Australian-trained migration form (degree + transcript + ID); no exam, no experience requirement stated.",
+     "source": "https://www.speechpathologyaustralia.org.au/Common/Uploaded%20files/Smart%20Suite/Smart%20Library/08d6d4f2-8d47-4517-98af-ac487296081b/20240509_COMMS_Fillable%20Skills%20Assessment%20for%20Migration%20Purposes%20Application.pdf",
+     "quote": "All applications for a Skills Assessment for Migration Purposes must be accompanied by the following documentation.",
+     "sourceType": "assessor"
+    },
+    "australianStudyRoute": {
+     "value": "SPA-accredited Bachelor or (graduate-entry) Master degree in speech pathology; both equally recognised. Nominal duration not stated on the pages checked.",
+     "source": "https://www.speechpathologyaustralia.org.au/Public/Public/Certification-and-universities/Become-a-speech-pathologist.aspx?hkey=9aef1d0f-6fba-4f73-bc54-a282f47a7268",
+     "quote": "Speech Pathology Australia accredits both bachelor and master’s degree programs against the same standards.",
+     "sourceType": "assessor"
+    },
+    "registration": {
+     "value": "Not a statutory requirement on pages checked; CPSP via SPA membership expected by most employers.",
+     "source": "https://www.speechpathologyaustralia.org.au/Public/Public/Certification-and-universities/Become-a-speech-pathologist.aspx?hkey=9aef1d0f-6fba-4f73-bc54-a282f47a7268",
+     "quote": "most employers, insurance schemes and funding bodies require speech pathologists to be a Certified Practising Speech Pathologist (CPSP)",
+     "sourceType": "assessor"
+    },
+    "otherConditions": null
+   }
+  },
+  "251111": {
+   "title": "Dietitian",
+   "assessor": "DAA",
+   "differences": {
+    "assessment": {
+     "value": "Graduate of an accredited Australian dietetics program; English test needed only if more than 2 years since graduation.",
+     "source": "https://dietitiansaustralia.org.au/sites/default/files/2025-09/Skills%20Migration%20Assessment%20Policy%20%282025%29%20%281%29.pdf",
+     "quote": "English language proficiency (if more than 2 years since graduation or MCQ exam).",
+     "sourceType": "assessor"
+    },
+    "australianStudyRoute": {
+     "value": "Dietetics program accredited by Dietitians Australia (nominal duration not stated on pages checked).",
+     "source": "https://dietitiansaustralia.org.au/sites/default/files/2025-09/Skills%20Migration%20Assessment%20Policy%20%282025%29%20%281%29.pdf",
+     "quote": "Evidence of completion of an accredited Australian Dietetic program",
+     "sourceType": "assessor"
+    },
+    "registration": {
+     "value": "APD credential (Dietitians Australia), not a statutory registration on pages checked.",
+     "source": "https://dietitiansaustralia.org.au/working-nutrition-and-dietetics-australia",
+     "quote": "To become a credentialed dietitian in Australia you need to join our APD program.",
+     "sourceType": "assessor"
+    },
+    "otherConditions": {
+     "value": "Processing within 6 weeks of complete application; subclass 485 post-study work stream no longer needs a DA assessment.",
+     "source": "https://dietitiansaustralia.org.au/working-dietetics/skills-recognition-australia/skills-assessment-visa",
+     "quote": "485 Visa applications under the post-study work stream no longer require an assessment from Dietitians Australia.",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "234711": {
+   "title": "Veterinarian",
+   "assessor": "AVBC",
+   "differences": {
+    "assessment": {
+     "value": "AVBC-accredited Australian vet degree + full unconditional state/territory registration + English standard (Australian education may meet a non-test pathway).",
+     "source": "https://avbc.asn.au/for-veterinarians/skills-assessment-for-migration/",
+     "quote": "Hold FULL registration (without conditions) with an Australian Veterinary Registration Board",
+     "sourceType": "assessor"
+    },
+    "australianStudyRoute": {
+     "value": "AVBC-accredited programs e.g. BVSc/DVM (Melbourne, Sydney), BVSc(Hons) (UQ), BVMS/DVM, BVBiol/BVSc (CSU), BSc(VetBiosc)+DVM (Adelaide), BVM(Hons) (Southern Cross, provisional). Nominal durations not stated on AVBC page.",
+     "source": "https://avbc.asn.au/veterinary-education/avbc-accredited-veterinary-school/",
+     "quote": "AVBC’s Veterinary Schools Accreditation Advisory Committee (VSAAC) has accredited the veterinary programs listed below.",
+     "sourceType": "assessor"
+    },
+    "registration": {
+     "value": "Full registration with state/territory board (e.g. Veterinary Practitioners Board of NSW: AVBC-approved qualification + graduated = full registration; English proof only if primary vet qualification not taught in English).",
+     "source": "https://www.vpb.nsw.gov.au/page/registration-veterinarian-getting-registered",
+     "quote": "If you have completed the requirements of an AVBC approved qualification and have attended a graduation ceremony you are eligible for full registration.",
+     "sourceType": "regulator"
+    },
+    "registrationEnglish": {
+     "value": "NSW board: English evidence only if vet qualification not taught in English.",
+     "source": "https://www.vpb.nsw.gov.au/page/registration-veterinarian-getting-registered",
+     "quote": "Proof of meeting English language requirements if your primary veterinary qualification is not taught in English",
+     "sourceType": "regulator"
+    },
+    "otherConditions": null
+   }
+  },
+  "232111": {
+   "title": "Architect",
+   "assessor": "AACA",
+   "differences": {
+    "assessment": {
+     "value": "Verification of an AACA-accredited Australian qualification (normally Master of Architecture); bachelor-level degrees are not accredited.",
+     "source": "https://aaca.org.au/migration-assessments/verification-of-australian-accredited-architecture-qualification/",
+     "quote": "In Australia, the accredited qualification is normally the Master of Architecture degree. Bachelor-level degrees are not accredited .",
+     "sourceType": "assessor"
+    },
+    "australianStudyRoute": {
+     "value": "Accredited Master of Architecture (22 universities). AACA describes an architect as having 5 years professional education.",
+     "source": "https://aaca.org.au/architectural-profession-in-australia/",
+     "quote": "An architect has 5 years professional education, a minimum of two years practical experience, has successfully completed the Architectural practice Examination and is included on a Register of Architects.",
+     "sourceType": "assessor"
+    },
+    "registration": {
+     "value": "Registration with the state/territory Architect Registration Board after passing the 3-part APE; APE Part 1 application lodged with the board where you wish to practise.",
+     "source": "https://aaca.org.au/architectural-practice-examination/",
+     "quote": "Success in Part 3 of the Architectural Practice Examination allows the candidate to apply for registration in any state or territory in Australia.",
+     "sourceType": "assessor"
+    },
+    "otherConditions": {
+     "value": "For registration (not for the migration verification): minimum 3,300 hours (~2 years) logged experience, including at least 12 months after completing the accredited qualification.",
+     "source": "https://aaca.org.au/architectural-practice-examination/",
+     "quote": "All Candidates must complete a minimum of 3,300 hours (approximately 2 years) usually under the supervision of an architect.",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "271311": {
+   "title": "Solicitor",
+   "assessor": "Legal admissions authority of a state or territory",
+   "differences": {
+    "assessment": {
+     "value": "Skilled Migration Letter from the admitting authority after admission (NSW LPAB example).",
+     "source": "https://lpab.nsw.gov.au/documents/guides-and-facts-sheets/guide_for_applicants_for_admission_version_5.2.pdf",
+     "quote": "To apply for a Skilled Migration Letter after you have been admitted",
+     "sourceType": "regulator"
+    },
+    "australianStudyRoute": {
+     "value": "NSW-accredited academic courses include LLB or JD (e.g. UNSW, UTS, Newcastle) plus accredited PLT (e.g. College of Law Graduate Diploma of Legal Practice).",
+     "source": "https://lpab.nsw.gov.au/admission-lawyer/accredited-law-courses-plt-providers.html",
+     "quote": "College of Law Graduate Diploma of Legal Practice",
+     "sourceType": "regulator"
+    },
+    "registration": {
+     "value": "Admission + solicitor practising certificate from the Law Society of NSW (NSW example). English requirement is the admission-stage IELTS (L7 R7 W8 S7.5) unless exempted.",
+     "source": "https://lpab.nsw.gov.au/documents/guides-and-facts-sheets/guide_for_applicants_for_admission_version_5.2.pdf",
+     "quote": "An application for a practising certificate in New South Wales must be made either to the Law Society of NSW (to practice as a solicitor) or the NSW Bar Association (to practice as a barrister).",
+     "sourceType": "regulator"
+    },
+    "otherConditions": {
+     "value": "Statutory condition of supervised legal practice: 24 months full-time (or part-time equivalent) for PLT-course graduates.",
+     "source": "https://www.lawsociety.com.au/practising-law-in-NSW/working-as-a-solicitor-in-NSW/supervised-legal-practice",
+     "quote": "For most practitioners, the required period of supervised legal practice is 24 months full-time practice, or the equivalent worked out on a part-time basis.",
+     "sourceType": "regulator"
+    }
+   }
+  },
+  "271111": {
+   "title": "Barrister",
+   "assessor": "Legal admissions authority of a state or territory",
+   "differences": {
+    "assessment": {
+     "value": "Same admission-based Skilled Migration Letter as solicitors (NSW LPAB example); admission is as a 'lawyer'.",
+     "source": "https://nswbar.asn.au/becoming-a-barrister/admission/",
+     "quote": "Before you can apply for a NSW barrister's practising certificate , you must be admitted as a lawyer of the Supreme Court of NSW or another Australian state or territory under a corresponding law.",
+     "sourceType": "regulator"
+    },
+    "australianStudyRoute": {
+     "value": "Same as solicitor (accredited law degree + PLT + admission), then NSW Bar Exam (passing required before the Bar Practice Course).",
+     "source": "https://nswbar.asn.au/becoming-a-barrister/bar-exams/",
+     "quote": "it is necessary to pass this exam before commencing the Bar Practice Course",
+     "sourceType": "regulator"
+    },
+    "registration": {
+     "value": "Barrister practising certificate from the NSW Bar Association (initial certificate carries reader conditions).",
+     "source": "https://nswbar.asn.au/becoming-a-barrister/reading",
+     "quote": "A lawyer, when issued with an initial practising certificate with reader conditions, is termed a 'reader'.",
+     "sourceType": "regulator"
+    },
+    "otherConditions": {
+     "value": "Reading program: Bar Practice Course + minimum 12 months reading under a tutor; Bar Practice Course within 15 months of passing the exam.",
+     "source": "https://nswbar.asn.au/becoming-a-barrister/reading",
+     "quote": "The period of reading starts when the practising certificate with reader conditions is issued, and continues for a minimum of 12 months.",
+     "sourceType": "regulator"
+    }
+   }
+  },
+  "231111": {
+   "title": "Aeroplane Pilot",
+   "assessor": "CASA",
+   "differences": {
+    "assessment": {
+     "value": "CASA skills assessment (Form 79): CASA CPL/ATPL, AELP level 4, security check, 5 years' flying for work.",
+     "source": "https://www.casa.gov.au/standard-page/application-skills-assessment-purposes-migration-aircraft-pilots",
+     "quote": "We do skills assessments for pilots applying for a visa under the program.",
+     "sourceType": "assessor"
+    },
+    "australianStudyRoute": {
+     "value": "CASA CPL (aeroplane): age 18+, CPL theory exams, training with Part 141/142 operator, flight test, Class 1 medical for test. Minimum aeronautical experience 150 h (integrated) / 200 h (non-integrated). No nominal course duration stated.",
+     "source": "https://www.casa.gov.au/licences-and-certificates/pilots/pilot-licences/commercial-pilot-licences/getting-commercial-pilot-licence-cpl",
+     "quote": "Aeronautical experience 150 200 Up to 10 hours can be in a flight simulation training device.",
+     "sourceType": "regulator"
+    },
+    "registration": {
+     "value": "CASA commercial pilot licence (CPL) or ATPL.",
+     "source": "https://www.casa.gov.au/licences-and-certificates/pilots/pilot-licences/commercial-pilot-licences/getting-commercial-pilot-licence-cpl",
+     "quote": "If you would like to fly an aircraft for work purposes, you need a commercial pilot licence (CPL).",
+     "sourceType": "regulator"
+    },
+    "otherConditions": {
+     "value": "5 years flying for work before applying for the CASA skills assessment.",
+     "source": "https://www.casa.gov.au/standard-page/application-skills-assessment-purposes-migration-aircraft-pilots",
+     "quote": "evidence of at least 5 years flying for work immediately to the date of submission of the Form 79",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "231114": {
+   "title": "Helicopter Pilot",
+   "assessor": "CASA",
+   "differences": {
+    "assessment": {
+     "value": "Same CASA Form 79 skills assessment as aeroplane pilots (page not category-specific).",
+     "source": "https://www.casa.gov.au/standard-page/application-skills-assessment-purposes-migration-aircraft-pilots",
+     "quote": "We do skills assessments for pilots applying for a visa under the program.",
+     "sourceType": "assessor"
+    },
+    "australianStudyRoute": {
+     "value": "CASA CPL (helicopter, CPLH): minimum aeronautical experience 100 h (integrated) / 150 or 105 h (non-integrated, Part 61 MOS Sch 9). Non-integrated CPLH carries a note that it does not meet international standards.",
+     "source": "https://www.casa.gov.au/licences-and-certificates/pilots/pilot-licences/commercial-pilot-licences/getting-commercial-pilot-licence-cpl",
+     "quote": "Aeronautical experience 100 150 or 105* Up to 10 hours can be in a flight simulation training device.",
+     "sourceType": "regulator"
+    },
+    "registration": {
+     "value": "CASA CPL (helicopter category) or ATPL.",
+     "source": "https://www.casa.gov.au/licences-and-certificates/pilots/pilot-licences/commercial-pilot-licences/getting-commercial-pilot-licence-cpl",
+     "quote": "If you get a CPLH through a non-integrated course, your licence will include a note that it doesn't meet the international standards.",
+     "sourceType": "regulator"
+    },
+    "otherConditions": {
+     "value": "5 years flying for work before applying for the CASA skills assessment.",
+     "source": "https://www.casa.gov.au/standard-page/application-skills-assessment-purposes-migration-aircraft-pilots",
+     "quote": "evidence of at least 5 years flying for work immediately to the date of submission of the Form 79",
+     "sourceType": "assessor"
+    }
+   }
+  }
+ },
+ "gaps": [
+  "AIMS no longer prints its own English scores (since 12 March 2026); scores given are Home Affairs 'Proficient English' tables, which AIMS says it aligns with. AIMS also lists TOEFL generally (Home Affairs requires TOEFL iBT registered 'for Australia').",
+  "SPA: the web page for Australian-trained migration assessments (join/Aus-trained-apps/Migration-purposes.aspx) now returns 404; data comes from the SPA-hosted application form PDF dated 2024-05-09, which lists no English test. Nominal SPA program durations not stated on pages checked. SPA 2-year validity quote is from the overseas-trained section.",
+  "Dietitians Australia policy PDF says 'Drafted July 2025'; PTE wording differs between web page ('65 across all components') and policy ('65 for each component'). Program durations not stated.",
+  "AVBC: whether an Australian vet degree automatically satisfies the English standard is inferred from the Extended Education pathway (Australia is a recognised country); not explicitly stated. Only NSW board registration page checked; other states' boards not verified. Vet degree durations not stated on AVBC page.",
+  "AACA: verification route lists no English or experience requirement; state board English requirements for architect registration not found/checked (set null implicitly). AACA now references OSCA 241131 instead of ANZSCO 232111.",
+  "Legal: only NSW (LPAB, Law Society of NSW, NSW Bar Association) verified. Other states' admission boards (e.g. Victorian Legal Admissions Board) have their own processes and letters; not verified. No explicit statement that the Skilled Migration Letter itself requires work experience. Nominal LLB/JD/PLT durations not stated on official pages checked.",
+  "CASA: AELP detail page returned 404; level 4 requirement taken from the skills assessment page. The 5-years-flying requirement effectively rules out fresh Australian CPL graduates. No nominal training duration published.",
+  "Home Affairs' own list of assessing authorities per occupation not re-checked in this pass."
+ ],
+ "secondCheck": {
+  "date": "2026-10-24",
+  "note": "All quotes re-checked on 2026-10-24 (some pages rendered in headless Chrome).",
+  "unverified": []
+ }
+}

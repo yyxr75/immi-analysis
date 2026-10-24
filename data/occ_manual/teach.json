@@ -456,9 +456,37 @@
       "quote": "It is a legislative requirement for anyone undertaking the duties of a teacher in a Victorian school or early childhood setting to be registered with VIT.",
       "sourceType": "regulator"
      },
-     "QLD": null
+     "QLD": {
+      "value": "Not currently required by law for early childhood teachers in centre-based/NQF services: QCT currently regulates teachers working in schools, with registration based on school-teaching qualifications. The Education Legislation (Registration of Early Childhood Teachers) Amendment Bill 2026 (introduced 17 Sep 2026, before committee; report due 6 Nov 2026) would let ECTs with an ACECQA-approved ECT qualification apply for QCT registration and require qualified ECTs in centre-based ECEC services to hold QCT registration by 1 July 2028. Not yet law as of the page date (last updated 20 Oct 2026).",
+      "source": "https://www.qct.edu.au/about/news-and-media/articles/proposed-changes-to-early-childhood-teacher-registration",
+      "quote": "Currently, the Queensland College of Teachers (QCT) regulates teachers working in schools, and registration requirements are based on the qualifications needed to teach in school settings.",
+      "sourceType": "regulator"
+     },
+     "QLD_proposed": {
+      "value": "Proposed (Bill not yet passed): qualified ECTs in centre-based ECEC services must hold QCT registration by 1 July 2028; other ECEC educators would not need it.",
+      "source": "https://www.qct.edu.au/about/news-and-media/articles/proposed-changes-to-early-childhood-teacher-registration",
+      "quote": "require qualified ECTs working in centre-based early childhood education and care services to hold QCT registration by 1 July 2028.",
+      "sourceType": "regulator"
+     },
+     "QLD_voluntaryNow": {
+      "value": "ACECQA's state table: registration is voluntary for ECTs in NQF settings in Queensland; some employers require it.",
+      "source": "https://www.acecqa.gov.au/qualifications-0/early-childhood-teacher-registration-and-accreditation",
+      "quote": "Registration is voluntary for early childhood teachers in NQF settings. Some employers require teacher registration as a condition of employment.",
+      "sourceType": "assessor"
+     },
+     "QLD_schools": {
+      "value": "Teaching in a Queensland school (as opposed to an NQF early childhood service) requires QCT approval to teach (registration or Permission to Teach).",
+      "source": "https://www.qct.edu.au/registration/eligibility",
+      "quote": "To teach in a Queensland school, you must hold approval to teach with the QCT.",
+      "sourceType": "regulator"
+     }
     },
-    "assessorChangeNote": null
+    "assessorChangeNote": {
+     "value": "ACECQA states on its migration skills assessment page that it is the approved Assessing Authority for Early Childhood (Pre-Primary School) Teacher (241111), alongside the child care occupations. No ACECQA page or guideline checked states the date it took over from AITSL.",
+     "source": "https://www.acecqa.gov.au/qualifications-0/apply-migration-skills-assessment",
+     "quote": "ACECQA is the approved Assessing Authority for the following occupations: Early Childhood (Pre-Primary School) Teacher",
+     "sourceType": "assessor"
+    }
    }
   },
   "134111": {
@@ -526,16 +554,22 @@
  },
  "gaps": [
   "AITSL: no official source found stating nominal durations for specific Australian degrees (e.g. 'Master of Teaching = 2 years'); used the ITE Accreditation Standards (2025) configuration rule (3-yr UG + 2-yr FTE graduate entry, or 4-yr integrated) instead. Those standards take full effect 1 Jan 2027 (transition during 2026).",
-  "241111 registration QLD: QCT website pages returned HTTP 403; could not confirm on an official page whether QCT registration is mandatory for early childhood teachers in Queensland - set null. QCT English scores taken from QCT policy PDF (revised 2024, review date Oct 2027).",
-  "241111 assessorChangeNote: ACECQA took over the ECT occupation from AITSL (reported as 7 Dec 2024), but ACECQA HTML pages returned 403 so the exact wording could not be quoted - set null.",
-  "ACECQA HTML pages (acecqa.gov.au skilled migration pages, approved qualifications list) blocked automated access (HTTP 403); all ACECQA data comes from official ACECQA PDFs (Skills Assessment Application Guidelines Nov 2025, Provisional Skills Assessment Guidelines Mar 2026, Qualification Assessment Guidelines Aug 2025). A newer ACECQA guideline could exist on the HTML page without being detected.",
+  "241111 assessorChangeNote: ACECQA's HTML migration page now read (via headless Chrome) and confirms ACECQA is the assessing authority for 241111, but neither that page, the ECT application page, the FAQ, the news listing nor the Nov 2025 guidelines PDF state the date ACECQA took over from AITSL (reported elsewhere as 7 Dec 2024) - start date still unconfirmed.",
+  "ACECQA HTML pages are readable in headless Chrome (checked 2026-10-24: migration skills assessment, ECT application, registration-and-accreditation, FAQ pages); they did not show a newer guideline than the PDFs used. The assessment data still comes from the official ACECQA PDFs (Skills Assessment Application Guidelines Nov 2025, Provisional Skills Assessment Guidelines Mar 2026, Qualification Assessment Guidelines Aug 2025).",
   "ACECQA approved ECT qualification list itself (specific Australian courses) not captured - users should check ACECQA's qualifications checker.",
   "Fees (AITSL) not captured; ACECQA fees are $1100 standard / $330 provisional per the PDFs.",
   "Registration English requirements for other states/territories (SA, WA, TAS, ACT, NT) not checked; NSW/VIC/QLD all use IELTS Academic R7/W7/S8/L8 with 3-year validity, matching AITSL's test scores but with differing study exemptions (NSW: all qualifications from listed countries; VIC: all ITE/EC study in listed countries; QLD: entire 4 years in exempt country)."
  ],
  "secondCheck": {
   "date": "2026-10-24",
-  "note": "All quotes re-checked word for word against the cited pages on 2026-10-24.",
+  "note": "All quotes re-checked word for word on 2026-10-24 (QCT and ACECQA pages rendered in headless Chrome).",
   "unverified": []
+ },
+ "gapFill": {
+  "date": "2026-10-24",
+  "resolved": [
+   "241111 QLD registration (QCT)",
+   "241111 ACECQA assessing-authority wording (start date still open)"
+  ]
  }
 }

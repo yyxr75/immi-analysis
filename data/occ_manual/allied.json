@@ -1,0 +1,909 @@
+{
+ "group": "allied",
+ "checkedAt": "2026-10-24",
+ "shared": {
+  "AhpraNationalScheme": {
+   "registration": {
+    "standard": {
+     "value": "National Boards English language skills (ELS) registration standard (version dated 18 March 2025) applies to Australian-trained graduates as well as overseas-trained applicants; does not apply to students",
+     "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills.aspx",
+     "quote": "To get registration in Australia, every applicant must meet their National Board’s English language skills standard. This includes Australian-trained or overseas qualified applicants.",
+     "sourceType": "regulator"
+    },
+    "standardVersion": {
+     "value": "English language skills registration standard – 18 March 2025",
+     "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/English-language-skills-registration-standard",
+     "quote": "English language skills registration standard – 18 March 2025",
+     "sourceType": "regulator"
+    },
+    "professionsCovered": {
+     "value": [
+      "Chinese medicine",
+      "Osteopathy",
+      "Chiropractic",
+      "Dental",
+      "Pharmacy",
+      "Medical radiation practice",
+      "Physiotherapy",
+      "Occupational therapy",
+      "Psychology",
+      "Optometry",
+      "(also Paramedicine, Medical, Podiatry)"
+     ],
+     "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/English-language-skills-registration-standard",
+     "quote": "This standard sets out how you can show this to the Board and applies to the following professions:",
+     "sourceType": "regulator"
+    },
+    "pathways": {
+     "value": [
+      "combined education pathway",
+      "school education pathway",
+      "advanced education pathway",
+      "test pathway"
+     ],
+     "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/English-language-skills-registration-standard",
+     "quote": "The combined education pathway The school education pathway The advanced education pathway, and The test pathway.",
+     "sourceType": "regulator"
+    },
+    "combinedEducationPathway": {
+     "value": "At least 2 years of secondary education (Australian years 7-12 or equivalent) taught and assessed solely in English in a recognised country, AND the professional qualification taught and assessed solely in English in a recognised country. An international student who did only the degree in Australia does NOT meet this unless they also have 2 years of English-medium secondary schooling in a recognised country.",
+     "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/English-language-skills-registration-standard",
+     "quote": "at least two years of your secondary education which was taught and assessed solely in English in a recognised country , and your qualification(s) for your profession, which were taught and assessed solely in English in a recognised country .",
+     "sourceType": "regulator"
+    },
+    "advancedEducationPathway": {
+     "value": "At least 6 years in total (full-time equivalent) of education taught and assessed solely in English in a recognised country, including the professional qualification and AQF level 7+ tertiary education; max 2-year break; last period completed no more than 2 years before applying for registration.",
+     "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/English-language-skills-registration-standard",
+     "quote": "The last period of education must have been completed no more than two years before applying for registration.",
+     "sourceType": "regulator"
+    },
+    "schoolEducationPathway": {
+     "value": "English is main language AND at least 10 years of primary and secondary school taught and assessed solely in English in a recognised country.",
+     "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/English-language-skills-registration-standard",
+     "quote": "at least 10 years of your primary and secondary school education which was taught and assessed solely in English in a recognised country",
+     "sourceType": "regulator"
+    },
+    "testScoresTakenOnOrAfter2026-04-23": {
+     "value": {
+      "IELTS Academic": {
+       "overall": 7,
+       "listening": 7,
+       "reading": 7,
+       "writing": 6.5,
+       "speaking": 7
+      },
+      "PTE Academic": {
+       "overall": 63,
+       "listening": 58,
+       "reading": 59,
+       "writing": 60,
+       "speaking": 76
+      },
+      "OET": {
+       "listening": 350,
+       "reading": 360,
+       "writing": 350,
+       "speaking": 360
+      },
+      "TOEFL iBT (Taking TOEFL for Australia)": {
+       "overall": 91,
+       "listening": 22,
+       "reading": 22,
+       "writing": 23,
+       "speaking": 24
+      },
+      "Cambridge C1 Advanced": {
+       "overall": 178,
+       "listening": 175,
+       "reading": 179,
+       "writing": 180,
+       "speaking": 194
+      },
+      "Cambridge C2 Proficiency": {
+       "overall": 185,
+       "listening": 185,
+       "reading": 185,
+       "writing": 176,
+       "speaking": 185
+      }
+     },
+     "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/Accepted-English-language-tests",
+     "quote": "Minimum test scores for tests taken on or after 23 April 2026.",
+     "sourceType": "regulator"
+    },
+    "pteScoreQuote": {
+     "value": "PTE Academic new minimums: overall 63; L58 R59 W60 S76",
+     "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/Accepted-English-language-tests",
+     "quote": "PTE Academic Overall: 63 Listening: 58 Reading: 59 Writing: 60 Speaking: 76",
+     "sourceType": "regulator"
+    },
+    "oetScoreQuote": {
+     "value": "OET new minimums: L350 R360 W350 S360 (any profession-specific OET)",
+     "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/Accepted-English-language-tests",
+     "quote": "Listening: 350 Reading: 360 Writing: 350 Speaking: 360",
+     "sourceType": "regulator"
+    },
+    "scoreChangeEffective": {
+     "value": "New minimum scores apply to tests taken on or after 23 April 2026; tests taken on or before 22 April 2026 are assessed against the old minimums (e.g. IELTS 7 each band except writing 6.5; OET B / writing C+; PTE 66 overall and L/R/S 66, writing 56 per OTC copy of Table 1).",
+     "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/Accepted-English-language-tests",
+     "quote": "Changes to the minimum scores required are in effect from 23 April 2026.",
+     "sourceType": "regulator"
+    },
+    "twoSittings": {
+     "value": "Results accepted from one sitting, or a maximum of two sittings within 12 months subject to per-test floor scores",
+     "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/Accepted-English-language-tests",
+     "quote": "a maximum of two test sittings in a 12-month period only if:",
+     "sourceType": "regulator"
+    },
+    "testValidity": {
+     "value": "Test results generally valid for two years before the date of lodging the registration application",
+     "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/Accepted-English-language-tests",
+     "quote": "English language test results are valid for two years before the date you lodge your application for registration.",
+     "sourceType": "regulator"
+    },
+    "migrationTestReuse": {
+     "value": "Test results obtained for a skilled migration visa in the past two years can be reused if they meet the standard",
+     "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/Accepted-English-language-tests",
+     "quote": "If you sat one of these tests as part of your application for a skilled migration visa in the past two years and you achieved the requirements and results specified in the standard, you can use those results and do not need to sit another test.",
+     "sourceType": "regulator"
+    },
+    "exemptions": {
+     "value": "Exemption may be granted only for limited registration (demonstration of clinical techniques, research with limited/no patient contact, postgraduate study/examination/assessment or supervised practice). Not available for general registration of a new graduate. Not required again if ELS standard previously met without conditions (e.g. moving provisional to general).",
+     "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/English-language-skills-registration-standard",
+     "quote": "The Board may grant an exemption to this standard when you apply for limited registration in the following circumstances:",
+     "sourceType": "regulator"
+    },
+    "provisionalToGeneral": {
+     "value": "No need to re-meet ELS when moving from provisional to general registration in the same profession",
+     "source": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/English-language-skills-registration-standard",
+     "quote": "For example, you hold provisional registration and are applying for general registration",
+     "sourceType": "regulator"
+    },
+    "graduateRegistration": {
+     "value": "Graduates register with their profession's National Board via the Ahpra portal; can apply up to 90 days before completing the course. Pharmacy and psychology graduates have extra supervised-practice requirements; other professions in this group apply for registration on completing an approved program.",
+     "source": "https://www.ahpra.gov.au/Registration/Graduate-registration.aspx",
+     "quote": "Pharmacy and psychology graduates have additional requirements and should apply once your supervised practice arrangements are signed off.",
+     "sourceType": "regulator"
+    },
+    "applyEarly": {
+     "value": "Apply up to 90 days before course completion",
+     "source": "https://www.ahpra.gov.au/Registration/Graduate-registration.aspx",
+     "quote": "We recommend getting your application in early, up to 90 days before the time you expect to complete all your course requirements, which includes any placements.",
+     "sourceType": "regulator"
+    },
+    "elsForGraduates": {
+     "value": "ELS standard applies regardless of Australian training",
+     "source": "https://www.ahpra.gov.au/Registration/Graduate-registration.aspx",
+     "quote": "You must meet the ELS registration standard for your profession, regardless of whether you are Australian-trained or qualified overseas.",
+     "sourceType": "regulator"
+    }
+   }
+  },
+  "APharmC": {
+   "assessment": {
+    "stream": {
+     "value": "International Student Stream: for graduates of an accredited/approved pharmacy degree in Australia (as an international student) or NZ; registered or eligible to be registered",
+     "source": "https://www.pharmacycouncil.org.au/pharmacist/skills-assessment/",
+     "quote": "You graduated from a recognised pharmacy degree program in Australia or New Zealand as an international student.",
+     "sourceType": "assessor"
+    },
+    "eligibility": {
+     "value": "Must hold an approved pharmacy degree (graduated; incomplete degree not eligible). Recent graduate, provisionally or fully registered pharmacist may apply.",
+     "source": "https://www.pharmacycouncil.org.au/pharmacist/skills-assessment/international-student-stream/",
+     "quote": "You might be a recent graduate, or a provisionally or fully registered pharmacist.",
+     "sourceType": "assessor"
+    },
+    "incompleteDegree": {
+     "value": "Incomplete degree not eligible",
+     "source": "https://www.pharmacycouncil.org.au/pharmacist/skills-assessment/international-student-stream/",
+     "quote": "If your degree is incomplete, you are not eligible for a Skills Assessment outcome.",
+     "sourceType": "assessor"
+    },
+    "englishTestByAssessor": {
+     "value": false,
+     "source": "https://www.pharmacycouncil.org.au/pharmacist/skills-assessment/international-student-stream/",
+     "quote": "show proof of English competency.",
+     "sourceType": "assessor"
+    },
+    "workExperience": {
+     "value": "Not required. Optional Australian work-experience verification ($200) only counts work as a fully registered retail or hospital pharmacist (not intern), >20 h/week, at least 12 months in last 10 years",
+     "source": "https://www.pharmacycouncil.org.au/pharmacist/skills-assessment/international-student-stream/",
+     "quote": "International students do not need to have worked as a pharmacist to apply for a skills assessment.",
+     "sourceType": "assessor"
+    },
+    "fee": {
+     "value": "Eligibility Check and Skills Assessment Outcome: AUD 1110; work experience verification AUD 200",
+     "source": "https://www.pharmacycouncil.org.au/pharmacist/skills-assessment/international-student-stream/",
+     "quote": "Eligibility Check and Skills Assessment Outcome: $1110",
+     "sourceType": "assessor"
+    },
+    "notForRegistration": {
+     "value": "SAO is for visa/migration purposes only; not required for registration",
+     "source": "https://www.pharmacycouncil.org.au/pharmacist/skills-assessment/international-student-stream/",
+     "quote": "It is not required for pharmacist registration.",
+     "sourceType": "assessor"
+    }
+   },
+   "australianStudyRoute": {
+    "qualification": {
+     "value": "Board-approved pharmacy program of study; the program is approved either for provisional registration (then internship) or for general registration (registration exam still required)",
+     "source": "https://www.pharmacyboard.gov.au/Registration/Graduates-of-Australian-programs",
+     "quote": "The type of registration that a graduate of an approved program must apply for depends on whether the Board has approved the program for:",
+     "sourceType": "regulator"
+    },
+    "nominalDuration": null
+   },
+   "registration": {
+    "board": "Pharmacy Board of Australia",
+    "type": {
+     "value": "Provisional registration for the internship, then general registration",
+     "source": "https://www.pharmacyboard.gov.au/Registration/Graduates-of-Australian-programs",
+     "quote": "when applying for provisional registration to undertake an internship",
+     "sourceType": "regulator"
+    },
+    "english": "See shared.AhpraNationalScheme.registration (ELS standard)"
+   },
+   "otherConditions": {
+    "internship": {
+     "value": "Accredited intern training program plus Board-approved supervised practice",
+     "source": "https://www.pharmacyboard.gov.au/Registration/Internships",
+     "quote": "the period of supervised practice must include satisfactory completion of an accredited intern training program",
+     "sourceType": "regulator"
+    },
+    "supervisedHours": {
+     "value": "1,824 hours normally; a modified requirement of 1,575 hours remains in place until a revised supervised practice standard is implemented",
+     "source": "https://www.pharmacyboard.gov.au/Registration/Internships",
+     "quote": "The current modified requirement of 1,575 hours of Board-approved supervised practice for general registration will remain in place until a revised registration standard addressing supervised practice arrangements that has been approved by Ministers is implemented.",
+     "sourceType": "regulator"
+    },
+    "exams": {
+     "value": "Must pass written and oral registration examinations before general registration",
+     "source": "https://www.pharmacyboard.gov.au/Registration/Provisional-to-General-Registration",
+     "quote": "passed both registration examinations (written examination and oral examination)",
+     "sourceType": "regulator"
+    },
+    "unsupervisedPractice": {
+     "value": "Cannot practise unsupervised until general registration is granted",
+     "source": "https://www.pharmacyboard.gov.au/Registration/Provisional-to-General-Registration",
+     "quote": "You cannot work unsupervised as a pharmacist until you have been granted general registration.",
+     "sourceType": "regulator"
+    }
+   }
+  },
+  "APC": {
+   "assessment": {
+    "english": {
+     "value": "Must meet Ahpra English Language Skills Registration Standard for physiotherapists",
+     "source": "https://physiocouncil.com.au/international-physiotherapists/assessment-for-skilled-migration",
+     "quote": "Meet Ahpra’s English Language Skills Registration Standard for physiotherapists.",
+     "sourceType": "assessor"
+    },
+    "australianGraduateCriterion": {
+     "value": "Hold a physiotherapy qualification completed in Australia that is on the Physiotherapy Board of Australia Approved Programs of Study list (general registration not itself listed as a criterion)",
+     "source": "https://physiocouncil.com.au/international-physiotherapists/assessment-for-skilled-migration",
+     "quote": "physiotherapy qualification that was completed in Australia and is included in the Physiotherapy Board of Australia's Approved Programs of Study List under the profession 'Physiotherapist'",
+     "sourceType": "assessor"
+    },
+    "workExperience": {
+     "value": "Not required unless claiming skilled employment",
+     "source": "https://physiocouncil.com.au/international-physiotherapists/assessment-for-skilled-migration",
+     "quote": "You do not need to provide evidence of work experience unless you’re claiming ‘skilled employment’ on your visa application.",
+     "sourceType": "assessor"
+    },
+    "interimCertificate": {
+     "value": "Interim Certificate not accepted",
+     "source": "https://physiocouncil.com.au/international-physiotherapists/assessment-for-skilled-migration",
+     "quote": "No, the Interim Certificate is not applicable for a Skills Assessment.",
+     "sourceType": "assessor"
+    }
+   },
+   "australianStudyRoute": {
+    "qualification": {
+     "value": "Ahpra/Physiotherapy Board approved program of study at an accredited Australian (or NZ) university",
+     "source": "https://physiocouncil.com.au/international-physiotherapists/assessment-for-skilled-migration",
+     "quote": "Ahpra Approved Program of Study",
+     "sourceType": "assessor"
+    },
+    "nominalDuration": null
+   },
+   "registration": {
+    "board": "Physiotherapy Board of Australia",
+    "type": "general (graduate of approved program; see shared.AhpraNationalScheme)",
+    "english": "See shared.AhpraNationalScheme.registration"
+   },
+   "otherConditions": {}
+  },
+  "OTC": {
+   "assessment": {
+    "scope": {
+     "value": "Desktop assessment of OT qualification and English proficiency; applies to Australian-qualified international students too",
+     "source": "https://otcouncil.com.au/practitioner-assessment/assessment-for-migration/process-for-assessment-for-skilled-migration/",
+     "quote": "The Assessment for migration (Skills assessment) is a desktop assessment of an applicant’s occupational therapy qualification and evidence of English language proficiency.",
+     "sourceType": "assessor"
+    },
+    "registrationNotSubstitute": {
+     "value": "Australian qualification or Ahpra general registration does NOT replace the skills assessment",
+     "source": "https://otcouncil.com.au/practitioner-assessment/assessment-for-migration/faqs/",
+     "quote": "you must obtain one regardless of whether you hold an Australian occupational therapy qualification or general registration with Ahpra",
+     "sourceType": "assessor"
+    },
+    "registrationNotRequired": {
+     "value": "Registration is not required to apply",
+     "source": "https://otcouncil.com.au/practitioner-assessment/assessment-for-migration/faqs/",
+     "quote": "A skills assessment does not require you to hold Australian registration.",
+     "sourceType": "assessor"
+    },
+    "qualificationCriteria": {
+     "value": "Comparability to AQF Level 7 and WFOT approval status",
+     "source": "https://otcouncil.com.au/practitioner-assessment/assessment-for-migration/process-for-assessment-for-skilled-migration/",
+     "quote": "This includes consideration of the qualification’s comparability to an Australian Qualifications Framework (AQF) Level 7 qualification, World Federation of Occupational Therapists (WFOT) approval status",
+     "sourceType": "assessor"
+    },
+    "englishTestByAssessor": {
+     "value": "Yes - evidence of English proficiency required by OTC (education pathways per OTC \"Pathways to evidence English language proficiency\" mirroring Ahpra ELS, or test). Updated scores apply to tests taken on/after 23 April 2026.",
+     "source": "https://otcouncil.com.au/practitioner-assessment/assessment-for-migration/faqs/",
+     "quote": "The updated English language test score requirements apply only to tests taken on or after 23 April 2026.",
+     "sourceType": "assessor"
+    },
+    "workExperience": {
+     "value": "Not considered",
+     "source": "https://otcouncil.com.au/practitioner-assessment/assessment-for-migration/faqs/",
+     "quote": "The skills assessment is based on your occupational therapy qualification only.",
+     "sourceType": "assessor"
+    },
+    "validity": {
+     "value": "Generally valid 3 years",
+     "source": "https://otcouncil.com.au/practitioner-assessment/assessment-for-migration/faqs/",
+     "quote": "A positive skills assessment outcome is generally valid for three years from the date of issue",
+     "sourceType": "assessor"
+    }
+   },
+   "australianStudyRoute": {
+    "qualification": {
+     "value": "OT qualification comparable to an Australian Bachelor or Graduate Entry Master's degree (per OTC explanatory notes PDF); assessed against AQF Level 7 comparability",
+     "source": "https://otcouncil.com.au/practitioner-assessment/assessment-for-migration/process-for-assessment-for-skilled-migration/",
+     "quote": "Australian Qualifications Framework (AQF) Level 7 qualification",
+     "sourceType": "assessor"
+    },
+    "nominalDuration": null
+   },
+   "registration": {
+    "board": "Occupational Therapy Board of Australia",
+    "type": "general (graduate of approved program; see shared.AhpraNationalScheme)",
+    "english": "See shared.AhpraNationalScheme.registration",
+    "requiredToPractise": {
+     "value": "Registration with OTBA through Ahpra required to practise",
+     "source": "https://otcouncil.com.au/practitioner-assessment/assessment-for-migration/",
+     "quote": "Practitioners must hold registration with the Occupational Therapy Board of Australia (OTBA) through the Australian Health Practitioner Regulation Agency (Ahpra) to practise in Australia.",
+     "sourceType": "assessor"
+    }
+   },
+   "otherConditions": {}
+  },
+  "ASMIRT": {
+   "assessment": {
+    "australianGraduateStream": {
+     "value": "ASMIRT assesses international students who graduated from an Australian university accredited undergraduate program (details page not yet live)",
+     "source": "https://asmirt.org/overseas-assessments/",
+     "quote": "International students who have graduated with an Australian University Undergraduate Accredited Program",
+     "sourceType": "assessor"
+    },
+    "pageStatus": {
+     "value": "Assessment page under review; links not accessible until 30 October (2026)",
+     "source": "https://asmirt.org/overseas-assessments/",
+     "quote": "This page is currently under review and the links are not accessible.",
+     "sourceType": "assessor"
+    },
+    "scope": {
+     "value": "Assessing authority for diagnostic radiography/medical imaging, radiation therapy and sonography",
+     "source": "https://asmirt.org/overseas-assessments/",
+     "quote": "ASMIRT is the Assessing Authority for overseas applicants wishing to practice Diagnostic Radiography/Medical Imaging, Radiation Therapy and Ultrasound (Sonography) in Australia.",
+     "sourceType": "assessor"
+    },
+    "englishTestByAssessor": null
+   },
+   "australianStudyRoute": {
+    "qualification": {
+     "value": "Australian university undergraduate accredited program",
+     "source": "https://asmirt.org/overseas-assessments/",
+     "quote": "Australian University Undergraduate Accredited Program",
+     "sourceType": "assessor"
+    },
+    "nominalDuration": null
+   },
+   "registration": {
+    "board": "Medical Radiation Practice Board of Australia (radiographer, radiation therapist only)",
+    "divisions": {
+     "value": [
+      "diagnostic radiography",
+      "radiation therapy",
+      "nuclear medicine technology"
+     ],
+     "source": "https://www.medicalradiationpracticeboard.gov.au/Registration/Registration-requirements-and-your-obligations",
+     "quote": "The Board has three divisions of practice, and registered practitioners must be qualified in at least one of the following divisions: diagnostic radiography radiation therapy nuclear medicine technology",
+     "sourceType": "regulator"
+    },
+    "type": "general (graduate of approved program; see shared.AhpraNationalScheme)",
+    "english": "See shared.AhpraNationalScheme.registration"
+   },
+   "otherConditions": {}
+  },
+  "APS": {
+   "assessment": {
+    "criterion": {
+     "value": "Qualifications comparable to an Australian six-year psychology sequence, OR unconditional general registration with Ahpra",
+     "source": "https://psychology.org.au/about-us/what-we-do/assessments/assessment-overseas-qualifications/skilled-migration",
+     "quote": "you must demonstrate that your qualifications are comparable to a six-year sequence of study in psychology in Australia, or that you hold unconditional general registration with the Australian Health Practitioner Regulation Agency (AHPRA).",
+     "sourceType": "assessor"
+    },
+    "englishTestByAssessor": {
+     "value": "APS page says English must be demonstrated via a recognised test (IELTS, PTE etc.) aligned with practice requirements; page does not state an exemption for Australian-registered applicants",
+     "source": "https://psychology.org.au/about-us/what-we-do/assessments/assessment-overseas-qualifications/skilled-migration",
+     "quote": "The English language proficiency requirements align with the requirements to practice as a psychologist in Australia.",
+     "sourceType": "assessor"
+    },
+    "endorsementForSpecialistCodes": {
+     "value": "Clinical (272311), Educational (272312), Organisational (272313) require the corresponding Ahpra area of practice endorsement; otherwise assessed as Psychologists nec (272399)",
+     "source": "https://psychology.org.au/about-us/what-we-do/assessments/assessment-overseas-qualifications/skilled-migration",
+     "quote": "To receive a skills assessment under the occupation of Clinical Psychologist (272311), Educational Psychologist (272312) or Organisational Psychologist (272313) you must hold the corresponding area of practice endorsement with AHPRA. If no endorsement is held, the skills assessment will confirm suitability for migration under Psychologist nec (272399).",
+     "sourceType": "assessor"
+    }
+   },
+   "australianStudyRoute": {
+    "sequence": {
+     "value": "Six-year sequence: 4-year accredited sequence then 2 further years as provisional psychologist via higher degree pathway (e.g. 2-year Masters, or Doctorate) or 5+1 internship",
+     "source": "https://www.psychologyboard.gov.au/Registration/General",
+     "quote": "This typically includes a four-year Board-approved accredited sequence of study in psychology followed by a further two years of Board approved education and training undertaken while registered as a provisional psychologist",
+     "sourceType": "regulator"
+    },
+    "higherDegree": {
+     "value": "Higher degree pathway: postgraduate degree accredited at 5th and 6th year level (two-year Masters) or higher (3-4 year Doctorate)",
+     "source": "https://www.psychologyboard.gov.au/Registration/General",
+     "quote": "an approved postgraduate degree accredited at the fifth and sixth year level (such as a two-year Masters) or higher (such as a three or four year Doctorate)",
+     "sourceType": "regulator"
+    },
+    "fourPlusTwoClosed": {
+     "value": "4+2 closed to new applicants 30 June 2022; current interns must apply for general registration before 30 June 2027",
+     "source": "https://www.psychologyboard.gov.au/Registration/General",
+     "quote": "The 4+2 internship pathway closed to new applicants on 30 June 2022.",
+     "sourceType": "regulator"
+    },
+    "fourPlusTwoDeadline": {
+     "value": "30 June 2027",
+     "source": "https://www.psychologyboard.gov.au/Standards-and-Guidelines/FAQ/Internship-FAQ-4-2",
+     "quote": "apply for general registration prior to 30 June 2027",
+     "sourceType": "regulator"
+    },
+    "nationalExam": {
+     "value": "Internship pathway (5+1) candidates must pass the national psychology exam",
+     "source": "https://www.psychologyboard.gov.au/Registration/General",
+     "quote": "Those completing one of the internship pathways will need to pass the national psychology exam before applying for general registration.",
+     "sourceType": "regulator"
+    }
+   },
+   "registration": {
+    "board": "Psychology Board of Australia",
+    "type": {
+     "value": "Provisional registration during training, then general registration",
+     "source": "https://www.psychologyboard.gov.au/Registration/General",
+     "quote": "undertaken while registered as a provisional psychologist",
+     "sourceType": "regulator"
+    },
+    "english": "See shared.AhpraNationalScheme.registration"
+   },
+   "otherConditions": {
+    "endorsementEligibility": {
+     "value": "Area of practice endorsement requires general registration, an approved 6th-year-or-higher qualification in the area, and a Board-approved registrar program",
+     "source": "https://www.psychologyboard.gov.au/Endorsement/Pathways-to-endorsement",
+     "quote": "have completed a period of Board-approved supervised practice through the registrar program, or comparable supervised practice (unless exempt under the transition provisions noted below).",
+     "sourceType": "regulator"
+    },
+    "registrarMasters": {
+     "value": "Masters (approved to sixth year): registrar program 88 weeks minimum, 3000 hours, 80 h supervision, 80 h CPD",
+     "source": "https://www.psychologyboard.gov.au/Endorsement/Registrar-program",
+     "quote": "Masters Degree Approved to sixth year 88 weeks 3000 hours 80 hours 80 hours",
+     "sourceType": "regulator"
+    },
+    "internshipToEndorsement": {
+     "value": "4+2/5+1 graduates need an approved one-year postgraduate (bridging) qualification plus registrar program",
+     "source": "https://www.psychologyboard.gov.au/Endorsement/Pathways-to-endorsement",
+     "quote": "may complete an approved one-year postgraduate qualification and the registrar program to be eligible to apply for endorsement",
+     "sourceType": "regulator"
+    }
+   }
+  },
+  "ADC": {
+   "assessment": {
+    "australianGraduateRoute": {
+     "value": "Australian general dental qualification: skills assessment only (no exam pathway)",
+     "source": "https://www.adc.org.au/internationally-qualified-dental-practitioners/dentists/skills-assessment/",
+     "quote": "You have completed a general dental qualification in Australia.",
+     "sourceType": "assessor"
+    },
+    "documents": {
+     "value": "Includes evidence of registration/licence and work history, two professional references, certificate of good standing sent directly by regulator; specialists add AHPRA dental specialist registration certificate",
+     "source": "https://www.adc.org.au/internationally-qualified-dental-practitioners/dentists/skills-assessment/",
+     "quote": "AHPRA dental specialist registration certificate (if you are applying as a dental specialist)",
+     "sourceType": "assessor"
+    },
+    "fee": {
+     "value": "AUD 647; approx 8 weeks",
+     "source": "https://www.adc.org.au/internationally-qualified-dental-practitioners/dentists/skills-assessment/",
+     "quote": "$647 AUD (skills assessment)",
+     "sourceType": "assessor"
+    },
+    "validity": {
+     "value": "3 years",
+     "source": "https://www.adc.org.au/internationally-qualified-dental-practitioners/dentists/skills-assessment/",
+     "quote": "your skills assessment is valid for three years from the date of issue",
+     "sourceType": "assessor"
+    },
+    "englishTestByAssessor": null
+   },
+   "australianStudyRoute": {
+    "qualification": {
+     "value": "General dental qualification completed in Australia (Board-approved program)",
+     "source": "https://www.adc.org.au/internationally-qualified-dental-practitioners/dentists/skills-assessment/",
+     "quote": "You have completed a general dental qualification in Australia.",
+     "sourceType": "assessor"
+    },
+    "nominalDuration": null
+   },
+   "registration": {
+    "board": "Dental Board of Australia",
+    "type": "general (dentist); specialist registration for dental specialists",
+    "english": "See shared.AhpraNationalScheme.registration"
+   },
+   "otherConditions": {}
+  },
+  "CCEA": {
+   "assessment": {
+    "australianGraduateRoute": {
+     "value": "Recent Australian qualification from a recognised accredited program, or current unconditional Australian registration: exempt from Competency Based Assessment (desktop audit only)",
+     "source": "https://www.ccea.com.au/skills-assessment-requirements",
+     "quote": "Candidates who hold a recent Australian/New Zealand qualification from a recognised accredited program or current registration without conditions in Australia or New Zealand are exempt from the Competency Based Assessment.",
+     "sourceType": "assessor"
+    },
+    "englishTestByAssessor": {
+     "value": false,
+     "source": "https://www.ccea.com.au/skills-assessment",
+     "quote": "Candidates are not required to provide evidence of English language proficiency to CCEA.",
+     "sourceType": "assessor"
+    },
+    "workReferences": {
+     "value": "Chiropractic work experience references no longer required",
+     "source": "https://www.ccea.com.au/skills-assessment-requirements",
+     "quote": "Chiropractic work experience references are NO longer required.",
+     "sourceType": "assessor"
+    }
+   },
+   "australianStudyRoute": {
+    "qualification": {
+     "value": "Recognised accredited Australian chiropractic program",
+     "source": "https://www.ccea.com.au/skills-assessment-requirements",
+     "quote": "recognised accredited program",
+     "sourceType": "assessor"
+    },
+    "nominalDuration": null
+   },
+   "registration": {
+    "board": "Chiropractic Board of Australia",
+    "type": "general (graduate of approved program; see shared.AhpraNationalScheme)",
+    "english": "See shared.AhpraNationalScheme.registration"
+   },
+   "otherConditions": {}
+  },
+  "OCANZ": {
+   "assessment": {
+    "rule": {
+     "value": "OCANZ skills assessment required for GSM unless currently registered with the Optometry Board of Australia (registered applicants use Form 1 with OBA registration certificate)",
+     "source": "https://ocanz.org/examination/migration/",
+     "quote": "you must apply to the Optometry Council of Australia and New Zealand (OCANZ) for a Skills Assessment. Unless you are currently registered with the Optometry Board of Australia.",
+     "sourceType": "assessor"
+    },
+    "form1": {
+     "value": "Form 1 for optometrists currently registered in Australia; requires OBA certificate of registration",
+     "source": "https://ocanz.org/examination/australian-or-nz-optometrist/",
+     "quote": "For optometrists currently registered in Australia and requiring a skills assessment for migration purposes.",
+     "sourceType": "assessor"
+    },
+    "registrationCertificate": {
+     "value": "Certificate of registration as an optometrist with the Optometry Board of Australia (issued by AHPRA)",
+     "source": "https://ocanz.org/examination/australian-or-nz-optometrist/",
+     "quote": "Certificate of registration as an optometrist with the Optometry Board of Australia (issued by AHPRA",
+     "sourceType": "assessor"
+    },
+    "englishTestByAssessor": null
+   },
+   "australianStudyRoute": {
+    "qualification": null,
+    "nominalDuration": null
+   },
+   "registration": {
+    "board": "Optometry Board of Australia",
+    "type": "general (graduate of approved program; see shared.AhpraNationalScheme)",
+    "english": "See shared.AhpraNationalScheme.registration"
+   },
+   "otherConditions": {}
+  },
+  "AOAC": {
+   "assessment": {
+    "rule": {
+     "value": "Answer YES to at least one: hold current full (unconditional) practising certificate from Osteopathy Board of Australia; OR completed a recognised, registrable entry-level osteopathy qualification at an Australian university. Submit Form 1A.",
+     "source": "https://osteopathiccouncil.org.au/qualification-skills-assessment/assessment-for-general-skilled-migration-to-australia/",
+     "quote": "You have completed a recognized, registrable, entry-level qualification in osteopathy at a university in Australia",
+     "sourceType": "assessor"
+    },
+    "registrationOption": {
+     "value": "Current full (unconditional) OBA practising certificate",
+     "source": "https://osteopathiccouncil.org.au/qualification-skills-assessment/assessment-for-general-skilled-migration-to-australia/",
+     "quote": "You currently hold a current and full (unconditional) practicing certificate as an osteopath from the Osteopathy Board of Australia",
+     "sourceType": "assessor"
+    },
+    "processing": {
+     "value": "Up to 15 working days",
+     "source": "https://osteopathiccouncil.org.au/qualification-skills-assessment/assessment-for-general-skilled-migration-to-australia/",
+     "quote": "The assessment for skilled migration can take up to 15 working days",
+     "sourceType": "assessor"
+    },
+    "englishTestByAssessor": null
+   },
+   "australianStudyRoute": {
+    "qualification": {
+     "value": "Recognised, registrable entry-level osteopathy qualification at an Australian university",
+     "source": "https://osteopathiccouncil.org.au/qualification-skills-assessment/assessment-for-general-skilled-migration-to-australia/",
+     "quote": "recognized, registrable, entry-level qualification in osteopathy",
+     "sourceType": "assessor"
+    },
+    "nominalDuration": null
+   },
+   "registration": {
+    "board": "Osteopathy Board of Australia",
+    "type": "general (graduate of approved program; see shared.AhpraNationalScheme)",
+    "english": "See shared.AhpraNationalScheme.registration"
+   },
+   "otherConditions": {}
+  },
+  "CMBA": {
+   "assessment": {
+    "rule": {
+     "value": "No separate assessment: Home Affairs accepts a CMBA certificate of general registration (acupuncturist, Chinese herbal medicine practitioner or Chinese herbal dispenser) as the skills assessment",
+     "source": "https://www.chinesemedicineboard.gov.au/Registration/Internationally-qualified-Chinese-medicine-practitioners/Immigration",
+     "quote": "The Department of Home Affairs will accept the following evidence from the Board as evidence of a suitable skills assessment:",
+     "sourceType": "assessor"
+    },
+    "authorityFor": {
+     "value": [
+      "252211 acupuncturist",
+      "252214 Chinese medicine practitioner"
+     ],
+     "source": "https://www.chinesemedicineboard.gov.au/Registration/Internationally-qualified-Chinese-medicine-practitioners/Immigration",
+     "quote": "ANZSCO 252211 (acupuncturist) ANZSCO 252214 (Chinese medicine practitioner).",
+     "sourceType": "assessor"
+    },
+    "englishTestByAssessor": "Not separate - covered by registration ELS standard"
+   },
+   "australianStudyRoute": {
+    "qualification": null,
+    "nominalDuration": null
+   },
+   "registration": {
+    "board": "Chinese Medicine Board of Australia",
+    "type": "general registration (division-specific)",
+    "english": "See shared.AhpraNationalScheme.registration"
+   },
+   "otherConditions": {}
+  }
+ },
+ "occupations": {
+  "251513": {
+   "title": "Retail Pharmacist",
+   "assessor": "APharmC",
+   "differences": {
+    "workExperienceVerification": {
+     "value": "Optional APC work verification counts only fully registered retail or hospital pharmacist work",
+     "source": "https://www.pharmacycouncil.org.au/pharmacist/skills-assessment/international-student-stream/",
+     "quote": "as a fully registered retail or hospital pharmacist (not as an intern)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "251511": {
+   "title": "Hospital Pharmacist",
+   "assessor": "APharmC",
+   "differences": {
+    "note": "No official difference found from Retail Pharmacist for the International Student Stream; same SAO process."
+   }
+  },
+  "252511": {
+   "title": "Physiotherapist",
+   "assessor": "APC",
+   "differences": {}
+  },
+  "252411": {
+   "title": "Occupational Therapist",
+   "assessor": "OTC",
+   "differences": {}
+  },
+  "251211": {
+   "title": "Medical Diagnostic Radiographer",
+   "assessor": "ASMIRT",
+   "differences": {
+    "ahpraRegistered": {
+     "value": true,
+     "source": "https://www.medicalradiationpracticeboard.gov.au/Registration/Registration-requirements-and-your-obligations",
+     "quote": "diagnostic radiography",
+     "sourceType": "regulator"
+    }
+   }
+  },
+  "251212": {
+   "title": "Medical Radiation Therapist",
+   "assessor": "ASMIRT",
+   "differences": {
+    "ahpraRegistered": {
+     "value": true,
+     "source": "https://www.medicalradiationpracticeboard.gov.au/Registration/Registration-requirements-and-your-obligations",
+     "quote": "radiation therapy",
+     "sourceType": "regulator"
+    }
+   }
+  },
+  "251214": {
+   "title": "Sonographer",
+   "assessor": "ASMIRT",
+   "differences": {
+    "ahpraRegistered": {
+     "value": false,
+     "source": "https://www.ahpra.gov.au/Registration/Registers-of-Practitioners/Professions-and-Divisions.aspx",
+     "quote": "Within the registers, Chinese medicine, dental, medical radiation and nursing professions are further categorised into divisions.",
+     "sourceType": "regulator"
+    },
+    "ahpraRegisteredNote": "Confirmed by omission: sonography is not among the MRPB divisions (diagnostic radiography, radiation therapy, nuclear medicine technology) nor the protected titles, and no Sonography profession appears in Ahpra Professions and divisions list. No Ahpra registration or Ahpra ELS standard applies; ASMIRT assesses sonography.",
+    "assessorScope": {
+     "value": "ASMIRT assesses Ultrasound (Sonography)",
+     "source": "https://asmirt.org/overseas-assessments/",
+     "quote": "Ultrasound (Sonography)",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "272399": {
+   "title": "Psychologists nec",
+   "assessor": "APS",
+   "differences": {
+    "default": {
+     "value": "Default code if no area of practice endorsement",
+     "source": "https://psychology.org.au/about-us/what-we-do/assessments/assessment-overseas-qualifications/skilled-migration",
+     "quote": "If no endorsement is held, the skills assessment will confirm suitability for migration under Psychologist nec (272399).",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "272311": {
+   "title": "Clinical Psychologist",
+   "assessor": "APS",
+   "differences": {
+    "endorsementRequired": {
+     "value": "Clinical psychology area of practice endorsement (Ahpra) required",
+     "source": "https://psychology.org.au/about-us/what-we-do/assessments/assessment-overseas-qualifications/skilled-migration",
+     "quote": "you must hold the corresponding area of practice endorsement with AHPRA",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "272312": {
+   "title": "Educational Psychologist",
+   "assessor": "APS",
+   "differences": {
+    "endorsementRequired": {
+     "value": "Educational and developmental psychology area of practice endorsement required",
+     "source": "https://psychology.org.au/about-us/what-we-do/assessments/assessment-overseas-qualifications/skilled-migration",
+     "quote": "you must hold the corresponding area of practice endorsement with AHPRA",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "272313": {
+   "title": "Organisational Psychologist",
+   "assessor": "APS",
+   "differences": {
+    "endorsementRequired": {
+     "value": "Organisational psychology area of practice endorsement required",
+     "source": "https://psychology.org.au/about-us/what-we-do/assessments/assessment-overseas-qualifications/skilled-migration",
+     "quote": "you must hold the corresponding area of practice endorsement with AHPRA",
+     "sourceType": "assessor"
+    }
+   }
+  },
+  "252312": {
+   "title": "Dentist",
+   "assessor": "ADC",
+   "differences": {}
+  },
+  "252311": {
+   "title": "Dental Specialist",
+   "assessor": "ADC",
+   "differences": {
+    "assessorDocument": {
+     "value": "AHPRA dental specialist registration certificate",
+     "source": "https://www.adc.org.au/internationally-qualified-dental-practitioners/dentists/skills-assessment/",
+     "quote": "AHPRA dental specialist registration certificate (if you are applying as a dental specialist)",
+     "sourceType": "assessor"
+    },
+    "specialistRegistration": {
+     "value": "Specialist registration needs a qualification in the specialty plus all general-registration requirements as a dentist, and minimum 2 years general dental practice",
+     "source": "https://www.dentalboard.gov.au/Registration/Specialist-Registration.aspx",
+     "quote": "completed a minimum of two years general dental practice",
+     "sourceType": "regulator"
+    },
+    "qualification": {
+     "value": "Qualification in one of 13 approved specialties",
+     "source": "https://www.dentalboard.gov.au/Registration/Specialist-Registration.aspx",
+     "quote": "All applicants for specialist registration must hold a qualification in the specialty and meet all the requirements for general registration as a dentist.",
+     "sourceType": "regulator"
+    }
+   }
+  },
+  "252111": {
+   "title": "Chiropractor",
+   "assessor": "CCEA",
+   "differences": {}
+  },
+  "251411": {
+   "title": "Optometrist",
+   "assessor": "OCANZ",
+   "differences": {}
+  },
+  "252112": {
+   "title": "Osteopath",
+   "assessor": "AOAC",
+   "differences": {}
+  },
+  "252211": {
+   "title": "Acupuncturist",
+   "assessor": "CMBA",
+   "differences": {
+    "evidence": {
+     "value": "Certificate of general registration as an acupuncturist",
+     "source": "https://www.chinesemedicineboard.gov.au/Registration/Internationally-qualified-Chinese-medicine-practitioners/Immigration",
+     "quote": "Certificate of general registration as an acupuncturist",
+     "sourceType": "regulator"
+    }
+   }
+  },
+  "252214": {
+   "title": "Traditional Chinese Medicine Practitioner",
+   "assessor": "CMBA",
+   "differences": {
+    "evidence": {
+     "value": "Certificate of general registration as a Chinese herbal medicine practitioner or Chinese herbal dispenser (or acupuncturist)",
+     "source": "https://www.chinesemedicineboard.gov.au/Registration/Internationally-qualified-Chinese-medicine-practitioners/Immigration",
+     "quote": "Certificate of general registration as a Chinese herbal medicine practitioner",
+     "sourceType": "regulator"
+    },
+    "titleNote": "CMBA page names 252214 as \"Chinese medicine practitioner\"."
+   }
+  }
+ },
+ "gaps": [
+  "Ahpra ELS for international students: an Australian degree alone usually does NOT satisfy the combined education pathway (needs 2+ years English-medium secondary schooling in a recognised country) - most will need the test pathway or advanced education pathway (6 years FTE). This is an interpretation of the standard text, not an Ahpra statement about international students specifically.",
+  "Old (pre-23 April 2026) score table: only read from the OTC PDF copy (Table 1: IELTS 7/each except writing 6.5; OET B, writing C+; PTE 66 overall and L/R/S 66, writing 56; Cambridge 185, writing 176). Not quoted because the PDF text extraction garbles ligatures; the Ahpra transition arrangements policy PDF was not read.",
+  "ASMIRT: assessment page is \"under review\" with links inactive until 30 October 2026, so ASMIRT requirements for Australian-graduate international students (documents, English, registration evidence, sonography specifics such as ASAR accreditation) could not be confirmed. All ASMIRT assessment fields beyond scope are null.",
+  "Sonographer non-registration confirmed only by omission (no sonography division/profession on Ahpra and MRPB lists); no page found that explicitly says \"sonographers are not registered\".",
+  "APS: page does not state whether applicants holding Australian general registration are exempt from its English test statement; english field records the APS wording only.",
+  "ADC, OCANZ, AOAC: assessor pages state no English test of their own; recorded as null (not confirmed either way).",
+  "OCANZ: whether an Australian graduate not yet registered can use Form 1 is not stated; page implies registration with the Optometry Board is the route.",
+  "APC (physio) criteria mention an approved Australian qualification but do not require general registration; fact sheet PDF not read.",
+  "Nominal course durations: not stated on any official assessor/board page read except psychology (4-year sequence + 2 years; two-year Masters; 3-4 year Doctorate). All other nominalDuration fields null.",
+  "Hospital vs Retail Pharmacist: no official difference found on APC pages; both use the same International Student Stream SAO.",
+  "Medical radiation, physio, OT, dental, chiro, optometry, osteopathy, Chinese medicine: graduate registration type (general on completion of an approved program) is inferred from the Ahpra graduate page singling out pharmacy and psychology as having additional requirements; individual board graduate pages were not read.",
+  "Home Affairs pages were not consulted; skills assessment validity periods are as stated by assessors (OTC, ADC: 3 years).",
+  "CMBA immigration page was last reviewed 18/03/2025."
+ ],
+ "secondCheck": {
+  "date": "2026-10-24",
+  "note": "All 95 quotes re-checked word for word on 2026-10-24.",
+  "unverified": []
+ }
+}
