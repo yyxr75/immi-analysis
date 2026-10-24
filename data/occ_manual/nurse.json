@@ -22,9 +22,9 @@
     "sourceType": "assessor"
    },
    "englishTestForAssessment": {
-    "value": false,
-    "source": "https://www.anmac.org.au/skilled-migrants/modified-skills-assessment",
-    "quote": "If you are applying for a Modified Skills Assessment, you do not need to provide English language test results.",
+    "value": "Not listed for the Modified assessment: ANMAC asks for an English test only for a Full skills assessment (registered nurses already met NMBA's English standard)",
+    "source": "https://www.anmac.org.au/skilled-migrants/frequently-asked-questions",
+    "quote": "For a Full skills assessment, you need to have completed one of the following tests",
     "sourceType": "assessor"
    },
    "workExperienceForGeneralCodes": {
@@ -584,13 +584,7 @@
  ],
  "secondCheck": {
   "date": "2026-10-24",
-  "note": "Quotes checked again by script against the cited pages on 2026-10-24; paths in `unverified` could not be re-fetched (the page loads its content by script) and rest on the first check only.",
-  "unverified": [
-   ".shared.assessment.pathway",
-   ".shared.assessment.registrationRequired",
-   ".shared.assessment.englishTestForAssessment",
-   ".shared.assessment.validity",
-   ".shared.assessment.fee"
-  ]
+  "note": "Quotes re-checked by script against the cited pages on 2026-10-24 (ANMAC pages rendered in headless Chrome; they load content by script). The English-test item was reworded to what the FAQ actually says.",
+  "unverified": []
  }
 }
