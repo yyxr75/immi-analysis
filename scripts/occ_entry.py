@@ -150,7 +150,7 @@ def _hay_nums(t):
     return out
 
 
-ROUTE_GATES = ("enrol", "enrolHas", "finish", "licence")
+ROUTE_GATES = ("enrol", "enrolHas", "finish", "licence", "stay485")
 
 
 def load_cards():

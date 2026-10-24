@@ -4048,7 +4048,7 @@ function plGates(r) {
       : plEduPts(plCalc().edu) >= 20 ? { k: "stay", ok: false, src: v.src,
           t: `毕业时 ${ga} 岁。485 一般要 ${v.maxAge} 岁及以下；有博士学位的上限可能是 50 岁，要看具体情况，还没核实` }
       // the vocational stream also needs the occupation on a list in a Minister's instrument -- not checked yet
-      : o.assessors.some(a => a.abbr === "TRA") && !(c.route || {}).stay485
+      : o.assessors.some(a => a.abbr === "TRA") && !((c.route || {}).stay485 || {}).ok
         ? { k: "stay", ok: false, src: v.src, t: `毕业时 ${ga} 岁。技工走 485 职业教育类，还要求职业在部长公布的清单上，这一条还没核实` }
       : { k: "stay", ok: ga <= v.maxAge, src: v.src,
           t: ga <= v.maxAge ? `毕业时 ${ga} 岁，在 485 毕业生签证的 ${v.maxAge} 岁上限内，可以留下来攒评估要的工作经验`
