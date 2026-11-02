@@ -7,1293 +7,1443 @@
  ],
  "latest": {
   "date": "2026-10-15",
-  "totals": {},
+  "totals": {
+   "189": {
+    "invited": 20000,
+    "tieBreak": null
+   }
+  },
   "occupations": [
    {
     "name": "Actuary",
     "min": {
-     "Minimum points score": 85
+     "189": 85
     },
+    "tieBreak": "2026-09-03",
     "code": "224111",
     "zh": "精算师"
    },
    {
     "name": "Agricultural Consultant",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-09-03",
     "code": "234111",
     "zh": "农业顾问"
    },
    {
     "name": "Agricultural Scientist",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-09-04",
     "code": "234112",
     "zh": "农业科学家"
    },
    {
     "name": "Airconditioning and Mechanical Services Plumber",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-09-19",
     "code": "334112",
     "zh": "空调机械管道工"
    },
    {
     "name": "Airconditioning and Refrigeration Mechanic",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-10-08",
     "code": "342111",
     "zh": "空调制冷技工"
    },
    {
     "name": "Architect",
     "min": {
-     "Minimum points score": 85
+     "189": 85
     },
+    "tieBreak": "2026-08-06",
     "code": "232111",
     "zh": "建筑师"
    },
    {
     "name": "Arts Administrator or Manager",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-10-01",
     "code": "139911",
     "zh": "艺术管理经理"
    },
    {
     "name": "Audiologist",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-10-29",
     "code": "252711",
     "zh": "听力学家"
    },
    {
     "name": "Automotive Electrician",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-10-10",
     "code": "321111",
     "zh": "汽车电工"
    },
    {
     "name": "Barrister",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2026-03-27",
     "code": "271111",
     "zh": "出庭律师"
    },
    {
     "name": "Biotechnologist",
     "min": {
-     "Minimum points score": 90
+     "189": 90
     },
+    "tieBreak": "2026-02-09",
     "code": "234514",
     "zh": "生物技术专家"
    },
    {
     "name": "Boat Builder and Repairer",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-08-13",
     "code": "399111",
     "zh": "船舶制造维修工"
    },
    {
     "name": "Bricklayer",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-09-17",
     "code": "331111",
     "zh": "砌砖工"
    },
    {
     "name": "Cabinetmaker",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-10-14",
     "code": "394111",
     "zh": "橱柜工"
    },
    {
     "name": "Cardiologist",
     "min": {
-     "Minimum points score": 75
+     "189": 75
     },
+    "tieBreak": "2026-10-14",
     "code": "253312",
     "zh": "心脏科医生"
    },
    {
     "name": "Carpenter",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-09-21",
     "code": "331212",
     "zh": "木工"
    },
    {
     "name": "Carpenter and Joiner",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-09-15",
     "code": "331211",
     "zh": "木工及细木工"
    },
    {
     "name": "Cartographer",
     "min": {
-     "Minimum points score": 85
+     "189": 85
     },
+    "tieBreak": "2026-03-25",
     "code": "232213",
     "zh": "制图师"
    },
    {
     "name": "Chemical Engineer",
     "min": {
-     "Minimum points score": 85
+     "189": 85
     },
+    "tieBreak": "2026-07-10",
     "code": "233111",
     "zh": "化学工程师"
    },
    {
     "name": "Chemist",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-01-01",
     "code": "234211",
     "zh": "化学家"
    },
    {
     "name": "Child Care Centre Manager",
     "min": {
-     "Minimum points score": 85
+     "189": 85
     },
+    "tieBreak": "2026-10-14",
     "code": "134111",
     "zh": "幼儿园园长"
    },
    {
     "name": "Chiropractor",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-09-04",
     "code": "252111",
     "zh": "脊椎按摩师"
    },
    {
     "name": "Clinical Psychologist",
     "min": {
-     "Minimum points score": 90
+     "189": 90
     },
+    "tieBreak": "2026-09-28",
     "code": "272311",
     "zh": "临床心理学家"
    },
    {
     "name": "Conservator",
     "min": {
-     "Minimum points score": 90
+     "189": 90
     },
+    "tieBreak": "2026-09-16",
     "code": "234911",
     "zh": "文物修复师"
    },
    {
     "name": "Construction Project Manager",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-09-04",
     "code": "133111",
     "zh": "建筑项目经理"
    },
    {
     "name": "Dancer or Choreographer",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-07-07",
     "code": "211112",
     "zh": "舞蹈演员"
    },
    {
     "name": "Dermatologist",
     "min": {
-     "Minimum points score": 85
+     "189": 85
     },
+    "tieBreak": "2026-04-03",
     "code": "253911",
     "zh": "皮肤科医生"
    },
    {
     "name": "Diagnostic and Interventional Radiologist",
     "min": {
-     "Minimum points score": 75
+     "189": 75
     },
+    "tieBreak": "2026-09-27",
     "code": "253917",
     "zh": "放射科医生"
    },
    {
     "name": "Drainer",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-07-15",
     "code": "334113",
     "zh": "排水工"
    },
    {
     "name": "Early Childhood (Pre-primary School) Teacher",
     "min": {
-     "Minimum points score": 90
+     "189": 90
     },
+    "tieBreak": "2026-07-22",
     "code": "241111",
     "zh": "早教老师"
    },
    {
     "name": "Economist",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-10-15",
     "code": "224311",
     "zh": "经济学家"
    },
    {
     "name": "Educational Psychologist",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-10-15",
     "code": "272312",
     "zh": "教育心理学家"
    },
    {
     "name": "Electrical Engineering Draftsperson",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-10-15",
     "code": "312311",
     "zh": "电气制图员"
    },
    {
     "name": "Electrical Engineering Technician",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-09-29",
     "code": "312312",
     "zh": "电气工程技术员"
    },
    {
     "name": "Electrician (General)",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-09-18",
     "code": "341111",
     "zh": "电工"
    },
    {
     "name": "Electrician (Special Class)",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-02-19",
     "code": "341112",
     "zh": "特级电工"
    },
    {
     "name": "Electronic Equipment Trades Worker",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-10-13",
     "code": "342313",
     "zh": "电子设备技工"
    },
    {
     "name": "Electronic Instrument Trades Worker (General)",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-10-12",
     "code": "342314",
     "zh": "电子仪表技工"
    },
    {
     "name": "Electronic Instrument Trades Worker (Special Class)",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-08-29",
     "code": "342315",
     "zh": "特级电子仪表技工"
    },
    {
     "name": "Electronics Engineer",
     "min": {
-     "Minimum points score": 95
+     "189": 95
     },
+    "tieBreak": "2025-11-21",
     "code": "233411",
     "zh": "电子工程师"
    },
    {
     "name": "Emergency Medicine Specialist",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-07-19",
     "code": "253912",
     "zh": "急诊科医生"
    },
    {
     "name": "Endocrinologist",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-03-06",
     "code": "253315",
     "zh": "内分泌科医生"
    },
    {
     "name": "Engineering Manager",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-08-04",
     "code": "133211",
     "zh": "工程经理"
    },
    {
     "name": "Environmental Consultant",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-10-01",
     "code": "234312",
     "zh": "环境顾问"
    },
    {
     "name": "Environmental Manager",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": null,
+    "tieBreakRaw": "13/10/206",
     "code": "139912",
     "zh": "环境经理"
    },
    {
     "name": "Environmental Research Scientist",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-10-06",
     "code": "234313",
     "zh": "环境研究科学家"
    },
    {
     "name": "Environmental Scientists nec",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-10-13",
     "code": "234399",
     "zh": "其他环境科学家"
    },
    {
     "name": "Fibrous Plasterer",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-08-04",
     "code": "333211",
     "zh": "石膏板工"
    },
    {
     "name": "Fitter (General)",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-08-12",
     "code": "323211",
     "zh": "钳工"
    },
    {
     "name": "Fitter-Welder",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-08-13",
     "code": "323213",
     "zh": "钳焊工"
    },
    {
     "name": "Food Technologist",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2025-12-20",
     "code": "234212",
     "zh": "食品技术员"
    },
    {
     "name": "Footballer",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2026-05-28",
     "code": "452411",
     "zh": "足球运动员"
    },
    {
     "name": "Forester",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": null,
+    "tieBreakRaw": "01/07/206",
     "code": "234113",
     "zh": "林业专家"
    },
    {
     "name": "Gasfitter",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2026-09-29",
     "code": "334114",
     "zh": "燃气工"
    },
    {
     "name": "Gastroenterologist",
     "min": {
-     "Minimum points score": 75
+     "189": 75
     },
+    "tieBreak": "2026-04-16",
     "code": "253316",
     "zh": "消化科医生"
    },
    {
     "name": "General Practitioner",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-11-18",
     "code": "253111",
     "zh": "全科医生"
    },
    {
     "name": "Geophysicist",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-08-28",
     "code": "234412",
     "zh": "地球物理学家"
    },
    {
     "name": "Glazier",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-09-10",
     "code": "333111",
     "zh": "玻璃安装工"
    },
    {
     "name": "Horse Trainer",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-09-28",
     "code": "361112",
     "zh": "马匹训练师"
    },
    {
     "name": "Hydrogeologist",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-08-16",
     "code": "234413",
     "zh": "水文地质学家"
    },
    {
     "name": "ICT Security Specialist",
     "min": {
-     "Minimum points score": 100
+     "189": 100
     },
+    "tieBreak": "2024-11-08",
     "code": "262112",
     "zh": "网络安全专家"
    },
    {
     "name": "Intensive Care Specialist",
     "min": {
-     "Minimum points score": 75
+     "189": 75
     },
+    "tieBreak": "2025-12-23",
     "code": "253317",
     "zh": "ICU医生"
    },
    {
     "name": "Joiner",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-08-21",
     "code": "331213",
     "zh": "细木工"
    },
    {
     "name": "Land Economist",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-09-12",
     "code": "224511",
     "zh": "土地经济学家"
    },
    {
     "name": "Landscape Architect",
     "min": {
-     "Minimum points score": 85
+     "189": 85
     },
+    "tieBreak": "2026-07-28",
     "code": "232112",
     "zh": "景观设计师"
    },
    {
     "name": "Life Scientist (General)",
     "min": {
-     "Minimum points score": 90
+     "189": 90
     },
+    "tieBreak": "2026-01-22",
     "code": "234511",
     "zh": "生命科学家"
    },
    {
     "name": "Life Scientists nec",
     "min": {
-     "Minimum points score": 90
+     "189": 90
     },
+    "tieBreak": "2026-02-03",
     "code": "234599",
     "zh": "其他生命科学家"
    },
    {
     "name": "Lift mechanic",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2025-11-12",
     "code": "341113",
     "zh": "电梯技工"
    },
    {
     "name": "Locksmith",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-10-09",
     "code": "323313",
     "zh": "锁匠"
    },
    {
     "name": "Management Consultant",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-09-07",
     "code": "224711",
     "zh": "管理咨询师"
    },
    {
     "name": "Marine Biologist",
     "min": {
-     "Minimum points score": 95
+     "189": 95
     },
+    "tieBreak": "2026-09-16",
     "code": "234516",
     "zh": "海洋生物学家"
    },
    {
     "name": "Materials Engineer",
     "min": {
-     "Minimum points score": 85
+     "189": 85
     },
+    "tieBreak": "2026-05-16",
     "code": "233112",
     "zh": "材料工程师"
    },
    {
     "name": "Medical Diagnostic Radiographer",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-11-20",
     "code": "251211",
     "zh": "放射技师"
    },
    {
     "name": "Medical Laboratory Scientist",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
-    "code": "234611",
-    "zh": "医学检验师"
-   },
-   {
-    "name": "Medical Diagnostic Radiographer",
-    "min": {
-     "Minimum points score": 70
-    },
-    "code": "251211",
-    "zh": "放射技师"
-   },
-   {
-    "name": "Medical Laboratory Scientist",
-    "min": {
-     "Minimum points score": 80
-    },
+    "tieBreak": "2026-08-31",
     "code": "234611",
     "zh": "医学检验师"
    },
    {
     "name": "Medical Oncologist",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-08-26",
     "code": "253314",
     "zh": "肿瘤内科医生"
    },
    {
     "name": "Medical Practitioners nec",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-11-20",
     "code": "253999",
     "zh": "其他医生"
    },
    {
     "name": "Medical Radiation Therapist",
     "min": {
-     "Minimum points score": 75
+     "189": 75
     },
+    "tieBreak": "2026-05-27",
     "code": "251212",
     "zh": "放疗师"
    },
    {
     "name": "Metal Fabricator",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-08-28",
     "code": "322311",
     "zh": "金属制造工"
    },
    {
     "name": "Metal Machinist (First Class)",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-08-10",
     "code": "323214",
     "zh": "一级金属机械师"
    },
    {
     "name": "Metallurgist",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-08-25",
     "code": "234912",
     "zh": "冶金学家"
    },
    {
     "name": "Meteorologist",
     "min": {
-     "Minimum points score": 85
+     "189": 85
     },
+    "tieBreak": "2026-03-11",
     "code": "234913",
     "zh": "气象学家"
    },
    {
     "name": "Microbiologist",
     "min": {
-     "Minimum points score": 90
+     "189": 90
     },
+    "tieBreak": "2026-01-04",
     "code": "234517",
     "zh": "微生物学家"
    },
    {
     "name": "Midwife",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-10-18",
     "code": "254111",
     "zh": "助产士"
    },
    {
     "name": "Mining Engineer (excluding Petroleum)",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-08-25",
     "code": "233611",
     "zh": "采矿工程师"
    },
    {
     "name": "Multimedia Specialist",
     "min": {
-     "Minimum points score": 90
+     "189": 90
     },
+    "tieBreak": "2026-06-01",
     "code": "261211",
     "zh": "多媒体专家"
    },
    {
     "name": "Music Director",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2026-09-15",
     "code": "211212",
     "zh": "音乐总监"
    },
    {
     "name": "Musician (Instrumental)",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-09-29",
     "code": "211213",
     "zh": "乐器演奏家"
    },
    {
     "name": "Natural and Physical Science Professionals nec",
     "min": {
-     "Minimum points score": 85
+     "189": 85
     },
+    "tieBreak": "2026-09-06",
     "code": "234999",
     "zh": "其他自然物理科学家"
    },
    {
     "name": "Neurologist",
     "min": {
-     "Minimum points score": 75
+     "189": 75
     },
+    "tieBreak": "2026-05-29",
     "code": "253318",
     "zh": "神经科医生"
    },
    {
     "name": "Neurosurgeon",
     "min": {
-     "Minimum points score": 85
+     "189": 85
     },
+    "tieBreak": "2026-08-05",
     "code": "253513",
     "zh": "神经外科医生"
    },
    {
     "name": "Nuclear Medicine Technologist",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2026-02-15",
     "code": "251213",
     "zh": "核医学技师"
    },
    {
     "name": "Nurse Practitioner",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-08-18",
     "code": "254411",
     "zh": "执业护士"
    },
    {
     "name": "Nursing Clinical Director",
     "min": {
-     "Minimum points score": 75
+     "189": 75
     },
+    "tieBreak": "2025-11-17",
     "code": "134212",
     "zh": "护理临床总监"
    },
    {
     "name": "Obstetrician and Gynaecologist",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-10-20",
     "code": "253913",
     "zh": "妇产科医生"
    },
    {
     "name": "Occupational Therapist",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-11-20",
     "code": "252411",
     "zh": "职业治疗师"
    },
    {
     "name": "Ophthalmologist",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-09-16",
     "code": "253914",
     "zh": "眼科医生"
    },
    {
     "name": "Optometrist",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-08-24",
     "code": "251411",
     "zh": "验光师"
    },
    {
     "name": "Orthopaedic Surgeon",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-08-10",
     "code": "253514",
     "zh": "骨科医生"
    },
    {
     "name": "Orthotist or Prosthetist",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-04-07",
     "code": "251912",
     "zh": "假肢矫形师"
    },
    {
     "name": "Osteopath",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-09-02",
     "code": "252112",
     "zh": "整骨师"
    },
    {
     "name": "Other Spatial Scientist",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-08-28",
     "code": "232214",
     "zh": "其他空间科学家"
    },
    {
     "name": "Paediatrician",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2026-06-23",
     "code": "253321",
     "zh": "儿科医生"
    },
    {
     "name": "Painting Trades Worker",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2026-07-01",
     "code": "332211",
     "zh": "油漆工"
    },
    {
     "name": "Panelbeater",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-10-13",
     "code": "324111",
     "zh": "钣喷工"
    },
    {
     "name": "Pathologist",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2026-10-18",
     "code": "253915",
     "zh": "病理科医生"
    },
    {
     "name": "Petroleum Engineer",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-08-17",
     "code": "233612",
     "zh": "石油工程师"
    },
    {
     "name": "Physicist",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-08-28",
     "code": "234914",
     "zh": "物理学家"
    },
    {
     "name": "Physiotherapist",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-11-20",
     "code": "252511",
     "zh": "物理治疗师"
    },
    {
     "name": "Plumber (General)",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-06-11",
     "code": "334111",
     "zh": "水管工"
    },
    {
     "name": "Podiatrist",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-03-15",
     "code": "252611",
     "zh": "足病师"
    },
    {
     "name": "Primary Health Organisation Manager",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-10-14",
     "code": "134213",
     "zh": "初级卫生机构经理"
    },
    {
     "name": "Psychiatrist",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-07-22",
     "code": "253411",
     "zh": "精神科医生"
    },
    {
     "name": "Psychologists nec",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-08-15",
     "code": "272399",
     "zh": "其他心理学家"
    },
    {
     "name": "Radiocommunications Technician",
     "min": {
-     "Minimum points score": 85
+     "189": 85
     },
+    "tieBreak": "2025-01-31",
     "code": "313211",
     "zh": "无线电通信技术员"
    },
    {
     "name": "Registered Nurse (Aged Care)",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-11-20",
     "code": "254412",
     "zh": "老年护理护士"
    },
    {
     "name": "Registered Nurse (Child and Family Health)",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-08-21",
     "code": "254413",
     "zh": "儿童家庭护士"
    },
    {
     "name": "Registered Nurse (Community Health)",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-11-11",
     "code": "254414",
     "zh": "社区护士"
    },
    {
     "name": "Registered Nurse (Critical Care and Emergency)",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-11-18",
     "code": "254415",
     "zh": "急诊重症护士"
    },
    {
     "name": "Registered Nurse (Developmental Disability)",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-04-10",
     "code": "254416",
     "zh": "发育障碍护士"
    },
    {
     "name": "Registered Nurse (Disability and Rehabilitation)",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-08-26",
     "code": "254417",
     "zh": "残障康复护士"
    },
    {
     "name": "Registered Nurse (Medical Practice)",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-11-10",
     "code": "254421",
     "zh": "诊所护士"
    },
    {
     "name": "Registered Nurse (Medical)",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-11-19",
     "code": "254418",
     "zh": "内科护士"
    },
    {
     "name": "Registered Nurse (Mental Health)",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-10-10",
     "code": "254422",
     "zh": "精神科护士"
    },
    {
     "name": "Registered Nurse (Paediatrics)",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-11-19",
     "code": "254425",
     "zh": "儿科护士"
    },
    {
     "name": "Registered Nurse (Perioperative)",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-11-19",
     "code": "254423",
     "zh": "手术室护士"
    },
    {
     "name": "Registered Nurse (Surgical)",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-11-15",
     "code": "254424",
     "zh": "外科护士"
    },
    {
     "name": "Registered Nurses nec",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-11-19",
     "code": "254499",
     "zh": "注册护士(其他)"
    },
    {
     "name": "Roof Plumber",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-09-20",
     "code": "334115",
     "zh": "屋顶水管工"
    },
    {
     "name": "Secondary School Teacher",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-09-04",
     "code": "241411",
     "zh": "中学老师"
    },
    {
     "name": "Sheetmetal Trades Worker",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-08-12",
     "code": "322211",
     "zh": "钣金工"
    },
    {
     "name": "Shipwright",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2025-09-16",
     "code": "399112",
     "zh": "造船木工"
    },
    {
     "name": "Social Worker",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-09-03",
     "code": "272511",
     "zh": "社工"
    },
    {
     "name": "Solicitor",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-10-15",
     "code": "271311",
     "zh": "律师"
    },
    {
     "name": "Solid Plasterer",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-09-18",
     "code": "333212",
     "zh": "抹灰工"
    },
    {
     "name": "Sonographer",
     "min": {
-     "Minimum points score": 75
+     "189": 75
     },
+    "tieBreak": "2026-09-29",
     "code": "251214",
     "zh": "超声技师"
    },
    {
     "name": "Special Education Teachers nec",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-07-21",
     "code": "241599",
     "zh": "其他特殊教育老师"
    },
    {
     "name": "Special Needs Teacher",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-08-22",
     "code": "241511",
     "zh": "特殊教育老师"
    },
    {
     "name": "Specialist Physician (General Medicine)",
     "min": {
-     "Minimum points score": 75
+     "189": 75
     },
+    "tieBreak": "2026-09-21",
     "code": "253311",
     "zh": "内科医生"
    },
    {
     "name": "Specialist Physicians nec",
     "min": {
-     "Minimum points score": 85
+     "189": 85
     },
+    "tieBreak": "2026-09-19",
     "code": "253399",
     "zh": "其他专科内科医生"
    },
    {
     "name": "Speech Pathologist",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2025-10-29",
     "code": "252712",
     "zh": "言语病理学家"
    },
    {
     "name": "Statistician",
     "min": {
-     "Minimum points score": 85
+     "189": 85
     },
+    "tieBreak": "2026-09-02",
     "code": "224113",
     "zh": "统计师"
    },
    {
     "name": "Stonemason",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-09-15",
     "code": "331112",
     "zh": "石匠"
    },
    {
     "name": "Surgeon (General)",
     "min": {
-     "Minimum points score": 90
+     "189": 90
     },
+    "tieBreak": "2026-09-12",
     "code": "253511",
     "zh": "普外科医生"
    },
    {
     "name": "Surveyor",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2025-09-15",
     "code": "232212",
     "zh": "测量师"
    },
    {
     "name": "Technical Cable Jointer",
     "min": {
-     "Minimum points score": 70
+     "189": 70
     },
+    "tieBreak": "2026-08-19",
     "code": "342212",
     "zh": "电缆接线工"
    },
    {
     "name": "Telecommunications Engineer",
     "min": {
-     "Minimum points score": 85
+     "189": 85
     },
+    "tieBreak": "2026-10-14",
     "code": "263311",
     "zh": "电信工程师"
    },
    {
     "name": "Telecommunications Field Engineer",
     "min": {
-     "Minimum points score": 85
+     "189": 85
     },
+    "tieBreak": "2026-10-11",
     "code": "313212",
     "zh": "电信现场工程师"
    },
    {
     "name": "Telecommunications Network Engineer",
     "min": {
-     "Minimum points score": 85
+     "189": 85
     },
+    "tieBreak": "2026-10-06",
     "code": "263312",
     "zh": "电信网络工程师"
    },
    {
     "name": "Telecommunications Network Planner",
     "min": {
-     "Minimum points score": 85
+     "189": 85
     },
+    "tieBreak": "2026-10-11",
     "code": "313213",
     "zh": "电信网络规划师"
    },
    {
     "name": "Telecommunications Technical Officer or Technologist",
     "min": {
-     "Minimum points score": 85
+     "189": 85
     },
+    "tieBreak": "2026-10-14",
     "code": "313214",
     "zh": "电信技术员"
    },
    {
     "name": "Tennis Coach",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2025-12-01",
     "code": "452316",
     "zh": "网球教练"
    },
    {
     "name": "University Lecturer",
     "min": {
-     "Minimum points score": 90
+     "189": 90
     },
+    "tieBreak": "2026-07-14",
     "code": "242111",
     "zh": "大学讲师"
    },
    {
     "name": "Urologist",
     "min": {
-     "Minimum points score": 100
+     "189": 100
     },
+    "tieBreak": "2026-06-04",
     "code": "253518",
     "zh": "泌尿科医生"
    },
    {
     "name": "Valuer",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-10-10",
     "code": "224512",
     "zh": "估价师"
    },
    {
     "name": "Veterinarian",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-09-02",
     "code": "234711",
     "zh": "兽医"
    },
    {
     "name": "Wall and Floor Tiler",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-09-19",
     "code": "333411",
     "zh": "墙地砖铺贴工"
    },
    {
     "name": "Welder (First Class)",
     "min": {
-     "Minimum points score": 80
+     "189": 80
     },
+    "tieBreak": "2026-09-01",
     "code": "322313",
     "zh": "一级焊工"
    },
    {
     "name": "Welfare Centre Manager",
     "min": {
-     "Minimum points score": 65
+     "189": 65
     },
+    "tieBreak": "2026-09-28",
     "code": "134214",
     "zh": "福利中心经理"
    },
    {
     "name": "Zoologist",
     "min": {
-     "Minimum points score": 95
+     "189": 95
     },
+    "tieBreak": "2026-07-23",
     "code": "234518",
     "zh": "动物学家"
    }
@@ -1332,6 +1482,6 @@
    }
   },
   "source": "https://immi.homeaffairs.gov.au/visas/working-in-australia/skillselect/invitation-rounds",
-  "fetchedAt": "2026-11-02T06:48:44Z"
+  "fetchedAt": "2026-11-02T11:14:31Z"
  }
 }

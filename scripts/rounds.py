@@ -2,10 +2,12 @@
 
     python rounds.py            # fetch, save if the round is new
     python rounds.py --html f   # parse a saved copy of the page instead
+    ... --rewrite               # also overwrite an already saved round file
 
 Home Affairs publishes each round on the "Invitation rounds" page about two
 weeks after it is held: invitations per visa, the tie-break date, and the
-minimum score invited for every occupation. That is the official version of
+minimum score invited for every occupation (from 2026-10-15 the tie-break
+date is given per occupation instead of per visa). That is the official version of
 what Xiaohongshu posts piece together from client reports, so we keep it.
 
 The page is a SharePoint shell; the content sits as HTML-escaped JSON in a
@@ -79,23 +81,28 @@ def parse(page):
         head = [c.lower() for c in rows[0]]
         if any("total eois invited" in c for c in head):
             for r in rows[1:]:
-                if len(r) >= 3:
-                    tb = r[2]
-                    try:  # dd/mm/yyyy -> yyyy-mm-dd
-                        tb = datetime.strptime(tb, "%d/%m/%Y").date().isoformat()
-                    except ValueError:
-                        pass
-                    totals[visa_key(r[0])] = {"invited": int(re.sub(r"\D", "", r[1]) or 0), "tieBreak": tb}
+                if len(r) >= 2:
+                    # from 2026-10-15 the tie break moved to the occupation table
+                    totals[visa_key(r[0])] = {"invited": int(re.sub(r"\D", "", r[1]) or 0),
+                                              "tieBreak": day(r[2])[0] if len(r) >= 3 else None}
         elif head and head[0].startswith("occupation"):
-            cols = [visa_key(c) for c in rows[0][1:]] or ["189"]
+            # one score column per visa ("189", "491 ..."), or since 2026-10-15
+            # "Minimum points score | Tie break date" for the 189 round alone
+            tb_col = next((i for i, c in enumerate(head) if "tie break" in c), None)
+            score_cols = [(i, "189" if "minimum points" in c else visa_key(rows[0][i]))
+                          for i, c in enumerate(head) if i and i != tb_col]
+            seen = set()
             for r in rows[1:]:
-                if len(r) < 2:
+                if len(r) < 2 or r[0] in seen:  # the page lists some titles twice
                     continue
-                scores = {}
-                for k, v in zip(cols if len(cols) == len(r) - 1 else ["189"] * (len(r) - 1), r[1:]):
-                    if re.fullmatch(r"\d+", v):
-                        scores[k] = int(v)
-                occ.append({"name": r[0], "min": scores})
+                seen.add(r[0])
+                scores = {k: int(r[i]) for i, k in score_cols if i < len(r) and re.fullmatch(r"\d+", r[i])}
+                o = {"name": r[0], "min": scores}
+                if tb_col is not None and tb_col < len(r):
+                    o["tieBreak"], raw = day(r[tb_col])
+                    if raw:
+                        o["tieBreakRaw"] = raw  # typo on the page, e.g. "13/10/206"
+                occ.append(o)
         elif head and head[0].startswith("visa subclass") and "jul" in head:
             months = rows[0][1:]
             for r in rows[1:]:
@@ -103,6 +110,14 @@ def parse(page):
     py = re.search(r"Total invitations issued during (\d{4}-\d{2})", text(block))
     return {"date": date, "totals": totals, "occupations": occ,
             "program": {"year": py.group(1) if py else None, "byMonth": program}}
+
+
+def day(v):
+    """dd/mm/yyyy -> (yyyy-mm-dd, None); anything else -> (None, raw text)."""
+    try:
+        return datetime.strptime(v, "%d/%m/%Y").date().isoformat(), None
+    except ValueError:
+        return None, v or None
 
 
 def norm(s):
@@ -139,7 +154,7 @@ def main():
     os.makedirs(OUT_DIR, exist_ok=True)
     path = os.path.join(OUT_DIR, rnd["date"] + ".json")
     changed = not os.path.exists(path)
-    if changed:
+    if changed or "--rewrite" in sys.argv:
         json.dump(rnd, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     # the index always follows the page (program-year totals can move between rounds)
     dates = sorted((f[:-5] for f in os.listdir(OUT_DIR) if f.endswith(".json")), reverse=True)

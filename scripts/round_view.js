@@ -73,7 +73,7 @@ function rdRender() {
   }
   const D = RD.data, r = D.rounds.find(x => x.date === RD.day) || D.rounds[D.rounds.length - 1];
   const names = RD.names;
-  const rows = Object.entries(D.occ).map(([c, v]) => { const x = v.find(y => y[0] === r.date); return x && [c, x[1], x[2], x[3]]; })
+  const rows = Object.entries(D.occ).map(([c, v]) => { const x = v.find(y => y[0] === r.date); return x && [c, x[1], x[2], x[3], x[4]]; })
     .filter(Boolean);
   const q = RD.q.trim().toLowerCase();
   const nm = c => { const o = names[c]; return o ? { zh: (o.zh && o.zh[0]) || "", en: o.name.replace(/^\d+ /, "") } : { zh: "", en: "" }; };
@@ -86,16 +86,16 @@ function rdRender() {
     `<div><span>官方邀请总数</span><b>${r.invitedOfficial == null ? "未存档" : rdFmt(r.invitedOfficial)}</b></div>
      <div><span>按职业统计到</span><b>${rdFmt(r.counted)}${r.invitedOfficial ? `<small> ${Math.round(r.counted / r.invitedOfficial * 100)}%</small>` : ""}</b></div>
      <div><span>获邀职业数</span><b>${rows.length}</b></div>
-     <div><span>同分 tie break 到</span><b>${rdTb(r.tieBreak)}</b></div>`;
+     <div><span>同分 tie break 到</span><b>${!r.tieBreak && rows.some(x => x[4]) ? "按职业公布" : rdTb(r.tieBreak)}</b></div>`;
   box.querySelector(".rd-sort").innerHTML = Object.entries(RD_SORTS).map(([k, s]) =>
     `<button type="button" data-s="${k}" aria-pressed="${k === RD.sort}">${s[0]}</button>`).join("");
-  box.querySelector(".rd-list").innerHTML = shown.length ? shown.map(([c, n, dist, lo], i) => {
+  box.querySelector(".rd-list").innerHTML = shown.length ? shown.map(([c, n, dist, lo, tb], i) => {
     const o = nm(c);
     return `<a class="lb-row rd-row" href="#/watch/${c}">
       <span class="lb-rk">${i + 1}</span>
       <span class="lb-nm"><b>${rdEsc(o.zh || o.en || c)}</b><small>${c} ${rdEsc(o.en)}</small></span>
       <span class="rd-mid">${rdBar(dist)}<small>${rdDist(dist)}</small></span>
-      <span class="lb-val"><b>${rdFmt(n)} 人</b><small>最低 ${lo} 分${r.official ? "" : "*"}</small></span></a>`;
+      <span class="lb-val"><b>${rdFmt(n)} 人</b><small>最低 ${lo} 分${r.official ? "" : "*"}${tb ? ` · 同分到 ${rdTb(tb)}` : ""}</small></span></a>`;
   }).join("") : `<p class="lb-cav">${q ? "没有找到这个职业：这一轮可能没有邀请它。" : "这一轮没有数据。"}</p>`;
   box.querySelector(".rd-note").textContent = r.official
     ? `${rdDay(r.date)}这一轮官网表列出 ${rows.length} 个职业。不在这里的职业，这一轮没有发 189 邀请。`

@@ -88,6 +88,8 @@ def main():
                 got[code_of[occ]][int(score)] += int(n)
         o = off.get(day)
         mins = {x["code"]: x["min"].get("189") for x in o["occupations"] if x.get("code")} if o else None
+        # since 2026-10-15 the tie-break date is published per occupation
+        tbs = {x["code"]: x.get("tieBreak") for x in o["occupations"] if x.get("code") and x.get("tieBreak")} if o else {}
         dropped = 0
         for code, c in got.items():
             if mins is not None:
@@ -99,9 +101,12 @@ def main():
             dropped += sum(c.values()) - sum(keep.values())
             c = keep
             if c:
-                # entry: [round day, EOIs invited, {score: EOIs}, minimum score (the official one when published)]
-                per[code].append([day, sum(c.values()), {str(s): n for s, n in sorted(c.items())},
-                                  lo if mins is not None else min(c)])
+                # entry: [round day, EOIs invited, {score: EOIs}, minimum score (the official one when published)
+                #         (, official tie-break date for this occupation, when published per occupation)]
+                e = [day, sum(c.values()), {str(s): n for s, n in sorted(c.items())}, lo if mins is not None else min(c)]
+                if tbs.get(code):
+                    e.append(tbs[code])
+                per[code].append(e)
         counted = sum(x[1] for v in per.values() for x in v if x[0] == day)
         rounds.append({"date": day, "official": bool(o), "counted": counted, "dropped": dropped,
                        "invitedOfficial": o["totals"]["189"]["invited"] if o else None,

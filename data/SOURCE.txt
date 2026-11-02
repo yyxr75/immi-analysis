@@ -4,4 +4,4 @@ Qlik app id: aaac76b5-ad30-477e-9ca0-472f8ab57fc8
 App last reload: 2026-08-02
 Extracted via Qlik Engine JSON API.
 Measure: COUNT(DISTINCT %EOIID). Dashboard masks cells < 20.
-As-at months covered: 01/2025 .. 07/2026
+As-at months covered: 11/2024 .. 10/2026
