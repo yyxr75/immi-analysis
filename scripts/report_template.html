@@ -609,6 +609,7 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
 .pl-next { display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center; margin:18px 0 6px; }
 .mesub-acct { margin-left:auto; font-size:12.5px; color:var(--muted); }
 @media (max-width:640px) { .mesub-acct { margin-left:0; } }
+#view-watch .mesub-acct { display:none; }   /* 自选 has its own sign-in line */
 
 /* ---- 我的 → 方案 ---- */
 .pl { --warn:#a86f00; --warn-soft:#fbf1dc; display:grid; gap:16px; }
@@ -806,6 +807,7 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
       <div class="mesub-seg" role="group" aria-label="我的">
         <button type="button" data-go="points">1. 我的分数</button>
         <button type="button" data-go="plan">2. 我的方案</button>
+        <button type="button" data-go="watch">自选职业</button>
       </div>
       <span class="mesub-acct"></span>
     </div>
@@ -859,6 +861,7 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
       <div class="mesub-seg" role="group" aria-label="我的">
         <button type="button" data-go="points">1. 我的分数</button>
         <button type="button" data-go="plan">2. 我的方案</button>
+        <button type="button" data-go="watch">自选职业</button>
       </div>
       <span class="mesub-acct"></span>
     </div>
@@ -879,7 +882,7 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
     </li>
     <li>
       <div class="t">把关心的职业加进自选</div>
-      <p>首页「自选」里盯着看：在池人数、分数线、你这个分数段的历史获邀率，每月自动更新。
+      <p>「我的 → 自选职业」里盯着看：在池人数、分数线、你这个分数段的历史获邀率，每月自动更新。
         <button type="button" class="linkbtn" data-go="watch">去自选 →</button></p>
     </li>
   </ol>
@@ -912,6 +915,7 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
       <div class="mesub-seg" role="group" aria-label="我的">
         <button type="button" data-go="points">1. 我的分数</button>
         <button type="button" data-go="plan">2. 我的方案</button>
+        <button type="button" data-go="watch">自选职业</button>
       </div>
       <span class="mesub-acct"></span>
     </div>
@@ -1011,6 +1015,14 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
   </div>
 
   <div id="view-watch" hidden>
+    <div class="mesub">
+      <div class="mesub-seg" role="group" aria-label="我的">
+        <button type="button" data-go="points">1. 我的分数</button>
+        <button type="button" data-go="plan">2. 我的方案</button>
+        <button type="button" data-go="watch">自选职业</button>
+      </div>
+      <span class="mesub-acct"></span>
+    </div>
     <div class="wt">
       <div class="wt-bar">
         <div class="wt-seg" id="wtVisa" role="group" aria-label="签证类别">
@@ -1611,12 +1623,14 @@ function chart6() {
 // "我的" is one tab over two steps with its own sub-switch: 1. the points
 // calculator, then 2. the plan, which reuses those answers. Separate views keep
 // their deep links (#/points, #/plan) and their lazy init intact.
-const VIEWS = [["watch", "自选"], ["board", "行情"], ["news", "动态"], ["points", "我的"], ["group", "交流群"]];
-const ME_VIEWS = ["points", "plan"];
+// 自选 lives under 我的 since 2026-11-08: the front page is 行情, and the
+// personal views (score, plan, watchlist) share one tab.
+const VIEWS = [["board", "行情"], ["news", "动态"], ["points", "我的"], ["group", "交流群"]];
+const ME_VIEWS = ["points", "plan", "watch"];
 const HOME = VIEWS[0][0];
 // Reachable by link ("完整图表 →"), not shown as a tab: the full per-occupation
 // chart set that the 自选 view summarises.
-const ALL_VIEWS = VIEWS.concat([["plan", "我的方案"], ["data", "完整图表"]]);
+const ALL_VIEWS = VIEWS.concat([["plan", "我的方案"], ["watch", "自选职业"], ["data", "完整图表"]]);
 // A WeChat group QR expires; build_site.py stamps the date printed on the image
 // so the page can say so itself instead of silently handing out a dead code.
 const GROUP_QR_EXPIRES = __GROUP_QR_EXPIRES__;
@@ -1650,6 +1664,7 @@ function setView(name) {
                    (b.dataset.v === "points" && ME_VIEWS.includes(name))));
   if (ME_VIEWS.includes(name)) meRender(name);
   if (name === "news") nwRender();
+  if (typeof tally === "function") tally("v-" + name);
   // the visa filter scopes the data and points views; it means nothing on the AI page
   const f = document.querySelector(".filters");
   if (f) f.style.display = (name === "data" || name === "points") ? "" : "none";
@@ -2315,6 +2330,29 @@ document.addEventListener("click", e => {
 <!--NEWSJS-->
 <!--HEATJS-->
 <script>
+// Usage counts for the operator: a visit, new vs returning, and which views
+// get opened. Tags only -- the Worker counts each tag once per address per
+// day; nothing about the person is sent or kept.
+const TALLIED = new Set();
+function tally(tag) {
+  if (!PUBLIC_PROXY_URL || TALLIED.has(tag)) return;
+  TALLIED.add(tag);
+  fetch(PUBLIC_PROXY_URL + "/hit", {
+    method: "POST", keepalive: true,
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ src: tag }),
+  }).catch(() => {});
+}
+(() => {
+  tally("visit");
+  let first = null;
+  try { first = localStorage.getItem("immi.first"); } catch (e) {}
+  const today = new Date().toISOString().slice(0, 10);
+  if (!first) { try { localStorage.setItem("immi.first", today); } catch (e) {} }
+  tally(!first || first === today ? "new" : "ret");
+  // the first view is set before this script loads; later switches tally in setView
+  if (typeof curView === "string") tally("v-" + curView);
+})();
 // Web Analytics drops query strings, so a campaign tag like ?src=xhs would be
 // lost there. Report it to the Worker once per page load; it only counts.
 (() => {

@@ -51,7 +51,7 @@ GROUP_QR_EXPIRES = ""  # personal QR: no expiry
 AUTH_URL = PUBLIC_PROXY_URL   # sign-in syncs the 自选 list; AI stays open either way
 
 # Nobody is stopped at the door any more: the gate moved to the AI view.
-LOGIN_AS_ENTRY = True   # first visit lands on login.html (skippable)
+LOGIN_AS_ENTRY = False  # 2026-11-08: the gate lost 74% of new visitors; sign-in is offered in 我的 instead
 
 # Runs before anything renders, so there is no flash of the tool first. The
 # hash rides along, so a shared deep link still opens its occupation after the
