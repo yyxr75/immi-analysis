@@ -344,6 +344,25 @@ def build_payload(occ, g_series, g_points, g_rate, g_states, months, mlabel):
     return out
 
 
+def check_news():
+    """site/data/news.json is hand-reviewed; refuse to build if an item lacks
+    what makes it checkable (official source link, checked date) or has a type
+    the page cannot show."""
+    path = os.path.join(SITE_DATA, "news.json")
+    items = json.load(open(path, encoding="utf-8"))["items"]
+    ids = set()
+    for it in items:
+        miss = [k for k in ("id", "date", "type", "title", "points", "src", "checked", "how") if not it.get(k)]
+        assert not miss, f"news item {it.get('id')}: missing {miss}"
+        assert it["type"] in ("round", "proc", "law", "state"), it["id"]
+        assert it["how"] in ("auto", "review"), it["id"]
+        assert it["src"].get("url", "").startswith("https://"), it["id"]
+        assert it["id"] not in ids, f"duplicate news id {it['id']}"
+        ids.add(it["id"])
+    dates = [it["date"] for it in items]
+    assert dates == sorted(dates, reverse=True), "news items must be newest first"
+
+
 def write_html(index):
     """Assemble site/index.html and site/login.html from the templates."""
     tpl = open(os.path.join(HERE, "report_template.html")).read()
@@ -360,6 +379,10 @@ def write_html(index):
     # 我的 → 方案 (scripts/plan_view.js)
     tpl = tpl.replace("<!--PLANJS-->", "<script>\n" +
                       open(os.path.join(HERE, "plan_view.js")).read() + "</script>")
+    # 动态 (scripts/news_view.js), fed by site/data/news.json
+    check_news()
+    tpl = tpl.replace("<!--NEWSJS-->", "<script>\n" +
+                      open(os.path.join(HERE, "news_view.js")).read() + "</script>")
     html = (tpl.replace("__DATA__", "null")
                .replace("__TITLE__", SITE_TITLE)
                .replace("<!--PICKER-->", PICKER_HTML)

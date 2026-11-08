@@ -1,0 +1,121 @@
+{
+ "note": "官方动态. Only official sources. 'how': auto = numbers copied from an official table; review = Chinese reading checked by the owner before publishing. Drafts live in data/news_drafts.json, never under site/.",
+ "items": [
+  {
+   "id": "2026-11-07-state-nominations-q1",
+   "date": "2026-11-07",
+   "type": "state",
+   "tag": "2026–27 · 7月1日至9月30日",
+   "title": "新财年头 3 个月，各州提名了多少人",
+   "points": [
+    "190 提名主要来自塔州（271）和北领地（188）；南澳、维州都是 0。",
+    "491 主要来自北领地（208）、西澳（120）、塔州（96）。"
+   ],
+   "table": {
+    "head": ["获州提名的 EOI", "ACT", "NSW", "NT", "QLD", "SA", "TAS", "VIC", "WA"],
+    "rows": [
+     ["190", "<5", "11", "188", "7", "0", "271", "0", "17"],
+     ["491", "<5", "0", "208", "<5", "0", "96", "0", "120"]
+    ]
+   },
+   "quote": "The number of EOIs that have received nominations from state and territory governments from 1 July 2026 to 30 September 2026.",
+   "src": {"name": "内政部 · SkillSelect Invitation rounds", "url": "https://immi.homeaffairs.gov.au/visas/working-in-australia/skillselect/invitation-rounds"},
+   "checked": "2026-11-07",
+   "how": "auto"
+  },
+  {
+   "id": "2026-11-06-qld-roi-open",
+   "date": "2026-11-06",
+   "type": "state",
+   "tag": "昆州 · 2026–27",
+   "title": "昆州 190/491 开放 ROI，去年递过的也要重新递",
+   "points": [
+    "在昆州境内申请的，递 ROI 前要报完 2025–26 年度的税并拿到 NOA。",
+    "所有申请人都要为 2026–27 递新的 ROI；递了不能修改，只看最新一份。",
+    "2026–27 名额官方还没公布。"
+   ],
+   "quote": "Registrations of Interest (ROIs) will open on 6 November 2026. Onshore applicants must have lodged their 2025–26 tax return and received their ATO Notice of Assessment (NOA) before submitting an ROI.",
+   "src": {"name": "Migration Queensland", "url": "https://migration.qld.gov.au/"},
+   "checked": "2026-11-06",
+   "how": "review"
+  },
+  {
+   "id": "2026-11-02-processing",
+   "date": "2026-11-02",
+   "type": "proc",
+   "tag": "189 · 190 · 491",
+   "title": "移民局更新处理进度：190 境内从 1 月推进到 4 月",
+   "points": [
+    "表示“正在处理这个月及之前递交的申请”，和 10月2日那一版对比。",
+    "不代表多久能下签，官方注明处理时间可能波动。"
+   ],
+   "table": {
+    "head": ["", "优先行业", "境内递交", "境外递交"],
+    "rows": [
+     ["189", "26年6月 → 10月", "26年6月", "25年11月 → 12月"],
+     ["190", "26年3月 → 10月", "26年1月 → 4月", "25年2月"],
+     ["491", "25年3月 → 6月", "25年3月", "25年2月"]
+    ]
+   },
+   "quote": "We prioritise applications for the Skilled Nominated (subclass 190) visa under Ministerial Direction No. 122. We are currently processing applications that were lodged in or before: … April 2026 – Visa applications where the primary applicant was in Australia at the time they lodged their application.",
+   "src": {"name": "内政部 · 签证页面处理进度", "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-processing-times/visa-processing-priorities/skilled-visa"},
+   "checked": "2026-11-06",
+   "how": "auto"
+  },
+  {
+   "id": "2026-11-02-round-2026-10-15",
+   "date": "2026-11-02",
+   "type": "round",
+   "tag": "189 · 10月15日轮",
+   "title": "10月15日轮官方结果：189 共 20,000 个邀请",
+   "points": [
+    "最低 65 分就有邀请的职业 44 个（6月那轮 15 个）。",
+    "这一轮起 tie-break 日期按职业分别公布。"
+   ],
+   "quote": "The tables below show the number of EOIs invited, and the tie break month and year, for the SkillSelect invitation round on 15 October 2026. Skilled Independent visa (subclass 189): 20,000",
+   "src": {"name": "内政部 · SkillSelect Invitation rounds", "url": "https://immi.homeaffairs.gov.au/visas/working-in-australia/skillselect/invitation-rounds"},
+   "checked": "2026-11-02",
+   "how": "auto",
+   "go": {"label": "每个职业邀请了多少人 → 行情 · 邀请轮次", "hash": "#/board", "boardMode": "round"}
+  },
+  {
+   "id": "2026-11-01-eoi-10-2026",
+   "date": "2026-11-01",
+   "type": "round",
+   "tag": "EOI 看板",
+   "title": "SkillSelect EOI 看板更新到 2026年10月",
+   "points": ["各职业排队人数、分数分布、获邀率已同步更新。"],
+   "src": {"name": "就业与劳资关系部 · SkillSelect EOI 看板", "url": "https://api.dynamic.reports.employment.gov.au/anonap/extensions/hSKLS02_SkillSelect_EOI_Data/hSKLS02_SkillSelect_EOI_Data.html"},
+   "checked": "2026-11-02",
+   "how": "auto",
+   "go": {"label": "看你的职业 → 自选", "hash": "#/watch"}
+  },
+  {
+   "id": "2026-10-29-407-offshore",
+   "date": "2026-10-29",
+   "type": "law",
+   "tag": "407 培训签",
+   "effective": "2026-11-12",
+   "title": "407 培训签证：11月12日起必须在境外申请、在境外获签",
+   "who": "想在澳洲境内申请 407 的人；已经持有 407、或 11月12日前已递交的不受影响。",
+   "points": ["部长另行指定的人群除外，豁免名单目前还没发布。"],
+   "quote": "From 12 November 2026, applicants must be outside Australia when they apply for a Training visa (subclass 407), and when we grant it.",
+   "src": {"name": "联邦法规库 F2026L01449 · 内政部", "url": "https://www.legislation.gov.au/F2026L01449"},
+   "checked": "2026-10-31",
+   "how": "review"
+  },
+  {
+   "id": "2026-10-02-student-visa-offshore",
+   "date": "2026-10-02",
+   "type": "law",
+   "tag": "500 学生签",
+   "title": "学生签新规：已持学生签的，再申请原则上要在境外递交",
+   "who": "在澳洲境内想续学生签、或从打工度假/485/482/旅游签转学生签的人。10月2日前已递交的按旧规则。",
+   "points": ["例外 4 种：正在读博士、学校倒闭、主课程 12 个月内读完、升读一门更高级别课程。"],
+   "quote": "The Amendment Regulations provide a further exception to that rule, so that a primary applicant who already holds a Student visa needs to make any further Student visa applications from offshore.",
+   "src": {"name": "联邦法规库 F2026L01347 · LIN 26/102 · LIN 26/087", "url": "https://www.legislation.gov.au/F2026L01347"},
+   "checked": "2026-10-25",
+   "how": "review"
+  }
+ ]
+}

@@ -163,6 +163,7 @@ th:first-child,td:first-child { text-align:left; }
 .tabs button { font:inherit; font-size:14px; font-weight:600; color:var(--muted);
                background:transparent; border:0; border-bottom:2px solid transparent;
                padding:13px 14px 11px; cursor:pointer; white-space:nowrap; min-height:44px; }
+.tabs button { position:relative; }
 .tabs button:hover { color:var(--ink2); }
 .tabs button:focus-visible { outline:2px solid var(--s1); outline-offset:-2px; }
 .tabs button[aria-pressed="true"] { color:var(--ink); border-bottom-color:var(--s1); }
@@ -313,6 +314,58 @@ ul.dont { margin:0; padding-left:19px; }
   .lb-head { min-height:112px; }
 }
 @media (max-width:380px) { .lb-row { grid-template-columns:20px minmax(0,1fr) auto; } .lb-sp { display:none; } }
+
+/* ---- 动态 (official updates) ---- */
+:root { --nw-round:#2a78d6; --nw-round-soft:#e8f0fb; --nw-proc:#16936a; --nw-proc-soft:#e3f4ec;
+        --nw-law:#b4561f; --nw-law-soft:#fbeee4; --nw-state:#7a4fc2; --nw-state-soft:#f0eafb; --nw-quote:#f3f2ee; }
+@media (prefers-color-scheme: dark) { :root:where(:not([data-theme="light"])) {
+  --nw-round:#6aa6ee; --nw-round-soft:#16253a; --nw-proc:#3cc492; --nw-proc-soft:#12301f;
+  --nw-law:#ec9358; --nw-law-soft:#3a2416; --nw-state:#b294ec; --nw-state-soft:#2a2140; --nw-quote:#232321; } }
+:root[data-theme="dark"] { --nw-round:#6aa6ee; --nw-round-soft:#16253a; --nw-proc:#3cc492; --nw-proc-soft:#12301f;
+  --nw-law:#ec9358; --nw-law-soft:#3a2416; --nw-state:#b294ec; --nw-state-soft:#2a2140; --nw-quote:#232321; }
+.nw { max-width:720px; margin:0 auto; }
+.nw-h { font-size:20px; margin:4px 0 2px; }
+.nw-lede { color:var(--ink2); font-size:13px; margin:0; }
+.nw-rules { display:flex; flex-wrap:wrap; gap:4px 14px; margin-top:8px; font-size:12px; color:var(--muted); }
+.nw-rules span::before { content:"✓ "; color:var(--nw-proc); }
+.nw-filters { display:flex; gap:6px; flex-wrap:wrap; margin:16px 0 4px; }
+.nw-filters button { font:inherit; font-size:13px; border:1px solid var(--hair); background:var(--surface); color:var(--ink2); border-radius:999px; padding:4px 12px; cursor:pointer; }
+.nw-filters button[aria-pressed="true"] { background:var(--ink); color:var(--plane); border-color:var(--ink); }
+.nw-filters button:focus-visible, .nw-q summary:focus-visible { outline:2px solid var(--s1); outline-offset:2px; }
+.nw-day { font-size:12px; color:var(--muted); letter-spacing:.06em; margin:22px 0 8px; display:flex; align-items:center; gap:10px; }
+.nw-day::after { content:""; flex:1; height:1px; background:var(--hair); }
+.nw-item { background:var(--surface); border:1px solid var(--hair); border-radius:12px; padding:14px 16px; margin-bottom:10px; min-width:0; }
+.nw-meta { display:flex; align-items:center; flex-wrap:wrap; gap:6px 8px; font-size:12px; color:var(--muted); }
+.nw-type { font-weight:700; border-radius:6px; padding:1px 8px; }
+.nw-type.nw-round { color:var(--nw-round); background:var(--nw-round-soft); }
+.nw-type.nw-proc { color:var(--nw-proc); background:var(--nw-proc-soft); }
+.nw-type.nw-law { color:var(--nw-law); background:var(--nw-law-soft); }
+.nw-type.nw-state { color:var(--nw-state); background:var(--nw-state-soft); }
+.nw-due { color:var(--bad); background:var(--bad-soft); font-weight:700; border-radius:6px; padding:1px 8px; }
+.nw-item h3 { font-size:16px; line-height:1.45; margin:8px 0 6px; text-wrap:balance; }
+.nw-item ul { margin:0; padding-left:18px; color:var(--ink2); font-size:14px; line-height:1.6; }
+.nw-who { margin:0 0 8px; font-size:12.5px; color:var(--ink2); background:var(--nw-law-soft); border-radius:8px; padding:5px 10px; }
+.nw-who b { color:var(--nw-law); margin-right:6px; }
+.nw-tbl { overflow-x:auto; margin:10px 0 2px; }
+.nw-tbl table { border-collapse:collapse; font-size:12.5px; min-width:100%; }
+.nw-tbl th, .nw-tbl td { padding:5px 8px; text-align:right; white-space:nowrap; border-bottom:1px solid var(--hair); font-variant-numeric:tabular-nums; }
+.nw-tbl th { color:var(--muted); font-weight:500; }
+.nw-tbl th:first-child, .nw-tbl td:first-child { text-align:left; }
+.nw-zero { color:var(--bad); }
+.nw-from { color:var(--muted); }
+.nw-moved { color:var(--nw-proc); }
+.nw-q { margin-top:10px; }
+.nw-q summary { cursor:pointer; font-size:12.5px; color:var(--s1); }
+.nw-q blockquote { margin:8px 0 0; padding:10px 12px; background:var(--nw-quote); border-radius:8px; font-size:12.5px; line-height:1.6; color:var(--ink2); overflow-wrap:anywhere; }
+.nw-go { display:inline-block; margin-top:10px; font-size:13px; font-weight:700; color:var(--s1); text-decoration:none; }
+.nw-foot { margin-top:10px; padding-top:8px; border-top:1px dashed var(--hair); display:flex; flex-wrap:wrap; gap:4px 12px; font-size:12px; color:var(--muted); align-items:center; }
+.nw-foot a { color:var(--s1); text-decoration:none; }
+.nw-how { margin-left:auto; }
+.nw-how.nw-auto::before { content:"● "; color:var(--nw-round); }
+.nw-how.nw-review::before { content:"● "; color:var(--nw-proc); }
+.nw-empty { color:var(--muted); font-size:13px; padding:20px 0; }
+.nw-disc { margin-top:22px; font-size:12px; color:var(--muted); line-height:1.7; }
+.nw-dot { position:absolute; top:9px; right:2px; width:7px; height:7px; border-radius:50%; background:var(--bad); }
 
 /* ---- 行情 · 邀请轮次 ---- */
 .rd { display:flex; flex-direction:column; gap:12px; }
@@ -1059,6 +1112,17 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
     </div>
   </div>
 
+  <div id="view-news" hidden>
+    <div class="nw">
+      <h2 class="nw-h">官方动态</h2>
+      <p class="nw-lede">内政部、联邦法规库、各州移民局发布的技术移民相关变化，每条都附官方原文和链接。</p>
+      <div class="nw-rules"><span>只收官方来源</span><span>政策类人工核对后上线</span><span>不做个人建议</span></div>
+      <div class="nw-filters" id="nwFilters" role="group" aria-label="按类型筛选"></div>
+      <div id="nwList"></div>
+      <p class="nw-disc">本页只转述官方发布的内容，不是移民建议，也不预测获邀。政策会变，以原文为准；个人情况请咨询注册移民代理（MARA）。</p>
+    </div>
+  </div>
+
   <div id="view-group" hidden>
     <div class="grpwrap">
       <div class="card grp">
@@ -1525,7 +1589,7 @@ function chart6() {
 // "我的" is one tab over two steps with its own sub-switch: 1. the points
 // calculator, then 2. the plan, which reuses those answers. Separate views keep
 // their deep links (#/points, #/plan) and their lazy init intact.
-const VIEWS = [["watch", "自选"], ["board", "行情"], ["points", "我的"], ["group", "交流群"]];
+const VIEWS = [["watch", "自选"], ["board", "行情"], ["news", "动态"], ["points", "我的"], ["group", "交流群"]];
 const ME_VIEWS = ["points", "plan"];
 const HOME = VIEWS[0][0];
 // Reachable by link ("完整图表 →"), not shown as a tab: the full per-occupation
@@ -1562,6 +1626,7 @@ function setView(name) {
     b.setAttribute("aria-pressed", b.dataset.v === name ||
                    (b.dataset.v === "points" && ME_VIEWS.includes(name))));
   if (ME_VIEWS.includes(name)) meRender(name);
+  if (name === "news") nwRender();
   // the visa filter scopes the data and points views; it means nothing on the AI page
   const f = document.querySelector(".filters");
   if (f) f.style.display = (name === "data" || name === "points") ? "" : "none";
@@ -2059,6 +2124,7 @@ function boot(data) {
     b.textContent = b.dataset.label || "表格视图";
   });
   buildTabs();
+  nwInit();
   const toData = document.getElementById("toData");
   if (toData && !toData.dataset.wired) {
     toData.dataset.wired = "1";
@@ -2221,6 +2287,7 @@ document.addEventListener("click", e => {
 </script>
 <!--WATCHJS-->
 <!--PLANJS-->
+<!--NEWSJS-->
 <!--HEATJS-->
 <script>
 // Web Analytics drops query strings, so a campaign tag like ?src=xhs would be
