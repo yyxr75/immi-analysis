@@ -1,0 +1,49 @@
+name: 动态 watch
+
+# Once a day: look for official changes the 动态 feed may carry (rules in
+# data/NEWS_RULES.md). Numbers copied from an official table are published
+# straight into site/data/news.json; anything that needs reading goes to
+# data/news_drafts.json for a person. Runs after rounds.yml / refresh.yml have
+# had a chance to save a new round or dashboard month.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 6 * * *'
+
+permissions:
+  contents: write
+  actions: write   # pushes made with GITHUB_TOKEN do not trigger pages.yml; dispatch it
+
+concurrency:
+  group: news
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Look for changes
+        id: w
+        working-directory: scripts
+        run: python news_watch.py
+
+      - name: Commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/data/news.json data/news_state.json data/news_drafts.json 2>/dev/null || true
+          git diff --staged --quiet && echo "no file changes" && exit 0
+          git commit -m "动态: daily watch"
+          git pull --rebase
+          git push
+
+      - name: Redeploy the site
+        if: steps.w.outputs.published == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --ref "${GITHUB_REF_NAME}"

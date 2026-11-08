@@ -47,7 +47,7 @@ const nwTable = it => it.table ? `<div class="nw-tbl"><table><tr>${it.table.head
   it.table.rows.map(r => `<tr>${r.map(nwCell).join("")}</tr>`).join("")}</table></div>` : "";
 const nwMeta = it => `<div class="nw-meta"><span class="nw-type nw-${it.type}">${NW_TYPES[it.type]}</span>${
   it.effective ? `<span class="nw-due">${nwDue(it.effective)}</span>` : ""}<span>${nwEsc(it.tag || "")}</span></div>`;
-const nwHow = it => `<span class="nw-how nw-${it.how}">${it.how === "auto" ? "数字照官方表格自动更新" : "已人工核对"}</span>`;
+const nwHow = it => `<span class="nw-how nw-${it.how}">${it.how === "auto" ? "数字照官方表格自动更新" : "译文已对照原文核对"}</span>`;
 
 function nwCard(it) {
   return `<article class="nw-item" data-t="${it.type}">
