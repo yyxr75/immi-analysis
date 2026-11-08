@@ -343,6 +343,86 @@
    }
   },
   {
+   "id": "2026-10-14-wa-round",
+   "date": "2026-10-14",
+   "type": "state",
+   "tag": "西澳 · 10月14日一轮",
+   "title": "西澳 10月14日一轮：发出 1,227 个州担保邀请",
+   "points": [
+    "190 共 836 个，491 共 391 个。",
+    "2026–27 年度西澳至今两轮共发出 2,327 个邀请（9月 1,100，10月 1,227）。"
+   ],
+   "table": {
+    "head": [
+     "",
+     "一般 · 清单1",
+     "一般 · 清单2",
+     "毕业生 · 高等教育",
+     "毕业生 · 职业教育",
+     "合计"
+    ],
+    "rows": [
+     [
+      "190",
+      "118",
+      "586",
+      "99",
+      "33",
+      "836"
+     ],
+     [
+      "491",
+      "0",
+      "362",
+      "13",
+      "16",
+      "391"
+     ]
+    ]
+   },
+   "quote": "Invitations for priority trade occupations were issued on 14 October for the State Nominated Migration Program. Invitations for priority non-trade occupations were issued on 14 October for the State Nominated Migration Program.",
+   "src": {
+    "name": "西澳政府 · State Nominated Migration Program",
+    "url": "https://migration.wa.gov.au/our-services-support/state-nominated-migration-program"
+   },
+   "checked": "2026-11-09",
+   "how": "review",
+   "detail": {
+    "summary": [
+     "西澳政府在州担保移民计划（SNMP）页面公布：10月14日向重点行业的技工类和非技工类职业发出了州担保邀请，一共 1,227 个，其中 190 有 836 个、491 有 391 个。",
+     "按通道分：一般通道清单1（WASMOL Schedule 1）190 有 118 个、491 为 0；一般通道清单2（WASMOL Schedule 2）190 有 586 个、491 有 362 个；毕业生通道（高等教育）190 有 99 个、491 有 13 个；毕业生通道（职业教育）190 有 33 个、491 有 16 个。",
+     "西澳 2026–27 年度至今共两轮：9月 1,100 个，10月 1,227 个，合计 2,327 个。这里是“获邀申请州提名”的人数，不等于最终获得提名；内政部公布的 7–9 月西澳提名数（190 共 17 个、491 共 120 个）统计的是已经发出的提名，两者口径不同。",
+     "西澳同时说明：同一分数排序时按 EOI 提交日期先后发邀请；EOI 同时选了 190 和 491 的，一般先收到 491 邀请。"
+    ],
+    "parts": [
+     {
+      "en": "Invitations for priority trade occupations were issued on 14 October for the State Nominated Migration Program.",
+      "zh": "州担保移民计划已于 10月14日向重点行业的技工类职业发出邀请。"
+     },
+     {
+      "en": "Invitations for priority non-trade occupations were issued on 14 October for the State Nominated Migration Program.",
+      "zh": "州担保移民计划已于 10月14日向重点行业的非技工类职业发出邀请。"
+     },
+     {
+      "en": "Intending visa subclass | General stream WASMOL Schedule 1 | General stream WASMOL Schedule 2 | Graduate stream Higher education | Graduate stream Vocational education and training\nVisa subclass 190 | 118 | 586 | 99 | 33\nVisa subclass 491 | 0 | 362 | 13 | 16\nTOTAL | 118 | 948 | 112 | 49",
+      "zh": "拟申请签证类别 | 一般通道 WASMOL 清单1 | 一般通道 WASMOL 清单2 | 毕业生通道（高等教育）| 毕业生通道（职业教育与培训）\n190 签证 | 118 | 586 | 99 | 33\n491 签证 | 0 | 362 | 13 | 16\n合计 | 118 | 948 | 112 | 49"
+     },
+     {
+      "en": "2026-27 program year — Invitations issued … Total to date: Sept 1100 | Oct 1227 | Total to date 2327",
+      "zh": "2026–27 计划年度——已发出的邀请……累计：9月 1,100｜10月 1,227｜至今合计 2,327"
+     },
+     {
+      "en": "If multiple EOIs are ranked at the same level, invitations will be issued based on the EOI submission date.",
+      "zh": "如果多个 EOI 排名相同，将按 EOI 提交日期先后发出邀请。"
+     },
+     {
+      "en": "If your EOI indicates you are seeking State nomination for both the subclass 190 and subclass 491 visa, you will generally be invited for the subclass 491 visa in the first instance. This is because you will generally have a higher EOI points score for this visa.",
+      "zh": "如果你的 EOI 表明同时申请 190 和 491 的州提名，一般会先收到 491 签证的邀请。这是因为你在 491 下的 EOI 分数通常更高。"
+     }
+    ]
+   }
+  },
+  {
    "id": "2026-10-02-student-visa-offshore",
    "date": "2026-10-02",
    "type": "law",
