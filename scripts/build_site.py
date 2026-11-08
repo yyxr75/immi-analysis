@@ -173,7 +173,7 @@ PICKER_JS = """
       stat.className = "pstat";
       stat.textContent = `共 ${fmtN(INDEX.length)} 个职业可选。当前：${hit.name}`;
       curCode = code;
-      const want = hashFor(curView, curView === "watch" ? wtHashCode() : code);
+      const want = hashFor(curView, curView === "watch" ? wtHashCode() : curView === "news" ? NW.open : code);
       if (location.hash !== want) history.replaceState(null, "", want);
     } catch (e) {
       report.classList.remove("busy");
@@ -357,6 +357,12 @@ def check_news():
         assert it["type"] in ("round", "proc", "law", "state"), it["id"]
         assert it["how"] in ("auto", "review"), it["id"]
         assert it["src"].get("url", "").startswith("https://"), it["id"]
+        d = it.get("detail") or {}
+        assert d.get("summary"), f"news item {it['id']}: detail.summary missing"
+        for part in d.get("parts", []):
+            assert part.get("en") and part.get("zh"), f"news item {it['id']}: a part lacks en or zh"
+        for l in d.get("more", []):
+            assert l.get("url", "").startswith("https://"), it["id"]
         assert it["id"] not in ids, f"duplicate news id {it['id']}"
         ids.add(it["id"])
     dates = [it["date"] for it in items]

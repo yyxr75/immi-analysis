@@ -12,16 +12,70 @@
     "491 主要来自北领地（208）、西澳（120）、塔州（96）。"
    ],
    "table": {
-    "head": ["获州提名的 EOI", "ACT", "NSW", "NT", "QLD", "SA", "TAS", "VIC", "WA"],
+    "head": [
+     "获州提名的 EOI",
+     "ACT",
+     "NSW",
+     "NT",
+     "QLD",
+     "SA",
+     "TAS",
+     "VIC",
+     "WA"
+    ],
     "rows": [
-     ["190", "<5", "11", "188", "7", "0", "271", "0", "17"],
-     ["491", "<5", "0", "208", "<5", "0", "96", "0", "120"]
+     [
+      "190",
+      "<5",
+      "11",
+      "188",
+      "7",
+      "0",
+      "271",
+      "0",
+      "17"
+     ],
+     [
+      "491",
+      "<5",
+      "0",
+      "208",
+      "<5",
+      "0",
+      "96",
+      "0",
+      "120"
+     ]
     ]
    },
    "quote": "The number of EOIs that have received nominations from state and territory governments from 1 July 2026 to 30 September 2026.",
-   "src": {"name": "内政部 · SkillSelect Invitation rounds", "url": "https://immi.homeaffairs.gov.au/visas/working-in-australia/skillselect/invitation-rounds"},
+   "src": {
+    "name": "内政部 · SkillSelect Invitation rounds",
+    "url": "https://immi.homeaffairs.gov.au/visas/working-in-australia/skillselect/invitation-rounds"
+   },
    "checked": "2026-11-07",
-   "how": "auto"
+   "how": "auto",
+   "detail": {
+    "summary": [
+     "内政部在 SkillSelect「Invitation rounds」页面公布了 2026–27 计划年度头三个月（2026年7月1日至9月30日）各州、领地政府发出的提名数量，按 190 和 491 分开统计。",
+     "190 提名主要来自塔州（271）和北领地（188）；491 主要来自北领地（208）、西澳（120）和塔州（96）。南澳和维州两类都是 0，新州 190 为 11、491 为 0。",
+     "这张表统计的是已经发出的提名，不是各州的年度名额。2026–27 各州名额，内政部的名额页面目前还没有公布（只列了 2025–26）。表中“<5”为官方原样写法，没有给出具体数字。"
+    ],
+    "parts": [
+     {
+      "en": "State and Territory nominations — 2026-27 program year",
+      "zh": "州和领地提名——2026–27 计划年度"
+     },
+     {
+      "en": "The number of EOIs that have received nominations from state and territory governments from 1 July 2026 to 30 September 2026.",
+      "zh": "2026年7月1日至2026年9月30日期间，获得州和领地政府提名的 EOI 数量。"
+     },
+     {
+      "en": "Skilled Nominated visa (subclass 190) · Skilled Work Regional (Provisional) visa (subclass 491) State and Territory Nominated",
+      "zh": "表中两行分别是：技术提名签证（190 类）；技术工作偏远地区（临时）签证（491 类）州和领地提名。"
+     }
+    ]
+   }
   },
   {
    "id": "2026-11-06-qld-roi-open",
@@ -35,9 +89,55 @@
     "2026–27 名额官方还没公布。"
    ],
    "quote": "Registrations of Interest (ROIs) will open on 6 November 2026. Onshore applicants must have lodged their 2025–26 tax return and received their ATO Notice of Assessment (NOA) before submitting an ROI.",
-   "src": {"name": "Migration Queensland", "url": "https://migration.qld.gov.au/"},
+   "src": {
+    "name": "Migration Queensland",
+    "url": "https://migration.qld.gov.au/"
+   },
    "checked": "2026-11-06",
-   "how": "review"
+   "how": "review",
+   "detail": {
+    "summary": [
+     "昆州政府移民局（Migration Queensland）已发布 2026–27 年度州担保移民计划，190 和 491 的意向登记（ROI）于 2026年11月6日开放。",
+     "需要特别注意三点：在昆州境内申请的人，提交 ROI 前要先报完 2025–26 年度的税并收到 NOA；所有人都要为 2026–27 年度重新提交 ROI，包括以前递过、还没拿到提名的人；ROI 提交后不能修改，同一时间只有一份有效，只看最新提交的那一份。",
+     "昆州表示计划竞争激烈，提交 ROI 不保证获邀。2026–27 年度昆州有多少名额，昆州和内政部都还没有公布。"
+    ],
+    "parts": [
+     {
+      "en": "Queensland's State Nominated Migration Program (SNMP) for 2026-27 is now published. Program requirements have been updated for 2026-27.",
+      "zh": "昆州 2026–27 年度州担保移民计划（SNMP）现已发布。2026–27 年度的计划要求已有更新。"
+     },
+     {
+      "en": "Registrations of Interest (ROIs) will open on 6 November 2026.",
+      "zh": "意向登记（ROI）将于 2026年11月6日开放。"
+     },
+     {
+      "en": "Onshore applicants must have lodged their 2025–26 tax return and received their ATO Notice of Assessment (NOA) before submitting an ROI.",
+      "zh": "境内申请人在提交 ROI 之前，必须已经递交 2025–26 年度的报税表，并已收到澳洲税务局（ATO）的评税通知书（NOA）。"
+     },
+     {
+      "en": "Due to the highly competitive nature of the program, submitting an ROI does not guarantee an invitation to apply for Queensland nomination.",
+      "zh": "由于该计划竞争非常激烈，提交 ROI 并不保证会获邀申请昆州提名。"
+     },
+     {
+      "en": "All applicants must submit a new ROI for the 2026-27 program, including those who submitted an ROI in a previous program year and have not received Queensland nomination.",
+      "zh": "所有申请人都必须为 2026–27 年度计划提交新的 ROI，包括在以往年度提交过 ROI、但尚未获得昆州提名的人。"
+     },
+     {
+      "en": "You can only select one visa subclass in your ROI and can only have one active ROI at a time. Once submitted, an ROI cannot be updated. If your circumstances change or you need to amend any information, you must submit a new ROI. If multiple ROIs are submitted, only the most recent ROI will be considered.",
+      "zh": "每份 ROI 只能选择一个签证类别，同一时间只能有一份有效的 ROI。ROI 一经提交便不能修改。如果你的情况有变化或需要更正信息，必须重新提交一份 ROI。如果提交了多份 ROI，只会考虑最近提交的那一份。"
+     }
+    ],
+    "more": [
+     {
+      "name": "Migration Queensland · How to apply – Skilled visas",
+      "url": "https://migration.qld.gov.au/visa-options/skilled-visas/registering-your-interest-in-queenslands-migration-program"
+     },
+     {
+      "name": "Migration Queensland · News",
+      "url": "https://migration.qld.gov.au/news"
+     }
+    ]
+   }
   },
   {
    "id": "2026-11-02-processing",
@@ -50,17 +150,70 @@
     "不代表多久能下签，官方注明处理时间可能波动。"
    ],
    "table": {
-    "head": ["", "优先行业", "境内递交", "境外递交"],
+    "head": [
+     "",
+     "优先行业",
+     "境内递交",
+     "境外递交"
+    ],
     "rows": [
-     ["189", "26年6月 → 10月", "26年6月", "25年11月 → 12月"],
-     ["190", "26年3月 → 10月", "26年1月 → 4月", "25年2月"],
-     ["491", "25年3月 → 6月", "25年3月", "25年2月"]
+     [
+      "189",
+      "26年6月 → 10月",
+      "26年6月",
+      "25年11月 → 12月"
+     ],
+     [
+      "190",
+      "26年3月 → 10月",
+      "26年1月 → 4月",
+      "25年2月"
+     ],
+     [
+      "491",
+      "25年3月 → 6月",
+      "25年3月",
+      "25年2月"
+     ]
     ]
    },
    "quote": "We prioritise applications for the Skilled Nominated (subclass 190) visa under Ministerial Direction No. 122. We are currently processing applications that were lodged in or before: … April 2026 – Visa applications where the primary applicant was in Australia at the time they lodged their application.",
-   "src": {"name": "内政部 · 签证页面处理进度", "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-processing-times/visa-processing-priorities/skilled-visa"},
+   "src": {
+    "name": "内政部 · 签证页面处理进度",
+    "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-processing-times/visa-processing-priorities/skilled-visa"
+   },
    "checked": "2026-11-06",
-   "how": "auto"
+   "how": "auto",
+   "detail": {
+    "summary": [
+     "内政部在 189、190、491 签证页面顶部公布处理进度：按第 122 号部长指令（Ministerial Direction No. 122）排序，列出“正在处理哪个月及以前递交的申请”。2026年11月2日更新了这组横幅。",
+     "和 10月2日的版本（本站存档）相比：优先行业（建筑、医疗、教育等）的 189、190 都推进到 2026年10月；190 境内递交从 2026年1月推进到 4月；189 境外递交从 2025年11月推进到 12月；190、491 的境外递交仍停在 2025年2月。",
+     "这只说明处理排到了哪个月递交的申请，不代表多久能下签。官方原文也写明，过渡期间公布的日期和处理时间可能波动。"
+    ],
+    "parts": [
+     {
+      "en": "We prioritise applications for the Skilled – Nominated (subclass 190) visa under Ministerial Direction No. 122. We are currently processing applications that were lodged in or before:",
+      "zh": "我们根据第 122 号部长指令，对技术提名签证（190 类）申请进行优先排序。我们目前正在处理在以下月份或之前递交的申请："
+     },
+     {
+      "en": "October 2026 – Construction, Healthcare, Teaching, Agriculture, Aquaculture, Fishing, and Resources sectors, or in Australia's law enforcement and defence interests.\nApril 2026 – Visa applications where the primary applicant was in Australia at the time they lodged their application.\nFebruary 2025 – Visa applications where the primary applicant was outside of Australia at the time they lodged their application and whose application is not combined with another person’s application at any time.\nFebruary 2025 – All other visa applications from applicants who were outside Australia when they applied.",
+      "zh": "2026年10月：建筑、医疗、教育、农业、水产养殖、渔业和资源行业，或涉及澳大利亚执法和国防利益的申请。\n2026年4月：主申请人递交申请时身在澳大利亚境内的签证申请。\n2025年2月：主申请人递交申请时身在澳大利亚境外，且其申请在任何时候都没有与他人的申请合并的签证申请。\n2025年2月：申请时身在澳大利亚境外的申请人的所有其他签证申请。"
+     },
+     {
+      "en": "Skilled – Independent (subclass 189) visa (Points-tested stream): October 2026 – Construction, Healthcare, Teaching, Agriculture, Aquaculture, Fishing, and Resources sectors, or in Australia's law enforcement and defence interests. June 2026 – … in Australia … December 2025 – … outside of Australia … December 2025 – All other visa applications from applicants who were outside Australia when they applied.",
+      "zh": "独立技术移民签证（189 类，计分类别）：优先行业 2026年10月；主申请人递交时在澳洲境内 2026年6月；主申请人递交时在境外、且未与他人申请合并 2025年12月；其他境外申请 2025年12月。"
+     },
+     {
+      "en": "Skilled Work Regional (Provisional) (subclass 491) visa: June 2025 – Construction, Healthcare, Teaching, Agriculture, Aquaculture, Fishing, and Resources sectors … March 2025 – … in Australia … February 2025 – … outside of Australia … February 2025 – All other visa applications from applicants who were outside Australia when they applied.",
+      "zh": "技术工作偏远地区（临时）签证（491 类）：优先行业 2025年6月；主申请人递交时在澳洲境内 2025年3月；主申请人递交时在境外、且未与他人申请合并 2025年2月；其他境外申请 2025年2月。"
+     },
+     {
+      "en": "Please note, while we transition to the new processing priorities under Ministerial Direction No. 122, published allocation dates and processing timeframes may fluctuate. Some timeframes may temporarily increase as applications are reprioritised.",
+      "zh": "请注意，在我们过渡到第 122 号部长指令下的新处理优先顺序期间，公布的分配日期和处理时限可能会有波动。由于申请需要重新排序，部分处理时限可能会暂时延长。"
+     }
+    ],
+    "srcNote": "横幅显示在内政部 189、190、491 各签证页面的顶部；下面的链接是第 122 号部长指令的说明页。"
+   }
   },
   {
    "id": "2026-11-02-round-2026-10-15",
@@ -73,10 +226,42 @@
     "这一轮起 tie-break 日期按职业分别公布。"
    ],
    "quote": "The tables below show the number of EOIs invited, and the tie break month and year, for the SkillSelect invitation round on 15 October 2026. Skilled Independent visa (subclass 189): 20,000",
-   "src": {"name": "内政部 · SkillSelect Invitation rounds", "url": "https://immi.homeaffairs.gov.au/visas/working-in-australia/skillselect/invitation-rounds"},
+   "src": {
+    "name": "内政部 · SkillSelect Invitation rounds",
+    "url": "https://immi.homeaffairs.gov.au/visas/working-in-australia/skillselect/invitation-rounds"
+   },
    "checked": "2026-11-02",
    "how": "auto",
-   "go": {"label": "每个职业邀请了多少人 → 行情 · 邀请轮次", "hash": "#/board", "boardMode": "round"}
+   "go": {
+    "label": "每个职业邀请了多少人 → 行情 · 邀请轮次",
+    "hash": "#/board",
+    "boardMode": "round"
+   },
+   "detail": {
+    "summary": [
+     "内政部公布了 2026年10月15日 SkillSelect 邀请轮次的官方结果：189 签证一共发出 20,000 个邀请，是 6月4日那一轮（10,000 个）的两倍。",
+     "官方表按职业列出了最低获邀分数和同分排序日期（tie break date）。本站按这张表统计：最低 65 分就有邀请的职业有 44 个，6月那轮是 15 个。",
+     "这一轮起，tie-break 日期不再是整轮一个，而是每个职业分别公布。每个职业具体邀请了多少人、什么分数，可以在「行情 → 邀请轮次」里看。"
+    ],
+    "parts": [
+     {
+      "en": "Invitations issued on 15 October 2026",
+      "zh": "2026年10月15日发出的邀请"
+     },
+     {
+      "en": "The tables below show the number of EOIs invited, and the tie break month and year, for the SkillSelect invitation round on 15 October 2026.",
+      "zh": "下表列出 2026年10月15日 SkillSelect 邀请轮次中获邀的 EOI 数量，以及同分排序（tie break）的月份和年份。"
+     },
+     {
+      "en": "Visa subclass | Total EOIs Invited\nSkilled Independent visa (subclass 189) | 20,000",
+      "zh": "签证类别 | 获邀 EOI 总数\n独立技术移民签证（189 类）| 20,000"
+     },
+     {
+      "en": "Invitations issued by occupation and minimum score invited — Occupation | Minimum points score | Tie break date",
+      "zh": "按职业列出的邀请和获邀最低分——职业 | 最低分数 | 同分排序日期"
+     }
+    ]
+   }
   },
   {
    "id": "2026-11-01-eoi-10-2026",
@@ -84,11 +269,26 @@
    "type": "round",
    "tag": "EOI 看板",
    "title": "SkillSelect EOI 看板更新到 2026年10月",
-   "points": ["各职业排队人数、分数分布、获邀率已同步更新。"],
-   "src": {"name": "就业与劳资关系部 · SkillSelect EOI 看板", "url": "https://api.dynamic.reports.employment.gov.au/anonap/extensions/hSKLS02_SkillSelect_EOI_Data/hSKLS02_SkillSelect_EOI_Data.html"},
+   "points": [
+    "各职业排队人数、分数分布、获邀率已同步更新。"
+   ],
+   "src": {
+    "name": "就业与劳资关系部 · SkillSelect EOI 看板",
+    "url": "https://api.dynamic.reports.employment.gov.au/anonap/extensions/hSKLS02_SkillSelect_EOI_Data/hSKLS02_SkillSelect_EOI_Data.html"
+   },
    "checked": "2026-11-02",
    "how": "auto",
-   "go": {"label": "看你的职业 → 自选", "hash": "#/watch"}
+   "go": {
+    "label": "看你的职业 → 自选",
+    "hash": "#/watch"
+   },
+   "detail": {
+    "summary": [
+     "SkillSelect EOI 看板（由就业与劳资关系部发布）在 2026年11月1日刷新，数据更新到 2026年10月。",
+     "本站已同步更新各职业的排队人数、分数分布和历史获邀率。这是一条数据更新通知，没有需要翻译的官方公告原文。"
+    ],
+    "parts": []
+   }
   },
   {
    "id": "2026-10-29-407-offshore",
@@ -97,12 +297,50 @@
    "tag": "407 培训签",
    "effective": "2026-11-12",
    "title": "407 培训签证：11月12日起必须在境外申请、在境外获签",
-   "who": "想在澳洲境内申请 407 的人；已经持有 407、或 11月12日前已递交的不受影响。",
-   "points": ["部长另行指定的人群除外，豁免名单目前还没发布。"],
+   "who": "2026年11月12日及以后、在澳洲境内申请 407 的人。新规只适用于 11月12日及以后递交的申请。",
+   "points": [
+    "部长另行指定的人群除外，豁免名单目前还没发布。"
+   ],
    "quote": "From 12 November 2026, applicants must be outside Australia when they apply for a Training visa (subclass 407), and when we grant it.",
-   "src": {"name": "联邦法规库 F2026L01449 · 内政部", "url": "https://www.legislation.gov.au/F2026L01449"},
+   "src": {
+    "name": "联邦法规库 F2026L01449 · 内政部",
+    "url": "https://www.legislation.gov.au/F2026L01449"
+   },
    "checked": "2026-10-31",
-   "how": "review"
+   "how": "review",
+   "detail": {
+    "summary": [
+     "联邦政府 10月29日登记了《2026 年移民修正（培训签证——申请要求）条例》（F2026L01449）。从 2026年11月12日起，申请 407 培训签证必须人在澳大利亚境外，获签时也必须在境外。",
+     "例外是部长通过立法文件另行指定的人群；目前联邦法规库里还没有这份指定文件。",
+     "官方说明的目的是：限制在澳洲境内连续申请、获得临时签证的做法。新规只适用于 11月12日及以后递交的申请；被拒签的人仍可申请复审。"
+    ],
+    "parts": [
+     {
+      "en": "From 12 November 2026, applicants must be outside Australia when they apply for a Training visa (subclass 407), and when we grant it.",
+      "zh": "从 2026年11月12日起，申请培训签证（407 类）的人在递交申请时和我们批签时，都必须身在澳大利亚境外。"
+     },
+     {
+      "en": "The Amendment Regulations amend the Migration Regulations to provide that in order to make a valid application for a Subclass 407 visa, the applicant must be outside Australia at the time of application, unless they are an applicant who is in a class of non-citizens specified by the Minister in a legislative instrument.",
+      "zh": "本修正条例修改《移民条例》，规定：要有效递交 407 签证申请，申请人在申请时必须身在澳大利亚境外，除非申请人属于部长通过立法文件指定的某类非公民。"
+     },
+     {
+      "en": "The Amendment Regulations also amend the Schedule 2 criteria for the grant of a Subclass 407 visa to provide that the applicant must be outside Australia at the time of grant, but not in immigration clearance, unless the non-citizen is in a class of persons specified in an instrument …",
+      "zh": "本修正条例还修改了附表 2 中 407 签证的批签条件，规定申请人在批签时必须身在澳大利亚境外（但不能处于入境通关过程中），除非该非公民属于相关文件指定的人群。"
+     },
+     {
+      "en": "The purpose of these amendments is to support a more sustainable migration system by curbing a pathway for lodging and being granted successive temporary visa applications in Australia.",
+      "zh": "这些修正的目的，是通过限制在澳大利亚境内连续递交并获得临时签证的途径，支持一个更可持续的移民体系。"
+     },
+     {
+      "en": "Merits review remains available to non-citizens who have been refused the grant of a Subclass 407 visa.",
+      "zh": "被拒发 407 签证的非公民，仍然可以申请实质复审（merits review）。"
+     },
+     {
+      "en": "The Amendment Regulations commence on 12 November 2026. The amendments apply to an application for a Subclass 407 visa made on or after commencement.",
+      "zh": "本修正条例于 2026年11月12日生效。修正内容适用于生效之日或之后递交的 407 签证申请。"
+     }
+    ]
+   }
   },
   {
    "id": "2026-10-02-student-visa-offshore",
@@ -111,11 +349,56 @@
    "tag": "500 学生签",
    "title": "学生签新规：已持学生签的，再申请原则上要在境外递交",
    "who": "在澳洲境内想续学生签、或从打工度假/485/482/旅游签转学生签的人。10月2日前已递交的按旧规则。",
-   "points": ["例外 4 种：正在读博士、学校倒闭、主课程 12 个月内读完、升读一门更高级别课程。"],
+   "points": [
+    "例外 4 种：正在读博士、学校倒闭、主课程 12 个月内读完、升读一门更高级别课程。"
+   ],
    "quote": "The Amendment Regulations provide a further exception to that rule, so that a primary applicant who already holds a Student visa needs to make any further Student visa applications from offshore.",
-   "src": {"name": "联邦法规库 F2026L01347 · LIN 26/102 · LIN 26/087", "url": "https://www.legislation.gov.au/F2026L01347"},
+   "src": {
+    "name": "联邦法规库 F2026L01347 · LIN 26/102 · LIN 26/087",
+    "url": "https://www.legislation.gov.au/F2026L01347"
+   },
    "checked": "2026-10-25",
-   "how": "review"
+   "how": "review",
+   "detail": {
+    "summary": [
+     "2026年10月2日起，学生签证（500 类）的申请规则有三处变化，依据是《2026 年移民修正（学生签证改革）条例》（F2026L01347）和两份配套文件 LIN 26/102、LIN 26/087。",
+     "第一，已经持有学生签证的人，再申请学生签证原则上要在境外递交，获签时也要在境外。例外有国防、外交部资助学生、中小学生，以及 LIN 26/087 指定的 4 类：申请时正在读博士；学校停办（provider default）且在 12 个月内申请；主课程还没读完、并会在 CoE 结束日后 12 个月内读完；读完主课程后只再读一门 AQF 级别更高的课程（读完本科及以上的，下一门也必须是大学类课程）。",
+     "第二，持有打工度假（417/462）、482、485、旅游签等 LIN 26/102 列出的签证的人，必须在境外申请学生签证。第三，陪读家属原则上不能随主申请人一起申请，获签后也不能再追加，例外包括太平洋岛国或东盟国家护照持有人等。",
+     "10月2日前已经递交、尚未审结的学生签证申请，按旧规则处理。"
+    ],
+    "parts": [
+     {
+      "en": "The Amendment Regulations provide a further exception to that rule, so that a primary applicant who already holds a Student visa needs to make any further Student visa applications from offshore. … It also applies to Student visa holders who previously satisfied primary criteria, with exemptions for: Defence students; Foreign Affairs students; or school students; or students in a specified class of persons.",
+      "zh": "本修正条例在原规则上增加了一项例外：已经持有学生签证的主申请人，之后再申请学生签证都需要在境外递交。……这也适用于以前作为主申请人获签的学生签证持有人，但以下人员豁免：国防学生、外交部学生、中小学生，或属于指定类别的学生。"
+     },
+     {
+      "en": "The Amendment Regulations instead provide that if an applicant was required by certain provisions in Schedule [1] to apply from outside Australia, then they must also be outside Australia when a visa is granted to them.",
+      "zh": "本修正条例改为规定：如果申请人按附表 1 的相关条款必须在境外申请，那么批签时也必须身在澳大利亚境外。"
+     },
+     {
+      "en": "The Amendment Regulations provide that secondary applicants can only make an application for a Student visa if: the primary applicant is a Defence student; or … a Foreign Affairs student; or … holds a passport from a Pacific regional country or a country that is a member of the Association of Southeast Asian nations (ASEAN); or … the secondary applicant is in a specified class of persons.",
+      "zh": "本修正条例规定，副申请人（家属）只有在以下情况下才能申请学生签证：主申请人是国防学生；或是外交部学生；或持有太平洋地区国家或东盟成员国的护照；……或副申请人属于指定类别的人员。"
+     },
+     {
+      "en": "The effect of this amendment is that a Student visa cannot ‘add’ family members to an existing visa by making a subsequent entrant application.",
+      "zh": "这项修正的效果是：学生签证不能再通过“后续入境者申请”给已有的签证追加家属。"
+     },
+     {
+      "en": "These measures will apply to an application for a visa made on or after the commencement of the amendment regulations. Student visa applications lodged prior to the date the amendment regulations take effect, but not yet finalised, will not be impacted by the proposed amended application and grant criteria.",
+      "zh": "这些措施适用于修正条例生效之日或之后递交的签证申请。在修正条例生效前已经递交、但尚未审结的学生签证申请，不受修改后的申请和批签条件影响。"
+     }
+    ],
+    "more": [
+     {
+      "name": "联邦法规库 · LIN 26/102（须在境外申请学生签的签证名单）",
+      "url": "https://www.legislation.gov.au/F2026L01348"
+     },
+     {
+      "name": "联邦法规库 · LIN 26/087（可在境内申请的 4 类学生）",
+      "url": "https://www.legislation.gov.au/F2026L01349"
+     }
+    ]
+   }
   }
  ]
 }

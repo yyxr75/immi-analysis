@@ -365,6 +365,26 @@ ul.dont { margin:0; padding-left:19px; }
 .nw-how.nw-review::before { content:"● "; color:var(--nw-proc); }
 .nw-empty { color:var(--muted); font-size:13px; padding:20px 0; }
 .nw-disc { margin-top:22px; font-size:12px; color:var(--muted); line-height:1.7; }
+.nw-item { cursor:pointer; }
+.nw-item h3 a { color:inherit; text-decoration:none; }
+.nw-item h3 a:hover { color:var(--s1); }
+.nw-more { display:inline-block; margin-top:10px; font-size:13px; font-weight:700; color:var(--s1); text-decoration:none; }
+.nw-page { background:var(--surface); border:1px solid var(--hair); border-radius:12px; padding:16px 18px 20px; min-width:0; }
+.nw-back { display:inline-block; font-size:13px; color:var(--s1); text-decoration:none; margin-bottom:12px; }
+.nw-title { font-size:20px; line-height:1.4; margin:10px 0 4px; text-wrap:balance; }
+.nw-dates { font-size:12px; color:var(--muted); margin:0 0 12px; display:flex; flex-wrap:wrap; gap:4px 8px; }
+.nw-dates .nw-how { margin-left:0; }
+.nw-page section { margin-top:20px; }
+.nw-page h4 { font-size:13px; letter-spacing:.06em; color:var(--muted); margin:0 0 8px; padding-bottom:6px; border-bottom:1px solid var(--hair); }
+.nw-p { margin:0 0 10px; font-size:15px; line-height:1.75; color:var(--ink); }
+.nw-hint { font-size:12px; color:var(--muted); margin:0 0 10px; }
+.nw-pair { padding:10px 0; border-bottom:1px dashed var(--hair); }
+.nw-zh { margin:0; font-size:15px; line-height:1.75; color:var(--ink); }
+.nw-en { margin:6px 0 0; font-size:12.5px; line-height:1.6; color:var(--muted); padding-left:10px; border-left:2px solid var(--grid); overflow-wrap:anywhere; }
+.nw-srcs ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+.nw-srcs a { color:var(--s1); text-decoration:none; font-weight:700; font-size:14px; }
+.nw-srcs small { display:block; font-size:11.5px; color:var(--muted); overflow-wrap:anywhere; margin-top:2px; }
+#view-news:has(.nw-page) .nw-listdisc { display:none; }
 .nw-dot { position:absolute; top:9px; right:2px; width:7px; height:7px; border-radius:50%; background:var(--bad); }
 
 /* ---- 行情 · 邀请轮次 ---- */
@@ -1114,12 +1134,14 @@ svg.wt-ch text { fill:var(--muted); font-size:10.5px; }
 
   <div id="view-news" hidden>
     <div class="nw">
-      <h2 class="nw-h">官方动态</h2>
-      <p class="nw-lede">内政部、联邦法规库、各州移民局发布的技术移民相关变化，每条都附官方原文和链接。</p>
-      <div class="nw-rules"><span>只收官方来源</span><span>政策类人工核对后上线</span><span>不做个人建议</span></div>
-      <div class="nw-filters" id="nwFilters" role="group" aria-label="按类型筛选"></div>
+      <div id="nwHead">
+        <h2 class="nw-h">官方动态</h2>
+        <p class="nw-lede">内政部、联邦法规库、各州移民局发布的技术移民相关变化。点开每一条，看中文总结、原文翻译和原文地址。</p>
+        <div class="nw-rules"><span>只收官方来源</span><span>政策类人工核对后上线</span><span>不做个人建议</span></div>
+        <div class="nw-filters" id="nwFilters" role="group" aria-label="按类型筛选"></div>
+      </div>
       <div id="nwList"></div>
-      <p class="nw-disc">本页只转述官方发布的内容，不是移民建议，也不预测获邀。政策会变，以原文为准；个人情况请咨询注册移民代理（MARA）。</p>
+      <p class="nw-disc nw-listdisc">本页只转述官方发布的内容，不是移民建议，也不预测获邀。政策会变，以原文为准；个人情况请咨询注册移民代理（MARA）。</p>
     </div>
   </div>
 
@@ -1609,10 +1631,11 @@ function parseHash() {
   if (isCode(p[0])) return { view: "data", code: p[0] };          // legacy #261313
   if (p[0] === "ai") return { view: "points", code: null };      // the AI match page is gone
   const view = ALL_VIEWS.some(v => v[0] === p[0]) ? p[0] : HOME;
+  if (view === "news") return { view, code: p[1] && /^[\w-]+$/.test(p[1]) ? p[1] : null };   // #/news/<item id>
   return { view, code: p[1] && isCode(p[1]) ? p[1] : null };
 }
 const hashFor = (view, code) =>
-  "#/" + view + ((view === "data" || view === "watch") && code ? "/" + code : "");
+  "#/" + view + ((view === "data" || view === "watch" || view === "news") && code ? "/" + code : "");
 
 function setView(name) {
   if (!ALL_VIEWS.some(v => v[0] === name)) name = HOME;
@@ -1631,7 +1654,7 @@ function setView(name) {
   const f = document.querySelector(".filters");
   if (f) f.style.display = (name === "data" || name === "points") ? "" : "none";
   hideTip();
-  const want = hashFor(name, name === "watch" ? wtHashCode() : curCode);
+  const want = hashFor(name, name === "watch" ? wtHashCode() : name === "news" ? NW.open : curCode);
   if (location.hash !== want) history.replaceState(null, "", want);
   // charts size themselves from their container, so a chart drawn while its
   // view was hidden would come out zero-width -- draw them on reveal instead
@@ -1687,8 +1710,10 @@ function buildTabs() {
   });
   addEventListener("hashchange", () => {
     const { view, code } = parseHash();
+    if (view === "news") NW.open = code;
     if (view !== curView) setView(view);
     else if (view === "watch") wtRoute(code);
+    else if (view === "news") nwRender();
   });
 }
 
