@@ -304,6 +304,9 @@ def main():
             t = fetch(url, timeout=40)
             t = re.sub(r"<script.*?</script>|<style.*?</style>", "", t, flags=re.S)
             t = re.sub(r"Last (published|updated)[^<]{0,80}", "", text_of(t))
+            # a bot-check or error page must not count as "the page changed"
+            if "nomination" not in t.lower() or len(t) < 2000:
+                log.append(f"page {key}: unexpected content, not recorded"); continue
             h = hashlib.sha1(t.encode()).hexdigest()[:12]
             if pages.get(key) and pages[key] != h:
                 draft({"id": f"page-{key}-{h}", "found": TODAY, "kind": "state page changed", "page": key, "url": url})
