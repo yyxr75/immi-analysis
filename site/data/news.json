@@ -2,6 +2,61 @@
  "note": "官方动态. Only official sources. 'how': auto = numbers copied from an official table; review = Chinese reading checked by the owner before publishing. Drafts live in data/news_drafts.json, never under site/.",
  "items": [
   {
+   "id": "2026-11-12-485-family",
+   "date": "2026-11-12",
+   "type": "law",
+   "tag": "485 毕业生签",
+   "effective": "2026-11-13",
+   "title": "485 毕业生签证：11月13日起，带家属一起申请受限",
+   "who": "2026年11月13日及以后递交 485 申请、想把配偶或子女一起带上的人。主申请人本人的条件不变；之前已递交的申请不受影响。",
+   "points": [
+    "家属只有在规定情况下才能一起申请，例如主申请人是太平洋岛国或东盟国家公民、博士毕业生、或全额外国政府奖学金学生。",
+    "家属必须和主申请人同时递交，获签后不能再追加家属。"
+   ],
+   "quote": "From 13 November 2026, new rules will change which family members you can include in your Temporary Graduate visa (subclass 485) application. The eligibility requirements for primary applicants stay the same.",
+   "src": {
+    "name": "联邦法规库 F2026L01500 · 内政部",
+    "url": "https://www.legislation.gov.au/F2026L01500"
+   },
+   "checked": "2026-11-13",
+   "how": "review",
+   "detail": {
+    "summary": [
+     "联邦政府 11月12日登记了《2026 年移民修正（毕业生临时签证改革）条例》（F2026L01500），第二天即 2026年11月13日生效。它修改的是 485 签证（Temporary Graduate visa）里“家属能不能一起申请”的规定，主申请人本人的申请条件不变。",
+     "新规下，副申请人（家属）只有在以下情况之一才能一起申请：主申请人是太平洋岛国国民、东盟国家国民、博士毕业生，或学业由外国政府奖学金全额资助；家属是主申请人在最近一次获得 485 或学生签证之后出生的孩子；家属在 2026年10月2日或过去 6 个月内，曾作为同一主申请人的家属持有学生签证；家属在过去 6 个月内，曾作为同一主申请人的家属持有 485。",
+     "家属必须和主申请人同时递交申请，签证批下来以后不能再“追加”家属。不符合这些条件的申请是无效申请，不会被审理，也不能申请实质复审（仍可申请司法复核）。",
+     "官方说明，这样做是为了让 485 回到“给刚毕业的国际学生积累澳洲工作经验”的本意，而不是家庭移民的途径；它是 10月2日学生签改革的后续。新规只适用于 11月13日及以后递交的申请。"
+    ],
+    "parts": [
+     {
+      "en": "From 13 November 2026, new rules will change which family members you can include in your Temporary Graduate visa (subclass 485) application. The eligibility requirements for primary applicants stay the same.",
+      "zh": "从 2026年11月13日起，新规定将改变你在毕业生临时签证（485 类）申请中可以包含哪些家庭成员。主申请人的申请资格要求保持不变。"
+     },
+     {
+      "en": "The measures in the Amendment Regulations are intended to reinforce the intent of the TGV program to provide access to work experience in Australia to recent international graduates, rather than a pathway for family migration. These measures follow amendments made by the Migration Amendment (Student Visa Reform) Regulations 2026 (Student visa reforms) that took effect from 2 October 2026.",
+      "zh": "本修正条例中的措施，旨在强化毕业生临时签证（TGV）项目的本意：为刚毕业的国际学生提供在澳大利亚获得工作经验的机会，而不是作为家庭移民的途径。这些措施是继 2026年10月2日生效的《2026 年移民修正（学生签证改革）条例》之后的进一步修改。"
+     },
+     {
+      "en": "The Amendment Regulations amend Schedule 1 criteria by requiring that secondary applicants can only apply for a TGV if:\n• the primary applicant is a Pacific national, an ASEAN national, a PhD graduate, or a graduate whose studies were fully funded by a foreign government scholarship; or\n• the secondary applicant is a child of the primary applicant, and was born after the primary applicant was granted their most recent TGV or Student visa;\n• the secondary applicant holds, or held either on 2 October 2026 or at any time in the previous 6 months, a Student visa on the basis of having the satisfied secondary criteria for grant of that visa and where the primary applicant for that visa is the primary applicant in the new application; or\n• the secondary applicant holds, or in the previous 6 months, held a TGV on the basis of having the satisfied secondary criteria for grant of that visa and where the primary applicant for that visa is the primary applicant in the new application.",
+      "zh": "本修正条例修改附表 1 的条件，规定副申请人只有在以下情况下才能申请 TGV：\n• 主申请人是太平洋地区国民、东盟国家国民、博士毕业生，或学业由外国政府奖学金全额资助的毕业生；或\n• 副申请人是主申请人的孩子，且出生在主申请人最近一次获得 TGV 或学生签证之后；\n• 副申请人现在持有、或在 2026年10月2日或过去 6 个月内的任何时候持有，以副申请人身份获得的学生签证，且该签证的主申请人就是这次新申请的主申请人；或\n• 副申请人现在持有、或在过去 6 个月内持有，以副申请人身份获得的 TGV，且该签证的主申请人就是这次新申请的主申请人。"
+     },
+     {
+      "en": "The Amendment Regulations also require secondary applicants for a TGV to apply at the same time as the primary applicant, with the effect that a visa holder could not ‘add’ family members to an existing visa (known as a subsequent entrant application).",
+      "zh": "本修正条例还要求 TGV 的副申请人与主申请人同时递交申请，其效果是：签证持有人不能再给已有的签证“追加”家庭成员（即所谓的后续入境者申请）。"
+     },
+     {
+      "en": "From commencement of the Amendment Regulations, all new applicants are required to meet the amended Schedule 1 criteria. An application that does not meet Schedule 1 criteria is not a valid visa application. … This means that the applicant will not be granted a visa and cannot seek merits review. Judicial review remains available.",
+      "zh": "自本修正条例生效起，所有新申请人都必须满足修改后的附表 1 条件。不满足附表 1 条件的申请不是有效的签证申请。……这意味着申请人不会获得签证，也不能申请实质复审。仍可申请司法复核。"
+     },
+     {
+      "en": "The amendments made by Schedule 1 to the Migration Amendment (Temporary Graduate Visa Reform) Regulations 2026 apply in relation to an application for a visa made on or after the commencement of that Schedule.",
+      "zh": "《2026 年移民修正（毕业生临时签证改革）条例》附表 1 所作的修改，适用于该附表生效之日或之后递交的签证申请。"
+     }
+    ],
+    "srcNote": "条例 11月12日登记、11月13日生效；内政部签证页面 11月13日同步发布了提示。"
+   }
+  },
+  {
    "id": "2026-11-07-state-nominations-q1",
    "date": "2026-11-07",
    "type": "state",
