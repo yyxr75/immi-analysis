@@ -1,3 +1,19 @@
 {
- "items": []
+ "items": [
+  {
+   "id": "leg-F2026L01503",
+   "found": "2026-11-13",
+   "kind": "new instrument",
+   "name": "Migration Amendment (Preventing Further Stay for Visitor Visas) Regulations 2026",
+   "made": "2026-11-12",
+   "url": "https://www.legislation.gov.au/F2026L01503"
+  },
+  {
+   "id": "page-wa-snmp-fd6185b98c64",
+   "found": "2026-11-13",
+   "kind": "state page changed",
+   "page": "wa-snmp",
+   "url": "https://migration.wa.gov.au/our-services-support/state-nominated-migration-program"
+  }
+ ]
 }
