@@ -2,6 +2,59 @@
  "note": "官方动态. Only official sources. 'how': auto = numbers copied from an official table; review = Chinese reading checked by the owner before publishing. Drafts live in data/news_drafts.json, never under site/.",
  "items": [
   {
+   "id": "2026-11-13-wa-rules",
+   "date": "2026-11-13",
+   "type": "state",
+   "tag": "西澳 · 规则更新",
+   "title": "西澳州担保更新规则：新增国防通道，排序先看职业行业",
+   "points": [
+    "新增“国防工业通道”（WASMOL 清单3），只有 190。",
+    "排序改为先按职业所属行业、再按是否住在西澳：重点行业的建筑技工排最前。",
+    "EOI 里要写明“只申请西澳提名”（seeking nomination from Western Australia only）。"
+   ],
+   "quote": "Your EOI must include the following details: That you are seeking nomination from Western Australia only.",
+   "src": {
+    "name": "西澳政府 · State Nominated Migration Program",
+    "url": "https://migration.wa.gov.au/our-services-support/state-nominated-migration-program"
+   },
+   "checked": "2026-11-14",
+   "how": "review",
+   "detail": {
+    "summary": [
+     "西澳政府州担保移民计划（SNMP）页面在 11月12日至13日之间更新了规则（本站对比了 11月12日和 11月14日抓取的页面原文；“更新前”的原文来自 11月12日的存档）。主要有三处变化。",
+     "第一，新增国防工业通道（Defence industry stream），职业清单是 WASMOL 清单3，只能申请 190。清单3 里的建筑类职业不需要雇佣合同；其他职业需要一份在西澳的全职雇佣合同，从递交州担保申请之日起至少 6 个月。",
+     "第二，排序规则改了。一般通道（清单1、2）和毕业生通道现在先按职业行业排：重点行业的建筑技工最前，其次是重点行业的其他职业（建筑非技工、医疗社会援助、旅游酒店、教育培训），再次是其他行业；每一档里再按“住在西澳”优先于“住在海外或其他州”，然后看 EOI 分数和提交日期。原来的规则是先看是否住在西澳，再看职业行业。",
+     "第三，EOI 要写明“只申请西澳的提名”（seeking nomination from Western Australia only），原来的写法是“申请西澳的提名”。页面没有对这一点做进一步说明。"
+    ],
+    "parts": [
+     {
+      "en": "Defence industry stream – eligible occupations are listed on the WA Skilled migration occupation list (WASMOL) Schedule 3.",
+      "zh": "国防工业通道——符合条件的职业列在西澳技术移民职业清单（WASMOL）清单3 上。"
+     },
+     {
+      "en": "The nominated occupation identified in your skills assessment must be: listed on the WASMOL Schedule 3 occupation list; and eligible for visa subclass 190.",
+      "zh": "你职业评估中的提名职业必须：在 WASMOL 清单3 上；并且可以申请 190 签证。"
+     },
+     {
+      "en": "A contract of employment is not required for applicants invited with a building and construction occupation in WASMOL Schedule 3. For other occupations on WASMOL Schedule 3 you must have a contract of employment in your nominated (or closely related) occupation for full-time employment in Western Australia, for at least six months from the date of your application for State nomination.",
+      "zh": "以 WASMOL 清单3 中建筑类职业获邀的申请人不需要雇佣合同。清单3 上的其他职业，你必须有一份在西澳从事提名职业（或密切相关职业）的全职雇佣合同，期限从你递交州提名申请之日起至少 6 个月。"
+     },
+     {
+      "en": "General stream - Schedules 1 and 2\n1. Trade occupations in priority sector: building and construction\na) Currently residing in Western Australia\nb) Currently residing offshore or in another Australian state or territory\n2. Occupations in priority sectors: building and construction – non-trades; healthcare and social assistance; hospitality and tourism; and education and training\na) … b) …\n3. Occupations in all other sectors\na) … b) …\n4. EOI Points Score: preference is given to EOIs with higher points test scores.\n5. EOI Submission Date: preference is given to EOIs with earlier submission dates that otherwise have the same ranking.",
+      "zh": "一般通道——清单1 和清单2\n1. 重点行业的技工职业：建筑\na）目前住在西澳\nb）目前住在海外或澳洲其他州/领地\n2. 重点行业的职业：建筑（非技工）、医疗和社会援助、旅游和酒店、教育和培训\na）……b）……\n3. 所有其他行业的职业\na）……b）……\n4. EOI 分数：分数高的优先。\n5. EOI 提交日期：其他排名相同时，提交日期早的优先。"
+     },
+     {
+      "en": "(Before the update) General stream\n1. Applicants residing in Western Australia\na) Trade occupations in priority sector: building and construction. b) Occupations in priority sectors … c) Occupations in all other sectors\n2. Applicants residing outside Western Australia (interstate, and overseas) …",
+      "zh": "（更新前）一般通道\n1. 住在西澳的申请人\na）重点行业技工：建筑；b）重点行业的职业……；c）所有其他行业的职业\n2. 住在西澳以外（其他州和海外）的申请人……"
+     },
+     {
+      "en": "Your EOI must include the following details: That you are seeking nomination from Western Australia only.",
+      "zh": "你的 EOI 必须包含以下信息：表明你只申请西澳的提名。"
+     }
+    ]
+   }
+  },
+  {
    "id": "2026-11-12-485-family",
    "date": "2026-11-12",
    "type": "law",
@@ -54,6 +107,60 @@
      }
     ],
     "srcNote": "条例 11月12日登记、11月13日生效；内政部签证页面 11月13日同步发布了提示。"
+   }
+  },
+  {
+   "id": "2026-11-12-visitor-8503",
+   "date": "2026-11-12",
+   "type": "law",
+   "tag": "600 旅游签 · ETA · eVisitor",
+   "effective": "2026-11-28",
+   "title": "旅游签新规：11月28日起申请的访客签证都带“不得续留”条件",
+   "who": "2026年11月28日及以后申请 600 访客签证（所有类别）、ETA（601）或 eVisitor（651）的人。以这类签证入境后，不能在澳洲境内再申请其他实质签证（保护签证除外），除非获得豁免。",
+   "points": [
+    "“不得续留”条件 8503 改为这三类签证的强制条件；以前只有部分 600 类别强制，旅游、商务类别由部长酌情决定，ETA 和 eVisitor 不能加。",
+    "部长豁免 8503 的权力不变。"
+   ],
+   "quote": "The Amendment Regulations … provide that condition 8503 (no further stay) is a mandatory condition for the following visas: Subclass 600 (Visitor) visa, for all streams of the visa; Subclass 601 (Electronic Travel Authority) visa; and Subclass 651 (eVisitor) visa.",
+   "src": {
+    "name": "联邦法规库 F2026L01503",
+    "url": "https://www.legislation.gov.au/F2026L01503"
+   },
+   "checked": "2026-11-14",
+   "how": "review",
+   "detail": {
+    "summary": [
+     "联邦政府 11月12日登记了《2026 年移民修正（防止访客签证续留）条例》（F2026L01503），2026年11月28日生效。它把“不得续留”条件（8503）改为 600 访客签证所有类别、ETA（601）和 eVisitor（651）的强制条件。",
+     "带 8503 条件的人，自上次入境以来只要持有过这类签证，就不能在澳洲境内有效递交其他实质签证申请（保护签证除外），除非部长豁免。也就是说，以后用旅游签或 ETA 入境，就不能在境内转学生签、工作签或其他签证。",
+     "以前，8503 只对 600 签证的担保家庭、ADS 旅游团和常客类别是强制的；旅游和商务类别由部长酌情决定，ETA 和 eVisitor 不能加 8503。",
+     "官方说明，这是降低净海外移民（NOM）的一系列措施之一，和学生签改革、限制临时签证持有人在境内连续申请签证的改革属于同一方向。新规只适用于 11月28日及以后递交的签证申请；部长豁免 8503 的权力不变。"
+    ],
+    "parts": [
+     {
+      "en": "Clause 8503 of Schedule 8 to the Migration Regulations 1994 … establishes a condition that would prevent a person in the migration zone, who since last entering Australia has held a visa subject to the condition, from making a valid application for a substantive visa (except for a protection visa) … unless the Minister has provided a waiver (condition 8503).",
+      "zh": "《1994 年移民条例》附表 8 第 8503 条规定了一项条件：身在移民区内、且自上次入境以来持有过带此条件签证的人，不能有效递交实质签证申请（保护签证除外），除非部长已给予豁免（即 8503 条件）。"
+     },
+     {
+      "en": "The Amendment Regulations … provide that condition 8503 (no further stay) is a mandatory condition for the following visas:\n• Subclass 600 (Visitor) visa, for all streams of the visa;\n• Subclass 601 (Electronic Travel Authority) visa; and\n• Subclass 651 (eVisitor) visa.",
+      "zh": "本修正条例规定，8503（不得续留）是以下签证的强制条件：\n• 600 类访客签证，所有类别；\n• 601 类电子旅行授权（ETA）签证；以及\n• 651 类 eVisitor 签证。"
+     },
+     {
+      "en": "Before these amendments, condition 8503 (no further stay) was a mandatory condition for all visa holders in the Sponsored Family, Approved Destination Status, and Frequent Traveller streams of the Subclass 600 (Visitor) visa but could only be applied at the Minister’s discretion for the Business Visitor stream or for most persons in the Tourist stream, and could not be applied on the Subclass 601 (Electronic Travel Authority) or Subclass 651 (eVisitor) visas.",
+      "zh": "修正之前，8503 对 600 访客签证担保家庭、ADS 旅游团和常客类别的所有持有人是强制条件；对商务访客类别和旅游类别的大多数人，只能由部长酌情决定是否施加；对 601 ETA 和 651 eVisitor 签证则不能施加。"
+     },
+     {
+      "en": "The Amendment Regulations limit onshore pathways for remaining in Australia for holders of these visas. They form part of a series of measures that are intended to place downwards pressure on Net Overseas Migration (NOM), including recent changes to the student visa program and reforms to prevent temporary visa holders remaining onshore by applying for multiple temporary visas.",
+      "zh": "本修正条例限制了这些签证持有人留在澳大利亚的境内途径。它属于一系列旨在压低净海外移民（NOM）的措施，其中包括近期学生签证项目的变化，以及防止临时签证持有人通过连续申请多个临时签证留在境内的改革。"
+     },
+     {
+      "en": "These amendments do not affect the Minister’s ability to exercise their discretion to waive condition 8503 (no further stay) in the relevant circumstances set out under subregulation 2.05 of the Migration Regulations.",
+      "zh": "这些修正不影响部长在《移民条例》第 2.05 款规定的相关情况下，酌情豁免 8503（不得续留）条件的权力。"
+     },
+     {
+      "en": "The Amendment Regulations commence on 28 November 2026. These amendments apply in relation to an application for a visa made on or after commencement.",
+      "zh": "本修正条例于 2026年11月28日生效。修正内容适用于生效之日或之后递交的签证申请。"
+     }
+    ]
    }
   },
   {
