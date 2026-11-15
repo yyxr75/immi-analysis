@@ -1,3 +1,11 @@
 {
- "items": []
+ "items": [
+  {
+   "id": "page-wa-snmp-f46a0ef1732f",
+   "found": "2026-11-15",
+   "kind": "state page changed",
+   "page": "wa-snmp",
+   "url": "https://migration.wa.gov.au/our-services-support/state-nominated-migration-program"
+  }
+ ]
 }
