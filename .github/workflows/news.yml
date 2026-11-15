@@ -37,8 +37,8 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # one path at a time: a missing file (no drafts yet) must not stop the rest
-          for f in site/data/news.json data/news_state.json data/news_drafts.json; do
-            [ -f "$f" ] && git add "$f"
+          for f in site/data/news.json data/news_state.json data/news_drafts.json data/news_pages; do
+            [ -e "$f" ] && git add "$f"
           done
           git diff --staged --quiet && echo "no file changes" && exit 0
           git commit -m "动态: daily watch"

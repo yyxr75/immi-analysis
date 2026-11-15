@@ -22,6 +22,7 @@ the two halves the rules allow a machine to do:
 State (what was last seen) is data/news_state.json. Prints changed=true|false
 to $GITHUB_OUTPUT when set.
 """
+import difflib
 import hashlib
 import html
 import json
@@ -36,6 +37,7 @@ ROOT = os.path.dirname(HERE)
 NEWS = os.path.join(ROOT, "site", "data", "news.json")
 STATE = os.path.join(ROOT, "data", "news_state.json")
 DRAFTS = os.path.join(ROOT, "data", "news_drafts.json")
+PAGES_DIR = os.path.join(ROOT, "data", "news_pages")   # last seen text of each watched state page
 ROUNDS_URL = "https://immi.homeaffairs.gov.au/visas/working-in-australia/skillselect/invitation-rounds"
 MD122_URL = "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-processing-times/visa-processing-priorities/skilled-visa"
 EOI_URL = "https://api.dynamic.reports.employment.gov.au/anonap/extensions/hSKLS02_SkillSelect_EOI_Data/hSKLS02_SkillSelect_EOI_Data.html"
@@ -301,17 +303,29 @@ def main():
     pages = state.setdefault("pages", {})
     for key, url in STATE_PAGES.items():
         try:
-            t = fetch(url, timeout=40)
-            t = re.sub(r"<script.*?</script>|<style.*?</style>", "", t, flags=re.S)
-            t = re.sub(r"Last (published|updated)[^<]{0,80}", "", text_of(t))
+            raw = re.sub(r"<script.*?</script>|<style.*?</style>", "", fetch(url, timeout=40), flags=re.S)
+            raw = re.sub(r"</(p|li|tr|h\d|div|td|th)>", "\n", raw)
+            lines = [l.strip() for l in html.unescape(re.sub(r"<[^>]+>", " ", raw)).replace("\u200b", "").split("\n")]
+            lines = [re.sub(r"\s+", " ", l) for l in lines if l.strip() and not re.match(r"Last (published|updated)", l.strip())]
+            t = "\n".join(lines)
             # a bot-check or error page must not count as "the page changed"
             if "nomination" not in t.lower() or len(t) < 2000:
                 log.append(f"page {key}: unexpected content, not recorded"); continue
             h = hashlib.sha1(t.encode()).hexdigest()[:12]
-            if pages.get(key) and pages[key] != h:
-                draft({"id": f"page-{key}-{h}", "found": TODAY, "kind": "state page changed", "page": key, "url": url})
-                log.append(f"page {key} changed")
+            # keep the text so a change comes with the lines that changed
+            os.makedirs(PAGES_DIR, exist_ok=True)
+            kept = os.path.join(PAGES_DIR, key + ".txt")
+            before = open(kept, encoding="utf-8").read().split("\n") if os.path.exists(kept) else None
+            # no saved text yet (first run of this method): record only, never draft
+            if before is not None and pages.get(key) != h:
+                diff = list(difflib.unified_diff(before, lines, lineterm="", n=1))[2:80]
+                if [l for l in diff if l[:1] in "+-"]:
+                    draft({"id": f"page-{key}-{h}", "found": TODAY, "kind": "state page changed",
+                           "page": key, "url": url, "diff": diff})
+                    log.append(f"page {key} changed")
             pages[key] = h
+            if not dry:
+                open(kept, "w", encoding="utf-8").write(t)
         except Exception as e:
             log.append(f"page {key}: {type(e).__name__}")
 
