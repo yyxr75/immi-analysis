@@ -4,10 +4,6 @@ Skip to navigation
 menu
 Open Menu
 MyServiceNSW
-Logged in
-MyServiceNSW
-Manage account
-Logout of MyServiceNSW
 close
 Close Menu
 Living in NSW
