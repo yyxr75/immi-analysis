@@ -1,20 +1,3 @@
 {
- "items": [
-  {
-   "id": "page-nsw-190-061950434500",
-   "found": "2026-11-17",
-   "kind": "state page changed",
-   "page": "nsw-190",
-   "url": "https://www.nsw.gov.au/visas-and-migration/skilled-visas/skilled-nominated-visa-subclass-190",
-   "diff": [
-    "@@ -6,6 +6,2 @@",
-    " MyServiceNSW",
-    "-Logged in",
-    "-MyServiceNSW",
-    "-Manage account",
-    "-Logout of MyServiceNSW",
-    " close"
-   ]
-  }
- ]
+ "items": []
 }

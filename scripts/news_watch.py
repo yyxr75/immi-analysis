@@ -319,7 +319,9 @@ def main():
             # no saved text yet (first run of this method): record only, never draft
             if before is not None and pages.get(key) != h:
                 diff = list(difflib.unified_diff(before, lines, lineterm="", n=1))[2:80]
-                if [l for l in diff if l[:1] in "+-"]:
+                changed_lines = [l[1:].strip() for l in diff if l[:1] in "+-"]
+                # menus, login widgets and buttons are short; a real notice has a sentence in it
+                if any(len(l) >= 30 for l in changed_lines):
                     draft({"id": f"page-{key}-{h}", "found": TODAY, "kind": "state page changed",
                            "page": key, "url": url, "diff": diff})
                     log.append(f"page {key} changed")
