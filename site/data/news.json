@@ -2,6 +2,50 @@
  "note": "官方动态. Only official sources. 'how': auto = numbers copied from an official table; review = Chinese reading checked by the owner before publishing. Drafts live in data/news_drafts.json, never under site/.",
  "items": [
   {
+   "id": "2026-11-18-skillselect-immiaccount",
+   "date": "2026-11-18",
+   "type": "round",
+   "tag": "SkillSelect 系统",
+   "effective": "2026-11-24",
+   "title": "SkillSelect 搬进 ImmiAccount：11月24日至28日暂停使用",
+   "points": [
+    "从 11月24日下午4点到 11月28日上午10点，SkillSelect 无法使用。",
+    "已有的 EOI 继续有效，不用重新提交；11月28日起要通过 ImmiAccount 进入 SkillSelect。"
+   ],
+   "quote": "SkillSelect will be unavailable from 4 pm on 24 November 2026 to 10 am on 28 November 2026. Existing Expressions of Interest (EOIs) remain valid. You do not need to resubmit them. From 28 November 2026, access SkillSelect through ImmiAccount.",
+   "src": {
+    "name": "内政部 · SkillSelect",
+    "url": "https://immi.homeaffairs.gov.au/visas/working-in-australia/skillselect"
+   },
+   "checked": "2026-11-19",
+   "how": "review",
+   "detail": {
+    "summary": [
+     "内政部 11月18日在 SkillSelect 相关页面发布提示：SkillSelect 将迁移到 ImmiAccount。",
+     "迁移期间，从 2026年11月24日下午4点到 11月28日上午10点（官网未注明时区，内政部一般用堪培拉时间），SkillSelect 无法使用。已经提交的 EOI 继续有效，不需要重新提交。",
+     "从 11月28日起，要通过 ImmiAccount 进入 SkillSelect。官方提醒：如果你打算从这天起查看签证申请邀请（invitation to apply），需要按“Accessing SkillSelect”页面的说明多做几步。"
+    ],
+    "parts": [
+     {
+      "en": "Important: SkillSelect is moving to ImmiAccount",
+      "zh": "重要：SkillSelect 将迁移到 ImmiAccount"
+     },
+     {
+      "en": "SkillSelect will be unavailable from 4 pm on 24 November 2026 to 10 am on 28 November 2026.",
+      "zh": "SkillSelect 将在 2026年11月24日下午4点至 11月28日上午10点期间无法使用。"
+     },
+     {
+      "en": "Existing Expressions of Interest (EOIs) remain valid. You do not need to resubmit them.",
+      "zh": "已有的意向书（EOI）继续有效，你不需要重新提交。"
+     },
+     {
+      "en": "From 28 November 2026, access SkillSelect through ImmiAccount. If you plan to access an invitation to apply for a visa from this date, you will need to take additional steps. For more information, see Accessing SkillSelect.",
+      "zh": "从 2026年11月28日起，请通过 ImmiAccount 进入 SkillSelect。如果你打算从这天起查看签证申请邀请，需要多做一些步骤。详情见“Accessing SkillSelect”页面。"
+     }
+    ]
+   }
+  },
+  {
    "id": "2026-11-13-wa-rules",
    "date": "2026-11-13",
    "type": "state",
@@ -159,6 +203,89 @@
      {
       "en": "The Amendment Regulations commence on 28 November 2026. These amendments apply in relation to an application for a visa made on or after commencement.",
       "zh": "本修正条例于 2026年11月28日生效。修正内容适用于生效之日或之后递交的签证申请。"
+     }
+    ]
+   }
+  },
+  {
+   "id": "2026-11-12-act-round",
+   "date": "2026-11-12",
+   "type": "state",
+   "tag": "ACT · 11月12日一轮",
+   "title": "ACT 11月12日一轮：发出 353 个 190 邀请，491 为 0",
+   "points": [
+    "堪培拉居民（关键技能职业）211 个，海外申请人 100 个，博士快速通道 24 个，小生意主 17 个，457/482 持有人 1 个。",
+    "截至 11月16日，2026–27 剩余名额 683 个：190 剩 484，491 剩 199。"
+   ],
+   "table": {
+    "head": [
+     "",
+     "博士快速通道",
+     "小生意主",
+     "457/482",
+     "居民·关键技能",
+     "海外·关键技能",
+     "合计"
+    ],
+    "rows": [
+     [
+      "190",
+      "24",
+      "17",
+      "1",
+      "211",
+      "100",
+      "353"
+     ],
+     [
+      "491",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+     ]
+    ]
+   },
+   "quote": "Canberra Matrix Invitation Round: 12 November 2026 … Remaining Allocation 2026-2027 Total allocation remaining: 683 nomination places 190 Nominations: 484 491 Nominations: 199",
+   "src": {
+    "name": "ACT 政府 · Canberra Matrix Invitation Round",
+    "url": "https://www.act.gov.au/migration/resources/canberra-matrix-invitation-round"
+   },
+   "checked": "2026-11-19",
+   "how": "review",
+   "detail": {
+    "summary": [
+     "ACT（首都领地）公布了 11月12日 Canberra Matrix 邀请轮次的结果：这一轮只邀请 190，一共 353 个；491 为 0。",
+     "按通道分：博士快速通道 24 个；堪培拉居民中，小生意主 17 个（190 最低 Matrix 分 115），457/482 签证持有人 1 个，关键技能职业 211 个；海外申请人（关键技能职业）100 个。",
+     "截至 11月16日的申请统计：已批准 117 个（190 有 116 个、491 有 1 个），拒绝 15 个（190 拒绝率 11.5%）；自上一轮以来的批准中，堪培拉居民占 86.3%，海外居民占 13.7%。2026–27 剩余名额 683 个：190 剩 484 个，491 剩 199 个。",
+     "ACT 说明：每月名额按年度分配平均分摊，各职业邀请 Matrix 排名最高的人；最低排名分只是参考，不保证获邀；不回复个人排名或获邀可能性的询问。下一轮暂定在 11月30日那一周。（页面上名额一栏的标题仍写着“2025-2026”，但 600/200 减去已批准数正好等于 2026–27 剩余名额。）"
+    ],
+    "parts": [
+     {
+      "en": "Canberra Matrix Invitation Round: 12 November 2026",
+      "zh": "Canberra Matrix 邀请轮次：2026年11月12日"
+     },
+     {
+      "en": "The ACT has a fixed number of nomination places available each month (pro-rata against the annual allocation). The highest ranked Matrix in each occupation were invited to apply for ACT nomination. The cut‑off for selection depended on the remaining monthly allocation, the date and time of Matrix submission, occupation cap and demand. The greater the demand for an occupation, the higher the rank of the Matrix score invited.",
+      "zh": "ACT 每月可用的提名名额是固定的（按年度分配平均分摊）。每个职业中 Matrix 排名最高的人获邀申请 ACT 提名。选取的分界取决于当月剩余名额、Matrix 提交的日期和时间、职业配额和需求。一个职业需求越大，获邀的 Matrix 排名分就越高。"
+     },
+     {
+      "en": "The minimum ranking score is an indication only and not a guarantee that an invitation was issued. Invitations will not be issued if you have an active application in the system; or if you have previously received ACT nomination.",
+      "zh": "最低排名分只是参考，不保证一定发出了邀请。如果你在系统中有正在处理的申请，或以前获得过 ACT 提名，将不会收到邀请。"
+     },
+     {
+      "en": "Matrix nominating Doctorate Streamlined Pathway — 190 nominations: 24 invitations; 491 nominations: 0 invitations\nCanberra residents — Small Business Owners: 190: 17 invitations (minimum matrix score 115); 491: 0 · 457 / 482 visa holders: 190: 1 invitation; 491: 0 · Critical Skill Occupations: 190: 211 invitations; 491: 0\nOverseas applicants — Critical Skill Occupations: 190: 100 invitation; 491: 0",
+      "zh": "博士快速通道——190：24 个邀请；491：0\n堪培拉居民——小生意主：190 有 17 个（最低 Matrix 分 115）、491 为 0；457/482 签证持有人：190 有 1 个、491 为 0；关键技能职业：190 有 211 个、491 为 0\n海外申请人——关键技能职业：190 有 100 个、491 为 0"
+     },
+     {
+      "en": "Application Count @ 16 November 2026 — Total approvals: 117 approvals (190 Nominations: 116 approvals; 491 Nominations: 1 approval). Total refusals: 15 applications (190 Nominations: 15 refusals (11.5%); 491 Nominations: 0 refusals (0%)). Approvals by residency status since the last invitation round: ACT Resident: 101 approvals (86.3%); Overseas Resident: 16 approvals (13.7%).",
+      "zh": "截至 2026年11月16日的申请统计——共批准 117 个（190 提名 116 个；491 提名 1 个）。共拒绝 15 个申请（190 提名拒绝 15 个，11.5%；491 提名拒绝 0 个，0%）。自上一轮以来按居住地划分的批准：ACT 居民 101 个（86.3%）；海外居民 16 个（13.7%）。"
+     },
+     {
+      "en": "Remaining Allocation 2026-2027 — Total allocation remaining: 683 nomination places; 190 Nominations: 484; 491 Nominations: 199",
+      "zh": "2026–27 剩余名额——共剩 683 个提名名额；190 提名：484 个；491 提名：199 个"
      }
     ]
    }
