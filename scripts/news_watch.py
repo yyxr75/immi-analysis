@@ -319,9 +319,14 @@ def main():
             # no saved text yet (first run of this method): record only, never draft
             if before is not None and pages.get(key) != h:
                 diff = list(difflib.unified_diff(before, lines, lineterm="", n=1))[2:80]
-                changed_lines = [l[1:].strip() for l in diff if l[:1] in "+-"]
-                # menus, login widgets and buttons are short; a real notice has a sentence in it
-                if any(len(l) >= 30 for l in changed_lines):
+                # compare words, not lines: a re-flowed menu changes lines but not words,
+                # and menu items or login widgets are a few words; a notice is a sentence
+                a, b = " ".join(before).split(), " ".join(lines).split()
+                runs = [" ".join(b[j1:j2]) or "(removed) " + " ".join(a[i1:i2])
+                        for op, i1, i2, j1, j2 in difflib.SequenceMatcher(None, a, b, autojunk=False).get_opcodes()
+                        if op != "equal" and max(i2 - i1, j2 - j1) >= 6]
+                if runs:
+                    diff = runs[:20]
                     draft({"id": f"page-{key}-{h}", "found": TODAY, "kind": "state page changed",
                            "page": key, "url": url, "diff": diff})
                     log.append(f"page {key} changed")
