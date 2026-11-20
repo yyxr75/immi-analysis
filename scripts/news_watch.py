@@ -49,6 +49,7 @@ STATE_PAGES = {
     "wa-snmp": "https://migration.wa.gov.au/our-services-support/state-nominated-migration-program",
     "nsw-190": "https://www.nsw.gov.au/visas-and-migration/skilled-visas/skilled-nominated-visa-subclass-190",
     "act-rounds": "https://www.act.gov.au/migration/resources/canberra-matrix-invitation-round",
+    "sa-news": "https://migration.sa.gov.au/news",
 }
 UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) Chrome/120 (ausimmitool.com news watch)"}
 TODAY = datetime.now(timezone.utc).date().isoformat()

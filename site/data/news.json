@@ -2,6 +2,65 @@
  "note": "官方动态. Only official sources. 'how': auto = numbers copied from an official table; review = Chinese reading checked by the owner before publishing. Drafts live in data/news_drafts.json, never under site/.",
  "items": [
   {
+   "id": "2026-11-20-sa-roi-open",
+   "date": "2026-11-20",
+   "type": "state",
+   "tag": "南澳 · 2026–27",
+   "title": "南澳州担保：在南澳生活工作的人，现在都可以递 ROI 了",
+   "points": [
+    "10月只开放给签证在 2027年1月31日前到期的人；11月20日起，所有在南澳生活工作的人都可以递 ROI。",
+    "海外申请人不用递 ROI，南澳直接从 SkillSelect 的 EOI 里挑人邀请；所有人都必须有有效的 EOI。",
+    "优先行业：建筑、国防、教育、工程、医疗、制造；非优先行业排名高的也可能被考虑。"
+   ],
+   "quote": "South Australia is now open for all Registrations of Interest (ROI) for individuals living and working in South Australia.",
+   "src": {
+    "name": "南澳政府 · Migration SA",
+    "url": "https://migration.sa.gov.au/news/south-australias-general-skilled-migration-program-update-20-11"
+   },
+   "checked": "2026-11-21",
+   "how": "review",
+   "detail": {
+    "summary": [
+     "南澳政府移民局（Migration SA）11月20日发布 2026–27 技术移民计划更新：南澳现在对所有在南澳生活和工作的人开放意向登记（ROI）。",
+     "这是在 10月22日那次更新基础上的放宽：10月时，ROI 只开放给在南澳生活工作、且现有签证将在 2027年1月31日前到期的人。",
+     "海外申请人仍然只需要在 SkillSelect 提交 EOI，不用递 ROI，南澳会直接从 EOI 里邀请合适的人。所有申请人都必须在 SkillSelect 有有效的 EOI。",
+     "南澳继续优先考虑在重点行业工作的申请人，包括建筑、国防、教育、工程、医疗和制造；非重点行业中排名高的申请人也可能被考虑。可申请的职业以 2026–27 技术职业清单为准。"
+    ],
+    "parts": [
+     {
+      "en": "South Australia is now open for all Registrations of Interest (ROI) for individuals living and working in South Australia.",
+      "zh": "南澳现在对所有在南澳生活和工作的人开放意向登记（ROI）。"
+     },
+     {
+      "en": "Offshore candidates may continue to lodge an Expression of Interest (EOI) through SkillSelect. Offshore applicants are not required to submit an ROI, as suitable candidates will be invited directly from their EOI lodged in SkillSelect.",
+      "zh": "海外申请人可以继续通过 SkillSelect 提交意向书（EOI）。海外申请人不需要提交 ROI，合适的候选人会直接从其在 SkillSelect 提交的 EOI 中获邀。"
+     },
+     {
+      "en": "All applicants must have a current EOI lodged in SkillSelect.",
+      "zh": "所有申请人都必须在 SkillSelect 中有一份有效的 EOI。"
+     },
+     {
+      "en": "South Australia continues to prioritise candidates working in priority sectors, including building and construction, defence, education, engineering, health and manufacturing. High-ranking candidates in non-priority sectors may also be considered.",
+      "zh": "南澳继续优先考虑在重点行业工作的候选人，包括建筑、国防、教育、工程、医疗和制造。非重点行业中排名靠前的候选人也可能被考虑。"
+     },
+     {
+      "en": "All available occupations for 2026-27 GSM program are on the Skilled Occupations List.",
+      "zh": "2026–27 技术移民（GSM）计划的所有可申请职业都在技术职业清单上。"
+     },
+     {
+      "en": "(October update, 22 October 2026) South Australia is now open for Registrations of Interest (ROI) for individuals living and working in South Australia whose current visas are due to expire by 31 January 2027.",
+      "zh": "（10月22日的更新）南澳现在对在南澳生活和工作、且现有签证将在 2027年1月31日前到期的人开放意向登记（ROI）。"
+     }
+    ],
+    "more": [
+     {
+      "name": "Migration SA · 10月更新（10月22日）",
+      "url": "https://migration.sa.gov.au/news/south-australias-general-skilled-migration-program-update"
+     }
+    ]
+   }
+  },
+  {
    "id": "2026-11-18-skillselect-immiaccount",
    "date": "2026-11-18",
    "type": "round",
