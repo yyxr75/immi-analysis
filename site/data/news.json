@@ -69,20 +69,23 @@
    "title": "SkillSelect 搬进 ImmiAccount：11月24日至28日暂停使用",
    "points": [
     "从 11月24日下午4点到 11月28日上午10点，SkillSelect 无法使用。",
-    "已有的 EOI 继续有效，不用重新提交；11月28日起要通过 ImmiAccount 进入 SkillSelect。"
+    "已提交的 EOI 继续有效、照常参加邀请，不用重新提交，也不用马上导入 ImmiAccount；没提交的草稿不会被迁移。",
+    "新系统里每个提名职业只能有一份已提交的 EOI（签证类别和州偏好写在同一份里）。"
    ],
    "quote": "SkillSelect will be unavailable from 4 pm on 24 November 2026 to 10 am on 28 November 2026. Existing Expressions of Interest (EOIs) remain valid. You do not need to resubmit them. From 28 November 2026, access SkillSelect through ImmiAccount.",
    "src": {
     "name": "内政部 · SkillSelect",
     "url": "https://immi.homeaffairs.gov.au/visas/working-in-australia/skillselect"
    },
-   "checked": "2026-11-19",
+   "checked": "2026-11-23",
    "how": "review",
    "detail": {
     "summary": [
      "内政部 11月18日在 SkillSelect 相关页面发布提示：SkillSelect 将迁移到 ImmiAccount。",
      "迁移期间，从 2026年11月24日下午4点到 11月28日上午10点（官网未注明时区，内政部一般用堪培拉时间），SkillSelect 无法使用。已经提交的 EOI 继续有效，不需要重新提交。",
-     "从 11月28日起，要通过 ImmiAccount 进入 SkillSelect。官方提醒：如果你打算从这天起查看签证申请邀请（invitation to apply），需要按“Accessing SkillSelect”页面的说明多做几步。"
+     "从 11月28日起，要通过 ImmiAccount 进入 SkillSelect。官方提醒：如果你打算从这天起查看签证申请邀请（invitation to apply），需要按“Accessing SkillSelect”页面的说明多做几步。",
+     "内政部随后发布的“Accessing SkillSelect”页面补充了细节：已提交的 EOI 继续有效并照常参加邀请，不需要马上导入 ImmiAccount，导入与否不影响是否获邀；官方鼓励导入，方便以后在新系统里查看和管理。开始填写但没有提交的草稿 EOI 不会迁移，也不能导入，需要在 ImmiAccount 里重新填写。每份 EOI 只能导入一次。",
+     "新的 SkillSelect 每个提名职业只允许一份已提交的 EOI，签证类别和地区偏好可以写在同一份 EOI 里；如果同一职业有多份已提交的 EOI，不需要全部导入。如果你已经收到邀请，可以在新系统里通过 ImmiAccount 查看。"
     ],
     "parts": [
      {
@@ -100,6 +103,28 @@
      {
       "en": "From 28 November 2026, access SkillSelect through ImmiAccount. If you plan to access an invitation to apply for a visa from this date, you will need to take additional steps. For more information, see Accessing SkillSelect.",
       "zh": "从 2026年11月28日起，请通过 ImmiAccount 进入 SkillSelect。如果你打算从这天起查看签证申请邀请，需要多做一些步骤。详情见“Accessing SkillSelect”页面。"
+     },
+     {
+      "en": "If you already have a submitted EOI in SkillSelect, you do not need to create a new one. Your existing submitted EOI will remain valid and continue to be considered for invitation. You do not need to import your EOI straight away. Importing your EOI does not affect whether it will be considered for invitation. We encourage you to import your existing submitted EOI into ImmiAccount so you can access and manage it through the new SkillSelect portal when needed.",
+      "zh": "如果你已经在 SkillSelect 提交了 EOI，不需要再新建一份。你已提交的 EOI 继续有效，并会继续参加邀请。你不需要马上导入 EOI。是否导入不影响 EOI 能否参加邀请。我们鼓励你把已提交的 EOI 导入 ImmiAccount，以便需要时通过新的 SkillSelect 门户查看和管理。"
+     },
+     {
+      "en": "If you have started an EOI but have not submitted it before SkillSelect moves to ImmiAccount, your draft EOI will not be moved to the new SkillSelect. You will need to start a new EOI through ImmiAccount. … An EOI that was in draft status and not submitted, will not be able to be imported.",
+      "zh": "如果你在 SkillSelect 迁移到 ImmiAccount 之前开始填写了 EOI 但没有提交，你的草稿 EOI 不会被迁移到新的 SkillSelect。你需要通过 ImmiAccount 重新开始填写一份新的 EOI。……处于草稿状态、未提交的 EOI 不能被导入。"
+     },
+     {
+      "en": "Each EOI can only be imported once. … SkillSelect will only allow one submitted EOI for each nominated occupation. Visa subclass and location preferences can be included in the same EOI. If you have multiple existing submitted EOIs for the same nominated occupation, you do not need to import all of them.",
+      "zh": "每份 EOI 只能导入一次。……SkillSelect 每个提名职业只允许一份已提交的 EOI。签证类别和地区偏好可以写在同一份 EOI 里。如果你在同一提名职业下有多份已提交的 EOI，不需要全部导入。"
+     },
+     {
+      "en": "If you have an invitation, this will be accessible in the new SkillSelect platform through ImmiAccount.",
+      "zh": "如果你已经收到邀请，可以通过 ImmiAccount 在新的 SkillSelect 平台上查看。"
+     }
+    ],
+    "more": [
+     {
+      "name": "内政部 · Accessing SkillSelect",
+      "url": "https://immi.homeaffairs.gov.au/visas/working-in-australia/skillselect/accessing-skillselect"
      }
     ]
    }
