@@ -1,14 +1,3 @@
 {
- "items": [
-  {
-   "id": "page-wa-snmp-4a8602115267",
-   "found": "2026-11-23",
-   "kind": "state page changed",
-   "page": "wa-snmp",
-   "url": "https://migration.wa.gov.au/our-services-support/state-nominated-migration-program",
-   "diff": [
-    "(removed) Current invitation round 2025-26 Invitation rounds 2024-25 Invitation rounds"
-   ]
-  }
- ]
+ "items": []
 }
