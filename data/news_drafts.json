@@ -1,3 +1,68 @@
 {
- "items": []
+ "items": [
+  {
+   "id": "leg-F2026L01615",
+   "found": "2026-11-27",
+   "kind": "new instrument",
+   "name": "Migration (Specified Classes of Persons for Subclass 462 (Work and Holiday) Visa Pre-Application Processes) Instrument 2026",
+   "made": "2026-11-27",
+   "url": "https://www.legislation.gov.au/F2026L01615"
+  },
+  {
+   "id": "leg-F2026L01614",
+   "found": "2026-11-27",
+   "kind": "new instrument",
+   "name": "Migration (Subclass 462 (Work and Holiday) Visa Pre-application Process) Amendment Determination 2026",
+   "made": "2026-11-27",
+   "url": "https://www.legislation.gov.au/F2026L01614"
+  },
+  {
+   "id": "leg-F2026L01613",
+   "found": "2026-11-27",
+   "kind": "new instrument",
+   "name": "Migration (Subclass 417 (Working Holiday) Visa Pre-Application Process) Determination 2026",
+   "made": "2026-11-27",
+   "url": "https://www.legislation.gov.au/F2026L01613"
+  },
+  {
+   "id": "leg-F2026L01612",
+   "found": "2026-11-27",
+   "kind": "new instrument",
+   "name": "Migration (Arrangements for Subclass 462 (Work and Holiday) Visa) Amendment Instrument 2026",
+   "made": "2026-11-27",
+   "url": "https://www.legislation.gov.au/F2026L01612"
+  },
+  {
+   "id": "leg-F2026L01611",
+   "found": "2026-11-27",
+   "kind": "new instrument",
+   "name": "Migration (Specified Classes of Persons for Subclass 417 (Working Holiday) Visa Pre Application Processes) Instrument 2026",
+   "made": "2026-11-27",
+   "url": "https://www.legislation.gov.au/F2026L01611"
+  },
+  {
+   "id": "leg-F2026L01609",
+   "found": "2026-11-27",
+   "kind": "new instrument",
+   "name": "Migration Amendment (Ballots for Second and Third Working Holiday Maker Applications and Other Measures) Regulations 2026",
+   "made": "2026-11-26",
+   "url": "https://www.legislation.gov.au/F2026L01609"
+  },
+  {
+   "id": "leg-F2026L01607",
+   "found": "2026-11-27",
+   "kind": "new instrument",
+   "name": "Migration Amendment (Onshore Application Charge and Other Measures) Regulations 2026",
+   "made": "2026-11-26",
+   "url": "https://www.legislation.gov.au/F2026L01607"
+  },
+  {
+   "id": "leg-F2026L01608",
+   "found": "2026-11-27",
+   "kind": "new instrument",
+   "name": "Migration (Visa Pre-application Process) Charge Amendment (Working Holiday) Regulations 2026",
+   "made": "2026-11-26",
+   "url": "https://www.legislation.gov.au/F2026L01608"
+  }
+ ]
 }
